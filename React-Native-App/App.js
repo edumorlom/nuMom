@@ -9,7 +9,7 @@ import LogIn from './screens/LogInScreen';
 export default function App() {
   // state for loading -> welcome screen
   const [welcome,setWelcome] = useState(false);
-  // handler to go from loading to welcome
+  // handler to go from loading to welcome change in repo
   const goToWelcome = () => {
     setWelcome(true);
   }
