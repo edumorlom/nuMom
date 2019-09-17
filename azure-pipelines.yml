@@ -25,6 +25,9 @@ steps:
 
 - script: npm run test
   displayName: 'Run unit tests'
+ 
+variables:
+  - group: React Native Variables
 
 - task: InstallAppleCertificate@2
   inputs:
@@ -51,6 +54,3 @@ steps:
     bundle install
     fastlane build
   displayName: 'Build android'
-  
-variables:
-  - group: React Native Variables
