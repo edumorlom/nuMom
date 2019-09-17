@@ -1,0 +1,56 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macOS 10.13'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+- script: npm run lint
+  displayName: 'Run lint'
+
+- script: npm run test
+  displayName: 'Run unit tests'
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: AppleDeveloperCertificate.p12
+    certPwd: $(P12password)
+    keychain: 'temp'
+    deleteCert: true
+  displayName: Install Apple Certificate
+
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'AppleProvisioningProfile.mobileprovision'
+  displayName: 'Install Apple Provisioning Profile'
+
+- script: |
+    cd ios
+    bundle install
+    fastlane build
+  displayName: 'Build iOS'
+
+- script: |
+    cd android
+    bundle install
+    fastlane build
+  displayName: 'Build android'
+  
+variables:
+  - group: React Native Variables
