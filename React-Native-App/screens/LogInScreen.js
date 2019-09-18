@@ -9,8 +9,8 @@ const LogIn = props => {
     const [password, setPassword] = useState('');
 
     const inputButtonHandler = () => {
-        if (email === 'a') {
-            if (password === 'a') {
+        if (email === '') {
+            if (password === '') {
                 props.onTapSignIn(email, password);
             }
             else {

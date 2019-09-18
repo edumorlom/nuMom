@@ -5,7 +5,11 @@ import Colors from './constants/Colors';
 import Loading from './screens/LoadingScreen';
 import Welcome from './screens/WelcomeScreen'; 
 import LogIn from './screens/LogInScreen';
-import  LandingPage from './screens/LandingPageScreen';
+import LandingPage from './screens/LandingPageScreen';
+import ProfilePage from './screens/ProfileScreen';
+import FolderPage from './screens/FolderScreen';
+import ContactPage from './screens/ContactScreen';
+import SettingPage from './screens/SettingScreen';
 
 export default function App() {
   // state for loading -> welcome screen 
@@ -51,6 +55,48 @@ export default function App() {
     setLandingPage(true);
     setLogIn(false);
   }
+  // where to go from landing page
+  const [folder,setFolder] = useState(false);
+  const [profile,setProfile] = useState(false);
+  const [contact,setContact] = useState(false);
+  const [setting,setSetting] = useState(false);
+  const navigateHelper = (location) => {
+    if(location === 'LandingPage') {
+      setLandingPage(true);
+      setFolder(false);
+      setProfile(false);
+      setContact(false);
+      setSetting(false);
+    }
+    else if (location === 'FolderPage') {
+      setLandingPage(false);
+      setFolder(true);
+      setProfile(false);
+      setContact(false);
+      setSetting(false);
+    }
+    else if (location === 'ProfilePage') {
+      setLandingPage(false);
+      setFolder(false);
+      setProfile(true);
+      setContact(false);
+      setSetting(false);
+    }
+    else if (location === 'ContactPage') {
+      setLandingPage(false);
+      setFolder(false);
+      setProfile(false);
+      setContact(true);
+      setSetting(false);
+    }
+    else if (location === 'SettingPage') {
+      setLandingPage(false);
+      setFolder(false);
+      setProfile(false);
+      setContact(false);
+      setSetting(true);
+    }
+  }
 
   // renders screens 
   let content = <Loading onTap={goToWelcome} />
@@ -64,9 +110,21 @@ export default function App() {
       onTapSignIn={goToLandingPage} />
   }
   else if(landingPage) {
-    content = <LandingPage/>
+    content = <LandingPage onTap={navigateHelper}/>
   }
-
+  else if(folder) {
+    content = <FolderPage onTap={navigateHelper}/>
+  }
+  else if(profile) {
+    content = <ProfilePage onTap={navigateHelper}/>
+  }
+  else if(contact) {
+    content = <ContactPage onTap={navigateHelper}/>
+  }
+  else if(setting) {
+    content = <SettingPage onTap={navigateHelper}/>
+  }
+  
   return (
     <View style={styles.container}>
       {content}
