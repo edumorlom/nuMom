@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, ImageBackground, Text, Image, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
 
 import Colors from '../constants/Colors';
+
 
 const Welcome = props => {
 
@@ -10,64 +11,52 @@ const Welcome = props => {
     const languageSetHandler = (lang) => {
         setLanguage(lang);
     }
-
-    // Controls the opacity of languages not selecetd and language selected
-    if (language === "English") {
+    if(language === 'English') {
         styles.pictureEnglish.opacity = 1;
         styles.pictureSpanish.opacity = 0.2;
         styles.pictureCreole.opacity = 0.2;
     }
-    else if (language === "Spanish") {
-        styles.pictureSpanish.opacity = 1;
+    else if (language === 'Spanish') {
         styles.pictureEnglish.opacity = 0.2;
+        styles.pictureSpanish.opacity = 1;
         styles.pictureCreole.opacity = 0.2;
     }
-    else if (language === "Creole") {
-        styles.pictureCreole.opacity = 1;
+    else {
         styles.pictureEnglish.opacity = 0.2;
         styles.pictureSpanish.opacity = 0.2;
+        styles.pictureCreole.opacity = 1;
     }
-
-    // passes lanague to the database
     const passLanguage = () => {
         props.onTap(language);
     }
 
     return (
         <View style={styles.screen}>
-            <ImageBackground source={require('../assets/mom-welcome.png')} style={styles.pictureBack} imageStyle={{opacity:0.2}}>
+            <View style={{ width: '80%', alignItems: 'center' }}>
                 <Text style={styles.textTitle}>Select Language</Text>
+            </View>
+            <View style={styles.box}>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
-                    <Image
-                        source={require('../assets/english.png')}
-                        style={styles.pictureEnglish}
-                    />
-                    <View style={styles.seperator} />
-                    <Text style={styles.textWord}>English</Text>
+                        <Image style={styles.pictureEnglish} source={require('../assets/english.png')} />
+                        <Text style={styles.textWord}>English</Text>
                 </TouchableOpacity>
+                <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
-                    <Image
-                        source={require('../assets/spanish.png')}
-                        style={styles.pictureSpanish}
-                    />
-                    <View style={styles.seperator} />
-                    <Text style={styles.textWord}>Spanish</Text>
+                        <Image style={styles.pictureSpanish} source={require('../assets/spanish.png')} />
+                        <Text style={styles.textWord}>Spanish</Text>
                 </TouchableOpacity>
+                <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
-                    <Image
-                        source={require('../assets/creole.png')}
-                        style={styles.pictureCreole}
-                    />
-                    <View style={styles.seperator} />
-                    <Text style={styles.textWord}>Creole</Text>
+                        <Image style={styles.pictureCreole} source={require('../assets/creole.png')} />
+                        <Text style={styles.textWord}>Creole</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
-                    <Image
-                        source={require('../assets/check-mark.png')}
-                        style={styles.check}
-                    />
-                </TouchableOpacity>
-            </ImageBackground>
+            </View>
+            <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
+                <Image
+                    source={require('../assets/check-mark.png')}
+                    style={styles.check}
+                />
+            </TouchableOpacity>
         </View>
     );
 };
@@ -77,65 +66,69 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 0,
+        margin: 10,
     },
-    pictureBack: {
-        width: '100%', 
-        height: '100%', 
-        resizeMode:'contain',
-        justifyContent: 'center', 
-        alignItems: 'center'
+    box: {
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'transparent',
+        borderRadius: 30,
+        backgroundColor: Colors.pinkSoft,
+        margin: 10,
+        padding: 10,
+        width: '80%',
+        height: '50%',
     },
     pictureEnglish: {
         height: 80,
         width: 100,
         resizeMode: 'stretch',
-        opacity: 0.2,
     },
     pictureSpanish: {
         height: 80,
         width: 100,
         resizeMode: 'stretch',
-        opacity: 0.2,
     },
     pictureCreole: {
         height: 80,
         width: 100,
         resizeMode: 'stretch',
-        opacity: 0.2,
     },
     flagStyle: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        height: 100,
-        width: 300,
-        margin: 25,
+        height: "30%",
+        width: "100%",
+        margin: 10,
+        padding: 20,
+    },
+    textWord: {
+        color: Colors.yellowPastel,
+        fontSize: 30,
+    },
+    textTitle: {
+        fontSize: 40,
+        color: Colors.yellowPastel,
+    },
+    seperatorLine: {
+        width: '100%',
+        borderBottomColor: Colors.yellowPastel,
+        borderBottomWidth: 1,
     },
     buttonStyle: {
-        height: 80,
-        width: 80,
+        height: 50,
+        width: 50,
+        marginTop: 50,
         justifyContent: 'center',
         alignItems: 'center',
     },
     check: {
         height: 50,
         width: 50,
-        resizeMode: 'stretch',
-        marginTop: 25,
-        opacity: 0.8
-    },
-    textTitle: {
-        fontSize: 50,
-        color: 'white',
-    },
-    textWord: {
-        color: 'white',
-        fontSize: 30,
-    },
-    seperator: {
-        width: 5,
-        height: 10,
+        resizeMode: 'contain',
+        opacity: 1
     },
 });
 
