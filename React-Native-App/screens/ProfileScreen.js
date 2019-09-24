@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     screen: {
         justifyContent: 'center',
         alignItems: 'center',
-        wdith: '100%',
+        width: '100%',
         height: '100%'
     },
 })

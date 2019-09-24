@@ -11,21 +11,6 @@ const Welcome = props => {
     const languageSetHandler = (lang) => {
         setLanguage(lang);
     }
-    if(language === 'English') {
-        styles.pictureEnglish.opacity = 1;
-        styles.pictureSpanish.opacity = 0.2;
-        styles.pictureCreole.opacity = 0.2;
-    }
-    else if (language === 'Spanish') {
-        styles.pictureEnglish.opacity = 0.2;
-        styles.pictureSpanish.opacity = 1;
-        styles.pictureCreole.opacity = 0.2;
-    }
-    else {
-        styles.pictureEnglish.opacity = 0.2;
-        styles.pictureSpanish.opacity = 0.2;
-        styles.pictureCreole.opacity = 1;
-    }
     const passLanguage = () => {
         props.onTap(language);
     }
@@ -37,18 +22,24 @@ const Welcome = props => {
             </View>
             <View style={styles.box}>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
-                        <Image style={styles.pictureEnglish} source={require('../assets/english.png')} />
+                    <View style={{ opacity: (language === 'English') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <Image style={styles.picture} source={require('../assets/english.png')} />
                         <Text style={styles.textWord}>English</Text>
+                    </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
-                        <Image style={styles.pictureSpanish} source={require('../assets/spanish.png')} />
+                    <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image style={styles.picture} source={require('../assets/spanish.png')} />
                         <Text style={styles.textWord}>Spanish</Text>
+                    </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
-                        <Image style={styles.pictureCreole} source={require('../assets/creole.png')} />
+                    <View style={{ opacity: (language === 'Creole') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image style={styles.picture} source={require('../assets/creole.png')} />
                         <Text style={styles.textWord}>Creole</Text>
+                    </View>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
@@ -80,25 +71,12 @@ const styles = StyleSheet.create({
         width: '80%',
         height: '50%',
     },
-    pictureEnglish: {
-        height: 80,
-        width: 100,
-        resizeMode: 'stretch',
-    },
-    pictureSpanish: {
-        height: 80,
-        width: 100,
-        resizeMode: 'stretch',
-    },
-    pictureCreole: {
+    picture: {
         height: 80,
         width: 100,
         resizeMode: 'stretch',
     },
     flagStyle: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         height: "30%",
         width: "100%",
         margin: 10,
