@@ -8,7 +8,7 @@ const Contact = props => {
         props.onTap(location);
     }
     return (
-        <View>
+        <View> 
             <View style={styles.screen} >
                 <Text>Contact Page</Text>
             </View>
