@@ -3,14 +3,14 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import Navigation from '../components/NavigationBar';
 
-const Contact = props => {
+const Classes = props => {
     const locationHelper = (location) => {
         props.onTap(location);
     }
     return (
         <View> 
             <View style={styles.screen} >
-                <Text>Contact Page</Text>
+                <Text>Classes Page</Text>
             </View>
             <View>
                 <Navigation passLocation={(loc) => locationHelper(loc)} />
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Contact;
+export default Classes;

@@ -15,15 +15,15 @@ const Navigation = props => {
                 <TouchableOpacity onPress={() => goToHelper('LandingPage')}>
                     <Image styles={styles.pictures} source={require('../assets/home-icon.png')} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => goToHelper('FolderPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/folder-icon.png')} />
+                <TouchableOpacity onPress={() => goToHelper('SexEdPage')}>
+                    <Image styles={styles.pictures} source={require('../assets/sexed-icon.png')} />
                 </TouchableOpacity>
                 <View style={{ width: 50, height: 50 }} />
-                <TouchableOpacity onPress={() => goToHelper('ContactPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/contact-icon.png')} />
+                <TouchableOpacity onPress={() => goToHelper('ClassesPage')}>
+                    <Image styles={styles.pictures} source={require('../assets/classes-icon.png')} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => goToHelper('SettingPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/setting-icon.png')} />
+                <TouchableOpacity onPress={() => goToHelper('ClinicsPage')}>
+                    <Image styles={styles.pictures} source={require('../assets/clinics-icon.png')} />
                 </TouchableOpacity>
             </View >
             {/* backdrop for profile ellipse */}

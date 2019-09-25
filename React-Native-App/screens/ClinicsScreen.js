@@ -3,14 +3,14 @@ import {View,Text,StyleSheet} from 'react-native';
 
 import Navigation from '../components/NavigationBar';
 
-const Setting = props => {
+const Clinics = props => {
     const locationHelper = (location) => {
         props.onTap(location);
     }
     return (
         <View>
             <View style={styles.screen} >
-                <Text>Setting Page</Text>
+                <Text>Clinics Page</Text>
             </View>
             <View>
                 <Navigation passLocation={(loc) => locationHelper(loc)} />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
         height: '100%'
     },
 })
-export default Setting;
+export default Clinics;

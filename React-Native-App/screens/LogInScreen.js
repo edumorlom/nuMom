@@ -21,6 +21,11 @@ const LogIn = props => {
             Alert.alert('Wrong email');
         }
     }
+    const signupHandler = () => {
+        props.onTapNewUser();
+    }
+    const forgotPassHandler = () => {
+    }
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -53,13 +58,19 @@ const LogIn = props => {
                 </View>
                 <TouchableHighlight
                     style={styles.signInButton}
-                    onPress={() => inputButtonHandler()} 
+                    onPress={() => inputButtonHandler()}
                     underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                        <Text style={{fontSize:18,color:'black'}}>Sign In!</Text>
+                    <Text style={{ fontSize: 18, color: 'black' }}>Sign In!</Text>
                 </TouchableHighlight>
                 <View style={styles.seperator}>
-                    <TouchableOpacity style={{ opacity: 0.8 }}><Text>Forgot Password?</Text></TouchableOpacity>
-                    <TouchableOpacity style={{ opacity: 0.8 }}><Text>New mom? Sign Up!</Text></TouchableOpacity>
+                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => forgotPassHandler()}>
+                        <Text>Forgot Password?</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => signupHandler()}>
+                        <View>
+                            <Text>New mom? Sign Up!</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: Colors.boxBackground,
         width: '40%',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
     },

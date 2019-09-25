@@ -5,11 +5,12 @@ import Colors from './constants/Colors';
 import Loading from './screens/LoadingScreen';
 import Welcome from './screens/WelcomeScreen'; 
 import LogIn from './screens/LogInScreen';
+import SignUp from './screens/SignUpScreen';
 import LandingPage from './screens/LandingPageScreen';
 import ProfilePage from './screens/ProfileScreen';
-import FolderPage from './screens/FolderScreen';
-import ContactPage from './screens/ContactScreen';
-import SettingPage from './screens/SettingScreen';
+import SexEdPage from './screens/SexEdScreen';
+import ClassesPage from './screens/ClassesScreen';
+import ClinicsPage from './screens/ClinicsScreen';
 
 export default function App() {
   // state for loading -> welcome screen 
@@ -56,45 +57,45 @@ export default function App() {
     setLogIn(false);
   }
   // where to go from landing page
-  const [folder,setFolder] = useState(false);
+  const [sexEd,setSexEd] = useState(false);
   const [profile,setProfile] = useState(false);
-  const [contact,setContact] = useState(false);
-  const [setting,setSetting] = useState(false);
+  const [classes,setClasses] = useState(false);
+  const [clinics,setClinics] = useState(false);
   const navigateHelper = (location) => {
     if(location === 'LandingPage') {
       setLandingPage(true);
-      setFolder(false);
+      setSexEd(false);
       setProfile(false);
-      setContact(false);
-      setSetting(false);
+      setClasses(false);
+      setClinics(false);
     }
-    else if (location === 'FolderPage') {
+    else if (location === 'SexEdPage') {
       setLandingPage(false);
-      setFolder(true);
+      setSexEd(true);
       setProfile(false);
-      setContact(false);
-      setSetting(false);
+      setClasses(false);
+      setClinics(false);
     }
     else if (location === 'ProfilePage') {
       setLandingPage(false);
-      setFolder(false);
+      setSexEd(false);
       setProfile(true);
-      setContact(false);
-      setSetting(false);
+      setClasses(false);
+      setClinics(false);
     }
-    else if (location === 'ContactPage') {
+    else if (location === 'ClassesPage') {
       setLandingPage(false);
-      setFolder(false);
+      setSexEd(false);
       setProfile(false);
-      setContact(true);
-      setSetting(false);
+      setClasses(true);
+      setClinics(false);
     }
-    else if (location === 'SettingPage') {
+    else if (location === 'ClinicsPage') {
       setLandingPage(false);
-      setFolder(false);
+      setSexEd(false);
       setProfile(false);
-      setContact(false);
-      setSetting(true);
+      setClasses(false);
+      setClinics(true);
     }
   }
 
@@ -109,20 +110,23 @@ export default function App() {
       onTapNewUser={goToNewUser} 
       onTapSignIn={goToLandingPage} />
   }
+  else if(newUser) {
+    content = <SignUp onTapSignUp={goToLandingPage}/>
+  }
   else if(landingPage) {
     content = <LandingPage onTap={navigateHelper}/>
   }
-  else if(folder) {
-    content = <FolderPage onTap={navigateHelper}/>
+  else if(sexEd) {
+    content = <SexEdPage onTap={navigateHelper}/>
   }
   else if(profile) {
     content = <ProfilePage onTap={navigateHelper}/>
   }
-  else if(contact) {
-    content = <ContactPage onTap={navigateHelper}/>
+  else if(classes) {
+    content = <ClassesPage onTap={navigateHelper}/>
   }
-  else if(setting) {
-    content = <SettingPage onTap={navigateHelper}/>
+  else if(clinics) {
+    content = <ClinicsPage onTap={navigateHelper}/>
   }
   
   return (

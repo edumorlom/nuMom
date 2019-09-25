@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
 
 import Colors from '../constants/Colors';
 
-
 const Welcome = props => {
 
     // handles the language selection of the app
@@ -23,21 +22,21 @@ const Welcome = props => {
             <View style={styles.box}>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
                     <View style={{ opacity: (language === 'English') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <Image style={styles.picture} source={require('../assets/english.png')} />
+                        <Image style={styles.picture} source={require('../assets/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
                     <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/spanish.png')} />
+                        <Image style={styles.picture} source={require('../assets/spanish-icon.png')} />
                         <Text style={styles.textWord}>Spanish</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
                     <View style={{ opacity: (language === 'Creole') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/creole.png')} />
+                        <Image style={styles.picture} source={require('../assets/creole-icon.png')} />
                         <Text style={styles.textWord}>Creole</Text>
                     </View>
                 </TouchableOpacity>
