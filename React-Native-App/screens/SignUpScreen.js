@@ -16,9 +16,7 @@ const SignUp = props => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pregnantMonths, setPregnantMonths] = useState('');
-    const [child, setChild] = useState(false);
     const [childAge, setChildAge] = useState('');
-    const [textNotification, setTextNotification] = useState(false);
     const [frequency, setFrequency] = useState('');
 
     var currDate = new Date().getFullYear() + '-01-01';
@@ -80,7 +78,7 @@ const SignUp = props => {
                 { cancelable: false })
         }
         else {
-            props.onTapSignUp(name, middleName, lastName, birthdate, email, password, phoneNumber, pregnantMonths, child, childAge, textNotification, frequency);
+            props.onTapSignUp(name, middleName, lastName, birthdate, email, password, phoneNumber, pregnantMonths, childAge, frequency);
         }
     }
     return (
@@ -170,7 +168,7 @@ const SignUp = props => {
                                 <Text style={styles.labelText}>Password</Text>
                                 <View style={{ width: '5%', marginLeft: -20 }}>
                                     <Tooltip
-                                        popover={<Text>Valid Password:{"\n"}-One uppercase letter, {"\n"}-numbers and letters,{"\n"}-and at least 7 characters</Text>}
+                                        popover={<Text>Valid Password:{"\n"}-One uppercase letter, {"\n"}-numbers and letters,{"\n"}-and at least 8 characters</Text>}
                                         backgroundColor={Colors.PurpleBackground}
                                         height={150}
                                     >
@@ -252,7 +250,7 @@ const SignUp = props => {
                                     <Picker.Item label='Bi-Weekly' value="biweekly" />
                                     <Picker.Item label='Monthly' value="monthly" />
                                 </Picker>
-                            </View> 
+                            </View>
                         </ScrollView>
                     </View>
                     <View>
@@ -313,11 +311,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-    },
-    RNP: {
-        borderColor: 'black',
-        width: 100,
-        height: 100,
     },
     labelText: {
         fontSize: 15,

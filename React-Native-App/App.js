@@ -11,6 +11,7 @@ import ProfilePage from './screens/ProfileScreen';
 import SexEdPage from './screens/SexEdScreen';
 import ClassesPage from './screens/ClassesScreen';
 import ClinicsPage from './screens/ClinicsScreen';
+import FolderPage from './screens/FolderScreen';
 
 export default function App() {
   // state for loading -> welcome screen where language selected
@@ -20,6 +21,7 @@ export default function App() {
   const [profile, setProfile] = useState(false);
   const [classes, setClasses] = useState(false);
   const [clinics, setClinics] = useState(false);
+  const [folder, setFolder] = useState(false);
   // For Successfull Log in, landing on the home screen 
   const [landingPage, setLandingPage] = useState(false);
   // email and password when signing in
@@ -33,6 +35,16 @@ export default function App() {
   const [forgotPassword, setForgotPassword] = useState(false);
   // For new users who want to sign up
   const [newUser, setNewUser] = useState(false);
+  // Profile Information
+  const [name, setName] = useState('');
+  const [middleName, setMiddleName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [birthdate, setBirthDate] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [pregnantMonths, setPregnantMonths] = useState('');
+  const [childAge, setChildAge] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [files, setFiles] = useState('');
 
   // handler to go from loading to welcome (language)
   const goToWelcome = () => {
@@ -60,31 +72,38 @@ export default function App() {
   // sends you to home page with navigation from log in 
   const goToLandingPage = (email, password) => {
     // retrive profile from database using email and password
-    setEmail(email);
-    setPassword(password);
+
+    // setEmail(email);
+    // setPassword(password);
     setLandingPage(true);
     setLogIn(false);
   }
   // go to home screen first time after sign up 
-  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, c, cA, tN, f) => {
+  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, cA, f) => {
     // info for the profile, saved in database
-    console.log(
-      '\nFirst Name: ' + n +
-      '\nMiddle Name: ' + m +
-      '\nLast Name: ' + l +
-      '\nBirthDate: ' + b +
-      '\nEmail: ' + e +
-      '\nPassword: ' + pa +
-      '\nPhone NUmber: ' + ph +
-      '\nPregnancy: ' + pr +
-      '\nPregnancy month: ' + prM +
-      '\nChild: ' + c +
-      '\nChild age: ' + cA +
-      '\nText Notification: ' + tN +
-      '\nText Frequency: ' + f
-    );
+    setName(n);
+    setMiddleName(m);
+    setLastName(l);
+    setBirthDate(b);
+    setEmail(e);
+    setPassword(pa);
+    setPhoneNumber(ph);
+    setPregnantMonths(prM);
+    setChildAge(cA);
+    setFrequency(f);
     setLandingPage(true);
     setNewUser(false);
+  }
+  //go to folder view from the profile page
+  const goToFolder = () => {
+    setProfile(false);
+    setFolder(true);
+  }
+  // FIXME add save files here and return to profile page
+  const saveTheFiles = (fl) => {
+    setFiles(fl);
+    setFolder(false);
+    setProfile(true);
   }
   // where to go from landing page, Navigation Bar 
   const navigateHelper = (location) => {
@@ -94,6 +113,7 @@ export default function App() {
       setProfile(false);
       setClasses(false);
       setClinics(false);
+      setFolder(false);
     }
     else if (location === 'SexEdPage') {
       setLandingPage(false);
@@ -101,6 +121,7 @@ export default function App() {
       setProfile(false);
       setClasses(false);
       setClinics(false);
+      setFolder(false);
     }
     else if (location === 'ProfilePage') {
       setLandingPage(false);
@@ -108,6 +129,7 @@ export default function App() {
       setProfile(true);
       setClasses(false);
       setClinics(false);
+      setFolder(false);
     }
     else if (location === 'ClassesPage') {
       setLandingPage(false);
@@ -115,6 +137,7 @@ export default function App() {
       setProfile(false);
       setClasses(true);
       setClinics(false);
+      setFolder(false);
     }
     else if (location === 'ClinicsPage') {
       setLandingPage(false);
@@ -122,6 +145,7 @@ export default function App() {
       setProfile(false);
       setClasses(false);
       setClinics(true);
+      setFolder(false);
     }
   }
 
@@ -146,7 +170,21 @@ export default function App() {
     content = <SexEdPage onTap={navigateHelper} />
   }
   else if (profile) {
-    content = <ProfilePage onTap={navigateHelper} />
+    var profileDetails = {
+      'Name': name, "MiddleName": middleName, "LastName": lastName,
+      "BirthDate": birthdate, "Email": email, "Password": password, "PhoneNumber": phoneNumber,
+      "PregnantMonths": pregnantMonths, "ChildAge": childAge, "Frequency": frequency, "Language": language
+    };
+    content = <ProfilePage onTap={navigateHelper}
+      loadProfile={profileDetails}
+      onSave={goToLandingPageFromSignUp}
+      changeLang={(lang) => setLanguage(lang)}
+      tapFolder={goToFolder}
+    />
+  }
+  else if (folder) {
+    // files to save for the database
+    content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} />
   }
   else if (classes) {
     content = <ClassesPage onTap={navigateHelper} />
