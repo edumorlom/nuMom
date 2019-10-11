@@ -1,1 +1,11 @@
 to deploy run: firebase deploy --project moms-and-infants-healthy
+
+
+fix the fastlane install
+first install xcode 
+change path with: 'sudo xcode-select -switch /'
+new path after running 'xcode-select -p' shuld be: /Library/Developer/CommandLineTools
+install latest ruby version: 'rvm install ruby-2.6.2'  
+Ruby was built without documentation, to build it run: 'rvm docs generate-ri'
+after running 'ruby -v' version should be: ruby 2.6.2p47 (2019-03-13 revision 67232) [x86_64-darwin18]
+finally install fastlane with command 'sudo gem install fastlane -NV'
