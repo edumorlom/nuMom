@@ -9,3 +9,20 @@ install latest ruby version: 'rvm install ruby-2.6.2'
 Ruby was built without documentation, to build it run: 'rvm docs generate-ri'
 after running 'ruby -v' version should be: ruby 2.6.2p47 (2019-03-13 revision 67232) [x86_64-darwin18]
 finally install fastlane with command 'sudo gem install fastlane -NV'
+
+--------------------------------------------------
+to update ruby 
+Open your terminal and run
+
+curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
+When this is complete, you need to restart your terminal for the rvm command to work.
+
+Now, run rvm list known
+
+This shows the list of versions of the ruby.
+
+Now, run rvm install ruby-2.4.2
+
+If you type ruby -v in the terminal, you should see ruby 2.4.2.
+
+If it still shows you ruby 2.0., run rvm use ruby-2.4.2 --default.
