@@ -2,11 +2,38 @@ import React, { useState } from 'react';
 import { View, Image, ScrollView, StyleSheet, TextInput, Text, TouchableHighlight, Alert, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { Tooltip } from 'react-native-elements';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import ImagePick from '../components/ImagePick';
 
 import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 
 const Profile = props => {
+
+    // handles translations
+    var lang = props.loadLanguage;
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    // handles tip language
+    var tipHandler = '';
+    if (lang === 'en') { tipHandler = 'Valid Password:\n-One uppercase letter,\n-numbers and letters,\n-and at least 8 characters' }
+    else if (lang === 'es') { tipHandler = 'Contraseña válida:\n-Una letra mayúscula,\n-números y letras,\n-y al menos 8 caracteres' }
+    else { tipHandler = 'Valab Modpas:\n-Yon lèt majuskul,\n-numbers ak lèt,\n-ak omwen 8 karaktè' }
+    var month = '';
+    if (lang === 'en') { month = 'month' }
+    else if (lang === 'es') { month = 'mes' }
+    else { month = "mwa" }
+    var weekly = '';
+    if (lang === 'en') { weekly = 'weekly' }
+    else if (lang === 'es') { weekly = 'semanal' }
+    else { weekly = "chak semèn" }
+    var bi_weekly = '';
+    if (lang === 'en') { bi_weekly = 'bi-weekly' }
+    else if (lang === 'es') { bi_weekly = 'quincenal' }
+    else { bi_weekly = "de semèn" }
+    var monthly = '';
+    if (lang === 'en') { monthly = 'monthly' }
+    else if (lang === 'es') { monthly = 'mensual' }
+    else { monthly = "chak mwa" }
 
     const [name, setName] = useState(props.loadProfile['Name']);
     const [middleName, setMiddleName] = useState(props.loadProfile['MiddleName']);
@@ -21,7 +48,10 @@ const Profile = props => {
     const [frequency, setFrequency] = useState(props.loadProfile['Frequency']);
     // handles the language selection of the app
     const [language, setLanguage] = useState(props.loadProfile['Language']);
-
+    const [image, setImage] = useState(props.loadProfile['Image']);
+    if (image === '') {
+        setImage('../assets/mom-and-baby-icon-editable.png');
+    }
     var currDate = new Date().getFullYear() + '-01-01';
 
     validateEmail = (text) => {
@@ -72,15 +102,16 @@ const Profile = props => {
                 { cancelable: false })
         }
         else {
-            props.onSave(name, middleName, lastName, birthdate, email, password, phoneNumber, pregnantMonths, childAge, frequency);
+            props.onSave(name, middleName, lastName, birthdate, email, password, phoneNumber, pregnantMonths, childAge, frequency, image);
             props.changeLang(language);
         }
     }
-
+    const pictureHandler = (pic) => {
+        setImage(pic);
+    }
     const folderView = () => {
         props.tapFolder();
     }
-
     return (
         <View>
             <KeyboardAvoidingView
@@ -89,7 +120,9 @@ const Profile = props => {
                 <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                     <View style={styles.screen}>
                         <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Image style={{marginLeft:55}} source={require('../assets/mom-and-baby-icon.png')} />
+                            <View style={{ marginLeft: 55 }}>
+                                <ImagePick passPicture={image} getPicture={pictureHandler} />
+                            </View>
                             <TouchableOpacity onPress={() => folderView()} >
                                 <Image style={{ marginLeft: 20, marginTop: 20 }} source={require('../assets/folder-icon.png')} />
                             </TouchableOpacity>
@@ -97,174 +130,215 @@ const Profile = props => {
                         <View style={styles.box}>
                             <ScrollView>
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>First Name </Text>
-                                    <TextInput
-                                        placeholder={name}
-                                        onChangeText={text => setName(text)}
-                                        style={styles.textInput}
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"First Name "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            placeholder={name}
+                                            onChangeText={text => setName(text)}
+                                            style={styles.textInput}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Middle Name </Text>
-                                    <TextInput
-                                        placeholder={middleName}
-                                        onChangeText={text => setMiddleName(text)}
-                                        style={styles.textInput}
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Middle Name "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            placeholder={middleName}
+                                            onChangeText={text => setMiddleName(text)}
+                                            style={styles.textInput}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Last Name </Text>
-                                    <TextInput
-                                        placeholder={lastName}
-                                        onChangeText={text => setLastName(text)}
-                                        style={styles.textInput}
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Last Name "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            placeholder={lastName}
+                                            onChangeText={text => setLastName(text)}
+                                            style={styles.textInput}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Birth Date </Text>
-                                    <DatePicker
-                                        style={{ width: '70%' }}
-                                        customStyles={{
-                                            dateInput: {
-                                                marginLeft: 10,
-                                                alignItems: 'flex-start',
-                                                justifyContent: 'center',
-                                                borderColor: 'transparent',
-                                            },
-                                            btnCancel: {
-                                                marginLeft: 50,
-                                            },
-                                            btnConfirm: {
-                                                marginRight: 50,
-                                            },
-                                            placeholderText: {
-                                                fontSize: 15,
-                                            }
-                                        }}
-                                        date={birthdate}
-                                        onDateChange={(date) => setBirthDate(date)}
-                                        showIcon={false}
-                                        mode="date"
-                                        placeholder={birthdate}
-                                        format="YYYY-MM-DD"
-                                        minDate="1940-05-01"
-                                        maxDate={currDate}
-                                        confirmBtnText="Confirm"
-                                        cancelBtnText="Cancel"
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Birth Date"} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <DatePicker
+                                            style={{ width: '70%' }}
+                                            customStyles={{
+                                                dateInput: {
+                                                    marginLeft: 10,
+                                                    alignItems: 'flex-start',
+                                                    justifyContent: 'center',
+                                                    borderColor: 'transparent',
+                                                },
+                                                btnCancel: {
+                                                    marginLeft: 50,
+                                                },
+                                                btnConfirm: {
+                                                    marginRight: 50,
+                                                },
+                                                placeholderText: {
+                                                    fontSize: 15,
+                                                }
+                                            }}
+                                            date={birthdate}
+                                            onDateChange={(date) => setBirthDate(date)}
+                                            showIcon={false}
+                                            mode="date"
+                                            placeholder={birthdate}
+                                            format="YYYY-MM-DD"
+                                            minDate="1940-05-01"
+                                            maxDate={currDate}
+                                            confirmBtnText="Confirm"
+                                            cancelBtnText="Cancel"
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Email </Text>
-                                    <TextInput
-                                        placeholder={email}
-                                        onChangeText={text => validateEmail(text)}
-                                        style={styles.textInput}
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Email "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            placeholder={email}
+                                            onChangeText={text => validateEmail(text)}
+                                            style={styles.textInput}
+                                            autoCompleteType='email'
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>New{"\n"}Password</Text>
-                                    <View style={{ width: '5%', marginLeft: -20 }}>
+                                    <View style={{ width: '30%', flexDirection: 'row' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Password "} />
                                         <Tooltip
-                                            popover={<Text>Valid Password:{"\n"}-One uppercase letter, {"\n"}-numbers and letters,{"\n"}-and at least 8 characters</Text>}
+                                            popover={<Text>{tipHandler}</Text>}
                                             backgroundColor={Colors.PurpleBackground}
-                                            height={150}
-                                        >
+                                            height={150}>
                                             <Image source={require('../assets/info-icon.png')} />
                                         </Tooltip>
                                     </View>
-                                    <TextInput
-                                        placeholder={password}
-                                        onChangeText={text => validatePassword(text)}
-                                        style={styles.textInput}
-                                        secureTextEntry={true}
-                                    />
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            onChangeText={text => validatePassword(text)}
+                                            style={styles.textInput}
+                                            autoCompleteType='password'
+                                            secureTextEntry={true}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Confirm New Password </Text>
-                                    <TextInput
-                                        placeholder={password}
-                                        onChangeText={text => setPasswordConfirm(text)}
-                                        style={styles.textInput}
-                                        secureTextEntry={true}
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Confirm Password "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            onChangeText={text => setPasswordConfirm(text)}
+                                            style={styles.textInput}
+                                            secureTextEntry={true}
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.labelPosition}>
-                                    <Text style={styles.labelText}>Phone Number </Text>
-                                    <TextInput
-                                        placeholder={phoneNumber}
-                                        onChangeText={text => setPhoneNumber(text)}
-                                        style={styles.textInput}
-                                        keyboardType='number-pad'
-                                        autoCompleteType='tel'
-                                    />
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Phone Number "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <TextInput
+                                            placeholder={phoneNumber}
+                                            onChangeText={text => setPhoneNumber(text)}
+                                            style={styles.textInput}
+                                            keyboardType='number-pad'
+                                            autoCompleteType='tel'
+                                        />
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.pickerStyle}>
-                                    <Text style={styles.labelText}>Pregnant? </Text>
-                                    <Picker style={{ width: '70%', paddingRight: 20, height: 80 }}
-                                        itemStyle={{ height: 80 }}
-                                        selectedValue={pregnantMonths}
-                                        onValueChange={text => setPregnantMonths(text)}>
-                                        <Picker.Item label='Not Pregnant' value='No' />
-                                        <Picker.Item label='One Month' value="one" />
-                                        <Picker.Item label='Two Months' value="two" />
-                                        <Picker.Item label='Three Months' value="three" />
-                                        <Picker.Item label='Four Months' value="four" />
-                                        <Picker.Item label='Five Months' value="five" />
-                                        <Picker.Item label='Six Months' value="six" />
-                                        <Picker.Item label='Seven Months' value="seven" />
-                                        <Picker.Item label='Eight Months' value="eight" />
-                                        <Picker.Item label='Nine Months' value="nine" />
-                                        <Picker.Item label='Ten Months' value="ten" />
-                                    </Picker>
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Pregnant? "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <Picker style={{ width: '100%', paddingRight: 20, height: 80 }}
+                                            itemStyle={{ height: 80 }}
+                                            selectedValue={pregnantMonths}
+                                            onValueChange={text => setPregnantMonths(text)}>
+                                            <Picker.Item label='N/A' value='No' />
+                                            <Picker.Item label={'1 ' + month} value="one" />
+                                            <Picker.Item label={'2 ' + month} value="two" />
+                                            <Picker.Item label={'3 ' + month} value="three" />
+                                            <Picker.Item label={'4 ' + month} value="four" />
+                                            <Picker.Item label={'5 ' + month} value="five" />
+                                            <Picker.Item label={'6 ' + month} value="six" />
+                                            <Picker.Item label={'7 ' + month} value="seven" />
+                                            <Picker.Item label={'8 ' + month} value="eight" />
+                                            <Picker.Item label={'9 ' + month} value="nine" />
+                                            <Picker.Item label={'10 ' + month} value="ten" />
+                                        </Picker>
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.pickerStyle}>
-                                    <Text style={styles.labelText}>Have an Infant? </Text>
-                                    <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={childAge} onValueChange={text => setChildAge(text)}>
-                                        <Picker.Item label='No Infant' value='No' />
-                                        <Picker.Item label='One Month' value="one" />
-                                        <Picker.Item label='Two Months' value="two" />
-                                        <Picker.Item label='Three Months' value="three" />
-                                        <Picker.Item label='Four Months' value="four" />
-                                        <Picker.Item label='Five Months' value="five" />
-                                        <Picker.Item label='Six Months' value="six" />
-                                        <Picker.Item label='Seven Months' value="seven" />
-                                        <Picker.Item label='Eight Months' value="eight" />
-                                        <Picker.Item label='Nine Months' value="nine" />
-                                        <Picker.Item label='Ten Months' value="ten" />
-                                    </Picker>
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Have an Infant? "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <Picker style={{ width: '100%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={childAge} onValueChange={text => setChildAge(text)}>
+                                            <Picker.Item label='N/A' value='No' />
+                                            <Picker.Item label={'1 ' + month} value="one" />
+                                            <Picker.Item label={'2 ' + month} value="two" />
+                                            <Picker.Item label={'3 ' + month} value="three" />
+                                            <Picker.Item label={'4 ' + month} value="four" />
+                                            <Picker.Item label={'5 ' + month} value="five" />
+                                            <Picker.Item label={'6 ' + month} value="six" />
+                                            <Picker.Item label={'7 ' + month} value="seven" />
+                                            <Picker.Item label={'8 ' + month} value="eight" />
+                                            <Picker.Item label={'9 ' + month} value="nine" />
+                                            <Picker.Item label={'10 ' + month} value="ten" />
+                                        </Picker>
+                                    </View>
                                 </View>
                                 <View style={styles.seperatorLine} />
                                 <View style={styles.pickerStyle}>
-                                    <Text style={styles.labelText}>Receive Notifications? </Text>
-                                    <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={frequency} onValueChange={text => setFrequency(text)}>
-                                        <Picker.Item label='No Notifications' value='No' />
-                                        <Picker.Item label='Weekly' value="weekly" />
-                                        <Picker.Item label='Bi-Weekly' value="biweekly" />
-                                        <Picker.Item label='Monthly' value="monthly" />
-                                    </Picker>
+                                    <View style={{ width: '30%' }}>
+                                        <PowerTranslator style={styles.labelText} text={"Receive Notifications? "} />
+                                    </View>
+                                    <View style={{ width: '70%' }}>
+                                        <Picker style={{ width: '100%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={frequency} onValueChange={text => setFrequency(text)}>
+                                            <Picker.Item label='N/A' value='No' />
+                                            <Picker.Item label={weekly} value="weekly" />
+                                            <Picker.Item label={bi_weekly} value="biweekly" />
+                                            <Picker.Item label={monthly} value="monthly" />
+                                        </Picker>
+                                    </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch', width: '100%' }}>
-                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('English')}>
-                                        <View style={{ opacity: (language === 'English') ? 1 : 0.2 }}>
+                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('en')}>
+                                        <View style={{ opacity: (language === 'en') ? 1 : 0.2 }}>
                                             <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/english-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('Spanish')}>
-                                        <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2 }}>
+                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('es')}>
+                                        <View style={{ opacity: (language === 'es') ? 1 : 0.2 }}>
                                             <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/spanish-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('Creole')}>
-                                        <View style={{ opacity: (language === 'Creole') ? 1 : 0.2 }}>
+                                    <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('ht')}>
+                                        <View style={{ opacity: (language === 'ht') ? 1 : 0.2 }}>
                                             <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/creole-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
@@ -273,7 +347,7 @@ const Profile = props => {
                         </View>
                         <View>
                             <TouchableHighlight style={styles.button} onPress={() => saveChange()} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                                <Text style={{ fontSize: 18, color: 'black' }}>Save Changes</Text>
+                                <PowerTranslator style={{ fontSize: 18, color: 'black' }} text={"Save Changes"} />
                             </TouchableHighlight>
                         </View>
                     </View>
@@ -316,7 +390,6 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: 15,
-        width: '70%',
         padding: 10,
     },
     labelPosition: {
@@ -336,7 +409,6 @@ const styles = StyleSheet.create({
     labelText: {
         fontSize: 15,
         fontWeight: 'bold',
-        width: '30%',
     },
     seperatorLine: {
         width: '95%',

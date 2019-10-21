@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 
 const Folder = props => {
 
-    const [files,setFiles] = useState('');
+    // handles translations
+    var lang = props.loadLanguage;
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+
+    const [files, setFiles] = useState('');
 
     const locationHelper = (location) => {
         props.onTap(location);
@@ -20,11 +25,11 @@ const Folder = props => {
         <View>
             <View style={styles.screen}>
                 <View style={styles.box}>
-                    <Text>Folder Page</Text>
+                    <Text>Folder Page Under Development</Text>
                 </View>
                 <View>
                     <TouchableHighlight style={styles.button} onPress={() => saveChange()} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                        <Text style={{ fontSize: 18, color: 'black' }}>Save Documents</Text>
+                        <PowerTranslator style={{ fontSize: 18, color: 'black' }} text={"Save Documents"} />
                     </TouchableHighlight>
                 </View>
             </View>
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 20,
         padding: 10,
-    },button: {
+    }, button: {
         marginBottom: 100,
         padding: 10,
         backgroundColor: Colors.boxBackground,

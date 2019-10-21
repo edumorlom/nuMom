@@ -4,5 +4,6 @@ export default {
     LanguageUnselected: 'rgba(239, 233, 245, 1)',
     boxBackground: 'rgba(239, 233, 245, 1)',
     yellowPastel: 'rgb(253,252,175)',
-    pinkSoft: '#F29BC2'
+    pinkSoft: '#F29BC2',
+    blueLetters: 'rgba(100, 190, 188, 1)'
 };

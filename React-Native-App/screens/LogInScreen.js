@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { View, Alert, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Image, StyleSheet, TextInput } from 'react-native';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
 
 const LogIn = props => {
 
+    var lang = props.loadLanguage;
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    //handle placeholder transaltions
+    var emailHolder = '';
+    if(lang === 'en') {emailHolder = 'email'}
+    else if (lang === 'es') {emailHolder = 'correo electrónico'}
+    else {emailHolder = 'imèl'}
+    var passHolder = '';
+    if(lang === 'en') {passHolder = 'password'}
+    else if (lang === 'es') {passHolder = 'contraseña'}
+    else {passHolder = 'modpas'}
+
 
     // checks database for correct log in credentials
     const inputButtonHandler = () => {
@@ -43,7 +58,7 @@ const LogIn = props => {
                     <View style={{ flexDirection: 'row' }}>
                         <Image style={{ marginRight: 10 }} source={require('../assets/email.png')} />
                         <TextInput
-                            placeholder='e-mail address'
+                            placeholder={emailHolder}
                             onChangeText={text => setEmail(text)}
                             style={styles.textInput}
                             autoCompleteType={'email'}
@@ -53,7 +68,7 @@ const LogIn = props => {
                     <View style={{ flexDirection: 'row' }}>
                         <Image style={{ marginRight: 10 }} source={require('../assets/lock.png')} />
                         <TextInput
-                            placeholder='password'
+                            placeholder={passHolder}
                             onChangeText={text => setPassword(text)}
                             style={styles.textInput}
                             secureTextEntry={true}
@@ -65,17 +80,18 @@ const LogIn = props => {
                     style={styles.signInButton}
                     onPress={() => inputButtonHandler()}
                     underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                    <Text style={{ fontSize: 18, color: 'black' }}>Sign In!</Text>
+                    <PowerTranslator
+                        style={{ fontSize: 18, color: 'black' }} text={"Sign In!"} />
                 </TouchableHighlight>
 
                 <View style={styles.seperator}>
 
-                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => forgotPassHandler()}>
-                        <Text>Forgot Password?</Text>
+                    <TouchableOpacity style={{ opacity: 0.5, marginRight: 15 }} onPress={() => forgotPassHandler()}>
+                        <PowerTranslator style={{fontSize:12}} text={"Forgot Password?"} />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => signupHandler()}>
-                        <Text>New mom? Sign Up!</Text>
+                        <PowerTranslator style={{fontSize:12}} text={"New mom? Sign Up!"} />
                     </TouchableOpacity>
 
                 </View>
@@ -128,9 +144,9 @@ const styles = StyleSheet.create({
         width: '80%',
         height: 50,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
+        padding: 0,
         bottom: -50
     }
 });
