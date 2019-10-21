@@ -12,6 +12,7 @@ import SexEdPage from './screens/SexEdScreen';
 import ClassesPage from './screens/ClassesScreen';
 import ClinicsPage from './screens/ClinicsScreen';
 import FolderPage from './screens/FolderScreen';
+import firebase from 'firebase';
 
 export default function App() {
   // state for loading -> welcome screen where language selected
@@ -46,9 +47,28 @@ export default function App() {
   const [frequency, setFrequency] = useState('');
   const [files, setFiles] = useState('');
 
+  //setting up firebase
+  const componentDidMount = () => {
+    const firebaseConfig = {
+        apiKey: "AIzaSyAH_iVBY_PO_UrW17xtZlw3mOnaDjvjAf0",
+        authDomain: "moms-and-infants-healthy.firebaseapp.com",
+        databaseURL: "https://moms-and-infants-healthy.firebaseio.com",
+        projectId: "moms-and-infants-healthy",
+        storageBucket: "moms-and-infants-healthy.appspot.com",
+        messagingSenderId: "801193844655",
+        appId: "1:801193844655:web:ec2555673422de9d8f195a",
+        measurementId: "G-ZFN3XM2E4R"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // firebase.analytics();
+}
+
+
   // handler to go from loading to welcome (language)
   const goToWelcome = () => {
     setWelcome(true);
+    componentDidMount();
   }
   // handler to fo from welcome to login (log in screen)
   const goToLogIn = (lang) => {
@@ -151,6 +171,11 @@ export default function App() {
 
   // renders screens in app
   let content = <Loading onTap={goToWelcome} />
+
+  //after first time log in and language selection go straight to landing page 
+
+
+
   if (welcome) {
     content = <Welcome onTap={goToLogIn} />
   }

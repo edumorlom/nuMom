@@ -15,7 +15,8 @@ module.exports = function (req, res) {
     //create a new user account using that phone number
     admin.auth().createUser({ 
         uid: phone, 
-        displayName: req.body.name 
+        displayName: req.body.name,
+         
         }) //async request that returns a promise
         .then(user => res.send( user ))
         .catch(err => res.status(422).send({ error: err }));

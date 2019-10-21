@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
+import firebase from 'firebase';
 
 
 const SignIn = props => {
@@ -19,8 +20,8 @@ const SignIn = props => {
         setphoneNumber(phone);
     }
 
-    const updateCode = (code) => {
-        setCode(code);
+    const updateCode = (passCode) => {
+        setCode(passCode);
     }
 
     // go to user sign up page
@@ -31,8 +32,14 @@ const SignIn = props => {
     const signInHandler = async () => {
         
         try {
-            await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
+            let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
+            
+            console.log(data.token);
 
+            //authenticates into firebase
+            firebase.auth().signInWithCustomToken(data.token);
+
+            //go to the landing page
             props.onTapSignIn();
         } catch(error) {
             console.log(error);

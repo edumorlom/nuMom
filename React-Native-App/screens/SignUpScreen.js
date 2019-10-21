@@ -4,6 +4,7 @@ import { View, Image, ScrollView, StyleSheet, TextInput, Text,
     Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import axios from 'axios'; //to make network requests
+import firebase from 'firebase';
 
 import Colors from '../constants/Colors';
 
