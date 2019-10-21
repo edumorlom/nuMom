@@ -119,7 +119,7 @@ const SignUp = props => {
             keyboardVerticalOffset={-15}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View style={styles.screen}>
-                    <ImagePick passPicture={image} getPicture={pictureHandler} />
+                    <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
                     <View style={styles.box}>
                         <ScrollView>
                             <View style={styles.labelPosition}>

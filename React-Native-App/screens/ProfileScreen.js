@@ -121,7 +121,7 @@ const Profile = props => {
                     <View style={styles.screen}>
                         <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                             <View style={{ marginLeft: 55 }}>
-                                <ImagePick passPicture={image} getPicture={pictureHandler} />
+                                <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
                             </View>
                             <TouchableOpacity onPress={() => folderView()} >
                                 <Image style={{ marginLeft: 20, marginTop: 20 }} source={require('../assets/folder-icon.png')} />
