@@ -89,9 +89,9 @@ const Profile = props => {
                 <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                     <View style={styles.screen}>
                         <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Image style={{marginLeft:55}} source={require('../assets/mom-and-baby-icon.png')} />
+                            <Image style={{marginLeft:55}} source={require('../assets/images/mom-and-baby-icon.png')} />
                             <TouchableOpacity onPress={() => folderView()} >
-                                <Image style={{ marginLeft: 20, marginTop: 20 }} source={require('../assets/folder-icon.png')} />
+                                <Image style={{ marginLeft: 20, marginTop: 20 }} source={require('../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>
                         <View style={styles.box}>
@@ -174,7 +174,7 @@ const Profile = props => {
                                             backgroundColor={Colors.PurpleBackground}
                                             height={150}
                                         >
-                                            <Image source={require('../assets/info-icon.png')} />
+                                            <Image source={require('../assets/icons/info-icon.png')} />
                                         </Tooltip>
                                     </View>
                                     <TextInput
@@ -255,17 +255,17 @@ const Profile = props => {
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch', width: '100%' }}>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('English')}>
                                         <View style={{ opacity: (language === 'English') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/english-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/english-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('Spanish')}>
                                         <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/spanish-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/spanish-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('Creole')}>
                                         <View style={{ opacity: (language === 'Creole') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/creole-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/creole-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>

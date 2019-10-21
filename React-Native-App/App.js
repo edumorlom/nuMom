@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import Colors from './constants/Colors';
 import Loading from './screens/LoadingScreen';
 import Welcome from './screens/WelcomeScreen';
-import LogIn from './screens/LogInScreen';
+import LogIn from './screens/SigInScreen';
 import SignUp from './screens/SignUpScreen';
 import LandingPage from './screens/LandingPageScreen';
 import ProfilePage from './screens/ProfileScreen';
@@ -203,6 +203,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.PurpleBackground,
+    backgroundColor: Colors.newBackground,
   },
 });

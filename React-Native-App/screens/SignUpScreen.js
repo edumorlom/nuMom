@@ -1,86 +1,81 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, StyleSheet, TextInput, Text, Alert, Platform, TouchableHighlight, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Switch, Picker, Input } from 'react-native';
+import { View, Image, ScrollView, StyleSheet, TextInput, Text, 
+    TouchableHighlight, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, 
+    Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import { Tooltip } from 'react-native-elements';
+import axios from 'axios'; //to make network requests
 
 import Colors from '../constants/Colors';
 
 const SignUp = props => {
 
-    const [name, setName] = useState('');
-    const [middleName, setMiddleName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
     const [birthdate, setBirthDate] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pregnantMonths, setPregnantMonths] = useState('');
     const [childAge, setChildAge] = useState('');
     const [frequency, setFrequency] = useState('');
 
-    var currDate = new Date().getFullYear() + '-01-01';
+    const currDate = new Date();
 
-    validateEmail = (text) => {
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (reg.test(text) === false) {
-            setEmail('WRONG');
-            return false;
-        }
-        else {
-            setEmail(text);
-        }
-    }
-    validatePassword = (text) => {
-        var length = text.length;
-        let reg = /^(?=.*[a-z])(?=.*[A-Z]).{8,32}$/;
-        if (length < 6 || (reg.test(text) === false)) {
-            setPassword('WRONG');
-            return false;
-        }
-        else {
-            setPassword(text);
-        }
-    }
+    //url for functions 
+    const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
-    const signUpHandler = () => {
-        var errors = '';
-        var error = false;
-        if (name === '') {
-            errors = errors + 'Please Input Valid First Name\n';
-            error = true;
-        }
-        if (lastName === '') {
-            errors = errors + 'Please Input Valid Last Name\n';
-            error = true;
-        }
-        if (email === 'WRONG' || email === '') {
-            errors = errors + 'Please Input Valid Email: example@gmail.com\n';
-            error = true;
-        }
-        if (password === 'WRONG' || password === '') {
-            errors = errors + 'Please Input Valid Password\n';
-            error = true;
-        }
-        if (passwordConfirm != password) {
-            errors = errors + 'Please Input Matching Password\n';
-            error = true;
-        }
-        if (phoneNumber === '') {
-            errors = errors + 'Please Input Valid Phone Number\n';
-            error = true;
-        }
-        if (error) {
-            Alert.alert('Sign Up Errors', errors,
-                [
-                    { text: 'OK' },
-                ],
-                { cancelable: false })
-        }
-        else {
-            props.onTapSignUp(name, middleName, lastName, birthdate, email, password, phoneNumber, pregnantMonths, childAge, frequency);
-        }
-    }
+    const updatePhoneNumber = (phone) => {
+        setPhoneNumber(phone);
+    };
+
+    const updateFirstName = (firstname) => {
+        setFirstName(firstname);
+    };
+
+    const updateLastName = (lastname) => {
+        setLastName(lastname);
+    };
+
+    //event handler 
+    const signUpHandler = async () => {
+        // if (name === '') {
+        //     errorMessage = errorMessage + 'Please insert valid first name\n';
+        //     error = true;
+        // }
+        // if (lastName === '') {
+        //     errorMessage = errorMessage + 'Please insert valid last name\n';
+        //     error = true;
+        // }
+        // if (error) {
+        //     Alert.alert('Sign Up Errors', errors,
+        //         [
+        //             { text: 'OK' },
+        //         ],
+        //         { cancelable: false });
+        // }
+        // else {
+            //handle errors with connection
+            try {
+                console.log(phoneNumber);
+                console.log(firstName);
+                console.log(lastName);
+
+
+                //creates a user with the entered info
+                await axios.post(`${ROOT_URL}/createUsers`, { phone: phoneNumber });
+
+                //request a code to be sent
+                await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone: phoneNumber });
+
+                //go to log in screen
+                // props.onTap();
+            }
+            catch (err){
+                console.log(err);
+            }
+        // }
+    };
+
+
     return (
         <KeyboardAvoidingView
             behavior={'padding'}
@@ -89,7 +84,7 @@ const SignUp = props => {
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View style={styles.screen}>
                     <View>
-                        <Image source={require('../assets/mom-and-baby-icon.png')} />
+                        <Image source={require('../assets/images/mom-and-baby-icon.png')} />
                     </View>
                     <View style={styles.box}>
                         <ScrollView>
@@ -97,8 +92,9 @@ const SignUp = props => {
                                 <Text style={styles.labelText}>First Name </Text>
                                 <TextInput
                                     placeholder={'First Name'}
-                                    onChangeText={text => setName(text)}
+                                    onChangeText={updateFirstName}
                                     style={styles.textInput}
+                                    value={firstName}
                                 />
                             </View>
                             <View style={styles.seperatorLine} />
@@ -115,8 +111,9 @@ const SignUp = props => {
                                 <Text style={styles.labelText}>Last Name </Text>
                                 <TextInput
                                     placeholder={'Last Name'}
-                                    onChangeText={text => setLastName(text)}
+                                    onChangeText={updateLastName}
                                     style={styles.textInput}
+                                    value={lastName}
                                 />
                             </View>
                             <View style={styles.seperatorLine} />
@@ -146,8 +143,8 @@ const SignUp = props => {
                                     showIcon={false}
                                     mode="date"
                                     placeholder="Select Date"
-                                    format="YYYY-MM-DD"
-                                    minDate="1940-05-01"
+                                    format="MM-DD-YYYY"
+                                    minDate="05-01-1940"
                                     maxDate={currDate}
                                     confirmBtnText="Confirm"
                                     cancelBtnText="Cancel"
@@ -155,53 +152,14 @@ const SignUp = props => {
                             </View>
                             <View style={styles.seperatorLine} />
                             <View style={styles.labelPosition}>
-                                <Text style={styles.labelText}>Email </Text>
-                                <TextInput
-                                    placeholder={'Email'}
-                                    onChangeText={text => validateEmail(text)}
-                                    style={styles.textInput}
-                                    autoCompleteType='email'
-                                />
-                            </View>
-                            <View style={styles.seperatorLine} />
-                            <View style={styles.labelPosition}>
-                                <Text style={styles.labelText}>Password</Text>
-                                <View style={{ width: '5%', marginLeft: -20 }}>
-                                    <Tooltip
-                                        popover={<Text>Valid Password:{"\n"}-One uppercase letter, {"\n"}-numbers and letters,{"\n"}-and at least 8 characters</Text>}
-                                        backgroundColor={Colors.PurpleBackground}
-                                        height={150}
-                                    >
-                                        <Image source={require('../assets/info-icon.png')} />
-                                    </Tooltip>
-                                </View>
-                                <TextInput
-                                    placeholder={'Password'}
-                                    onChangeText={text => validatePassword(text)}
-                                    style={styles.textInput}
-                                    autoCompleteType='password'
-                                    secureTextEntry={true}
-                                />
-                            </View>
-                            <View style={styles.seperatorLine} />
-                            <View style={styles.labelPosition}>
-                                <Text style={styles.labelText}>Confirm Password </Text>
-                                <TextInput
-                                    placeholder={'Password'}
-                                    onChangeText={text => setPasswordConfirm(text)}
-                                    style={styles.textInput}
-                                    secureTextEntry={true}
-                                />
-                            </View>
-                            <View style={styles.seperatorLine} />
-                            <View style={styles.labelPosition}>
                                 <Text style={styles.labelText}>Phone Number </Text>
                                 <TextInput
-                                    placeholder={'Phone Number'}
-                                    onChangeText={text => setPhoneNumber(text)}
                                     style={styles.textInput}
+                                    placeholder={"888-888-8888"}
+                                    onChangeText={updatePhoneNumber}
+                                    value= {phoneNumber}
                                     keyboardType='number-pad'
-                                    autoCompleteType='tel'
+                                    autoCompleteType='tel' //??????
                                 />
                             </View>
                             <View style={styles.seperatorLine} />
@@ -254,7 +212,7 @@ const SignUp = props => {
                         </ScrollView>
                     </View>
                     <View>
-                        <TouchableHighlight style={styles.button} onPress={() => signUpHandler()} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                        <TouchableHighlight style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'} >
                             <Text style={{ fontSize: 18, color: 'black' }}>Sign Up</Text>
                         </TouchableHighlight>
                     </View>
@@ -319,7 +277,7 @@ const styles = StyleSheet.create({
     },
     seperatorLine: {
         width: '95%',
-        borderBottomColor: Colors.PurpleBackground,
+        borderBottomColor: Colors.separatorLine,
         borderBottomWidth: 1,
     },
 })

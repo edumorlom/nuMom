@@ -22,28 +22,28 @@ const Welcome = props => {
             <View style={styles.box}>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
                     <View style={{ opacity: (language === 'English') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <Image style={styles.picture} source={require('../assets/english-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
                     <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/spanish-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/spanish-icon.png')} />
                         <Text style={styles.textWord}>Spanish</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
                     <View style={{ opacity: (language === 'Creole') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/creole-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/creole-icon.png')} />
                         <Text style={styles.textWord}>Creole</Text>
                     </View>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
                 <Image
-                    source={require('../assets/check-mark.png')}
+                    source={require('../assets/icons/check-mark.png')}
                     style={styles.check}
                 />
             </TouchableOpacity>

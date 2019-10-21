@@ -9,6 +9,9 @@ module.exports = function (req, res) {
     //format phone number to remove dashes or pharenthesis ( ^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$ )
     const phone = String(req.body.phone).replace(/[^\d]/g, ""); //regex to recognize anything that is not a digit 
 
+    if (phone.length() > 10)
+        return res.status(422).send({ error: 'Lenght of phone number is not valid'});
+    
     //create a new user account using that phone number
     admin.auth().createUser({ 
         uid: phone, 
