@@ -1,43 +1,45 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
 
 const Welcome = props => {
 
     // handles the language selection of the app
-    const [language, setLanguage] = useState("English");
+    const [language, setLanguage] = useState("en");
     const languageSetHandler = (lang) => {
         setLanguage(lang);
     }
     const passLanguage = () => {
         props.onTap(language);
     }
-
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft,'de6f9f5aaa86420da79a3dc450cd4e6c', language);
     return (
         <View style={styles.screen}>
             <View style={{ width: '80%', alignItems: 'center' }}>
-                <Text style={styles.textTitle}>Select Language</Text>
+            <PowerTranslator 
+                style={styles.textTitle} text={"Select Language"} />
             </View>
             <View style={styles.box}>
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
-                    <View style={{ opacity: (language === 'English') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
+                    <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                         <Image style={styles.picture} source={require('../assets/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
-                    <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('es')}>
+                    <View style={{ opacity: (language === 'es') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image style={styles.picture} source={require('../assets/spanish-icon.png')} />
-                        <Text style={styles.textWord}>Spanish</Text>
+                        <Text style={styles.textWord}>Español</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
-                    <View style={{ opacity: (language === 'Creole') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('ht')}>
+                    <View style={{ opacity: (language === 'ht') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image style={styles.picture} source={require('../assets/creole-icon.png')} />
-                        <Text style={styles.textWord}>Creole</Text>
+                        <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     textTitle: {
-        fontSize: 40,
+        fontSize: 35,
         color: Colors.yellowPastel,
     },
     seperatorLine: {

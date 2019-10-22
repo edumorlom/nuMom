@@ -44,8 +44,9 @@ export default function App() {
   const [pregnantMonths, setPregnantMonths] = useState('');
   const [childAge, setChildAge] = useState('');
   const [frequency, setFrequency] = useState('');
+  const [image,setImage] = useState('');
   const [files, setFiles] = useState('');
-
+  
   // handler to go from loading to welcome (language)
   const goToWelcome = () => {
     setWelcome(true);
@@ -79,7 +80,7 @@ export default function App() {
     setLogIn(false);
   }
   // go to home screen first time after sign up 
-  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, cA, f) => {
+  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, cA, f, i) => {
     // info for the profile, saved in database
     setName(n);
     setMiddleName(m);
@@ -93,6 +94,7 @@ export default function App() {
     setFrequency(f);
     setLandingPage(true);
     setNewUser(false);
+    setImage(i);
   }
   //go to folder view from the profile page
   const goToFolder = () => {
@@ -158,40 +160,43 @@ export default function App() {
     content = <LogIn
       onTapForgot={goToForgotPass}
       onTapNewUser={goToNewUser}
-      onTapSignIn={goToLandingPage} />
+      onTapSignIn={goToLandingPage}
+      loadLanguage={language} />
   }
   else if (newUser) {
-    content = <SignUp onTapSignUp={goToLandingPageFromSignUp} />
+    content = <SignUp onTapSignUp={goToLandingPageFromSignUp} loadLanguage={language}/>
   }
   else if (landingPage) {
-    content = <LandingPage onTap={navigateHelper} />
+    content = <LandingPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (sexEd) {
-    content = <SexEdPage onTap={navigateHelper} />
+    content = <SexEdPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (profile) {
     var profileDetails = {
       'Name': name, "MiddleName": middleName, "LastName": lastName,
       "BirthDate": birthdate, "Email": email, "Password": password, "PhoneNumber": phoneNumber,
-      "PregnantMonths": pregnantMonths, "ChildAge": childAge, "Frequency": frequency, "Language": language
+      "PregnantMonths": pregnantMonths, "ChildAge": childAge, "Frequency": frequency, "Language": language, "Image": image
     };
     content = <ProfilePage onTap={navigateHelper}
       loadProfile={profileDetails}
       onSave={goToLandingPageFromSignUp}
       changeLang={(lang) => setLanguage(lang)}
       tapFolder={goToFolder}
+      loadLanguage={language}
     />
   }
   else if (folder) {
     // files to save for the database
-    content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} />
+    content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (classes) {
-    content = <ClassesPage onTap={navigateHelper} />
+    content = <ClassesPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (clinics) {
-    content = <ClinicsPage onTap={navigateHelper} />
+    content = <ClinicsPage onTap={navigateHelper} loadLanguage={language}/>
   }
+  console.disableYellowBox = true;
   // renders the current screen desired 
   return (
     <View style={styles.container}>

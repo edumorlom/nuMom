@@ -8,9 +8,9 @@ const Classes = props => {
         props.onTap(location);
     }
     return (
-        <View> 
-            <View style={styles.screen} >
-                <Text>Classes Page</Text>
+        <View>
+            <View style={styles.screen}>
+                <Text>Classes page</Text>
             </View>
             <View>
                 <Navigation passLocation={(loc) => locationHelper(loc)} />
