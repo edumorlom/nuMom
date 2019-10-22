@@ -17,25 +17,30 @@ import firebase from 'firebase';
 export default function App() {
   // state for loading -> welcome screen where language selected
   const [welcome, setWelcome] = useState(false);
+
   // states for navigation bar
   const [sexEd, setSexEd] = useState(false);
   const [profile, setProfile] = useState(false);
   const [classes, setClasses] = useState(false);
   const [clinics, setClinics] = useState(false);
   const [folder, setFolder] = useState(false);
+
   // For Successfull Log in, landing on the home screen 
   const [landingPage, setLandingPage] = useState(false);
+
   // email and password when signing in
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [code, setCode] = useState('');
+  
   // state for welcome -> logIn screen, so language to log in
   const [logIn, setLogIn] = useState(false);
+
   // language selected, makes sure to record language of user
   const [language, setLanguage] = useState("");
-  // for the screen to forgot password
-  const [forgotPassword, setForgotPassword] = useState(false);
+
   // For new users who want to sign up
   const [newUser, setNewUser] = useState(false);
+
   // Profile Information
   const [name, setName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -70,6 +75,7 @@ export default function App() {
     setWelcome(true);
     componentDidMount();
   }
+
   // handler to fo from welcome to login (log in screen)
   const goToLogIn = (lang) => {
     // language selected
@@ -79,16 +85,19 @@ export default function App() {
     // make sure to turn off welcome screen
     setWelcome(false);
   }
+
   // sends you to forgot password screen
   const goToForgotPass = () => {
     setForgotPassword(true);
     setLogIn(false);
   }
+
   // sends you to new user screen
   const goToNewUser = () => {
     setNewUser(true);
     setLogIn(false);
   }
+
   // sends you to home page with navigation from log in 
   const goToLandingPage = (email, password) => {
     // retrive profile from database using email and password
@@ -98,42 +107,47 @@ export default function App() {
     setLandingPage(true);
     setLogIn(false);
   }
+
   // go to home screen first time after sign up 
-  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, cA, f) => {
+  const goToLandingPageFromSignUp = () => {
     // info for the profile, saved in database
-    setName(n);
-    setMiddleName(m);
-    setLastName(l);
-    setBirthDate(b);
-    setEmail(e);
-    setPassword(pa);
-    setPhoneNumber(ph);
-    setPregnantMonths(prM);
-    setChildAge(cA);
-    setFrequency(f);
-    setLandingPage(true);
+    setLogIn(true);
     setNewUser(false);
+
   }
+
   //go to folder view from the profile page
   const goToFolder = () => {
     setProfile(false);
     setFolder(true);
   }
+
   // FIXME add save files here and return to profile page
   const saveTheFiles = (fl) => {
     setFiles(fl);
     setFolder(false);
     setProfile(true);
   }
+
   // where to go from landing page, Navigation Bar 
   const navigateHelper = (location) => {
+    // switch(location) {
+    //   case 'LandingPage': 
+    //     setLandingPage(true);
+    //     // setSexEd(false);
+    //     // setProfile(false);
+    //     // setClasses(false);
+    //     // setClinics(false);
+    //     // setFolder(false);
+    //     break;
+    // }
     if (location === 'LandingPage') {
       setLandingPage(true);
-      setSexEd(false);
-      setProfile(false);
-      setClasses(false);
-      setClinics(false);
-      setFolder(false);
+      // setSexEd(false);
+      // setProfile(false);
+      // setClasses(false);
+      // setClinics(false);
+      // setFolder(false);
     }
     else if (location === 'SexEdPage') {
       setLandingPage(false);

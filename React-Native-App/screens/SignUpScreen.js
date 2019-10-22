@@ -60,7 +60,6 @@ const SignUp = props => {
                 console.log(firstName);
                 console.log(lastName);
 
-
                 //creates a user with the entered info
                 await axios.post(`${ROOT_URL}/createUsers`, { phone: phoneNumber });
 
@@ -68,7 +67,7 @@ const SignUp = props => {
                 await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone: phoneNumber });
 
                 //go to log in screen
-                // props.onTap();
+                props.onTapSignUp();
             }
             catch (err){
                 console.log(err);
