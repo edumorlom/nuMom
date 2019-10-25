@@ -3,11 +3,13 @@ import { View, StyleSheet, Picker } from 'react-native';
 import { TranslatorFactory } from 'react-native-power-translator';
 
 export default class MyPicker extends React.Component {
+    // easy translations 
     constructor(props) {
         super(props)
         this.state = {
             lang: this.props.loadLanguage,
             pickerType: this.props.loadPickerType,
+            screen: null,
             picker: 'N/A',
             month: null,
             months: null,
@@ -17,8 +19,7 @@ export default class MyPicker extends React.Component {
         }
     }
     render() {
-
-        // Pick what type of Picker you want, can always add more array's of options
+        // Pick what type of Picker you want, can always add more array's of options for more options
         let availablePicks = []
         if (this.state.pickerType === 'Monthly') {
             availablePicks = [
@@ -43,9 +44,9 @@ export default class MyPicker extends React.Component {
                 this.state.monthly,
             ];
         };
-        // loop available Picks
+        // loop available Picks values
         let getItems = availablePicks.map((pick, index) => {
-            return <Picker.Item key={index} value={pick} label={pick} />
+            return <Picker.Item key={index} value={index} label={pick} />
         })
 
         return (
@@ -60,8 +61,9 @@ export default class MyPicker extends React.Component {
         )
     }
     componentDidMount() {
+        this.setState({ picker: this.props.loadValue})
         this.getTranslations();
-     }
+    }
     // export values on renderings
     exporterPicker = (value) => {
         this.setState({ picker: value });

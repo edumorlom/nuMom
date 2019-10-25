@@ -21,7 +21,11 @@ const SignUp = props => {
 
     // image default and new one hook
     const [image, setImage] = useState('../assets/mom-and-baby-icon-editable.png');
-    let profile = {};
+    let profile = {
+        'Name': '', "MiddleName": '', "LastName": '',
+        "BirthDate": '', "PhoneNumber": '', "PregnantMonths": '',
+        "ChildAge": '', "Frequency": '', 'Image' : ''
+    };
 
     // sign up after pressing sign up button 
     const signUpHandler = () => {
@@ -49,8 +53,7 @@ const SignUp = props => {
         }
         else {
             profile['Image'] = image;
-            console.log(profile);
-            // props.onTapSignUp(profile);
+            props.onTapSignUp(profile);
         }
     }
     // Profile Picture setter
@@ -65,14 +68,14 @@ const SignUp = props => {
         <KeyboardAvoidingView
             behavior={'padding'}
             style={{ flex: 1 }}
-            keyboardVerticalOffset={-15}>
+            keyboardVerticalOffset={0}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View style={styles.screen}>
                     {/* Profile Picture Component */}
                     <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
                     <Box style={{ height: '60%', width: '90%' }}>
                         <ScrollView>
-                            <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} loadProfile={profileHandler} />
+                            <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} getProfile={profileHandler} loadProfile={profile} />
                         </ScrollView>
                     </Box>
                     <View>
