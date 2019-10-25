@@ -9,6 +9,7 @@ import Colors from '../constants/Colors';
 
 const SexEd = props => {
 
+    
     // handles translations
     var lang = props.loadLanguage;
     TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);

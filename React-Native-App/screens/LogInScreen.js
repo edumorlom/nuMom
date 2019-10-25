@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
-import { View, Alert, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Image, StyleSheet, TextInput } from 'react-native';
-import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { View, Alert, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, Keyboard, Image, StyleSheet, TextInput } from 'react-native';
+import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
+import Translator from '../components/Translator';
+import Helpers from '../components/Helpers';
 
 const LogIn = props => {
 
-    var lang = props.loadLanguage;
+    // translates placeholders
+    let lang = props.loadLanguage;
     TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    //handle placeholder transaltions
-    var emailHolder = '';
-    if(lang === 'en') {emailHolder = 'email'}
-    else if (lang === 'es') {emailHolder = 'correo electrónico'}
-    else {emailHolder = 'imèl'}
-    var passHolder = '';
-    if(lang === 'en') {passHolder = 'password'}
-    else if (lang === 'es') {passHolder = 'contraseña'}
-    else {passHolder = 'modpas'}
-
-
-    // checks database for correct log in credentials
+    // checks database for correct log in credentials, once only
     const inputButtonHandler = () => {
         if (email === '') {
             if (password === '') {
@@ -41,24 +33,17 @@ const LogIn = props => {
     const signupHandler = () => {
         props.onTapNewUser();
     }
-    //  go to forgot password
-    const forgotPassHandler = () => {
-        console.log('pressed forgot password');
-    }
-
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={styles.screen}>
-
                 <Image
                     source={require('../assets/mom-and-baby-icon.png')}
                     style={styles.profileIcon} />
-
                 <View style={styles.box}>
                     <View style={{ flexDirection: 'row' }}>
                         <Image style={{ marginRight: 10 }} source={require('../assets/email.png')} />
                         <TextInput
-                            placeholder={emailHolder}
+                            placeholder={Helpers('Email',lang)}
                             onChangeText={text => setEmail(text)}
                             style={styles.textInput}
                             autoCompleteType={'email'}
@@ -68,32 +53,23 @@ const LogIn = props => {
                     <View style={{ flexDirection: 'row' }}>
                         <Image style={{ marginRight: 10 }} source={require('../assets/lock.png')} />
                         <TextInput
-                            placeholder={passHolder}
+                            placeholder={Helpers('Password',lang)}
                             onChangeText={text => setPassword(text)}
                             style={styles.textInput}
                             secureTextEntry={true}
                         />
                     </View>
                 </View>
-
                 <TouchableHighlight
                     style={styles.signInButton}
                     onPress={() => inputButtonHandler()}
                     underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                    <PowerTranslator
-                        style={{ fontSize: 18, color: 'black' }} text={"Sign In!"} />
+                    <Translator style={{ fontSize: 18, color: 'black' }} loadText={('Sign In!')} loadLanguage={lang} />
                 </TouchableHighlight>
-
                 <View style={styles.seperator}>
-
-                    <TouchableOpacity style={{ opacity: 0.5, marginRight: 15 }} onPress={() => forgotPassHandler()}>
-                        <PowerTranslator style={{fontSize:12}} text={"Forgot Password?"} />
-                    </TouchableOpacity>
-
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => signupHandler()}>
-                        <PowerTranslator style={{fontSize:12}} text={"New mom? Sign Up!"} />
+                        <Translator style={{ fontSize: 12 }} loadText={('New mom? Sign Up!')} loadLanguage={lang} />
                     </TouchableOpacity>
-
                 </View>
             </View>
         </TouchableWithoutFeedback>

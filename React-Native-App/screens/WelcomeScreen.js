@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
-import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
+import Box from '../components/Box';
+import Translator from '../components/Translator';
 
 const Welcome = props => {
 
-    // handles the language selection of the app
+    // handles the language selection of the app, input
     const [language, setLanguage] = useState("en");
     const languageSetHandler = (lang) => {
         setLanguage(lang);
     }
+    // pass language to App
     const passLanguage = () => {
         props.onTap(language);
     }
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft,'de6f9f5aaa86420da79a3dc450cd4e6c', language);
+    // translator
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
     return (
         <View style={styles.screen}>
             <View style={{ width: '80%', alignItems: 'center' }}>
-            <PowerTranslator 
-                style={styles.textTitle} text={"Select Language"} />
+                <Translator style={styles.textTitle} loadText={('Select Language')} loadLanguage={language} />
             </View>
-            <View style={styles.box}>
+            <Box>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
-                    <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Image style={styles.picture} source={require('../assets/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
@@ -42,7 +45,8 @@ const Welcome = props => {
                         <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </Box>
+            {/* accept language and exit screen */}
             <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
                 <Image
                     source={require('../assets/check-mark.png')}
@@ -59,18 +63,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-    },
-    box: {
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'transparent',
-        borderRadius: 30,
-        backgroundColor: Colors.pinkSoft,
-        margin: 10,
-        padding: 10,
-        width: '80%',
-        height: '50%',
     },
     picture: {
         height: 80,
