@@ -24,32 +24,23 @@ export default function App() {
   const [folder, setFolder] = useState(false);
   // For Successfull Log in, landing on the home screen 
   const [landingPage, setLandingPage] = useState(false);
-  // email and password when signing in
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   // state for welcome -> logIn screen, so language to log in
   const [logIn, setLogIn] = useState(false);
   // language selected, makes sure to record language of user
   const [language, setLanguage] = useState("");
-  // for the screen to forgot password
-  const [forgotPassword, setForgotPassword] = useState(false);
   // For new users who want to sign up
   const [newUser, setNewUser] = useState(false);
   // Profile Information
-  const [name, setName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [birthdate, setBirthDate] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [pregnantMonths, setPregnantMonths] = useState('');
-  const [childAge, setChildAge] = useState('');
-  const [frequency, setFrequency] = useState('');
-  const [image,setImage] = useState('');
+  const [profileDetails,setProfileDetails] = useState([]);
+  // For files use adds
   const [files, setFiles] = useState('');
   
   // handler to go from loading to welcome (language)
   const goToWelcome = () => {
+    // if first time active this
     setWelcome(true);
+    // if second time with account 
+    // skip welcome, skipp login, and set langing page here 
   }
   // handler to fo from welcome to login (log in screen)
   const goToLogIn = (lang) => {
@@ -60,48 +51,30 @@ export default function App() {
     // make sure to turn off welcome screen
     setWelcome(false);
   }
-  // sends you to forgot password screen
-  const goToForgotPass = () => {
-    setForgotPassword(true);
-    setLogIn(false);
-  }
   // sends you to new user screen
   const goToNewUser = () => {
     setNewUser(true);
     setLogIn(false);
   }
-  // sends you to home page with navigation from log in 
-  const goToLandingPage = (email, password) => {
-    // retrive profile from database using email and password
-
-    // setEmail(email);
-    // setPassword(password);
+  // sends you to home page with navigation from log in, automatic 
+  const goToLandingPage = () => {
+    // retrive profile from database using telephone so we skip login
     setLandingPage(true);
     setLogIn(false);
   }
   // go to home screen first time after sign up 
-  const goToLandingPageFromSignUp = (n, m, l, b, e, pa, ph, prM, cA, f, i) => {
+  const goToLandingPageFromSignUp = (profile) => {
     // info for the profile, saved in database
-    setName(n);
-    setMiddleName(m);
-    setLastName(l);
-    setBirthDate(b);
-    setEmail(e);
-    setPassword(pa);
-    setPhoneNumber(ph);
-    setPregnantMonths(prM);
-    setChildAge(cA);
-    setFrequency(f);
+    setProfileDetails(profile);
     setLandingPage(true);
     setNewUser(false);
-    setImage(i);
   }
   //go to folder view from the profile page
   const goToFolder = () => {
     setProfile(false);
     setFolder(true);
   }
-  // FIXME add save files here and return to profile page
+  // add save files here and return to profile page
   const saveTheFiles = (fl) => {
     setFiles(fl);
     setFolder(false);
@@ -158,7 +131,6 @@ export default function App() {
   }
   else if (logIn) {
     content = <LogIn
-      onTapForgot={goToForgotPass}
       onTapNewUser={goToNewUser}
       onTapSignIn={goToLandingPage}
       loadLanguage={language} />
@@ -173,11 +145,6 @@ export default function App() {
     content = <SexEdPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (profile) {
-    var profileDetails = {
-      'Name': name, "MiddleName": middleName, "LastName": lastName,
-      "BirthDate": birthdate, "Email": email, "Password": password, "PhoneNumber": phoneNumber,
-      "PregnantMonths": pregnantMonths, "ChildAge": childAge, "Frequency": frequency, "Language": language, "Image": image
-    };
     content = <ProfilePage onTap={navigateHelper}
       loadProfile={profileDetails}
       onSave={goToLandingPageFromSignUp}
@@ -191,9 +158,11 @@ export default function App() {
     content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (classes) {
+    // FIXMEN needs implementation
     content = <ClassesPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (clinics) {
+    // FIXMEN needs implementation
     content = <ClinicsPage onTap={navigateHelper} loadLanguage={language}/>
   }
   console.disableYellowBox = true;
