@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, ScrollView, StyleSheet, TextInput, Text, 
     TouchableHighlight, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, 
-    Picker } from 'react-native';
+    Picker, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import axios from 'axios'; //to make network requests
 import firebase from 'firebase';
@@ -38,41 +38,40 @@ const SignUp = props => {
 
     //event handler 
     const signUpHandler = async () => {
-        // if (name === '') {
-        //     errorMessage = errorMessage + 'Please insert valid first name\n';
-        //     error = true;
-        // }
-        // if (lastName === '') {
-        //     errorMessage = errorMessage + 'Please insert valid last name\n';
-        //     error = true;
-        // }
-        // if (error) {
-        //     Alert.alert('Sign Up Errors', errors,
-        //         [
-        //             { text: 'OK' },
-        //         ],
-        //         { cancelable: false });
-        // }
-        // else {
-            //handle errors with connection
-            try {
-                console.log(phoneNumber);
-                console.log(firstName);
-                console.log(lastName);
+        let errorMessage = "";
+        //handle errors with connection
+        try {
+            console.log(phoneNumber);
+            console.log(firstName);
+            console.log(lastName);
 
-                //creates a user with the entered info
-                await axios.post(`${ROOT_URL}/createUsers`, { phone: phoneNumber });
-
-                //request a code to be sent
-                await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone: phoneNumber });
-
-                //go to log in screen
-                props.onTapSignUp();
+            if (firstName === '') {
+                errorMessage += 'Please enter valid first name\n';
+                err = true;
             }
-            catch (err){
-                console.log(err);
+            if (lastName === '') {
+                errorMessage += 'Please enter valid last name\n';
+                err = true;
             }
-        // }
+            
+            //creates a user with the entered info
+            await axios.post(`${ROOT_URL}/createUsers`, { phone: phoneNumber });
+
+            //request a code to be sent
+            await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone: phoneNumber });
+
+            //go to log in screen
+            props.onTapSignUp();
+        }
+        catch (err){
+            console.log(err.response.data.error);
+            errorMessage += err.response.data.error
+            Alert.alert('Sign Up Errors', errorMessage,
+            [
+                { text: 'Go Back' },
+            ],
+            { cancelable: false });
+        }
     };
 
 
