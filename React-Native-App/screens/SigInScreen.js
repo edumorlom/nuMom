@@ -6,6 +6,7 @@ import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
+import SignUpScreen from './SignUpScreen';
 
 
 const SignIn = props => {
@@ -42,13 +43,15 @@ const SignIn = props => {
             //go to the landing page
             props.onTapSignIn();
         } catch(error) {
-            console.log(error.response.data.error);
-            errorMessage = error.response.data.error
-            Alert.alert('Error', errorMessage,
-            [
-                { text: 'Try again' },
-            ],
-            { cancelable: false });
+            console.log(error);
+            if (error.response.data.error != null){
+                errorMessage = error.response.data.error
+                Alert.alert('Error', errorMessage,
+                [
+                    { text: 'Try again' },
+                ],
+                { cancelable: false });
+            }
         }
         
     }

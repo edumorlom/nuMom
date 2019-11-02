@@ -11,30 +11,52 @@ import Colors from '../constants/Colors';
 const SignUp = props => {
 
     const [firstName, setFirstName] = useState('');
-    const [, setMiddleName] = useState('');
+    const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [birthdate, setBirthDate] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pregnantMonths, setPregnantMonths] = useState('');
     const [childAge, setChildAge] = useState('');
-    const [frequency, setFrequency] = useState('');
+    const [notifications, setNotifications] = useState('');
 
     const currDate = new Date();
 
-    //url for functions 
+    //url for firebase functions 
     const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
-    const updatePhoneNumber = (phone) => {
-        setPhoneNumber(phone);
-    };
-
+    //updating the state of each prop
     const updateFirstName = (firstname) => {
         setFirstName(firstname);
+    };
+
+    const updateMiddleName = (middlen) => {
+        setMiddleName(middlen);
     };
 
     const updateLastName = (lastname) => {
         setLastName(lastname);
     };
+
+    const updatePhoneNumber = (phone) => {
+        setPhoneNumber(phone);
+    };
+
+    const updateBirthDate = (date) => {
+        setBirthDate(date);
+    };
+
+    const updatePregnancyTerm = (months) => {
+        setPregnantMonths(months);
+    };
+
+    const updateChildAge = (age) => {
+        setChildAge(age);
+    };
+
+    const updateNotificationsFreq = (frequency) => {
+        setNotifications(frequency);
+    };
+
 
     //event handler 
     const signUpHandler = async () => {
@@ -57,6 +79,25 @@ const SignUp = props => {
             //creates a user with the entered info
             await axios.post(`${ROOT_URL}/createUsers`, { phone: phoneNumber });
 
+            //send all the user data to our database
+            firebase.database().ref('users'+phoneNumber).set(
+                {
+                    //user data
+                    fistN: firstName,
+                    middleN: middleName,
+                    lastN: lastName,
+                    dob: birthDate,
+                    phone: phoneNumber,
+                    pregnant: pregnantMonths,
+                    childAge: childAge,
+                    notifications: notifications
+                }
+            ).then(() => {
+                console.log("Data sent to the db");
+            }).catch((error) => {
+                console.log(error);
+            })
+
             //request a code to be sent
             await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone: phoneNumber });
 
@@ -64,13 +105,15 @@ const SignUp = props => {
             props.onTapSignUp();
         }
         catch (err){
-            console.log(err.response.data.error);
-            errorMessage += err.response.data.error
-            Alert.alert('Sign Up Errors', errorMessage,
-            [
-                { text: 'Go Back' },
-            ],
-            { cancelable: false });
+            console.log(err);
+            if (err.response.data.error != null){
+                errorMessage += err.response.data.error
+                Alert.alert('Sign Up Errors', errorMessage,
+                [
+                    { text: 'Go Back' },
+                ],
+                { cancelable: false });
+            }
         }
     };
 
@@ -101,7 +144,7 @@ const SignUp = props => {
                                 <Text style={styles.labelText}>Middle Name </Text>
                                 <TextInput
                                     placeholder={'Middle Name'}
-                                    onChangeText={text => setMiddleName(text)}
+                                    onChangeText={updateMiddleName}
                                     style={styles.textInput}
                                 />
                             </View>
@@ -137,8 +180,8 @@ const SignUp = props => {
                                             fontSize: 15,
                                         }
                                     }}
-                                    date={birthdate}
-                                    onDateChange={(date) => setBirthDate(date)}
+                                    date={birthDate}
+                                    onDateChange={updateBirthDate}
                                     showIcon={false}
                                     mode="date"
                                     placeholder="Select Date"
@@ -167,8 +210,8 @@ const SignUp = props => {
                                 <Picker style={{ width: '70%', paddingRight: 20, height: 80 }}
                                     itemStyle={{ height: 80 }}
                                     selectedValue={pregnantMonths}
-                                    onValueChange={text => setPregnantMonths(text)}>
-                                    <Picker.Item label='Not Pregnant' value='No' />
+                                    onValueChange={updatePregnancyTerm}>
+                                    <Picker.Item label='Not Pregnant' value="No" />
                                     <Picker.Item label='One Month' value="one" />
                                     <Picker.Item label='Two Months' value="two" />
                                     <Picker.Item label='Three Months' value="three" />
@@ -184,8 +227,8 @@ const SignUp = props => {
                             <View style={styles.seperatorLine} />
                             <View style={styles.pickerStyle}>
                                 <Text style={styles.labelText}>Have an Infant? </Text>
-                                <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={childAge} onValueChange={text => setChildAge(text)}>
-                                    <Picker.Item label='No Infant' value='No' />
+                                <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={childAge} onValueChange={updateChildAge}>
+                                    <Picker.Item label='No Infant' value="No"/>
                                     <Picker.Item label='One Month' value="one" />
                                     <Picker.Item label='Two Months' value="two" />
                                     <Picker.Item label='Three Months' value="three" />
@@ -201,8 +244,8 @@ const SignUp = props => {
                             <View style={styles.seperatorLine} />
                             <View style={styles.pickerStyle}>
                                 <Text style={styles.labelText}>Receive Notifications? </Text>
-                                <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={frequency} onValueChange={text => setFrequency(text)}>
-                                    <Picker.Item label='No Notifications' value='No' />
+                                <Picker style={{ width: '70%', paddingRight: 20, height: 80 }} itemStyle={{ height: 80 }} selectedValue={notifications} onValueChange={updateNotificationsFreq}>
+                                    <Picker.Item label='No Notifications' value="No" />
                                     <Picker.Item label='Weekly' value="weekly" />
                                     <Picker.Item label='Bi-Weekly' value="biweekly" />
                                     <Picker.Item label='Monthly' value="monthly" />
