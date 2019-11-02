@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, 
-    Keyboard, Image, StyleSheet } from 'react-native';
+    Keyboard, Image, StyleSheet, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import axios from 'axios';
@@ -42,7 +42,13 @@ const SignIn = props => {
             //go to the landing page
             props.onTapSignIn();
         } catch(error) {
-            console.log(error);
+            console.log(error.response.data.error);
+            errorMessage = error.response.data.error
+            Alert.alert('Error', errorMessage,
+            [
+                { text: 'Try again' },
+            ],
+            { cancelable: false });
         }
         
     }
