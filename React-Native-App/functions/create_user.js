@@ -14,12 +14,10 @@ module.exports = function (req, res) {
     
     //create a new user account using that phone number
     admin.auth().createUser({ 
-        uid: phone, 
-        displayName: req.body.name,
-         
+        uid: phone
         }) //async request that returns a promise
         .then(user => res.send( user ))
-        .catch(err => res.status(422).send({ error: "User already exist. Plase Sign In" }));
+        .catch(err => res.status(422).send({ error: err + "User already exist. Plase Sign In" }));
 
     //respond to user request, saying the account was made
     // return res.status(200).send({ message: 'User created successfully' });
