@@ -6,7 +6,6 @@ import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
-import SignUpScreen from './SignUpScreen';
 
 
 const SignIn = props => {
