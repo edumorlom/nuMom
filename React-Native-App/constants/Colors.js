@@ -8,5 +8,6 @@ export default {
     newBackground: 'rgba(239, 233, 245, 1)', //'#dfe6e9'
     separatorLine: 'lightgrey',
     buttonColor: '#F9DBF2',
-    hoverColor: '#DEA3BF'
+    hoverColor: '#DEA3BF',
+    blueLetters: 'rgba(100, 190, 188, 1)'
 };

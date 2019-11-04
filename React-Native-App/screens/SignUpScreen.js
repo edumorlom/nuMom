@@ -5,8 +5,16 @@ import { View, Image, ScrollView, StyleSheet, TextInput, Text,
 import DatePicker from 'react-native-datepicker';
 import axios from 'axios'; //to make network requests
 import firebase from 'firebase';
-
+import { View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Text, TouchableOpacity } from 'react-native';
+import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+// Constants
 import Colors from '../constants/Colors';
+// Custom Components
+import ImagePick from '../components/ImagePick';
+import Box from '../components/Box';
+import SignUpForm from '../components/SignUp';
+import Translator from '../components/Translator';
+import Helpers from '../components/Helpers';
 
 const SignUp = props => {
 
@@ -109,6 +117,40 @@ const SignUp = props => {
             if (err.response.data.error != null){
                 errorMessage += err.response.data.error
                 Alert.alert('Sign Up Errors', errorMessage,
+    // handles translations ----------Andy changes-------------
+    let lang = props.loadLanguage;
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    var fnameError = Helpers('Please Input Valid First Name ', lang);
+    var lnameError = Helpers('Please Input Valid Last Name ', lang);
+    var phoneError = Helpers('Please Input Valid Phone Number ', lang);
+
+    // image default and new one hook
+    const [image, setImage] = useState('../assets/mom-and-baby-icon-editable.png');
+    let profile = {
+        'Name': '', "MiddleName": '', "LastName": '',
+        "BirthDate": '', "PhoneNumber": '', "PregnantMonths": '',
+        "ChildAge": '', "Frequency": '', 'Image' : ''
+    };
+
+    // sign up after pressing sign up button 
+    const signUpHandler = () => {
+        var errors = '';
+        var error = false;
+
+        if (profile['Name'] === '' || profile['Name'] === null) {
+            errors = errors + fnameError + '\n';
+            error = true;
+        }
+        if (profile['LastName'] === '' || profile['LastName'] === null) {
+            errors = errors + lnameError + '\n';
+            error = true;
+        }
+        if (profile['PhoneNumber'] === '' || profile['PhoneNumber'] === null) {
+            errors = errors + phoneError + '\n';
+            error = true;
+        }
+        if (error) {
+            Alert.alert('', errors,  // ----------Andy changes-------------
                 [
                     { text: 'Go Back' },
                 ],
@@ -118,11 +160,26 @@ const SignUp = props => {
     };
 
 
+    //----------Andy changes-------------
+        else {
+            profile['Image'] = image;
+            props.onTapSignUp(profile);
+        }
+    }
+    // Profile Picture setter
+    const pictureHandler = (pic) => {
+        setImage(pic);
+    }
+    // Profile Value setter
+    const profileHandler = (profileDetails) => {
+        profile = profileDetails;
+    }
+    //----------Andy changes-------------
     return (
         <KeyboardAvoidingView
             behavior={'padding'}
             style={{ flex: 1 }}
-            keyboardVerticalOffset={-15}>
+            keyboardVerticalOffset={0}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View style={styles.screen}>
                     <View>
@@ -251,12 +308,24 @@ const SignUp = props => {
                                     <Picker.Item label='Monthly' value="monthly" />
                                 </Picker>
                             </View>
+                    {/* ----------Andy changes------------- */}
+                    {/* Profile Picture Component */}
+                    <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
+                    <Box style={{ height: '60%', width: '90%' }}>
+                        <ScrollView>
+                            <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} getProfile={profileHandler} loadProfile={profile} />
+                            {/* ----------Andy changes------------- */}
                         </ScrollView>
-                    </View>
+                    </Box>
                     <View>
                         <TouchableHighlight style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'} >
                             <Text style={{ fontSize: 18, color: 'black' }}>Sign Up</Text>
                         </TouchableHighlight>
+                        {/* ----------Andy changes------------- */}
+                        <TouchableOpacity style={styles.button} onPress={() => signUpHandler()} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                            <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lang} />
+                        </TouchableOpacity>
+                        {/* ----------Andy changes------------- */}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -270,19 +339,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
-    },
-    box: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        height: '60%',
-        width: '90%',
-        borderColor: 'transparent',
-        borderRadius: 10,
-        backgroundColor: Colors.boxBackground,
-        marginTop: 10,
-        marginBottom: 10,
-        padding: 10,
     },
     button: {
         marginBottom: 20,
@@ -322,6 +378,11 @@ const styles = StyleSheet.create({
         borderBottomColor: Colors.separatorLine,
         borderBottomWidth: 1,
     },
+    {/* ----------Andy changes------------- */}    
+    text: {
+        fontSize: 18,
+    }
+    {/* ----------Andy changes------------- */}
 })
 
 export default SignUp;

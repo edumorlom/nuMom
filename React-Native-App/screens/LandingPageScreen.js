@@ -16,7 +16,7 @@ const LandingPage = props => {
                     <TouchableOpacity onPress={() => Linking.openURL('https://www.cdc.gov/std/healthcomm/fact_sheets.htm')}  >
                         <View style={styles.linkBox}>
                             <Text style={styles.linkStyle}>
-                                STDs Information from the CDC
+                                Page under development
                         </Text>
                         </View>
                     </TouchableOpacity>

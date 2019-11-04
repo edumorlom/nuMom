@@ -11,16 +11,23 @@
     "axios": "^0.19.0",
     "expo": "^34.0.1",
     "firebase": "^7.2.1",
+    "expo-image-picker": "~6.0.0",
     "react": "16.8.3",
     "react-dom": "^16.10.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
+    "react-native-actionsheet": "^2.4.2",
     "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^1.2.6",
     "react-native-masked-text": "^1.13.0",
+    "react-native-image-picker": "^0.28.0",
+    "react-native-modal": "^11.4.0",
+    "react-native-modalbox": "^2.0.0",
     "react-native-picker-select": "^6.3.3",
+    "react-native-power-translator": "^1.1.1",
     "react-native-render-html": "^4.1.2",
     "react-native-tooltips": "0.0.11",
-    "react-native-web": "^0.11.4"
+    "react-native-web": "^0.11.4",
+    "react-native-webview": "~5.12.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0"

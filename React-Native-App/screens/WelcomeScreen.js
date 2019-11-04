@@ -1,46 +1,52 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
+import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
+import Box from '../components/Box';
+import Translator from '../components/Translator';
 
 const Welcome = props => {
 
-    // handles the language selection of the app
-    const [language, setLanguage] = useState("English");
+    // handles the language selection of the app, input
+    const [language, setLanguage] = useState("en");
     const languageSetHandler = (lang) => {
         setLanguage(lang);
     }
+    // pass language to App
     const passLanguage = () => {
         props.onTap(language);
     }
-
+    // translator
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
     return (
         <View style={styles.screen}>
             <View style={{ width: '80%', alignItems: 'center' }}>
-                <Text style={styles.textTitle}>Select Language</Text>
+                <Translator style={styles.textTitle} loadText={('Select Language')} loadLanguage={language} />
             </View>
-            <View style={styles.box}>
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('English')}>
-                    <View style={{ opacity: (language === 'English') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <Image style={styles.picture} source={require('../assets/icons/english-icon.png')} />
+            <Box>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
+                    <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image style={styles.picture} source={require('../assets/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Spanish')}>
-                    <View style={{ opacity: (language === 'Spanish') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/spanish-icon.png')} />
-                        <Text style={styles.textWord}>Spanish</Text>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('es')}>
+                    <View style={{ opacity: (language === 'es') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image style={styles.picture} source={require('../assets/spanish-icon.png')} />
+                        <Text style={styles.textWord}>Español</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
-                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('Creole')}>
-                    <View style={{ opacity: (language === 'Creole') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/creole-icon.png')} />
-                        <Text style={styles.textWord}>Creole</Text>
+                <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('ht')}>
+                    <View style={{ opacity: (language === 'ht') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Image style={styles.picture} source={require('../assets/creole-icon.png')} />
+                        <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </Box>
+            {/* accept language and exit screen */}
             <TouchableOpacity style={styles.buttonStyle} onPress={() => passLanguage()}>
                 <Image
                     source={require('../assets/icons/check-mark.png')}
@@ -58,18 +64,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 10,
     },
-    box: {
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'transparent',
-        borderRadius: 30,
-        backgroundColor: Colors.pinkSoft,
-        margin: 10,
-        padding: 10,
-        width: '80%',
-        height: '50%',
-    },
     picture: {
         height: 80,
         width: 100,
@@ -86,7 +80,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     textTitle: {
-        fontSize: 40,
+        fontSize: 35,
         color: Colors.yellowPastel,
     },
     seperatorLine: {

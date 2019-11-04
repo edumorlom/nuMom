@@ -42,14 +42,8 @@ export default function App() {
   const [newUser, setNewUser] = useState(false);
 
   // Profile Information
-  const [name, setName] = useState('');
-  const [middleName, setMiddleName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [birthdate, setBirthDate] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [pregnantMonths, setPregnantMonths] = useState('');
-  const [childAge, setChildAge] = useState('');
-  const [frequency, setFrequency] = useState('');
+  const [profileDetails,setProfileDetails] = useState([]);
+  // For files use adds
   const [files, setFiles] = useState('');
 
   //setting up firebase
@@ -70,10 +64,14 @@ export default function App() {
 }
 
 
+  
   // handler to go from loading to welcome (language)
   const goToWelcome = () => {
+    // if first time active this
     setWelcome(true);
     componentDidMount();
+    // if second time with account 
+    // skip welcome, skipp login, and set langing page here 
   }
 
   // handler to fo from welcome to login (log in screen)
@@ -85,25 +83,14 @@ export default function App() {
     // make sure to turn off welcome screen
     setWelcome(false);
   }
-
-  // sends you to forgot password screen
-  const goToForgotPass = () => {
-    setForgotPassword(true);
-    setLogIn(false);
-  }
-
   // sends you to new user screen
   const goToNewUser = () => {
     setNewUser(true);
     setLogIn(false);
   }
-
-  // sends you to home page with navigation from log in 
-  const goToLandingPage = (email, password) => {
-    // retrive profile from database using email and password
-
-    // setEmail(email);
-    // setPassword(password);
+  // sends you to home page with navigation from log in, automatic 
+  const goToLandingPage = () => {
+    // retrive profile from database using telephone so we skip login
     setLandingPage(true);
     setLogIn(false);
   }
@@ -121,8 +108,7 @@ export default function App() {
     setProfile(false);
     setFolder(true);
   }
-
-  // FIXME add save files here and return to profile page
+  // add save files here and return to profile page
   const saveTheFiles = (fl) => {
     setFiles(fl);
     setFolder(false);
@@ -195,42 +181,41 @@ export default function App() {
   }
   else if (logIn) {
     content = <LogIn
-      onTapForgot={goToForgotPass}
       onTapNewUser={goToNewUser}
-      onTapSignIn={goToLandingPage} />
+      onTapSignIn={goToLandingPage}
+      loadLanguage={language} />
   }
   else if (newUser) {
-    content = <SignUp onTapSignUp={goToLandingPageFromSignUp} />
+    content = <SignUp onTapSignUp={goToLandingPageFromSignUp} loadLanguage={language}/>
   }
   else if (landingPage) {
-    content = <LandingPage onTap={navigateHelper} />
+    content = <LandingPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (sexEd) {
-    content = <SexEdPage onTap={navigateHelper} />
+    content = <SexEdPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (profile) {
-    var profileDetails = {
-      'Name': name, "MiddleName": middleName, "LastName": lastName,
-      "BirthDate": birthdate, "Email": email, "Password": password, "PhoneNumber": phoneNumber,
-      "PregnantMonths": pregnantMonths, "ChildAge": childAge, "Frequency": frequency, "Language": language
-    };
     content = <ProfilePage onTap={navigateHelper}
       loadProfile={profileDetails}
       onSave={goToLandingPageFromSignUp}
       changeLang={(lang) => setLanguage(lang)}
       tapFolder={goToFolder}
+      loadLanguage={language}
     />
   }
   else if (folder) {
     // files to save for the database
-    content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} />
+    content = <FolderPage loadFiles={files} saveFiles={saveTheFiles} onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (classes) {
-    content = <ClassesPage onTap={navigateHelper} />
+    // FIXMEN needs implementation
+    content = <ClassesPage onTap={navigateHelper} loadLanguage={language}/>
   }
   else if (clinics) {
-    content = <ClinicsPage onTap={navigateHelper} />
+    // FIXMEN needs implementation
+    content = <ClinicsPage onTap={navigateHelper} loadLanguage={language}/>
   }
+  console.disableYellowBox = true;
   // renders the current screen desired 
   return (
     <View style={styles.container}>
