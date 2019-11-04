@@ -10,7 +10,7 @@
   "dependencies": {
     "expo": "^34.0.1",
     "expo-image-picker": "~6.0.0",
-    "react": "16.8.3",
+    "react": "^15.6.2",
     "react-dom": "^16.10.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-actionsheet": "^2.4.2",
@@ -24,7 +24,8 @@
     "react-native-render-html": "^4.1.2",
     "react-native-tooltips": "0.0.11",
     "react-native-web": "^0.11.4",
-    "react-native-webview": "~5.12.0"
+    "react-native-webview": "~5.12.0",
+    "scheduler": "^0.17.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0"
