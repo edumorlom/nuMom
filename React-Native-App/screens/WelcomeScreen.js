@@ -27,21 +27,21 @@ const Welcome = props => {
             <Box>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
                     <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/english-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/english-icon.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('es')}>
                     <View style={{ opacity: (language === 'es') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/spanish-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/spanish-icon.png')} />
                         <Text style={styles.textWord}>Español</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('ht')}>
                     <View style={{ opacity: (language === 'ht') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/creole-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/creole-icon.png')} />
                         <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>

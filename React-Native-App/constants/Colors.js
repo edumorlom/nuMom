@@ -6,8 +6,11 @@ export default {
     yellowPastel: 'rgb(253,252,175)',
     pinkSoft: '#F29BC2',
     newBackground: 'rgba(239, 233, 245, 1)', //'#dfe6e9'
-    separatorLine: 'lightgrey',
+    separatorLine: '#A6ABB6',
     buttonColor: '#F9DBF2',
     hoverColor: '#DEA3BF',
-    blueLetters: 'rgba(100, 190, 188, 1)'
+    blueLetters: 'rgba(100, 190, 188, 1)',
+    boxBackground: '#ECE6F1',
+    fontColor: '#63696C'
+
 };

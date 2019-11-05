@@ -6,15 +6,21 @@ import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
+import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import Helpers from '../components/Helpers';
 
 
 const SignIn = props => {
 
+    // translates placeholders
+    let lang = props.loadLanguage;
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+
     const [phoneNumber, setphoneNumber] = useState('');
     const [code, setCode] = useState('');
 
-     //url for functions 
-     const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
+    //url for functions 
+    const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
     const updatePhoneNumber = (phone) => {
         setphoneNumber(phone);
@@ -29,6 +35,20 @@ const SignIn = props => {
         props.onTapNewUser();
     }
 
+    let profile = {
+        'Name': '',
+        'MiddleName': '',
+        'LastName': '',
+        'BirthDate': '',
+        'PhoneNumber': '',
+        'PregnantMonths': '',
+        'ChildAge': '',
+        'notifications': '',
+        'Image': '',
+        'Language': ''
+    };
+    
+
     const signInHandler = async () => {
         
         try {
@@ -41,17 +61,39 @@ const SignIn = props => {
 
             //go to the landing page
             props.onTapSignIn();
+
         } catch(error) {
             console.log(error);
             if (error.response.data.error != null){
                 errorMessage = error.response.data.error
+                //TODO find a way to translate this
                 Alert.alert('Error', errorMessage,
                 [
                     { text: 'Try again' },
                 ],
                 { cancelable: false });
             }
+            return;
         }
+        console.log(profile['PhoneNumber'])
+        // //send all the user data to our database
+        firebase.database().ref('users' + profile['PhoneNumber']).set({
+            //user data
+            fistN: profile['Name'],
+            middleN: profile['MiddleName'],
+            lastN: profile['LastName'],
+            dob: profile['BirthDate'],
+            phone: profile['PhoneNumber'],
+            pregnant: profile['PregnantMonths'],
+            childAge: profile['ChildAge'],
+            notifications: profile['notifications'],
+            image: profile['Image'],
+            language: profile['Language']
+        }).then(() => {
+            console.log("Data sent to the db");
+        }).catch((error) => {
+            console.log(error);
+        })
         
     }
     
@@ -88,7 +130,7 @@ const SignIn = props => {
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
-                            placeholder='code'
+                            placeholder= {Helpers('code', lang)}
                             onChangeText={updateCode}
                             value={code}
                             secureTextEntry={true}

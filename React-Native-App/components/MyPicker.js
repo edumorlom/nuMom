@@ -36,7 +36,7 @@ export default class MyPicker extends React.Component {
                 '10 ' + this.state.months,
             ];
         };
-        if (this.state.pickerType === 'Notification') {
+        if (this.state.pickerType === 'Notifications') {
             availablePicks = [
                 'N/A',
                 this.state.weekly,
@@ -107,8 +107,9 @@ export default class MyPicker extends React.Component {
 
 const styles = StyleSheet.create({
     picker: {
-        width: '100%',
-        paddingRight: 20,
-        height: 80
+        width: '80%',
+        // paddingRight: 10,
+        paddingLeft: 20,
+        height: 80,
     },
 });

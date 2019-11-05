@@ -92,86 +92,86 @@ const SexEd = props => {
                     <TouchableOpacity onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Bacterial Vaginosis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Chlamydia')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Chlamydia"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Genital Herpes')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Genital Herpes"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Gonorrhea')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Gonorrhea"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"HIV/AIDS and STDs"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'HPV Infection')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"HPV Infection"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Pelvic Inflammatory Disease"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'STDs During Pregnancy')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"STDs During Pregnancy"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Syphilis')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Syphilis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Congenital Syphilis')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Congenital Syphilis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => modalControl(true, 'Trichomoniasis')}>
                         <View style={styles.seperator}>
                             <PowerTranslator style={styles.words} text={"Trichomoniasis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/creole-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
+                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
                         </View>
                     </TouchableOpacity>
                     <Modal
