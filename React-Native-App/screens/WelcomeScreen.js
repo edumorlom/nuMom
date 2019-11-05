@@ -76,16 +76,16 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     textWord: {
-        color: Colors.yellowPastel,
+        color: Colors.fontColor,
         fontSize: 30,
     },
     textTitle: {
         fontSize: 35,
-        color: Colors.yellowPastel,
+        color: Colors.fontColor,
     },
     seperatorLine: {
         width: '100%',
-        borderBottomColor: Colors.yellowPastel,
+        borderBottomColor: Colors.separatorLine,
         borderBottomWidth: 1,
     },
     buttonStyle: {
