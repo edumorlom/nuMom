@@ -77,23 +77,23 @@ const SignIn = props => {
         }
         console.log(profile['PhoneNumber'])
         // //send all the user data to our database
-        firebase.database().ref('users' + profile['PhoneNumber']).set({
-            //user data
-            fistN: profile['Name'],
-            middleN: profile['MiddleName'],
-            lastN: profile['LastName'],
-            dob: profile['BirthDate'],
-            phone: profile['PhoneNumber'],
-            pregnant: profile['PregnantMonths'],
-            childAge: profile['ChildAge'],
-            notifications: profile['notifications'],
-            image: profile['Image'],
-            language: profile['Language']
-        }).then(() => {
-            console.log("Data sent to the db");
-        }).catch((error) => {
-            console.log(error);
-        })
+        // firebase.database().ref('users' + profile['PhoneNumber']).set({
+        //     //user data
+        //     fistN: profile['Name'],
+        //     middleN: profile['MiddleName'],
+        //     lastN: profile['LastName'],
+        //     dob: profile['BirthDate'],
+        //     phone: profile['PhoneNumber'],
+        //     pregnant: profile['PregnantMonths'],
+        //     childAge: profile['ChildAge'],
+        //     notifications: profile['notifications'],
+        //     image: profile['Image'],
+        //     language: profile['Language']
+        // }).then(() => {
+        //     console.log("Data sent to the db");
+        // }).catch((error) => {
+        //     console.log(error);
+        // })
         
     }
     
