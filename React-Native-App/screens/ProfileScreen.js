@@ -10,6 +10,7 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Translator from '../components/Translator';
 import Helpers from '../components/Helpers';
+import firebase from 'firebase';
 
 const Profile = props => {
 
@@ -64,8 +65,17 @@ const Profile = props => {
     const pictureHandler = (pic) => {
         setImage(pic);
     }
-    // Profile Value setter
+    // Profile Value setter   ----- get the info from the db
     const profileHandler = (profileDetails) => {
+        firebase.database().ref('users' + profile['PhoneNumber']).once('value', (data) => {
+            console.log(data.toJSON())
+            console.log(profileDetails)
+        }).then(() => {
+            console.log("Data retrieved from the db");
+        }).catch((error) => {
+            console.log(error);
+        })
+
         profile = profileDetails;
     }
     // Go to Files
@@ -87,7 +97,7 @@ const Profile = props => {
                             </View>
                             {/* Folder Touchable */}
                             <TouchableOpacity onPress={() => folderView()} >
-                                <Image style={{ marginLeft: 20 }} source={require('../assets/folder-icon.png')} />
+                                <Image style={{ marginLeft: 20 }} source={require('../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>
                         <Box style={{ height: '60%', width: '90%', }}>
@@ -98,17 +108,17 @@ const Profile = props => {
                                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('en')}>
                                         <View style={{ opacity: (language === 'en') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/english-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/english-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('es')}>
                                         <View style={{ opacity: (language === 'es') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/spanish-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/spanish-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('ht')}>
                                         <View style={{ opacity: (language === 'ht') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/creole-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/creole-icon.png')} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>

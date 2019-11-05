@@ -1,38 +1,36 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-
 import MyPicker from '../components/MyPicker';
 import Colors from '../constants/Colors';
 import Translator from '../components/Translator';
 
 export default class SignUpForm extends React.Component {
 
-    // profile values
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: this.props.loadProfile['Name'],
-            middleName: this.props.loadProfile['MiddleName'],
-            lastName: this.props.loadProfile['LastName'],
-            birthdate: this.props.loadProfile['BirthDate'],
-            phoneNumber: this.props.loadProfile['PhoneNumber'],
-            pregnantMonths: this.props.loadProfile['PregnantMonths'],
-            childAge: this.props.loadProfile['ChildAge'],
-            frequency: this.props.loadProfile['Frequency'],
-            lang: this.props.loadLanguage,
-            screen: this.props.loadScreen,
-        }
+    // profile values that are gonna be dynamically changing
+    state = {
+        name: this.props.loadProfile[''],
+        middleName: this.props.loadProfile[''],
+        lastName: this.props.loadProfile[''],
+        birthdate: this.props.loadProfile[''],
+        phoneNumber: this.props.loadProfile[''],
+        pregnantMonths: this.props.loadProfile[''],
+        childAge: this.props.loadProfile[''],
+        notifications: this.props.loadProfile[''],
+        
+        //what is this???
+        lang: this.props.loadLanguage,
+        screen: this.props.loadScreen,
     }
 
     render() {
         // get date
-        var currDate = new Date().getFullYear() + '-01-01';
+        let currDate = new Date();
         // organize array for changes/decisions in real time
-        var profileDetails = {
-            'Name': this.state.name, "MiddleName": this.state.middleName, "LastName": this.state.lastName,
-            "BirthDate": this.state.birthdate, "PhoneNumber": this.state.phoneNumber, "PregnantMonths": this.state.pregnantMonths,
-            "ChildAge": this.state.childAge, "Frequency": this.state.frequency
+        let profileDetails = {
+            'Name': this.state.name, 'MiddleName': this.state.middleName, 'LastName': this.state.lastName,
+            'BirthDate': this.state.birthdate, 'PhoneNumber': this.state.phoneNumber, 'PregnantMonths': this.state.pregnantMonths,
+            'ChildAge': this.state.childAge, 'Notifications': this.state.notifications
         };
         this.exporterProfile(profileDetails);
         return (
@@ -44,7 +42,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder={this.state.name}
+                            placeholder='first name'
                             onChangeText={text => this.setState({ name: text })}
                             style={styles.textInput}
                         />
@@ -58,7 +56,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder={this.state.middleName}
+                            placeholder='middle name'
                             onChangeText={text => this.setState({ middleName: text })}
                             style={styles.textInput}
                         />
@@ -72,8 +70,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder={this.state.lastName}
-
+                            placeholder='last name'
                             onChangeText={text => this.setState({ lastName: text })}
                             style={styles.textInput}
                         />
@@ -86,7 +83,7 @@ export default class SignUpForm extends React.Component {
                         <Translator style={styles.labelText} loadText={('Birth Date')} loadLanguage={this.state.lang} />
                     </View>
                     <View style={styles.inputWidth}>
-                        {/* Handles a calender for birthdate */}
+                        {/* Handles a calendar for birthdate */}
                         <DatePicker
                             style={styles.inputWidth}
                             customStyles={{
@@ -96,7 +93,7 @@ export default class SignUpForm extends React.Component {
                             date={this.state.birthdate}
                             onDateChange={date => this.setState({ birthdate: date })}
                             showIcon={false} mode="date"
-                            placeholder=" " format="YYYY-MM-DD"
+                            placeholder='1940-05-01' format="YYYY-MM-DD"
                             minDate="1940-05-01" maxDate={currDate}
                             confirmBtnText="Confirm" cancelBtnText="Cancel"
                         />
@@ -104,14 +101,13 @@ export default class SignUpForm extends React.Component {
                 </View>
                 <View style={styles.seperatorLine} />
                 {/* Phone Number */}
-                <View style={styles.seperatorLine} />
                 <View style={styles.labelPosition}>
                     <View style={styles.labelWidth}>
                         <Translator style={styles.labelText} loadText={('Phone Number')} loadLanguage={this.state.lang} />
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder={this.state.phoneNumber}
+                            placeholder='888-888-8888'
                             onChangeText={text => this.setState({ phoneNumber: text })}
                             style={styles.textInput}
                             keyboardType='number-pad'
@@ -146,16 +142,16 @@ export default class SignUpForm extends React.Component {
                     </View>
                 </View>
                 <View style={styles.seperatorLine} />
-                {/* Notifications Picker */}
+                {/* Notificationss Picker */}
                 <View style={styles.pickerStyle}>
                     <View style={styles.labelWidth}>
-                        <Translator style={styles.labelText} loadText={('Receive Notifications?')} loadLanguage={this.state.lang} />
+                        <Translator style={styles.labelText} loadText={('Notifications?')} loadLanguage={this.state.lang} />
                     </View>
                     <View style={styles.inputWidth}>
                         <MyPicker loadLanguage={this.state.lang}
-                            loadPickerType={('Notification')}
-                            getPickerValue={value => this.setState({ frequency: value })} 
-                            loadValue={this.state.frequency} />
+                            loadPickerType={('Notifications')}
+                            getPickerValue={value => this.setState({ notifications: value })} 
+                            loadValue={this.state.notifications} />
                     </View>
                 </View>
             </View>
@@ -190,10 +186,12 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingBottom: 5,
         paddingTop: 5,
+        marginRight: 70
     },
     labelText: {
         fontSize: 15,
         fontWeight: 'bold',
+        color: Colors.fontColor,
     },
     pickerStyle: {
         flexDirection: 'row',
@@ -203,13 +201,14 @@ const styles = StyleSheet.create({
     },
     seperatorLine: {
         width: '95%',
-        borderBottomColor: Colors.PurpleBackground,
+        borderBottomColor: Colors.separatorLine,
         borderBottomWidth: 1,
     },
     labelWidth: {
         width: '30%'
     },
     inputWidth: {
-        width: '70%'
+        width: '70%',
+        // marginRight: 20
     }
 })

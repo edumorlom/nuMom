@@ -19,10 +19,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'transparent',
         borderRadius: 30,
-        backgroundColor: Colors.pinkSoft,
+        backgroundColor: Colors.boxBackground,
         margin: 10,
         padding: 10,
         width: '80%',
         height: '50%',
+        // shadowColor: 'grey',
+        // shadowOffset: {  width: 1,  height: 2,  },
+        // shadowOpacity: 0.7
     }
 });
