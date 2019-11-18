@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, 
-    Keyboard, Image, StyleSheet, Alert } from 'react-native';
+import {
+    View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback,
+    Keyboard, Image, StyleSheet, Alert
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
 import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
-import Helpers from '../components/Helpers';
+import Translator from '../components/Translator';
 
 
 const SignIn = props => {
@@ -47,13 +49,13 @@ const SignIn = props => {
         'Image': '',
         'Language': ''
     };
-    
+
 
     const signInHandler = async () => {
-        
+
         try {
             let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
-            
+
             console.log(data.token);
 
             //authenticates into firebase
@@ -62,16 +64,16 @@ const SignIn = props => {
             //go to the landing page
             props.onTapSignIn();
 
-        } catch(error) {
+        } catch (error) {
             console.log(error);
-            if (error.response.data.error != null){
+            if (error.response.data.error != null) {
                 errorMessage = error.response.data.error
                 //TODO find a way to translate this
                 Alert.alert('Error', errorMessage,
-                [
-                    { text: 'Try again' },
-                ],
-                { cancelable: false });
+                    [
+                        { text: 'Try again' },
+                    ],
+                    { cancelable: false });
             }
             return;
         }
@@ -94,9 +96,9 @@ const SignIn = props => {
         // }).catch((error) => {
         //     console.log(error);
         // })
-        
+
     }
-    
+
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
@@ -104,7 +106,7 @@ const SignIn = props => {
 
                 <Image
                     source={require('../assets/images/mom-and-baby-icon.png')}
-                    style={styles.profileIcon} 
+                    style={styles.profileIcon}
                 />
 
                 <View style={styles.box}>
@@ -118,28 +120,28 @@ const SignIn = props => {
                             keyboardType='number-pad'
                             leftIcon={
                                 <Icon style={styles.iconStyle}
-                                  name='mobile'
-                                  size={24}
-                                  color='lightgrey'
+                                    name='mobile'
+                                    size={24}
+                                    color='lightgrey'
                                 />}
-                            inputContainerStyle = 'none'
-                            containerStyle = 'none'
+                            inputContainerStyle='none'
+                            containerStyle='none'
                         />
                     </View>
-                 
+
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
-                            placeholder= {Helpers('code', lang)}
+                            placeholder={Helpers('code', lang)}
                             onChangeText={updateCode}
                             value={code}
                             secureTextEntry={true}
                             keyboardType='number-pad'
                             leftIcon={
                                 <Icon style={styles.iconStyle}
-                                  name='lock'
-                                  size={24}
-                                  color='lightgrey'
+                                    name='lock'
+                                    size={24}
+                                    color='lightgrey'
                                 />}
                         />
                     </View>
@@ -149,12 +151,12 @@ const SignIn = props => {
                     style={styles.signInButton}
                     onPress={() => signInHandler()}
                     underlayColor={Colors.hoverColor} >
-                    <Text style={{ fontSize: 18, color: 'black' }}>Sign In!</Text>
+                    <Text style={styles.textSignIn}>{Helpers('Sign In!', lang)}</Text>
                 </TouchableHighlight>
 
                 <View style={styles.seperator}>
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => signUpHandler()}>
-                        <Text>New mom? Sign Up!</Text>
+                        <Text>{Helpers('New mom? Sign Up!', lang)}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -193,7 +195,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-    }, 
+    },
     seperator: {
         width: '80%',
         height: 50,
@@ -205,6 +207,10 @@ const styles = StyleSheet.create({
     },
     iconStyle: {
         paddingRight: 18
+    },
+    textSignIn: {
+        fontSize: 18,
+        color: 'black',
     }
 });
 

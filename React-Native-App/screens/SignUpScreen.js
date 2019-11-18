@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback, 
-    KeyboardAvoidingView, Keyboard, TouchableOpacity} from 'react-native';
-import { ProviderTypes, TranslatorConfiguration} from 'react-native-power-translator';
+import {
+    View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback,
+    KeyboardAvoidingView, Keyboard, TouchableOpacity
+} from 'react-native';
+import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 // Constants
 import Colors from '../constants/Colors';
 // Custom Components
@@ -78,11 +80,11 @@ const SignUp = props => {
                 Alert.alert('Sign Up Errors', errorMessage,
                     [
                         { text: 'Go back' }
-                    ], 
+                    ],
                     {
-                    cancelable: false
-                })
-            } 
+                        cancelable: false
+                    })
+            }
             return;
         }
 
@@ -124,27 +126,27 @@ const SignUp = props => {
     }
 
     return (
-        <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }} keyboardVerticalOffset={0}>
-            <TouchableWithoutFeedback onPress={ () => {Keyboard.dismiss()} }>
-                <View style={ styles.screen}> 
-                {/* Profile Picture Component */} 
-                    <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler}/> 
-                        <Box style={{ height: '60%', width: '80%'}}>
-                            <ScrollView >
-                                <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} getProfile={profileHandler} loadProfile={profile}/> 
-                            </ScrollView> 
-                        </Box> 
-                        <View >
-                            <TouchableOpacity style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'}>
-                                <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lang}/> 
-                            </TouchableOpacity> 
-                        </View> 
-                </View> 
-            </TouchableWithoutFeedback> 
+        <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }} keyboardVerticalOffset={20}>
+            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+                <View style={styles.screen}>
+                    {/* Profile Picture Component */}
+                    <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
+                    <Box style={{ height: '60%', width: '80%' }}>
+                        <ScrollView>
+                            <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} getProfile={profileHandler} loadProfile={profile} />
+                        </ScrollView>
+                    </Box>
+                    <View >
+                        <TouchableOpacity style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'}>
+                            <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lang} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView >
     );
 };
-                
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        }
-    })
-                    
+    }
+})
+
 export default SignUp;

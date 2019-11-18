@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
         width: "100%",
         margin: 10,
         padding: 20,
+        marginBottom: 30
     },
     textWord: {
         color: Colors.fontColor,
