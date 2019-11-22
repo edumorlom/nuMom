@@ -8,7 +8,6 @@ import Colors from '../constants/Colors';
 import ImagePick from '../components/ImagePick';
 import Box from '../components/Box';
 import Helpers from '../components/Helpers';
-import { object } from 'prop-types';
 
 const Folder = props => {
 
@@ -47,6 +46,8 @@ const Folder = props => {
         var currDate = month + '/' + date + '/' + year;
 
         setDocuments([...documents, { id: documents.length + 1, name: name, "date": currDate, "image": image }])
+        setName('');
+        setImage('');
         sendToDatabase();
         setVisibility(false);
     }
@@ -95,19 +96,15 @@ const Folder = props => {
                                 }
                                 else {
                                     return (
-                                        <View>
+                                        <View style={styles.item}>
                                             {/* inside is name, date and picture */}
-                                            <View style={{ flexDirection: 'row', width: '100%' }}>
-                                                <View style={{ alignItems: 'center', justifyContent: 'center', width: '70%' }}>
-                                                    <Text style={styles.text}>{item.name === "" ? ('Document - ' + (item.id - 1)) : item.name}</Text>
-                                                    <Text style={styles.text}>{item.date}</Text>
-                                                </View>
-                                                <TouchableOpacity onPress={() => openPicture(item.id)} style={{ width: '30%' }} >
-                                                    <Image source={{ uri: item.image }} style={{ width: 70, height: 70, borderRadius: 5 }} />
-                                                </TouchableOpacity>
+                                            <View style={{ alignItems: 'center', justifyContent: 'center', width: '70%' }}>
+                                                <Text style={styles.text}>{item.name === "" ? ('Document - ' + (item.id - 1)) : item.name}</Text>
+                                                <Text style={styles.text}>{item.date}</Text>
                                             </View>
-                                            {/* seperates for next picture */}
-                                            <View style={styles.seperator} />
+                                            <TouchableOpacity onPress={() => openPicture(item.id)} style={{ width: '30%' }} >
+                                                <Image source={{ uri: (item.image === '' ? defaultImage : item.image) }} style={styles.pictureItem} />
+                                            </TouchableOpacity>
                                         </View>
                                     )
                                 }
@@ -142,17 +139,19 @@ const Folder = props => {
                         onBackButtonPress={() => handlePictureView(false)}>
                         <View style={styles.content}>
                             {/* Picture Component */}
-                            <Image source={{ uri: object }} style={{ width: 340, height: 380, borderRadius: 20 }} />
+                            <Image source={{ uri: object }} style={styles.picture} />
                             {/* button to close modal and delete document */}
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                                <Button style={styles.button} title={Helpers('Hide', lang)} onPress={() => handlePictureView(false)} />
-                                <Button style={styles.button} title={Helpers('Delete', lang)} onPress={() => deleteDocument(objId)} />
+                            <View style={{ flexDirection: 'row' }}>
+                                <Button title={Helpers('Hide', lang)} onPress={() => handlePictureView(false)} />
+                                {/* seperates buttons */}
+                                <View style={{ marginLeft: 50, marginRight: 50 }} />
+                                <Button title={Helpers('Delete', lang)} onPress={() => deleteDocument(objId)} />
                             </View>
                         </View>
                     </Modal>
                 </Box>
                 {/* add document button */}
-                <TouchableHighlight style={styles.button} onPress={() => addDocumentHandler(true)} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                <TouchableHighlight style={styles.documentButton} onPress={() => addDocumentHandler(true)} underlayColor={'rgba(213, 170, 255, 0.8)'} >
                     <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", lang)}</Text>
                 </TouchableHighlight>
             </View>
@@ -170,8 +169,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    button: {
-        marginBottom: 100,
+    documentButton: {
+        marginBottom: 95,
         padding: 10,
         backgroundColor: Colors.boxBackground,
         width: '50%',
@@ -181,20 +180,13 @@ const styles = StyleSheet.create({
     },
     content: {
         backgroundColor: 'white',
-        padding: 15,
+        padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        margin: 10,
+        margin: 5,
+        paddingTop: 20,
         borderColor: 'transparent',
-    },
-    seperator: {
-        marginBottom: 10,
-        marginTop: 10,
-        marginLeft: 5,
-        borderBottomColor: Colors.separatorLine,
-        borderBottomWidth: 1,
-        width: '100%'
     },
     text: {
         alignSelf: 'center',
@@ -202,6 +194,25 @@ const styles = StyleSheet.create({
         padding: 5,
         fontSize: 18,
     },
+    item: {
+        flexDirection: 'row',
+        width: '100%',
+        borderRadius: 30,
+        marginTop: 10,
+        marginBottom: 10,
+        padding: 10,
+        backgroundColor: Colors.itemBackgroundPink
+    },
+    pictureItem: {
+        width: 70,
+        height: 70,
+        borderRadius: 10
+    },
+    picture: {
+        width: 300,
+        height: 300,
+        borderRadius: 10
+    }
 })
 
 export default Folder;

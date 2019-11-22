@@ -13,4 +13,5 @@ export default {
     boxBackground: '#ECE6F1',
     fontColor: '#63696C',
     titleRed: 'rgba(237, 120, 153, 1)', 
+    itemBackgroundPink: 'rgba(246,219,226,1)'
 };

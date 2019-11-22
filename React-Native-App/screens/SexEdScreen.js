@@ -29,70 +29,70 @@ const SexEd = props => {
     const modalControl = (value, STD) => {
         setVisibility(value);
         if (STD === 'Bacterial Vaginosis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124250/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133660/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/bv/stdfact-bacterial-vaginosis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vb/stdfact-bacterial-vaginosis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-BV-Haitian.htm'); }
         }
         if (STD === 'Chlamydia') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124249/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133661/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/chlamydia/stdfact-chlamydia.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/clamidia/stdfact-chlamydia-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Chlamydia-Haitian.htm'); }
         }
         if (STD === 'Genital Herpes') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124247/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133662/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/herpes/stdfact-herpes.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/herpes/stdfact-herpes-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Herpes-Haitian.htm'); }
         }
         if (STD === 'Gonorrhea') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124246/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133664/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/gonorrhea/stdfact-gonorrhea.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/gonorrea/stdfact-gonorrhea-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Gonorrhea-Haitian.htm'); }
         }
         if (STD === 'HIV/AIDS and STDs') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/241596/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm'); }
             else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vih/stdfact-hiv-and-stds-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else { setSTD('https://tools.cdc.gov/api/v2/resources/media/241596/content'); }
+            else { setSTD('https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm'); }
         }
         if (STD === 'HPV Infection') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124248/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133663/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/hpv/stdfact-hpv.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vph/stdfact-hpv-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-HPV-Haitian.htm'); }
         }
         if (STD === 'Pelvic Inflammatory Disease') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124245/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133659/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/pid/stdfact-pid.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/eip/stdfact-pid-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-PID-Haitian.htm'); }
         }
         if (STD === 'STDs During Pregnancy') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/126333/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/272997/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/embarazo/stdfact-pregnancy-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else { setSTD('https://tools.cdc.gov/api/v2/resources/media/126333/content'); }
+            else { setSTD('https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm'); }
         }
         if (STD === 'Syphilis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124244/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133665/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/syphilis/stdfact-syphilis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/sifilis/stdfact-syphilis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Syphilis-Haitian.htm'); }
         }
         if (STD === 'Congenital Syphilis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/236611/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/279015/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/sifilis/stdfact-congenital-syphilis-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else { setSTD('https://tools.cdc.gov/api/v2/resources/media/236611/content'); }
+            else { setSTD('https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm'); }
         }
         if (STD === 'Trichomoniasis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124243/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133658/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/trichomonas/stdfact-trichomoniasis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/tricomoniasis/stdfact-trichomoniasis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/haitiancreole/stdfact-trich-haitian.htm'); }
         }
     }
     return (
         <View >
             <View style={styles.screen}>
-                <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop:50}}>
+                <Box style={{ height: '80%', marginBottom: 110, marginTop:50}}>
                     <ScrollView>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }} >
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
                                 <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={lang} />
                             </TouchableOpacity>
@@ -164,7 +164,9 @@ const styles = StyleSheet.create({
     },
     content: {
         backgroundColor: 'white',
-        padding: 10,
+        margin: 5,
+        paddingTop: 20,
+        padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
@@ -174,12 +176,12 @@ const styles = StyleSheet.create({
         width: 350,
     },
     words: {
-        fontSize: 15,
+        fontSize: 18,
         color: Colors.blueLetters,
         fontWeight: 'bold'
     },
     containers: {
-        margin:10
+        marginTop:20
     }
 })
 
