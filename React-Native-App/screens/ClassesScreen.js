@@ -51,14 +51,16 @@ const Classes = props => {
                     data={data}
                     renderItem={({ item }) => (
                         <View>
-                            <Text style={styles.text}>{item.title}</Text>
+                            <Text style={styles.titleProgram}>{item.title}</Text>
+                            <Text>{'\n'}</Text>
                             <Translator style={styles.text} loadText={(item.cost)} loadLanguage={lang} />
                             <Translator style={styles.text} loadText={(item.description)} loadLanguage={lang} />
                             <Translator style={styles.text} loadText={(item.schedule)} loadLanguage={lang} />
                             <Translator style={styles.text} loadText={(item.address)} loadLanguage={lang} />
                             <Translator style={styles.text} loadText={(item.contact)} loadLanguage={lang} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
-                                <Text style={styles.text, {color:'blue'}}>{item.website}</Text>
+                                <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
+                                    source={require('../assets/icons/website.png')} />
                             </TouchableOpacity>
                             <View style={styles.seperator} />
                         </View>
@@ -164,14 +166,19 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     text: {
-        alignSelf: 'center',
-        justifyContent: 'center',
+        alignSelf: 'flex-start',
+        justifyContent: 'flex-start',
         padding: 5,
         fontSize: 15,
     },
     button: {
-        alignSelf:'center',
+        alignSelf: 'center',
         justifyContent: 'center'
+    },
+    titleProgram: {
+        fontSize: 20,
+        alignSelf: 'center',
+        fontWeight: 'bold'
     }
 })
 

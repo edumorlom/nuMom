@@ -85,7 +85,7 @@ const Folder = props => {
         <View>
             <View style={styles.screen}>
                 {/* box that holds documents */}
-                <Box style={{ height: '75%', width: '80%', marginTop: 15 }}>
+                <Box style={{ height: '70%', width: '80%', marginTop: 50 }}>
                     <ScrollView>
                         {/* loops all documents */}
                         <FlatList
@@ -142,7 +142,7 @@ const Folder = props => {
                             <Image source={{ uri: object }} style={styles.picture} />
                             {/* button to close modal and delete document */}
                             <View style={{ flexDirection: 'row' }}>
-                                <Button title={Helpers('Hide', lang)} onPress={() => handlePictureView(false)} />
+                                <Button title={Helpers('Back', lang)} onPress={() => handlePictureView(false)} />
                                 {/* seperates buttons */}
                                 <View style={{ marginLeft: 50, marginRight: 50 }} />
                                 <Button title={Helpers('Delete', lang)} onPress={() => deleteDocument(objId)} />
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     documentButton: {
-        marginBottom: 95,
+        marginBottom: 100,
         padding: 10,
         backgroundColor: Colors.boxBackground,
         width: '50%',
