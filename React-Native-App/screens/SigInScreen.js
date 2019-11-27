@@ -6,34 +6,21 @@ import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
-import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 import Helpers from '../components/Helpers';
+import { AsyncStorage } from 'react-native';
+import Translator from '../components/Translator';
+
+ //url for functions 
+ const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
 
 const SignIn = props => {
 
-    // translates placeholders
-    let lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    const lang = props.navigation.getParam('language')
 
     const [phoneNumber, setphoneNumber] = useState('');
     const [code, setCode] = useState('');
-
-    //url for functions 
-    const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
-
-    const updatePhoneNumber = (phone) => {
-        setphoneNumber(phone);
-    }
-
-    const updateCode = (passCode) => {
-        setCode(passCode);
-    }
-
-    // go to user sign up page
-    const signUpHandler = () => {
-        props.onTapNewUser();
-    }
 
     let profile = {
         'Name': '',
@@ -56,11 +43,22 @@ const SignIn = props => {
             
             console.log(data.token);
 
+            //store the token so user no longer needs to log in
+            await AsyncStorage.setItem('token', data.token);
+            let result = await AsyncStorage.getItem('token')
+
+            console.log(result);
+
+            // if (result != null){
+            //     props.onTapSignIn()
+            // }
+
             //authenticates into firebase
             firebase.auth().signInWithCustomToken(data.token);
 
             //go to the landing page
-            props.onTapSignIn();
+            props.navigation.navigate('mainFlow')
+            // props.onTapSignIn();
 
         } catch(error) {
             console.log(error);
@@ -112,7 +110,7 @@ const SignIn = props => {
                         <Input
                             style={styles.textInput}
                             placeholder='888-888-8888'
-                            onChangeText={updatePhoneNumber}
+                            onChangeText={setphoneNumber}
                             value={phoneNumber}
                             autoCompleteType={'tel'} //where is this???
                             keyboardType='number-pad'
@@ -131,9 +129,9 @@ const SignIn = props => {
                         <Input
                             style={styles.textInput}
                             placeholder= {Helpers('code', lang)}
-                            onChangeText={updateCode}
+                            onChangeText={setCode}
                             value={code}
-                            secureTextEntry={true}
+                            secureTextEntry
                             keyboardType='number-pad'
                             leftIcon={
                                 <Icon style={styles.iconStyle}
@@ -149,12 +147,12 @@ const SignIn = props => {
                     style={styles.signInButton}
                     onPress={() => signInHandler()}
                     underlayColor={Colors.hoverColor} >
-                    <Text style={{ fontSize: 18, color: 'black' }}>Sign In!</Text>
+                    <Translator style={styles.labelText} loadText={('Sign In!')} loadLanguage= {lang} />
                 </TouchableHighlight>
 
                 <View style={styles.seperator}>
-                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => signUpHandler()}>
-                        <Text>New mom? Sign Up!</Text>
+                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signup', {language: lang} )}>
+                    <Translator style={styles.labelText} loadText={('New mom? Sign Up!')} loadLanguage = {lang} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -176,6 +174,10 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '80%',
         height: '20%'
+    },
+    labelText: {
+        fontSize: 15,
+        color: Colors.fontColor,
     },
     textInput: {
         fontSize: 20,

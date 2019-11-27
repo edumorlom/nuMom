@@ -14,7 +14,7 @@ const Folder = props => {
     const [files, setFiles] = useState('');
 
     const locationHelper = (location) => {
-        props.onTap(location);
+        // props.onTap(location);
     }
     const saveChange = () => {
         setFiles('Sample.txt');

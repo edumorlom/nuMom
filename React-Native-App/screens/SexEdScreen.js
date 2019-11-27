@@ -9,17 +9,18 @@ import Colors from '../constants/Colors';
 
 const SexEd = props => {
 
+    const lang = props.navigation.getParam('language')
     
     // handles translations
-    var lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    // var lang = props.loadLanguage;
+    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
     var buttonWord = '';
     if (lang === 'en') { buttonWord = 'Hide' }
     else if (lang === 'es') { buttonWord = 'Esconder' }
     else { buttonWord = 'Kache' }
     // navigation
     const locationHelper = (location) => {
-        props.onTap(location);
+        // props.onTap(location);
     }
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);

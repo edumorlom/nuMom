@@ -46,7 +46,7 @@ export default class Translator extends Component {
     render() {
         return (
             <View>
-                <Text style={[{ ...this.props.style }]}>
+                <Text style={{ ...this.props.style }}>
                     {this.state.translatedText}
                 </Text>
             </View>

@@ -7,16 +7,18 @@ import Translator from '../components/Translator';
 
 export default class SignUpForm extends React.Component {
 
+
+
     // profile values that are gonna be dynamically changing
     state = {
-        name: this.props.loadProfile[''],
-        middleName: this.props.loadProfile[''],
-        lastName: this.props.loadProfile[''],
-        birthdate: this.props.loadProfile[''],
-        phoneNumber: this.props.loadProfile[''],
-        pregnantMonths: this.props.loadProfile[''],
-        childAge: this.props.loadProfile[''],
-        notifications: this.props.loadProfile[''],
+    //     name: this.props.loadProfile['name'],
+    //     middleName: this.props.loadProfile['middleName'],
+    //     lastName: this.props.loadProfile['lastName'],
+    //     birthdate: this.props.loadProfile['birthdate'],
+    //     phoneNumber: this.props.loadProfile['phoneNumber'],
+    //     pregnantMonths: this.props.loadProfile['pregnantMonths'],
+    //     childAge: this.props.loadProfile['childAge'],
+    //     notifications: this.props.loadProfile['notifications'],
         
         //what is this???
         lang: this.props.loadLanguage,
@@ -27,12 +29,12 @@ export default class SignUpForm extends React.Component {
         // get date
         let currDate = new Date();
         // organize array for changes/decisions in real time
-        let profileDetails = {
-            'Name': this.state.name, 'MiddleName': this.state.middleName, 'LastName': this.state.lastName,
-            'BirthDate': this.state.birthdate, 'PhoneNumber': this.state.phoneNumber, 'PregnantMonths': this.state.pregnantMonths,
-            'ChildAge': this.state.childAge, 'Notifications': this.state.notifications
-        };
-        this.exporterProfile(profileDetails);
+        // let profileDetails = {
+        //     'Name': this.state.name, 'MiddleName': this.state.middleName, 'LastName': this.state.lastName,
+        //     'BirthDate': this.state.birthdate, 'PhoneNumber': this.state.phoneNumber, 'PregnantMonths': this.state.pregnantMonths,
+        //     'ChildAge': this.state.childAge, 'Notifications': this.state.notifications
+        // };
+        // this.exporterProfile(profileDetails);
         return (
             <View>
                 {/* First Name */}

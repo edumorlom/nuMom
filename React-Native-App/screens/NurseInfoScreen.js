@@ -1,19 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Navigation from '../components/NavigationBar';
-
-const Classes = props => {
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
+const NurseInfo = props => {
     return (
         <View>
             <View style={styles.screen}>
-                <Text>Classes page</Text>
-            </View>
-            <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
+                <Text>NurseInfo page</Text>
             </View>
         </View>
     )
@@ -28,4 +20,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Classes;
+export default NurseInfo;

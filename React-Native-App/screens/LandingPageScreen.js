@@ -6,7 +6,7 @@ import Navigation from '../components/NavigationBar';
 
 const LandingPage = props => {
     const locationHelper = (location) => {
-        props.onTap(location);
+        // props.onTap(location);
     }
     return (
         <View>
