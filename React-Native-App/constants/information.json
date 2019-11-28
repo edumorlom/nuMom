@@ -126,5 +126,40 @@
 			"contact": "Website is: ",
 			"website": "https://baptisthealth.net/en/facilities/south-miami-hospital/maternity/pages/childbirth-classes-at-south-miami-hospital.aspx"
 		}
+	],
+	"medicaid": [
+		{
+			"id": 1,
+			"title": "Medicaid",
+			"description": "Medicaid provides medical coverage to low income individuals and families. Parents and caretakers may apply for Medicaid on behalf of children under age 21 living in their home, if the family income is under the limit for the age of the child. The form that they will use if they are pregnant or have children who are 20 years old or younger and only want to apply for Medicaid is available in English, Spanish and Creole on that link and is a total of 13 pages. The form is called Family-Related Medicaid Application.",
+			"contact": "Medicaid contact number is 866-762-2237.",
+			"websitelabel": "Apply Information: ",
+			"website": "https://www.myflfamilies.com/service-programs/access/medicaid.shtml",
+			"website2label": "Apply Forms: ",
+			"website2": "https://www.myflfamilies.com/service-programs/access/common-access-florida-forms.shtml"
+		}
+	],
+	"WIC": [
+		{
+			"id": 1,
+			"title": "Women, Infants, and Children (WIC)",
+			"description": "Women, Infants, and Children (WIC) is a federally funded nutrition program. WIC provides the following at no cost: healthy foods, nutrition education and counseling, breastfeeding support, and referrals for health care and community services. Florida WIC clients use a WIC EBT card to purchase WIC approved foods at authorized grocery stores. Eligibility - Must reside in Florida. Must meet the WIC income guidelines. Must be a pregnant woman or a woman with children under 5 years old.",
+			"contact": "To apply for WIC in Miami-Dade County call 786-336-1300 to make an appointment at your nearest WIC office.",
+			"websitelabel": "Website with application information: ",
+			"website": "http://miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/wic-women-children/index.html"
+		}
+	],
+	"healthcare": [
+		{
+			"id": 1,
+			"title": "Heartbeat of Miami Pregnancy Help Medical Clinics",
+			"description": "Heartbeat of Miami Pregnancy Help Medical Clinics offer lifesaving help in a life changing way to women and couples with an unplanned or unwanted pregnancy. Services include options information, pregnancy tests, ultrasound, material aid, adoption support, housing referrals, after pregnancy termination support, parenting support, std/sti information, mentoring men’s program, sexual integrity and character development counseling, “earn while you learn” parenting classes, education incentives and education counseling, child care assistance referrals, spiritual counseling and licensed life coach. All of their services are free and confidential. Hours of operation for clinics are 10am to 5pm.",
+			"contact": "Call 888-981-7770 for more info.",
+			"websitelabel": "For more Information visit: ",
+			"website": "https://heartbeatofmiami.org/",
+			"website2label": " or ",
+			"website2": "https://www.pregnancyhelpclinics.org/en",
+			"location": "Hialeah Pregnancy Help Medical Clinic, 390 West 49th Street, Hialeah FL 33012, 305-821-9970.\n\nNorth Miami Pregnancy Help Medical Clinic, 660 NE 125th St., North Miami FL 33161, 305-685-6010.\n\nKendall Pregnancy Help Medical Clinic, 10100 SW 107th Court, Kendall FL 33176, 305-274-5105.\n\nFlagler Pregnancy Help Medical Clinic, 4391 W Flagler Street, Miami FL 33134, 305-603-8668."
+		}
 	]
 }

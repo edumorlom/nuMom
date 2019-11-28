@@ -86,8 +86,10 @@ const Folder = props => {
             <View style={styles.screen}>
                 {/* box that holds documents */}
                 <Box style={{ height: '70%', width: '80%', marginTop: 50 }}>
+                    <Text style={styles.boxTitle}>{Helpers('Documents', lang)}</Text>
                     <ScrollView>
                         {/* loops all documents */}
+                        <Text>{'\n'}</Text>
                         <FlatList
                             data={documents}
                             renderItem={({ item }) => {
@@ -193,6 +195,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 5,
         fontSize: 18,
+        color: Colors.blueLetters
     },
     item: {
         flexDirection: 'row',
@@ -201,7 +204,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         padding: 10,
-        backgroundColor: Colors.itemBackgroundPink
+        backgroundColor: 'rgba(245, 245, 245, 0.51)',
     },
     pictureItem: {
         width: 70,
@@ -212,7 +215,12 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderRadius: 10
-    }
+    },
+    boxTitle: {
+        fontSize: 30,
+        color: Colors.titleRed,
+        alignSelf: 'center',
+    },
 })
 
 export default Folder;

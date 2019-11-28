@@ -90,7 +90,7 @@ const SexEd = props => {
     return (
         <View >
             <View style={styles.screen}>
-                <Box style={{ height: '80%', marginBottom: 110, marginTop:50}}>
+                <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
                     <ScrollView>
                         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }} >
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     containers: {
-        marginTop:20
+        marginTop:30
     }
 })
 
