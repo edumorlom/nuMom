@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, ScrollView, StyleSheet, Alert, Text, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
-
+import Translator from '../components/Translator';
 import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 // Custom Components
@@ -95,7 +95,7 @@ const Profile = props => {
                                 <ImagePick passLang={language}  getPicture={pictureHandler} />
                             </View>
                             {/* Folder Touchable */}
-                            <TouchableOpacity onPress={() => navigation.navigate('Documents', {laguage: language})} >
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Documents', {laguage: language})} >
                                 <Image style={{ marginLeft: 20 }} source={require('../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>

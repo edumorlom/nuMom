@@ -12,6 +12,8 @@ import Helper from '../components/Helpers';
 
 const Classes = props => {
 
+    const lang = props.navigation.getParam('language')
+
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
     const [information, setInformation] = useState('');
@@ -32,18 +34,18 @@ const Classes = props => {
         //     });
     }
     // handles translations
-    var lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
-    var Tours = 'Tours';
+    // var lang = props.loadLanguage;
+    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    let Tours = 'Tours';
     if (lang === 'es') { Tours = 'Excursiones' }
-    var Parenting = 'Parenting';
+    let Parenting = 'Parenting';
     if (lang === 'es') { Parenting = "Paternidad" }
 
     const displayData = (option) => {
         // hold the JSON file
         const JSONData = require('../constants/information.json');
         // recals the child of the JSON based on selected topic
-        var data = JSONData[option]
+        let data = JSONData[option]
         // displays all the information found in that topic
         return (
             <View style={{ marginTop: 15 }}>
