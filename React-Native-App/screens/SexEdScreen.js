@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Button, Image } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Button, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { WebView } from 'react-native-webview';
-import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 
 import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
+import Box from '../components/Box';
+import Translator from '../components/Translator';
 
 const SexEd = props => {
 
@@ -28,172 +30,120 @@ const SexEd = props => {
     const modalControl = (value, STD) => {
         setVisibility(value);
         if (STD === 'Bacterial Vaginosis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124250/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133660/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/bv/stdfact-bacterial-vaginosis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vb/stdfact-bacterial-vaginosis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-BV-Haitian.htm'); }
         }
         if (STD === 'Chlamydia') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124249/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133661/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/chlamydia/stdfact-chlamydia.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/clamidia/stdfact-chlamydia-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Chlamydia-Haitian.htm'); }
         }
         if (STD === 'Genital Herpes') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124247/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133662/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/herpes/stdfact-herpes.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/herpes/stdfact-herpes-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Herpes-Haitian.htm'); }
         }
         if (STD === 'Gonorrhea') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124246/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133664/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/gonorrhea/stdfact-gonorrhea.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/gonorrea/stdfact-gonorrhea-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Gonorrhea-Haitian.htm'); }
         }
         if (STD === 'HIV/AIDS and STDs') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/241596/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm'); }
             else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vih/stdfact-hiv-and-stds-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else {setSTD('https://tools.cdc.gov/api/v2/resources/media/241596/content');}
+            else { setSTD('https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm'); }
         }
         if (STD === 'HPV Infection') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124248/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133663/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/hpv/stdfact-hpv.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/vph/stdfact-hpv-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-HPV-Haitian.htm'); }
         }
         if (STD === 'Pelvic Inflammatory Disease') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124245/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133659/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/pid/stdfact-pid.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/eip/stdfact-pid-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-PID-Haitian.htm'); }
         }
         if (STD === 'STDs During Pregnancy') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/126333/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/272997/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/embarazo/stdfact-pregnancy-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else { setSTD('https://tools.cdc.gov/api/v2/resources/media/126333/content'); }
+            else { setSTD('https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm'); }
         }
         if (STD === 'Syphilis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124244/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133665/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/syphilis/stdfact-syphilis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/sifilis/stdfact-syphilis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/HaitianCreole/STDFact-Syphilis-Haitian.htm'); }
         }
         if (STD === 'Congenital Syphilis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/236611/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/279015/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/sifilis/stdfact-congenital-syphilis-s.htm'); }
             //NOT Available IN CREOLE, Defaults to English
-            else { setSTD('https://tools.cdc.gov/api/v2/resources/media/236611/content'); }
+            else { setSTD('https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm'); }
         }
         if (STD === 'Trichomoniasis') {
-            if (lang === 'en') { setSTD('https://tools.cdc.gov/api/v2/resources/media/124243/content'); }
-            else if (lang === 'es') { setSTD('https://tools.cdc.gov/api/v2/resources/media/133658/content'); }
+            if (lang === 'en') { setSTD('https://www.cdc.gov/std/trichomonas/stdfact-trichomoniasis.htm'); }
+            else if (lang === 'es') { setSTD('https://www.cdc.gov/std/spanish/tricomoniasis/stdfact-trichomoniasis-s.htm'); }
             else { setSTD('https://www.cdc.gov/std/haitiancreole/stdfact-trich-haitian.htm'); }
         }
     }
     return (
-        <View>
-            <View style={styles.screen} >
-                <View style={styles.box}>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Bacterial Vaginosis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
+        <View >
+            <View style={styles.screen}>
+                <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
+                    <ScrollView>
+                        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }} >
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
+                                <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Chlamydia')}>
+                                <Translator style={styles.words} loadText={('Chlamydia')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Genital Herpes')}>
+                                <Translator style={styles.words} loadText={('Genital Herpes')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Gonorrhea')}>
+                                <Translator style={styles.words} loadText={('Gonorrhea')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
+                                <Translator style={styles.words} loadText={('HIV/AIDS and STDs')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HPV Infection')}>
+                                <Translator style={styles.words} loadText={('HPV Infection')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
+                                <Translator style={styles.words} loadText={('Pelvic Inflammatory Disease')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'STDs During Pregnancy')}>
+                                <Translator style={styles.words} loadText={('STDs During Pregnancy')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Syphilis')}>
+                                <Translator style={styles.words} loadText={('Syphilis')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Congenital Syphilis')}>
+                                <Translator style={styles.words} loadText={('Congenital Syphilis')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Trichomoniasis')}>
+                                <Translator style={styles.words} loadText={('Trichomoniasis')} loadLanguage={lang} />
+                            </TouchableOpacity>
+                            <Modal
+                                isVisible={visibility}
+                                onBackdropPress={() => modalControl(false)}
+                                propagateSwipe={true}
+                                onBackButtonPress={() => modalControl(false)}
+                                style={styles.modalStyle}>
+                                <View style={styles.content}>
+                                    <WebView
+                                        source={{ uri: STD }}
+                                        javaScriptEnabled={true}
+                                        style={styles.web}/>
+                                    <Button title={buttonWord} onPress={() => modalControl(false)} />
+                                </View>
+                            </Modal>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Chlamydia')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Chlamydia"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Genital Herpes')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Genital Herpes"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Gonorrhea')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Gonorrhea"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"HIV/AIDS and STDs"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'HPV Infection')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"HPV Infection"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Pelvic Inflammatory Disease"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'STDs During Pregnancy')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"STDs During Pregnancy"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Syphilis')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Syphilis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Congenital Syphilis')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Congenital Syphilis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => modalControl(true, 'Trichomoniasis')}>
-                        <View style={styles.seperator}>
-                            <PowerTranslator style={styles.words} text={"Trichomoniasis"} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/english-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/spanish-icon.png')} />
-                            <Image style={styles.imageStyle} source={require('../assets/icons/creole-icon.png')} />
-                        </View>
-                    </TouchableOpacity>
-                    <Modal
-                        isVisible={visibility}
-                        onBackdropPress={() => modalControl(false)}
-                        propagateSwipe={true}
-                        onBackButtonPress={() => modalControl(false)}
-                        style={styles.modalStyle}>
-                        <View style={styles.content}>
-                            <WebView
-                                source={{ uri: STD }}
-                                javaScriptEnabled={true}
-                                style={{
-                                    width: 400,
-                                    marginTop: 20
-                                }}
-                            />
-                            <Button title={buttonWord} onPress={() => modalControl(false)} />
-                        </View>
-                    </Modal>
-                </View>
+                    </ScrollView>
+                </Box>
             </View>
             <View>
                 <Navigation passLocation={(loc) => locationHelper(loc)} />
@@ -209,45 +159,30 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-    box: {
-        flex: 1,
-        justifyContent: 'space-evenly',
-        alignItems: 'flex-start',
-        width: '90%',
-        borderColor: 'transparent',
-        borderRadius: 10,
-        backgroundColor: Colors.boxBackground,
-        marginTop: 35,
-        marginBottom: 100,
-        padding: 10,
-    },
     modalStyle: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     content: {
         backgroundColor: 'white',
-        padding: 10,
+        margin: 5,
+        paddingTop: 20,
+        padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 20,
         borderColor: 'transparent',
     },
+    web: {
+        width: 350,
+    },
     words: {
-        fontSize: 15,
+        fontSize: 18,
         color: Colors.blueLetters,
         fontWeight: 'bold'
     },
-    seperator: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    imageStyle: {
-        marginLeft: 5,
-        marginRight: 5,
-        width: 20,
-        height: 10,
-        resizeMode: 'stretch'
+    containers: {
+        marginTop:30
     }
 })
 

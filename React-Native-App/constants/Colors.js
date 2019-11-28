@@ -11,6 +11,6 @@ export default {
     hoverColor: '#DEA3BF',
     blueLetters: 'rgba(100, 190, 188, 1)',
     boxBackground: '#ECE6F1',
-    fontColor: '#63696C'
-
+    fontColor: '#63696C',
+    titleRed: 'rgba(237, 120, 153, 1)', 
 };

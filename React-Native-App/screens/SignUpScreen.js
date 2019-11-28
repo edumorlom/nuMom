@@ -76,11 +76,11 @@ const SignUp = (props) => {
                 Alert.alert('Sign Up Errors', errorMessage,
                     [
                         { text: 'Go back' }
-                    ], 
+                    ],
                     {
-                    cancelable: false
-                })
-            } 
+                        cancelable: false
+                    })
+            }
             return;
         }
 
@@ -144,7 +144,7 @@ const SignUp = (props) => {
         </SafeAreaView>
     );
 };
-                
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        }
-    })
-                    
+    }
+})
+
 export default SignUp;

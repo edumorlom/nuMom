@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Image, View, TouchableOpacity } from 'react-native';
+import { Image, View, TouchableOpacity, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import ActionSheet from 'react-native-actionsheet';
-import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { TranslatorFactory } from 'react-native-power-translator';
 
 export default class ImagePickerProfile extends React.Component {
 
@@ -30,7 +30,7 @@ export default class ImagePickerProfile extends React.Component {
                 <TouchableOpacity onPress={this.showActionSheet}>
                     {image ?
                         // user image
-                        <Image source={{ uri: image }} style={{ width: 125, height: 125, borderRadius: 125 / 2 }} /> :
+                        <Image source={{ uri: image }} style={{ ...styles.image, ...this.props.style }} /> :
                         // default iamge or old user image
                         this.decideImage(this.props.passPicture)
                     }
@@ -131,3 +131,11 @@ export default class ImagePickerProfile extends React.Component {
         }
     }
 }
+
+const styles = StyleSheet.create({
+    image: {
+        width: 125, 
+        height: 125, 
+        borderRadius: 125 / 2
+    }
+})

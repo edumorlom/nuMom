@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
+import { View, Image, ScrollView, StyleSheet, Alert, Text, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 
 import Navigation from '../components/NavigationBar';
@@ -8,7 +8,6 @@ import Colors from '../constants/Colors';
 import ImagePick from '../components/ImagePick';
 import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
-import Translator from '../components/Translator';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
 
@@ -100,7 +99,7 @@ const Profile = props => {
                                 <Image style={{ marginLeft: 20 }} source={require('../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Box style={{ height: '60%', width: '90%', }}>
+                        <Box style={{ height: '60%', width: '80%', }}>
                             <ScrollView>
                                 {/* Change info */}
                                 <SignUpForm loadScreen={('Profile')} loadLanguage={language} getProfile={profileHandler} loadProfile={profile} />
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
         marginBottom: 100,
         padding: 10,
         backgroundColor: Colors.boxBackground,
-        width: '40%',
+        width: '80%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
