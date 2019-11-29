@@ -107,17 +107,17 @@ const Profile = props => {
                                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('en')}>
                                         <View style={{ opacity: (language === 'en') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/english-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/usa-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('es')}>
                                         <View style={{ opacity: (language === 'es') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/spanish-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/spain-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('ht')}>
                                         <View style={{ opacity: (language === 'ht') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/creole-icon.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/creole-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>

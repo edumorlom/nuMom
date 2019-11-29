@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Image, StyleSheet, Text } from 'react-native';
-import { ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
+import { View, TouchableOpacity, Image, StyleSheet, Text, SafeAreaView, Animated } from 'react-native';
+import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 
 import Colors from '../constants/Colors';
 import Box from '../components/Box';
 import Translator from '../components/Translator';
 
-//Make an animation to present the App and then show the language section
+
 
 
 const Language = ({ navigation }) => {
@@ -18,36 +18,38 @@ const Language = ({ navigation }) => {
         setLanguage(lang);
     }
 
-    // pass language to App
-    const passLanguage = () => {
-        props.navigation.navigate('Welcome', {language: language})
-        // props.onTap(language);
-    }
     // translator
     TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
+
+    //Make an animation to present the App and then show the language section
+    // <View>
+    //     <Image style={{width: 400, height: 400, marginRight: 20, alignItems: 'center'}} source={require('../assets/images/logo111.png')} />
+    // </View>
+
+
     return (
-        <View style={styles.screen}>
-            <View style={{ width: '80%', alignItems: 'center' }}>
-                <Translator style={styles.textTitle} loadText={('Select Language')} loadLanguage={language} />
+        <SafeAreaView style={styles.screen}>
+            <View style={{ width: '90%', alignItems: 'center' }}>
+                <Translator style={styles.textTitle} loadText={('Please select your prefered language to continue')} loadLanguage={language} />
             </View>
             <Box>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
                     <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/english-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/usa-flag.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('es')}>
                     <View style={{ opacity: (language === 'es') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/spanish-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/spain-flag.png')} />
                         <Text style={styles.textWord}>Español</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('ht')}>
                     <View style={{ opacity: (language === 'ht') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/creole-icon.png')} />
+                        <Image style={styles.picture} source={require('../assets/icons/creole-flag.png')} />
                         <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>
@@ -61,7 +63,7 @@ const Language = ({ navigation }) => {
                     style={styles.check}
                 />
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 10,
+        // margin: 10,
     },
     picture: {
         height: 80,
@@ -85,11 +87,13 @@ const styles = StyleSheet.create({
     },
     textWord: {
         color: Colors.fontColor,
-        fontSize: 30,
+        fontSize: 25,
     },
     textTitle: {
-        fontSize: 35,
+        fontSize: 30,
         color: Colors.fontColor,
+        textAlign: 'center',
+        paddingBottom: 20
     },
     seperatorLine: {
         width: '100%',
