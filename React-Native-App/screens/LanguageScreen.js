@@ -13,6 +13,7 @@ const Language = ({ navigation }) => {
 
     // handles the language selection of the app, input
     const [language, setLanguage] = useState("en");
+    global.GlobalLanguage = language;
 
     const languageSetHandler = (lang) => {
         setLanguage(lang);

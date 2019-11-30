@@ -11,7 +11,6 @@ const SLIDE_DATA = [
 const Welcome = ({navigation}) => {
 
     let lang = navigation.getParam('language')
-    console.log(lang)
 
     onSlidesComplete = () => {
         navigation.navigate('Signin', {language: lang})

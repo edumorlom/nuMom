@@ -8,13 +8,12 @@ import { Input } from 'react-native-elements';
 import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
-import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 import Helpers from '../components/Helpers';
 import { AsyncStorage } from 'react-native';
 import Translator from '../components/Translator';
 
- //url for functions 
- const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
+//url for functions 
+const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
 
 const SignIn = props => {
@@ -43,13 +42,9 @@ const SignIn = props => {
         try {
             let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
 
-            console.log(data.token);
-
             //store the token so user no longer needs to log in
             await AsyncStorage.setItem('token', data.token);
             let result = await AsyncStorage.getItem('token')
-
-            console.log(result);
 
             // if (result != null){
             //     props.onTapSignIn()
@@ -130,7 +125,7 @@ const SignIn = props => {
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
-                            placeholder= {Helpers('code', lang)}
+                            placeholder={Helpers('code', lang)}
                             onChangeText={setCode}
                             value={code}
                             secureTextEntry
@@ -149,12 +144,12 @@ const SignIn = props => {
                     style={styles.signInButton}
                     onPress={() => signInHandler()}
                     underlayColor={Colors.hoverColor} >
-                    <Translator style={styles.labelText} loadText={('Sign In!')} loadLanguage= {lang} />
+                    <Text style={styles.labelText}>{Helpers('Sign In!', lang)}</Text>
                 </TouchableHighlight>
 
                 <View style={styles.seperator}>
-                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signup', {language: lang} )}>
-                    <Translator style={styles.labelText} loadText={('New mom? Sign Up!')} loadLanguage = {lang} />
+                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signup', { language: lang })}>
+                        <Text style={styles.labelText}>{Helpers('New mom? Sign Up!', lang)}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

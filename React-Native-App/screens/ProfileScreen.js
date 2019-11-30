@@ -59,6 +59,7 @@ const Profile = props => {
         }
         else {
             profile['Image'] = image;
+            global.GlobalLanguage = language;
             props.onSave(profile);
         }
     }
