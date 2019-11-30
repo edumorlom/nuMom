@@ -129,9 +129,6 @@ const Profile = props => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View>
-                        <Navigation passLocation={(loc) => locationHelper(loc)} />
-                    </View>
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView >

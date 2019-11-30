@@ -11,24 +11,20 @@ import Helper from '../components/Helpers';
 
 const LandingPage = props => {
 
+    // handles translations
     const lang = props.navigation.getParam('language');
-
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
     const [information, setInformation] = useState('');
+
     // handles database get JSON file of content
     const pullJSONHandler = (bol, input) => {
         setVisibility(bol);
         setInformation(input);
     }
-    // handles translations
-    // var lang = props.loadLanguage;
-    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
-    // displays the correct information for modal
+    
+   // displays the correct information for modal
     const displayData = (option) => {
         // hold the JSON file
         const JSONData = require('../constants/information.json');
@@ -103,9 +99,6 @@ const LandingPage = props => {
                         </View>
                     </Modal>
                 </Box>
-            </View>
-            <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
             </View>
         </View>
     );

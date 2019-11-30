@@ -14,6 +14,8 @@ const Classes = props => {
 
     const lang = props.navigation.getParam('language')
 
+    console.log(lang);
+
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
     const [information, setInformation] = useState('');
@@ -109,9 +111,6 @@ const Classes = props => {
                         </View>
                     </Modal>
                 </Box>
-            </View>
-            <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
             </View>
         </View>
     )

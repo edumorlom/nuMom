@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Hialeah Pregnancy Help Medical Clinic",
+        "address": "390 West 49th Street, Hialeah FL 33012",
+        "coords": {
+            "latitude": 25.866533,
+            "longitude": -80.290380
+        },
+        "phone": "305-821-9970",
+        "website": "pregnancyhelpclinics.org",
+        "hours_of_operation" : "Saturday: Closed\n Sunday: Closed\n Monday: 10AM–5PM\n Tuesday: 10AM–5PM\n Wednesday: 10AM–5PM\n Thursday: 10AM–5PM\n Friday: 10AM–5PM"
+    },
+    {
+        "id": 2,
+        "name": "North Miami Pregnancy Help Medical Clinic",
+        "address": "660 NE 125th St., North Miami FL 33161",
+        "coords": {
+            "latitude": 25.890140, 
+            "longitude": -80.185108
+        },
+        "phone": "305-685-6010"
+    },
+    {
+        "id": 3,
+        "name": "Kendall Pregnancy Help Medical Clinic",
+        "address": "10100 SW 107th Court, Kendall FL 33176",
+        "coords": {
+            "latitude": 25.674885, 
+            "longitude": -80.369220
+        },
+        "phone": "305-274-5105"
+    },
+    {
+        "id": 4,
+        "name": "Flagler Pregnancy Help Medical Clinic",
+        "address": "4391 W Flagler Street, Miami FL 33134",
+        "coords": {
+            "latitude": 25.771839, 
+            "longitude": -80.267999
+        },
+        "phone": "305-603-8668"
+    }
+]

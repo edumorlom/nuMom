@@ -23,6 +23,8 @@ const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.ne
 const SignUp = (props) => {
     const lan = props.navigation.getParam('language')
 
+    console.log(language);
+
     // image default and new one hook
     const [image, setImage] = useState('../assets/mom-and-baby-icon-editable.png');
     let profile = {
@@ -68,6 +70,7 @@ const SignUp = (props) => {
 
             //go to log in screen
             props.navigation.navigate('Signin', {language: lan})
+
         } catch (err) {
             console.log(err);
             if (err.response.data.error != null) {

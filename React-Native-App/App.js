@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { StyleSheet, Image } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 
 import Colors from './constants/Colors';
@@ -27,6 +27,8 @@ import FolderScreen from './screens/FolderScreen';
 import NurseInfoScreen from './screens/NurseInfoScreen';
 
 import { AsyncStorage } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 //setting up firebase
 const componentDidMount = () => {
@@ -46,26 +48,86 @@ const componentDidMount = () => {
 
 componentDidMount();
 
+const profileNavigator = createStackNavigator({
+  Profile: { screen: ProfileScreen },
+  Documents: { screen: FolderScreen },
+});
+
+profileNavigator.navigationOptions = {
+  title: 'Personal Account',
+  tabBarIcon: ({tintColor}) => <Image source={require('./assets/icons/profile-icon1.png')} />
+}
+
+const clinicsNavigator = createStackNavigator({
+  Clinics: { screen: ClinicsScreen },
+  Nurses: { screen: NurseInfoScreen }
+})
+
+clinicsNavigator.navigationOptions = {
+  title: 'Clinics Info',
+  header: null,
+  tabBarIcon: ({tintColor}) => <Image source={require('./assets/icons/clinics-icon.png')} />
+}
+
 const switchNavigator = createSwitchNavigator({
-  Language: LanguageScreen,
-  Welcome: WelcomeScreen,
+  Language: {
+    screen: LanguageScreen
+  },
+  Welcome: {
+    screen: WelcomeScreen
+  },
   loginFlow: createStackNavigator({
-    Signin: SignInScreen,
-    Signup: SignUpScreen
+    Signin: {
+      screen: SignInScreen, 
+      navigationOptions: () => ({
+        header: null
+      })
+    },
+    Signup: {
+      screen: SignUpScreen,
+      navigationOptions: () => ({
+        header: null
+      })
+    }
   }), 
   mainFlow: createBottomTabNavigator({
-    Home: HomeScreen,
-    Sexualhealth: SexEdScreen,
-      profileFlow: createStackNavigator({
-        Profile: ProfileScreen,
-        Documents: FolderScreen
-      }),
-      Classess: ClassesScreen,
-      clinicsFlow: createStackNavigator({
-        Clinics: ClinicsScreen,
-        Nurses: NurseInfoScreen
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused, tintColor}) => {
+          return <Image source={require('./assets/icons/home-icon.png')} />
+        }
       })
-  })
+    },
+    Sexualhealth: {
+      screen: SexEdScreen, 
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused, tintColor}) => {
+          return <Image source={require('./assets/icons/sexed-icon.png')} />
+        }
+      })
+    },
+    Profile: {
+      screen: profileNavigator
+    },
+    Classess: {
+      screen: ClassesScreen,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused, tintColor}) => {
+          return <Image source={require('./assets/icons/classes-icon.png')} />
+        }
+      })
+    },
+    Clinics: {
+      screen: clinicsNavigator
+    }, 
+  }, {
+    tabBarOptions: {
+      activeTintColor: 'red',
+      showLabel: false
+    }
+  }
+  )
 });
 
 

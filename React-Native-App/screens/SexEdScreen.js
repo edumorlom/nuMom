@@ -11,12 +11,11 @@ import Translator from '../components/Translator';
 
 const SexEd = props => {
 
-    const lang = props.navigation.getParam('language')
-    
     // handles translations
-    // var lang = props.loadLanguage;
-    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
-    var buttonWord = '';
+    const lang = props.navigation.getParam('language')
+    console.log(lang)
+    
+    let buttonWord = '';
     if (lang === 'en') { buttonWord = 'Hide' }
     else if (lang === 'es') { buttonWord = 'Esconder' }
     else { buttonWord = 'Kache' }
@@ -144,9 +143,6 @@ const SexEd = props => {
                         </View>
                     </ScrollView>
                 </Box>
-            </View>
-            <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
             </View>
         </View >
     )
