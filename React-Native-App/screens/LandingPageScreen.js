@@ -5,17 +5,11 @@ import Modal from 'react-native-modal';
 import Translator from '../components/Translator';
 
 import Colors from '../constants/Colors';
-import Navigation from '../components/NavigationBar';
+import Navigations from '../components/NavigationBar';
 import Box from '../components/Box';
 import Helper from '../components/Helpers';
 
 const LandingPage = props => {
-
-    const lang = props.navigation.getParam('language');
-
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -25,9 +19,9 @@ const LandingPage = props => {
         setVisibility(bol);
         setInformation(input);
     }
-    // handles translations
-    // var lang = props.loadLanguage;
-    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    const locationHelper = (location) => {
+        // props.onTap(location);
+    }
     // displays the correct information for modal
     const displayData = (option) => {
         // hold the JSON file
@@ -43,10 +37,10 @@ const LandingPage = props => {
                         <View>
                             <Text style={styles.titleProgram}>{item.title}</Text>
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={lang} />
-                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={lang} />
+                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={GlobalLanguage} />
+                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GlobalLanguage} />
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={lang} />
+                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={GlobalLanguage} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                     source={require('../assets/icons/website.png')} />
@@ -54,7 +48,7 @@ const LandingPage = props => {
                             {/* checks for second website */}
                             {(item.website2label != undefined) &&
                                 <View>
-                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={lang} />
+                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={GlobalLanguage} />
                                     <TouchableOpacity onPress={() => Linking.openURL(item.website2)} >
                                         <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                             source={require('../assets/icons/website.png')} />
@@ -70,7 +64,7 @@ const LandingPage = props => {
                             <View style={styles.seperator} />
                         </View>
                     )}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => toString(item.id)}
                 />
             </View>
         )
@@ -80,15 +74,15 @@ const LandingPage = props => {
         <View>
             <View style={styles.screen}>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
-                    <Text style={styles.boxTitle}>{Helpers('Programs Available', lang)}</Text>
+                    <Text style={styles.boxTitle}>{Helpers('Programs Available', GlobalLanguage)}</Text>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'WIC')}>
-                        <Text style={styles.titles}>{Helpers('Women, Infants, and Children (WIC)', lang)}</Text>
+                        <Text style={styles.titles}>{Helpers('Women, Infants, and Children (WIC)', GlobalLanguage)}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'medicaid')}>
-                        <Text style={styles.titles}>{Helpers('Medicaid', lang)}</Text>
+                        <Text style={styles.titles}>{Helpers('Medicaid', GlobalLanguage)}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'healthcare')}>
-                        <Text style={styles.titles}>{Helpers('Medical Clinics', lang)}</Text>
+                        <Text style={styles.titles}>{Helpers('Medical Clinics', GlobalLanguage)}</Text>
                     </TouchableOpacity>
                     <Modal
                         isVisible={visibility}
@@ -99,13 +93,13 @@ const LandingPage = props => {
                             {/* load content */}
                             {displayData(information)}
                             {/* button to close modal */}
-                            <Button style={styles.button} title={Helper(('Hide'), lang)} onPress={() => pullJSONHandler(false, "")} />
+                            <Button style={styles.button} title={Helper(('Hide'), GlobalLanguage)} onPress={() => pullJSONHandler(false, "")} />
                         </View>
                     </Modal>
                 </Box>
             </View>
             <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
+                <Navigations passLocation={(loc) => locationHelper(loc)} />
             </View>
         </View>
     );

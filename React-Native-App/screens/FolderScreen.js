@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, ScrollView, TextInput, Button, Keyboard, Image, FlatList, TouchableOpacity } from 'react-native';
-import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 import Modal from 'react-native-modal';
 
-import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 import ImagePick from '../components/ImagePick';
 import Box from '../components/Box';
 import Helpers from '../components/Helpers';
 
 const Folder = props => {
-
-    const lang = props.navigation.getParam('language')
-
-    // handles translations
-    // var lang = props.loadLanguage;
-    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -30,12 +22,7 @@ const Folder = props => {
     // picture opened
     const [object, setObject] = useState('');
     const [objId, setObjId] = useState(0);
-    // Array of objects which are documents
 
-    // navigation bar
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
     const sendToDatabase = () => {
         // send to database the documents state 
     }
@@ -87,8 +74,8 @@ const Folder = props => {
         <View>
             <View style={styles.screen}>
                 {/* box that holds documents */}
-                <Box style={{ height: '70%', width: '80%', marginTop: 50 }}>
-                    <Text style={styles.boxTitle}>{Helpers('Documents', lang)}</Text>
+                <Box style={{ height: '80%', width: '80%', marginTop: 50 }}>
+                    <Text style={styles.boxTitle}>{Helpers('Documents', GlobalLanguage)}</Text>
                     <ScrollView>
                         {/* loops all documents */}
                         <Text>{'\n'}</Text>
@@ -124,15 +111,15 @@ const Folder = props => {
                         onBackButtonPress={() => addDocumentHandler(false)}>
                         <View style={styles.content}>
                             <TextInput
-                                placeholder={Helpers("name of file", lang)}
+                                placeholder={Helpers("name of file", GlobalLanguage)}
                                 onChangeText={text => setName(text)}
                                 style={{ margin: 10, fontSize: 15 }}
                                 maxLength={25}
                             />
                             {/* Picture Component */}
-                            <ImagePick style={{ borderRadius: 5 }} passLang={lang} passPicture={defaultImage} getPicture={picHandler} />
+                            <ImagePick style={{ borderRadius: 5 }} passLang={GlobalLanguage} passPicture={defaultImage} getPicture={picHandler} />
                             {/* button to close modal */}
-                            <Button style={styles.button} title={Helpers(('Finish'), lang)} onPress={() => finishHandler()} />
+                            <Button style={styles.button} title={Helpers(('Finish'), GlobalLanguage)} onPress={() => finishHandler()} />
                         </View>
                     </Modal>
                     {/* clicking on document to view or delete */}
@@ -146,17 +133,17 @@ const Folder = props => {
                             <Image source={{ uri: object }} style={styles.picture} />
                             {/* button to close modal and delete document */}
                             <View style={{ flexDirection: 'row' }}>
-                                <Button title={Helpers('Back', lang)} onPress={() => handlePictureView(false)} />
+                                <Button title={Helpers('Back', GlobalLanguage)} onPress={() => handlePictureView(false)} />
                                 {/* seperates buttons */}
                                 <View style={{ marginLeft: 50, marginRight: 50 }} />
-                                <Button title={Helpers('Delete', lang)} onPress={() => deleteDocument(objId)} />
+                                <Button title={Helpers('Delete', GlobalLanguage)} onPress={() => deleteDocument(objId)} />
                             </View>
                         </View>
                     </Modal>
                 </Box>
                 {/* add document button */}
                 <TouchableHighlight style={styles.documentButton} onPress={() => addDocumentHandler(true)} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                    <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", lang)}</Text>
+                    <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", GlobalLanguage)}</Text>
                 </TouchableHighlight>
             </View>
         </View>
@@ -171,7 +158,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     documentButton: {
-        marginBottom: 100,
+        marginBottom: 80,
         padding: 10,
         backgroundColor: Colors.boxBackground,
         width: '50%',

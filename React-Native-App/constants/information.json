@@ -161,5 +161,73 @@
 			"website2": "https://www.pregnancyhelpclinics.org/en",
 			"location": "Hialeah Pregnancy Help Medical Clinic, 390 West 49th Street, Hialeah FL 33012, 305-821-9970.\n\nNorth Miami Pregnancy Help Medical Clinic, 660 NE 125th St., North Miami FL 33161, 305-685-6010.\n\nKendall Pregnancy Help Medical Clinic, 10100 SW 107th Court, Kendall FL 33176, 305-274-5105.\n\nFlagler Pregnancy Help Medical Clinic, 4391 W Flagler Street, Miami FL 33134, 305-603-8668."
 		}
+	],
+	"websites": [
+		{
+			"id": "Bacterial Vaginosis",
+			"en": "https://www.cdc.gov/std/bv/stdfact-bacterial-vaginosis.htm",
+			"es": "https://www.cdc.gov/std/spanish/vb/stdfact-bacterial-vaginosis-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-BV-Haitian.htm"
+		},
+		{
+			"id": "Chlamydia",
+			"en": "https://www.cdc.gov/std/chlamydia/stdfact-chlamydia.htm",
+			"es": "https://www.cdc.gov/std/spanish/clamidia/stdfact-chlamydia-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-Chlamydia-Haitian.htm"
+		},
+		{
+			"id": "Genital Herpes",
+			"en": "https://www.cdc.gov/std/herpes/stdfact-herpes.htm",
+			"es": "https://www.cdc.gov/std/spanish/herpes/stdfact-herpes-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-Herpes-Haitian.htm"
+		},
+		{
+			"id": "Gonorrhea",
+			"en": "https://www.cdc.gov/std/gonorrhea/stdfact-gonorrhea.htm",
+			"es": "https://www.cdc.gov/std/spanish/gonorrea/stdfact-gonorrhea-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-Gonorrhea-Haitian.htm"
+		},
+		{
+			"id": "HIV/AIDS and STDs",
+			"en": "https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm",
+			"es": "https://www.cdc.gov/std/spanish/vih/stdfact-hiv-and-stds-s.htm",
+			"ht": "https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm"
+		},
+		{
+			"id": "HPV Infection",
+			"en": "https://www.cdc.gov/std/hpv/stdfact-hpv.htm",
+			"es": "https://www.cdc.gov/std/spanish/vph/stdfact-hpv-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-HPV-Haitian.htm"
+		},
+		{
+			"id": "Pelvic Inflammatory Disease",
+			"en": "https://www.cdc.gov/std/pid/stdfact-pid.htm",
+			"es": "https://www.cdc.gov/std/spanish/eip/stdfact-pid-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-PID-Haitian.htm"
+		},
+		{
+			"id": "STDs During Pregnancy",
+			"en": "https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm",
+			"es": "https://www.cdc.gov/std/spanish/embarazo/stdfact-pregnancy-s.htm",
+			"ht": "https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm"
+		},
+		{
+			"id": "Syphilis",
+			"en": "https://www.cdc.gov/std/syphilis/stdfact-syphilis.htm",
+			"es": "https://www.cdc.gov/std/spanish/sifilis/stdfact-syphilis-s.htm",
+			"ht": "https://www.cdc.gov/std/HaitianCreole/STDFact-Syphilis-Haitian.htm"
+		},
+		{
+			"id": "Congenital Syphilis",
+			"en": "https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm",
+			"es": "https://www.cdc.gov/std/spanish/sifilis/stdfact-congenital-syphilis-s.htm",
+			"ht": "https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm"
+		},
+		{
+			"id": "Trichomoniasis",
+			"en": "https://www.cdc.gov/std/trichomonas/stdfact-trichomoniasis.htm",
+			"es": "https://www.cdc.gov/std/spanish/tricomoniasis/stdfact-trichomoniasis-s.htm",
+			"ht": "https://www.cdc.gov/std/haitiancreole/stdfact-trich-haitian.htm"
+		}
 	]
 }

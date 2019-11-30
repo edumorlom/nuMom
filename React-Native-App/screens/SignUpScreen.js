@@ -21,6 +21,7 @@ const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.ne
 
 
 const SignUp = (props) => {
+    
     const lan = props.navigation.getParam('language')
 
     // image default and new one hook
