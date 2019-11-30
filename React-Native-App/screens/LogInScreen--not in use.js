@@ -19,7 +19,7 @@ const LogIn = props => {
     const inputButtonHandler = () => {
         if (email === '') {
             if (password === '') {
-                props.onTapSignIn(email, password);
+                // props.onTapSignIn(email, password);
             }
             else {
                 Alert.alert('Wrong password');
@@ -31,7 +31,7 @@ const LogIn = props => {
     }
     // go to user sign up page
     const signupHandler = () => {
-        props.onTapNewUser();
+        // props.onTapNewUser();
     }
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>

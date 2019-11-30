@@ -11,8 +11,10 @@ import Helper from '../components/Helpers';
 
 const LandingPage = props => {
 
+    const lang = props.navigation.getParam('language');
+
     const locationHelper = (location) => {
-        props.onTap(location);
+        // props.onTap(location);
     }
 
     // control the modal and its pop up information
@@ -24,8 +26,8 @@ const LandingPage = props => {
         setInformation(input);
     }
     // handles translations
-    var lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    // var lang = props.loadLanguage;
+    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
     // displays the correct information for modal
     const displayData = (option) => {
         // hold the JSON file

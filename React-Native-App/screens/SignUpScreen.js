@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import {
-    View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback,
-    KeyboardAvoidingView, Keyboard, TouchableOpacity
-} from 'react-native';
-import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
+import { View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback, 
+    KeyboardAvoidingView, Keyboard, TouchableOpacity, SafeAreaView} from 'react-native';
+import { ProviderTypes, TranslatorConfiguration} from 'react-native-power-translator';
 // Constants
 import Colors from '../constants/Colors';
 // Custom Components
@@ -14,18 +12,16 @@ import Translator from '../components/Translator';
 import Helpers from '../components/Helpers';
 import axios from 'axios';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-const SignUp = props => {
 
-    //url for firebase functions 
-    const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
+//url for firebase functions 
+const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
 
-    // handles translations
-    let lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
-    // let fnameError = Helpers('Please Input Valid First Name ', lang);
-    // let lnameError = Helpers('Please Input Valid Last Name ', lang);
-    // let phoneError = Helpers('Please Input Valid Phone Number ', lang);
+
+const SignUp = (props) => {
+    const lan = props.navigation.getParam('language')
 
     // image default and new one hook
     const [image, setImage] = useState('../assets/mom-and-baby-icon-editable.png');
@@ -71,7 +67,7 @@ const SignUp = props => {
             });
 
             //go to log in screen
-            props.onTapSignUp();
+            props.navigation.navigate('Signin', {language: lan})
         } catch (err) {
             console.log(err);
             if (err.response.data.error != null) {
@@ -89,7 +85,7 @@ const SignUp = props => {
         }
 
         profile['Image'] = image;
-        profile['Language'] = lang;
+        profile['Language'] = lan;
 
         // //send all the user data to our database
         firebase.database().ref('users' + profile['PhoneNumber']).set({
@@ -111,7 +107,7 @@ const SignUp = props => {
         })
 
         //navigate to login after sign up
-        props.onTapSignUp(profile);
+        // props.onTapSignUp(profile);
 
     };
 
@@ -126,24 +122,26 @@ const SignUp = props => {
     }
 
     return (
-        <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }} keyboardVerticalOffset={20}>
-            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
-                <View style={styles.screen}>
-                    {/* Profile Picture Component */}
-                    <ImagePick passLang={lang} passPicture={image} getPicture={pictureHandler} />
-                    <Box style={{ height: '60%', width: '80%' }}>
-                        <ScrollView>
-                            <SignUpForm loadScreen={('SignUp')} loadLanguage={lang} getProfile={profileHandler} loadProfile={profile} />
-                        </ScrollView>
-                    </Box>
-                    <View >
-                        <TouchableOpacity style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'}>
-                            <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lang} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        </KeyboardAvoidingView >
+        <SafeAreaView style={styles.screen}>
+            <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }} keyboardVerticalOffset={0}>
+                <TouchableWithoutFeedback onPress={ () => {Keyboard.dismiss()} }>
+                    <View style={ styles.screen}> 
+                    {/* Profile Picture Component */} 
+                        <ImagePick passLang={lan} passPicture={image} getPicture={pictureHandler}/> 
+                            <Box style={{ height: '60%', width: '88%'}}>
+                                <ScrollView >
+                                    <SignUpForm loadScreen={('SignUp')} loadLanguage={lan} getProfile={profileHandler} loadProfile={profile}/> 
+                                </ScrollView> 
+                            </Box> 
+                            <View >
+                                <TouchableOpacity style={styles.button} onPress={signUpHandler} underlayColor={'rgba(213, 170, 255, 0.8)'}>
+                                    <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lan}/> 
+                                </TouchableOpacity> 
+                            </View> 
+                    </View> 
+                </TouchableWithoutFeedback> 
+            </KeyboardAvoidingView >
+        </SafeAreaView>
     );
 };
 
@@ -152,7 +150,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
     },
     button: {
         marginTop: 30,

@@ -11,9 +11,11 @@ import Helpers from '../components/Helpers';
 
 const Folder = props => {
 
+    const lang = props.navigation.getParam('language')
+
     // handles translations
-    var lang = props.loadLanguage;
-    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
+    // var lang = props.loadLanguage;
+    // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', lang);
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -32,7 +34,7 @@ const Folder = props => {
 
     // navigation bar
     const locationHelper = (location) => {
-        props.onTap(location);
+        // props.onTap(location);
     }
     const sendToDatabase = () => {
         // send to database the documents state 
@@ -156,9 +158,6 @@ const Folder = props => {
                 <TouchableHighlight style={styles.documentButton} onPress={() => addDocumentHandler(true)} underlayColor={'rgba(213, 170, 255, 0.8)'} >
                     <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", lang)}</Text>
                 </TouchableHighlight>
-            </View>
-            <View>
-                <Navigation passLocation={(loc) => locationHelper(loc)} />
             </View>
         </View>
     );
