@@ -13,27 +13,27 @@ const Navigation = props => {
             {/* navigation bar with all icons */}
             < View style={styles.navigator} >
                 <TouchableOpacity onPress={() => goToHelper('LandingPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/icons/home-icon.png')} />
+                    <Image styles={styles.pictures} source={require('../../assets/icons/home-icon.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => goToHelper('SexEdPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/icons/sexed-icon.png')} />
+                    <Image styles={styles.pictures} source={require('../../assets/icons/sexed-icon.png')} />
                 </TouchableOpacity>
                 <View style={{ width: 50, height: 50 }} />
                 <TouchableOpacity onPress={() => goToHelper('ClassesPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/icons/classes-icon.png')} />
+                    <Image styles={styles.pictures} source={require('../../assets/icons/classes-icon.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => goToHelper('ClinicsPage')}>
-                    <Image styles={styles.pictures} source={require('../assets/icons/clinics-icon.png')} />
+                    <Image styles={styles.pictures} source={require('../../assets/icons/clinics-icon.png')} />
                 </TouchableOpacity>
             </View >
             {/* backdrop for profile ellipse */}
             < View style={{ position: 'absolute', bottom: 0 }}>
-                <Image styles={styles.pictureProfile} source={require('../assets/icons/ellipse.png')} />
+                <Image styles={styles.pictureProfile} source={require('../../assets/icons/ellipse.png')} />
             </View >
             {/* profile ellipse combo */}
             < View style={{ position: 'absolute', bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
                 <TouchableOpacity onPress={() => goToHelper('ProfilePage')}>
-                    <Image styles={styles.pictureProfile} source={require('../assets/icons/profile-icon.png')} />
+                    <Image styles={styles.pictureProfile} source={require('../../assets/icons/profile-icon.png')} />
                 </TouchableOpacity>
             </View >
         </View>

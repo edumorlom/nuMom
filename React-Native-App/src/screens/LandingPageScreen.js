@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, FlatList, Button } from 'react-native';
-import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 import Modal from 'react-native-modal';
 import Translator from '../components/Translator';
-
 import Colors from '../constants/Colors';
-import Navigations from '../components/NavigationBar';
 import Box from '../components/Box';
 import Helper from '../components/Helpers';
 
@@ -47,7 +44,7 @@ const HomeScreen = props => {
                             <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={GlobalLanguage} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
-                                    source={require('../assets/icons/website.png')} />
+                                    source={require('../../assets/icons/website.png')} />
                             </TouchableOpacity>
                             {/* checks for second website */}
                             {(item.website2label != undefined) &&
@@ -55,7 +52,7 @@ const HomeScreen = props => {
                                     <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={GlobalLanguage} />
                                     <TouchableOpacity onPress={() => Linking.openURL(item.website2)} >
                                         <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
-                                            source={require('../assets/icons/website.png')} />
+                                            source={require('../../assets/icons/website.png')} />
                                     </TouchableOpacity>
                                 </View>}
                             {(item.locations != "") &&

@@ -14,7 +14,7 @@ const DocumentsScreen = props => {
     const [visibilityPicture, setVisibilityPicture] = useState(false);
     const [name, setName] = useState("");
     // use for default before picture taken or picked
-    let defaultImage = '../assets/mom-and-baby-icon-editable.png';
+    let defaultImage = '../../assets/mom-and-baby-icon-editable.png';
     const [image, setImage] = useState('')
     // holds all documents, retrive from database into this variable
     const [documents, setDocuments] = useState([{ "id": 1, "name": "", "date": "", "image": "" }])

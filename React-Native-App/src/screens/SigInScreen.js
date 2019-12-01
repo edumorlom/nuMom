@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback,
     Keyboard, Image, StyleSheet, Alert
@@ -11,6 +11,7 @@ import firebase from 'firebase';
 import Helpers from '../components/Helpers';
 import { AsyncStorage } from 'react-native';
 import Translator from '../components/Translator';
+import { Context as AuthContext} from '../context/AuthContext';
 
 //url for functions 
 const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
@@ -18,89 +19,104 @@ const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.ne
 
 const SignIn = props => {
 
+    const { state, signin } = useContext(AuthContext);
+
     const lang = props.navigation.getParam('language')
 
     const [phoneNumber, setphoneNumber] = useState('');
     const [code, setCode] = useState('');
 
-    let profile = {
-        'Name': '',
-        'MiddleName': '',
-        'LastName': '',
-        'BirthDate': '',
-        'PhoneNumber': '',
-        'PregnantMonths': '',
-        'ChildAge': '',
-        'notifications': '',
-        'Image': '',
-        'Language': ''
-    };
+    // let profile = {
+    //     'Name': '',
+    //     'MiddleName': '',
+    //     'LastName': '',
+    //     'BirthDate': '',
+    //     'PhoneNumber': '',
+    //     'PregnantMonths': '',
+    //     'ChildAge': '',
+    //     'notifications': '',
+    //     'Image': '',
+    //     'Language': ''
+    // };
 
+    let err = true;
 
-    const signInHandler = async () => {
+    const signIn = () => {
+        console.log(phoneNumber)
+        console.log(code)
 
-        try {
-            let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
+        signin({ phone: phoneNumber, code: code });
 
-            //store the token so user no longer needs to log in
-            await AsyncStorage.setItem('token', data.token);
-            let result = await AsyncStorage.getItem('token')
+        // 
 
-            // if (result != null){
-            //     props.onTapSignIn()
-            // }
-
-            //authenticates into firebase
-            firebase.auth().signInWithCustomToken(data.token);
-
-            //go to the landing page
-            props.navigation.navigate('mainFlow')
-            // props.onTapSignIn();
-
-        } catch (error) {
-            console.log(error);
-            if (error.response.data.error != null) {
-                errorMessage = error.response.data.error
-                if (error.response.data.error.message)
-                    errorMessage = error.response.data.error.message
-                //TODO find a way to translate this
-                Alert.alert('Error', errorMessage,
-                    [
-                        { text: 'Try again' },
-                    ],
-                    { cancelable: false });
-            }
-            return;
-        }
-        console.log(profile['PhoneNumber'])
-        // //send all the user data to our database
-        // firebase.database().ref('users' + profile['PhoneNumber']).set({
-        //     //user data
-        //     fistN: profile['Name'],
-        //     middleN: profile['MiddleName'],
-        //     lastN: profile['LastName'],
-        //     dob: profile['BirthDate'],
-        //     phone: profile['PhoneNumber'],
-        //     pregnant: profile['PregnantMonths'],
-        //     childAge: profile['ChildAge'],
-        //     notifications: profile['notifications'],
-        //     image: profile['Image'],
-        //     language: profile['Language']
-        // }).then(() => {
-        //     console.log("Data sent to the db");
-        // }).catch((error) => {
-        //     console.log(error);
-        // })
-
+        // if (!err)
+        //     props.navigation.navigate('mainFlow')
     }
 
+
+    // const signInHandler = async () => {
+
+    //     try {
+    //         let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone: phoneNumber, code: code });
+
+    //         //store the token so user no longer needs to log in
+    //         await AsyncStorage.setItem('token', data.token);
+    //         let result = await AsyncStorage.getItem('token')
+
+    //         // if (result != null){
+    //         //     props.onTapSignIn()
+    //         // }
+
+    //         //authenticates into firebase
+    //         firebase.auth().signInWithCustomToken(data.token);
+
+    //         //go to the landing page
+    //         props.navigation.navigate('mainFlow')
+    //         // props.onTapSignIn();
+
+    //     } catch (error) {
+    //         console.log(error);
+    //         if (error.response.data.error != null) {
+    //             errorMessage = error.response.data.error
+    //             if (error.response.data.error.message)
+    //                 errorMessage = error.response.data.error.message
+    //             //TODO find a way to translate this
+    //             Alert.alert('Error', errorMessage,
+    //                 [
+    //                     { text: 'Try again' },
+    //                 ],
+    //                 { cancelable: false });
+    //         }
+    //         return;
+    //     }
+    //     console.log(profile['PhoneNumber'])
+    //     // //send all the user data to our database
+    //     // firebase.database().ref('users' + profile['PhoneNumber']).set({
+    //     //     //user data
+    //     //     fistN: profile['Name'],
+    //     //     middleN: profile['MiddleName'],
+    //     //     lastN: profile['LastName'],
+    //     //     dob: profile['BirthDate'],
+    //     //     phone: profile['PhoneNumber'],
+    //     //     pregnant: profile['PregnantMonths'],
+    //     //     childAge: profile['ChildAge'],
+    //     //     notifications: profile['notifications'],
+    //     //     image: profile['Image'],
+    //     //     language: profile['Language']
+    //     // }).then(() => {
+    //     //     console.log("Data sent to the db");
+    //     // }).catch((error) => {
+    //     //     console.log(error);
+    //     // })
+
+    // }
 
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={styles.screen}>
 
                 <Image
-                    source={require('../assets/images/mom-and-baby-icon.png')}
+                    source={require('../../assets/images/mom-and-baby-icon.png')}
                     style={styles.profileIcon}
                 />
 
@@ -141,13 +157,16 @@ const SignIn = props => {
                         />
                     </View>
                 </View>
-
-                <TouchableHighlight
-                    style={styles.signInButton}
-                    onPress={() => signInHandler()}
-                    underlayColor={Colors.hoverColor} >
-                    <Text style={styles.labelText}>{Helpers('Sign In!', lang)}</Text>
-                </TouchableHighlight>
+                
+                <View>
+                    {console.log(state)}
+                    <TouchableHighlight
+                        style={styles.signInButton}
+                        onPress={signIn}
+                        underlayColor={Colors.hoverColor} >
+                        <Text style={styles.labelText}>{Helpers('Sign In!', lang)}</Text>
+                    </TouchableHighlight>
+                </View>
 
                 <View style={styles.seperator}>
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signup', { language: lang })}>
@@ -190,7 +209,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
         padding: 10,
         backgroundColor: Colors.buttonColor,
-        width: '40%',
+        paddingHorizontal: 60,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,

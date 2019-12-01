@@ -27,7 +27,7 @@ const Profile = props => {
     // hold changes in real time
     let profile = props.loadProfile;
     // if (profile['Image'] === '') {
-    //     setImage('../assets/mom-and-baby-icon-editable.png');
+    //     setImage('../../assets/mom-and-baby-icon-editable.png');
     // }
     // Navigator
     // const locationHelper = (location) => {
@@ -97,7 +97,7 @@ const Profile = props => {
                             </View>
                             {/* Folder Touchable */}
                             <TouchableOpacity onPress={() => props.navigation.navigate('Documents', {laguage: language})} >
-                                <Image style={{ marginLeft: 20 }} source={require('../assets/icons/folder-icon.png')} />
+                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>
                         <Box style={{ height: '60%', width: '80%', }}>
@@ -108,17 +108,17 @@ const Profile = props => {
                                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('en')}>
                                         <View style={{ opacity: (language === 'en') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/usa-flag.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/usa-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('es')}>
                                         <View style={{ opacity: (language === 'es') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/spain-flag.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/spain-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('ht')}>
                                         <View style={{ opacity: (language === 'ht') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../assets/icons/creole-flag.png')} />
+                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/creole-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>

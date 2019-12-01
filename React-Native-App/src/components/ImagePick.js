@@ -123,8 +123,8 @@ export default class ImagePickerProfile extends React.Component {
     }
 
     decideImage = (input) => {
-        if (input === '../assets/mom-and-baby-icon-editable.png') {
-            return (<Image source={require('../assets/mom-and-baby-icon-editable.png')} />)
+        if (input === '../../assets/mom-and-baby-icon-editable.png') {
+            return (<Image source={require('../../assets/mom-and-baby-icon-editable.png')} />)
         }
         else {
             return (<Image source={{ uri: this.props.passPicture }} style={{ width: 125, height: 125, borderRadius: 125 / 2 }} />)

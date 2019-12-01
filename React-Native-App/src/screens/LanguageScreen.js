@@ -21,7 +21,7 @@ const Language = ({ navigation }) => {
 
     //Make an animation to present the App and then show the language section
     // <View>
-    //     <Image style={{width: 400, height: 400, marginRight: 20, alignItems: 'center'}} source={require('../assets/images/logo111.png')} />
+    //     <Image style={{width: 400, height: 400, marginRight: 20, alignItems: 'center'}} source={require('../../assets/images/logo111.png')} />
     // </View>
 
 
@@ -33,21 +33,21 @@ const Language = ({ navigation }) => {
             <Box>
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('en')}>
                     <View style={{ opacity: (language === 'en') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/usa-flag.png')} />
+                        <Image style={styles.picture} source={require('../../assets/icons/usa-flag.png')} />
                         <Text style={styles.textWord}>English</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('es')}>
                     <View style={{ opacity: (language === 'es') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/spain-flag.png')} />
+                        <Image style={styles.picture} source={require('../../assets/icons/spain-flag.png')} />
                         <Text style={styles.textWord}>Español</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.seperatorLine} />
                 <TouchableOpacity style={styles.flagStyle} onPress={() => languageSetHandler('ht')}>
                     <View style={{ opacity: (language === 'ht') ? 1 : 0.2, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <Image style={styles.picture} source={require('../assets/icons/creole-flag.png')} />
+                        <Image style={styles.picture} source={require('../../assets/icons/creole-flag.png')} />
                         <Text style={styles.textWord}>Kreyòl</Text>
                     </View>
                 </TouchableOpacity>
@@ -57,7 +57,7 @@ const Language = ({ navigation }) => {
                 style={styles.buttonStyle} 
                 onPress={() => navigation.navigate('Welcome', {language: language} )}>
                 <Image
-                    source={require('../assets/icons/check-mark.png')}
+                    source={require('../../assets/icons/check-mark.png')}
                     style={styles.check}
                 />
             </TouchableOpacity>

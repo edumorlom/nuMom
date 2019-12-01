@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Dimensions, Image, Text, ActivityIndicator } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { requestPermissionsAsync } from 'expo-location';
 import SafeAreaView from 'react-native-safe-area-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Permissions from 'expo-permissions';
-import markerIcon from '../assets/icons/map-marker.png';
+import markerIcon from '../../assets/icons/map-marker.png';
 import Colors from '../constants/Colors';
 
 
@@ -128,7 +127,7 @@ const Clinics = props => {
                 { renderMarkers() }   
                     <TouchableOpacity style={styles.nurseIcon} onPress={() => props.navigation.navigate('Nurses', {language: GlobalLanguage} )}>
                         <Image 
-                            source={require('../assets/icons/nurse-icon.png')} 
+                            source={require('../../assets/icons/nurse-icon.png')} 
                             style={{marginLeft: 12, marginTop: 7}}
                         />
                     </TouchableOpacity>    

@@ -5,26 +5,24 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Provider } from 'react-redux';
 
-import Colors from './constants/Colors';
+import Colors from './src/constants/Colors';
 
 import firebase from 'firebase';
 
-import { Provider as AuthProvider } from './context/AuthContext'; 
-
-import store from './store';
+import { Provider as AuthProvider } from './src/context/AuthContext'; 
 
 //import all the needed screens
-import WelcomeScreen from './screens/WelcomeScreen';
-import LanguageScreen from './screens/LanguageScreen';
-import SignInScreen from './screens/SigInScreen';
-import SignUpScreen from './screens/SignUpScreen';
-import HomeScreen from './screens/LandingPageScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SexEdScreen from './screens/SexEdScreen';
-import ClassesScreen from './screens/ClassesScreen';
-import ClinicsScreen from './screens/ClinicsScreen';
-import DocumentsScreen from './screens/DocumentsScreen';
-import NurseInfoScreen from './screens/NurseInfoScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import LanguageScreen from './src/screens/LanguageScreen';
+import SignInScreen from './src/screens/SigInScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import HomeScreen from './src/screens/LandingPageScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import SexEdScreen from './src/screens/SexEdScreen';
+import ClassesScreen from './src/screens/ClassesScreen';
+import ClinicsScreen from './src/screens/ClinicsScreen';
+import DocumentsScreen from './src/screens/DocumentsScreen';
+import NurseInfoScreen from './src/screens/NurseInfoScreen';
 
 import { AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -140,9 +138,6 @@ export default () => {
     </AuthProvider>
   );
 };
-
-
-
 
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Image, Button, StyleSheet, TouchableOpacity, FlatList, Text, Linking } from 'react-native';
 import Modal from 'react-native-modal';
-
-import Navigation from '../components/NavigationBar';
 import Box from '../components/Box';
 import Translator from '../components/Translator';
 import Colors from '../constants/Colors';
@@ -52,7 +50,7 @@ const Classes = props => {
                             <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GlobalLanguage} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
-                                    source={require('../assets/icons/website.png')} />
+                                    source={require('../../assets/icons/website.png')} />
                             </TouchableOpacity>
                             <View style={styles.seperator} />
                         </View>
@@ -70,19 +68,19 @@ const Classes = props => {
                     {/* title */}
                     <Translator style={styles.title} loadText={('Classes Available')} loadLanguage={GlobalLanguage} />
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'breastfeeding')}>
-                        <Image style={styles.image} source={require('../assets/icons/breastfeedingClasses-icon.png')} />
+                        <Image style={styles.image} source={require('../../assets/icons/breastfeedingClasses-icon.png')} />
                         <Translator style={styles.sectionText} loadText={('Breastfeeding')} loadLanguage={GlobalLanguage} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'classes')}>
-                        <Image style={styles.image} source={require('../assets/icons/parenting-icon.png')} />
+                        <Image style={styles.image} source={require('../../assets/icons/parenting-icon.png')} />
                         <Translator style={styles.sectionText} loadText={(Parenting)} loadLanguage={GlobalLanguage} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'childbirth')}>
-                        <Image style={styles.image} source={require('../assets/icons/childbirth-icon.png')} />
+                        <Image style={styles.image} source={require('../../assets/icons/childbirth-icon.png')} />
                         <Translator style={styles.sectionText} loadText={('Childbirth')} loadLanguage={GlobalLanguage} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'tours')}>
-                        <Image style={styles.image} source={require('../assets/icons/tours-icon.png')} />
+                        <Image style={styles.image} source={require('../../assets/icons/tours-icon.png')} />
                         <Translator style={styles.sectionText} loadText={(Tours)} loadLanguage={GlobalLanguage} />
                     </TouchableOpacity>
                     {/* modal with pop up information */}
