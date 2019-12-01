@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Button, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Button, ScrollView, Alert, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import { WebView } from 'react-native-webview';
 
@@ -18,8 +18,13 @@ const SexEd = props => {
     const [visibility, setVisibility] = useState(false);
     const [STD, setSTD] = useState('');
 
-    const modalControl = (value, STD) => {
+    const [checker, setChecker] = useState(false);
+    const locationHelper = (location) => {
+        // props.onTap(location);
+    }
 
+    let message = Helpers('We are sorry, but this information is not available in Creole.', GlobalLanguage);
+    const modalControl = (value, STD) => {
         setVisibility(value);
         // hold the JSON file
         const JSONData = require('../constants/information.json');
@@ -30,19 +35,26 @@ const SexEd = props => {
             setSTD(data.find(obj => obj.id === STD).es);
         }
         else if (GlobalLanguage === 'ht') {
-            setSTD(data.find(obj => obj.id === STD).ht);
+            // HIV/AIDS and STDs, STDs During Pregnancy, Congenital Syphilis not available
+            if (STD === "HIV/AIDS and STDs" || STD === "STDs During Pregnancy" || STD === "Congenital Syphilis") {
+                setChecker(true);
+                setSTD(data.find(obj => obj.id === STD).en);
+            }
+            else {
+                setChecker(false);
+                setSTD(data.find(obj => obj.id === STD).ht);
+            }
         }
         else {
             setSTD(data.find(obj => obj.id === STD).en);
         }
     }
-
     return (
         <View >
             <View style={styles.screen}>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
                     <ScrollView>
-                        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: 5 }} >
+                        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: 2 }} >
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
                                 <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={GlobalLanguage} />
                             </TouchableOpacity>
@@ -83,6 +95,8 @@ const SexEd = props => {
                                 onBackButtonPress={() => setVisibility(false)}
                                 style={styles.modalStyle}>
                                 <View style={styles.content}>
+                                    {/* For Non Creole supported */}
+                                    {checker && <Text style={{ color: 'red', fontSize: 20, alignSelf: 'center', justifyContent: 'center' }}>{message}</Text>}
                                     <WebView
                                         source={{ uri: STD }}
                                         javaScriptEnabled={true}
@@ -129,7 +143,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     containers: {
-        marginTop: 30
+        marginTop: 25
     }
 })
 

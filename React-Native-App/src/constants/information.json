@@ -190,8 +190,7 @@
 		{
 			"id": "HIV/AIDS and STDs",
 			"en": "https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm",
-			"es": "https://www.cdc.gov/std/spanish/vih/stdfact-hiv-and-stds-s.htm",
-			"ht": "https://www.cdc.gov/std/hiv/stdfact-std-hiv.htm"
+			"es": "https://www.cdc.gov/std/spanish/vih/stdfact-hiv-and-stds-s.htm"
 		},
 		{
 			"id": "HPV Infection",
@@ -208,8 +207,7 @@
 		{
 			"id": "STDs During Pregnancy",
 			"en": "https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm",
-			"es": "https://www.cdc.gov/std/spanish/embarazo/stdfact-pregnancy-s.htm",
-			"ht": "https://www.cdc.gov/std/pregnancy/stdfact-pregnancy.htm"
+			"es": "https://www.cdc.gov/std/spanish/embarazo/stdfact-pregnancy-s.htm"
 		},
 		{
 			"id": "Syphilis",
@@ -220,8 +218,7 @@
 		{
 			"id": "Congenital Syphilis",
 			"en": "https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm",
-			"es": "https://www.cdc.gov/std/spanish/sifilis/stdfact-congenital-syphilis-s.htm",
-			"ht": "https://www.cdc.gov/std/syphilis/stdfact-congenital-syphilis.htm"
+			"es": "https://www.cdc.gov/std/spanish/sifilis/stdfact-congenital-syphilis-s.htm"
 		},
 		{
 			"id": "Trichomoniasis",
