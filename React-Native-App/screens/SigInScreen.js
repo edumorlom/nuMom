@@ -61,6 +61,8 @@ const SignIn = props => {
             console.log(error);
             if (error.response.data.error != null) {
                 errorMessage = error.response.data.error
+                if (error.response.data.error.message)
+                    errorMessage = error.response.data.error.message
                 //TODO find a way to translate this
                 Alert.alert('Error', errorMessage,
                     [

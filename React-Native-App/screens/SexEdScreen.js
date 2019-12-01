@@ -18,10 +18,6 @@ const SexEd = props => {
     const [visibility, setVisibility] = useState(false);
     const [STD, setSTD] = useState('');
 
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
-
     const modalControl = (value, STD) => {
 
         setVisibility(value);

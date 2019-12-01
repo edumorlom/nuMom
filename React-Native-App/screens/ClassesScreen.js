@@ -15,7 +15,8 @@ const Classes = props => {
     let Parenting = 'Parenting';
     if (GlobalLanguage === 'es') { Parenting = "Paternidad" }
 
-    console.log(lang);
+    // const lang = props.navigation.getParam('language')
+    // console.log(lang);
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);

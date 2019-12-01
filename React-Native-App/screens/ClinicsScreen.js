@@ -6,6 +6,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Permissions from 'expo-permissions';
 import markerIcon from '../assets/icons/map-marker.png';
+import Colors from '../constants/Colors';
 
 
 
@@ -20,22 +21,23 @@ const Clinics = props => {
     const initialState = {
         latitude: null,
         longitude: null,
-        latitudeDelta: 0.004,
-        longitudeDelta: 0.01
+        latitudeDelta: 0.8,
+        longitudeDelta: 0.3
     }
 
     const [ currentPosition, setCurrentPosition] = useState(initialState);
+    const [marker, setMarker] = useState({});
 
     let myMap;
 
-    showLocation = (position) => {
+    const showLocation = (position) => {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
         setCurrentPosition({...currentPosition, latitude, longitude})
         console.log("Latitude : " + latitude + " Longitude: " + longitude);
      }
 
-    errorHandler = (err) => {
+    const errorHandler = (err) => {
         if(err.code == 1) {
            alert("Error: Access is denied!") 
            console.log("Error: Access is denied!");
@@ -74,7 +76,6 @@ const Clinics = props => {
     }, []); // passing an empty array as second argument triggers the callback in useEffect only after the initial render thus replicating `componentDidMount` lifecycle behaviour
 
     const renderMarkers = () => {
-        
         return clinicsLocations.map(_marker => (
             <Marker
                 key={_marker.id} 
@@ -83,6 +84,7 @@ const Clinics = props => {
                 description={_marker['phone']}
                 image = {markerIcon}
                 onPress={ () => {
+                    setMarker(_marker);
                     myMap.fitToCoordinates([_marker['coords']], {
                         edgePadding: {top: 20, bottom: 20, left: 20, right: 20},
                         animated: true
@@ -91,6 +93,29 @@ const Clinics = props => {
             />
         ));
     }
+
+    const renderDetailMarker = () => (
+        <View 
+            styles={{
+                position: 'absolute',
+                bottom: 0,
+                padding: 5,
+                width: '100%',
+                flexDirection: 'row',
+                backgroundColor: Colors.newBackground
+            }}
+        >
+            <Image
+                source= {{uri: marker['urlImage']}}
+                resizeMode="cover"
+                style={{width: 100, height: 90}}
+            />
+            <View styles={{flex:1, paddingLeft:5, flexDirection: 'column'}}>
+                <Text style={{fontWeight: 'bold'}}>{marker.name}</Text>
+                <Text allowFontScaling={false}>{marker.address}</Text>
+            </View>
+        </View>
+    )
 
     return currentPosition.latitude ? (
             <SafeAreaView> 
@@ -101,13 +126,14 @@ const Clinics = props => {
                     initialRegion = { currentPosition }
                 >
                 { renderMarkers() }   
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Nurses', {language: language})}>
+                    <TouchableOpacity style={styles.nurseIcon} onPress={() => props.navigation.navigate('Nurses', {language: GlobalLanguage} )}>
                         <Image 
                             source={require('../assets/icons/nurse-icon.png')} 
                             style={{marginLeft: 12, marginTop: 7}}
                         />
                     </TouchableOpacity>    
                 </MapView>
+                { marker.hasOwnProperty('id') && renderDetailMarker() }
             </SafeAreaView>
         ) : <ActivityIndicator styles={{ flex: 1, justifyContent: 'center', alignItems: 'center'}} animating size='large'/>
 };
