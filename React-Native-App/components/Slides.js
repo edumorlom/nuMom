@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT
+        height: SCREEN_HEIGHT,
+        backgroundColor: Colors.newBackground
     },
     slide1img: {
         position: 'absolute',

@@ -23,12 +23,13 @@ import ProfileScreen from './screens/ProfileScreen';
 import SexEdScreen from './screens/SexEdScreen';
 import ClassesScreen from './screens/ClassesScreen';
 import ClinicsScreen from './screens/ClinicsScreen';
-import FolderScreen from './screens/FolderScreen';
+import DocumentsScreen from './screens/DocumentsScreen';
 import NurseInfoScreen from './screens/NurseInfoScreen';
 
 import { AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import SafeAreaView from 'react-native-safe-area-view';
 
 //setting up firebase
 const componentDidMount = () => {
@@ -50,11 +51,10 @@ componentDidMount();
 
 const profileNavigator = createStackNavigator({
   Profile: { screen: ProfileScreen },
-  Documents: { screen: FolderScreen },
+  Documents: { screen: DocumentsScreen },
 });
 
 profileNavigator.navigationOptions = {
-  title: 'Personal Account',
   tabBarIcon: ({tintColor}) => <Image source={require('./assets/icons/profile-icon1.png')} />
 }
 
@@ -64,8 +64,6 @@ const clinicsNavigator = createStackNavigator({
 })
 
 clinicsNavigator.navigationOptions = {
-  title: 'Clinics Info',
-  header: null,
   tabBarIcon: ({tintColor}) => <Image source={require('./assets/icons/clinics-icon.png')} />
 }
 
@@ -131,9 +129,17 @@ const switchNavigator = createSwitchNavigator({
 });
 
 
-export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
 
-
+export default () => {
+  return(
+    <AuthProvider>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: '#ddd'}}>
+        <App />
+      </SafeAreaView>
+    </AuthProvider>
+  );
+};
 
 
 

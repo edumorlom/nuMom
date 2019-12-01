@@ -1,5 +1,6 @@
 import React from 'react';
 import Slides from '../components/Slides';
+import Colors from '../constants/Colors';
 
 const SLIDE_DATA = [
     //here we will create the slides to display in our app

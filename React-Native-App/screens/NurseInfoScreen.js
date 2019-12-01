@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const NurseInfo = props => {
+const NurseInfoScreen = props => {
+    navigationOptions = {
+        title: 'Nurses Info'
+    }
+
     return (
         <View>
             <View style={styles.screen}>
@@ -10,6 +14,12 @@ const NurseInfo = props => {
         </View>
     )
 }
+
+NurseInfoScreen.navigationOptions = () => {
+    return {
+        title: 'Nurse Practitioners'
+    };
+};
 
 const styles = StyleSheet.create({
     screen: {
@@ -20,4 +30,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default NurseInfo;
+export default NurseInfoScreen;

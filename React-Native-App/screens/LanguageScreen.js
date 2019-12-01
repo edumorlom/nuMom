@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Text, SafeAreaView, Animated } from 'react-native';
 import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
-
 import Colors from '../constants/Colors';
 import Box from '../components/Box';
 import Translator from '../components/Translator';
-
-
 
 
 const Language = ({ navigation }) => {
@@ -29,7 +26,7 @@ const Language = ({ navigation }) => {
 
 
     return (
-        <SafeAreaView style={styles.screen}>
+        <View style={styles.screen}>
             <View style={{ width: '90%', alignItems: 'center' }}>
                 <Translator style={styles.textTitle} loadText={('Please select your prefered language to continue')} loadLanguage={language} />
             </View>
@@ -64,7 +61,7 @@ const Language = ({ navigation }) => {
                     style={styles.check}
                 />
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -73,7 +70,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        // margin: 10,
+        backgroundColor: Colors.newBackground
     },
     picture: {
         height: 80,

@@ -136,6 +136,12 @@ const Profile = props => {
     );
 };
 
+Profile.navigationOptions = () => {
+    return {
+        title: 'Personal Account'
+    };
+};
+
 const styles = StyleSheet.create({
     screen: {
         width: '100%',

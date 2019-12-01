@@ -7,8 +7,7 @@ import ImagePick from '../components/ImagePick';
 import Box from '../components/Box';
 import Helpers from '../components/Helpers';
 
-const Folder = props => {
-
+const DocumentsScreen = props => {
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
     // controls picture modal when document picked to be seen/deleted
@@ -150,6 +149,12 @@ const Folder = props => {
     );
 };
 
+DocumentsScreen.navigationOptions = () => {
+    return {
+        title: 'Documents'
+    };
+};
+
 const styles = StyleSheet.create({
     screen: {
         width: '100%',
@@ -209,4 +214,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Folder;
+export default DocumentsScreen;

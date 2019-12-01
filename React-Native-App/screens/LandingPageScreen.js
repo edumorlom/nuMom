@@ -9,7 +9,7 @@ import Navigations from '../components/NavigationBar';
 import Box from '../components/Box';
 import Helper from '../components/Helpers';
 
-const LandingPage = props => {
+const HomeScreen = props => {
 
     // handles translations
     const lang = props.navigation.getParam('language');
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: Colors.newBackground
     },
     seperate: {
         flexDirection: 'row',
@@ -155,4 +156,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LandingPage;
+export default HomeScreen;

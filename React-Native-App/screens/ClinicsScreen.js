@@ -118,7 +118,7 @@ const Clinics = props => {
     )
 
     return currentPosition.latitude ? (
-            <SafeAreaView> 
+            <SafeAreaView style={{backgroundColor: 'rgba(235, 126, 122, 0.5)'}}> 
                 <MapView
                     ref={ref => myMap = ref} 
                     showsUserLocation
@@ -135,13 +135,21 @@ const Clinics = props => {
                 </MapView>
                 { marker.hasOwnProperty('id') && renderDetailMarker() }
             </SafeAreaView>
-        ) : <ActivityIndicator styles={{ flex: 1, justifyContent: 'center', alignItems: 'center'}} animating size='large'/>
+        ) : <View style={styles.container}>
+                <ActivityIndicator animating size='large' color={Colors.buttonColor} />
+            </View>
+};
+
+Clinics.navigationOptions = () => {
+    return {
+        header: null
+    };
 };
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1
-        // justifyContent: 'center',
+    container: {
+        flex: 1,
+        justifyContent: 'center',
         // alignItems: 'center',
         // width: '100%',
         // height: '100%'
