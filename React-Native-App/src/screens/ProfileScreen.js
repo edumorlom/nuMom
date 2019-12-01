@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, StyleSheet, Alert, Text, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
-import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
+import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, 
+        TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import Translator from '../components/Translator';
-import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 // Custom Components
 import ImagePick from '../components/ImagePick';
@@ -10,6 +9,8 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
+
+//FIX DESIGN
 
 const Profile = props => {
 
@@ -26,6 +27,7 @@ const Profile = props => {
 
     // hold changes in real time
     let profile = props.loadProfile;
+    console.log(profile)
     // if (profile['Image'] === '') {
     //     setImage('../../assets/mom-and-baby-icon-editable.png');
     // }
@@ -100,7 +102,7 @@ const Profile = props => {
                                 <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/folder-icon.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Box style={{ height: '60%', width: '80%', }}>
+                        <Box style={{ height: '100%', width: '90%', }}>
                             <ScrollView>
                                 {/* Change info */}
                                 <SignUpForm loadScreen={('Profile')} loadLanguage={language} getProfile={profileHandler} loadProfile={profile} />
@@ -123,12 +125,12 @@ const Profile = props => {
                                     </TouchableOpacity>
                                 </View>
                             </ScrollView>
+                            <View>
+                                <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                                    <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
+                                </TouchableOpacity>
+                            </View>
                         </Box>
-                        <View>
-                            <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                                <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

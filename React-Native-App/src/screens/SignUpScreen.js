@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback, 
+import { View, ScrollView, StyleSheet, Alert, TouchableWithoutFeedback, Text,
     KeyboardAvoidingView, Keyboard, TouchableOpacity, SafeAreaView} from 'react-native';
 // Constants
 import Colors from '../constants/Colors';
@@ -9,6 +9,7 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Translator from '../components/Translator';
 import { Context as AuthContext} from '../context/AuthContext';
+import { NavigationEvents } from 'react-navigation';
 
 
 //url for firebase functions 
@@ -16,15 +17,13 @@ import { Context as AuthContext} from '../context/AuthContext';
 
 
 const SignUp = (props) => {
-    const { state, signup } = useContext(AuthContext);
+    const { state, signup, clearErrorMessage } = useContext(AuthContext);
     
     const lan = props.navigation.getParam('language')
 
     console.log(lan);
 
     console.log(state);
-
-    let err = true;
 
     // image default and new one hook
     const [image, setImage] = useState('../../assets/mom-and-baby-icon-editable.png');
@@ -45,11 +44,7 @@ const SignUp = (props) => {
     const signUp = async () => {
         console.log(profile['PhoneNumber']);
 
-       signup( profile['PhoneNumber'] );
-
-        //redirect user to log in screen
-        if (!err)
-            props.navigation.navigate('Signin', {language: lan})
+        signup( profile['PhoneNumber'] );
 
     }
 
@@ -141,7 +136,8 @@ const SignUp = (props) => {
         <SafeAreaView style={styles.screen}>
             <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }} keyboardVerticalOffset={0}>
                 <TouchableWithoutFeedback onPress={ () => {Keyboard.dismiss()} }>
-                    <View style={ styles.screen}> 
+                    <View style={ styles.screen}>
+                       
                     {/* Profile Picture Component */} 
                         <ImagePick passLang={lan} passPicture={image} getPicture={pictureHandler}/> 
                             <Box style={{ height: '60%', width: '88%'}}>
@@ -150,19 +146,25 @@ const SignUp = (props) => {
                                 </ScrollView> 
                             </Box> 
                             <View>
+                                <NavigationEvents onWillBlur={clearErrorMessage} /> 
                                 {state.errorMessage ? (
                                     //TODO find a way to translate the error messages 
                                     Alert.alert('Sign Up Errors', state.errorMessage,
                                         [
-                                            { text: 'Go back' }
+                                            { text: 'Try Again' }
                                         ],
                                         {
                                             cancelable: false
                                         })
-                                ) : err = false }
+                                ) : null }
                                 <TouchableOpacity style={styles.button} onPress={signUp} underlayColor={'rgba(213, 170, 255, 0.8)'}>
                                     <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lan}/> 
                                 </TouchableOpacity> 
+                            </View>
+                            <View style={styles.seperator}>
+                                <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signin', { language: lan })}>
+                                    <Text style={styles.labelText}>{Helpers('Already have an account? Sign In!', lan)}</Text>
+                                </TouchableOpacity>
                             </View> 
                     </View> 
                 </TouchableWithoutFeedback> 

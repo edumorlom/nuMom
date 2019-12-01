@@ -9,9 +9,10 @@ import Helper from '../components/Helpers';
 const HomeScreen = props => {
 
     // handles translations
-    const lang = props.navigation.getParam('language');
+    console.log("home screem global lang", GlobalLanguage)
+    // const lang = props.navigation.getParam('language');
 
-    console.log(lang);
+    // console.log("home screen lang ", lang);
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);

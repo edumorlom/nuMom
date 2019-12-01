@@ -18,7 +18,7 @@ const Language = ({ navigation }) => {
 
     // translator
     TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
-
+    
     //Make an animation to present the App and then show the language section
     // <View>
     //     <Image style={{width: 400, height: 400, marginRight: 20, alignItems: 'center'}} source={require('../../assets/images/logo111.png')} />

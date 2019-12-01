@@ -1,51 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Provider } from 'react-redux';
-
-import Colors from './src/constants/Colors';
-
+import SafeAreaView from 'react-native-safe-area-view';
 import firebase from 'firebase';
 
-import { Provider as AuthProvider } from './src/context/AuthContext'; 
+import Colors from './src/constants/Colors';
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
 
 //import all the needed screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import LanguageScreen from './src/screens/LanguageScreen';
 import SignInScreen from './src/screens/SigInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import HomeScreen from './src/screens/LandingPageScreen';
+import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SexEdScreen from './src/screens/SexEdScreen';
 import ClassesScreen from './src/screens/ClassesScreen';
 import ClinicsScreen from './src/screens/ClinicsScreen';
 import DocumentsScreen from './src/screens/DocumentsScreen';
 import NurseInfoScreen from './src/screens/NurseInfoScreen';
-
-import { AsyncStorage } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/Ionicons';
-import SafeAreaView from 'react-native-safe-area-view';
-
-//setting up firebase
-const componentDidMount = () => {
-  const firebaseConfig = {
-      apiKey: "AIzaSyAH_iVBY_PO_UrW17xtZlw3mOnaDjvjAf0",
-      authDomain: "moms-and-infants-healthy.firebaseapp.com",
-      databaseURL: "https://moms-and-infants-healthy.firebaseio.com",
-      projectId: "moms-and-infants-healthy",
-      storageBucket: "moms-and-infants-healthy.appspot.com",
-      messagingSenderId: "801193844655",
-      appId: "1:801193844655:web:ec2555673422de9d8f195a",
-      measurementId: "G-ZFN3XM2E4R"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-}
-
-componentDidMount();
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
 const profileNavigator = createStackNavigator({
   Profile: { screen: ProfileScreen },
@@ -66,6 +43,7 @@ clinicsNavigator.navigationOptions = {
 }
 
 const switchNavigator = createSwitchNavigator({
+  // ResolveAuth: ResolveAuthScreen,
   Language: {
     screen: LanguageScreen
   },
@@ -130,10 +108,28 @@ const switchNavigator = createSwitchNavigator({
 const App = createAppContainer(switchNavigator);
 
 export default () => {
+  
+  //setting up firebase
+  useEffect ( () => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAH_iVBY_PO_UrW17xtZlw3mOnaDjvjAf0",
+      authDomain: "moms-and-infants-healthy.firebaseapp.com",
+      databaseURL: "https://moms-and-infants-healthy.firebaseio.com",
+      projectId: "moms-and-infants-healthy",
+      storageBucket: "moms-and-infants-healthy.appspot.com",
+      messagingSenderId: "801193844655",
+      appId: "1:801193844655:web:ec2555673422de9d8f195a",
+      measurementId: "G-ZFN3XM2E4R"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  }, []);
+
+
   return(
     <AuthProvider>
       <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: '#ddd'}}>
-        <App />
+        <App ref={(navigator) => { setNavigator(navigator) }} />
       </SafeAreaView>
     </AuthProvider>
   );

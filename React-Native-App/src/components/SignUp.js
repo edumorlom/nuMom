@@ -7,18 +7,16 @@ import Translator from '../components/Translator';
 
 export default class SignUpForm extends React.Component {
 
-
-
     // profile values that are gonna be dynamically changing
     state = {
-        name: this.props.loadProfile['name'],
-        middleName: this.props.loadProfile['middleName'],
-        lastName: this.props.loadProfile['lastName'],
-        birthdate: this.props.loadProfile['birthdate'],
-        phoneNumber: this.props.loadProfile['phoneNumber'],
-        pregnantMonths: this.props.loadProfile['pregnantMonths'],
-        childAge: this.props.loadProfile['childAge'],
-        notifications: this.props.loadProfile['notifications'],
+        // name: this.props.loadProfile['name'],
+        // middleName: this.props.loadProfile['middleName'],
+        // lastName: this.props.loadProfile['lastName'],
+        // birthdate: this.props.loadProfile['birthdate'],
+        // phoneNumber: this.props.loadProfile['phoneNumber'],
+        // pregnantMonths: this.props.loadProfile['pregnantMonths'],
+        // childAge: this.props.loadProfile['childAge'],
+        // notifications: this.props.loadProfile['notifications'],
         
         //what is this???
         lang: this.props.loadLanguage,

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Button, ScrollView, Alert, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Button, ScrollView, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import { WebView } from 'react-native-webview';
-
-import Navigation from '../components/NavigationBar';
 import Colors from '../constants/Colors';
 import Box from '../components/Box';
 import Translator from '../components/Translator';

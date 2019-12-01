@@ -1,25 +1,17 @@
 import React, { useState, useContext } from 'react';
-import {
-    View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback,
-    Keyboard, Image, StyleSheet, Alert
-} from 'react-native';
+import { View, Text, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback,
+    Keyboard, Image, StyleSheet, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
-import axios from 'axios';
 import Colors from '../constants/Colors';
 import firebase from 'firebase';
 import Helpers from '../components/Helpers';
-import { AsyncStorage } from 'react-native';
-import Translator from '../components/Translator';
 import { Context as AuthContext} from '../context/AuthContext';
-
-//url for functions 
-const ROOT_URL = 'https://us-central1-moms-and-infants-healthy.cloudfunctions.net';
-
+import { NavigationEvents } from 'react-navigation';
 
 const SignIn = props => {
 
-    const { state, signin } = useContext(AuthContext);
+    const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
     const lang = props.navigation.getParam('language')
 
@@ -114,6 +106,7 @@ const SignIn = props => {
     return (
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={styles.screen}>
+                
 
                 <Image
                     source={require('../../assets/images/mom-and-baby-icon.png')}
@@ -160,6 +153,17 @@ const SignIn = props => {
                 
                 <View>
                     {console.log(state)}
+                    <NavigationEvents onWillBlur={clearErrorMessage} />
+                    {state.errorMessage ? (
+                        //TODO find a way to translate the error messages 
+                        Alert.alert('Sign Up Errors', state.errorMessage,
+                            [
+                                { text: 'Try Again' }
+                            ],
+                            {
+                                cancelable: false
+                            })
+                    ) : null }
                     <TouchableHighlight
                         style={styles.signInButton}
                         onPress={signIn}
