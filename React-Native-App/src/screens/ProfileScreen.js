@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, 
+import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, Text,
         TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import Translator from '../components/Translator';
 import Colors from '../constants/Colors';
@@ -102,14 +102,9 @@ const Profile = props => {
                                 <ImagePick passLang={language}  getPicture={pictureHandler} />
                             </View>
                             {/* Folder Touchable */}
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Documents')} >
-                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/documents.png')} />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={signout} >
-                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
-                            </TouchableOpacity>
+                            
                         </View>
-                        <Box style={{ height: '100%', width: '90%', }}>
+                        <Box style={{ height: '70%', width: '80%', }}>
                             <ScrollView>
                                 {/* Change info */}
                                 <SignUpForm loadScreen={('Profile')} loadLanguage={language} getProfile={profileHandler} loadProfile={profile} />
@@ -132,12 +127,12 @@ const Profile = props => {
                                     </TouchableOpacity>
                                 </View>
                             </ScrollView>
-                            <View>
-                                <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                                    <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
-                                </TouchableOpacity>
-                            </View>
                         </Box>
+                        <View>
+                            <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                                <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -145,9 +140,22 @@ const Profile = props => {
     );
 };
 
-Profile.navigationOptions = () => {
+Profile.navigationOptions = ({ navigation }) => {
     return {
-        title: 'Personal Account'
+        title: 'Personal Account', 
+        headerRight:  (
+                <View style={{flexDirection: 'row', paddingRight: 7, marginBottom: 7}}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Documents')} >
+                        <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/documents.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {}}>
+                        <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
+                    </TouchableOpacity>
+                </View>
+        ),
+        headerStyle: {
+            backgroundColor: '#F6ECFF'
+        }            
     };
 };
 
@@ -157,14 +165,17 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Colors.newBackground
     },
     text: {
         fontSize: 18,
     },
     button: {
         marginBottom: 100,
+        marginTop: 20,
         padding: 10,
-        backgroundColor: Colors.boxBackground,
+        paddingHorizontal: 40,
+        backgroundColor: Colors.buttonColor,
         width: '80%',
         justifyContent: 'center',
         alignItems: 'center',

@@ -49,6 +49,12 @@ const SexEd = props => {
     return (
         <View >
             <View style={styles.screen}>
+                <View>
+                    <Translator style={{ alignSelf: 'center', padding: 30 }} 
+                        loadText={"Sexually Transmitted Diseases"} 
+                        loadLanguage={GLOBAL_LANGUAGE} 
+                    />
+                </View>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
                     <ScrollView>
                         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: 2 }} >

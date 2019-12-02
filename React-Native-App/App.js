@@ -97,8 +97,11 @@ const switchNavigator = createSwitchNavigator({
     }, 
   }, {
     tabBarOptions: {
-      activeTintColor: 'red',
-      showLabel: false
+      showLabel: false,
+      activeBackgroundColor: Colors.buttonColor, 
+      style: {
+        backgroundColor: '#F6ECFF'
+      }
     }
   }
   )
@@ -129,7 +132,7 @@ export default () => {
 
   return(
     <AuthProvider>
-      <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: '#ddd'}}>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: '#F6ECFF'}}>
         <App ref={(navigator) => { setNavigator(navigator) }} />
       </SafeAreaView>
     </AuthProvider>

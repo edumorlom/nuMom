@@ -6,14 +6,17 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Permissions from 'expo-permissions';
 import markerIcon from '../../assets/icons/map-marker.png';
 import Colors from '../constants/Colors';
+import Translator from '../components/Translator';
 
 
-
-const Clinics = props => {
+const Clinics = ({ navigation }) => {
 
     console.log("clinics global language: ", GLOBAL_LANGUAGE)
 
     const clinicsLocations = require('../constants/clinics.json');
+
+    const isCancelled = React.useRef(false);
+    const [text, setText] = React.useState("...");
 
     const initialState = {
         latitude: null,
@@ -60,17 +63,35 @@ const Clinics = props => {
             return;
 
         if(navigator.geolocation) {
-            // timeout at 10000 milliseconds (10 seconds)
-            let options = { timeout: 10000, enableHighAccuracy: true, maximumAge: 1000 };
+            // timeout at 60000 milliseconds (60 seconds)
+            let options = { timeout: 60000, enableHighAccuracy: true };
             navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
             } else {
             console.log("Sorry, device does not support geolocation!");
             }
     }
     
+    const simulateSlowNetworkRequest = () =>
+        new Promise(resolve => setTimeout(resolve, 2500));
+
     useEffect( () => {
+        fetch();
         getLocationPermissions();
+
+        return () => {
+            isCancelled.current = true;
+          };
+
     }, []); // passing an empty array as second argument triggers the callback in useEffect only after the initial render thus replicating `componentDidMount` lifecycle behaviour
+
+    function fetch() {
+        simulateSlowNetworkRequest().then(() => {
+          if (!isCancelled.current) {
+            setText("done!");
+          }
+        });
+      }
+
 
     const renderMarkers = () => {
         return clinicsLocations.map(_marker => (
@@ -82,34 +103,27 @@ const Clinics = props => {
                 image = {markerIcon}
                 onPress={ () => {
                     setMarker(_marker);
-                    myMap.fitToCoordinates([_marker['coords']], {
-                        edgePadding: {top: 20, bottom: 20, left: 20, right: 20},
-                        animated: true
-                    })
+                    // myMap.fitToCoordinates([_marker['coords']], {
+                    //     edgePadding: {top: 20, bottom: 20, left: 20, right: 20},
+                    //     animated: true
+                    // })
                 }}
             />
         ));
     }
 
     const renderDetailMarker = () => (
-        <View 
-            styles={{
-                position: 'absolute',
-                bottom: 0,
-                padding: 5,
-                width: '100%',
-                flexDirection: 'row',
-                backgroundColor: Colors.newBackground
-            }}
-        >
+        <View>
             <Image
                 source= {{uri: marker['urlImage']}}
                 resizeMode="cover"
-                style={{width: 100, height: 90}}
+                style={{width: 100, height: 90, flexDirection: 'row'}}
             />
-            <View styles={{flex:1, paddingLeft:5, flexDirection: 'column'}}>
+            <View styles={{flex:1, paddingLeft: 10, flexDirection: 'column', backgroundColor: 'red'}}>
                 <Text style={{fontWeight: 'bold'}}>{marker.name}</Text>
                 <Text allowFontScaling={false}>{marker.address}</Text>
+                <Text allowFontScaling={false}>{marker.website}</Text>
+                <Text allowFontScaling={false}>{marker.hours_of_operation}</Text>
             </View>
         </View>
     )
@@ -123,7 +137,7 @@ const Clinics = props => {
                     initialRegion = { currentPosition }
                 >
                 { renderMarkers() }   
-                    <TouchableOpacity style={styles.nurseIcon} onPress={() => props.navigation.navigate('Nurses', {language: GLOBAL_LANGUAGE} )}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Nurses') }}>
                         <Image 
                             source={require('../../assets/icons/nurse-icon.png')} 
                             style={{marginLeft: 12, marginTop: 7}}
@@ -133,6 +147,11 @@ const Clinics = props => {
                 { marker.hasOwnProperty('id') && renderDetailMarker() }
             </SafeAreaView>
         ) : <View style={styles.container}>
+                <Translator style={{ alignSelf: 'center'}} 
+                    loadText={"Taking you to the maps to see all the available clinics"} 
+                    loadLanguage={GLOBAL_LANGUAGE} 
+                />
+                <Text style={{ alignSelf: 'center', paddingBottom: 30 }}>{text}</Text>
                 <ActivityIndicator animating size='large' color={Colors.buttonColor} />
             </View>
 };
@@ -147,6 +166,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: Colors.newBackground
         // alignItems: 'center',
         // width: '100%',
         // height: '100%'

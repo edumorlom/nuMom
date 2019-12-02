@@ -152,7 +152,10 @@ const DocumentsScreen = props => {
 
 DocumentsScreen.navigationOptions = () => {
     return {
-        title: 'Documents'
+        title: 'Documents',
+        headerStyle: {
+            backgroundColor: '#F6ECFF'
+        }
     };
 };
 
@@ -162,6 +165,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Colors.newBackground
     },
     documentButton: {
         marginBottom: 80,

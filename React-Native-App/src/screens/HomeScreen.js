@@ -6,7 +6,7 @@ import Colors from '../constants/Colors';
 import Box from '../components/Box';
 import Helper from '../components/Helpers';
 
-const HomeScreen = props => {
+const HomeScreen = ({ navigation }) => {
 
     // handles translations
     const lang = GLOBAL_LANGUAGE;
@@ -57,14 +57,15 @@ const HomeScreen = props => {
                                             source={require('../../assets/icons/website.png')} />
                                     </TouchableOpacity>
                                 </View>}
-                            {(item.locations != "") &&
                                 <View>
-                                    <Text style={styles.text}>
-                                        {item.location}
-                                    </Text>
+                                    <Translator style={styles.text, { alignSelf: 'center' }} 
+                                        loadText={"To find out more about the location of these clinics you can visit the \"Clinics\" screen"} 
+                                        loadLanguage={lang} 
+                                    />
+                                    <Image style={{ alignSelf: 'center', margin: 10 }} 
+                                            source={require('../../assets/icons/clinics-icon.png')} />
                                 </View>
-                            }
-                            <View style={styles.seperator} />
+                            <View style={styles.seperate} />
                         </View>
                     )}
                     keyExtractor={item => toString(item.id)}
