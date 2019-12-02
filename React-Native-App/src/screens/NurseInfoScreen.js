@@ -14,9 +14,9 @@ const NurseInfoScreen = props => {
 
      const displayNursesInfo = () => {
         return nursesInfo.map(_nurses => (
-            <View style={{ marginTop: 15 }} key={_nurses.id}>
+            <View style={{ backgroundColor: Colors.newBackground, flex: 1 }} key={_nurses.id}>
                 <View>
-                    <Translator style={styles.text, { alignSelf: 'center', alignItems: 'center' }} 
+                    <Translator style={{ alignSelf: 'center', alignItems: 'center', paddingTop: 15, textAlign: 'center'  }} 
                         loadText={"Below are the nurse practitioners that you can contact with any question you may have\n"} 
                         loadLanguage={language} 
                     />

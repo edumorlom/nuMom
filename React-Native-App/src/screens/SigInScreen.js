@@ -109,7 +109,7 @@ const SignIn = props => {
     // }
 
     return (
-        <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+        <TouchableWithoutFeedback  onPress={() => { Keyboard.dismiss() }}>
             <View style={styles.screen}>
                 
                 <Image
@@ -189,15 +189,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 10,
+        // margin: 10,
         marginBottom: 200,
+        backgroundColor: Colors.newBackground
     },
     box: {
         justifyContent: 'space-around',
         margin: 10,
         padding: 10,
         width: '80%',
-        height: '20%'
+        height: '20%',
+        backgroundColor: Colors.newBackground
     },
     labelText: {
         fontSize: 15,

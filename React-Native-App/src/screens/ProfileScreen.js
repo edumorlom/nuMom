@@ -95,6 +95,9 @@ const Profile = props => {
             keyboardVerticalOffset={-120}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View>
+                    <TouchableOpacity onPress={signout}>
+                        <Image style={{ marginLeft: 380 }} source={require('../../assets/icons/sign-out.png')} />
+                    </TouchableOpacity>
                     <View style={styles.screen}>
                         <View style={{ marginTop: 150, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', }}>
                             {/* User Image View */}
