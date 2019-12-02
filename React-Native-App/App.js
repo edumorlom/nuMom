@@ -110,6 +110,8 @@ const switchNavigator = createSwitchNavigator({
 
 const App = createAppContainer(switchNavigator);
 
+console.disableYellowBox = true;
+
 export default () => {
   
   //setting up firebase

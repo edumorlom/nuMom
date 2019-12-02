@@ -9,7 +9,7 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
-import { Context as AuthContext} from '../context/AuthContext';
+import { Context as AuthContext } from '../context/AuthContext';
 
 //FIX DESIGN
 
@@ -24,7 +24,7 @@ const Profile = props => {
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
     // image default and new one hook
-    // const [image, setImage] = useState(props.loadProfile['Image']);
+    const [image, setImage] = useState('../../assets/mom-and-baby-icon-editable.png');
     // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
     var fnameError = Helpers('Please Input Valid First Name ', language);
     var lnameError = Helpers('Please Input Valid Last Name ', language);
@@ -33,7 +33,7 @@ const Profile = props => {
     // hold changes in real time
     let profile = props.loadProfile;
     console.log("profile: ", profile)
-    // if (profile['Image'] === '') {
+    // if (profile['Image'] === '' || profile['Image'] === undefined) {
     //     setImage('../../assets/mom-and-baby-icon-editable.png');
     // }
     // Navigator
@@ -96,13 +96,12 @@ const Profile = props => {
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View>
                     <View style={styles.screen}>
-                        <View style={{ marginTop: 15, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <View style={{ marginTop: 200, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                             {/* User Image View */}
-                            <View style={{ marginLeft: 55 }}>
-                                <ImagePick passLang={language}  getPicture={pictureHandler} />
+                            <View style={{ marginLeft: 120 }}>
+                                <ImagePick passLang={language} getPicture={pictureHandler} passPicture={image} />
                             </View>
-                            {/* Folder Touchable */}
-                            
+                            {/* Folder Touchable */}  
                         </View>
                         <Box style={{ height: '70%', width: '80%', }}>
                             <ScrollView>
@@ -171,8 +170,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     button: {
-        marginBottom: 100,
-        marginTop: 20,
+        marginBottom: 200,
         padding: 10,
         paddingHorizontal: 40,
         backgroundColor: Colors.buttonColor,
