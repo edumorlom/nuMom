@@ -187,10 +187,8 @@ const SignIn = props => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        // margin: 10,
-        marginBottom: 200,
         backgroundColor: Colors.newBackground
     },
     box: {
@@ -211,10 +209,11 @@ const styles = StyleSheet.create({
     },
     profileIcon: {
         marginBottom: 40,
-        marginTop: '40%'
+        marginTop: '20%'
     },
     signInButton: {
         marginTop: 100,
+        marginBottom: 30,
         padding: 10,
         backgroundColor: Colors.buttonColor,
         paddingHorizontal: 60,
@@ -224,12 +223,11 @@ const styles = StyleSheet.create({
     },
     seperator: {
         width: '80%',
-        height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        bottom: -50
+        marginTop: 10
     },
     iconStyle: {
         paddingRight: 18
