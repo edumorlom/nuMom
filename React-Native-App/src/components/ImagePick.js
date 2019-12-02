@@ -127,15 +127,15 @@ export default class ImagePickerProfile extends React.Component {
             return (<Image source={require('../../assets/mom-and-baby-icon-editable.png')} />)
         }
         else {
-            return (<Image source={{ uri: this.props.passPicture }} style={{ width: 125, height: 125, borderRadius: 125 / 2 }} />)
+            return (<Image source={{ uri: this.props.passPicture }} style={{ width: 100, height: 100, borderRadius: 100 / 2 }} />)
         }
     }
 }
 
 const styles = StyleSheet.create({
     image: {
-        width: 125, 
-        height: 125, 
-        borderRadius: 125 / 2
+        width: 100, 
+        height: 100, 
+        borderRadius: 100 / 2
     }
 })

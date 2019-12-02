@@ -96,14 +96,14 @@ const Profile = props => {
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View>
                     <View style={styles.screen}>
-                        <View style={{ marginTop: 200, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <View style={{ marginTop: 150, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', }}>
                             {/* User Image View */}
-                            <View style={{ marginLeft: 120 }}>
+                            <View style={{ alignContent:'center'}}>
                                 <ImagePick passLang={language} getPicture={pictureHandler} passPicture={image} />
                             </View>
                             {/* Folder Touchable */}  
                         </View>
-                        <Box style={{ height: '70%', width: '80%', }}>
+                        <Box style={{ height: '60%', width: '80%', marginTop: 0}}>
                             <ScrollView>
                                 {/* Change info */}
                                 <SignUpForm loadScreen={('Profile')} loadLanguage={language} getProfile={profileHandler} loadProfile={profile} />
@@ -111,17 +111,17 @@ const Profile = props => {
                                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('en')}>
                                         <View style={{ opacity: (language === 'en') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/usa-flag.png')} />
+                                            <Image style={{ height: 40, width: 60, resizeMode: 'stretch' }} source={require('../../assets/icons/usa-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('es')}>
                                         <View style={{ opacity: (language === 'es') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/spain-flag.png')} />
+                                            <Image style={{ height: 40, width: 60, resizeMode: 'stretch' }} source={require('../../assets/icons/spain-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={{ width: '30%' }} onPress={() => setLanguage('ht')}>
                                         <View style={{ opacity: (language === 'ht') ? 1 : 0.2 }}>
-                                            <Image style={{ height: 50, width: 70, resizeMode: 'stretch' }} source={require('../../assets/icons/creole-flag.png')} />
+                                            <Image style={{ height: 40, width: 60, resizeMode: 'stretch' }} source={require('../../assets/icons/creole-flag.png')} />
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -170,7 +170,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     button: {
-        marginBottom: 200,
+        marginTop: 20,
+        marginBottom: 180,
         padding: 10,
         paddingHorizontal: 40,
         backgroundColor: Colors.buttonColor,
