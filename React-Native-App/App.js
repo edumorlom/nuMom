@@ -43,7 +43,7 @@ clinicsNavigator.navigationOptions = {
 }
 
 const switchNavigator = createSwitchNavigator({
-  // ResolveAuth: ResolveAuthScreen,
+  ResolveAuth: ResolveAuthScreen,
   Language: {
     screen: LanguageScreen
   },
@@ -123,6 +123,7 @@ export default () => {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+
   }, []);
 
 

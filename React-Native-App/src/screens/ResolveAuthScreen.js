@@ -1,12 +1,17 @@
-import React, { useEffect, useContext } from 'react';
-import { View, Image } from 'react-native';
+import { useEffect, useContext } from 'react';
 import { Context as AuthContext} from '../context/AuthContext';
+import { ProviderTypes, TranslatorConfiguration } from 'react-native-power-translator';
 
-const ResolveAuthScreen = () => {
 
-    global.GlobalLanguage = "en";
+const ResolveAuthScreen = props => {
 
-    console.log("resolve auth", global.GlobalLanguage)
+    global.GLOBAL_LANGUAGE = "en";
+
+    console.log("resolve auth language", GLOBAL_LANGUAGE)
+
+    // translator
+    TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', GLOBAL_LANGUAGE);
+    
     
     const { tryLocalSignIn } = useContext(AuthContext);
 
@@ -14,14 +19,7 @@ const ResolveAuthScreen = () => {
         tryLocalSignIn();
     }, []);
     
-    
-    
-    
-    return ( 
-        <View style={{ justifyContent:'center', alignItems: 'center' }}>
-             <Image style={{width: 400, height: 400, marginRight: 20, alignItems: 'center'}} source={require('../../assets/images/logo111.png')} />
-        </View>
-    );
+    return null;
 };
 
 export default ResolveAuthScreen;

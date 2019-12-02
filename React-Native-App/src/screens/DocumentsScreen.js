@@ -8,6 +8,7 @@ import Box from '../components/Box';
 import Helpers from '../components/Helpers';
 
 const DocumentsScreen = props => {
+
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
     // controls picture modal when document picked to be seen/deleted
@@ -74,7 +75,7 @@ const DocumentsScreen = props => {
             <View style={styles.screen}>
                 {/* box that holds documents */}
                 <Box style={{ height: '80%', width: '80%', marginTop: 50 }}>
-                    <Text style={styles.boxTitle}>{Helpers('Documents', GlobalLanguage)}</Text>
+                    <Text style={styles.boxTitle}>{Helpers('Documents', GLOBAL_LANGUAGE)}</Text>
                     <ScrollView>
                         {/* loops all documents */}
                         <Text>{'\n'}</Text>
@@ -110,15 +111,15 @@ const DocumentsScreen = props => {
                         onBackButtonPress={() => addDocumentHandler(false)}>
                         <View style={styles.content}>
                             <TextInput
-                                placeholder={Helpers("name of file", GlobalLanguage)}
+                                placeholder={Helpers("name of file", GLOBAL_LANGUAGE)}
                                 onChangeText={text => setName(text)}
                                 style={{ margin: 10, fontSize: 15 }}
                                 maxLength={25}
                             />
                             {/* Picture Component */}
-                            <ImagePick style={{ borderRadius: 5 }} passLang={GlobalLanguage} passPicture={defaultImage} getPicture={picHandler} />
+                            <ImagePick style={{ borderRadius: 5 }} passLang={GLOBAL_LANGUAGE} passPicture={defaultImage} getPicture={picHandler} />
                             {/* button to close modal */}
-                            <Button style={styles.button} title={Helpers(('Finish'), GlobalLanguage)} onPress={() => finishHandler()} />
+                            <Button style={styles.button} title={Helpers(('Finish'), GLOBAL_LANGUAGE)} onPress={() => finishHandler()} />
                         </View>
                     </Modal>
                     {/* clicking on document to view or delete */}
@@ -132,17 +133,17 @@ const DocumentsScreen = props => {
                             <Image source={{ uri: object }} style={styles.picture} />
                             {/* button to close modal and delete document */}
                             <View style={{ flexDirection: 'row' }}>
-                                <Button title={Helpers('Back', GlobalLanguage)} onPress={() => handlePictureView(false)} />
+                                <Button title={Helpers('Back', GLOBAL_LANGUAGE)} onPress={() => handlePictureView(false)} />
                                 {/* seperates buttons */}
                                 <View style={{ marginLeft: 50, marginRight: 50 }} />
-                                <Button title={Helpers('Delete', GlobalLanguage)} onPress={() => deleteDocument(objId)} />
+                                <Button title={Helpers('Delete', GLOBAL_LANGUAGE)} onPress={() => deleteDocument(objId)} />
                             </View>
                         </View>
                     </Modal>
                 </Box>
                 {/* add document button */}
                 <TouchableHighlight style={styles.documentButton} onPress={() => addDocumentHandler(true)} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                    <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", GlobalLanguage)}</Text>
+                    <Text style={{ fontSize: 18, color: 'black' }}>{Helpers("Add Document", GLOBAL_LANGUAGE)}</Text>
                 </TouchableHighlight>
             </View>
         </View>

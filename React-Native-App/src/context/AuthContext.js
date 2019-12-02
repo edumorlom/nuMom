@@ -18,6 +18,8 @@ const authReducer = (state, action) => {
             return { ...state, errorMessage: action.payload };
         case 'clear_error_message':
             return { ...state, errorMessage: '' };
+        case 'signout':
+            return { token: null, errorMessage: ''};
         default:
             return state;
     }
@@ -33,9 +35,9 @@ const tryLocalSignIn = dispatch => async () => {
 
     if (token) {
         dispatch({ type: 'sigin', payload: token });
-        navigate('Home', GlobalLanguage);
+        navigate('Home', GLOBAL_LANGUAGE);
     } else {
-        navigate('Language', GlobalLanguage);
+        navigate('Language', GLOBAL_LANGUAGE);
     }
 
 };
@@ -52,7 +54,7 @@ const signup = dispatch => {
             dispatch({ type: 'signup', payload: true })
 
             //navigate to signin
-            navigate('Signin', GlobalLanguage)
+            navigate('Signin', GLOBAL_LANGUAGE)
 
         } catch (error) {
             dispatch({ type: 'add_error', payload: 'User alredy exist. Try to sign in or sign up with a different phone number' })
@@ -70,14 +72,15 @@ const signin = dispatch => {
 
             let { data } = await axios.post(`${ROOT_URL}/verifyOneTimePassword`, { phone, code });
 
-            console.log(data)
+            // console.log(data)
 
             await AsyncStorage.setItem('token', data.token);
 
             dispatch({ type: 'signin', payload: data.token });
 
            //navigate to main flow
-           navigate('Home', GlobalLanguage) 
+           console.log("global language from auth context: ", GLOBAL_LANGUAGE)
+           navigate('Home', GLOBAL_LANGUAGE) 
 
         } catch (error) {
             let errorMessage = error.response.data
@@ -95,10 +98,14 @@ const signin = dispatch => {
     };
 };
 
-const signout = (dispatch) => {
-    return () => {
-        //somehow sign out!!
-    };
+const signout = dispatch => async () => {
+    //somehow sign out!!
+    await AsyncStorage.removeItem('token');
+
+    //call the google could function that delete the user from the authentication console in firebase
+
+    dispatch({ type:'signout' })
+    navigate('Language');
 };
 
 export const { Provider, Context } = createDataContext(
@@ -107,7 +114,8 @@ export const { Provider, Context } = createDataContext(
     { 
         token: null, 
         errorMessage: '', 
-        success: false 
+        success: false,
+        language: "en" 
     } //initial state
 )
 

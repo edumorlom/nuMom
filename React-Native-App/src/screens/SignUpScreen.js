@@ -21,9 +21,9 @@ const SignUp = (props) => {
     
     const lan = props.navigation.getParam('language')
 
-    console.log(lan);
+    console.log("sign up language: ", lan);
 
-    console.log(state);
+    // console.log("sign up state: ", state);
 
     // image default and new one hook
     const [image, setImage] = useState('../../assets/mom-and-baby-icon-editable.png');

@@ -8,9 +8,8 @@ import Translator from '../components/Translator';
 import Helpers from '../components/Helpers';
 
 const SexEd = props => {
-
-    const lang = props.navigation.getParam('language')
-    console.log(lang)
+    
+    console.log("sex ed screen global language ", GLOBAL_LANGUAGE)
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -21,7 +20,7 @@ const SexEd = props => {
         // props.onTap(location);
     }
 
-    let message = Helpers('We are sorry, but this information is not available in Creole.', GlobalLanguage);
+    let message = Helpers('We are sorry, but this information is not available in Creole.', GLOBAL_LANGUAGE);
     const modalControl = (value, STD) => {
         setVisibility(value);
         // hold the JSON file
@@ -29,10 +28,10 @@ const SexEd = props => {
         // recalls the child of the JSON based on selected topic
         var data = JSONData['websites'];
 
-        if (GlobalLanguage === 'es') {
+        if (GLOBAL_LANGUAGE === 'es') {
             setSTD(data.find(obj => obj.id === STD).es);
         }
-        else if (GlobalLanguage === 'ht') {
+        else if (GLOBAL_LANGUAGE === 'ht') {
             // HIV/AIDS and STDs, STDs During Pregnancy, Congenital Syphilis not available
             if (STD === "HIV/AIDS and STDs" || STD === "STDs During Pregnancy" || STD === "Congenital Syphilis") {
                 setChecker(true);
@@ -54,37 +53,37 @@ const SexEd = props => {
                     <ScrollView>
                         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: 2 }} >
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
-                                <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Chlamydia')}>
-                                <Translator style={styles.words} loadText={('Chlamydia')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Chlamydia')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Genital Herpes')}>
-                                <Translator style={styles.words} loadText={('Genital Herpes')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Genital Herpes')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Gonorrhea')}>
-                                <Translator style={styles.words} loadText={('Gonorrhea')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Gonorrhea')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
-                                <Translator style={styles.words} loadText={('HIV/AIDS and STDs')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('HIV/AIDS and STDs')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HPV Infection')}>
-                                <Translator style={styles.words} loadText={('HPV Infection')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('HPV Infection')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
-                                <Translator style={styles.words} loadText={('Pelvic Inflammatory Disease')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Pelvic Inflammatory Disease')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'STDs During Pregnancy')}>
-                                <Translator style={styles.words} loadText={('STDs During Pregnancy')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('STDs During Pregnancy')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Syphilis')}>
-                                <Translator style={styles.words} loadText={('Syphilis')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Congenital Syphilis')}>
-                                <Translator style={styles.words} loadText={('Congenital Syphilis')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Congenital Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Trichomoniasis')}>
-                                <Translator style={styles.words} loadText={('Trichomoniasis')} loadLanguage={GlobalLanguage} />
+                                <Translator style={styles.words} loadText={('Trichomoniasis')} loadLanguage={GLOBAL_LANGUAGE} />
                             </TouchableOpacity>
                             <Modal
                                 isVisible={visibility}
@@ -99,7 +98,7 @@ const SexEd = props => {
                                         source={{ uri: STD }}
                                         javaScriptEnabled={true}
                                         style={styles.web} />
-                                    <Button title={Helpers('Hide', GlobalLanguage)} onPress={() => setVisibility(false)} />
+                                    <Button title={Helpers('Hide', GLOBAL_LANGUAGE)} onPress={() => setVisibility(false)} />
                                 </View>
                             </Modal>
                         </View>
