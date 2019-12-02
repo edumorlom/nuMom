@@ -11,9 +11,7 @@ import Colors from '../constants/Colors';
 
 const Clinics = props => {
 
-    const language = props.navigation.getParam('language');
-
-    console.log(language);
+    console.log("clinics global language: ", GLOBAL_LANGUAGE)
 
     const clinicsLocations = require('../constants/clinics.json');
 
@@ -125,7 +123,7 @@ const Clinics = props => {
                     initialRegion = { currentPosition }
                 >
                 { renderMarkers() }   
-                    <TouchableOpacity style={styles.nurseIcon} onPress={() => props.navigation.navigate('Nurses', {language: GlobalLanguage} )}>
+                    <TouchableOpacity style={styles.nurseIcon} onPress={() => props.navigation.navigate('Nurses', {language: GLOBAL_LANGUAGE} )}>
                         <Image 
                             source={require('../../assets/icons/nurse-icon.png')} 
                             style={{marginLeft: 12, marginTop: 7}}

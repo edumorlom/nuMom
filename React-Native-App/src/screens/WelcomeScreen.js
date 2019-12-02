@@ -13,6 +13,8 @@ const Welcome = ({navigation}) => {
 
     let lang = navigation.getParam('language')
 
+    console.log("welsome screen language: ", lang)
+
     onSlidesComplete = () => {
         navigation.navigate('Signin', {language: lang})
     }

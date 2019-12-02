@@ -9,10 +9,11 @@ import Helper from '../components/Helpers';
 const HomeScreen = props => {
 
     // handles translations
-    console.log("home screem global lang", GlobalLanguage)
-    // const lang = props.navigation.getParam('language');
+    const lang = GLOBAL_LANGUAGE;
 
-    // console.log("home screen lang ", lang);
+    console.log("home screen lang ", lang);
+
+    console.log("home screem global lang", GLOBAL_LANGUAGE)
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -39,10 +40,10 @@ const HomeScreen = props => {
                         <View>
                             <Text style={styles.titleProgram}>{item.title}</Text>
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={GlobalLanguage} />
-                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GlobalLanguage} />
+                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={lang} />
+                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={lang} />
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={GlobalLanguage} />
+                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={lang} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                     source={require('../../assets/icons/website.png')} />
@@ -50,7 +51,7 @@ const HomeScreen = props => {
                             {/* checks for second website */}
                             {(item.website2label != undefined) &&
                                 <View>
-                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={GlobalLanguage} />
+                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={lang} />
                                     <TouchableOpacity onPress={() => Linking.openURL(item.website2)} >
                                         <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                             source={require('../../assets/icons/website.png')} />
@@ -76,15 +77,15 @@ const HomeScreen = props => {
         <View>
             <View style={styles.screen}>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
-                    <Text style={styles.boxTitle}>{Helpers('Programs Available', GlobalLanguage)}</Text>
+                    <Text style={styles.boxTitle}>{Helpers('Programs Available', GLOBAL_LANGUAGE)}</Text>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'WIC')}>
-                        <Text style={styles.titles}>{Helpers('Women, Infants, and Children (WIC)', GlobalLanguage)}</Text>
+                        <Text style={styles.titles}>{Helpers('Women, Infants, and Children (WIC)', GLOBAL_LANGUAGE)}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'medicaid')}>
-                        <Text style={styles.titles}>{Helpers('Medicaid', GlobalLanguage)}</Text>
+                        <Text style={styles.titles}>{Helpers('Medicaid', GLOBAL_LANGUAGE)}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'healthcare')}>
-                        <Text style={styles.titles}>{Helpers('Medical Clinics', GlobalLanguage)}</Text>
+                        <Text style={styles.titles}>{Helpers('Medical Clinics', GLOBAL_LANGUAGE)}</Text>
                     </TouchableOpacity>
                     <Modal
                         isVisible={visibility}
@@ -95,7 +96,7 @@ const HomeScreen = props => {
                             {/* load content */}
                             {displayData(information)}
                             {/* button to close modal */}
-                            <Button style={styles.button} title={Helper(('Hide'), GlobalLanguage)} onPress={() => pullJSONHandler(false, "")} />
+                            <Button style={styles.button} title={Helper(('Hide'), GLOBAL_LANGUAGE)} onPress={() => pullJSONHandler(false, "")} />
                         </View>
                     </Modal>
                 </Box>

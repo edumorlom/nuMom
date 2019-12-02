@@ -9,14 +9,26 @@ import Helpers from '../components/Helpers';
 import { Context as AuthContext} from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 
+//WHY THIS RENDERS 4 TIMES
+
 const SignIn = props => {
 
     const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
     const lang = props.navigation.getParam('language')
 
+    console.log("sign in language", lang)
+
     const [phoneNumber, setphoneNumber] = useState('');
     const [code, setCode] = useState('');
+
+    const updatePhone = phone => {
+        setphoneNumber(phone);
+    };
+
+    const updateCode = code => {
+        setCode(code);
+    };
 
     // let profile = {
     //     'Name': '',
@@ -31,18 +43,11 @@ const SignIn = props => {
     //     'Language': ''
     // };
 
-    let err = true;
-
     const signIn = () => {
         console.log(phoneNumber)
         console.log(code)
 
         signin({ phone: phoneNumber, code: code });
-
-        // 
-
-        // if (!err)
-        //     props.navigation.navigate('mainFlow')
     }
 
 
@@ -107,7 +112,6 @@ const SignIn = props => {
         <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
             <View style={styles.screen}>
                 
-
                 <Image
                     source={require('../../assets/images/mom-and-baby-icon.png')}
                     style={styles.profileIcon}
@@ -118,7 +122,7 @@ const SignIn = props => {
                         <Input
                             style={styles.textInput}
                             placeholder='888-888-8888'
-                            onChangeText={setphoneNumber}
+                            onChangeText={updatePhone}
                             value={phoneNumber}
                             autoCompleteType={'tel'} //where is this???
                             keyboardType='number-pad'
@@ -132,7 +136,6 @@ const SignIn = props => {
                             containerStyle='none'
                         />
                     </View>
-
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
@@ -152,9 +155,8 @@ const SignIn = props => {
                 </View>
                 
                 <View>
-                    {console.log(state)}
                     <NavigationEvents onWillBlur={clearErrorMessage} />
-                    {state.errorMessage ? (
+                    {/*{state.errorMessage ? (
                         //TODO find a way to translate the error messages 
                         Alert.alert('Sign Up Errors', state.errorMessage,
                             [
@@ -163,7 +165,7 @@ const SignIn = props => {
                             {
                                 cancelable: false
                             })
-                    ) : null }
+                        ) : null }*/}
                     <TouchableHighlight
                         style={styles.signInButton}
                         onPress={signIn}

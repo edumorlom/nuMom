@@ -8,13 +8,13 @@ import Helper from '../components/Helpers';
 
 const Classes = props => {
 
-    let Tours = 'Tours';
-    if (GlobalLanguage === 'es') { Tours = 'Excursiones' }
-    let Parenting = 'Parenting';
-    if (GlobalLanguage === 'es') { Parenting = "Paternidad" }
+    console.log("classes screen language: ", GLOBAL_LANGUAGE)
 
-    // const lang = props.navigation.getParam('language')
-    // console.log(lang);
+    let Tours = 'Tours';
+    if (GLOBAL_LANGUAGE === 'es') { Tours = 'Excursiones' }
+    let Parenting = 'Parenting';
+    if (GLOBAL_LANGUAGE === 'es') { Parenting = "Paternidad" }
+
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -43,11 +43,11 @@ const Classes = props => {
                         <View>
                             <Text style={styles.titleProgram}>{item.title}</Text>
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text} loadText={(item.cost)} loadLanguage={GlobalLanguage} />
-                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={GlobalLanguage} />
-                            <Translator style={styles.text} loadText={(item.schedule)} loadLanguage={GlobalLanguage} />
-                            <Translator style={styles.text} loadText={(item.address)} loadLanguage={GlobalLanguage} />
-                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GlobalLanguage} />
+                            <Translator style={styles.text} loadText={(item.cost)} loadLanguage={GLOBAL_LANGUAGE} />
+                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={GLOBAL_LANGUAGE} />
+                            <Translator style={styles.text} loadText={(item.schedule)} loadLanguage={GLOBAL_LANGUAGE} />
+                            <Translator style={styles.text} loadText={(item.address)} loadLanguage={GLOBAL_LANGUAGE} />
+                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GLOBAL_LANGUAGE} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                     source={require('../../assets/icons/website.png')} />
@@ -66,22 +66,22 @@ const Classes = props => {
             <View style={styles.screen}>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
                     {/* title */}
-                    <Translator style={styles.title} loadText={('Classes Available')} loadLanguage={GlobalLanguage} />
+                    <Translator style={styles.title} loadText={('Classes Available')} loadLanguage={GLOBAL_LANGUAGE} />
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'breastfeeding')}>
                         <Image style={styles.image} source={require('../../assets/icons/breastfeedingClasses-icon.png')} />
-                        <Translator style={styles.sectionText} loadText={('Breastfeeding')} loadLanguage={GlobalLanguage} />
+                        <Translator style={styles.sectionText} loadText={('Breastfeeding')} loadLanguage={GLOBAL_LANGUAGE} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'classes')}>
                         <Image style={styles.image} source={require('../../assets/icons/parenting-icon.png')} />
-                        <Translator style={styles.sectionText} loadText={(Parenting)} loadLanguage={GlobalLanguage} />
+                        <Translator style={styles.sectionText} loadText={(Parenting)} loadLanguage={GLOBAL_LANGUAGE} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'childbirth')}>
                         <Image style={styles.image} source={require('../../assets/icons/childbirth-icon.png')} />
-                        <Translator style={styles.sectionText} loadText={('Childbirth')} loadLanguage={GlobalLanguage} />
+                        <Translator style={styles.sectionText} loadText={('Childbirth')} loadLanguage={GLOBAL_LANGUAGE} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.containers} onPress={() => pullJSONHandler(true, 'tours')}>
                         <Image style={styles.image} source={require('../../assets/icons/tours-icon.png')} />
-                        <Translator style={styles.sectionText} loadText={(Tours)} loadLanguage={GlobalLanguage} />
+                        <Translator style={styles.sectionText} loadText={(Tours)} loadLanguage={GLOBAL_LANGUAGE} />
                     </TouchableOpacity>
                     {/* modal with pop up information */}
                     <Modal
@@ -94,7 +94,7 @@ const Classes = props => {
                             {/* load content */}
                             {displayData(information)}
                             {/* button to close modal */}
-                            <Button style={styles.button} title={Helper(('Hide'), GlobalLanguage)} onPress={() => pullJSONHandler(false, "")} />
+                            <Button style={styles.button} title={Helper(('Hide'), GLOBAL_LANGUAGE)} onPress={() => pullJSONHandler(false, "")} />
                         </View>
                     </Modal>
                 </Box>

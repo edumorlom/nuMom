@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const NurseInfoScreen = props => {
-    navigationOptions = {
-        title: 'Nurses Info'
-    }
+    
+    const language = props.navigation.getParam('language');
 
+    console.log("nurse screen language ", language)
+
+    
     return (
         <View>
             <View style={styles.screen}>

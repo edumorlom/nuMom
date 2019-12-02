@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, 
         TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import Translator from '../components/Translator';
@@ -9,12 +9,17 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
+import { Context as AuthContext} from '../context/AuthContext';
 
 //FIX DESIGN
 
 const Profile = props => {
 
-    const lang = props.navigation.getParam('language')
+    const lang = GLOBAL_LANGUAGE
+
+    console.log("profile screen language: ", lang)
+
+    const { signout } = useContext(AuthContext);
 
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
@@ -27,7 +32,7 @@ const Profile = props => {
 
     // hold changes in real time
     let profile = props.loadProfile;
-    console.log(profile)
+    console.log("profile: ", profile)
     // if (profile['Image'] === '') {
     //     setImage('../../assets/mom-and-baby-icon-editable.png');
     // }
@@ -61,7 +66,6 @@ const Profile = props => {
         }
         else {
             profile['Image'] = image;
-            global.GlobalLanguage = language;
             props.onSave(profile);
         }
     }
@@ -98,8 +102,11 @@ const Profile = props => {
                                 <ImagePick passLang={language}  getPicture={pictureHandler} />
                             </View>
                             {/* Folder Touchable */}
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Documents', {laguage: language})} >
-                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/folder-icon.png')} />
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Documents')} >
+                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/documents.png')} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={signout} >
+                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
                             </TouchableOpacity>
                         </View>
                         <Box style={{ height: '100%', width: '90%', }}>
