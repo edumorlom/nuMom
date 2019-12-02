@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, 
-        TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
+import {
+    View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity,
+    TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard
+} from 'react-native';
 import Translator from '../components/Translator';
 import Colors from '../constants/Colors';
 // Custom Components
@@ -9,7 +11,7 @@ import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
-import { Context as AuthContext} from '../context/AuthContext';
+import { Context as AuthContext } from '../context/AuthContext';
 
 //FIX DESIGN
 
@@ -24,7 +26,7 @@ const Profile = props => {
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
     // image default and new one hook
-    // const [image, setImage] = useState(props.loadProfile['Image']);
+    const [image, setImage] = useState('../../assets/mom-and-baby-icon-editable.png');
     // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);
     var fnameError = Helpers('Please Input Valid First Name ', language);
     var lnameError = Helpers('Please Input Valid Last Name ', language);
@@ -33,7 +35,7 @@ const Profile = props => {
     // hold changes in real time
     let profile = props.loadProfile;
     console.log("profile: ", profile)
-    // if (profile['Image'] === '') {
+    // if (profile['Image'] === '' || profile['Image'] === undefined) {
     //     setImage('../../assets/mom-and-baby-icon-editable.png');
     // }
     // Navigator
@@ -96,20 +98,20 @@ const Profile = props => {
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View>
                     <View style={styles.screen}>
-                        <View style={{ marginTop: 15, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <View style={{ marginTop: 200, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                             {/* User Image View */}
-                            <View style={{ marginLeft: 55 }}>
-                                <ImagePick passLang={language}  getPicture={pictureHandler} />
+                            <View style={{ marginLeft: 120 }}>
+                                <ImagePick passLang={language} getPicture={pictureHandler} passPicture={image} />
                             </View>
                             {/* Folder Touchable */}
                             <TouchableOpacity onPress={() => props.navigation.navigate('Documents')} >
-                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/documents.png')} />
+                                <Image style={{ marginLeft: 15 }} source={require('../../assets/icons/documents.png')} />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={signout} >
-                                <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
+                                <Image style={{ marginLeft: 15 }} source={require('../../assets/icons/sign-out.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Box style={{ height: '100%', width: '90%', }}>
+                        <Box style={{ height: '65%', width: '90%', marginBottom: 10 }}>
                             <ScrollView>
                                 {/* Change info */}
                                 <SignUpForm loadScreen={('Profile')} loadLanguage={language} getProfile={profileHandler} loadProfile={profile} />
@@ -132,12 +134,12 @@ const Profile = props => {
                                     </TouchableOpacity>
                                 </View>
                             </ScrollView>
-                            <View>
-                                <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
-                                    <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
-                                </TouchableOpacity>
-                            </View>
                         </Box>
+                        <View>
+                            <TouchableOpacity style={styles.button} underlayColor={'rgba(213, 170, 255, 0.8)'} >
+                                <Translator style={styles.text} loadText={('Save Changes')} loadLanguage={language} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -162,7 +164,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     button: {
-        marginBottom: 100,
+        marginBottom: 200,
         padding: 10,
         backgroundColor: Colors.boxBackground,
         width: '80%',
