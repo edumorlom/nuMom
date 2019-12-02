@@ -86,7 +86,7 @@ const HomeScreen = ({ navigation }) => {
                         <Text style={styles.titles}>{Helpers('Medicaid', GLOBAL_LANGUAGE)}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.seperate} onPress={() => pullJSONHandler(true, 'healthcare')}>
-                        <Text style={styles.titles}>{Helpers('Medical Clinics', GLOBAL_LANGUAGE)}</Text>
+                        <Text style={styles.titles}>{Helpers('Heartbeat Pregnancy Help Medical Clinic', GLOBAL_LANGUAGE)}</Text>
                     </TouchableOpacity>
                     <Modal
                         isVisible={visibility}
