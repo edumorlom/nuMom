@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Image, ScrollView, StyleSheet, Alert, TouchableOpacity, Text,
         TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard } from 'react-native';
 import Translator from '../components/Translator';
@@ -13,13 +13,24 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 //FIX DESIGN
 
-const Profile = props => {
+const Profile = (props) => {
 
     const lang = GLOBAL_LANGUAGE
 
     console.log("profile screen language: ", lang)
 
     const { signout } = useContext(AuthContext);
+
+    const signoutgHelper = props => {
+        signout();
+    };
+
+    useEffect(() => {
+        props.navigation.setParams({signout: signout})
+    }, []);
+
+   console.log(props);
+
 
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
@@ -95,16 +106,13 @@ const Profile = props => {
             keyboardVerticalOffset={-120}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
                 <View>
-                    <TouchableOpacity onPress={signout}>
-                        <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
-                    </TouchableOpacity>
                     <View style={styles.screen}>
                         <View style={{ marginTop: 150, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', }}>
                             {/* User Image View */}
                             <View style={{ alignContent:'center'}}>
                                 <ImagePick passLang={language} getPicture={pictureHandler} passPicture={image} />
                             </View>
-                            {/* Folder Touchable */}  
+                            {/* Folder Touchable */}
                         </View>
                         <Box style={{ height: '60%', width: '80%', marginTop: 0}}>
                             <ScrollView>
@@ -143,6 +151,9 @@ const Profile = props => {
 };
 
 Profile.navigationOptions = ({ navigation }) => {
+    // const { navigation } = props;
+    //   const { state } = navigation;
+    //   const { params } = state;
     return {
         title: 'Personal Account', 
         headerRight:  (
@@ -150,7 +161,7 @@ Profile.navigationOptions = ({ navigation }) => {
                     <TouchableOpacity onPress={() => navigation.navigate('Documents')} >
                         <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/documents.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity onPress={() => navigation.getParam('signout')()}>
                         <Image style={{ marginLeft: 20 }} source={require('../../assets/icons/sign-out.png')} />
                     </TouchableOpacity>
                 </View>
