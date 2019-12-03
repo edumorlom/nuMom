@@ -26,7 +26,8 @@ const Profile = (props) => {
     };
 
     useEffect(() => {
-        props.navigation.setParams({signout: signout})
+        props.navigation.setParams({signout: signout});
+
     }, []);
 
    console.log(props);
