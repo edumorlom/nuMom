@@ -28,6 +28,7 @@
     },
     "android": {
       "package": "com.SeniorProject.KeepingMomsAndInfantsHealthy"
-    }
+    },
+    "description": ""
   }
 }

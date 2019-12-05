@@ -8,7 +8,7 @@ import Translator from '../components/Translator';
 import Helpers from '../components/Helpers';
 
 const SexEd = props => {
-    
+
     console.log("sex ed screen global language ", GLOBAL_LANGUAGE)
 
     // control the modal and its pop up information
@@ -49,65 +49,59 @@ const SexEd = props => {
     return (
         <View >
             <View style={styles.screen}>
-                <View>
-                    <Translator style={{ alignSelf: 'center', padding: 30 }} 
-                        loadText={"Sexually Transmitted Diseases"} 
-                        loadLanguage={GLOBAL_LANGUAGE} 
-                    />
-                </View>
                 <Box style={{ height: '80%', width: '80%', marginBottom: 100, marginTop: 50 }}>
+                    <Text style={styles.boxTitle}>{Helpers('Sexually Transmitted', GLOBAL_LANGUAGE)}</Text>
+                    <Text style={styles.boxTitle}>{Helpers('Diseases', GLOBAL_LANGUAGE)}</Text>
                     <ScrollView>
-                        <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginRight: 2 }} >
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
-                                <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Chlamydia')}>
-                                <Translator style={styles.words} loadText={('Chlamydia')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Genital Herpes')}>
-                                <Translator style={styles.words} loadText={('Genital Herpes')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Gonorrhea')}>
-                                <Translator style={styles.words} loadText={('Gonorrhea')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
-                                <Translator style={styles.words} loadText={('HIV/AIDS and STDs')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HPV Infection')}>
-                                <Translator style={styles.words} loadText={('HPV Infection')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
-                                <Translator style={styles.words} loadText={('Pelvic Inflammatory Disease')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'STDs During Pregnancy')}>
-                                <Translator style={styles.words} loadText={('STDs During Pregnancy')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Syphilis')}>
-                                <Translator style={styles.words} loadText={('Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Congenital Syphilis')}>
-                                <Translator style={styles.words} loadText={('Congenital Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Trichomoniasis')}>
-                                <Translator style={styles.words} loadText={('Trichomoniasis')} loadLanguage={GLOBAL_LANGUAGE} />
-                            </TouchableOpacity>
-                            <Modal
-                                isVisible={visibility}
-                                onBackdropPress={() => setVisibility(false)}
-                                propagateSwipe={true}
-                                onBackButtonPress={() => setVisibility(false)}
-                                style={styles.modalStyle}>
-                                <View style={styles.content}>
-                                    {/* For Non Creole supported */}
-                                    {checker && <Text style={{ color: 'red', fontSize: 20, alignSelf: 'center', justifyContent: 'center' }}>{message}</Text>}
-                                    <WebView
-                                        source={{ uri: STD }}
-                                        javaScriptEnabled={true}
-                                        style={styles.web} />
-                                    <Button title={Helpers('Hide', GLOBAL_LANGUAGE)} onPress={() => setVisibility(false)} />
-                                </View>
-                            </Modal>
-                        </View>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Bacterial Vaginosis')}>
+                            <Translator style={styles.words} loadText={('Bacterial Vaginosis')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Chlamydia')}>
+                            <Translator style={styles.words} loadText={('Chlamydia')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Genital Herpes')}>
+                            <Translator style={styles.words} loadText={('Genital Herpes')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Gonorrhea')}>
+                            <Translator style={styles.words} loadText={('Gonorrhea')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HIV/AIDS and STDs')}>
+                            <Translator style={styles.words} loadText={('HIV/AIDS and STDs')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'HPV Infection')}>
+                            <Translator style={styles.words} loadText={('HPV Infection')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Pelvic Inflammatory Disease')}>
+                            <Translator style={styles.words} loadText={('Pelvic Inflammatory Disease')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'STDs During Pregnancy')}>
+                            <Translator style={styles.words} loadText={('STDs During Pregnancy')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Syphilis')}>
+                            <Translator style={styles.words} loadText={('Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Congenital Syphilis')}>
+                            <Translator style={styles.words} loadText={('Congenital Syphilis')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.containers} onPress={() => modalControl(true, 'Trichomoniasis')}>
+                            <Translator style={styles.words} loadText={('Trichomoniasis')} loadLanguage={GLOBAL_LANGUAGE} />
+                        </TouchableOpacity>
+                        <Modal
+                            isVisible={visibility}
+                            onBackdropPress={() => setVisibility(false)}
+                            propagateSwipe={true}
+                            onBackButtonPress={() => setVisibility(false)}
+                            style={styles.modalStyle}>
+                            <View style={styles.content}>
+                                {/* For Non Creole supported */}
+                                {checker && <Text style={{ color: 'red', fontSize: 20, alignSelf: 'center', justifyContent: 'center' }}>{message}</Text>}
+                                <WebView
+                                    source={{ uri: STD }}
+                                    javaScriptEnabled={true}
+                                    style={styles.web} />
+                                <Button title={Helpers('Hide', GLOBAL_LANGUAGE)} onPress={() => setVisibility(false)} />
+                            </View>
+                        </Modal>
                     </ScrollView>
                 </Box>
             </View>
@@ -146,8 +140,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     containers: {
-        marginTop: 25
-    }
+        marginTop: 25,
+        alignSelf: 'flex-start',
+        justifyContent: 'flex-start',
+        marginRight: 10
+    },
+    boxTitle: {
+        fontSize: 30,
+        color: Colors.titleRed,
+        alignSelf: 'center',
+        justifyContent: 'center'
+    },
 })
 
 export default SexEd;
