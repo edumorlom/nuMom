@@ -10,6 +10,7 @@ import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
 import firebase from 'firebase';
 import { Context as AuthContext } from '../context/AuthContext';
+import { Context as FirebaseContext } from '../context/dbContext';
 
 //FIX DESIGN
 
@@ -21,17 +22,14 @@ const Profile = (props) => {
 
     const { signout } = useContext(AuthContext);
 
-    const signoutgHelper = props => {
-        signout();
-    };
+    const { getUserInfo } = useContext(FirebaseContext);
 
     useEffect(() => {
+        getUserInfo(phone); //get this phone number from the sign in form 
         props.navigation.setParams({signout: signout});
-
     }, []);
 
-   console.log(props);
-
+    
 
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
