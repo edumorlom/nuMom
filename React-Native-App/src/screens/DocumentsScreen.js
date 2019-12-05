@@ -34,11 +34,13 @@ const DocumentsScreen = props => {
         var year = new Date().getFullYear(); //Current Year
         var currDate = month + '/' + date + '/' + year;
 
-        setDocuments([...documents, { id: documents.length + 1, name: name, "date": currDate, "image": image }])
-        setName('');
-        setImage('');
-        sendToDatabase();
-        setVisibility(false);
+        if (image !== '') {
+            setDocuments([...documents, { id: documents.length + 1, name: name, "date": currDate, "image": image }])
+            setName('');
+            setImage('');
+            sendToDatabase();
+            setVisibility(false);
+        }
     }
     // handls image
     const picHandler = (pic) => {
