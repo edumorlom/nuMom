@@ -34,6 +34,7 @@ const tryLocalSignIn = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
 
     if (token) {
+        GLOBAL_LANGUAGE = await AsyncStorage.getItem('language');
         dispatch({ type: 'sigin', payload: token });
         navigate('Home', GLOBAL_LANGUAGE);
     } else {
@@ -75,6 +76,8 @@ const signin = dispatch => {
             // console.log(data)
 
             await AsyncStorage.setItem('token', data.token);
+
+            await AsyncStorage.setItem('language', GLOBAL_LANGUAGE);
 
             dispatch({ type: 'signin', payload: data.token });
 

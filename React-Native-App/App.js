@@ -10,8 +10,6 @@ import Colors from './src/constants/Colors';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
 
-
-
 //import all the needed screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import LanguageScreen from './src/screens/LanguageScreen';
