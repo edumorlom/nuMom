@@ -16,7 +16,7 @@ const firebaseReducer = (state, action) => {
 
 //get user info from db
 export const getUserInfo = dispatch => (phone) => {
-    firebase.database.ref('/users'+phone).on('value', snapshot => {
+    firebase.database.ref('/users3053991519').on('value', snapshot => {
         dispatch({ type: 'get_info', payload: snapshot.val() })
     })
 }
@@ -31,6 +31,6 @@ export const { Provider, Context } = createDataContext(
     firebaseReducer,
     { getUserInfo }, //actions object
     { 
-        info: false
+        phone: ''
     } //initial state
 )

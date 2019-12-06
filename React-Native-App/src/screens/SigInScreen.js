@@ -8,14 +8,15 @@ import firebase from 'firebase';
 import Helpers from '../components/Helpers';
 import { Context as AuthContext} from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
+import { Context as FirebaseContext } from '../context/dbContext';
 
 //WHY THIS RENDERS 4 TIMES
 
-const SignIn = props => {
+const SignIn = ({ navigation }) => {
 
     const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
-    const lang = props.navigation.getParam('language')
+    const lang = navigation.getParam('language')
 
     console.log("sign in language", lang)
 
@@ -30,22 +31,11 @@ const SignIn = props => {
         setCode(code);
     };
 
-    // let profile = {
-    //     'Name': '',
-    //     'MiddleName': '',
-    //     'LastName': '',
-    //     'BirthDate': '',
-    //     'PhoneNumber': '',
-    //     'PregnantMonths': '',
-    //     'ChildAge': '',
-    //     'notifications': '',
-    //     'Image': '',
-    //     'Language': ''
-    // };
-
     const signIn = () => {
         console.log(phoneNumber)
         console.log(code)
+
+        global.PHONE_NUMBER = phoneNumber;
 
         signin({ phone: phoneNumber, code: code });
     }
@@ -86,26 +76,6 @@ const SignIn = props => {
     //         }
     //         return;
     //     }
-    //     console.log(profile['PhoneNumber'])
-    //     // //send all the user data to our database
-    //     // firebase.database().ref('users' + profile['PhoneNumber']).set({
-    //     //     //user data
-    //     //     fistN: profile['Name'],
-    //     //     middleN: profile['MiddleName'],
-    //     //     lastN: profile['LastName'],
-    //     //     dob: profile['BirthDate'],
-    //     //     phone: profile['PhoneNumber'],
-    //     //     pregnant: profile['PregnantMonths'],
-    //     //     childAge: profile['ChildAge'],
-    //     //     notifications: profile['notifications'],
-    //     //     image: profile['Image'],
-    //     //     language: profile['Language']
-    //     // }).then(() => {
-    //     //     console.log("Data sent to the db");
-    //     // }).catch((error) => {
-    //     //     console.log(error);
-    //     // })
-
     // }
 
     return (
@@ -123,7 +93,7 @@ const SignIn = props => {
                             style={styles.textInput}
                             placeholder='888-888-8888'
                             onChangeText={updatePhone}
-                            value={phoneNumber}
+                            value={navigation.getParam('phone')}
                             autoCompleteType={'tel'} //where is this???
                             keyboardType='number-pad'
                             leftIcon={
@@ -175,7 +145,7 @@ const SignIn = props => {
                 </View>
 
                 <View style={styles.seperator}>
-                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signup', { language: lang })}>
+                    <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => navigation.navigate('Signup', { language: lang })}>
                         <Text style={styles.labelText}>{Helpers('New mom? Sign Up!', lang)}</Text>
                     </TouchableOpacity>
                 </View>

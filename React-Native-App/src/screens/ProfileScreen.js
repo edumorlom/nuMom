@@ -8,9 +8,9 @@ import ImagePick from '../components/ImagePick';
 import Box from '../components/Box';
 import SignUpForm from '../components/SignUp';
 import Helpers from '../components/Helpers';
-import firebase from 'firebase';
 import { Context as AuthContext } from '../context/AuthContext';
-import { Context as FirebaseContext } from '../context/dbContext';
+// import { getUserInfo } from '../actions/db_actions';
+// import firebase from 'firebase';
 
 //FIX DESIGN
 
@@ -22,10 +22,8 @@ const Profile = (props) => {
 
     const { signout } = useContext(AuthContext);
 
-    const { getUserInfo } = useContext(FirebaseContext);
-
     useEffect(() => {
-        getUserInfo(phone); //get this phone number from the sign in form 
+        // getUserInfo(); //get this phone number from the sign in form 
         props.navigation.setParams({signout: signout});
     }, []);
 
@@ -150,9 +148,6 @@ const Profile = (props) => {
 };
 
 Profile.navigationOptions = ({ navigation }) => {
-    // const { navigation } = props;
-    //   const { state } = navigation;
-    //   const { params } = state;
     return {
         title: 'Personal Account', 
         headerRight:  (

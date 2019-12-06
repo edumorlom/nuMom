@@ -97,7 +97,7 @@ const Clinics = ({ navigation }) => {
     }
 
     const renderDetailMarker = () => (
-        <View style={{position: 'absolute'}}>
+        <View style={{position: 'absolute', backgroundColor: 'red'}}>
             <Image
                 source= {{uri: marker['urlImage']}}
                 resizeMode="cover"
@@ -123,8 +123,8 @@ const Clinics = ({ navigation }) => {
                     initialRegion = { currentPosition }
                 >
                 { renderMarkers() }
-            
                 </MapView>
+                { marker.hasOwnProperty('id') && renderDetailMarker() }
                 <View style={styles.nurseIcon}>
                     <TouchableOpacity onPress={() => { navigation.navigate('Nurses', {language: GLOBAL_LANGUAGE}) }}>
                         <Image
@@ -157,9 +157,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         backgroundColor: Colors.newBackground
-        // alignItems: 'center',
-        // width: '100%',
-        // height: '100%'
     },
     mapStyle: {
         width: Dimensions.get('window').width,
@@ -169,11 +166,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginLeft: 10,
         marginTop: 10,
-        // borderColor: 'pink',
-        // backgroundColor: 'blue',
-        // borderRadius: 60,
-        // width: 85,
-        // height: 80
+    }, 
+    boxInfo: {
+        position: 'absolute',      
+        padding: 0,
+        flexDirection: 'row',
+        backgroundColor: Colors.boxBackground,
+        width: '100%'
     }
 })
 export default Clinics;

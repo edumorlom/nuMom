@@ -51,10 +51,10 @@ const signup = dispatch => {
             //request a code to be sent to the user
             const response1 = await axios.post(`${ROOT_URL}/requestOneTimePassword`, { phone });
 
-            dispatch({ type: 'signup', payload: true })
+            dispatch({ type: 'signup', payload: true });
 
             //navigate to signin
-            navigate('Signin', GLOBAL_LANGUAGE)
+            navigate('Signin', GLOBAL_LANGUAGE);
 
         } catch (error) {
             dispatch({ type: 'add_error', payload: 'User alredy exist. Try to sign in or sign up with a different phone number' })
@@ -109,13 +109,14 @@ const signout = dispatch => async () => {
 };
 
 export const { Provider, Context } = createDataContext(
-    authReducer,
+    authReducer, 
     { signin, signout, signup, clearErrorMessage, tryLocalSignIn }, //actions object
     { 
         token: null, 
         errorMessage: '', 
         success: false,
-        language: "en" 
+        language: "en",
+        phone: '' 
     } //initial state
 )
 
