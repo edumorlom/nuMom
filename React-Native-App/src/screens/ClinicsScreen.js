@@ -124,7 +124,6 @@ const Clinics = ({ navigation }) => {
                 >
                 { renderMarkers() }
                 </MapView>
-                { marker.hasOwnProperty('id') && renderDetailMarker() }
                 <View style={styles.nurseIcon}>
                     <TouchableOpacity onPress={() => { navigation.navigate('Nurses', {language: GLOBAL_LANGUAGE}) }}>
                         <Image
