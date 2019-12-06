@@ -7,13 +7,10 @@ import Box from '../components/Box';
 import Helper from '../components/Helpers';
 
 const HomeScreen = ({ navigation }) => {
+    
+    console.log("home screen GLOBAL_LANGUAGE ", GLOBAL_LANGUAGE);
 
-    // handles translations
-    const lang = GLOBAL_LANGUAGE;
-
-    console.log("home screen lang ", lang);
-
-    console.log("home screem global lang", GLOBAL_LANGUAGE)
+    console.log("home screem global GLOBAL_LANGUAGE", GLOBAL_LANGUAGE)
 
     // control the modal and its pop up information
     const [visibility, setVisibility] = useState(false);
@@ -40,10 +37,10 @@ const HomeScreen = ({ navigation }) => {
                         <View>
                             <Text style={styles.titleProgram}>{item.title}</Text>
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={lang} />
-                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={lang} />
+                            <Translator style={styles.text} loadText={(item.description)} loadLanguage={GLOBAL_LANGUAGE} />
+                            <Translator style={styles.text} loadText={(item.contact)} loadLanguage={GLOBAL_LANGUAGE} />
                             <Text>{'\n'}</Text>
-                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={lang} />
+                            <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.websitelabel)} loadLanguage={GLOBAL_LANGUAGE} />
                             <TouchableOpacity onPress={() => Linking.openURL(item.website)} >
                                 <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                     source={require('../../assets/icons/website.png')} />
@@ -51,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
                             {/* checks for second website */}
                             {(item.website2label != undefined) &&
                                 <View>
-                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={lang} />
+                                    <Translator style={styles.text, { alignSelf: 'center' }} loadText={(item.website2label)} loadLanguage={GLOBAL_LANGUAGE} />
                                     <TouchableOpacity onPress={() => Linking.openURL(item.website2)} >
                                         <Image style={{ width: 70, height: 70, alignSelf: 'center' }}
                                             source={require('../../assets/icons/website.png')} />
@@ -60,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
                                 <View>
                                     <Translator style={styles.text, { alignSelf: 'center' }} 
                                         loadText={"To find out more about the location of these clinics you can visit the \"Clinics\" screen"} 
-                                        loadLanguage={lang} 
+                                        loadLanguage={GLOBAL_LANGUAGE} 
                                     />
                                     <Image style={{ alignSelf: 'center', margin: 10 }} 
                                             source={require('../../assets/icons/clinics-icon.png')} />
@@ -129,6 +126,8 @@ const styles = StyleSheet.create({
     boxTitle: {
         fontSize: 30,
         color: Colors.titleRed,
+        alignSelf: 'center',
+        justifyContent: 'center'
     },
     content: {
         backgroundColor: 'white',

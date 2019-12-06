@@ -18,8 +18,6 @@ const Profile = (props) => {
 
     const lang = GLOBAL_LANGUAGE
 
-    console.log("profile screen language: ", lang)
-
     const { signout } = useContext(AuthContext);
 
     useEffect(() => {
@@ -27,10 +25,11 @@ const Profile = (props) => {
         props.navigation.setParams({signout: signout});
     }, []);
 
-    
 
     // handles the language selection of the app
     const [language, setLanguage] = useState(lang);
+    global.GLOBAL_LANGUAGE = language;
+
     // image default and new one hook
     const [image, setImage] = useState('../../assets/mom-and-baby-icon-editable.png');
     // TranslatorConfiguration.setConfig(ProviderTypes.Microsoft, 'de6f9f5aaa86420da79a3dc450cd4e6c', language);

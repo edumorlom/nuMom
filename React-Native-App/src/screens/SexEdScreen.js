@@ -16,9 +16,6 @@ const SexEd = props => {
     const [STD, setSTD] = useState('');
 
     const [checker, setChecker] = useState(false);
-    const locationHelper = (location) => {
-        // props.onTap(location);
-    }
 
     let message = Helpers('We are sorry, but this information is not available in Creole.', GLOBAL_LANGUAGE);
     const modalControl = (value, STD) => {
