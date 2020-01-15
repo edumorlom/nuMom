@@ -1,6 +1,6 @@
 # Keeping Moms and Infants Healthy -- Mobile Application <version 1.0>
 
-
+Authors: Moises Bentolila, Eduardo Morales
 
 This is the first version of the keeping Moms and Infants Healthy application that was built for Florida International University's CIS 4911 - Senior Project Course. A smartphone-based maternal/infant healthcare application (app), that provide support in 3 different languages (English, Spanish & Creole), designed for low-income minority mothers.  The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
