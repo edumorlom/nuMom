@@ -42,7 +42,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder='first name'
+                            placeholder='Panther'
                             onChangeText={text => this.setState({ name: text })}
                             style={styles.textInput}
                         />
@@ -56,7 +56,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder='middle name'
+                            placeholder='Roary'
                             onChangeText={text => this.setState({ middleName: text })}
                             style={styles.textInput}
                         />
@@ -70,7 +70,7 @@ export default class SignUpForm extends React.Component {
                     </View>
                     <View style={styles.inputWidth}>
                         <TextInput
-                            placeholder='last name'
+                            placeholder='Roary'
                             onChangeText={text => this.setState({ lastName: text })}
                             style={styles.textInput}
                         />
@@ -93,7 +93,7 @@ export default class SignUpForm extends React.Component {
                             date={this.state.birthdate}
                             onDateChange={date => this.setState({ birthdate: date })}
                             showIcon={false} mode="date"
-                            placeholder='1940-05-01' format="YYYY-MM-DD"
+                            placeholder='1965-06-01' format="YYYY-MM-DD"
                             minDate="1940-05-01" maxDate={currDate}
                             confirmBtnText="Confirm" cancelBtnText="Cancel"
                         />

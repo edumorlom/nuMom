@@ -98,9 +98,9 @@ const switchNavigator = createSwitchNavigator({
   }, {
     tabBarOptions: {
       showLabel: false,
-      activeBackgroundColor: Colors.buttonColor, 
+      activeBackgroundColor: 'white',
       style: {
-        backgroundColor: '#F6ECFF'
+        backgroundColor: 'white'
       }
     }
   }
@@ -142,7 +142,7 @@ export default () => {
 
   return(
     <AuthProvider>
-      <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: '#F6ECFF'}}>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center', backgroundColor: 'white'}}>
         <App ref={(navigator) => { setNavigator(navigator) }} />
       </SafeAreaView>
     </AuthProvider>
@@ -152,6 +152,6 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.newBackground,
+    backgroundColor: 'white',
   },
 });

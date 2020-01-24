@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     mapStyle: {
         width: Dimensions.get('window').width,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Dimensions, TouchableHighlight } from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, Dimensions, TouchableHighlight, Button} from 'react-native';
 import Colors from '../constants/Colors';
 import Translator from './Translator';
 
@@ -8,45 +8,33 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const Slides = (props) => {
 
-    state = props.loadLanguage
-
-    const renderLastSlide = (index) => {
-        if (index === props.data.length - 1){
-            return(
-                <TouchableHighlight
-                    style={styles.slideButton}
-                    underlayColor={Colors.hoverColor} 
-                    onPress={props.onComplete}
-                >
-                    <Translator loadText={('I\'m ready, let\'s go!')} loadLanguage={this.state.lang} />
-                </TouchableHighlight>
-            );
-        }
-    }
-
+    state = props.loadLanguage;
 
     const renderSlides = () => {
         return props.data.map( (slide, index) => {
             return (
                 <View key= {slide.text} style={styles.slide} >
-                    <Translator style={styles.slideText} loadText={slide.text} loadLanguage={this.state.lang} />
-                    <Image source={slide.image} style={styles.slide1img} />
-                    {renderLastSlide(index)}
+                    <Translator style={styles.slideTitle} loadText={slide.text} loadLanguage={this.state.lang} />
+                    <Image source={slide.image} style={styles.slideImage} />
+                    {
+                        props.data.length - 1 !== index &&
+                    <Translator style={styles.footer} loadText={"SLIDE FINGER TO CONTINUE"} loadLanguage={this.state.lang} />
+                    }
+                    {
+                        props.data.length - 1 === index &&
+                            <TouchableHighlight
+                            onPress={props.onComplete}
+                            >
+                                <Translator style={styles.footer} loadText={('SIGN UP NOW!')} loadLanguage={this.state.lang} />
+                            </TouchableHighlight>
+                        }
                 </View>
             )
         })
-    }
-
-
-
-
+    };
 
     return(
-        <ScrollView 
-            horizontal 
-            pagingEnabled
-            style= {{flex: 1}}
-            >
+        <ScrollView horizontal pagingEnabled style={{flex: 1}}>
             {renderSlides()}
         </ScrollView>
     );
@@ -61,30 +49,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: SCREEN_WIDTH,
         height: SCREEN_HEIGHT,
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
-    slide1img: {
+    slideTitle:{
+        marginBottom: '110%',
+        fontSize: 22,
+        color: 'purple',
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    slideImage: {
         position: 'absolute',
-        width: 400,
-        height: 400,
-        resizeMode:'contain',
-        justifyContent: 'center', 
-        alignItems: 'center',
+        width: 350,
+        height: 450,
     },
     slideText: {
-        paddingBottom: '130%',
         fontSize: 25,
-        color: '#9BB5F0', 
-        fontWeight: 'bold',
-        shadowOffset:{  width: 2,  height: 2, },
-        shadowColor: '#FDED97',
-        shadowOpacity: 1.0,
-        padding: 3,
+        color: 'black',
         textAlign: 'center'
-    }, 
-    slideButton: {
+    },
+
+    footer: {
         backgroundColor: Colors.buttonColor,
-        width: '50%',
+        color: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,

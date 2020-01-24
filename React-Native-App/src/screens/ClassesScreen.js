@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     title: {
         fontSize: 30,
-        color: Colors.titleRed,
+        color: Colors.titleColor,
     },
     sectionText: {
         color: Colors.blueLetters,

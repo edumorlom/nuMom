@@ -18,13 +18,13 @@ const SignIn = ({ navigation }) => {
 
     const lang = navigation.getParam('language')
 
-    console.log("sign in language", lang)
+    console.log("Sign In language", lang)
 
-    const [phoneNumber, setphoneNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [code, setCode] = useState('');
 
     const updatePhone = phone => {
-        setphoneNumber(phone);
+        setPhoneNumber(phone);
     };
 
     const updateCode = code => {
@@ -137,7 +137,7 @@ const SignIn = ({ navigation }) => {
                             })
                         ) : null }*/}
                     <TouchableHighlight
-                        style={styles.signInButton}
+                        style={styles.button}
                         onPress={signIn}
                         underlayColor={Colors.hoverColor} >
                         <Text style={styles.labelText}>{Helpers('Sign In!', lang)}</Text>
@@ -146,7 +146,7 @@ const SignIn = ({ navigation }) => {
 
                 <View style={styles.seperator}>
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => navigation.navigate('Signup', { language: lang })}>
-                        <Text style={styles.labelText}>{Helpers('New mom? Sign Up!', lang)}</Text>
+                        <Text style={styles.labelText}>{Helpers('NEW MOM? SIGN UP!', lang)}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     box: {
         justifyContent: 'space-around',
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '80%',
         height: '20%',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     labelText: {
         fontSize: 15,
@@ -181,16 +181,7 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         marginTop: '20%'
     },
-    signInButton: {
-        marginTop: 100,
-        marginBottom: 30,
-        padding: 10,
-        backgroundColor: Colors.buttonColor,
-        paddingHorizontal: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-    },
+
     seperator: {
         width: '80%',
         flexDirection: 'row',
@@ -202,9 +193,16 @@ const styles = StyleSheet.create({
     iconStyle: {
         paddingRight: 18
     },
-    textSignIn: {
-        fontSize: 18,
-        color: 'black',
+    button: {
+        backgroundColor: Colors.buttonColor,
+        color: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        padding: 10,
+        shadowOffset:{  width: 2,  height: 3, },
+        shadowColor: 'grey',
+        shadowOpacity: 0.5,
     }
 });
 

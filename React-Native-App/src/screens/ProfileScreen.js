@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     text: {
         fontSize: 18,

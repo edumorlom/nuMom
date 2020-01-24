@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     modalStyle: {
         justifyContent: 'center',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     boxTitle: {
         fontSize: 30,
-        color: Colors.titleRed,
+        color: Colors.titleColor,
         alignSelf: 'center',
         justifyContent: 'center'
     },

@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     documentButton: {
         marginBottom: 80,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     },
     boxTitle: {
         fontSize: 30,
-        color: Colors.titleRed,
+        color: Colors.titleColor,
         alignSelf: 'center',
     },
 })

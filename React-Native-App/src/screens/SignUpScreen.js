@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.newBackground
+        backgroundColor: Colors.background
     },
     button: {
         marginTop: 30,
