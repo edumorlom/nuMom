@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, Image, StyleSheet, ScrollView, Dimensions, TouchableHighlight, Button} from 'react-native';
 import Colors from '../constants/Colors';
 import Translator from './Translator';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -18,14 +19,14 @@ const Slides = (props) => {
                     <Image source={slide.image} style={styles.slideImage} />
                     {
                         props.data.length - 1 !== index &&
-                    <Translator style={styles.footer} loadText={"SLIDE FINGER TO CONTINUE"} loadLanguage={this.state.lang} />
+                            <Icon style={styles.icon} name='arrow-right' size={24} color='lightgrey'/>
                     }
                     {
                         props.data.length - 1 === index &&
                             <TouchableHighlight
                             onPress={props.onComplete}
                             >
-                                <Translator style={styles.footer} loadText={('SIGN UP NOW!')} loadLanguage={this.state.lang} />
+                                <Translator style={styles.footer} loadText={('SIGN UP NOW')} loadLanguage={this.state.lang} />
                             </TouchableHighlight>
                         }
                 </View>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
 
     footer: {
         backgroundColor: Colors.buttonColor,
-        color: 'white',
+        color: 'black',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
@@ -79,6 +80,10 @@ const styles = StyleSheet.create({
         shadowOffset:{  width: 2,  height: 3, },
         shadowColor: 'grey',
         shadowOpacity: 0.5,
+    },
+
+    icon: {
+        paddingTop: 100
     }
 });
 

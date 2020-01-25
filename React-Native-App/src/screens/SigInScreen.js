@@ -83,22 +83,22 @@ const SignIn = ({ navigation }) => {
             <View style={styles.screen}>
                 
                 <Image
-                    source={require('../../assets/images/mom-and-baby-icon.png')}
-                    style={styles.profileIcon}
+                    source={require('../../assets/images/motherhood.png')}
+                    style={styles.image}
                 />
 
                 <View style={styles.box}>
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
-                            placeholder='888-888-8888'
+                            placeholder='E-Mail'
                             onChangeText={updatePhone}
                             value={navigation.getParam('phone')}
                             autoCompleteType={'tel'} //where is this???
                             keyboardType='number-pad'
                             leftIcon={
                                 <Icon style={styles.iconStyle}
-                                    name='mobile'
+                                    name='envelope-open'
                                     size={24}
                                     color='lightgrey'
                                 />}
@@ -109,7 +109,7 @@ const SignIn = ({ navigation }) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Input
                             style={styles.textInput}
-                            placeholder={Helpers('code', lang)}
+                            placeholder={Helpers('Password', lang)}
                             onChangeText={setCode}
                             value={code}
                             secureTextEntry
@@ -140,11 +140,11 @@ const SignIn = ({ navigation }) => {
                         style={styles.button}
                         onPress={signIn}
                         underlayColor={Colors.hoverColor} >
-                        <Text style={styles.labelText}>{Helpers('Sign In!', lang)}</Text>
+                        <Text style={{color: 'black'}}>{Helpers('SIGN IN', lang)}</Text>
                     </TouchableHighlight>
                 </View>
 
-                <View style={styles.seperator}>
+                <View style={styles.separator}>
                     <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => navigation.navigate('Signup', { language: lang })}>
                         <Text style={styles.labelText}>{Helpers('NEW MOM? SIGN UP!', lang)}</Text>
                     </TouchableOpacity>
@@ -177,12 +177,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         width: '80%',
     },
-    profileIcon: {
+    image: {
         marginBottom: 40,
-        marginTop: '20%'
+        marginTop: '20%',
+        width: 150,
+        height: 150
     },
 
-    seperator: {
+    separator: {
         width: '80%',
         flexDirection: 'row',
         justifyContent: 'center',

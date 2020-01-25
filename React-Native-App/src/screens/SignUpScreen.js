@@ -158,16 +158,16 @@ const SignUp = (props) => {
                                         })
                                 ) : null }
                                 <TouchableOpacity style={styles.button} onPress={signUp} underlayColor={'rgba(213, 170, 255, 0.8)'}>
-                                    <Translator style={styles.text} loadText={('Sign Up')} loadLanguage={lan}/> 
+                                    <Translator style={styles.text} loadText={('SIGN UP')} loadLanguage={lan}/>
                                 </TouchableOpacity> 
                             </View>
-                            <View style={styles.seperator}>
+                            <View style={styles.separator}>
                                 <TouchableOpacity style={{ opacity: 0.5 }} onPress={() => props.navigation.navigate('Signin', { language: lan })}>
-                                    <Text style={styles.labelText}>{Helpers('Already have an account? Sign In!', lan)}</Text>
+                                    <Text style={styles.labelText}>{Helpers('ALREADY A MOM? SIGN IN', lan)}</Text>
                                 </TouchableOpacity>
                             </View> 
                     </View> 
-                </TouchableWithoutFeedback> 
+                </TouchableWithoutFeedback>
             </KeyboardAvoidingView >
         </SafeAreaView>
     );
