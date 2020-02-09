@@ -21,7 +21,7 @@ export default class Congratulations extends React.Component {
     }
 
     render() {
-        Vibration.vibrate([100], false);
+        Vibration.vibrate([200], false);
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>

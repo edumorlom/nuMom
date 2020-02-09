@@ -18,7 +18,6 @@ export default function GenderButton(props){
                 height: 100,
                 width: 105,
                 borderRadius: 10,
-
             }}
             onPress={onClick}
         >

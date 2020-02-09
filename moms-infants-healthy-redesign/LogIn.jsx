@@ -11,21 +11,21 @@ export default function LogIn(props) {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={appStyles.container}>
-                <View style={{marginTop: "30%"}}>
+                <View style={{marginTop: "27%"}}>
                     <Image style={{width: 150, height: 150}} source={loginMainImage} />
                 </View>
-                <View style={{paddingTop: 50, alignItems: 'center'}}>
+                <View style={{paddingTop: 40, alignItems: 'center'}}>
                     <TextBox placeholder={"E-Mail"}/>
                     <TextBox type={"password"} placeholder={"Password"}/>
-                    <Button onClick={()=>{console.log("Sign In!")}} text={"Sign In"}/>
+                    <Button onClick={() => props.setAppState({screen: 'homepage'})}
+                            text={"Sign In"}/>
                 </View>
                 <View style={{
                     width: '100%',
                     justifyContent: 'center',
                     alignItems: 'center',
                     position: 'absolute',
-                    bottom: 40
-                }}>
+                    bottom: 40}}>
                     <ClickableText text={"NEW MOM? SIGN UP NOW!"}
                                    onClick={() => props.setAppState({screen: 'signup'})}/>
                 </View>

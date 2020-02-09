@@ -11,13 +11,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "expo": "^36.0.0",
     "expo-haptics": "^8.0.0",
+    "google-map-react": "^1.1.6",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-cardview": "^2.0.5",
     "react-native-confetti": "^0.1.0",
     "react-native-confetti-cannon": "^1.1.6",
-    "react-native-haptic-feedback": "^1.9.0"
+    "react-native-haptic-feedback": "^1.9.0",
+    "react-native-maps": "^0.26.1",
+    "rn-sliding-up-panel": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

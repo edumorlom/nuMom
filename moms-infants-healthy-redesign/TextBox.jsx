@@ -5,15 +5,11 @@ import CardView from 'react-native-cardview';
 
 export default function TextBox(props){
     return (
-        <CardView
-            cardElevation={2}
-            cardMaxElevation={2}
-            cornerRadius={5}
-        >
-            <TextInput style={appStyles.TextBox}
+        <View style={appStyles.TextInput.View}>
+            <TextInput style={appStyles.TextInput.TextInput}
                        keyboardType={props.keyboardType ? props.keyboardType : "default"}
                        secureTextEntry={props.type === 'password'}
                        placeholder={props.placeholder} onChangeText={props.onChangeText}/>
-        </CardView>
+        </View>
     )
 }

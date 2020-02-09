@@ -1,6 +1,7 @@
 import React from 'react';
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
+import Homepage from "./Homepage";
 
 
 export default class App extends React.Component {
@@ -18,6 +19,8 @@ export default class App extends React.Component {
       return (<LogIn setAppState={this.setAppState}/>)
     } else if (this.state.screen === 'signup') {
       return (<SignUp setAppState={this.setAppState}/>)
+    } else {
+      return (<Homepage/>)
     }
   }
 }
