@@ -10,7 +10,7 @@ export default class SignUpPassword extends React.Component {
     state = {fullName: '', email: '', dob: ''};
 
     setFullName = (fullName) => {
-        console.log(fullName)
+        console.log(fullName);
         this.setState({fullName: fullName})
     };
 
@@ -25,7 +25,7 @@ export default class SignUpPassword extends React.Component {
                         position: 'absolute',
                     }}>
                         <View>
-                            <Text style={appStyles.titleBlue}>{"Secure Your Account"}</Text>
+                            <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
                         </View>
                         <View style={{paddingTop: 100, alignItems: 'center'}}>
                             <TextBox type={"password"} placeholder={"Password"}/>
