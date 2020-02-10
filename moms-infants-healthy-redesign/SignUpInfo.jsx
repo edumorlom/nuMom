@@ -3,6 +3,7 @@ import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
 import TextBox from "./TextBox.jsx";
+import Main from "./Main";
 
 
 export default class SignUpInfo extends React.Component {
@@ -12,7 +13,13 @@ export default class SignUpInfo extends React.Component {
     setFullName = (fullName) => {
         console.log(fullName)
         this.setState({fullName: fullName})
-    }
+    };
+
+    onClick = () => {
+        let firebaseHandler = new Main();
+        firebaseHandler.signUp('edumoralom@harry.com', '1234567899');
+        this.props.getNextScreen()
+    };
 
     render() {
         let titleText = this.state.fullName ? 'Great To Meet You, ' : "Great To Meet You!";
@@ -43,7 +50,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: 40
                     }}>
-                        <Button text={"Continue"} onClick={()=> this.props.getNextScreen()}/>
+                        <Button text={"Continue"} onClick={()=> this.onClick()}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
