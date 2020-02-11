@@ -17,7 +17,7 @@ export default class SignUpInfo extends React.Component {
 
     onClick = () => {
         let firebaseHandler = new Main();
-        firebaseHandler.signUp('edumoralom@harry.com', '1234567899');
+        firebaseHandler.signUp('emora113@fiu.edu', '1234567890');
         this.props.getNextScreen()
     };
 

@@ -18,7 +18,8 @@
     "react-native-cardview": "^2.0.5",
     "react-native-confetti": "^0.1.0",
     "react-native-confetti-cannon": "^1.1.6",
-    "react-native-haptic-feedback": "^1.9.0"
+    "react-native-haptic-feedback": "^1.9.0",
+    "react-native-maps": "^0.26.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

@@ -22,7 +22,7 @@ export default class SignUpPassword extends React.Component {
                         paddingTop: '40%',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        position: 'absolute',
+                        position: 'absolute'
                     }}>
                         <View>
                             <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>

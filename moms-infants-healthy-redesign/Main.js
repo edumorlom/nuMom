@@ -20,37 +20,30 @@ export default class Main {
     signUp = (email, password, fullName, dob, address, babyGender) => {
         this.createUserAuthentication(email, password)
 
-        this.saveUserInfo(fullName, dob, address, babyGender);
+        // this.saveUserInfo(fullName, dob, address, babyGender);
     };
 
     logIn = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
         });
     };
 
     createUserAuthentication = (email, password) => {
-        let uid;
         try {
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password)
                 .then(user => {
-                    uid = user.uid;
+                    let uid = user.uid;
                     console.log(user.uid)
                 });
         } catch (error) {
             console.log(error.toString(error));
         }
-
-        return uid;
     };
 
     saveUserInfo = (uid, fullName, dob, address, babyGender) => {
-        firebase.database().ref('users/' + uid).set({
+        firebase.database().ref('users/' + 'emora113').set({
             fullName: fullName,
             dob: dob,
             age: address,
