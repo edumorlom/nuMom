@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Keeping Moms and Infants Healthy",
+    "name": "Healthy Moms and Infants",
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "0.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "edu.fiu.moms-infants-healthy",
+      "config": {
+        "googleMapsApiKey": "AIzaSyARYjdvM_M9wm246SfF_1s7zDCe6I7K8dI"
+      }
     },
     "description": "",
     "githubUrl": "https://github.com/edumorlom/moms-infants-healthy"

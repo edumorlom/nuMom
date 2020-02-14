@@ -7,13 +7,6 @@ import TextBox from "./TextBox.jsx";
 
 export default class SignUpAddress extends React.Component {
 
-    state = {fullName: '', email: '', dob: ''};
-
-    setFullName = (fullName) => {
-        console.log(fullName)
-        this.setState({fullName: fullName})
-    }
-
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

@@ -5,6 +5,7 @@ const createUsers = require('./create_user');
 const requestOneTimePassword = require("./request_one_time_password");
 const verifyOneTimePassword = require("./verify_one_time_password");
 
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://moms-infants-healthy.firebaseio.com/"

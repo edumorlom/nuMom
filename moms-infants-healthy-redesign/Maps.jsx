@@ -1,7 +1,8 @@
 import React from 'react';
 import {AppRegistry, Dimensions, StyleSheet, Text, View} from 'react-native';
 
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {AnimatedRegion} from 'react-native-maps';
+
 import AppStyles from "./AppStyles";
 
 const { width, height } = Dimensions.get('window');
@@ -12,18 +13,23 @@ const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+const region = new AnimatedRegion();
+console.log(region);
 
 export default function Maps() {
     return (
             <MapView
-                provider={PROVIDER_GOOGLE}
                 style={styles.map}
-                initialRegion={{
+                showsUserLocation={true}
+                zoomEnabled={true}
+                followUserLocation={true}
+                region={{
                     latitude: LATITUDE,
                     longitude: LONGITUDE,
                     latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                }}
+                    longitudeDelta: LONGITUDE_DELTA
+                }
+                }
             />
     );
 }
