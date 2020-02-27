@@ -29,7 +29,7 @@ export default class Homepage extends React.Component {
                     top: 30,
                     bottom: 0,
                     maxHeight: 110,
-                    maxWidth: 230
+                    maxWidth: 200
                 }} onPress={() => Linking.openURL('tel:911')}>
                 <View style={appStyles.WhitePanelButton}>
                     <Image style={{width: 25, height: 25}} source={sosImage} />

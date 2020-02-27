@@ -11,6 +11,7 @@ import SignUpAddress from "./SignUpAddress";
 import SignUpPassword from "./SignUpPassword";
 import SignUpBabyGender from "./SignUpBabyGender";
 import Firebase from "./Firebase";
+import FinishingSignUp from "./FinishingSignUp";
 
 
 export default class SignUp extends React.Component {
@@ -31,7 +32,8 @@ export default class SignUp extends React.Component {
     signUpAndUploadData = () => {
         let fb = new Firebase();
         console.log(this.state);
-        // fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
+        fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
+        this.props.setAppState({screen: 'login'})
     };
 
 
@@ -39,7 +41,8 @@ export default class SignUp extends React.Component {
         <Congratulations setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.signUpAndUploadData}/>
+        <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
+        <FinishingSignUp signUpAndUploadData={this.signUpAndUploadData}/>
     ];
 
     render() {

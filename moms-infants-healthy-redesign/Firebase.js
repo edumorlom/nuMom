@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 
 
 export default class Firebase {
-    uid = null;
+
     constructor() {
         const config = {
             apiKey: "AIzaSyDm7_EtvmYGiq-qbKnAOD_oqGTH0ClCqcI",
@@ -17,20 +17,21 @@ export default class Firebase {
     }
 
     signUp = (email, password, fullName, dob, babyGender) => {
-        this.createUserWithEmailAndPassword(email, password);
-        this.saveUserInfo(this.uid, fullName, dob, babyGender).then(() => {this.uid = null;})};
+        this.createUserWithEmailAndPassword(email, password).then((response) => {
+            this.saveUserInfo(response.user.uid, fullName, dob, babyGender).then(() => {});
+        })
+    };
 
     createUserWithEmailAndPassword(email, password) {
-        return firebase.auth().createUserWithEmailAndPassword(email, password).then((uid) => {this.uid = uid});
+        return firebase.auth().createUserWithEmailAndPassword(email, password);
     }
 
     logIn = (email, password) => {return firebase.auth().signInWithEmailAndPassword(email, password);};
 
-    saveUserInfo = (uid, fullName, dob, address, babyGender) => {
+    saveUserInfo = (uid, fullName, dob, babyGender) => {
         return firebase.database().ref('users/' + uid).set({
             fullName: fullName,
             dob: dob,
-            age: address,
             babyGender: babyGender
         });
 

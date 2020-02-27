@@ -30,13 +30,13 @@ export default class SignUpBabyGender extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={container}>
                     <View style={{
-                        paddingTop: '90%',
+                        marginTop: '50%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute'
                     }}>
                         <View>
-                            <Text style={{color: 'white', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 20}}>{"Baby's Gender"}</Text>
+                            <Text style={{color: 'white', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10}}>{"Baby's Gender"}</Text>
                         </View>
                         <View style={appStyles.rowContainer}>
                             <GenderButton text={'♂'} color={genderColors['male']} onClick={() => this.setBabyGender('male')}/>
