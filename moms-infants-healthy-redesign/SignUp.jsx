@@ -19,7 +19,7 @@ export default class SignUp extends React.Component {
     getNextScreen = () => {
         let currentIndex = this.state.index;
         console.log(currentIndex);
-        if (currentIndex >= 0 && currentIndex < (this.screens.length - 1)) this.setState({index: currentIndex + 1});
+        this.setState({index: currentIndex + 1});
     };
 
     setUserInfo = (keyToValue) => {
@@ -31,7 +31,7 @@ export default class SignUp extends React.Component {
     signUpAndUploadData = () => {
         let fb = new Firebase();
         console.log(this.state);
-        fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
+        // fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
     };
 
 

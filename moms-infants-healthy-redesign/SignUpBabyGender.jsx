@@ -6,7 +6,6 @@ import Button from "./Button";
 
 
 export default class SignUpBabyGender extends React.Component {
-
     state = {babyGender: 'unknown'};
 
     onClick = () => {
@@ -52,7 +51,7 @@ export default class SignUpBabyGender extends React.Component {
                         position: 'absolute',
                         bottom: 40
                     }}>
-                        <Button text={"Continue"} onClick={() => this.onClick()}/>
+                        <Button text={"Continue"} onClick={this.onClick}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

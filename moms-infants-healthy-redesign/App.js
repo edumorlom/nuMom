@@ -18,7 +18,11 @@ export default class App extends React.Component {
     if (this.state.screen === 'login') {
       return (<LogIn setAppState={this.setAppState}/>)
     } else if (this.state.screen === 'signup') {
-      return (<SignUp setAppState={this.setAppState}/>)
+      try {
+        return (<SignUp setAppState={this.setAppState}/>)
+      } catch (err) {
+        this.setAppState({screen: 'login'})
+      }
     } else {
       return (<Homepage/>)
     }
