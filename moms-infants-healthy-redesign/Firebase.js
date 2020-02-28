@@ -14,19 +14,25 @@ export default class Firebase {
         };
 
         if (!firebase.apps.length) firebase.initializeApp(config);
+
     }
 
     signUp = (email, password, fullName, dob, babyGender) => {
-        this.createUserWithEmailAndPassword(email, password).then((response) => {
-            this.saveUserInfo(response.user.uid, fullName, dob, babyGender).then(() => {});
-        })
+        //Errors not working...
+        this.createUserWithEmailAndPassword(email, password).then(response => {
+            this.saveUserInfo(response.user.uid, fullName, dob, babyGender).then(() => {
+                console.log("User Creation was a success!")
+            }, e => {console.log("ERRRORR")})
+        }, e => {console.log("ERROR")})
     };
 
     createUserWithEmailAndPassword(email, password) {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     }
 
-    logIn = (email, password) => {return firebase.auth().signInWithEmailAndPassword(email, password);};
+    logIn = (email, password) => {
+        return firebase.auth().signInWithEmailAndPassword(email, password);
+    };
 
     saveUserInfo = (uid, fullName, dob, babyGender) => {
         return firebase.database().ref('users/' + uid).set({

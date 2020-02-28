@@ -5,7 +5,8 @@ export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = 35;
 export let borderRadius = 15;
-export let shadow = {shadowColor: darkGreyColor,
+export let shadow = {
+    shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.1,
     shadowRadius: 7
@@ -99,7 +100,6 @@ export default {
         fontWeight: 'bold',
     },
     WhitePanelButton: {
-        flex: 1,
         shadowColor: shadow.shadowColor,
         shadowOffset: {width: 1, height: 1},
         shadowOpacity: 1,
@@ -110,9 +110,26 @@ export default {
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: borderRadius,
-        paddingLeft: 40,
-        paddingRight: 40,
-        margin: 30,
+        marginTop: 30,
+        marginLeft: 30,
+        height: 55,
+        width: 170,
         flexDirection: 'row',
+    },
+    BottomPanel: {
+        shadowColor: shadow.shadowColor,
+        shadowOffset: {width: 1, height: 1},
+        shadowOpacity: 1,
+        shadowRadius: 10,
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderWidth: 0.5,
+        borderRadius: borderRadius,
+        width: '100%',
+        height: '40%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0
     }
 };

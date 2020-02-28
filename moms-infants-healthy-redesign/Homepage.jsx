@@ -37,6 +37,9 @@ export default class Homepage extends React.Component {
                     <Text style={{color: appStyles.greyColor, fontSize: 20, fontWeight: 'bold'}}>S.O.S</Text>
                 </View>
                 </TouchableHighlight>
+                <View style={appStyles.BottomPanel}>
+                    <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>Features coming soon!</Text>
+                </View>
             </View>
         )
     }

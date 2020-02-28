@@ -19,14 +19,11 @@ export default class SignUp extends React.Component {
 
     getNextScreen = () => {
         let currentIndex = this.state.index;
-        console.log(currentIndex);
         this.setState({index: currentIndex + 1});
     };
 
     setUserInfo = (keyToValue) => {
-        console.log(keyToValue);
         this.setState(keyToValue);
-        console.log(this.state)
     };
 
     signUpAndUploadData = () => {
@@ -35,7 +32,6 @@ export default class SignUp extends React.Component {
         fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
         this.props.setAppState({screen: 'login'})
     };
-
 
     screens = [
         <Congratulations setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
