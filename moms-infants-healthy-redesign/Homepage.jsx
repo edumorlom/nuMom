@@ -1,11 +1,10 @@
 import React from 'react';
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
 import Maps from "./Maps";
-import {AppRegistry, Dimensions, Image, Text, View, TouchableHighlight, resizeMode} from 'react-native';
+import {Image, Text, View, TouchableHighlight} from 'react-native';
 import appStyles from "./AppStyles";
 import sosImage from "./sos-image.png";
 import {Linking} from 'react-native'
+import LowerPanel from "./LowerPanel";
 
 
 const styles = {
@@ -33,13 +32,11 @@ export default class Homepage extends React.Component {
                 }} onPress={() => Linking.openURL('tel:911')}>
                 <View style={appStyles.WhitePanelButton}>
                     <Image style={{width: 25, height: 25}} source={sosImage} />
-                    <View style={{padding: 10}}/>
+                    <View style={{margin: 10}}/>
                     <Text style={{color: appStyles.greyColor, fontSize: 20, fontWeight: 'bold'}}>S.O.S</Text>
                 </View>
                 </TouchableHighlight>
-                <View style={appStyles.BottomPanel}>
-                    <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>Features coming soon!</Text>
-                </View>
+                <LowerPanel/>
             </View>
         )
     }

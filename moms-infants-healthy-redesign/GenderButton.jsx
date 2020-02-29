@@ -17,10 +17,9 @@ export default function GenderButton(props){
                 backgroundColor: 'white',
                 height: 100,
                 width: 105,
-                borderRadius: 10,
+                borderRadius: appStyles.button.TouchableHighlight.borderRadius,
             }}
-            onPress={onClick}
-        >
+            onPress={onClick}>
             <Text style={{color: props.color, fontSize: 85}}>{props.text}</Text>
         </TouchableHighlight>
     )

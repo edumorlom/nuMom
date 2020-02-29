@@ -4,7 +4,7 @@ export let greyColor = "#A9A9A9";
 export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = 35;
-export let borderRadius = 15;
+export let borderRadius = 12;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
@@ -126,7 +126,7 @@ export default {
         borderWidth: 0.5,
         borderRadius: borderRadius,
         width: '100%',
-        height: '40%',
+        height: '50%',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
