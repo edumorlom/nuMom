@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Healthy Moms and Infants",
+    "name": "Mommify",
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "0.0.3",
+    "version": "0.0.31",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
