@@ -1,21 +1,16 @@
-import {Image, Keyboard, StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import loginMainImage from "./login-main-image.png"
-import appStyles from './AppStyles'
-import Button from "./Button";
-import TextBox from "./TextBox.jsx";
-import ClickableText from "./ClickableText";
 import SignUpInfo from "./SignUpInfo";
 import Congratulations from "./Congratulations";
-import SignUpAddress from "./SignUpAddress";
 import SignUpPassword from "./SignUpPassword";
 import SignUpBabyGender from "./SignUpBabyGender";
 import Firebase from "./Firebase";
 import FinishingSignUp from "./FinishingSignUp";
+import SignUpPregnant from "./SignUpPregnant";
+import SignUpInfant from "./SignUpInfant";
 
 
 export default class SignUp extends React.Component {
-    state = {index: 0, email: null, password: null, fullName: null, dob: null, babyGender: 'unknown'};
+    state = {index: 0, email: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null};
 
     getNextScreen = () => {
         let currentIndex = this.state.index;
@@ -37,6 +32,8 @@ export default class SignUp extends React.Component {
         <Congratulations setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
+        <SignUpPregnant setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
+        <SignUpInfant setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <FinishingSignUp signUpAndUploadData={this.signUpAndUploadData}/>
     ];

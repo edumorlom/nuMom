@@ -47,9 +47,9 @@ export default class LogIn extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: 100
                     }}>
-                        <ClickableText text={"NEW MOM? SIGN UP NOW!"}
+                        <ClickableText text={"NEW USER? SIGN UP NOW!"}
                                        onClick={() => this.props.setAppState({screen: 'signup'})}/>
                     </View>
                 </View>
