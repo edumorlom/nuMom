@@ -26,8 +26,12 @@ export default class SignUpInfo extends React.Component {
     };
 
     onClick = () => {
-        this.props.setUserInfo(this.state);
-        this.props.getNextScreen();
+        if (!this.state.fullName || !this.state.email || !this.state.dob) {
+            alert("Please fill out all of the fields!")
+        } else {
+            this.props.setUserInfo(this.state);
+            this.props.getNextScreen();
+        }
     };
 
     render() {

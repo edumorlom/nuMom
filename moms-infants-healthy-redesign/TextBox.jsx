@@ -1,7 +1,6 @@
 import React from "react";
 import {TextInput, View} from 'react-native'
 import appStyles from "./AppStyles";
-import CardView from 'react-native-cardview';
 
 export default function TextBox(props){
     return (

@@ -47,7 +47,7 @@ export default class SignUpInfant extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: 100
                     }}>
                     </View>
                 </View>

@@ -53,7 +53,7 @@ export default class SignUpPassword extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: 100
                     }}>
                         <Button text={"Continue"} onClick={() => this.onClick()}/>
                     </View>

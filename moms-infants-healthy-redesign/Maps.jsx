@@ -10,7 +10,7 @@ console.log(region);
 
 export default class Maps extends React.Component {
 
-    state = {currentRegion: {latitude: 0, longitude: 0, latitudeDelta: 0.00922 * 1.5, longitudeDelta: 0.00421 * 1.5 }};
+    state = {currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }};
 
     componentDidMount() {
         this.watchID = navigator.geolocation.watchPosition((position) => {

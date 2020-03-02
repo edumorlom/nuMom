@@ -4,12 +4,12 @@ export let greyColor = "#A9A9A9";
 export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = 35;
-export let borderRadius = 12;
+export let borderRadius = 15;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.1,
-    shadowRadius: 7
+    shadowOpacity: 0.5,
+    shadowRadius: 5
 };
 
 export default {
@@ -63,10 +63,6 @@ export default {
             paddingLeft: 30,
             paddingRight: 30,
             borderRadius: borderRadius,
-            shadowColor: shadow.shadowColor,
-            shadowOffset: shadow.shadowOffset,
-            shadowOpacity: shadow.shadowOpacity,
-            shadowRadius: shadow.shadowRadius
         },
         text: {
             color: 'white',
@@ -77,9 +73,9 @@ export default {
     TextInput: {
         View: {
             shadowColor: shadow.shadowColor,
-            shadowOffset: {width: 10, height: 10},
-            shadowOpacity: 1,
-            shadowRadius: 10,
+            shadowOffset: shadow.shadowOffset,
+            shadowOpacity: 0.4,
+            shadowRadius: shadow.shadowRadius,
             height: 50,
             width: 300,
             margin: 10,
@@ -101,9 +97,9 @@ export default {
     },
     WhitePanelButton: {
         shadowColor: shadow.shadowColor,
-        shadowOffset: {width: 1, height: 1},
-        shadowOpacity: 1,
-        shadowRadius: 10,
+        shadowOffset: shadow.shadowOffset,
+        shadowOpacity: shadow.shadowOpacity,
+        shadowRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
@@ -122,8 +118,7 @@ export default {
         shadowOpacity: 1,
         shadowRadius: 15,
         backgroundColor: 'white',
-        borderColor: 'white',
-        borderWidth: 0.5,
+        borderWidth: 0,
         borderRadius: borderRadius,
         width: '100%',
         height: '55%',

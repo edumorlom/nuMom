@@ -10,7 +10,7 @@ export default function SOSButton() {
             position: 'absolute',
             left: 0,
             right: 0,
-            top: '1%',
+            top: '2%',
             bottom: 0,
             maxHeight: 0,
             maxWidth: 0

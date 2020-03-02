@@ -26,7 +26,7 @@ export default class LogIn extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
-                    <View style={{marginTop: "27%"}}>
+                    <View style={{marginTop: "25%"}}>
                         <Image style={{width: 150, height: 150}} source={loginMainImage}/>
                     </View>
                     <View style={{paddingTop: 40, alignItems: 'center'}}>
@@ -59,7 +59,7 @@ export default class LogIn extends React.Component {
                         position: 'absolute',
                         bottom: 100
                     }}>
-                        <ClickableText text={"NEW USER? SIGN UP NOW!"}
+                        <ClickableText text={"NEW PARENT? SIGN UP NOW!"}
                                        onClick={() => this.props.setAppState({screen: 'signup'})}/>
                     </View>
                 </View>
