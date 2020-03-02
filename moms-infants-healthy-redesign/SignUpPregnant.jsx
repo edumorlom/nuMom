@@ -36,7 +36,7 @@ export default class SignUpPregnant extends React.Component {
                         alignItems: 'center',
                         position: 'absolute'
                     }}>
-                        <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10}}>{"Are You Pregnant?"}</Text>
+                        <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Are You Pregnant?"}</Text>
                         <View style={appStyles.rowContainer}>
                             <GenderButton text={'✓'} color={genderColors['male']} onClick={() => this.setPregnant(true)}/>
                             <GenderButton text={'X'} color={genderColors['female']}  onClick={() => this.setPregnant(false)}/>

@@ -11,6 +11,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "expo": "^36.0.0",
     "expo-haptics": "^8.0.0",
+    "expo-permissions": "^8.0.0",
     "firebase": "^7.9.3",
     "react": "16.9.0",
     "react-dom": "16.9.0",

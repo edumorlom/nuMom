@@ -43,7 +43,7 @@ export default class SignUpInfo extends React.Component {
                     }}>
                         <View>
                             <Text style={appStyles.titleBlue}>{titleText}</Text>
-                            <Text style={appStyles.titlePink}>{this.state.fullName ? this.state.fullName.split(" ")[0] : ' '}</Text>
+                            <Text style={appStyles.titlePink}>{this.state.fullName ? this.state.fullName.split(' ')[0] : ' '}</Text>
                         </View>
                         <View style={{paddingTop: 100, alignItems: 'center'}}>
                             <TextBox placeholder={"Full Name"} onChangeText={this.setFullName}/>

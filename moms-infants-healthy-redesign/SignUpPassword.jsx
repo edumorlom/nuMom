@@ -1,4 +1,4 @@
-import {Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -7,15 +7,27 @@ import TextBox from "./TextBox.jsx";
 
 export default class SignUpPassword extends React.Component {
 
-    state = {password: null};
+    state = {password: '', repeatPassword: ''};
 
     setPassword = (password) => {
         this.setState({password: password})
     };
 
+    setRepeatPassword = (password) => {
+        this.setState({repeatPassword: password})
+    };
+
     onClick = () => {
-        this.props.setUserInfo(this.state);
-        this.props.getNextScreen();
+        if (this.state.password !== this.state.repeatPassword) {
+            alert("Your passwords don't match!")
+        } else if (!this.state.password || !this.state.repeatPassword) {
+            alert("Password cannot be left empty!")
+        } else if (this.state.password.length < 6){
+            alert("Your password must have at least 6 characters!")
+        } else {
+            this.props.setUserInfo(this.state);
+            this.props.getNextScreen();
+        }
     };
 
     render() {
@@ -33,7 +45,7 @@ export default class SignUpPassword extends React.Component {
                         </View>
                         <View style={{paddingTop: 100, alignItems: 'center'}}>
                             <TextBox type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
-                            <TextBox type={"password"} placeholder={"Repeat Password"}/>
+                            <TextBox type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
                         </View>
                     </View>
                     <View style={{
@@ -43,7 +55,7 @@ export default class SignUpPassword extends React.Component {
                         position: 'absolute',
                         bottom: 40
                     }}>
-                        <Button text={"Continue"} onClick={()=> this.onClick()}/>
+                        <Button text={"Continue"} onClick={() => this.onClick()}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

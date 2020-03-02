@@ -36,7 +36,7 @@ export default class SignUpInfant extends React.Component {
                         alignItems: 'center',
                         position: 'absolute'
                     }}>
-                        <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10}}>{"Do You Have an Infant?"}</Text>
+                        <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Do You Have an Infant?"}</Text>
                         <View style={appStyles.rowContainer}>
                             <GenderButton text={'✓'} color={genderColors['male']} onClick={() => this.setInfant(true)}/>
                             <GenderButton text={'X'} color={genderColors['female']}  onClick={() => this.setInfant(false)}/>

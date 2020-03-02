@@ -24,7 +24,7 @@ export default class SignUp extends React.Component {
     signUpAndUploadData = () => {
         let fb = new Firebase();
         console.log(this.state);
-        fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.babyGender);
+        fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
         this.props.setAppState({screen: 'login'})
     };
 

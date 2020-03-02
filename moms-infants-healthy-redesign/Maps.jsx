@@ -1,37 +1,43 @@
 import React from 'react';
-import {AppRegistry, Dimensions, StyleSheet, Text, View} from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import MapView, {AnimatedRegion} from 'react-native-maps';
 
-import AppStyles from "./AppStyles";
-
 const { width, height } = Dimensions.get('window');
-
-const ASPECT_RATIO = width / height;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const region = new AnimatedRegion();
 console.log(region);
 
-export default function Maps() {
-    return (
+export default class Maps extends React.Component {
+
+    state = {currentRegion: {latitude: 0, longitude: 0, latitudeDelta: 0.00922 * 1.5, longitudeDelta: 0.00421 * 1.5 }};
+
+    componentDidMount() {
+        this.watchID = navigator.geolocation.watchPosition((position) => {
+            let region = {
+                latitude: position.coords.latitude - 0.05,
+                longitude: position.coords.longitude,
+                latitudeDelta: 0.1 * 1.5,
+                longitudeDelta: 0.1 * 1.5
+            };
+            this.setState({currentRegion: region})
+        }, (error) => console.log(error));
+    }
+
+    componentWillUnmount() {
+        navigator.geolocation.clearWatch(this.watchID);
+    }
+
+    render() {
+        return (
             <MapView
                 style={styles.map}
                 showsUserLocation={true}
                 zoomEnabled={true}
                 followUserLocation={true}
-                region={{
-                    latitude: LATITUDE,
-                    longitude: LONGITUDE,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA
-                }
-                }
-            />
-    );
+                region={this.state.currentRegion}/>
+        );
+    }
 }
 
 Maps.propTypes = {

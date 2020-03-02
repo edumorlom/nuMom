@@ -17,30 +17,35 @@ export default class Firebase {
 
     }
 
-    signUp = (email, password, fullName, dob, babyGender) => {
-        //Errors not working...
+    signUp = (email, password, fullName, dob, pregnant, infant, babyGender) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-            this.saveUserInfo(response.user.uid, fullName, dob, babyGender).then(() => {
+            this.saveUserInfo(response.user.uid, fullName, dob, pregnant, infant, babyGender).then(() => {
                 console.log("User Creation was a success!")
-            }, e => {console.log("ERRRORR")})
-        }, e => {console.log("ERROR")})
+            }, e => {alert("ERROR 100")})
+        }, e => {alert("ERROR 101");})
     };
 
-    createUserWithEmailAndPassword(email, password) {
+    createUserWithEmailAndPassword = (email, password) => {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
-    }
+    };
 
     logIn = (email, password) => {
         return firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
-    saveUserInfo = (uid, fullName, dob, babyGender) => {
+    saveUserInfo = (uid, fullName, dob, pregnant, infant, babyGender) => {
         return firebase.database().ref('users/' + uid).set({
             fullName: fullName,
             dob: dob,
+            pregnant: pregnant,
+            infant: infant,
             babyGender: babyGender
         });
 
+    };
+
+    getUserInfo = (uid) => {
+        return firebase.database().ref('users/' + uid);
     }
 }
 

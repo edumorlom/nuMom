@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "0.0.31",
+    "version": "0.0.33",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -29,6 +29,9 @@
       "config": {
         "googleMapsApiKey": "AIzaSyARYjdvM_M9wm246SfF_1s7zDCe6I7K8dI"
       }
+    },
+    "android": {
+      "package": "edu.fiu.momsInfantsHealthy",
     },
     "description": "",
     "githubUrl": "https://github.com/edumorlom/moms-infants-healthy"

@@ -71,7 +71,7 @@ export default class SignUpBabyGender extends React.Component {
                         position: 'absolute'
                     }}>
                         <View>
-                            <Text style={{color: 'white', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10}}>{"Select Their Genders"}</Text>
+                            <Text style={{color: 'white', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Select Their Genders"}</Text>
                         </View>
                         <View style={appStyles.rowContainer}>
                             <GenderButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onClick={() => this.setBabyGender('male')}/>

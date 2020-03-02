@@ -7,11 +7,20 @@ import Homepage from "./Homepage";
 
 export default class App extends React.Component {
   state = {
-    screen: 'login'
+    screen: 'login',
+    uid: null,
+    fullName: null,
+    babyGender: null
   };
 
   setAppState = (object) => {
     this.setState(object)
+  };
+
+  logout = () => {
+    this.setAppState({uid: null});
+    this.setAppState({fullName: null});
+    this.setAppState({screen: 'login'});
   };
 
   render() {
@@ -24,7 +33,7 @@ export default class App extends React.Component {
         this.setAppState({screen: 'login'})
       }
     } else {
-      return (<Homepage/>)
+      return (<Homepage setAppState={this.setAppState} fullName={this.state.fullName} logout={this.logout}/>)
     }
   }
 }

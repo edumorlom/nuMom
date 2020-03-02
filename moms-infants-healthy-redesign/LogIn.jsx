@@ -33,12 +33,22 @@ export default class LogIn extends React.Component {
                         <TextBox placeholder={"E-Mail"} onChangeText={this.setEmail}/>
                         <TextBox type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
                         <Button onClick={() => {
-                            this.props.setAppState({screen: 'homepage'})
-                            // let fb = new Firebase();
-                            // fb.logIn(this.state.email, this.state.password).then( response => {
-                            //     console.log("Successful login!", response);
-                            //     this.props.setAppState({screen: 'homepage'})
-                            // })
+                            if (this.state.email || this.state.password) {
+                                let fb = new Firebase();
+                                fb.logIn(this.state.email, this.state.password).then(response => {
+                                    console.log("Successful login!", response);
+                                    this.props.setAppState({uid: response.user.uid});
+                                    fb.getUserInfo(response.user.uid).on('value', (snapshot) => {
+                                        this.props.setAppState({fullName: snapshot.val().fullName});
+                                        this.props.setAppState({babyGender: snapshot.val().babyGender});
+                                        this.props.setAppState({screen: 'homepage'});
+                                    });
+                                }, e => {
+                                    alert("Invalid E-mail and/or Password!")
+                                })
+                            } else {
+                                alert("Please enter your E-Mail and Password!")
+                            }
                         }}
                                 text={"Sign In"}/>
                     </View>

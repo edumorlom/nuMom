@@ -29,7 +29,7 @@ export default function PanelButton(props){
                 width: '100%',
                 alignItems: 'center',
                 padding: 10}}>
-                <Image style={{width: 55, height: 55, marginLeft: '10%', marginRight: '20%'}} source={props.icon} />
+                <Image style={{width: 55, height: 55, marginLeft: '13%', marginRight: '18%'}} source={props.icon} />
                 <Text style={{color: props.color, fontSize: 20, fontWeight: 'bold'}}>{props.text}</Text>
             </View>
         </TouchableHighlight>
