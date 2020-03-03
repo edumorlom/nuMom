@@ -1,14 +1,17 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import MapView, {AnimatedRegion} from 'react-native-maps';
+import MapView, {AnimatedRegion, Marker} from 'react-native-maps';
+import Clinics from "./Clinics";
 
 const region = new AnimatedRegion();
 console.log(region);
 
 export default class Maps extends React.Component {
 
-    state = {currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }};
+    state = {
+        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }
+    };
 
     componentDidMount() {
         this.watchID = navigator.geolocation.watchPosition((position) => {
@@ -29,11 +32,17 @@ export default class Maps extends React.Component {
     render() {
         return (
             <MapView
+                onPress={this.props.onPress}
                 style={styles.map}
                 showsUserLocation={true}
-                zoomEnabled={true}
-                followUserLocation={true}
-                region={this.state.currentRegion}/>
+                region={this.state.currentRegion}>
+                {Clinics().map(marker => (
+                    <Marker
+                        coordinate={marker.coordinate}
+                        title={marker.resource}
+                        description={marker.phoneNumber}/>
+                ))}
+            </MapView>
         );
     }
 }

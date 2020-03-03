@@ -6,9 +6,11 @@ export default function TextInput(props){
     return (
         <View style={appStyles.TextInput.View}>
             <TextBox style={appStyles.TextInput.TextInput}
-                       keyboardType={props.keyboardType ? props.keyboardType : "default"}
-                       secureTextEntry={props.type === 'password'}
-                       placeholder={props.placeholder} onChangeText={props.onChangeText}/>
+                     keyboardType={props.keyboardType ? props.keyboardType : "default"}
+                     secureTextEntry={props.type === 'password'}
+                     autoCapitalize='none'
+                     placeholder={props.placeholder}
+                     onChangeText={props.onChangeText}/>
         </View>
     )
 }

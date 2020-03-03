@@ -14,13 +14,22 @@ const styles = {
     }
 };
 
-export default function Homepage(props) {
+export default class Homepage extends React.Component {
 
-    return (
-        <View style={styles.container}>
-            <Maps/>
-            <SOSButton/>
-            <LowerPanel fullName={props.fullName} logout={props.logout}/>
-        </View>
-    )
+    state = {fullPanel: true};
+
+    setFullPanel = (fullPanel) => {
+        console.log(fullPanel)
+        this.setState({fullPanel: fullPanel})
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Maps onPress={() => this.setFullPanel(false)}/>
+                <SOSButton/>
+                <LowerPanel onPress={() => this.setFullPanel(true)} fullPanel={this.state.fullPanel} fullName={this.props.fullName} logout={this.props.logout}/>
+            </View>
+        )
+    }
 }

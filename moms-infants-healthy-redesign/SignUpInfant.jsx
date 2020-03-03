@@ -42,14 +42,6 @@ export default class SignUpInfant extends React.Component {
                                 <MultipleChoiceButton text={'X'} color={genderColors['female']} onClick={() => this.setInfant(false)}/>
                             </View>
                     </View>
-                    <View style={{
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: 100
-                    }}>
-                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );

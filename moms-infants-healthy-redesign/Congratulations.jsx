@@ -1,4 +1,4 @@
-import {Image, Keyboard, Vibration, StyleSheet, Text, TouchableWithoutFeedback, View, Animated} from 'react-native';
+import {Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View, Animated} from 'react-native';
 import React from "react";
 import congratulationsImage from "./congratulations-image.png"
 import appStyles from './AppStyles'
@@ -15,8 +15,8 @@ export default class Congratulations extends React.Component {
 
         setTimeout(
             () => {Animated.spring(this.moveAnimation, {
-                toValue: {x: 0, y: 100},
-            }).start()}, 50
+                toValue: {x: 0, y: 150},
+            }).start()}, 140
         )
     }
 
@@ -30,9 +30,7 @@ export default class Congratulations extends React.Component {
                                 Haptics.selectionAsync().then(() => {
                                     Haptics.selectionAsync().then(() => {
                                         Haptics.selectionAsync().then(() => {
-                                            Haptics.selectionAsync().then(() => {
 
-                                            });
                                         });
                                     });
                                 });
@@ -46,7 +44,7 @@ export default class Congratulations extends React.Component {
 
     render() {
         // Vibration.vibrate([200], false);
-        this.confettiVibration()
+        this.confettiVibration();
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -55,8 +53,7 @@ export default class Congratulations extends React.Component {
                         paddingTop: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        position: 'absolute',
-                    }}>
+                        position: 'absolute'}}>
                         <View>
                             <Text style={appStyles.titleBlue}>Congratulations!</Text>
                         </View>
@@ -71,9 +68,9 @@ export default class Congratulations extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={"Continue"} onClick={()=> this.props.getNextScreen()}/>
+                        <Button text={"Continue"} onClick={() => this.props.getNextScreen()}/>
                     </View>
-                    <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={1000}/>
+                    <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={2500}/>
                 </View>
             </TouchableWithoutFeedback>
         );

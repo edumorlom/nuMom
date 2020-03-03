@@ -3,23 +3,22 @@ import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 import {RFValue} from "react-native-responsive-fontsize";
-import {apps} from "firebase";
 
 export default function MultipleChoiceButton(props){
 
-    let onClick = () => {
+    let onPress = () => {
         Haptics.selectionAsync().then();
         props.onClick();
     };
 
     return (
-        <TouchableHighlight
+        <TouchableHighlight underlayColor='none'
             style={{
                 alignItems: 'center',
                 backgroundColor: props.selected ? 'grey' : 'white',
-                height: appStyles.win.height * 0.15,
-                width: appStyles.win.height * 0.15,
-                margin: 5,
+                height: appStyles.win.height * 0.14,
+                width: appStyles.win.height * 0.14,
+                margin: 20,
                 borderRadius: appStyles.button.TouchableHighlight.borderRadius,
                 borderWidth: 0,
                 shadowColor: appStyles.greyColor,
@@ -27,7 +26,7 @@ export default function MultipleChoiceButton(props){
                 shadowOffset: appStyles.shadow.shadowOffset,
                 shadowRadius: appStyles.shadow.shadowRadius,
             }}
-            onPress={onClick}>
+            onPress={onPress}>
             <Text style={{color: props.color, fontSize: RFValue(85)}}>{props.text}</Text>
         </TouchableHighlight>
     )

@@ -4,7 +4,7 @@ import React from "react";
 import * as Haptics from "expo-haptics";
 
 export default function Button(props){
-    let onClick = () => {
+    let onPress = () => {
         Haptics.selectionAsync().then();
         props.onClick();
     };
@@ -13,7 +13,8 @@ export default function Button(props){
         <View style={appStyles.shadow}>
             <TouchableHighlight
                 style={appStyles.button.TouchableHighlight}
-                onPress={onClick}>
+                onPress={onPress}
+                underlayColor={appStyles.blueColor}>
                 <Text style={appStyles.button.text}>{props.text}</Text>
             </TouchableHighlight>
         </View>

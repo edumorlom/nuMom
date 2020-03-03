@@ -17,12 +17,12 @@ export default class Firebase {
 
     }
 
-    signUp = (email, password, fullName, dob, pregnant, infant, babyGender) => {
+    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-            this.saveUserInfo(response.user.uid, fullName, dob, pregnant, infant, babyGender).then(() => {
+                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
                 console.log("User Creation was a success!")
-            }, e => {alert("ERROR: Couldn't save user information.")})
-        }, e => {alert("This e-mail already exists.");})
+            }, e => {alert("ERROR: Couldn't save user information!")})
+        }, e => {alert("ERROR: This e-mail already exists!");})
     };
 
     createUserWithEmailAndPassword = (email, password) => {
@@ -33,8 +33,9 @@ export default class Firebase {
         return firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
-    saveUserInfo = (uid, fullName, dob, pregnant, infant, babyGender) => {
+    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender) => {
         return firebase.database().ref('users/' + uid).set({
+            phoneNumber: phoneNumber,
             fullName: fullName,
             dob: dob,
             pregnant: pregnant,

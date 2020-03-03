@@ -41,14 +41,6 @@ export default class SignUpPregnant extends React.Component {
                                 <MultipleChoiceButton text={'X'} color={genderColors['female']} onClick={() => this.setPregnant(false)}/>
                             </View>
                     </View>
-                    <View style={{
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: '12%'
-                    }}>
-                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );

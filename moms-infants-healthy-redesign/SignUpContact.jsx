@@ -9,20 +9,20 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default class SignUpInfo extends React.Component {
 
-    state = {fullName: '', email: '', dob: ''};
+    state = {email: '', phoneNumber: ''};
 
-    setFullName = (fullName) => {
-        console.log(fullName);
-        this.setState({fullName: fullName})
+    setEmail = (email) => {
+        console.log(email);
+        this.setState({email: email})
     };
 
-    setDob = (dob) => {
-        console.log(dob);
-        this.setState({dob: dob})
+    setPhoneNumber = (phoneNumber) => {
+        console.log(phoneNumber);
+        this.setState({phoneNumber: phoneNumber})
     };
 
     onClick = () => {
-        if (!this.state.fullName || !this.state.dob) {
+        if (!this.state.email || !this.state.phoneNumber) {
             alert("Please fill out all of the fields!")
         } else {
             this.props.setUserInfo(this.state);
@@ -31,7 +31,6 @@ export default class SignUpInfo extends React.Component {
     };
 
     render() {
-        let titleText = this.state.fullName ? 'Great To Meet You, ' : "Great To Meet You!";
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
@@ -42,12 +41,11 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                     }}>
                         <View>
-                            <Text style={appStyles.titleBlue}>{titleText}</Text>
-                            <Text style={appStyles.titlePink}>{this.state.fullName ? this.state.fullName.split(' ')[0] : ' '}</Text>
+                            <Text style={appStyles.titleBlue}>{'Contact Information'}</Text>
                         </View>
                         <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                            <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <TextInput placeholder={"DOB (MM/DD/YYYY)"} onChangeText={this.setDob}/>
+                            <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
+                            <TextInput placeholder={"Phone Number"} onChangeText={this.setPhoneNumber}/>
                         </View>
                     </View>
                     <View style={{

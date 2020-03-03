@@ -103,6 +103,21 @@ export default {
         fontSize: RFValue(18),
         fontWeight: 'bold',
     },
+    WelcomeUserBanner: {
+        TouchableHighlight: {
+            backgroundColor: blueColor,
+            shadowColor: shadow.shadowColor,
+            shadowOffset: shadow.shadowOffset,
+            shadowOpacity: shadow.shadowOpacity,
+            borderBottomRightRadius: borderRadius,
+            justifyContent: 'center',
+            borderTopRightRadius: borderRadius,
+            flexDirection: 'row',
+            marginRight: '30%',
+            padding: '5%',
+            marginBottom: '5%'
+        }
+    },
     WhitePanelButton: {
         shadowColor: shadow.shadowColor,
         shadowOffset: shadow.shadowOffset,
@@ -133,6 +148,5 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        bottom: 0
     }
 };

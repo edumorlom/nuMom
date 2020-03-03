@@ -18,10 +18,11 @@ export default function PanelButton(props){
                 shadowOffset: appStyles.shadow.shadowOffset,
                 shadowOpacity: appStyles.shadow.shadowOpacity,
                 shadowRadius: appStyles.shadow.shadowRadius,
-                height: '20%',
-                width: '80%',
+                height: appStyles.win.height * 0.13,
+                width: '85%',
                 borderColor: greyColor,
                 borderRadius: borderRadius}}
+                            underlayColor={appStyles.greyColor}
                             onPress={onClick}>
 
             <View style={{flexDirection: 'row',

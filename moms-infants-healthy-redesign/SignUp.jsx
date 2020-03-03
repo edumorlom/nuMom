@@ -7,10 +7,11 @@ import Firebase from "./Firebase";
 import FinishingSignUp from "./FinishingSignUp";
 import SignUpPregnant from "./SignUpPregnant";
 import SignUpInfant from "./SignUpInfant";
+import SignUpContact from "./SignUpContact";
 
 
 export default class SignUp extends React.Component {
-    state = {index: 0, email: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null};
+    state = {index: 0, email: null, phoneNumber: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null};
 
     getNextScreen = () => {
         let currentIndex = this.state.index;
@@ -24,13 +25,14 @@ export default class SignUp extends React.Component {
     signUpAndUploadData = () => {
         let fb = new Firebase();
         console.log(this.state);
-        fb.signUp(this.state.email, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
+        fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
         this.props.setAppState({screen: 'login'})
     };
 
     screens = [
         <Congratulations setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
+        <SignUpContact setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpPregnant setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpInfant setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
