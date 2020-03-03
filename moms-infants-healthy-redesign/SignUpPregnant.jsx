@@ -1,8 +1,7 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
-import GenderButton from "./GenderButton";
-import Button from "./Button";
+import MultipleChoiceButton from "./MultipleChoiceButton";
 
 
 export default class SignUpPregnant extends React.Component {
@@ -37,17 +36,17 @@ export default class SignUpPregnant extends React.Component {
                         position: 'absolute'
                     }}>
                         <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Are You Pregnant?"}</Text>
-                        <View style={appStyles.rowContainer}>
-                            <GenderButton text={'✓'} color={genderColors['male']} onClick={() => this.setPregnant(true)}/>
-                            <GenderButton text={'X'} color={genderColors['female']}  onClick={() => this.setPregnant(false)}/>
-                        </View>
+                            <View style={appStyles.rowContainer}>
+                                <MultipleChoiceButton text={'✓'} color={genderColors['male']} onClick={() => this.setPregnant(true)}/>
+                                <MultipleChoiceButton text={'X'} color={genderColors['female']} onClick={() => this.setPregnant(false)}/>
+                            </View>
                     </View>
                     <View style={{
                         width: '100%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: '12%'
                     }}>
                     </View>
                 </View>

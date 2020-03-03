@@ -2,7 +2,7 @@ import {Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View} from 
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
-import TextBox from "./TextBox.jsx";
+import TextInput from "./TextInput.jsx";
 
 
 export default class SignUpAddress extends React.Component {
@@ -21,7 +21,7 @@ export default class SignUpAddress extends React.Component {
                             <Text style={appStyles.titleBlue}>{"Where Do You Live?"}</Text>
                         </View>
                         <View style={{paddingTop: 100, alignItems: 'center'}}>
-                            <TextBox placeholder={"11200 SW 8th St."} onChangeText={this.setFullName}/>
+                            <TextInput placeholder={"11200 SW 8th St."} onChangeText={this.setFullName}/>
                         </View>
                     </View>
                     <View style={{

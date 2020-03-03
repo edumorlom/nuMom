@@ -1,7 +1,7 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
-import GenderButton from "./GenderButton";
+import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 
 
@@ -37,10 +37,10 @@ export default class SignUpInfant extends React.Component {
                         position: 'absolute'
                     }}>
                         <Text style={{color: 'black', fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Do You Have an Infant?"}</Text>
-                        <View style={appStyles.rowContainer}>
-                            <GenderButton text={'✓'} color={genderColors['male']} onClick={() => this.setInfant(true)}/>
-                            <GenderButton text={'X'} color={genderColors['female']}  onClick={() => this.setInfant(false)}/>
-                        </View>
+                            <View style={appStyles.rowContainer}>
+                                <MultipleChoiceButton text={'✓'} color={genderColors['male']} onClick={() => this.setInfant(true)}/>
+                                <MultipleChoiceButton text={'X'} color={genderColors['female']} onClick={() => this.setInfant(false)}/>
+                            </View>
                     </View>
                     <View style={{
                         width: '100%',

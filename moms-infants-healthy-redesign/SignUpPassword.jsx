@@ -2,7 +2,7 @@ import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
-import TextBox from "./TextBox.jsx";
+import TextInput from "./TextInput.jsx";
 
 
 export default class SignUpPassword extends React.Component {
@@ -35,17 +35,17 @@ export default class SignUpPassword extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '40%',
+                        paddingTop: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        position: 'absolute'
+                        position: 'absolute',
                     }}>
                         <View>
                             <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
                         </View>
-                        <View style={{paddingTop: 100, alignItems: 'center'}}>
-                            <TextBox type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
-                            <TextBox type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
+                        <View style={{paddingTop: '15%'}}>
+                            <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
+                            <TextInput type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
                         </View>
                     </View>
                     <View style={{
@@ -53,8 +53,7 @@ export default class SignUpPassword extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 100
-                    }}>
+                        bottom: '12%',}}>
                         <Button text={"Continue"} onClick={() => this.onClick()}/>
                     </View>
                 </View>

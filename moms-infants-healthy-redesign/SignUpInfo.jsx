@@ -1,14 +1,15 @@
-import {Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
-import TextBox from "./TextBox.jsx";
-import Firebase from "./Firebase";
+import TextInput from "./TextInput.jsx";
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 
 export default class SignUpInfo extends React.Component {
 
-    state = {fullName: '', email: '', dob: ''};
+    state = {fullName: '', email: '', dob: 'temporary'};
 
     setFullName = (fullName) => {
         console.log(fullName);
@@ -40,7 +41,7 @@ export default class SignUpInfo extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '40%',
+                        paddingTop: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
@@ -49,10 +50,10 @@ export default class SignUpInfo extends React.Component {
                             <Text style={appStyles.titleBlue}>{titleText}</Text>
                             <Text style={appStyles.titlePink}>{this.state.fullName ? this.state.fullName.split(' ')[0] : ' '}</Text>
                         </View>
-                        <View style={{paddingTop: 100, alignItems: 'center'}}>
-                            <TextBox placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <TextBox placeholder={"E-Mail"} onChangeText={this.setEmail}/>
-                            <TextBox placeholder={"DOB (MM/DD/YYYY)"} onChangeText={this.setDob}/>
+                        <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                            <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
+                            <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
+                            {/*<TextInput placeholder={"DOB (MM/DD/YYYY)"} onChangeText={this.setDob}/>*/}
                         </View>
                     </View>
                     <View style={{
@@ -60,7 +61,7 @@ export default class SignUpInfo extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: '12%'
                     }}>
                         <Button text={"Continue"} onClick={()=> this.onClick()}/>
                     </View>

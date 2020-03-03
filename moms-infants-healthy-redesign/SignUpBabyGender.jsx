@@ -1,7 +1,7 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
-import GenderButton from "./GenderButton";
+import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 
 
@@ -60,22 +60,20 @@ export default class SignUpBabyGender extends React.Component {
                         alignItems: 'center',
                         position: 'absolute'
                     }}>
-                        <View>
-                            <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Select Their Genders"}</Text>
-                        </View>
-                        <View style={appStyles.rowContainer}>
-                            <GenderButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onClick={() => this.setBabyGender('male')}/>
-                            <GenderButton text={"♀"} color={appStyles.pinkColor} selected={this.state.babyGender.female} onClick={() => this.setBabyGender('female')}/>
-                        </View>
+                        <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Select Their Genders"}</Text>
+                            <View style={appStyles.rowContainer}>
+                                <MultipleChoiceButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onClick={() => this.setBabyGender('male')}/>
+                                <MultipleChoiceButton text={"♀"} color={appStyles.pinkColor} selected={this.state.babyGender.female} onClick={() => this.setBabyGender('female')}/>
+                            </View>
                     </View>
                     <View style={{
                         width: '100%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 100
+                        bottom: '12%'
                     }}>
-                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? "Continue" : "I Don't Know, Yet"} onClick={this.onClick}/>
+                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? "Continue" : "I Don't Know"} onClick={this.onClick}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

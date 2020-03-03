@@ -7,7 +7,6 @@ export default function WelcomeUserBanner(props) {
     return (
         <View style={{
             width: '100%',
-            paddingBottom: '4%',
             backgroundColor: 'white'}}>
             <TouchableHighlight style={{
                 backgroundColor: appStyles.blueColor,
@@ -19,16 +18,17 @@ export default function WelcomeUserBanner(props) {
                 borderTopRightRadius: borderRadius,
                 flexDirection: 'row',
                 marginRight: '30%',
+                padding: '5%',
+                marginBottom: '5%'
             }} onPress={() => {
                 Haptics.selectionAsync().then();
                 props.logout();
             }}>
                 <Text style={{
                     color: "white",
-                    fontSize: 23,
+                    fontSize: appStyles.regularFontSize,
                     fontWeight: 'bold',
-                    padding: '6%'
-                }}>{`Welcome${props.fullName ? ' ' + props.fullName.split(' ')[0] : '!'}`}</Text>
+                }}>{`Welcome${props.fullName ? ' ' + props.fullName.split(' ')[0] : ''}`}</Text>
             </TouchableHighlight>
         </View>
     )

@@ -2,8 +2,10 @@ import {Text, TouchableHighlight, View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
+import {RFValue} from "react-native-responsive-fontsize";
+import {apps} from "firebase";
 
-export default function GenderButton(props){
+export default function MultipleChoiceButton(props){
 
     let onClick = () => {
         Haptics.selectionAsync().then();
@@ -12,11 +14,12 @@ export default function GenderButton(props){
 
     return (
         <TouchableHighlight
-            style={{margin: 10,
+            style={{
                 alignItems: 'center',
                 backgroundColor: props.selected ? 'grey' : 'white',
-                height: 100,
-                width: 105,
+                height: appStyles.win.height * 0.15,
+                width: appStyles.win.height * 0.15,
+                margin: 5,
                 borderRadius: appStyles.button.TouchableHighlight.borderRadius,
                 borderWidth: 0,
                 shadowColor: appStyles.greyColor,
@@ -25,7 +28,7 @@ export default function GenderButton(props){
                 shadowRadius: appStyles.shadow.shadowRadius,
             }}
             onPress={onClick}>
-            <Text style={{color: props.color, fontSize: 85}}>{props.text}</Text>
+            <Text style={{color: props.color, fontSize: RFValue(85)}}>{props.text}</Text>
         </TouchableHighlight>
     )
 }

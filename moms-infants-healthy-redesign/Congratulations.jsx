@@ -4,6 +4,7 @@ import congratulationsImage from "./congratulations-image.png"
 import appStyles from './AppStyles'
 import Button from "./Button";
 import ConfettiCannon from 'react-native-confetti-cannon';
+import * as Haptics from "expo-haptics";
 
 
 export default class Congratulations extends React.Component {
@@ -17,16 +18,41 @@ export default class Congratulations extends React.Component {
                 toValue: {x: 0, y: 100},
             }).start()}, 50
         )
-
     }
 
+    confettiVibration = () => {
+        Haptics.selectionAsync().then(() => {
+            Haptics.selectionAsync().then(() => {
+                Haptics.selectionAsync().then(() => {
+                    Haptics.selectionAsync().then(() => {
+                        Haptics.selectionAsync().then(() => {
+                            Haptics.selectionAsync().then(() => {
+                                Haptics.selectionAsync().then(() => {
+                                    Haptics.selectionAsync().then(() => {
+                                        Haptics.selectionAsync().then(() => {
+                                            Haptics.selectionAsync().then(() => {
+
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    };
+
     render() {
-        Vibration.vibrate([200], false);
+        // Vibration.vibrate([200], false);
+        this.confettiVibration()
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '40%',
+                        paddingTop: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
@@ -43,12 +69,11 @@ export default class Congratulations extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: 40
+                        bottom: '12%'
                     }}>
                         <Button text={"Continue"} onClick={()=> this.props.getNextScreen()}/>
                     </View>
                     <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={1000}/>
-
                 </View>
             </TouchableWithoutFeedback>
         );

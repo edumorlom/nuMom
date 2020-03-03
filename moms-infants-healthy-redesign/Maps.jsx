@@ -1,9 +1,7 @@
 import React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import MapView, {AnimatedRegion} from 'react-native-maps';
-
-const { width, height } = Dimensions.get('window');
 
 const region = new AnimatedRegion();
 console.log(region);
@@ -45,13 +43,11 @@ Maps.propTypes = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        ...StyleSheet.absoluteFillObject,
-        top: 100,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
     map: {
-        ...StyleSheet.absoluteFillObject,
-    },
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    }
 });

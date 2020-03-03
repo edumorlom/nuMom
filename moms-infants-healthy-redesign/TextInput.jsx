@@ -1,11 +1,11 @@
 import React from "react";
-import {TextInput, View} from 'react-native'
+import {TextInput as TextBox, View} from 'react-native'
 import appStyles from "./AppStyles";
 
-export default function TextBox(props){
+export default function TextInput(props){
     return (
         <View style={appStyles.TextInput.View}>
-            <TextInput style={appStyles.TextInput.TextInput}
+            <TextBox style={appStyles.TextInput.TextInput}
                        keyboardType={props.keyboardType ? props.keyboardType : "default"}
                        secureTextEntry={props.type === 'password'}
                        placeholder={props.placeholder} onChangeText={props.onChangeText}/>

@@ -1,9 +1,14 @@
+import { RFValue } from "react-native-responsive-fontsize";
+import {Dimensions} from "react-native";
+
+export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
 export let blueColor = "#0052A1";
 export let greyColor = "#A9A9A9";
 export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
-export let titleFontSize = 35;
+export let titleFontSize = RFValue(30);
+export let regularFontSize = RFValue(20);
 export let borderRadius = 15;
 export let shadow = {
     shadowColor: darkGreyColor,
@@ -13,6 +18,7 @@ export let shadow = {
 };
 
 export default {
+    win: win,
     container: {
         alignItems: 'center',
         flex: 1
@@ -29,6 +35,7 @@ export default {
     greyColor: greyColor,
     darkGreyColor: darkGreyColor,
     titleFontSize: titleFontSize,
+    regularFontSize: regularFontSize,
     titleBlue: {
         fontSize: titleFontSize,
         fontWeight: 'bold',
@@ -66,7 +73,7 @@ export default {
         },
         text: {
             color: 'white',
-            fontSize: 25,
+            fontSize: RFValue(20),
             fontWeight: 'normal'
         }
     },
@@ -78,21 +85,22 @@ export default {
             shadowRadius: shadow.shadowRadius,
             height: 50,
             width: 300,
-            margin: 10,
+            padding: 5,
+            margin: 9,
             borderColor: greyColor,
             borderWidth: 0.5,
             borderRadius: borderRadius,
         },
         TextInput: {
-            fontSize: 25,
+            fontSize: RFValue(22),
             textAlign: 'center',
+            alignItems: 'center',
             color: 'black',
-            paddingTop:7
         }
     },
     ClickableText: {
         color: blueColor,
-        fontSize: 20,
+        fontSize: RFValue(18),
         fontWeight: 'bold',
     },
     WhitePanelButton: {
@@ -121,7 +129,7 @@ export default {
         borderWidth: 0,
         borderRadius: borderRadius,
         width: '100%',
-        height: '55%',
+        height: '70%',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
