@@ -145,6 +145,7 @@ export default {
         borderRadius: borderRadius,
         width: '100%',
         height: '70%',
+        bottom: 0 - Math.ceil(win.height * 0.4 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',

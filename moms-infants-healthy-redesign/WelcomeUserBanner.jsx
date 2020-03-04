@@ -16,8 +16,8 @@ export default function WelcomeUserBanner(props) {
                 <Text style={{
                     color: "white",
                     fontSize: appStyles.regularFontSize,
-                    fontWeight: 'bold',
-                }}>{`Welcome${props.fullName ? ' ' + props.fullName.split(' ')[0] : ''}`}</Text>
+                    fontWeight: 'bold',}}>
+                    {`Welcome${props.fullName ? ' ' + props.fullName.split(' ')[0] : ''}`}</Text>
             </TouchableHighlight>
         </View>
     )

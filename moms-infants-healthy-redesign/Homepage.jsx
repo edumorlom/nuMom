@@ -19,7 +19,7 @@ export default class Homepage extends React.Component {
     state = {fullPanel: true};
 
     setFullPanel = (fullPanel) => {
-        console.log(fullPanel)
+        console.log(fullPanel);
         this.setState({fullPanel: fullPanel})
     };
 
@@ -28,7 +28,7 @@ export default class Homepage extends React.Component {
             <View style={styles.container}>
                 <Maps onPress={() => this.setFullPanel(false)}/>
                 <SOSButton/>
-                <LowerPanel onPress={() => this.setFullPanel(true)} fullPanel={this.state.fullPanel} fullName={this.props.fullName} logout={this.props.logout}/>
+                <LowerPanel setFullPanel={this.setFullPanel} fullPanel={this.state.fullPanel} fullName={this.props.fullName} logout={this.props.logout}/>
             </View>
         )
     }

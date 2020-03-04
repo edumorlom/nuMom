@@ -36,8 +36,9 @@ export default class Maps extends React.Component {
                 style={styles.map}
                 showsUserLocation={true}
                 region={this.state.currentRegion}>
-                {Clinics().map(marker => (
+                {Clinics().map((marker, index) => (
                     <Marker
+                        key={index}
                         coordinate={marker.coordinate}
                         title={marker.resource}
                         description={marker.phoneNumber}/>

@@ -4,26 +4,27 @@ import React from "react";
 import * as Haptics from "expo-haptics";
 
 
-export default function PanelButton(props){
+export default function WhitePanelButton(props){
 
-    let onClick = () => {
+    let onPress = () => {
         Haptics.selectionAsync().then();
-        // props.onClick();
+        // props.onPress();
     };
 
     return (
-        <TouchableHighlight style={{margin: 10,
-                backgroundColor: 'white',
-                shadowColor: shadow.shadowColor,
-                shadowOffset: appStyles.shadow.shadowOffset,
-                shadowOpacity: appStyles.shadow.shadowOpacity,
-                shadowRadius: appStyles.shadow.shadowRadius,
-                height: appStyles.win.height * 0.13,
-                width: '85%',
-                borderColor: greyColor,
-                borderRadius: borderRadius}}
+        <TouchableHighlight style={{
+            margin: 10,
+            backgroundColor: 'white',
+            shadowColor: shadow.shadowColor,
+            shadowOffset: appStyles.shadow.shadowOffset,
+            shadowOpacity: appStyles.shadow.shadowOpacity,
+            shadowRadius: appStyles.shadow.shadowRadius,
+            height: appStyles.win.height * 0.13,
+            width: '85%',
+            borderColor: greyColor,
+            borderRadius: borderRadius}}
                             underlayColor={appStyles.greyColor}
-                            onPress={onClick}>
+                            onPress={onPress}>
 
             <View style={{flexDirection: 'row',
                 height: '100%',
