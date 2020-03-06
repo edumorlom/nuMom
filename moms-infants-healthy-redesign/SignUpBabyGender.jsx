@@ -9,8 +9,7 @@ export default class SignUpBabyGender extends React.Component {
     state = {babyGender: {male: false, female: false}};
 
     onClick = () => {
-        console.log(this.state);
-        this.props.setUserInfo(this.state);
+        this.props.setUserInfo({male: this.state.male, female: this.state.female});
         this.props.getNextScreen();
     };
 
@@ -41,7 +40,7 @@ export default class SignUpBabyGender extends React.Component {
         }
 
         if (this.state.babyGender.male && this.state.babyGender.female) {
-            backgroundColor = "#551a8b"
+            backgroundColor = "#8B008B"
         } else if (this.state.babyGender.male) {
             backgroundColor = appStyles.blueColor;
         } else if (this.state.babyGender.female) {
@@ -55,11 +54,10 @@ export default class SignUpBabyGender extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={container}>
                     <View style={{
-                        marginTop: '50%',
+                        paddingTop: appStyles.win.height * 0.3,
                         justifyContent: 'center',
                         alignItems: 'center',
-                        position: 'absolute'
-                    }}>
+                        position: 'absolute'}}>
                         <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Select Their Genders"}</Text>
                             <View style={appStyles.rowContainer}>
                                 <MultipleChoiceButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onClick={() => this.setBabyGender('male')}/>

@@ -12,20 +12,33 @@ export default class SignUpInfo extends React.Component {
     state = {email: '', phoneNumber: ''};
 
     setEmail = (email) => {
-        console.log(email);
         this.setState({email: email})
     };
 
     setPhoneNumber = (phoneNumber) => {
-        console.log(phoneNumber);
         this.setState({phoneNumber: phoneNumber})
+    };
+
+
+    isValidEmail = (email) => {
+        return true
+    };
+
+    isValidPhoneNumber = (phoneNumber) => {
+        return phoneNumber.length === 10 && !isNaN(phoneNumber) || phoneNumber.length === 12 && !isNaN(phoneNumber.substring(1, 12));
+
     };
 
     onClick = () => {
         if (!this.state.email || !this.state.phoneNumber) {
             alert("Please fill out all of the fields!")
+        } else if (!this.isValidEmail(this.state.email)){
+            alert("The e-mail you entered is not valid!")
+
+        } else if (!this.isValidPhoneNumber(this.state.phoneNumber)) {
+            alert("The phone number you entered is not valid!")
         } else {
-            this.props.setUserInfo(this.state);
+            this.props.setUserInfo({email: this.state.email, phoneNumber: this.state.phoneNumber});
             this.props.getNextScreen();
         }
     };
@@ -35,7 +48,7 @@ export default class SignUpInfo extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '30%',
+                        paddingTop: appStyles.win.height * 0.10,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
@@ -43,9 +56,9 @@ export default class SignUpInfo extends React.Component {
                         <View>
                             <Text style={appStyles.titleBlue}>{'Contact Information'}</Text>
                         </View>
-                        <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
                             <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
-                            <TextInput placeholder={"Phone Number"} onChangeText={this.setPhoneNumber}/>
+                            <TextInput placeholder={"Phone Number"} onChangeText={this.setPhoneNumber} keyboardType={"numeric"}/>
                         </View>
                     </View>
                     <View style={{

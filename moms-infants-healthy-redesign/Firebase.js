@@ -22,7 +22,7 @@ export default class Firebase {
                 this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
                 console.log("User Creation was a success!")
             }, e => {alert("ERROR: Couldn't save user information!")})
-        }, e => {alert("ERROR: This e-mail already exists!");})
+        }, e => {alert("ERROR: There was an error logging you in!");})
     };
 
     createUserWithEmailAndPassword = (email, password) => {

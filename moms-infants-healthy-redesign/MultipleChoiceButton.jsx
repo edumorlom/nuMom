@@ -12,22 +12,21 @@ export default function MultipleChoiceButton(props){
     };
 
     return (
-        <TouchableHighlight underlayColor='none'
+        <TouchableHighlight
+            underlayColor='white'
             style={{
                 alignItems: 'center',
-                backgroundColor: props.selected ? 'grey' : 'white',
-                height: appStyles.win.height * 0.14,
-                width: appStyles.win.height * 0.14,
+                backgroundColor: props.selected ? appStyles.greyColor : 'white',
+                height: appStyles.win.height * 0.105,
+                width: appStyles.win.width * 0.23,
                 margin: 20,
+                paddingBottom: 10,
                 borderRadius: appStyles.button.TouchableHighlight.borderRadius,
                 borderWidth: 0,
-                shadowColor: appStyles.greyColor,
-                shadowOpacity: appStyles.shadow.shadowOpacity,
-                shadowOffset: appStyles.shadow.shadowOffset,
-                shadowRadius: appStyles.shadow.shadowRadius,
+                ...appStyles.shadow
             }}
             onPress={onPress}>
-            <Text style={{color: props.color, fontSize: RFValue(85)}}>{props.text}</Text>
+            <Text style={{color: props.color, fontSize: RFValue(60)}}>{props.text}</Text>
         </TouchableHighlight>
     )
 }

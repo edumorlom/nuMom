@@ -7,47 +7,63 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
+
 export default class SignUpInfo extends React.Component {
 
-    state = {fullName: '', email: '', dob: ''};
-
-    setFullName = (fullName) => {
-        console.log(fullName);
-        this.setState({fullName: fullName})
-    };
-
-    setDob = (dob) => {
-        console.log(dob);
-        this.setState({dob: dob})
-    };
+    state = {fullName: '', dob: ''};
 
     onClick = () => {
         if (!this.state.fullName || !this.state.dob) {
             alert("Please fill out all of the fields!")
         } else {
-            this.props.setUserInfo(this.state);
+            this.props.setUserInfo({fullName: this.state.fullName, dob: this.state.dob});
             this.props.getNextScreen();
         }
     };
 
     render() {
-        let titleText = this.state.fullName ? 'Great To Meet You, ' : "Great To Meet You!";
+        let titleText = this.state.fullName ? 'Cool, ' : "Great To Meet You";
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '30%',
+                        paddingTop: appStyles.win.height * 0.10,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                        <View>
-                            <Text style={appStyles.titleBlue}>{titleText}</Text>
-                            <Text style={appStyles.titlePink}>{this.state.fullName ? this.state.fullName.split(' ')[0] : ' '}</Text>
-                        </View>
-                        <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                            <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <TextInput placeholder={"DOB (MM/DD/YYYY)"} onChangeText={this.setDob}/>
+                            <Text style={appStyles.titleBlue}>
+                                {titleText}
+                                <Text style={appStyles.titlePink}>
+                                    {this.state.fullName ? this.state.fullName.split(' ')[0] : ''}
+                                </Text>
+                                !
+                            </Text>
+                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
+                            <TextInput placeholder={"Full Name"} onChangeText={() => {this.setState({fullName: fullName})}}/>
+                            <DatePicker
+                                style={{...appStyles.TextInput.View}}
+                                date={this.state.dob}
+                                mode="date"
+                                placeholder="Date of Birth"
+                                format="MM-DD-YYYY"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                showIcon={false}
+                                customStyles={{
+                                    dateText: appStyles.TextInput.TextInput,
+                                    placeholderText: {
+                                        fontSize: appStyles.TextInput.TextInput.fontSize
+                                    },
+                                    dateInput: {
+                                        borderWidth: 0,
+                                        borderColor: 'pink'
+                                    },
+                                    btnTextConfirm: {
+                                        color: appStyles.pinkColor
+                                    }
+                                }}
+                                onDateChange={(dob) => {this.setState({dob: dob})}}/>
                         </View>
                     </View>
                     <View style={{

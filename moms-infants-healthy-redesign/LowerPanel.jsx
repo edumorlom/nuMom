@@ -1,4 +1,4 @@
-import {TouchableHighlight, View} from "react-native";
+import { View} from "react-native";
 import appStyles, {win} from "./AppStyles";
 import WelcomeUserBanner from './WelcomeUserBanner'
 import WhitePanelButton from "./WhitePanelButton";

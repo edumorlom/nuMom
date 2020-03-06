@@ -6,7 +6,6 @@ import Button from "./Button";
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from "expo-haptics";
 
-
 export default class Congratulations extends React.Component {
 
     constructor(props) {

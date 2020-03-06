@@ -12,7 +12,7 @@ export default function ClickableText(props){
 
     return (
         <TouchableHighlight
-            onPress={onClick} underlayColor='none'>
+            onPress={onClick} underlayColor='white'>
             <Text style={appStyles.ClickableText}>{props.text}</Text>
         </TouchableHighlight>
     )

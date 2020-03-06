@@ -19,7 +19,6 @@ export default class Homepage extends React.Component {
     state = {fullPanel: true};
 
     setFullPanel = (fullPanel) => {
-        console.log(fullPanel);
         this.setState({fullPanel: fullPanel})
     };
 

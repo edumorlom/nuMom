@@ -35,15 +35,13 @@ export default class SignUpPassword extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: '30%',
+                        paddingTop: appStyles.win.height * 0.10,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                        <View>
-                            <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
-                        </View>
-                        <View style={{paddingTop: '15%'}}>
+                        <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
+                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
                             <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
                             <TextInput type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
                         </View>

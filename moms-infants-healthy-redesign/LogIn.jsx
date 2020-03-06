@@ -5,7 +5,7 @@ import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput";
 import ClickableText from "./ClickableText";
-import Firebase from "./Firebase";
+import FadeInView from 'react-native-fade-in-view';
 
 
 export default class LogIn extends React.Component {
@@ -32,25 +32,7 @@ export default class LogIn extends React.Component {
                     <View style={{paddingTop: '9%', alignItems: 'center'}}>
                         <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
                         <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
-                            <Button onClick={() => {
-                                if (this.state.email || this.state.password) {
-                                    let fb = new Firebase();
-                                    fb.logIn(this.state.email, this.state.password).then(response => {
-                                        console.log("Successful Login!", response);
-                                        this.props.setAppState({uid: response.user.uid});
-                                        fb.getUserInfo(response.user.uid).on('value', (snapshot) => {
-                                            this.props.setAppState({fullName: snapshot.val().fullName});
-                                            this.props.setAppState({babyGender: snapshot.val().babyGender});
-                                            this.props.setAppState({screen: 'homepage'});
-                                        });
-                                    }, e => {
-                                        alert("Invalid E-mail and/or Password!")
-                                    })
-                                } else {
-                                    alert("Please enter your E-Mail and Password!")
-                                }
-                            }}
-                                    text={"Sign In"}/>
+                        <Button onClick={() => this.props.login(this.state.email, this.state.password)} text={"Sign In"}/>
                     </View>
                     <View style={{
                         width: '100%',
@@ -59,7 +41,7 @@ export default class LogIn extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <ClickableText text={"NEW PARENT? SIGN UP NOW!"}
+                        <ClickableText text={"PARENT? SIGN UP NOW!"}
                                        onClick={() => this.props.setAppState({screen: 'signup'})}/>
                     </View>
                 </View>

@@ -1,5 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
-import {Dimensions} from "react-native";
+import {Dimensions, Text} from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -60,6 +60,11 @@ export default {
         color: 'white',
         textAlign: 'center'
     },
+    paragraphText: {
+        color: greyColor,
+        fontSize: regularFontSize,
+        fontWeight: 'bold'
+    },
     button: {
         TouchableHighlight: {
             margin: 10,
@@ -73,42 +78,36 @@ export default {
         },
         text: {
             color: 'white',
-            fontSize: RFValue(20),
+            fontSize: regularFontSize,
             fontWeight: 'normal'
         }
     },
     TextInput: {
         View: {
-            shadowColor: shadow.shadowColor,
-            shadowOffset: shadow.shadowOffset,
-            shadowOpacity: 0.4,
-            shadowRadius: shadow.shadowRadius,
             height: 50,
             width: 300,
-            padding: 5,
-            margin: 9,
+            margin: 10,
             borderColor: greyColor,
             borderWidth: 0.5,
             borderRadius: borderRadius,
+            justifyContent: 'center',
+
         },
         TextInput: {
-            fontSize: RFValue(22),
+            fontSize: regularFontSize,
             textAlign: 'center',
-            alignItems: 'center',
-            color: 'black',
+            color: 'black'
         }
     },
     ClickableText: {
         color: blueColor,
-        fontSize: RFValue(18),
+        fontSize: regularFontSize,
         fontWeight: 'bold',
     },
     WelcomeUserBanner: {
         TouchableHighlight: {
+            ...shadow,
             backgroundColor: blueColor,
-            shadowColor: shadow.shadowColor,
-            shadowOffset: shadow.shadowOffset,
-            shadowOpacity: shadow.shadowOpacity,
             borderBottomRightRadius: borderRadius,
             justifyContent: 'center',
             borderTopRightRadius: borderRadius,
