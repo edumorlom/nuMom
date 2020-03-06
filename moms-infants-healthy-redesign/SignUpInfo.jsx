@@ -3,7 +3,8 @@ import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-datepicker'
+
 
 
 
@@ -11,6 +12,14 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 export default class SignUpInfo extends React.Component {
 
     state = {fullName: '', dob: ''};
+
+    setFullName = (fullName) => {
+        this.setState({fullName: fullName})
+    };
+
+    setDob = (dob) => {
+        this.setState({dob: dob})
+    };
 
     onClick = () => {
         if (!this.state.fullName || !this.state.dob) {
@@ -40,7 +49,7 @@ export default class SignUpInfo extends React.Component {
                                 !
                             </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.15}}>
-                            <TextInput placeholder={"Full Name"} onChangeText={() => {this.setState({fullName: fullName})}}/>
+                            <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
                             <DatePicker
                                 style={{...appStyles.TextInput.View}}
                                 date={this.state.dob}
