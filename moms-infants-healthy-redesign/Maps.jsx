@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
 import MapView, {AnimatedRegion, Marker} from 'react-native-maps';
 import Clinics from "./Clinics";
