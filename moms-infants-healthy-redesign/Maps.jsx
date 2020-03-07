@@ -9,11 +9,8 @@ console.log(region);
 
 export default class Maps extends React.Component {
 
-    state = {
-        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }
-    };
-
-    componentDidMount() {
+    constructor(props) {
+        super(props);
         this.watchID = navigator.geolocation.watchPosition((position) => {
             let region = {
                 latitude: position.coords.latitude - 0.05,
@@ -25,6 +22,10 @@ export default class Maps extends React.Component {
         }, (error) => console.log(error));
     }
 
+    state = {
+        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }
+    };
+
     componentWillUnmount() {
         navigator.geolocation.clearWatch(this.watchID);
     }
@@ -33,7 +34,13 @@ export default class Maps extends React.Component {
         return (
             <MapView
                 onPress={this.props.onPress}
-                style={styles.map}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                }}
                 showsUserLocation={true}
                 region={this.state.currentRegion}>
                 {Clinics().map((marker, index) => (
@@ -41,23 +48,9 @@ export default class Maps extends React.Component {
                         key={index}
                         coordinate={marker.coordinate}
                         title={marker.resource}
-                        description={marker.phoneNumber}/>
-                ))}
+                        description={marker.phoneNumber}/>))}
+
             </MapView>
         );
     }
 }
-
-Maps.propTypes = {
-    provider: MapView.ProviderPropType,
-};
-
-const styles = StyleSheet.create({
-    map: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-    }
-});

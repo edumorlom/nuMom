@@ -9,7 +9,7 @@ export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = RFValue(30);
 export let regularFontSize = RFValue(20);
-export let borderRadius = 30;
+export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
@@ -86,19 +86,19 @@ export default {
     TextInput: {
         View: {
             ...shadow,
-            height: 50,
-            width: 300,
-            margin: 8,
-            borderColor: greyColor,
+            height: 60,
+            width: win.width * 0.8,
+            margin: 9,
+            borderColor: 'white',
             borderWidth: 0.5,
             borderRadius: borderRadius,
             justifyContent: 'center',
+            backgroundColor: 'white'
 
         },
         TextInput: {
             fontSize: regularFontSize,
             textAlign: 'center',
-            color: 'black'
         }
     },
     ClickableText: {

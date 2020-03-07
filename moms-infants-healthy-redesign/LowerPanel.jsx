@@ -14,14 +14,13 @@ export default class LowerPanel extends React.Component {
 
     constructor(props) {
         super(props);
-        this.slideDown();
+        this.goUp();
     }
 
     transition = null;
 
-    slideDown = () => {
+    goUp = () => {
         clearInterval(this.transition);
-        console.log("Ease in");
         this.transition = setInterval( () => {
             let panelStyle = {...appStyles.lowerPanel};
             panelStyle["bottom"] = this.state.panelStyle.bottom + 25;
@@ -35,9 +34,8 @@ export default class LowerPanel extends React.Component {
         }, 0.1);
     };
 
-    slideUp = () => {
+    goDown = () => {
         clearInterval(this.transition);
-        console.log("Ease Out");
         this.transition = setInterval( () => {
             console.log(this.state.panelStyle.bottom);
             let panelStyle = {...appStyles.lowerPanel};
@@ -54,9 +52,9 @@ export default class LowerPanel extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.fullPanel && !this.props.fullPanel) {
-            this.slideUp()
+            this.goDown()
         } else if (!prevProps.fullPanel && this.props.fullPanel){
-            this.slideDown()
+            this.goUp()
         }
     }
 
@@ -64,7 +62,6 @@ export default class LowerPanel extends React.Component {
 
 
     render() {
-
         return (
             <GestureRecognizer
                 onSwipeUp={() => this.props.setFullPanel(true)}

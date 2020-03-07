@@ -1,22 +1,18 @@
-import {Image, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View, Animated} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import React from "react";
-import congratulationsImage from "./congratulations-image.png"
+import genieImage from "./congratulations-image.png"
 import appStyles from './styles'
-import Button from "./Button";
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from "expo-haptics";
+import FadeInView from "react-native-fade-in-view";
 
 export default class Congratulations extends React.Component {
 
     constructor(props) {
         super(props);
-        this.moveAnimation = new Animated.ValueXY({ x: 0, y: 1000 });
+        this.confettiVibration();
+        setTimeout(() => this.props.getNextScreen(), 5000)
 
-        setTimeout(
-            () => {Animated.spring(this.moveAnimation, {
-                toValue: {x: 0, y: 150},
-            }).start()}, 140
-        )
     }
 
     confettiVibration = () => {
@@ -42,49 +38,24 @@ export default class Congratulations extends React.Component {
     };
 
     render() {
-        this.confettiVibration();
-
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={appStyles.container}>
-                    <View style={{
-                        paddingTop: '30%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute'}}>
-                        <View>
-                            <Text style={appStyles.titleBlue}>Congratulations!</Text>
+            <FadeInView duration={1000} style={appStyles.container}>
+                <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={2500}/>
+                <View style={{
+                    paddingTop: appStyles.win.height * 0.10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'absolute'}}>
+                    <Text style={appStyles.titleBlue}>Let's Get Started</Text>
+                    <FadeInView duration={1000}>
+                        <View style={{padding: '20%'}}>
+                            <Image style={{width: appStyles.win.height * 0.15, height: appStyles.win.height * 0.15}} source={genieImage}/>
                         </View>
-                        <Animated.View style={[styles.heartImage, this.moveAnimation.getLayout()]}>
-                            <Image style={{width: 150, height: 150}} source={congratulationsImage}/>
-                        </Animated.View>
-                    </View>
-                    <View style={{
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: '12%'
-                    }}>
-                        <Button text={"Continue"} onClick={() => this.props.getNextScreen()}/>
-                    </View>
-                    <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={2500}/>
+                    </FadeInView>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center', paddingTop: 100, color: 'black'} }>Parenting isn't Easy.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Here to Help.</Text>
                 </View>
-            </TouchableWithoutFeedback>
+            </FadeInView>
         );
     }
 }
-
-
-
-const styles = StyleSheet.create({
-    heartImage: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'greenyellow',
-        borderRadius: 100,
-        width: 100,
-        height: 100,
-    }
-});
