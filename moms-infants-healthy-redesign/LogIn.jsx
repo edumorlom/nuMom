@@ -1,11 +1,10 @@
-import {ImageBackground, Keyboard, TouchableWithoutFeedback, View, TouchableHighlight} from 'react-native';
+import {ImageBackground, View} from 'react-native';
 import React from "react";
-import loginMainImage from "./login-main-image.png"
-import appStyles from './styles'
+import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput";
 import SwipeUp from "./SwipeUp";
-import background from './background-gif.gif'
+import background from './background.gif'
 
 
 

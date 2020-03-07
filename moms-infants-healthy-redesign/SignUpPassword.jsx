@@ -1,6 +1,6 @@
-import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './styles'
+import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 
@@ -41,7 +41,7 @@ export default class SignUpPassword extends React.Component {
                         position: 'absolute',
                     }}>
                         <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
-                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
+                        <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
                             <TextInput type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
                         </View>

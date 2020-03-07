@@ -1,5 +1,5 @@
 import { View} from "react-native";
-import appStyles from "./styles";
+import appStyles from "./AppStyles";
 import WelcomeUserBanner from './WelcomeUserBanner'
 import WhitePanelButton from "./WhitePanelButton";
 import React from "react";

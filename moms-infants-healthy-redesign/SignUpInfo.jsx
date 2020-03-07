@@ -1,9 +1,8 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './styles'
+import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
-import DatePicker from 'react-native-datepicker'
 
 
 
@@ -36,19 +35,19 @@ export default class SignUpInfo extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: appStyles.win.height * 0.10,
+                        paddingTop: appStyles.win.height * 0.1,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                            <Text style={appStyles.titleBlue}>
-                                {titleText}
-                                <Text style={appStyles.titlePink}>
-                                    {this.state.fullName ? this.state.fullName.split(' ')[0] : ''}
-                                </Text>
-                                !
+                        <Text style={appStyles.titleBlue}>
+                            {titleText}
+                            <Text style={appStyles.titlePink}>
+                                {this.state.fullName ? this.state.fullName.split(' ')[0] : ''}
                             </Text>
-                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
+                            !
+                        </Text>
+                        <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
                             <TextInput placeholder={"Birth Date (MM/DD/YY)"} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>

@@ -1,14 +1,13 @@
-import { Image, Text, View} from "react-native";
-import appStyles from "./styles";
+import {Image, Text, View} from "react-native";
+import appStyles from "./AppStyles";
 import React from "react";
 import miamiImage from "./miami-image.png";
 import Button from "./Button";
-import FadeInView from "react-native-fade-in-view";
 
 export default function MustLiveInMiami(props) {
 
     return (
-        <FadeInView duration={1000} style={appStyles.container}>
+        <View duration={1000} style={appStyles.container}>
             <View style={{
                 paddingTop: appStyles.win.height * 0.10,
                 justifyContent: 'center',
@@ -19,7 +18,7 @@ export default function MustLiveInMiami(props) {
                 <Image style={{width: appStyles.win.width, height: 175}} source={miamiImage}/>
                 </View>
                 <View style={{width: appStyles.win.width * 0.8}}>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Some Features are Only Available in the Miami Area.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Some Features are Only Available in Miami.</Text>
                 </View>
             </View>
             <View style={{
@@ -31,7 +30,7 @@ export default function MustLiveInMiami(props) {
             }}>
                 <Button text={"I Understand"} onClick={() => props.getNextScreen()}/>
             </View>
-        </FadeInView>
+        </View>
     )
 
 }

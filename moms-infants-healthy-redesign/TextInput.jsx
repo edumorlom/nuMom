@@ -1,6 +1,6 @@
 import React from "react";
 import {TextInput as TextBox, View} from 'react-native'
-import appStyles from "./styles";
+import appStyles from "./AppStyles";
 
 export default class TextInput extends React.Component {
 

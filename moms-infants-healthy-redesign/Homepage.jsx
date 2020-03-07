@@ -3,7 +3,7 @@ import Maps from "./Maps";
 import {View} from 'react-native';
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
-import appStyles from "./styles";
+import appStyles from "./AppStyles";
 
 
 export default class Homepage extends React.Component {

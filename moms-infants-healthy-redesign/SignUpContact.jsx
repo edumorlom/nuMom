@@ -1,6 +1,6 @@
-import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './styles'
+import appStyles from './AppStyles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 
@@ -47,7 +47,7 @@ export default class SignUpInfo extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        paddingTop: appStyles.win.height * 0.10,
+                        paddingTop: appStyles.win.height * 0.1,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
@@ -55,7 +55,7 @@ export default class SignUpInfo extends React.Component {
                         <View>
                             <Text style={appStyles.titleBlue}>{'Contact Information'}</Text>
                         </View>
-                        <View style={{paddingTop: appStyles.win.height * 0.15}}>
+                        <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
                             <TextInput placeholder={"Phone Number"} onChangeText={this.setPhoneNumber} keyboardType={"numeric"}/>
                         </View>

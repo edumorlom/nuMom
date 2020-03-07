@@ -1,6 +1,6 @@
 import React from "react";
 import SignUpInfo from "./SignUpInfo";
-import Congratulations from "./Congratulations";
+import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
 import SignUpBabyGender from "./SignUpBabyGender";
 import Firebase from "./Firebase";
@@ -86,7 +86,7 @@ export default class SignUp extends React.Component {
     };
 
     screens = [
-        <Congratulations setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
+        <LetsGetStarted setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={"Do You Live in Miami?"} value={"liveMiami"} getNextScreen={this.getNextScreen}/>,
         <MustLiveInMiami getNextScreen={this.getNextScreen}/>,
         <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,

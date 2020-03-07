@@ -1,5 +1,5 @@
 import {Image, Text, TouchableHighlight, View} from "react-native";
-import appStyles, {borderRadius, greyColor, shadow} from "./styles";
+import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 

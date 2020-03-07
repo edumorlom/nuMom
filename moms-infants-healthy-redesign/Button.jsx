@@ -1,5 +1,5 @@
 import {Text, TouchableHighlight, View} from "react-native";
-import appStyles from "./styles";
+import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 

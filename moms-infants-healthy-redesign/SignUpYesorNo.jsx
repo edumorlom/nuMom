@@ -1,8 +1,7 @@
-import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from "react";
-import appStyles from './styles'
+import appStyles from './AppStyles'
 import MultipleChoiceButton from "./MultipleChoiceButton";
-import Button from "./Button";
 
 
 export default class SignUpYesorNo extends React.Component {
