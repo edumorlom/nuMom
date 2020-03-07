@@ -1,9 +1,8 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import appStyles from './styles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 

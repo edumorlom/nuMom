@@ -3,16 +3,8 @@ import Maps from "./Maps";
 import {View} from 'react-native';
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
+import appStyles from "./styles";
 
-
-const styles = {
-    container: {
-        flex: 1,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-};
 
 export default class Homepage extends React.Component {
 
@@ -24,7 +16,7 @@ export default class Homepage extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={appStyles.container}>
                 <Maps onPress={() => this.setFullPanel(false)}/>
                 <SOSButton/>
                 <LowerPanel setFullPanel={this.setFullPanel} fullPanel={this.state.fullPanel} fullName={this.props.fullName} logout={this.props.logout}/>

@@ -1,5 +1,5 @@
 import {Image, Linking, Text, TouchableHighlight, View} from "react-native";
-import appStyles from "./AppStyles";
+import appStyles from "./styles";
 import sosImage from "./sos-image.png";
 import React from "react";
 import * as Haptics from "expo-haptics";

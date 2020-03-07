@@ -1,6 +1,6 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import appStyles from './styles'
 import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 
@@ -40,19 +40,16 @@ export default class SignUpBabyGender extends React.Component {
         }
 
         if (this.state.babyGender.male && this.state.babyGender.female) {
-            backgroundColor = "#8B008B"
+            backgroundColor = "#acace6"
         } else if (this.state.babyGender.male) {
             backgroundColor = appStyles.blueColor;
         } else if (this.state.babyGender.female) {
             backgroundColor = appStyles.pinkColor
         }
 
-        let container = {...appStyles.container};
-        container["backgroundColor"] = backgroundColor;
-
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={container}>
+                <View style={{...appStyles.container, backgroundColor: backgroundColor}}>
                     <View style={{
                         paddingTop: appStyles.win.height * 0.3,
                         justifyContent: 'center',
@@ -69,8 +66,7 @@ export default class SignUpBabyGender extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
-                        bottom: '12%'
-                    }}>
+                        bottom: '12%'}}>
                         <Button text={this.state.babyGender.male || this.state.babyGender.female ? "Continue" : "I Don't Know"} onClick={this.onClick}/>
                     </View>
                 </View>

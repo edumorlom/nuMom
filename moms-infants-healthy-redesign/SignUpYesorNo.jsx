@@ -1,6 +1,6 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import appStyles from './styles'
 import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 

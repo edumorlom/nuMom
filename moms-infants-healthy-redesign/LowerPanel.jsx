@@ -1,5 +1,5 @@
 import { View} from "react-native";
-import appStyles, {win} from "./AppStyles";
+import appStyles from "./styles";
 import WelcomeUserBanner from './WelcomeUserBanner'
 import WhitePanelButton from "./WhitePanelButton";
 import React from "react";
@@ -14,12 +14,12 @@ export default class LowerPanel extends React.Component {
 
     constructor(props) {
         super(props);
-        this.easeIn();
+        this.slideDown();
     }
 
     transition = null;
 
-    easeIn = () => {
+    slideDown = () => {
         clearInterval(this.transition);
         console.log("Ease in");
         this.transition = setInterval( () => {
@@ -35,7 +35,7 @@ export default class LowerPanel extends React.Component {
         }, 0.1);
     };
 
-    easeOut = () => {
+    slideUp = () => {
         clearInterval(this.transition);
         console.log("Ease Out");
         this.transition = setInterval( () => {
@@ -54,9 +54,9 @@ export default class LowerPanel extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.fullPanel && !this.props.fullPanel) {
-            this.easeOut()
+            this.slideUp()
         } else if (!prevProps.fullPanel && this.props.fullPanel){
-            this.easeIn()
+            this.slideDown()
         }
     }
 
@@ -64,22 +64,18 @@ export default class LowerPanel extends React.Component {
 
 
     render() {
-        const config = {
-            velocityThreshold: 0.3,
-            directionalOffsetThreshold: 80
-        };
+
         return (
             <GestureRecognizer
                 onSwipeUp={() => this.props.setFullPanel(true)}
                 onSwipeDown={() => this.props.setFullPanel(false)}
-                config={config}
+                config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
                 style={this.state.panelStyle}>
                     <View style={{height: '80%', width: '100%', alignItems: 'center'}}>
                         <WelcomeUserBanner fullName={this.props.fullName} logout={this.props.logout}/>
                         <WhitePanelButton text={"Learn"} icon={babyBottle}/>
                         <WhitePanelButton text={"Find Care"} icon={clinicLogo}/>
                         <WhitePanelButton text={"Tips & Tricks"} icon={lightBulb}/>
-                        <View/>
                     </View>
             </GestureRecognizer>
         )

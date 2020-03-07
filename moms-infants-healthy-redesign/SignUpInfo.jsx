@@ -1,6 +1,6 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import appStyles from './styles'
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 import DatePicker from 'react-native-datepicker'
@@ -50,29 +50,7 @@ export default class SignUpInfo extends React.Component {
                             </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.15}}>
                             <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <DatePicker
-                                style={{...appStyles.TextInput.View}}
-                                date={this.state.dob}
-                                mode="date"
-                                placeholder="Date of Birth"
-                                format="MM-DD-YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                showIcon={false}
-                                customStyles={{
-                                    dateText: appStyles.TextInput.TextInput,
-                                    placeholderText: {
-                                        fontSize: appStyles.TextInput.TextInput.fontSize
-                                    },
-                                    dateInput: {
-                                        borderWidth: 0,
-                                        borderColor: 'pink'
-                                    },
-                                    btnTextConfirm: {
-                                        color: appStyles.pinkColor
-                                    }
-                                }}
-                                onDateChange={(dob) => {this.setState({dob: dob})}}/>
+                            <TextInput placeholder={"Birth Date (MM/DD/YY)"} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>
                     </View>
                     <View style={{

@@ -1,5 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
-import {Dimensions, Text} from "react-native";
+import {Dimensions} from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -9,7 +9,7 @@ export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = RFValue(30);
 export let regularFontSize = RFValue(20);
-export let borderRadius = 15;
+export let borderRadius = 30;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
@@ -67,7 +67,8 @@ export default {
     },
     button: {
         TouchableHighlight: {
-            margin: 10,
+            ...shadow,
+            margin: win.height * 0.01,
             alignItems: 'center',
             backgroundColor: pinkColor,
             paddingTop: 10,
@@ -84,9 +85,10 @@ export default {
     },
     TextInput: {
         View: {
+            ...shadow,
             height: 50,
             width: 300,
-            margin: 10,
+            margin: 8,
             borderColor: greyColor,
             borderWidth: 0.5,
             borderRadius: borderRadius,
@@ -118,10 +120,7 @@ export default {
         }
     },
     WhitePanelButton: {
-        shadowColor: shadow.shadowColor,
-        shadowOffset: shadow.shadowOffset,
-        shadowOpacity: shadow.shadowOpacity,
-        shadowRadius: 5,
+        ...shadow,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
@@ -135,10 +134,7 @@ export default {
         flexDirection: 'row',
     },
     lowerPanel: {
-        shadowColor: shadow.shadowColor,
-        shadowOffset: {width: 1, height: 1},
-        shadowOpacity: 1,
-        shadowRadius: 15,
+        ...shadow,
         backgroundColor: 'white',
         borderWidth: 0,
         borderRadius: borderRadius,
