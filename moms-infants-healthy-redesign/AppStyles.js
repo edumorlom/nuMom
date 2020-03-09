@@ -9,6 +9,11 @@ export let darkGreyColor = "#5E5E5E";
 export let backgroundColor = "white";
 export let titleFontSize = RFValue(30);
 export let regularFontSize = RFValue(20);
+export let title = {
+    fontSize: titleFontSize,
+    fontWeight: 'bold',
+    textAlign: 'center'
+}
 export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,
@@ -36,29 +41,26 @@ export default {
     darkGreyColor: darkGreyColor,
     titleFontSize: titleFontSize,
     regularFontSize: regularFontSize,
+    title: title,
     titleBlue: {
-        fontSize: titleFontSize,
-        fontWeight: 'bold',
         color: blueColor,
-        textAlign: 'center'
+        ...title
     },
     titlePink: {
-        fontSize: titleFontSize,
-        fontWeight: 'bold',
+        ...title,
         color: pinkColor,
-        textAlign: 'center'
     },
     titleBlack: {
-        fontSize: titleFontSize,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center'
+        ...title,
+        color: 'black'
+    },
+    titleGrey: {
+        ...title,
+        color: greyColor
     },
     titleWhite: {
-        fontSize: titleFontSize,
-        fontWeight: 'bold',
+        ...title,
         color: 'white',
-        textAlign: 'center'
     },
     paragraphText: {
         color: greyColor,

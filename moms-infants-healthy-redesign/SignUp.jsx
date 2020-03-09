@@ -19,18 +19,15 @@ export default class SignUp extends React.Component {
         let currentIndex = this.state.index;
 
         if (!this.showMiamiOnlyAlert && currentIndex === 1){
-            currentIndex += 1;
+            currentIndex++;
         }
 
-        console.log("show", this.showGenderSelection)
-        console.log(this.state.index)
         if (!this.showGenderSelection && currentIndex === 7) {
-            console.log('in here')
-            currentIndex +=1;
+            currentIndex++;
         }
 
         if (currentIndex < this.screens.length - 1){
-            currentIndex += 1;
+            currentIndex++;
         }
 
         this.setState({index: currentIndex})
@@ -63,9 +60,7 @@ export default class SignUp extends React.Component {
     };
 
     setUserInfo = (keyToValue) => {
-
         if (this.isEquivalent(keyToValue, {pregnant: true}) || this.isEquivalent(keyToValue, {infant: true})) {
-            console.log("EEQUIV")
             this.showGenderSelection = true;
         }
 

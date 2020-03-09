@@ -49,7 +49,7 @@ export default class SignUpInfo extends React.Component {
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <TextInput placeholder={"Birth Date (MM/DD/YY)"} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
+                            <TextInput placeholder={"Birth Date (MM/DD/YYYY)"} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>
                     </View>
                     <View style={{

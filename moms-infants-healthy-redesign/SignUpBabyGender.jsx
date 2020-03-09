@@ -40,7 +40,7 @@ export default class SignUpBabyGender extends React.Component {
         }
 
         if (this.state.babyGender.male && this.state.babyGender.female) {
-            backgroundColor = "#acace6"
+            backgroundColor = "#800080"
         } else if (this.state.babyGender.male) {
             backgroundColor = appStyles.blueColor;
         } else if (this.state.babyGender.female) {

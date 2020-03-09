@@ -25,6 +25,7 @@ export default class App extends React.Component {
       fb.logIn(email, password).then(response => {
         console.log("Successful Login!", response);
         this.setAppState({uid: response.user.uid});
+        // fb.storeLastInteraction(response.user.uid);
         fb.getUserInfo(response.user.uid).on('value', (snapshot) => {
           this.setAppState({fullName: snapshot.val().fullName});
           this.setAppState({babyGender: snapshot.val().babyGender});

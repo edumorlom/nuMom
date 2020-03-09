@@ -33,6 +33,18 @@ export default class Firebase {
         return firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
+    storeLastInteraction = (uid) => {
+        let today = new Date();
+        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes()
+
+        this.getUserInfo(uid).on('value', (snapshot) => {
+            firebase.database().ref('users/' + uid).set({
+                lastInteraction: date,
+                ...snapshot.val()
+            });
+        });
+    };
+
     saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender) => {
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,

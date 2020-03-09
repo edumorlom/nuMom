@@ -1,12 +1,10 @@
-import { View} from "react-native";
+import {View} from "react-native";
 import appStyles from "./AppStyles";
-import WelcomeUserBanner from './WelcomeUserBanner'
-import WhitePanelButton from "./WhitePanelButton";
 import React from "react";
-import babyBottle from "./baby-bottle.png";
-import clinicLogo from "./clinic-logo.png";
-import lightBulb from "./light-bulb.png";
-import GestureRecognizer from 'react-native-swipe-gestures';
+import LowerPanelSelection from "./LowerPanelSelection";
+import LowerPanelFindCare from "./LowerPanelFindCare";
+
+
 
 
 
@@ -16,6 +14,8 @@ export default class LowerPanel extends React.Component {
         super(props);
         this.goUp();
     }
+
+    state = {panelStyle: {...appStyles.lowerPanel}, lowerPanelContent: ''};
 
     transition = null;
 
@@ -37,7 +37,6 @@ export default class LowerPanel extends React.Component {
     goDown = () => {
         clearInterval(this.transition);
         this.transition = setInterval( () => {
-            console.log(this.state.panelStyle.bottom);
             let panelStyle = {...appStyles.lowerPanel};
             panelStyle["bottom"] = this.state.panelStyle.bottom - 25;
 
@@ -58,23 +57,28 @@ export default class LowerPanel extends React.Component {
         }
     }
 
-    state = {panelStyle: {...appStyles.lowerPanel}, gestureName: ''};
+    setLowerPanelContent = (lowerPanelContent) => {
+        this.setState({lowerPanelContent: lowerPanelContent});
+    };
+
+    lowerPanelContent = () => {
+        if (this.state.lowerPanelContent === 'findCare') {
+            return <LowerPanelFindCare clinics={this.props.clinics}/>
+        } else {
+            return <LowerPanelSelection fullName={this.props.fullName}
+                                        logout={this.props.logout}
+                                        setFullPanel={this.props.setFullPanel}
+                                        fullPanel={this.props.fullPanel}
+                                        setLowerPanelContent={this.setLowerPanelContent}/>
+        }
+    };
 
 
     render() {
         return (
-            <GestureRecognizer
-                onSwipeUp={() => this.props.setFullPanel(true)}
-                onSwipeDown={() => this.props.setFullPanel(false)}
-                config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
-                style={this.state.panelStyle}>
-                    <View style={{height: '80%', width: '100%', alignItems: 'center'}}>
-                        <WelcomeUserBanner fullName={this.props.fullName} logout={this.props.logout}/>
-                        <WhitePanelButton text={"Learn"} icon={babyBottle}/>
-                        <WhitePanelButton text={"Find Care"} icon={clinicLogo}/>
-                        <WhitePanelButton text={"Tips & Tricks"} icon={lightBulb}/>
-                    </View>
-            </GestureRecognizer>
+            <View style={this.state.panelStyle}>
+                {this.lowerPanelContent()}
+            </View>
         )
     }
 }

@@ -7,8 +7,15 @@ export default class TextInput extends React.Component {
     state = {date: ''};
 
     onChangeDate = (text) => {
+
         let cleanedText = text.split('/').join('');
-        if (!isNaN(cleanedText) && cleanedText.length <= 6) {
+        cleanedText = cleanedText.split('M').join('');
+        cleanedText = cleanedText.split('D').join('');
+        cleanedText = cleanedText.split('Y').join('');
+
+        if (this.state.date > text) cleanedText = cleanedText.substring(0, cleanedText.length - 1)
+
+        if (!isNaN(cleanedText) && cleanedText.length <= 8) {
             let date = this.convertTextToDate(cleanedText);
             this.props.onChangeText(date);
             this.setState({date: date})
@@ -16,13 +23,15 @@ export default class TextInput extends React.Component {
     };
 
     convertTextToDate = (text) => {
+        let initialText = 'MM/DD/YYYY';
         let date = '';
 
         for (let i = 0; i < text.length; i++) {
-            if (i % 2 === 0 && i !== 0) date += '/';
+            if (i % 2 === 0 && i !== 0 && i !== 6) date += '/';
             date += text[i]
         }
-        return date
+
+        return date + initialText.substring(date.length, initialText.length)
     };
 
     render() {

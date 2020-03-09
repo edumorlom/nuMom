@@ -1,6 +1,5 @@
 import React from 'react';
 import MapView, {AnimatedRegion, Marker} from 'react-native-maps';
-import Clinics from "./Clinics";
 
 const region = new AnimatedRegion();
 console.log(region);
@@ -41,7 +40,7 @@ export default class Maps extends React.Component {
                 }}
                 showsUserLocation={true}
                 region={this.state.currentRegion}>
-                {Clinics().map((marker, index) => (
+                {this.props.clinics.map((marker, index) => (
                     <Marker
                         key={index}
                         coordinate={marker.coordinate}

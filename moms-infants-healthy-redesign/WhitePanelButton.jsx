@@ -8,24 +8,20 @@ export default function WhitePanelButton(props){
 
     let onPress = () => {
         Haptics.selectionAsync().then();
-        // props.onPress();
+        props.onPress();
     };
 
     return (
         <TouchableHighlight style={{
             margin: 10,
             backgroundColor: 'white',
-            shadowColor: shadow.shadowColor,
-            shadowOffset: appStyles.shadow.shadowOffset,
-            shadowOpacity: appStyles.shadow.shadowOpacity,
-            shadowRadius: appStyles.shadow.shadowRadius,
+            ...shadow,
             height: appStyles.win.height * 0.13,
             width: '85%',
             borderColor: greyColor,
             borderRadius: borderRadius}}
                             underlayColor={appStyles.greyColor}
                             onPress={onPress}>
-
             <View style={{flexDirection: 'row',
                 height: '100%',
                 width: '100%',
