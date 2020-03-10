@@ -10,14 +10,19 @@ import Clinics from "./Clinics";
 
 export default class Homepage extends React.Component {
 
-    state = {fullPanel: true, clinics: Clinics()};
+    state = {fullPanel: true, clinics: Clinics(), clinicToView: null};
 
     setFullPanel = (fullPanel) => {
         this.setState({fullPanel: fullPanel})
     };
 
+    setClinicToView = (clinic) => {
+        console.log(clinic)
+        this.setState({clinicToView: clinic})
+    };
+
     render() {
-        console.log(this.props.fullName)
+        console.log(this.props.fullName);
         return (
             <View style={appStyles.container}>
                 <Maps onPress={() => this.setFullPanel(false)}
@@ -27,7 +32,9 @@ export default class Homepage extends React.Component {
                             fullPanel={this.state.fullPanel}
                             fullName={this.props.fullName}
                             logout={this.props.logout}
-                            clinics={this.state.clinics}/>
+                            clinics={this.state.clinics}
+                            clinicToView={this.state.clinicToView}
+                            setClinicToView={this.setClinicToView}/>
             </View>
         )
     }

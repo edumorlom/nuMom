@@ -1,18 +1,8 @@
-import {Image, Linking, Text, TouchableHighlight, View} from "react-native";
+import {Image, Text, TouchableHighlight, View} from "react-native";
 import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
 import React from "react";
-import * as Haptics from "expo-haptics";
 
-
-
-export default function FindCareSelectionButton(props){
-
-    let onPress = () => {
-        Haptics.selectionAsync().then();
-        Linking.openURL('tel:' + props.clinic.phoneNumber)
-        // props.onPress();
-    };
-
+export default function ClinicInfo(props){
     return (
         <TouchableHighlight style={{
             margin: 10,
@@ -26,11 +16,11 @@ export default function FindCareSelectionButton(props){
             alignItems: 'center',
             flexDirection: 'row'}}
                             underlayColor={appStyles.greyColor}
-                            onPress={onPress}>
+                            onPress={props.onPress}>
             <View>
                 <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.clinic.resource}</Text>
                 <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.clinic.address.street}</Text>
-                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.clinic.address.city + ', ' + props.clinic.address.state + ' ' + props.clinic.address.zipCode}</Text>
+                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.city}, ${props.clinic.address.state} ${props.clinic.address.zipCode}`}</Text>
             </View>
         </TouchableHighlight>
     )

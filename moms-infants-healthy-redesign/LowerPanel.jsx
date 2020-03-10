@@ -2,11 +2,8 @@ import {View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
-import LowerPanelFindCare from "./LowerPanelFindCare";
-
-
-
-
+import FindCareListClinics from "./FindCareListClinics";
+import ClinicInfo from "./ClinicInfo";
 
 export default class LowerPanel extends React.Component {
 
@@ -49,21 +46,17 @@ export default class LowerPanel extends React.Component {
         }, 0.1);
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.fullPanel && !this.props.fullPanel) {
-            this.goDown()
-        } else if (!prevProps.fullPanel && this.props.fullPanel){
-            this.goUp()
-        }
-    }
-
     setLowerPanelContent = (lowerPanelContent) => {
         this.setState({lowerPanelContent: lowerPanelContent});
     };
 
     lowerPanelContent = () => {
         if (this.state.lowerPanelContent === 'findCare') {
-            return <LowerPanelFindCare clinics={this.props.clinics}/>
+            return <FindCareListClinics clinics={this.props.clinics}
+                                        setClinicToView={this.props.setClinicToView}
+                                        setLowerPanelContent={this.setLowerPanelContent}/>
+        } else if (this.state.lowerPanelContent === 'clinicInfo'){
+            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.setLowerPanelContent}/>
         } else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
@@ -73,6 +66,14 @@ export default class LowerPanel extends React.Component {
         }
     };
 
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.fullPanel && !this.props.fullPanel) {
+            this.goDown()
+        } else if (!prevProps.fullPanel && this.props.fullPanel){
+            this.goUp()
+        }
+    }
 
     render() {
         return (
