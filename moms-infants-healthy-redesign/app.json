@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "MammaMe",
+    "name": "NuMom",
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "0.0.42",
+    "version": "0.0.43",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

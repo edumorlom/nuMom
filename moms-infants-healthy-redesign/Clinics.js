@@ -3,7 +3,7 @@ export default function Clinics() {
         [{
             "resource": "Eve-Medical Clinic",
             "address": {
-                "street": "8603 South Dixie Hwy",
+                "street": "8603 South Dixie Hwy.",
                 "apt": "102",
                 "city": "Miami",
                 "state": "FL",
@@ -165,7 +165,7 @@ export default function Clinics() {
             {
                 "resource": "Heartbeat of Miami",
                 "address": {
-                    "street": "660 NE 125th St",
+                    "street": "660 NE 125th St.",
                     "apt": "",
                     "city": "North Miami",
                     "state": "FL",
@@ -183,7 +183,7 @@ export default function Clinics() {
             {
                 "resource": "Heartbeat of Miami",
                 "address": {
-                    "street": "10100 SW 107th Court",
+                    "street": "10100 SW 107th Ct.",
                     "apt": "",
                     "city": "Miami",
                     "state": "FL",
@@ -201,7 +201,7 @@ export default function Clinics() {
             {
                 "resource": "Heartbeat of Miami",
                 "address": {
-                    "street": "390 W 49th St",
+                    "street": "390 W 49th St.",
                     "apt": "103",
                     "city": "Hialeah",
                     "state": "FL",
@@ -273,7 +273,7 @@ export default function Clinics() {
             {
                 "resource": "Pregnancy Help Medical Clinics",
                 "address": {
-                    "street": "10100 SW 107th Court ",
+                    "street": "10100 SW 107th Ct. ",
                     "apt": "",
                     "city": "Kendall",
                     "state": "FL",
@@ -327,7 +327,7 @@ export default function Clinics() {
             {
                 "resource": "Hope Women's Centers",
                 "address": {
-                    "street": "2261 S. University Drive",
+                    "street": "2261 S. University Dr.",
                     "apt": "",
                     "city": "Davie",
                     "state": "FL",
@@ -345,7 +345,7 @@ export default function Clinics() {
             {
                 "resource": "Hope Women's Centers",
                 "address": {
-                    "street": "1400 E. Oakland Park Boulevard",
+                    "street": "1400 E. Oakland Park Blvd.",
                     "apt": "201",
                     "city": "Ft. Lauderdale",
                     "state": "FL",
@@ -381,7 +381,7 @@ export default function Clinics() {
             {
                 "resource": "Love and Care Pregnancy Resources",
                 "address": {
-                    "street": "133 Ponce de Leon Boulevard",
+                    "street": "133 Ponce de Leon Blvd.",
                     "apt": "",
                     "city": "Miami",
                     "state": "FL",
@@ -435,7 +435,7 @@ export default function Clinics() {
             {
                 "resource": "Family Planning",
                 "address": {
-                    "street": "11865 SW 26 St",
+                    "street": "11865 SW 26 St.",
                     "apt": "J2",
                     "city": "Miami",
                     "state": "FL",

@@ -32,7 +32,7 @@ export default function ClinicInfo(props){
 
     return (
             <View style={{overflow: 'hidden', alignItems: 'center', maxWidth: '100%'}}>
-                {/*<LowerPanelHeader onPress={() => props.setLowerPanelContent('findCare')}/>*/}
+                <LowerPanelHeader onPress={() => props.setLowerPanelContent('findCare')}/>
                 <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
                 <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite}/>
                 <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call}/>

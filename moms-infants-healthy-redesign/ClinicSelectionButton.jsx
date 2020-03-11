@@ -18,7 +18,7 @@ export default function ClinicSelectionButton(props){
                             underlayColor={appStyles.greyColor}
                             onPress={onPress}
                             style={{
-                                margin: 10,
+                                margin: 5,
                                 padding: 20,
                                 backgroundColor: 'white',
                                 ...shadow,

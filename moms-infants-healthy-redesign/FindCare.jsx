@@ -19,7 +19,7 @@ export default function FindCare(props) {
 
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
-            <LowerPanelHeader title={'Find Medical Care'} onPress={() => props.setLowerPanelContent('lowerPanelSelection')}/>
+            <LowerPanelHeader title={''} onPress={() => props.setLowerPanelContent('lowerPanelSelection')}/>
             {clinicsButtons}
         </ScrollView>
     )
