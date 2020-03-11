@@ -12,22 +12,39 @@ export default class Maps extends React.Component {
             let region = {
                 latitude: position.coords.latitude - 0.05,
                 longitude: position.coords.longitude,
-                latitudeDelta: 0.1 * 1.5,
-                longitudeDelta: 0.1 * 1.5
+                latitudeDelta: 0.2 * 1.5,
+                longitudeDelta: 0.2 * 1.5
             };
-            this.setState({currentRegion: region})
-        }, (error) => console.log(error));
+            this.setCurrentRegion(region)
+         }, (error) => console.log(error));
     }
 
     state = {
-        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.1 }
+        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1 * 1.5, longitudeDelta: 0.1 * 1.5}
     };
 
     componentWillUnmount() {
         navigator.geolocation.clearWatch(this.watchID);
     }
 
+    setCurrentRegion  = (region) => {
+        console.log("Changing region!")
+        this.setState({ currentRegion: region });
+    };
+
+    //
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     if (nextProps.clinicToView && nextProps.clinicToView.coordinate.latitude !== this.state.currentRegion.latitude){
+    //         let region = {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1, longitudeDelta: 0.2}
+    //         region.latitude = nextProps.clinicToView.coordinate.latitude;
+    //         region.longitude = nextProps.clinicToView.coordinate.longitude;
+    //         this.setCurrentRegion(region)
+    //         return true
+    //     }
+    // }
+
     render() {
+
         return (
             <MapView
                 onPress={this.props.onPress}
@@ -38,14 +55,17 @@ export default class Maps extends React.Component {
                     bottom: 0,
                     right: 0,
                 }}
+                zoomEnabled={true}
+                onRegionChange={this.setCurrentRegion}
                 showsUserLocation={true}
                 region={this.state.currentRegion}>
-                {this.props.clinics.map((marker, index) => (
+                {this.props.clinics.map((clinic, index) => (
                     <Marker
                         key={index}
-                        coordinate={marker.coordinate}
-                        title={marker.resource}
-                        description={marker.phoneNumber}/>))}
+                        coordinate={clinic.coordinate}
+                        title={clinic.resource}
+                        description={clinic.phoneNumber}
+                        onPress={() => this.props.setClinicToView(clinic)}/>))}
 
             </MapView>
         );

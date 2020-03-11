@@ -1,4 +1,4 @@
-import {Image, Linking, Text, TouchableHighlight, View} from "react-native";
+import {Image, Text, TouchableHighlight, View} from "react-native";
 import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
@@ -12,25 +12,33 @@ export default function ClinicSelectionButton(props){
         props.onPress();
     };
 
+    let resourceName = props.clinic.resource.length > 40 ? props.clinic.resource.substring(0, 40)  + '...': props.clinic.resource;
     return (
-        <TouchableHighlight style={{
-            margin: 10,
-            padding: 20,
-            backgroundColor: 'white',
-            ...shadow,
-            height: appStyles.win.height * 0.16,
-            minWidth: '95%',
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: 'center',
-            flexDirection: 'row'}}
+        <TouchableHighlight
                             underlayColor={appStyles.greyColor}
-                            onPress={onPress}>
-            <View>
-                <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.clinic.resource}</Text>
+                            onPress={onPress}
+                            style={{
+                                margin: 10,
+                                padding: 20,
+                                backgroundColor: 'white',
+                                ...shadow,
+                                maxHeight: appStyles.win.height * 0.25,
+                                minWidth: '95%',
+                                borderColor: greyColor,
+                                borderRadius: borderRadius,
+                                alignItems: 'center',
+                                flexDirection: 'row'}}>
+            <React.Fragment>
+            <View style={{height: '100%', width: '80%'}}>
+                <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{resourceName}</Text>
                 <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.clinic.address.street}</Text>
-                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.city}, ${props.clinic.address.state} ${props.clinic.address.zipCode}`}</Text>
+                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.city}`}</Text>
+                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.state}, ${props.clinic.address.zipCode}`}</Text>
             </View>
+            <View style={{height: '100%', width: '7%', justifyContent: 'center'}}>
+                <Image style={{width: 40, height: 40}} source={props.icon} />
+            </View>
+            </React.Fragment>
         </TouchableHighlight>
     )
 }

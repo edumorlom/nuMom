@@ -2,7 +2,7 @@ import {View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
-import FindCareListClinics from "./FindCareListClinics";
+import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 
 export default class LowerPanel extends React.Component {
@@ -12,7 +12,7 @@ export default class LowerPanel extends React.Component {
         this.goUp();
     }
 
-    state = {panelStyle: {...appStyles.lowerPanel}, lowerPanelContent: ''};
+    state = {panelStyle: {...appStyles.lowerPanel}};
 
     transition = null;
 
@@ -46,23 +46,19 @@ export default class LowerPanel extends React.Component {
         }, 0.1);
     };
 
-    setLowerPanelContent = (lowerPanelContent) => {
-        this.setState({lowerPanelContent: lowerPanelContent});
-    };
-
-    lowerPanelContent = () => {
-        if (this.state.lowerPanelContent === 'findCare') {
-            return <FindCareListClinics clinics={this.props.clinics}
-                                        setClinicToView={this.props.setClinicToView}
-                                        setLowerPanelContent={this.setLowerPanelContent}/>
-        } else if (this.state.lowerPanelContent === 'clinicInfo'){
-            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.setLowerPanelContent}/>
+    showContent = () => {
+        if (this.props.lowerPanelContent === 'findCare') {
+            return <FindCare clinics={this.props.clinics}
+                             setClinicToView={this.props.setClinicToView}
+                             setLowerPanelContent={this.props.setLowerPanelContent}/>
+        } else if (this.props.lowerPanelContent === 'clinicInfo'){
+            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent}/>
         } else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
                                         setFullPanel={this.props.setFullPanel}
                                         fullPanel={this.props.fullPanel}
-                                        setLowerPanelContent={this.setLowerPanelContent}/>
+                                        setLowerPanelContent={this.props.setLowerPanelContent}/>
         }
     };
 
@@ -78,7 +74,7 @@ export default class LowerPanel extends React.Component {
     render() {
         return (
             <View style={this.state.panelStyle}>
-                {this.lowerPanelContent()}
+                {this.showContent()}
             </View>
         )
     }

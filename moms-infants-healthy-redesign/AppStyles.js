@@ -137,6 +137,7 @@ export default {
     },
     lowerPanel: {
         ...shadow,
+        overflow: 'hidden',
         backgroundColor: 'white',
         borderWidth: 0,
         borderRadius: borderRadius,
@@ -145,6 +146,6 @@ export default {
         bottom: 0 - Math.ceil(win.height * 0.4 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
+        position: 'absolute'
     }
 };

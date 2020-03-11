@@ -1,27 +1,41 @@
-import {Image, Text, TouchableHighlight, View} from "react-native";
-import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
+import {View, Linking, WebView} from "react-native";
 import React from "react";
+import ClinicSelectionButton from "./ClinicSelectionButton";
+import ActionButton from "./ActionButton";
+import LowerPanelHeader from "./LowerPanelHeader";
+import directionsArrow from './directions-arrow.png'
+
 
 export default function ClinicInfo(props){
+
+    let getDirections = () => {
+        const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+        const latLng = `${props.clinic.coordinate.latitude},${props.clinic.coordinate.longitude}`;
+        const label = 'Custom Label';
+        const url = Platform.select({
+            ios: `${scheme}${label}@${latLng}`,
+            android: `${scheme}${latLng}(${label})`
+        });
+
+        Linking.openURL(url);
+    };
+
+
+    let call = () => {
+        Linking.openURL('tel:' + props.clinic.phoneNumber)
+    };
+
+    let visitSite = () => {
+        Linking.openURL('http://' + props.clinic.website)
+    };
+
+
     return (
-        <TouchableHighlight style={{
-            margin: 10,
-            padding: 20,
-            backgroundColor: 'white',
-            ...shadow,
-            height: appStyles.win.height * 0.16,
-            minWidth: '95%',
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: 'center',
-            flexDirection: 'row'}}
-                            underlayColor={appStyles.greyColor}
-                            onPress={props.onPress}>
-            <View>
-                <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.clinic.resource}</Text>
-                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.clinic.address.street}</Text>
-                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.city}, ${props.clinic.address.state} ${props.clinic.address.zipCode}`}</Text>
+            <View style={{overflow: 'hidden', alignItems: 'center', maxWidth: '100%'}}>
+                {/*<LowerPanelHeader onPress={() => props.setLowerPanelContent('findCare')}/>*/}
+                <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
+                <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite}/>
+                <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call}/>
             </View>
-        </TouchableHighlight>
     )
 }

@@ -14,14 +14,14 @@ export default function Clinics() {
                 "longitude": -80.3060794
             },
             "phoneNumber": "305-707-6096",
-            "website": "https://www.evemedicalmiami.com/",
+            "website": "evemedicalmiami.com/",
             "services": ["Specialized in abortions", "Free pregnancy testing"],
-            "other": "Website content is available in simplified Chinese, French, Haitian Creole, Italian, Portuguese, Russian, and Spanish"
+            "other": "Website content is available in simplified Chines, French, Haitian Creole, Italian, Portuguese, Russian, and Spanish"
         },
             {
                 "resource": "Healthy Start Program ",
                 "address": {
-                    "street": "18255 Homestead Avenue",
+                    "street": "18255 Homestead Ave.",
                     "apt": " ",
                     "city": "Miami",
                     "state": "FL",
@@ -32,7 +32,7 @@ export default function Clinics() {
                     "longitude": -80.3555372
                 },
                 "phoneNumber": "305-324-2400",
-                "website":"http://miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/healthy-start/index.html",
+                "website":"miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/healthy-start/index.html",
                 "services": ["Access to a care coordinator, nutritional and counseling", "parenting support, childbirth education, breastfeeding education"],
                 "other": "Contact E-mail: miamidade@flhealth.gov "
             },
@@ -50,7 +50,7 @@ export default function Clinics() {
                     "longitude": -80.365710
                 },
                 "phoneNumber": "786-293-9544",
-                "website": "https://www.banyanhealth.org/service/primary-health/",
+                "website": "banyanhealth.org/service/primary-health/",
                 "services": ["prenatal care", "Lab services", "Pharmacy", "Family Planning", "Immunization"],
                 "other": ""
             },
@@ -68,7 +68,7 @@ export default function Clinics() {
                     "longitude": -80.142967
                 },
                 "phoneNumber": "954-981-2922",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -86,7 +86,7 @@ export default function Clinics() {
                     "longitude": -80.193370
                 },
                 "phoneNumber": "954-977-7769",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -104,7 +104,7 @@ export default function Clinics() {
                     "longitude": -80.138530
                 },
                 "phoneNumber": "954-565-0229",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -122,7 +122,7 @@ export default function Clinics() {
                     "longitude": -80.191220
                 },
                 "phoneNumber": "954-963-2229",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -140,7 +140,7 @@ export default function Clinics() {
                     "longitude": -80.226720
                 },
                 "phoneNumber": "786-452-0266",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -158,7 +158,7 @@ export default function Clinics() {
                     "longitude": -80.848210
                 },
                 "phoneNumber": "305-273-8507",
-                "website": "https://respectlifemiami.org/",
+                "website": "respectlifemiami.org/",
                 "services": ["free infant formula, diapers, free materials, including cribs, baby diapers, strollers, beds, infant items, and more", "medical care for the parent and baby, which includes free pregnancy tests", "Ultraound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
@@ -176,7 +176,7 @@ export default function Clinics() {
                     "longitude": -82.800160
                 },
                 "phoneNumber": "305-685-6010",
-                "website": "https://heartbeatofmiami.org/",
+                "website": "heartbeatofmiami.org/",
                 "services": ["Free pregnancy tests,", "Free Sonograms", "Free Peer counseling", "Free Parenting education", "Free Adoption referrals"],
                 "other": ""
             },
@@ -194,7 +194,7 @@ export default function Clinics() {
                     "longitude": -80.369330
                 },
                 "phoneNumber": "305-274-5105",
-                "website": "https://heartbeatofmiami.org/",
+                "website": "heartbeatofmiami.org/",
                 "services": ["Free pregnancy tests,", "Free Sonograms", "Free Peer counseling", "Free Parenting education", "Free Adoption referrals"],
                 "other": ""
             },
@@ -212,7 +212,7 @@ export default function Clinics() {
                     "longitude": -80.290340
                 },
                 "phoneNumber": "305-821-9970",
-                "website": "https://heartbeatofmiami.org/",
+                "website": "heartbeatofmiami.org/",
                 "services": ["Free pregnancy tests,", "Free Sonograms", "Free Peer counseling", "Free Parenting education","Free Adoption referrals"],
                 "other": ""
             },
@@ -230,14 +230,14 @@ export default function Clinics() {
                     "longitude": -80.268000
                 },
                 "phoneNumber": "305-603-8668",
-                "website": "https://heartbeatofmiami.org/",
+                "website": "heartbeatofmiami.org/",
                 "services": ["Free pregnancy tests,", "Free Sonograms", "Free Peer counseling", "Free Parenting education","Free Adoption referrals"],
                 "other": ""
             },
             {
                 "resource": "Pregnancy Help Medical Clinics",
                 "address": {
-                    "street": "390 West 49th Street",
+                    "street": "390 West 49th St.",
                     "apt": "",
                     "city": "Hialeah",
                     "state": "FL",
@@ -248,7 +248,7 @@ export default function Clinics() {
                     "longitude": -80.290340
                 },
                 "phoneNumber": "305-821-9970",
-                "website": "https://www.pregnancyhelpclinics.org/en",
+                "website": "pregnancyhelpclinics.org/en",
                 "services": ["Free pregnancy tests,", "Ultrasound", "Housing referrals", "STD / STI information","Community resource connections"],
                 "other": "Website content in English and Spanish"
             },
@@ -266,7 +266,7 @@ export default function Clinics() {
                     "longitude": -80.185230
                 },
                 "phoneNumber": "305-685-6010",
-                "website": "https://www.pregnancyhelpclinics.org/en",
+                "website": "pregnancyhelpclinics.org/en",
                 "services": ["Free pregnancy tests,", "Ultrasound", "Housing referrals", "STD / STI information","Community resource connections"],
                 "other": "Website content in English and Spanish"
             },
@@ -284,14 +284,14 @@ export default function Clinics() {
                     "longitude": -80.369330
                 },
                 "phoneNumber": "305-274-5105",
-                "website": "https://www.pregnancyhelpclinics.org/en",
+                "website": "pregnancyhelpclinics.org/en",
                 "services": ["Free pregnancy tests,", "Ultrasound", "Housing referrals", "STD / STI information","Community resource connections"],
                 "other": "Website content in English and Spanish"
             },
             {
                 "resource": "Pregnancy Help Medical Clinics",
                 "address": {
-                    "street": "4391 W Flagler Street",
+                    "street": "4391 W Flagler St.",
                     "apt": "",
                     "city": "Flagler",
                     "state": "FL",
@@ -302,14 +302,14 @@ export default function Clinics() {
                     "longitude": -80.268000
                 },
                 "phoneNumber": "305-603-8668",
-                "website": "https://www.pregnancyhelpclinics.org/en",
+                "website": "pregnancyhelpclinics.org/en",
                 "services": ["Free pregnancy tests,", "Ultrasound", "Housing referrals", "STD / STI information","Community resource connections"],
                 "other": "Website content in English and Spanish"
             },
             {
                 "resource": "Eve’s Hope",
                 "address": {
-                    "street": "9000 SW 152nd Street",
+                    "street": "9000 SW 152nd St.",
                     "apt": "105",
                     "city": "Miami",
                     "state": "FL",
@@ -320,7 +320,7 @@ export default function Clinics() {
                     "longitude": -80.339850
                 },
                 "phoneNumber": "(786) 732-7911",
-                "website": "https://eveshope.info/",
+                "website": "eveshope.info/",
                 "services": ["Free pregnancy tests,", "Ultrasound", "Pre-natal and parenting classes", "They provide free baby items ","Counseling"],
                 "other": "Information found online specified they meet with “immigrants and teenage girls” to provide these services as well "
             },
@@ -338,7 +338,7 @@ export default function Clinics() {
                     "longitude": -80.246790
                 },
                 "phoneNumber": "954-452-9459",
-                "website": "https://hopewomenscenters.com/",
+                "website": "hopewomenscenters.com/",
                 "services": ["Housing Referrals", "Medical Referrals", "Parenting Education", "Parenting Education ","STD/STI Tests, treatment and information"],
                 "other": "Photo ID with birthdate required for medical services."
             },
@@ -356,7 +356,7 @@ export default function Clinics() {
                     "longitude": -80.128480
                 },
                 "phoneNumber": "954-568-2616",
-                "website": "https://hopewomenscenters.com/",
+                "website": "hopewomenscenters.com/",
                 "services": ["Housing Referrals", "Medical Referrals", "Parenting Education", "Parenting Education ","STD/STI Tests, treatment and information"],
                 "other": "Photo ID with birthdate required for medical services."
             },
@@ -374,7 +374,7 @@ export default function Clinics() {
                     "longitude": -80.221600
                 },
                 "phoneNumber": "954-726-7464",
-                "website": "https://hopewomenscenters.com/",
+                "website": "hopewomenscenters.com/",
                 "services": ["Housing Referrals", "Medical Referrals", "Parenting Education", "Parenting Education ","STD/STI Tests, treatment and information"],
                 "other": "Photo ID with birthdate required for medical services."
             },
@@ -399,7 +399,7 @@ export default function Clinics() {
             {
                 "resource": "South Miami Hospital -Center for Women and Infants -Great Expectations",
                 "address": {
-                    "street": "6200 SW 73rd Street",
+                    "street": "6200 SW 73rd St.",
                     "apt": "",
                     "city": "Miami",
                     "state": "FL",
@@ -410,7 +410,7 @@ export default function Clinics() {
                     "longitude": -80.290700
                 },
                 "phoneNumber": "(786) 662-5026",
-                "website": "https://baptisthealth.net/en/facilities/south-miami-hospital/maternity/pages/great-expectations-at-south-miami-hospital.aspx",
+                "website": "baptisthealth.net/en/facilities/south-miami-hospital/maternity/pages/great-expectations-at-south-miami-hospital.aspx",
                 "services": ["A free monthly program for expectant parents that provides parents-tobe with practical information about pregnancy, preparing for baby’s arrival, and caring for newborns", "Expectant parents are provided an RN as their counselor who is available by phone"],
                 "other": "English only and available to those delivering at South Miami Hospital"
             },
@@ -428,7 +428,7 @@ export default function Clinics() {
                     "longitude": -80.218190
                 },
                 "phoneNumber": "(305) 575-3800",
-                "website": "http://miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+                "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
                 "services": ["Yearly exams for women", "STD counseling & treatment", "Emergency testing", "HIV/AIDs testing & counseling", "Pregnancy testing "],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
@@ -446,14 +446,14 @@ export default function Clinics() {
                     "longitude": -80.194040
                 },
                 "phoneNumber": " (305) 225-5950",
-                "website": "http://miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+                "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
                 "services": ["Yearly exams for women", "STD counseling & treatment", "Emergency testing", "HIV/AIDs testing & counseling", "Pregnancy testing "],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
             {
                 "resource": "Family Planning",
                 "address": {
-                    "street": "300 NE 80th Terrace",
+                    "street": "300 NE 80th Terr.",
                     "apt": "",
                     "city": "Miami",
                     "state": "FL",
@@ -464,11 +464,119 @@ export default function Clinics() {
                     "longitude": -80.190720
                 },
                 "phoneNumber": "305-575-3800",
-                "website": "http://miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+                "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
                 "services": ["Yearly exams for women", "STD counseling & treatment", "Emergency testing", "HIV/AIDs testing & counseling", "Pregnancy testing "],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
-            ]
+            {
+                "resource": "Nurse Family Partnership",
+                "address": {
+                    "street": "7205 NW 19th St.",
+                    "apt": "500",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33126"
+                },
+                "coordinate": {
+                    "latitude": 25.792600,
+                    "longitude": -80.313920
+                },
+                "phoneNumber": "305-541-0210",
+                "website": "hscmd.org/programs-initiatives/nurse-family-partnership/#",
+                "services": ["Introduces vulnerable first-time parents to caring maternal and child health nurses"],
+                "other": "Any woman who is pregnant with her first child, meets incomeeligibility requirements, and lives within the service area can enroll. -Women are encouraged to enroll as early as possible, but no later than 28th week gestation"
+            },
+            {
+                "resource": "Compassion Ministries by Florida Baptist Children’s Homes ",
+                "address": {
+                    "street": "7748 SW 95th Terr.",
+                    "apt": "",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33815"
+                },
+                "coordinate": {
+                    "latitude": 25.681440,
+                    "longitude": -80.320020
+                },
+                "phoneNumber": "305-271-4121",
+                "website": "fbchomes.org/",
+                "services": ["Provides food, clothing, diapers, household goods and other items to those in crisis."],
+                "other": "Miami.FL@FBCHomes.org"
+            },
+            {
+                "resource": "Family Resource Center",
+                "address": {
+                    "street": "155 South Miami Ave.",
+                    "apt": "400",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33130"
+                },
+                "coordinate": {
+                    "latitude": 25.681440,
+                    "longitude": -80.320020
+                },
+                "phoneNumber": "(305) 374-6006",
+                "website": "fbchomes.org/",
+                "services": ["Moms and dads that attend can be given baby and infant stuff upon graduation."],
+                "other": ""
+            },
+            {
+                "resource": "The True Deliverance Church of Christ",
+                "address": {
+                    "street": "18300 SW 109th Ave.",
+                    "apt": "400",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33157"
+                },
+                "coordinate": {
+                    "latitude": 25.598640,
+                    "longitude": -80.369610
+                },
+                "phoneNumber": "(305) 254-2163",
+                "website": "",
+                "services": ["Programs provide free clothes for moms and the newborn, household supplies, pampers, deodorant, diapers, and more"],
+                "other": ""
+            },
+            {
+                "resource": "HealthConnect In The Early Years",
+                "address": {
+                    "street": "701 SW 27th Ave.",
+                    "apt": "1401",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33157"
+                },
+                "coordinate": {
+                    "latitude": 25.765720,
+                    "longitude": -80.238240
+                },
+                "phoneNumber": "(305) 646-6868",
+                "website": "",
+                "services": ["Health education, prevention, and support to improve maternal health, pregnancies outcomes, infant and toddler health and development for teens and first time moms regardless of their socioeconomic or legal status, or geographic location in Miami-Dade County"],
+                "other": ""
+            },
+            {
+                "resource": "Catholic Charities - Healthy Start",
+                "address": {
+                    "street": "3675 South Miami Ave.",
+                    "apt": "",
+                    "city": "Miami",
+                    "state": "FL",
+                    "zipCode": "33133"
+                },
+                "coordinate": {
+                    "latitude": 25.765720,
+                    "longitude": -80.238240
+                },
+                "phoneNumber": "(305) 854-9712",
+                "website": "",
+                "services": ["Offers free parenting skill classes, childbirth education, breastfeeding, counseling, nutrition education and smoking cessation classes"],
+                "other": ""
+            },
+        ]
 
-)
+    )
 }

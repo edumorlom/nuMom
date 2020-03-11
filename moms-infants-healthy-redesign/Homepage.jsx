@@ -10,31 +10,40 @@ import Clinics from "./Clinics";
 
 export default class Homepage extends React.Component {
 
-    state = {fullPanel: true, clinics: Clinics(), clinicToView: null};
+    state = {fullPanel: true, clinics: Clinics(), clinicToView: null, lowerPanelContent: ''};
 
     setFullPanel = (fullPanel) => {
         this.setState({fullPanel: fullPanel})
     };
 
     setClinicToView = (clinic) => {
-        console.log(clinic)
         this.setState({clinicToView: clinic})
     };
 
+
+    setLowerPanelContent = (lowerPanelContent) => {
+        console.log("SET")
+        this.setState({lowerPanelContent: lowerPanelContent});
+    };
+
+
     render() {
-        console.log(this.props.fullName);
         return (
             <View style={appStyles.container}>
                 <Maps onPress={() => this.setFullPanel(false)}
+                      clinicToView={this.state.clinicToView}
+                      setClinicToView={this.setClinicToView}
                       clinics={Clinics()}/>
-                <SOSButton/>
+                {/*<SOSButton/>*/}
                 <LowerPanel setFullPanel={this.setFullPanel}
                             fullPanel={this.state.fullPanel}
                             fullName={this.props.fullName}
                             logout={this.props.logout}
                             clinics={this.state.clinics}
                             clinicToView={this.state.clinicToView}
-                            setClinicToView={this.setClinicToView}/>
+                            setClinicToView={this.setClinicToView}
+                            lowerPanelContent={this.state.lowerPanelContent}
+                            setLowerPanelContent={this.setLowerPanelContent}/>
             </View>
         )
     }

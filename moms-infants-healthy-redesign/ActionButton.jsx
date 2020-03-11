@@ -4,7 +4,8 @@ import React from "react";
 import * as Haptics from "expo-haptics";
 
 
-export default function WhitePanelButton(props){
+
+export default function ActionButton(props){
 
     let onPress = () => {
         Haptics.selectionAsync().then();
@@ -14,21 +15,20 @@ export default function WhitePanelButton(props){
     return (
         <TouchableHighlight style={{
             margin: 10,
+            padding: 20,
             backgroundColor: 'white',
             ...shadow,
-            height: appStyles.win.height * 0.13,
-            width: '85%',
+            height: appStyles.win.height * 0.16,
+            minWidth: '95%',
             borderColor: greyColor,
-            borderRadius: borderRadius}}
+            borderRadius: borderRadius,
+            alignItems: 'center',
+            flexDirection: 'row'}}
                             underlayColor={appStyles.greyColor}
                             onPress={onPress}>
-            <View style={{flexDirection: 'row',
-                height: '100%',
-                width: '100%',
-                alignItems: 'center',
-                padding: 10}}>
-                <Image style={{width: 55, height: 55, marginLeft: appStyles.win.width * 0.07, marginRight: appStyles.win.width * 0.1}} source={props.icon} />
-                <Text style={{color: props.color, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.text}</Text>
+            <View>
+                <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.mainAction}</Text>
+                <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.subAction}</Text>
             </View>
         </TouchableHighlight>
     )
