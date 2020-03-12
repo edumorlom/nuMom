@@ -20,7 +20,11 @@ export default class Maps extends React.Component {
     }
 
     state = {
-        currentRegion: {latitude: 25.7, longitude: -80.3766, latitudeDelta: 0.1 * 1.5, longitudeDelta: 0.1 * 1.5}
+        currentRegion: {  latitude: 25.209346556969518,
+            latitudeDelta: 1.683801011055472,
+            longitude: -80.26424665653634,
+            longitudeDelta: 0.9419280637272891,
+        }
     };
 
     componentWillUnmount() {
@@ -28,7 +32,7 @@ export default class Maps extends React.Component {
     }
 
     setCurrentRegion  = (region) => {
-        console.log("Changing region!")
+        console.log(region)
         this.setState({ currentRegion: region });
     };
 
@@ -44,7 +48,6 @@ export default class Maps extends React.Component {
     // }
 
     render() {
-
         return (
             <MapView
                 onPress={this.props.onPress}

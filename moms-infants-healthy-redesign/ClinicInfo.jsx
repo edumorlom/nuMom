@@ -40,7 +40,7 @@ export default function ClinicInfo(props){
                 <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
                 <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
                 <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
-                    <Text style={{...appStyles.paragraphText, color: 'black'}}>Services</Text>
+                    <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>Services</Text>
                         {services}
                 </View>
         </ScrollView>
