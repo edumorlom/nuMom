@@ -13,7 +13,7 @@ export let title = {
     fontSize: titleFontSize,
     fontWeight: 'bold',
     textAlign: 'center'
-}
+};
 export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,

@@ -1,9 +1,12 @@
-import {View, Linking, WebView} from "react-native";
+import {View, Linking, Text, ScrollView} from "react-native";
 import React from "react";
 import ClinicSelectionButton from "./ClinicSelectionButton";
 import ActionButton from "./ActionButton";
 import LowerPanelHeader from "./LowerPanelHeader";
 import directionsArrow from './directions-arrow.png'
+import appStyles from './AppStyles'
+import visitSiteIcon from './visit-site-icon.png'
+import callIcon from './call-icon.png'
 
 
 export default function ClinicInfo(props){
@@ -16,7 +19,6 @@ export default function ClinicInfo(props){
             ios: `${scheme}${label}@${latLng}`,
             android: `${scheme}${latLng}(${label})`
         });
-
         Linking.openURL(url);
     };
 
@@ -29,13 +31,18 @@ export default function ClinicInfo(props){
         Linking.openURL('http://' + props.clinic.website)
     };
 
+    let services = props.clinic.services.map((service) => <Text style={{...appStyles.regularFontSize}}>{service}</Text>)
+
 
     return (
-            <View style={{overflow: 'hidden', alignItems: 'center', maxWidth: '100%'}}>
-                <LowerPanelHeader onPress={() => props.setLowerPanelContent('findCare')}/>
+        <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                 <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
-                <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite}/>
-                <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call}/>
-            </View>
+                <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
+                <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
+                <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
+                    <Text style={{...appStyles.paragraphText, color: 'black'}}>Services</Text>
+                        {services}
+                </View>
+        </ScrollView>
     )
 }

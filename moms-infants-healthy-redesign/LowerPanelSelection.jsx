@@ -13,14 +13,14 @@ export default function LowerPanelSelection(props) {
             onSwipeUp={() => props.setFullPanel(true)}
             onSwipeDown={() => props.setFullPanel(false)}
             config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
-            style={{width: '100%', alignItems: 'center',}}>
+            style={{width: '100%', alignItems: 'center'}}>
             <WelcomeUserBanner fullName={props.fullName} logout={props.logout}/>
             <SelectionButton text={"Find Care"} icon={clinicLogo}
                              onPress={() => props.setLowerPanelContent('findCare')}/>
             <SelectionButton text={"Learn"} icon={babyBottle}
-                             onPress={() => props.setLowerPanelContent('learn')}/>
+                             onPress={() => {props.setLowerPanelContent('selection'); alert('Coming Soon! Please check again later.')}}/>
             <SelectionButton text={"Tips & Tricks"} icon={lightBulb}
-                             onPress={() => props.setLowerPanelContent('tipsAndTricks')}/>
+                             onPress={() => {props.setLowerPanelContent('selection'); alert('Coming Soon! Please check again later.')}}/>
         </GestureRecognizer>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text} from "react-native";
 import SelectionButtonImageOnRight from "./ClinicSelectionButton";
 import clinicLogo from './clinic-logo.png'
-import LowerPanelHeader from "./LowerPanelHeader";
+
 
 
 
@@ -19,7 +19,6 @@ export default function FindCare(props) {
 
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
-            <LowerPanelHeader title={''} onPress={() => props.setLowerPanelContent('lowerPanelSelection')}/>
             {clinicsButtons}
         </ScrollView>
     )

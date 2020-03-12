@@ -14,13 +14,13 @@ export default function LowerPanelHeader(props){
     };
 
     return (
-        <View style={{flexDirection: 'row'}}>
-            <TouchableHighlight style={{flex: 0.4, marginLeft: 20, paddingTop: 20}} onPress={onPress} underlayColor='transparent'>
-                <Image style={{height: 25, width: 15}} source={goBack}/>
-            </TouchableHighlight>
-            <View style={{flex: 1, paddingRight: 5, padding: 10}}>
-                <Text style={{...appStyles.paragraphText}}>{props.title}</Text>
+        <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{margin: 15}}>
+            <View style={{...appStyles.rowContainer, position: 'relative'}}>
+            <View style={{right: appStyles.win.width * 0.3, justifyContent: 'center'}}>
+                <Image style={{height: 20, width: 15}} source={goBack}/>
             </View>
-        </View>
+                <Text style={{...appStyles.paragraphText, right: appStyles.win.width * 0.01}}>{props.title}</Text>
+            </View>
+        </TouchableHighlight>
     )
 }

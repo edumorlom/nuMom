@@ -10,7 +10,7 @@ import Clinics from "./Clinics";
 
 export default class Homepage extends React.Component {
 
-    state = {fullPanel: true, clinics: Clinics(), clinicToView: null, lowerPanelContent: ''};
+    state = {fullPanel: true, clinics: Clinics(), clinicToView: null, lowerPanelContent: 'selection'};
 
     setFullPanel = (fullPanel) => {
         this.setState({fullPanel: fullPanel})
@@ -22,8 +22,14 @@ export default class Homepage extends React.Component {
 
 
     setLowerPanelContent = (lowerPanelContent) => {
-        console.log("SET")
         this.setState({lowerPanelContent: lowerPanelContent});
+    };
+
+    goBack = () => {
+        if (this.state.lowerPanelContent !== 'selection') {
+            if (this.state.lowerPanelContent === 'findCare') this.setLowerPanelContent('selection');
+            if (this.state.lowerPanelContent === 'clinicInfo') this.setLowerPanelContent('findCare');
+        }
     };
 
 
@@ -43,6 +49,7 @@ export default class Homepage extends React.Component {
                             clinicToView={this.state.clinicToView}
                             setClinicToView={this.setClinicToView}
                             lowerPanelContent={this.state.lowerPanelContent}
+                            goBack={this.goBack}
                             setLowerPanelContent={this.setLowerPanelContent}/>
             </View>
         )

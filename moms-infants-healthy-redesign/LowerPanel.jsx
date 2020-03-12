@@ -4,6 +4,7 @@ import React from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
+import LowerPanelHeader from "./LowerPanelHeader";
 
 export default class LowerPanel extends React.Component {
 
@@ -73,7 +74,8 @@ export default class LowerPanel extends React.Component {
 
     render() {
         return (
-            <View style={this.state.panelStyle}>
+            <View style={{...this.state.panelStyle, overflow: 'hidden'}}>
+                {this.props.lowerPanelContent !== 'selection' && <LowerPanelHeader title={"Find Care"} onPress={this.props.goBack}/>}
                 {this.showContent()}
             </View>
         )
