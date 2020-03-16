@@ -20,6 +20,7 @@ export default class Firebase {
     signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
                 this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
+                    this.sendWelcomeTextMessage(phoneNumber).then(response => console.log("Text Message Sent Successfully!"))
                 console.log("User Creation was a success!")
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: There was an error logging you in!");})
@@ -56,6 +57,29 @@ export default class Firebase {
         });
 
     };
+
+    async sendWelcomeTextMessage(phoneNumber) {
+        phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
+        console.log(phoneNumber);
+        try {
+            let response = await fetch(
+                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendTextMessage?phoneNumber=${phoneNumber}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({})
+                }
+            );
+            if (response.status >= 200 && response.status < 300) {
+                alert("Authenticated successfully!");
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     getUserInfo = (uid) => {
         return firebase.database().ref('users/' + uid);
