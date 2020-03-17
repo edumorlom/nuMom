@@ -40,7 +40,7 @@ export default class Homepage extends React.Component {
                       clinicToView={this.state.clinicToView}
                       setClinicToView={this.setClinicToView}
                       clinics={Clinics()}/>
-                {/*<SOSButton/>*/}
+                <SOSButton/>
                 <LowerPanel setFullPanel={this.setFullPanel}
                             fullPanel={this.state.fullPanel}
                             fullName={this.props.fullName}

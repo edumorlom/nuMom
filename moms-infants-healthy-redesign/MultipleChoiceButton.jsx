@@ -13,20 +13,19 @@ export default function MultipleChoiceButton(props){
 
     return (
         <TouchableHighlight
-            underlayColor='white'
+            underlayColor={appStyles.underlayColor}
             style={{
                 alignItems: 'center',
+                justifyContent: 'center',
                 backgroundColor: props.selected ? appStyles.greyColor : 'white',
-                height: appStyles.win.height * 0.105,
-                width: appStyles.win.width * 0.23,
+                height: appStyles.win.height * 0.11,
+                width: appStyles.win.width * 0.24,
                 margin: 20,
-                paddingBottom: 10,
                 borderRadius: appStyles.button.TouchableHighlight.borderRadius,
-                borderWidth: 0,
                 ...appStyles.shadow
             }}
             onPress={onPress}>
-            <Text style={{color: props.color, fontSize: RFValue(60)}}>{props.text}</Text>
+            <Text style={{color: props.color, fontSize: RFValue(45)}}>{props.text}</Text>
         </TouchableHighlight>
     )
 }

@@ -2,7 +2,7 @@ import {Image, Text, TouchableHighlight, View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
-import goBack from "./go-back.png";
+import goBack from "./go-back-arrow.png";
 
 
 
@@ -14,12 +14,12 @@ export default function LowerPanelHeader(props){
     };
 
     return (
-        <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{margin: 20}}>
-            <View style={{...appStyles.rowContainer, position: 'relative'}}>
-            <View style={{right: appStyles.win.width * 0.29, justifyContent: 'center'}}>
-                <Image style={{height: 25, width: 25}} source={goBack}/>
-            </View>
-                <Text style={{...appStyles.paragraphText, right: appStyles.win.width * 0.02}}>{props.title}</Text>
+        <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{padding: 20}}>
+            <View style={{...appStyles.rowContainer, width: '100%'}}>
+                <View style={{right: appStyles.win.width * 0.28, paddingLeft: appStyles.win.width * 0.07, justifyContent: 'center'}}>
+                    <Image style={{height: appStyles.win.width * 0.06, width: appStyles.win.width * 0.06}} source={goBack}/>
+                </View>
+                <Text style={{...appStyles.paragraphText, right: appStyles.win.width * 0.04}}>{props.title}</Text>
             </View>
         </TouchableHighlight>
     )

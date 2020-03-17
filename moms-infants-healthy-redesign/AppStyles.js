@@ -18,7 +18,7 @@ export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.4,
     shadowRadius: 5
 };
 
@@ -67,6 +67,7 @@ export default {
         fontSize: regularFontSize,
         fontWeight: 'bold'
     },
+    underlayColor: 'grey',
     button: {
         TouchableHighlight: {
             ...shadow,
@@ -113,12 +114,14 @@ export default {
             ...shadow,
             backgroundColor: blueColor,
             borderBottomRightRadius: borderRadius,
-            justifyContent: 'center',
             borderTopRightRadius: borderRadius,
+            justifyContent: 'center',
             flexDirection: 'row',
             marginRight: '30%',
-            padding: '5%',
-            marginBottom: '5%'
+            marginTop: win.height * 0.015,
+            padding: win.height * 0.025,
+            marginBottom: win.height * 0.025,
+            width: '75%'
         }
     },
     WhitePanelButton: {
@@ -141,6 +144,8 @@ export default {
         backgroundColor: 'white',
         borderWidth: 0,
         borderRadius: borderRadius,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
         width: '100%',
         height: '70%',
         bottom: 0 - Math.ceil(win.height * 0.4 / 100) * 100,

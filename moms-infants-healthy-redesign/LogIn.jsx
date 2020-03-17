@@ -1,4 +1,12 @@
-import {Animated, Image, ImageBackground, View} from 'react-native';
+import {
+    Animated,
+    Image,
+    ImageBackground,
+    View,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -35,18 +43,23 @@ export default class LogIn extends React.Component {
 
     render() {
         return (
+            <React.Fragment>
             <Animated.View style={{opacity: this.state.fadeValue, height: '100%', width: '100%'}}>
+                <TouchableOpacity onPress={Keyboard.dismiss} accessible={false}>
                 <ImageBackground source={background} style={{position: 'absolute', opacity: 0.75, width: appStyles.win.width, height: appStyles.win.height}}/>
-                <View style={{paddingTop: appStyles.win.height * 0.07, alignItems: 'center'}}>
-                    <Image style={{width: 125, height: 125, margin: appStyles.win.height * 0.03}} source={loginMainImage}/>
+                <View style={{paddingTop: appStyles.win.height * 0.05, alignItems: 'center'}}>
+                    <Image style={{width: appStyles.win.height * 0.17, height: appStyles.win.height * 0.17, margin: appStyles.win.height * 0.02}} source={loginMainImage}/>
                     <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
                     <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
-                    <View style={{height: 20}}/>
+                    <View style={{height: appStyles.win.height * 0.03}}/>
                     <Button onClick={() => this.props.login(this.state.email, this.state.password)} text={"Sign In"}/>
                 </View>
+                </TouchableOpacity>
+            </Animated.View>
                 <SwipeUp text={"Swipe Up to Sign Up"}
                          onSwipeUp={() => this.props.setAppState({screen: 'signup'})}/>
-            </Animated.View>
+            </React.Fragment>
+
 
     );
     }

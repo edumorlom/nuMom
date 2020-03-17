@@ -12,8 +12,8 @@ export default function LowerPanelSelection(props) {
         <GestureRecognizer
             onSwipeUp={() => props.setFullPanel(true)}
             onSwipeDown={() => props.setFullPanel(false)}
-            config={{velocityThreshold: 0.3, directionalOffsetThreshold: 80}}
-            style={{width: '100%', alignItems: 'center'}}>
+            config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
+            style={{width: '100%', height: '100%', paddingTop: '10%' , alignItems: 'center'}}>
             <WelcomeUserBanner fullName={props.fullName} logout={props.logout}/>
             <SelectionButton text={"Find Care"} icon={clinicLogo}
                              onPress={() => props.setLowerPanelContent('findCare')}/>

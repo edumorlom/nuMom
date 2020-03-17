@@ -33,7 +33,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-324-2400",
                 "website":"miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/healthy-start/index.html",
-                "services": ["Access to a Care Coordinator, Nutritional and Counseling", "Parenting Support, Childbirth Education, Breastfeeding Education"],
+                "services": ["Care Coordinator", "Nutritional Advice", "Counseling", "Parenting Support", "Childbirth Education", "Breastfeeding Education"],
                 "other": "Contact E-mail: miamidade@flhealth.gov "
             },
             {
@@ -51,7 +51,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "786-293-9544",
                 "website": "banyanhealth.org/service/primary-health/",
-                "services": ["prenatal care", "Lab services", "Pharmacy", "Family Planning", "Immunization"],
+                "services": ["Prenatal care", "Lab services", "Pharmacy", "Family Planning", "Immunization"],
                 "other": ""
             },
             {
@@ -87,7 +87,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "954-977-7769",
                 "website": "respectlifemiami.org/",
-                "services": ["Free Pregnancy Tests", "Free Infant Formula, Diapers, Free Materials", "Medical Care for the Parent and Baby", "Ultrasound"],
+                "services": ["Free Pregnancy Tests", "Free Infant Formula, Diapers, Free Materials", "Medical Care Parent and Baby", "Ultrasound"],
                 "other": "Services are offered in Spanish, English and Creole as well as other languages"
             },
             {
@@ -177,7 +177,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-685-6010",
                 "website": "heartbeatofmiami.org/",
-                "services": ["Free Pregnancy Tests,", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
+                "services": ["Free Pregnancy Tests", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
                 "other": ""
             },
             {
@@ -195,7 +195,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-274-5105",
                 "website": "heartbeatofmiami.org/",
-                "services": ["Free Pregnancy Tests,", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
+                "services": ["Free Pregnancy Tests", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
                 "other": ""
             },
             {
@@ -213,7 +213,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-821-9970",
                 "website": "heartbeatofmiami.org/",
-                "services": ["Free Pregnancy Tests,", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
+                "services": ["Free Pregnancy Tests", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
                 "other": ""
             },
             {
@@ -231,7 +231,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-603-8668",
                 "website": "heartbeatofmiami.org/",
-                "services": ["Free Pregnancy Tests,", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
+                "services": ["Free Pregnancy Tests", "Free Sonograms", "Free Peer Counseling", "Free Parenting Education", "Free Adoption Referrals"],
                 "other": ""
             },
             {
@@ -249,7 +249,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-821-9970",
                 "website": "pregnancyhelpclinics.org/en",
-                "services": ["Free Pregnancy Tests,", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
+                "services": ["Free Pregnancy Tests", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
                 "other": "Website content in English and Spanish"
             },
             {
@@ -267,7 +267,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-685-6010",
                 "website": "pregnancyhelpclinics.org/en",
-                "services": ["Free Pregnancy Tests,", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
+                "services": ["Free Pregnancy Tests", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
                 "other": "Website content in English and Spanish"
             },
             {
@@ -285,7 +285,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-274-5105",
                 "website": "pregnancyhelpclinics.org/en",
-                "services": ["Free Pregnancy Tests,", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
+                "services": ["Free Pregnancy Tests", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
                 "other": "Website content in English and Spanish"
             },
             {
@@ -303,7 +303,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-603-8668",
                 "website": "pregnancyhelpclinics.org/en",
-                "services": ["Free Pregnancy Tests,", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
+                "services": ["Free Pregnancy Tests", "Ultrasound", "Housing referrals", "STD/STI Information","Community Resource Connections"],
                 "other": "Website content in English and Spanish"
             },
             {
@@ -321,7 +321,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "(786) 732-7911",
                 "website": "eveshope.info/",
-                "services": ["Free Pregnancy Tests,", "Ultrasound", "Pre-Natal and Parenting Classes", "Free Baby Items ", "Counseling"],
+                "services": ["Free Pregnancy Tests", "Ultrasound", "Pre-Natal and Parenting Classes", "Free Baby Items ", "Counseling"],
                 "other": "Information found online specified they meet with “immigrants and teenage girls” to provide these services as well "
             },
             {

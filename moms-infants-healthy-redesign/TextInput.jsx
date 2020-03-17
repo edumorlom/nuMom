@@ -13,7 +13,7 @@ export default class TextInput extends React.Component {
         cleanedText = cleanedText.split('D').join('');
         cleanedText = cleanedText.split('Y').join('');
 
-        if (this.state.date > text) cleanedText = cleanedText.substring(0, cleanedText.length - 1)
+        if (this.state.date > text) cleanedText = cleanedText.substring(0, cleanedText.length - 1);
 
         if (!isNaN(cleanedText) && cleanedText.length <= 8) {
             let date = this.convertTextToDate(cleanedText);

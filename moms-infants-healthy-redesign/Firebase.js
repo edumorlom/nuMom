@@ -20,7 +20,7 @@ export default class Firebase {
     signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
                 this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
-                    this.sendWelcomeTextMessage(phoneNumber).then(response => console.log("Text Message Sent Successfully!"))
+                    this.sendWelcomeTextMessage(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
                 console.log("User Creation was a success!")
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: There was an error logging you in!");})
@@ -36,7 +36,7 @@ export default class Firebase {
 
     storeLastInteraction = (uid) => {
         let today = new Date();
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes()
+        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes();
 
         this.getUserInfo(uid).on('value', (snapshot) => {
             firebase.database().ref('users/' + uid).set({
@@ -58,12 +58,11 @@ export default class Firebase {
 
     };
 
-    async sendWelcomeTextMessage(phoneNumber) {
+    async sendWelcomeTextMessage(fullName, phoneNumber) {
         phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
         console.log(phoneNumber);
-        try {
-            let response = await fetch(
-                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendTextMessage?phoneNumber=${phoneNumber}`,
+            return await fetch(
+                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendTextMessage?fullName=${fullName}&phoneNumber=${phoneNumber}`,
                 {
                     method: "POST",
                     headers: {
@@ -73,12 +72,6 @@ export default class Firebase {
                     body: JSON.stringify({})
                 }
             );
-            if (response.status >= 200 && response.status < 300) {
-                alert("Authenticated successfully!");
-            }
-        } catch (e) {
-            console.log(e)
-        }
     }
 
     getUserInfo = (uid) => {

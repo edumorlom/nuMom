@@ -16,11 +16,11 @@ export default function SelectionButton(props){
             margin: 10,
             backgroundColor: 'white',
             ...shadow,
-            height: appStyles.win.height * 0.13,
+            height: appStyles.win.height * 0.135,
             width: '85%',
             borderColor: greyColor,
             borderRadius: borderRadius}}
-                            underlayColor={appStyles.greyColor}
+                            underlayColor={appStyles.underlayColor}
                             onPress={onPress}>
             <View style={{flexDirection: 'row',
                 height: '100%',

@@ -1,4 +1,4 @@
-import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Keyboard, Text, TouchableOpacity, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -20,7 +20,8 @@ export default class SignUpInfo extends React.Component {
 
 
     isValidEmail = (email) => {
-        return true
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     };
 
     isValidPhoneNumber = (phoneNumber) => {
@@ -44,7 +45,7 @@ export default class SignUpInfo extends React.Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                 <View style={appStyles.container}>
                     <View style={{
                         paddingTop: appStyles.win.height * 0.1,
@@ -70,7 +71,7 @@ export default class SignUpInfo extends React.Component {
                         <Button text={"Continue"} onClick={()=> this.onClick()}/>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         );
     }
 }

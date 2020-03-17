@@ -1,4 +1,4 @@
-import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Keyboard, Text, TouchableOpacity, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -32,8 +32,7 @@ export default class SignUpPassword extends React.Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-                <View style={appStyles.container}>
+            <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                     <View style={{
                         paddingTop: appStyles.win.height * 0.10,
                         justifyContent: 'center',
@@ -54,8 +53,7 @@ export default class SignUpPassword extends React.Component {
                         bottom: '12%',}}>
                         <Button text={"Continue"} onClick={() => this.onClick()}/>
                     </View>
-                </View>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         );
     }
 }

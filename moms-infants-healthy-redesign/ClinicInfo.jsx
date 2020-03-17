@@ -2,10 +2,9 @@ import {View, Linking, Text, ScrollView} from "react-native";
 import React from "react";
 import ClinicSelectionButton from "./ClinicSelectionButton";
 import ActionButton from "./ActionButton";
-import LowerPanelHeader from "./LowerPanelHeader";
 import directionsArrow from './directions-arrow.png'
 import appStyles from './AppStyles'
-import visitSiteIcon from './visit-site-icon.png'
+import visitSiteIcon from './safari-visit-site.png'
 import callIcon from './call-icon.png'
 
 

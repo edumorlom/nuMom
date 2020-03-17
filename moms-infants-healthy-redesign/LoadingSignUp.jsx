@@ -11,7 +11,7 @@ export default class LoadingSignUp extends React.Component {
     constructor(props) {
         super(props);
         setTimeout(() => {
-            this.setState({loadingText: "You're All Set!", color: appStyles.pinkColor})
+            this.setState({loadingText: "You're All Set!", color: appStyles.pinkColor});
             setTimeout(() => {
                 this.props.signUpAndUploadData();
             }, 1000);
