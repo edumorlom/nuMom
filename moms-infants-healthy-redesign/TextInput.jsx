@@ -6,22 +6,6 @@ export default class TextInput extends React.Component {
 
     state = {date: ''};
 
-    onChangeDate = (text) => {
-
-        let cleanedText = text.split('/').join('');
-        cleanedText = cleanedText.split('M').join('');
-        cleanedText = cleanedText.split('D').join('');
-        cleanedText = cleanedText.split('Y').join('');
-
-        if (this.state.date > text) cleanedText = cleanedText.substring(0, cleanedText.length - 1);
-
-        if (!isNaN(cleanedText) && cleanedText.length <= 8) {
-            let date = this.convertTextToDate(cleanedText);
-            this.props.onChangeText(date);
-            this.setState({date: date})
-        }
-    };
-
     convertTextToDate = (text) => {
         let initialText = 'MM/DD/YYYY';
         let date = '';
@@ -34,31 +18,39 @@ export default class TextInput extends React.Component {
         return date + initialText.substring(date.length, initialText.length)
     };
 
-    render() {
+    onChangeDate = (text) => {
+        let cleanedText = text.split('/').join('');
+        cleanedText = cleanedText.split('M').join('');
+        cleanedText = cleanedText.split('D').join('');
+        cleanedText = cleanedText.split('Y').join('');
 
-        if (this.props.type === 'date') {
-            return (
-                <View style={appStyles.TextInput.View}>
-                    <TextBox style={appStyles.TextInput.TextInput}
-                             keyboardType={this.props.keyboardType ? this.props.keyboardType : "default"}
-                             autoCapitalize='none'
-                             placeholder={this.props.placeholder}
-                             onChangeText={this.onChangeDate}
-                             value={this.state.date}/>
-                </View>
-            )
-        } else {
-
-            return (
-                <View style={appStyles.TextInput.View}>
-                    <TextBox style={appStyles.TextInput.TextInput}
-                             keyboardType={this.props.keyboardType ? this.props.keyboardType : "default"}
-                             secureTextEntry={this.props.type === 'password'}
-                             autoCapitalize='none'
-                             placeholder={this.props.placeholder}
-                             onChangeText={this.props.onChangeText}/>
-                </View>
-            )
+        if (this.state.date > text){
+            cleanedText = cleanedText.substring(0, cleanedText.length - 1);
         }
+
+        if (!isNaN(cleanedText) && cleanedText.length <= 8) {
+            let date = this.convertTextToDate(cleanedText);
+            this.setState({date: date});
+            this.props.onChangeText(date);
+        }
+    };
+
+    onChangeText = (text) => {
+        if (this.props.type === 'date') this.onChangeDate(text);
+        else this.props.onChangeText(text);
+    };
+
+    render() {
+        return (
+            <View style={appStyles.TextInput.View}>
+                <TextBox style={appStyles.TextInput.TextInput}
+                         keyboardType={this.props.keyboardType || "default"}
+                         secureTextEntry={this.props.type === 'password'}
+                         autoCapitalize='none'
+                         placeholder={this.props.placeholder}
+                         onChangeText={this.onChangeText} value={this.state.date || null}
+                         caretHidden={this.props.type === 'date'}/>
+            </View>
+        )
     }
 }

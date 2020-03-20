@@ -36,7 +36,6 @@ export default class LetsGetStarted extends React.Component {
                                 Haptics.selectionAsync().then(() => {
                                     Haptics.selectionAsync().then(() => {
                                         Haptics.selectionAsync().then(() => {
-
                                         });
                                     });
                                 });
@@ -51,7 +50,7 @@ export default class LetsGetStarted extends React.Component {
     render() {
         return (
             <Animated.View style={{opacity: this.state.fadeValue, ...appStyles.container}}>
-                <ConfettiCannon count={100} origin={{x: -10, y: 0}} fallSpeed={2500}/>
+                <ConfettiCannon count={150} origin={{x: -10, y: 0}} fallSpeed={2500} colors={[appStyles.blueColor, appStyles.pinkColor]}/>
                 <View style={{
                     paddingTop: appStyles.win.height * 0.10,
                     justifyContent: 'center',
@@ -59,8 +58,8 @@ export default class LetsGetStarted extends React.Component {
                     position: 'absolute'}}>
                     <Text style={appStyles.titleBlue}>Let's Get Started</Text>
                     <Image style={{margin: 100, width: appStyles.win.height * 0.15, height: appStyles.win.height * 0.15}} source={genieImage}/>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center', paddingTop: 100, color: 'black'} }>Parenting isn't Easy.</Text>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Here to Help.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center', paddingTop: 100, color: 'black'} }>Parenting Is Not Easy.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>We're Here to Help.</Text>
                 </View>
             </Animated.View>
         );

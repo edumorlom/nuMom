@@ -15,12 +15,12 @@ export default function ActionButton(props){
     return (
         <TouchableHighlight style={{
             margin: 4,
-            padding: 20,
+            paddingLeft: 20,
+            justifyContent: 'center',
             backgroundColor: 'white',
             ...shadow,
             height: appStyles.win.height * 0.11,
             width: appStyles.win.width * 0.95,
-            borderColor: greyColor,
             borderRadius: borderRadius}}
                             underlayColor={appStyles.underlayColor}
                             onPress={onPress}>

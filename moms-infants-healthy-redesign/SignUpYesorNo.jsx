@@ -23,7 +23,6 @@ export default class SignUpYesorNo extends React.Component {
                         color: 'black',
                         fontSize: appStyles.titleFontSize,
                         fontWeight: 'bold',
-                        padding: 10,
                         textAlign: 'center'}}>{this.props.question}</Text>
                     <View style={appStyles.rowContainer}>
                         <MultipleChoiceButton text={'✓'} color={appStyles.blueColor} onClick={() => this.onClick(true)}/>

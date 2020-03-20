@@ -13,10 +13,10 @@ export default function SelectionButton(props){
 
     return (
         <TouchableHighlight style={{
-            margin: 10,
+            margin: appStyles.win.height * 0.009,
             backgroundColor: 'white',
             ...shadow,
-            height: appStyles.win.height * 0.135,
+            height: appStyles.win.height * 0.15,
             width: '85%',
             borderColor: greyColor,
             borderRadius: borderRadius}}
@@ -24,10 +24,10 @@ export default function SelectionButton(props){
                             onPress={onPress}>
             <View style={{flexDirection: 'row',
                 height: '100%',
-                width: '100%',
+                justifyContent: 'left',
                 alignItems: 'center',
-                padding: 10}}>
-                <Image style={{width: 55, height: 55, marginLeft: appStyles.win.width * 0.07, marginRight: appStyles.win.width * 0.1}} source={props.icon} />
+                marginLeft: '14%'}}>
+                <Image style={{width: appStyles.win.height * 0.07, height: appStyles.win.height * 0.07, marginRight: appStyles.win.width * 0.105}} source={props.icon} />
                 <Text style={{color: props.color, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.text}</Text>
             </View>
         </TouchableHighlight>

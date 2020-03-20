@@ -20,10 +20,10 @@ export default class Firebase {
     signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
                 this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
-                    this.sendWelcomeTextMessage(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
+                    this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
                 console.log("User Creation was a success!")
             }, e => {alert("ERROR: Couldn't save user information!")})
-        }, e => {alert("ERROR: There was an error logging you in!");})
+        }, e => {alert("ERROR: E-Mail is already associated with another account!");})
     };
 
     createUserWithEmailAndPassword = (email, password) => {
@@ -34,13 +34,10 @@ export default class Firebase {
         return firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
-    storeLastInteraction = (uid) => {
-        let today = new Date();
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes();
-
+    storeInKeyToValue = (uid, key, value) => {
         this.getUserInfo(uid).on('value', (snapshot) => {
             firebase.database().ref('users/' + uid).set({
-                lastInteraction: date,
+                [key]: value,
                 ...snapshot.val()
             });
         });
@@ -58,18 +55,18 @@ export default class Firebase {
 
     };
 
-    async sendWelcomeTextMessage(fullName, phoneNumber) {
+    async sendWelcomeSMS(fullName, phoneNumber) {
         phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
-        console.log(phoneNumber);
+        let name = fullName.split(" ")[0];
             return await fetch(
-                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendTextMessage?fullName=${fullName}&phoneNumber=${phoneNumber}`,
+                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
                 {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({})
+                    body: JSON.stringify({message: `Hello ${name}, welcome to nuMom! We hope you enjoy what we have to offer.`})
                 }
             );
     }

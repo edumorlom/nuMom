@@ -18,7 +18,7 @@ export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.25,
     shadowRadius: 5
 };
 
@@ -139,7 +139,6 @@ export default {
         flexDirection: 'row',
     },
     lowerPanel: {
-        ...shadow,
         overflow: 'hidden',
         backgroundColor: 'white',
         borderWidth: 0,

@@ -23,10 +23,17 @@ export default class SignUpInfo extends React.Component {
     onClick = () => {
         if (!this.state.fullName || !this.state.dob) {
             alert("Please fill out all of the fields!")
+        } else if (!this.isValidDate(this.state.dob)){
+            alert("Invalid date!")
         } else {
             this.props.setUserInfo({fullName: this.state.fullName, dob: this.state.dob});
             this.props.getNextScreen();
         }
+    };
+
+    isValidDate = (date) => {
+        let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+        return regex.test(date);
     };
 
     render() {

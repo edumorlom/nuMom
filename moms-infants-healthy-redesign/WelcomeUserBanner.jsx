@@ -3,21 +3,35 @@ import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
 import React from 'react';
 
-export default function WelcomeUserBanner(props) {
-    return (
-            <TouchableHighlight style={appStyles.WelcomeUserBanner.TouchableHighlight} onPress={
-                () => {
-                    Haptics.selectionAsync().then();
-                    alert("You have logged out!");
-                    props.logout();
-                }
-            }
-                                underlayColor={appStyles.pinkColor}>
+export default class WelcomeUserBanner extends React.Component {
+
+    constructor(props) {
+        super(props);
+        setTimeout(() => {
+            this.setState({text: `Welcome${this.props.fullName ? ' ' + this.props.fullName.split(' ')[0] : ''}`});
+        }, 1500);
+    }
+
+    state = {text: 'Log Out'};
+
+    render() {
+        return (
+            <TouchableHighlight style={appStyles.WelcomeUserBanner.TouchableHighlight}
+                                underlayColor={appStyles.pinkColor}
+                                onPress={
+                                    () => {
+                                        Haptics.selectionAsync().then();
+                                        alert("You have logged out!");
+                                        this.props.logout();
+                                    }
+                                }>
                 <Text style={{
                     color: "white",
                     fontSize: appStyles.regularFontSize,
-                    fontWeight: 'bold'}}>
-                    {`Welcome${props.fullName ? ' ' + props.fullName.split(' ')[0] : ''}`}</Text>
+                    fontWeight: 'bold'
+                }}>
+                    {this.state.text}</Text>
             </TouchableHighlight>
-    )
+        )
+    }
 }
