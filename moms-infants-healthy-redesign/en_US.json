@@ -29,6 +29,13 @@
   "selectGenders": "Select Their Genders",
   "iDontKnowButton": "I Don't Know",
   "registeringAccount": "Registering Account",
-  "allSet": "You're All Set!"
-
+  "allSet": "You're All Set!",
+  "welcomeUserBanner": "Welcome",
+  "findCare": "Find Care",
+  "learn": "Learn",
+  "tipsAndTricks": "Tips & Tricks",
+  "comingSoon": "Coming Soon: Please check again later!",
+  "visitSite": "Visit Site",
+  "callClinic": "Call Clinic",
+  "services": "Services"
 }

@@ -14,8 +14,7 @@ export default function ClinicSelectionButton(props){
 
     let resourceName = props.clinic.resource.length > 40 ? props.clinic.resource.substring(0, 40)  + '...': props.clinic.resource;
     return (
-        <TouchableHighlight
-                            underlayColor={appStyles.underlayColor}
+        <TouchableHighlight underlayColor={appStyles.underlayColor}
                             onPress={onPress}
                             style={{
                                 margin: 5,

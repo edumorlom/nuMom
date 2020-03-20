@@ -36,10 +36,10 @@ export default function ClinicInfo(props){
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                 <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
-                <ActionButton mainAction={"Visit Site"} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
-                <ActionButton mainAction={"Call"} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
+                <ActionButton mainAction={props.getLocalizedText("visitSite")} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
+                <ActionButton mainAction={props.getLocalizedText("callClinic")} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
                 <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
-                    <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>Services</Text>
+                    <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>{props.getLocalizedText("services")}</Text>
                         {services}
                 </View>
         </ScrollView>

@@ -14,13 +14,13 @@ export default function LowerPanelSelection(props) {
             onSwipeDown={() => props.setFullPanel(false)}
             config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
             style={{width: '100%', height: '100%', paddingTop: '10%' , alignItems: 'center'}}>
-            <WelcomeUserBanner fullName={props.fullName} logout={props.logout}/>
-            <SelectionButton text={"Find Care"} icon={clinicLogo}
+            <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
+            <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                              onPress={() => props.setLowerPanelContent('findCare')}/>
-            <SelectionButton text={"Learn"} icon={babyBottle}
-                             onPress={() => {props.setLowerPanelContent('selection'); alert('Coming Soon! Please check again later.')}}/>
-            <SelectionButton text={"Tips & Tricks"} icon={lightBulb}
-                             onPress={() => {props.setLowerPanelContent('selection'); alert('Coming Soon! Please check again later.')}}/>
+            <SelectionButton text={props.getLocalizedText("learn")} icon={babyBottle}
+                             onPress={() => {props.setLowerPanelContent('selection'); alert(props.getLocalizedText("comingSoon"))}}/>
+            <SelectionButton text={props.getLocalizedText("tipsAndTricks")} icon={lightBulb}
+                             onPress={() => {props.setLowerPanelContent('selection'); alert(props.getLocalizedText("comingSoon"))}}/>
         </GestureRecognizer>
     )
 }

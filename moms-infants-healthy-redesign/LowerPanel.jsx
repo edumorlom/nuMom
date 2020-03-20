@@ -51,15 +51,16 @@ export default class LowerPanel extends React.Component {
         if (this.props.lowerPanelContent === 'findCare') {
             return <FindCare clinics={this.props.clinics}
                              setClinicToView={this.props.setClinicToView}
-                             setLowerPanelContent={this.props.setLowerPanelContent}/>
+                             setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else if (this.props.lowerPanelContent === 'clinicInfo'){
-            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent}/>
+            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
                                         setFullPanel={this.props.setFullPanel}
                                         fullPanel={this.props.fullPanel}
-                                        setLowerPanelContent={this.props.setLowerPanelContent}/>
+                                        setLowerPanelContent={this.props.setLowerPanelContent}
+                                        getLocalizedText={this.props.getLocalizedText}/>
         }
     };
 
@@ -75,7 +76,7 @@ export default class LowerPanel extends React.Component {
     render() {
         return (
             <View style={{...this.state.panelStyle, overflow: 'hidden'}}>
-                {this.props.lowerPanelContent !== 'selection' && <LowerPanelHeader title={"Find Care"} onPress={this.props.goBack}/>}
+                {this.props.lowerPanelContent !== 'selection' && <LowerPanelHeader title={this.props.getLocalizedText('findCare')} onPress={this.props.goBack} getLocalizedText={this.props.getLocalizedText}/>}
                 {this.showContent()}
             </View>
         )

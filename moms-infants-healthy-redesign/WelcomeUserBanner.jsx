@@ -7,8 +7,9 @@ export default class WelcomeUserBanner extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         setTimeout(() => {
-            this.setState({text: `Welcome${this.props.fullName ? ' ' + this.props.fullName.split(' ')[0] : ''}`});
+            this.setState({text: `${this.props.getLocalizedText('welcomeUserBanner')}${this.props.fullName ? ' ' + this.props.fullName.split(' ')[0] : ''}`});
         }, 1500);
     }
 

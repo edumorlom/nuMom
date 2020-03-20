@@ -60,7 +60,8 @@ export default class Homepage extends React.Component {
                       clinicToView={this.state.clinicToView}
                       setClinicToView={this.setClinicToView}
                       clinics={Clinics()}
-                      currentLocation={this.state.currentLocation}/>
+                      currentLocation={this.state.currentLocation}
+                      getLocalizedText={this.props.getLocalizedText}/>
                 {/*<SOSButton/>*/}
                 <LowerPanel setFullPanel={this.setFullPanel}
                             fullPanel={this.state.fullPanel}
@@ -71,7 +72,8 @@ export default class Homepage extends React.Component {
                             setClinicToView={this.setClinicToView}
                             lowerPanelContent={this.state.lowerPanelContent}
                             goBack={this.goBack}
-                            setLowerPanelContent={this.setLowerPanelContent}/>
+                            setLowerPanelContent={this.setLowerPanelContent}
+                            getLocalizedText={this.props.getLocalizedText}/>
             </View>
         )
     }
