@@ -6,12 +6,12 @@ import dnaLoading from "./dna-loading.gif";
 
 export default class LoadingSignUp extends React.Component {
 
-    state = {loadingText: "Registering Account", color: appStyles.greyColor};
+    state = {loadingText: this.props.getLocalizedText("registeringAccount"), color: appStyles.greyColor};
 
     constructor(props) {
         super(props);
         setTimeout(() => {
-            this.setState({loadingText: "You're All Set!", color: appStyles.pinkColor});
+            this.setState({loadingText: this.props.getLocalizedText("allSet"), color: appStyles.pinkColor});
             setTimeout(() => {
                 this.props.signUpAndUploadData();
             }, 1000);

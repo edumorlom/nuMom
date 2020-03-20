@@ -34,11 +34,11 @@ export default class Firebase {
         return firebase.auth().signInWithEmailAndPassword(email, password);
     };
 
-    storeInKeyToValue = (uid, key, value) => {
+    storeObjectInDatabase = (uid, object) => {
         this.getUserInfo(uid).on('value', (snapshot) => {
             firebase.database().ref('users/' + uid).set({
-                [key]: value,
-                ...snapshot.val()
+                ...snapshot.val(),
+                ...object
             });
         });
     };

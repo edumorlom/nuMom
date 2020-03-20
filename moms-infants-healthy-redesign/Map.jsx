@@ -1,10 +1,7 @@
 import React from 'react';
-import MapView, {AnimatedRegion, Marker} from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 
-const region = new AnimatedRegion();
-console.log(region);
-
-export default class Maps extends React.Component {
+export default class Map extends React.Component {
 
     constructor(props) {
         super(props);

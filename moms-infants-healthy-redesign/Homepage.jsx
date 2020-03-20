@@ -1,5 +1,5 @@
 import React from 'react';
-import Maps from "./Maps";
+import Map from "./Map";
 import {View} from 'react-native';
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
@@ -56,7 +56,7 @@ export default class Homepage extends React.Component {
     render() {
         return (
             <View style={appStyles.container}>
-                <Maps onPress={() => this.setFullPanel(false)}
+                <Map onPress={() => this.setFullPanel(false)}
                       clinicToView={this.state.clinicToView}
                       setClinicToView={this.setClinicToView}
                       clinics={Clinics()}

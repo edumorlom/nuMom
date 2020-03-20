@@ -4,7 +4,6 @@ import {
     ImageBackground,
     View,
     TouchableOpacity,
-    TouchableWithoutFeedback,
     Keyboard
 } from 'react-native';
 import React from "react";
@@ -14,8 +13,6 @@ import TextInput from "./TextInput";
 import SwipeUp from "./SwipeUp";
 import background from './background.gif'
 import loginMainImage from "./child.png";
-
-
 
 export default class LogIn extends React.Component {
 
@@ -49,14 +46,14 @@ export default class LogIn extends React.Component {
                     <ImageBackground source={background} style={{position: 'absolute', opacity: 0.75, width: appStyles.win.width, height: appStyles.win.height}}/>
                     <View style={{paddingTop: appStyles.win.height * 0.05, alignItems: 'center'}}>
                         <Image style={{width: appStyles.win.height * 0.17, height: appStyles.win.height * 0.17, margin: appStyles.win.height * 0.02}} source={loginMainImage}/>
-                        <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
-                        <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
+                        <TextInput placeholder={this.props.getLocalizedText('emailInput')} onChangeText={this.setEmail}/>
+                        <TextInput type={"password"} placeholder={this.props.getLocalizedText('passwordInput')} onChangeText={this.setPassword}/>
                         <View style={{height: appStyles.win.height * 0.03}}/>
-                        <Button onClick={() => this.props.login(this.state.email, this.state.password)} text={"Sign In"}/>
+                        <Button onClick={() => this.props.login(this.state.email, this.state.password)} text={this.props.getLocalizedText('signInButton')}/>
                     </View>
                     </TouchableOpacity>
                 </Animated.View>
-                <SwipeUp text={"Swipe Up to Sign Up"}
+                <SwipeUp text={this.props.getLocalizedText('swipeUpToSignUp')}
                          onSwipeUp={() => this.props.setAppState({screen: 'signup'})}/>
             </React.Fragment>
 

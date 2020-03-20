@@ -81,16 +81,16 @@ export default class SignUp extends React.Component {
     };
 
     screens = [
-        <LetsGetStarted setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <SignUpYesorNo setUserInfo={this.setUserInfo} question={"Do You Live in Miami?"} value={"liveMiami"} getNextScreen={this.getNextScreen}/>,
-        <MustLiveInMiami getNextScreen={this.getNextScreen}/>,
-        <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <SignUpContact setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <SignUpYesorNo setUserInfo={this.setUserInfo} question={"Are You Pregnant?"} value={"pregnant"} getNextScreen={this.getNextScreen}/>,
-        <SignUpYesorNo setUserInfo={this.setUserInfo} question={"Do You Have Any Infants?"} value={"infant"} getNextScreen={this.getNextScreen}/>,
-        <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen}/>,
-        <LoadingSignUp signUpAndUploadData={this.signUpAndUploadData}/>
+        <LetsGetStarted setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("liveMiami")} value={"liveMiami"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <MustLiveInMiami getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpContact setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("areYouPregnant")} value={"pregnant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("doYouHaveInfants")} value={"infant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <LoadingSignUp signUpAndUploadData={this.signUpAndUploadData} getLocalizedText={this.props.getLocalizedText}/>
     ];
 
     render() {

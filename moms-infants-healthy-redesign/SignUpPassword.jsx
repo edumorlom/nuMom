@@ -19,11 +19,11 @@ export default class SignUpPassword extends React.Component {
 
     onClick = () => {
         if (this.state.password !== this.state.repeatPassword) {
-            alert("Your passwords don't match!")
+            alert(this.props.getLocalizedText("passwordMismatch"))
         } else if (!this.state.password || !this.state.repeatPassword) {
-            alert("Password cannot be left empty!")
+            alert(this.props.getLocalizedText("fillOutAllFields"))
         } else if (this.state.password.length < 6){
-            alert("Your password must have at least 6 characters!")
+            alert(this.props.getLocalizedText("passwordTooShort"))
         } else {
             this.props.setUserInfo(this.state);
             this.props.getNextScreen();
@@ -39,10 +39,10 @@ export default class SignUpPassword extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                        <Text style={appStyles.titleBlue}>{"Create a Password"}</Text>
+                        <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("createPassword")}</Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput type={"password"} placeholder={"Password"} onChangeText={this.setPassword}/>
-                            <TextInput type={"password"} placeholder={"Repeat Password"} onChangeText={this.setRepeatPassword}/>
+                            <TextInput type={"password"} placeholder={this.props.getLocalizedText("passwordInput")} onChangeText={this.setPassword}/>
+                            <TextInput type={"password"} placeholder={this.props.getLocalizedText("repeatPasswordInput")} onChangeText={this.setRepeatPassword}/>
                         </View>
                     </View>
                     <View style={{
@@ -51,7 +51,7 @@ export default class SignUpPassword extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%',}}>
-                        <Button text={"Continue"} onClick={() => this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onClick={() => this.onClick()}/>
                     </View>
             </TouchableOpacity>
         );

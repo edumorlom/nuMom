@@ -13,12 +13,12 @@ export default function MustLiveInMiami(props) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'absolute'}}>
-                <Text style={appStyles.titleBlack}>Please Note</Text>
+                <Text style={appStyles.titleBlack}>{props.getLocalizedText("pleaseNote")}</Text>
                 <View style={{padding: '8%'}}>
                 <Image style={{width: appStyles.win.width, height: 175}} source={miamiImage}/>
                 </View>
                 <View style={{width: appStyles.win.width * 0.8}}>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Some Features are Only Available in Miami.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>{props.getLocalizedText("someFeaturesOnlyMiami")}</Text>
                 </View>
             </View>
             <View style={{
@@ -28,7 +28,7 @@ export default function MustLiveInMiami(props) {
                 position: 'absolute',
                 bottom: '12%'
             }}>
-                <Button text={"I Understand"} onClick={() => props.getNextScreen()}/>
+                <Button text={props.getLocalizedText("iUnderstandButton")} onClick={() => props.getNextScreen()}/>
             </View>
         </View>
     )

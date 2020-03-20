@@ -31,12 +31,11 @@ export default class SignUpInfo extends React.Component {
 
     onClick = () => {
         if (!this.state.email || !this.state.phoneNumber) {
-            alert("Please fill out all of the fields!")
+            alert(this.props.getLocalizedText("fillOutAllFields"))
         } else if (!this.isValidEmail(this.state.email)){
-            alert("The e-mail you entered is not valid!")
-
+            alert(this.props.getLocalizedText("invalidEmail"))
         } else if (!this.isValidPhoneNumber(this.state.phoneNumber)) {
-            alert("The phone number you entered is not valid!")
+            alert(this.props.getLocalizedText("invalidPhoneNumber"))
         } else {
             this.props.setUserInfo({email: this.state.email, phoneNumber: this.state.phoneNumber});
             this.props.getNextScreen();
@@ -57,8 +56,8 @@ export default class SignUpInfo extends React.Component {
                             <Text style={appStyles.titleBlue}>{'Contact Information'}</Text>
                         </View>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput placeholder={"E-Mail"} onChangeText={this.setEmail}/>
-                            <TextInput placeholder={"Phone Number"} onChangeText={this.setPhoneNumber} keyboardType={"numeric"}/>
+                            <TextInput placeholder={this.props.getLocalizedText("emailInput")} onChangeText={this.setEmail}/>
+                            <TextInput placeholder={this.props.getLocalizedText("phoneNumberInput")} onChangeText={this.setPhoneNumber} keyboardType={"numeric"}/>
                         </View>
                     </View>
                     <View style={{
@@ -68,7 +67,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={"Continue"} onClick={()=> this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onClick={()=> this.onClick()}/>
                     </View>
                 </View>
             </TouchableOpacity>

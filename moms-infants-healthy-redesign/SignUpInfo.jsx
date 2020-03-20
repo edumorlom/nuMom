@@ -22,9 +22,9 @@ export default class SignUpInfo extends React.Component {
 
     onClick = () => {
         if (!this.state.fullName || !this.state.dob) {
-            alert("Please fill out all of the fields!")
+            alert(this.props.getLocalizedText("fillOutAllFields"))
         } else if (!this.isValidDate(this.state.dob)){
-            alert("Invalid date!")
+            alert(this.props.getLocalizedText("invalidDate"))
         } else {
             this.props.setUserInfo({fullName: this.state.fullName, dob: this.state.dob});
             this.props.getNextScreen();
@@ -37,7 +37,7 @@ export default class SignUpInfo extends React.Component {
     };
 
     render() {
-        let titleText = this.state.fullName ? 'Cool, ' : "Great To Meet You";
+        let titleText = this.state.fullName ? this.props.getLocalizedText("cool") : this.props.getLocalizedText("greatToMeetYou");
         return (
             <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                     <View style={{
@@ -54,8 +54,8 @@ export default class SignUpInfo extends React.Component {
                             !
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput placeholder={"Full Name"} onChangeText={this.setFullName}/>
-                            <TextInput placeholder={"Birth Date (MM/DD/YYYY)"} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
+                            <TextInput placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName}/>
+                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>
                     </View>
                     <View style={{
@@ -65,7 +65,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={"Continue"} onClick={()=> this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onClick={()=> this.onClick()}/>
                     </View>
             </TouchableOpacity>
         );

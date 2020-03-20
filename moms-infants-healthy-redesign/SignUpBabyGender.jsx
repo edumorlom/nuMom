@@ -55,7 +55,7 @@ export default class SignUpBabyGender extends React.Component {
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute'}}>
-                        <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{"Select Their Genders"}</Text>
+                        <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{this.props.getLocalizedText("selectGenders")}</Text>
                             <View style={appStyles.rowContainer}>
                                 <MultipleChoiceButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onClick={() => this.setBabyGender('male')}/>
                                 <MultipleChoiceButton text={"♀"} color={appStyles.pinkColor} selected={this.state.babyGender.female} onClick={() => this.setBabyGender('female')}/>
@@ -67,7 +67,7 @@ export default class SignUpBabyGender extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%'}}>
-                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? "Continue" : "I Don't Know"} onClick={this.onClick}/>
+                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? this.props.getLocalizedText("continueButton") : this.props.getLocalizedText("iDontKnowButton")} onClick={this.onClick}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
