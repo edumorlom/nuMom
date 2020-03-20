@@ -14,8 +14,7 @@ export default function FindCare(props) {
             props.setClinicToView(clinic);
             props.setLowerPanelContent('clinicInfo');
         }
-    }
-                                     clinic={clinic}/>);
+    } clinic={clinic}/>);
 
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>

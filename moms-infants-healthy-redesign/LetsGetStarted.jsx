@@ -54,10 +54,10 @@ export default class LetsGetStarted extends React.Component {
                     justifyContent: 'center',
                     alignItems: 'center',
                     position: 'absolute'}}>
-                    <Text style={appStyles.titleBlue}>Let's Get Started</Text>
+                    <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("letsGetStarted")}</Text>
                     <Image style={{margin: 100, width: appStyles.win.height * 0.15, height: appStyles.win.height * 0.15}} source={genieImage}/>
                     <Text style={{...appStyles.paragraphText, textAlign: 'center', paddingTop: 100, color: 'black'} }>{this.props.getLocalizedText('parentingIsntEasy')}</Text>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>Here to Help.</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>{this.props.getLocalizedText("hereToHelp")}</Text>
                 </View>
             </Animated.View>
         );

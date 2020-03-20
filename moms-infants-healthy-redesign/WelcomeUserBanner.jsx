@@ -13,7 +13,7 @@ export default class WelcomeUserBanner extends React.Component {
         }, 1500);
     }
 
-    state = {text: 'Log Out'};
+    state = {text: this.props.getLocalizedText('logout')};
 
     render() {
         return (
@@ -22,7 +22,7 @@ export default class WelcomeUserBanner extends React.Component {
                                 onPress={
                                     () => {
                                         Haptics.selectionAsync().then();
-                                        alert("You have logged out!");
+                                        alert(this.props.getLocalizedText('youLoggedOut'));
                                         this.props.logout();
                                     }
                                 }>

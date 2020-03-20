@@ -9,7 +9,7 @@
   "hereToHelp": "Here to Help.",
   "liveMiami": "Do You Live in Miami?",
   "pleaseNote": "Please Note",
-  "someFeaturesOnlyMiami": "Some Features Are Only Available in Miami.",
+  "someFeaturesOnlyMiami": "Some Features Are Only Available in Miami",
   "iUnderstandButton": "I Understand",
   "cool": "Cool, ",
   "greatToMeetYou": "Great To Meet You",
@@ -37,5 +37,7 @@
   "comingSoon": "Coming Soon: Please check again later!",
   "visitSite": "Visit Site",
   "callClinic": "Call Clinic",
-  "services": "Services"
+  "services": "Services",
+  "logout": "Log Out",
+  "youLoggedOut": "You have logged out!"
 }

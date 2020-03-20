@@ -30,7 +30,7 @@ export default function ClinicInfo(props){
         Linking.openURL('http://' + props.clinic.website)
     };
 
-    let services = props.clinic.services.map((service, key) => <Text key={key} style={{...appStyles.regularFontSize}}>{service}</Text>)
+    let services = props.clinic.services.map((service, key) => <Text key={key} style={{...appStyles.regularFontSize}}>{service}</Text>);
 
 
     return (

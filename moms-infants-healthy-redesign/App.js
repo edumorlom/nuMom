@@ -16,7 +16,7 @@ export default class App extends React.Component {
     password: null,
     fullName: null,
     babyGender: null,
-    deviceLanguage: 'en_US'
+    deviceLanguage: 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
   };
 
   constructor(props) {
@@ -26,19 +26,7 @@ export default class App extends React.Component {
         if (email && password) this.loginWithEmailPassword(email, password);
       })
   });
-    this.getDeviceLanguage()
 }
-
-  getDeviceLanguage = () => {
-    const deviceLanguage =
-        Platform.OS === 'ios'
-            ? NativeModules.SettingsManager.settings.AppleLocale ||
-            NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
-            : NativeModules.I18nManager.localeIdentifier;
-
-    console.log(deviceLanguage);
-    this.setAppState({deviceLanguage: deviceLanguage})
-  };
 
   getLocalizedText = (key) => {
     return getLocalizedText(this.state.deviceLanguage, key)
