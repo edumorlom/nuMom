@@ -9,7 +9,7 @@ export default class SignUpBabyGender extends React.Component {
     state = {babyGender: {male: false, female: false}};
 
     onClick = () => {
-        this.props.setUserInfo({male: this.state.male, female: this.state.female});
+        this.props.setUserInfo({babyGender: {male: this.state.babyGender.male, female: this.state.babyGender.female}});
         this.props.getNextScreen();
     };
 
@@ -26,7 +26,6 @@ export default class SignUpBabyGender extends React.Component {
             male = false;
             female = false;
         }
-
         this.setState({babyGender: {male: male, female: female}})
     };
 

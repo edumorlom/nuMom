@@ -35,6 +35,8 @@ export default class Firebase {
     };
 
     storeObjectInDatabase = (uid, object) => {
+        if (!uid) return;
+        console.log("OBJECTS", object)
         this.getUserInfo(uid).on('value', (snapshot) => {
             firebase.database().ref('users/' + uid).set({
                 ...snapshot.val(),
@@ -44,6 +46,8 @@ export default class Firebase {
     };
 
     saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender) => {
+        if (!uid) return;
+        console.log('babygender', babyGender)
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,
             fullName: fullName,
