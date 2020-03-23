@@ -1,4 +1,6 @@
 import * as firebase from "firebase";
+import getLocalizedText from "./getLocalizedText";
+import {NativeModules} from "react-native";
 
 
 export default class Firebase {
@@ -47,7 +49,6 @@ export default class Firebase {
 
     saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender) => {
         if (!uid) return;
-        console.log('babygender', babyGender)
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,
             fullName: fullName,
@@ -60,8 +61,11 @@ export default class Firebase {
     };
 
     async sendWelcomeSMS(fullName, phoneNumber) {
+        let deviceLanguage = 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
         phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
         let name = fullName.split(" ")[0];
+        let message = getLocalizedText(deviceLanguage, 'welcomeSMS').replace("{NAME}", name);
+        console.log(message);
             return await fetch(
                 `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
                 {
@@ -70,7 +74,7 @@ export default class Firebase {
                         "Accept": "application/json",
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({message: `Hello ${name}, welcome to nuMom! We hope you enjoy what we have to offer.`})
+                    body: JSON.stringify({message: message})
                 }
             );
     }

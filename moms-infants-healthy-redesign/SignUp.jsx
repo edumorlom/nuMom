@@ -60,7 +60,6 @@ export default class SignUp extends React.Component {
     };
 
     setUserInfo = (keyToValue) => {
-        console.log('keytovalye', keyToValue)
         if (this.isEquivalent(keyToValue, {pregnant: true}) || this.isEquivalent(keyToValue, {infant: true})) {
             this.showGenderSelection = true;
         }
@@ -75,7 +74,6 @@ export default class SignUp extends React.Component {
 
     signUpAndUploadData = () => {
         let fb = new Firebase();
-        console.log('the baby gender is ', this.state.babyGender)
         fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
         setTimeout( () => {
             this.props.login(this.state.email, this.state.password)

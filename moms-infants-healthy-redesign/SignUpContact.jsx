@@ -53,7 +53,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                     }}>
                         <View>
-                            <Text style={appStyles.titleBlue}>{'Contact Information'}</Text>
+                            <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("contactInformation")}</Text>
                         </View>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <TextInput placeholder={this.props.getLocalizedText("emailInput")} onChangeText={this.setEmail}/>
