@@ -9,18 +9,18 @@ admin.initializeApp({
 
 
 const twilio = require('twilio');
-const accountSid = "AC33b0341d3dd4ac8a51b67ae722542b0c";
-const authToken = "0fd536bfe79ef8cc2757e0c09655cb04";
+const twilioAccount = require('twilio_account');
+const accountSid = twilioAccount.accountSid;
+const authToken = twilioAccount.authToken;
 
 const client = new twilio(accountSid, authToken);
-
 const twilioNumber = '+19046472206';
 
-exports.sendTextMessage = functions.https.onRequest((req, res) => {
-    console.log(req.query);
+exports.sendCustomSMS = functions.https.onRequest((req, res) => {
+    console.log(req.body.message);
     client.messages
         .create({
-            body: 'Hello Eduardo, welcome to nuMom! I hope you enjoy what we have to offer.',
+            body: req.body.message,
             from: twilioNumber,
             to: req.query.phoneNumber
         })
