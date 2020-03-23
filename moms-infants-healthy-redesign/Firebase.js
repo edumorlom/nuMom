@@ -1,22 +1,13 @@
 import * as firebase from "firebase";
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
-
+import firebaseAccount from './firebase_account'
 
 export default class Firebase {
 
     constructor() {
-        const config = {
-            apiKey: "AIzaSyDm7_EtvmYGiq-qbKnAOD_oqGTH0ClCqcI",
-            authDomain: "moms-infants-healthy.firebaseapp.com",
-            databaseURL: "https://moms-infants-healthy.firebaseio.com",
-            projectId: "moms-infants-healthy",
-            storageBucket: "moms-infants-healthy.appspot.com",
-            messagingSenderId: "14851568032"
-        };
-
+        const config = firebaseAccount;
         if (!firebase.apps.length) firebase.initializeApp(config);
-
     }
 
     signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
