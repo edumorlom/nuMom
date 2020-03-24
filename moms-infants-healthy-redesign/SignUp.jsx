@@ -5,7 +5,7 @@ import SignUpPassword from "./SignUpPassword";
 import SignUpBabyGender from "./SignUpBabyGender";
 import Firebase from "./Firebase";
 import SignUpContact from "./SignUpContact";
-import LoadingSignUp from "./LoadingSignUp";
+import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
 import MustLiveInMiami from "./MustLiveInMiami";
 
@@ -90,7 +90,7 @@ export default class SignUp extends React.Component {
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("areYouPregnant")} value={"pregnant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("doYouHaveInfants")} value={"infant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
-        <LoadingSignUp signUpAndUploadData={this.signUpAndUploadData} getLocalizedText={this.props.getLocalizedText}/>
+        <SignUpLoading signUpAndUploadData={this.signUpAndUploadData} getLocalizedText={this.props.getLocalizedText}/>
     ];
 
     render() {

@@ -4,7 +4,7 @@ import appStyles from './AppStyles'
 import dnaLoading from "./dna-loading.gif";
 
 
-export default class LoadingSignUp extends React.Component {
+export default class SignUpLoading extends React.Component {
 
     state = {loadingText: this.props.getLocalizedText("registeringAccount"), color: appStyles.greyColor};
 
