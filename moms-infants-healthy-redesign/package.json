@@ -12,6 +12,8 @@
     "expo-haptics": "~8.0.0",
     "expo-permissions": "~8.0.0",
     "firebase": "^7.12.0",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.5.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
@@ -19,7 +21,8 @@
     "react-native-haptic-feedback": "^1.9.0",
     "react-native-maps": "0.26.1",
     "react-native-responsive-fontsize": "^0.4.3",
-    "react-native-swipe-gestures": "^1.0.5"
+    "react-native-swipe-gestures": "^1.0.5",
+    "twilio": "^3.41.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

@@ -1,7 +1,8 @@
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
 import firebaseAccount from './firebase_account'
+
 
 export default class Firebase {
 
@@ -29,7 +30,6 @@ export default class Firebase {
 
     storeObjectInDatabase = (uid, object) => {
         if (!uid) return;
-        console.log("OBJECTS", object)
         this.getUserInfo(uid).on('value', (snapshot) => {
             firebase.database().ref('users/' + uid).set({
                 ...snapshot.val(),
@@ -58,7 +58,7 @@ export default class Firebase {
         let message = getLocalizedText(deviceLanguage, 'welcomeSMS').replace("{NAME}", name);
         console.log(message);
             return await fetch(
-                `https://us-central1-moms-infants-healthy.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
+                `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
                 {
                     method: "POST",
                     headers: {
@@ -73,9 +73,7 @@ export default class Firebase {
     getUserInfo = (uid) => {
         return firebase.database().ref('users/' + uid);
     }
+
 }
-
-
-
 
 
