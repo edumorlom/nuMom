@@ -1,10 +1,10 @@
 import React from 'react';
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
-import Homepage from "./Homepage";
-import Firebase from "./Firebase";
-import {AsyncStorage, NativeModules, Platform} from 'react-native';
-import getLocalizedText from "./getLocalizedText";
+import LogIn from "./src/LogIn";
+import SignUp from "./src/SignUp";
+import Homepage from "./src/Homepage";
+import Firebase from "./src/Firebase";
+import {AsyncStorage, NativeModules} from 'react-native';
+import getLocalizedText from "./src/getLocalizedText";
 
 
 

@@ -3,13 +3,12 @@
     "name": "NuMom",
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "0.0.50",
+    "version": "0.0.51",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

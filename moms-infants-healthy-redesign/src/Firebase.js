@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
-import firebaseAccount from './firebase_account'
+import firebaseAccount from './firebase_account.json'
 
 
 export default class Firebase {
@@ -15,7 +15,6 @@ export default class Firebase {
         this.createUserWithEmailAndPassword(email, password).then(response => {
                 this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
                     this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
-                console.log("User Creation was a success!")
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: E-Mail is already associated with another account!");})
     };
@@ -24,9 +23,7 @@ export default class Firebase {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     };
 
-    logIn = (email, password) => {
-        return firebase.auth().signInWithEmailAndPassword(email, password);
-    };
+    logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
     storeObjectInDatabase = (uid, object) => {
         if (!uid) return;
@@ -70,10 +67,7 @@ export default class Firebase {
             );
     }
 
-    getUserInfo = (uid) => {
-        return firebase.database().ref('users/' + uid);
-    }
-
+    getUserInfo = (uid) => firebase.database().ref('users/' + uid);
 }
 
 
