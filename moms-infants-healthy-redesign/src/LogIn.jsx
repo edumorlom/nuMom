@@ -49,7 +49,7 @@ export default class LogIn extends React.Component {
                         <TextInput placeholder={this.props.getLocalizedText('emailInput')} onChangeText={this.setEmail}/>
                         <TextInput type={"password"} placeholder={this.props.getLocalizedText('passwordInput')} onChangeText={this.setPassword}/>
                         <View style={{height: appStyles.win.height * 0.03}}/>
-                        <Button onClick={() => this.props.login(this.state.email, this.state.password)} text={this.props.getLocalizedText('signInButton')}/>
+                        <Button onPress={() => this.props.login(this.state.email, this.state.password)} text={this.props.getLocalizedText('signInButton')}/>
                     </View>
                     </TouchableOpacity>
                 </Animated.View>

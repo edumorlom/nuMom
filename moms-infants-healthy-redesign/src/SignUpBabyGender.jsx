@@ -66,7 +66,7 @@ export default class SignUpBabyGender extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%'}}>
-                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? this.props.getLocalizedText("continueButton") : this.props.getLocalizedText("iDontKnowButton")} onClick={this.onClick}/>
+                        <Button text={this.state.babyGender.male || this.state.babyGender.female ? this.props.getLocalizedText("continueButton") : this.props.getLocalizedText("iDontKnowButton")} onPress={this.onClick}/>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

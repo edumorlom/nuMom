@@ -5,6 +5,7 @@ import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
+import Learn from "./Learn";
 
 export default class LowerPanel extends React.Component {
 
@@ -52,8 +53,10 @@ export default class LowerPanel extends React.Component {
             return <FindCare clinics={this.props.clinics}
                              setClinicToView={this.props.setClinicToView}
                              setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
-        } else if (this.props.lowerPanelContent === 'clinicInfo'){
+        } else if (this.props.lowerPanelContent === 'clinicInfo') {
             return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else if (this.props.lowerPanelContent === 'learn') {
+            return <Learn setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
@@ -76,7 +79,7 @@ export default class LowerPanel extends React.Component {
     render() {
         return (
             <View style={{...this.state.panelStyle, overflow: 'hidden'}}>
-                {this.props.lowerPanelContent !== 'selection' && <LowerPanelHeader title={this.props.getLocalizedText('findCare')} onPress={this.props.goBack} getLocalizedText={this.props.getLocalizedText}/>}
+                {this.props.lowerPanelContent !== 'selection' && <LowerPanelHeader onPress={this.props.goBack} lowerPanelContent={this.props.lowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>}
                 {this.showContent()}
             </View>
         )

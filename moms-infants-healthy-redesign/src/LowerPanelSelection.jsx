@@ -18,7 +18,7 @@ export default function LowerPanelSelection(props) {
             <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                              onPress={() => props.setLowerPanelContent('findCare')}/>
             <SelectionButton text={props.getLocalizedText("learn")} icon={babyBottle}
-                             onPress={() => {props.setLowerPanelContent('selection'); alert(props.getLocalizedText("comingSoon"))}}/>
+                             onPress={() => {props.setLowerPanelContent('learn');}}/>
             <SelectionButton text={props.getLocalizedText("tipsAndTricks")} icon={lightBulb}
                              onPress={() => {props.setLowerPanelContent('selection'); alert(props.getLocalizedText("comingSoon"))}}/>
         </GestureRecognizer>

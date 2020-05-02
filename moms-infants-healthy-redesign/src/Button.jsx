@@ -6,7 +6,7 @@ import * as Haptics from "expo-haptics";
 export default function Button(props){
     let onPress = () => {
         Haptics.selectionAsync().then();
-        props.onClick();
+        props.onPress();
     };
 
     return (

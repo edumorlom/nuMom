@@ -1,6 +1,6 @@
 import {Image, Text, View, Animated} from 'react-native';
 import React from "react";
-import genieImage from "./heart-balloon.png"
+import heartBalloon from "./heart-balloon.png"
 import appStyles from './AppStyles'
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from "expo-haptics";
@@ -55,7 +55,7 @@ export default class LetsGetStarted extends React.Component {
                     alignItems: 'center',
                     position: 'absolute'}}>
                     <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("letsGetStarted")}</Text>
-                    <Image style={{margin: 100, width: appStyles.win.height * 0.15, height: appStyles.win.height * 0.15}} source={genieImage}/>
+                    <Image style={{margin: 100, width: appStyles.win.height * 0.15, height: appStyles.win.height * 0.15}} source={heartBalloon}/>
                     <Text style={{...appStyles.paragraphText, textAlign: 'center', paddingTop: 100, color: 'black'} }>{this.props.getLocalizedText('parentingIsntEasy')}</Text>
                     <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>{this.props.getLocalizedText("hereToHelp")}</Text>
                 </View>

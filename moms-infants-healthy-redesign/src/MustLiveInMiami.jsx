@@ -28,7 +28,7 @@ export default function MustLiveInMiami(props) {
                 position: 'absolute',
                 bottom: '12%'
             }}>
-                <Button text={props.getLocalizedText("iUnderstandButton")} onClick={() => props.getNextScreen()}/>
+                <Button text={props.getLocalizedText("iUnderstandButton")} onPress={() => props.getNextScreen()}/>
             </View>
         </View>
     )

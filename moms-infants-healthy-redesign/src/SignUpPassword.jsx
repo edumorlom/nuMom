@@ -17,7 +17,7 @@ export default class SignUpPassword extends React.Component {
         this.setState({repeatPassword: password})
     };
 
-    onClick = () => {
+    onPress = () => {
         if (this.state.password !== this.state.repeatPassword) {
             alert(this.props.getLocalizedText("passwordMismatch"))
         } else if (!this.state.password || !this.state.repeatPassword) {
@@ -51,7 +51,7 @@ export default class SignUpPassword extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%',}}>
-                        <Button text={this.props.getLocalizedText("continueButton")} onClick={() => this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onPress={this.onClick}/>
                     </View>
             </TouchableOpacity>
         );

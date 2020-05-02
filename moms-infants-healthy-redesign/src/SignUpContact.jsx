@@ -67,7 +67,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={this.props.getLocalizedText("continueButton")} onClick={()=> this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onPress={()=> this.onClick()}/>
                     </View>
                 </View>
             </TouchableOpacity>
