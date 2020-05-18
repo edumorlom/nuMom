@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
-import firebaseAccount from './firebase_account.json'
+import firebaseAccount from '../firebase_account.json'
 
 
 export default class Firebase {
