@@ -1,6 +1,6 @@
 import {Image, Linking, Text, TouchableHighlight, View} from "react-native";
 import appStyles from "./AppStyles";
-import sosImage from "./sos-ambulance.png";
+import sosImage from "../../assets/sos-ambulance.png";
 import React from "react";
 import * as Haptics from "expo-haptics";
 import {RFValue} from "react-native-responsive-fontsize";

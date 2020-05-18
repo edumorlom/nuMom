@@ -2,7 +2,7 @@ import {Image, Text, TouchableHighlight, View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
-import goBack from "./go-back-arrow.png";
+import goBack from "../../assets/go-back-arrow.png";
 
 
 export default function LowerPanelHeader(props) {
