@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MapView, {Marker} from 'react-native-maps';
 
-export default class Map extends React.Component {
+export default class Map extends Component {
 
     constructor(props) {
         super(props);
@@ -26,6 +26,7 @@ export default class Map extends React.Component {
         return (
             <MapView
                 onPress={this.props.onPress}
+                provider="google"
                 style={{
                     position: 'absolute',
                     top: 0,
