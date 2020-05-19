@@ -6,7 +6,7 @@ import MultipleChoiceButton from "./MultipleChoiceButton";
 
 export default class SignUpYesorNo extends React.Component {
 
-    OnPress = (userResponse) => {
+    onPress = (userResponse) => {
         this.props.setUserInfo({[this.props.value]: userResponse});
         this.props.getNextScreen();
     };
@@ -25,8 +25,8 @@ export default class SignUpYesorNo extends React.Component {
                         fontWeight: 'bold',
                         textAlign: 'center'}}>{this.props.question}</Text>
                     <View style={appStyles.rowContainer}>
-                        <MultipleChoiceButton text={'✓'} color={appStyles.blueColor} OnPress={() => this.OnPress(true)}/>
-                        <MultipleChoiceButton text={'X'} color={appStyles.pinkColor} OnPress={() => this.OnPress(false)}/>
+                        <MultipleChoiceButton text={'✓'} color={appStyles.blueColor} onPress={() => this.onPress(true)}/>
+                        <MultipleChoiceButton text={'X'} color={appStyles.pinkColor} onPress={() => this.onPress(false)}/>
                     </View>
                 </View>
             </View>

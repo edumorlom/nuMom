@@ -20,7 +20,7 @@ export default class SignUpInfo extends React.Component {
         this.setState({dob: dob})
     };
 
-    OnPress = () => {
+    onPress = () => {
         if (!this.state.fullName || !this.state.dob) {
             alert(this.props.getLocalizedText("fillOutAllFields"))
         } else if (!this.isValidDate(this.state.dob)){
@@ -65,7 +65,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={this.props.getLocalizedText("continueButton")} onPress={()=> this.OnPress()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onPress={this.onPress}/>
                     </View>
             </TouchableOpacity>
         );
