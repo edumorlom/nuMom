@@ -21,7 +21,7 @@ export default function SOSButton() {
             bottom: 0,
             maxHeight: 0,
             maxWidth: 0
-        }} onPress={() => onPress()}>
+        }} onPress={onPress}>
             <View style={appStyles.WhitePanelButton}>
                 <Image style={{width: 25, height: 25, marginRight: 18}} source={sosImage} />
                 <Text style={{color: appStyles.pinkColor, fontSize: RFValue(20), fontWeight: 'bold'}}>S.O.S</Text>

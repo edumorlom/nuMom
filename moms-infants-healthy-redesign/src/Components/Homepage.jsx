@@ -33,7 +33,7 @@ export default class Homepage extends React.Component {
     }
 
     setFullPanel = (fullPanel) => {
-        this.setState({fullPanel: fullPanel})
+        this.state.fullPanel ? this.setState({fullPanel: fullPanel}) : null
     };
 
     setClinicToView = (clinic) => {

@@ -19,7 +19,7 @@ export default class Map extends Component {
 
     setCurrentRegion  = (region) => {
         console.log(region);
-        this.setState({currentRegion: null});
+        this.setState({currentRegion: {...this.state.currentRegion}});
     };
 
     render() {
@@ -35,7 +35,7 @@ export default class Map extends Component {
                     right: 0,
                 }}
                 zoomEnabled={true}
-                onRegionChange={this.setCurrentRegion}
+                //onRegionChange={this.setCurrentRegion}
                 showsUserLocation={true}
                 region={this.state.currentRegion}>
                 {this.props.clinics.map((clinic, index) => (
@@ -44,7 +44,8 @@ export default class Map extends Component {
                         coordinate={clinic.coordinate}
                         title={clinic.resource}
                         description={clinic.phoneNumber}
-                        onPress={() => this.props.setClinicToView(clinic)}/>))}
+                        //onPress={() => this.props.setClinicToView(clinic)}
+                        />))}
 
             </MapView>
         );
