@@ -16,7 +16,7 @@ export default class App extends React.Component {
     password: null,
     fullName: null,
     babyGender: null,
-    deviceLanguage: 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
+    deviceLanguage: Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
   };
 
   constructor(props) {
