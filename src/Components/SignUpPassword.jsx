@@ -51,7 +51,7 @@ export default class SignUpPassword extends React.Component {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%',}}>
-                        <Button text={this.props.getLocalizedText("continueButton")} onPress={this.onClick}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onPress={this.onPress}/>
                     </View>
             </TouchableOpacity>
         );

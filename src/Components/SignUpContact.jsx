@@ -29,7 +29,7 @@ export default class SignUpInfo extends React.Component {
 
     };
 
-    onClick = () => {
+    onPress = () => {
         if (!this.state.email || !this.state.phoneNumber) {
             alert(this.props.getLocalizedText("fillOutAllFields"))
         } else if (!this.isValidEmail(this.state.email)){
@@ -67,7 +67,7 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={this.props.getLocalizedText("continueButton")} onPress={()=> this.onClick()}/>
+                        <Button text={this.props.getLocalizedText("continueButton")} onPress={this.onPress}/>
                     </View>
                 </View>
             </TouchableOpacity>

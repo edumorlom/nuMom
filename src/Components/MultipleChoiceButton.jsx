@@ -8,7 +8,7 @@ export default function MultipleChoiceButton(props){
 
     let onPress = () => {
         Haptics.selectionAsync().then();
-        props.onClick();
+        props.onPress();
     };
 
     return (
