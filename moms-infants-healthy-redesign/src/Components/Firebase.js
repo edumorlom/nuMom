@@ -47,9 +47,9 @@ export default class Firebase {
         });
 
     };
-
+    //Hardcoded to work only inside the US (+1). Would have to be changed for other countries.
     async sendWelcomeSMS(fullName, phoneNumber) {
-        let deviceLanguage = 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
+        let deviceLanguage = Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier;
         phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
         let name = fullName.split(" ")[0];
         let message = getLocalizedText(deviceLanguage, 'welcomeSMS').replace("{NAME}", name);

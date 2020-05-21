@@ -5,26 +5,21 @@ export default class Map extends Component {
 
     constructor(props) {
         super(props);
-        if (this.props.currentLocation) this.setState({currentRegion: {...this.props.currentLocation, latitudeDelta: 0.3, longitudeDelta: 0.3}})
-    }
-
-    state = {
-        currentRegion: {
-            latitude: 25.209346556969518,
-            longitude: -80.26424665653634,
-            latitudeDelta: 1.683801011055472,
-            longitudeDelta: 0.9419280637272891,
+        //if (this.props.currentLocation) this.setState({currentRegion: {...this.props.currentLocation, latitudeDelta: 0.3, longitudeDelta: 0.3}})
+        
         }
-    };
+        state = {
+            region: {latitude: 25.209346556969518, longitude: -80.26424665653634, latitudeDelta: 0.683801011055472, longitudeDelta: 0.9419280637272891}
+            }
+    
+        
 
-    setCurrentRegion  = (region) => {
-        console.log(region);
-        this.setState({currentRegion: {...this.state.currentRegion}});
-    };
+    
 
     render() {
         return (
             <MapView
+                //region={this.state.region}
                 onPress={this.props.onPress}
                 provider="google"
                 style={{
@@ -34,17 +29,22 @@ export default class Map extends Component {
                     bottom: 0,
                     right: 0,
                 }}
+                initialRegion={
+                    this.state.region 
+                  }
                 zoomEnabled={true}
-                //onRegionChange={this.setCurrentRegion}
+                onRegionChangeComplete={region => {
+                    this.setState({region});
+                }}
                 showsUserLocation={true}
-                region={this.state.currentRegion}>
+                >
                 {this.props.clinics.map((clinic, index) => (
                     <Marker
                         key={index}
                         coordinate={clinic.coordinate}
                         title={clinic.resource}
                         description={clinic.phoneNumber}
-                        //onPress={() => this.props.setClinicToView(clinic)}
+                        onPress={() => this.props.setClinicToView(clinic)}
                         />))}
 
             </MapView>
