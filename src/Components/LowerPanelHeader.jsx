@@ -35,12 +35,12 @@ export default function LowerPanelHeader(props) {
         config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
         >
     
-                <View style = {{flexDirection: 'row', width: '100%', height: '10.5%', padding: '3%'}}>
+                <View style = {{flexDirection: 'row', width: '100%', height: appStyles.win.height * 0.05, margin: '3%'}}>
                     <TouchableHighlight
                         onPress={goBack}
                         underlayColor={'transparent'}
                         style = {{
-                            left: '3%',
+                            left: appStyles.win.width * 0.03,
                             width:  appStyles.win.width * 0.10
                         }}
                          >
@@ -50,8 +50,8 @@ export default function LowerPanelHeader(props) {
                         <Image style={{height: appStyles.win.width * 0.06, width: appStyles.win.width * 0.06}} source={goBackImg}/>
                 
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{width: '80%'}} >
-                        <Text style={{...appStyles.paragraphText, height: '100%', textAlign: 'center'}}>{getCurrentHeaderTitle()}</Text>
+                    <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{width: appStyles.win.width * 0.90}} >
+                        <Text style={{...appStyles.paragraphText , textAlign: 'center', width: appStyles.win.width * 0.80}}>{getCurrentHeaderTitle()}</Text>
                     </TouchableHighlight>
                 </View>
             </GestureRecognizer>
