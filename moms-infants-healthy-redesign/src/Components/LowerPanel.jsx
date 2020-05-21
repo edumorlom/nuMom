@@ -18,6 +18,8 @@ export default class LowerPanel extends React.Component {
 
     transition = null;
 
+    
+
     goUp = () => {
         clearInterval(this.transition);
         this.transition = setInterval( () => {
