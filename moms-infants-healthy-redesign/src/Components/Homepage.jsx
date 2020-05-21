@@ -47,7 +47,7 @@ export default class Homepage extends React.Component {
     };
 
     goBack = () => {
-        if (this.state.lowerPanelContent === 'selection') return
+        if (this.state.lowerPanelContent === 'selection') return;
         if (this.state.lowerPanelContent === 'findCare') this.setLowerPanelContent('selection');
         if (this.state.lowerPanelContent === 'clinicInfo') this.setLowerPanelContent('findCare');
         if (this.state.lowerPanelContent === 'learn') this.setLowerPanelContent('selection');
@@ -66,8 +66,8 @@ export default class Homepage extends React.Component {
                       currentLocation={this.state.currentLocation}
                       getLocalizedText={this.props.getLocalizedText}/>
                 <SOSButton/>
-                <LowerPanel //onPress={() => this.setFullPanel(true)}
-                            setFullPanel={this.setFullPanel}
+                <LowerPanel onPress={() => this.setFullPanel(true)}
+                            setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
                             fullPanel={this.state.fullPanel}
                             fullName={this.props.fullName}
                             logout={this.props.logout}

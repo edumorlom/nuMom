@@ -5,7 +5,7 @@ export default class Map extends Component {
 
     constructor(props) {
         super(props);
-        //if (this.props.currentLocation) this.setState({currentRegion: {...this.props.currentLocation, latitudeDelta: 0.3, longitudeDelta: 0.3}})
+        if (this.props.currentLocation) this.setState({currentRegion: {...this.props.currentLocation, latitudeDelta: 0.3, longitudeDelta: 0.3}})
         
         }
         state = {
