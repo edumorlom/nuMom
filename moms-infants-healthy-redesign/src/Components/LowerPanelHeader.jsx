@@ -1,16 +1,25 @@
-import {Image, Text, TouchableHighlight, View} from "react-native";
+import {Image, Text, TouchableHighlight, TouchableOpacity, View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
+import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
-import goBack from "../../assets/go-back-arrow.png";
+import GestureRecognizer from "react-native-swipe-gestures";
+
 
 
 export default function LowerPanelHeader(props) {
 
+    
+    
     let onPress = () => {
         Haptics.selectionAsync().then();
         props.onPress();
     };
+    let goBack = () => {
+        Haptics.selectionAsync().then();
+        props.goBack();
+    };
+    
 
     let getCurrentHeaderTitle = () => {
         if (props.lowerPanelContent === 'findCare') return props.getLocalizedText("findCare");
@@ -20,17 +29,31 @@ export default function LowerPanelHeader(props) {
     };
 
     return (
-        <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{padding: 20}}>
-            <View style={{...appStyles.rowContainer, width: '100%'}}>
-                <View style={{
-                    right: appStyles.win.width * 0.28,
-                    paddingLeft: appStyles.win.width * 0.07,
-                    justifyContent: 'center'}}>
-                    <Image style={{height: appStyles.win.width * 0.06, width: appStyles.win.width * 0.06}}
-                           source={goBack}/>
+        <GestureRecognizer    //The clinics section is slow on the swipe, I suspect it is because of the amount of clinics it is loading 
+        onSwipeUp={() => props.setFullPanel(true)}
+        onSwipeDown={() => props.setFullPanel(false)}
+        config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
+        >
+    
+                <View style = {{flexDirection: 'row', width: '100%', height: '10.5%', padding: '3%'}}>
+                    <TouchableHighlight
+                        onPress={goBack}
+                        underlayColor={'transparent'}
+                        style = {{
+                            left: '3%',
+                            width:  appStyles.win.width * 0.10
+                        }}
+                         >
+                
+                
+                   
+                        <Image style={{height: appStyles.win.width * 0.06, width: appStyles.win.width * 0.06}} source={goBackImg}/>
+                
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={onPress} underlayColor={'transparent'} style={{width: '80%'}} >
+                        <Text style={{...appStyles.paragraphText, height: '100%', textAlign: 'center'}}>{getCurrentHeaderTitle()}</Text>
+                    </TouchableHighlight>
                 </View>
-                <Text style={{...appStyles.paragraphText, right: appStyles.win.width * 0.04}}>{getCurrentHeaderTitle()}</Text>
-            </View>
-        </TouchableHighlight>
+            </GestureRecognizer>
     )
 }
