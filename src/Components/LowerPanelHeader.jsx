@@ -1,4 +1,4 @@
-import {Image, Text, TouchableHighlight, TouchableOpacity, View} from "react-native";
+import {Image, Text, TouchableHighlight, View} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import goBackImg from "../../assets/go-back-arrow.png";

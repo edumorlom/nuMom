@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight, View} from "react-native";
+import {Text, TouchableHighlight, View, Alert} from "react-native";
 import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
 import React from 'react';
@@ -8,22 +8,37 @@ export default class WelcomeUserBanner extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
-        setTimeout(() => {
-            this.setState({text: `${this.props.getLocalizedText('welcomeUserBanner')}${this.props.fullName ? ' ' + this.props.fullName.split(' ')[0] : ''}`});
-        }, 1500);
+        
     }
 
-    state = {text: this.props.getLocalizedText('logout')};
+    state = {text: `${this.props.getLocalizedText('welcomeUserBanner')} ${this.props.fullName ? this.props.fullName.split(' ')[0] : ''}`};
+
+    AsyncAlert = () => {
+        return new Promise((resolve, reject) => {
+            Alert.alert(
+                'Log Out',
+                'Are you sure you want to log out of this account?',
+                [
+                    {text: 'YES', onPress: () => resolve(true) },
+                    {text: 'NO', onPress: () => resolve(false) }
+                ],
+                { cancelable: false }
+            )
+        })
+    } 
 
     render() {
+        
         return (
+            
             <TouchableHighlight style={appStyles.WelcomeUserBanner.TouchableHighlight}
                                 underlayColor={appStyles.pinkColor}
                                 onPress={
                                     () => {
-                                        Haptics.selectionAsync().then();
-                                        alert(this.props.getLocalizedText('youLoggedOut'));
-                                        this.props.logout();
+                                        this.AsyncAlert().then(response => {
+                                            response ? this.props.logout() : null
+                                        }
+                                        ) 
                                     }
                                 }>
                 <Text style={{

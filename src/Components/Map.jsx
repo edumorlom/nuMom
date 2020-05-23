@@ -44,7 +44,7 @@ export default class Map extends Component {
                         coordinate={clinic.coordinate}
                         title={clinic.resource}
                         description={clinic.phoneNumber}
-                        onPress={() => this.props.setClinicToView(clinic)}
+                        onPress={(e) => {e.stopPropagation(); this.props.setClinicToView(clinic)}}
                         />))}
 
             </MapView>
