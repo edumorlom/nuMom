@@ -66,7 +66,7 @@ export default class Homepage extends React.Component {
                       currentLocation={this.state.currentLocation}
                       getLocalizedText={this.props.getLocalizedText}/>
                 <SOSButton/>
-                <LowerPanel onPress={() => this.setFullPanel(true)}
+                <LowerPanel //onPress={() => this.setFullPanel(true)}
                             setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
                             fullPanel={this.state.fullPanel}
                             fullName={this.props.fullName}

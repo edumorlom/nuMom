@@ -126,18 +126,16 @@ export default {
     },
     WhitePanelButton: {
         ...shadow,
-        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: borderRadius,
-        marginTop: 30,
-        marginLeft: 30,
         height: 55,
-        width: 170,
-        flexDirection: 'row',
+        width: 55,
+        
     },
+
     lowerPanel: {
         overflow: 'hidden',
         backgroundColor: 'white',
@@ -147,7 +145,8 @@ export default {
         borderBottomLeftRadius: 0,
         width: '100%',
         height: '70%',
-        bottom: 0 - Math.ceil(win.height * 0.4 / 100) * 100,
+        bottom: 0 - win.height * 0.20,
+        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'
