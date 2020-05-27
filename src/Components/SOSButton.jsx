@@ -15,16 +15,15 @@ export default function SOSButton() {
     return(
         <TouchableHighlight style={{
             position: 'absolute',
-            left: 0,
-            right: 0,
+            right: '2%',
             top: '2%',
-            bottom: 0,
-            maxHeight: 0,
-            maxWidth: 0
+            width: '13%',
+            flexDirection: 'row-reverse',
+            marginTop: 30
         }} onPress={onPress}>
             <View style={appStyles.WhitePanelButton}>
-                <Image style={{width: 25, height: 25, marginRight: 18}} source={sosImage} />
-                <Text style={{color: appStyles.pinkColor, fontSize: RFValue(20), fontWeight: 'bold'}}>S.O.S</Text>
+                <Image style={{width: 25, height: 25,  marginLeft: 'auto', marginRight: 'auto'}} source={sosImage} />
+                {/*<Text style={{color: appStyles.pinkColor, fontSize: RFValue(20), fontWeight: 'bold'}}>S.O.S</Text>*/}
             </View>
         </TouchableHighlight>
     )

@@ -126,18 +126,16 @@ export default {
     },
     WhitePanelButton: {
         ...shadow,
-        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: borderRadius,
-        marginTop: 30,
-        marginLeft: 30,
         height: 55,
-        width: 170,
-        flexDirection: 'row',
+        width: 55,
+        
     },
+
     lowerPanel: {
         overflow: 'hidden',
         backgroundColor: 'white',

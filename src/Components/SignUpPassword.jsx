@@ -34,7 +34,6 @@ export default class SignUpPassword extends React.Component {
         return (
             <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                     <View style={{
-                        paddingTop: appStyles.win.height * 0.10,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',

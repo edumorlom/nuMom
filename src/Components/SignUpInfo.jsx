@@ -41,7 +41,6 @@ export default class SignUpInfo extends React.Component {
         return (
             <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                     <View style={{
-                        paddingTop: appStyles.win.height * 0.1,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',

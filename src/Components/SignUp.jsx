@@ -1,4 +1,5 @@
 import React from "react";
+import {View} from "react-native";
 import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
@@ -8,9 +9,13 @@ import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
 import MustLiveInMiami from "./MustLiveInMiami";
+import SignUpHeader from "./SignUpHeader";
 
 
 export default class SignUp extends React.Component {
+
+
+
     state = {index: 0, email: null, phoneNumber: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null, liveMiami: null};
     showGenderSelection = false;
     showMiamiOnlyAlert = true;
@@ -32,6 +37,21 @@ export default class SignUp extends React.Component {
 
         this.setState({index: currentIndex})
     };
+
+    goBack = () => {
+        let index = this.state.index;
+
+        if (!this.showMiamiOnlyAlert && index === 3){
+            index--;
+        }
+
+        if (!this.showGenderSelection && index === 9) {
+            index--;
+        }
+        index--;
+        
+        this.setState({index: index})
+    }
 
     isEquivalent = (a, b) => {
         // Create arrays of property names
@@ -80,12 +100,19 @@ export default class SignUp extends React.Component {
         }, 2000);
     };
 
+    componentDidUpdate = (prevProps) => {
+        if (this.state.index < 0 ) {
+            this.props.setAppState({screen: 'login'})
+        }
+        
+    }
+
     screens = [
         <LetsGetStarted setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("liveMiami")} value={"liveMiami"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <MustLiveInMiami getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpInfo setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
-        <SignUpContact setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpContact setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText} email= {this.state.email}/>,
         <SignUpPassword setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("areYouPregnant")} value={"pregnant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("doYouHaveInfants")} value={"infant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
@@ -94,6 +121,15 @@ export default class SignUp extends React.Component {
     ];
 
     render() {
-        return (this.screens[this.state.index])
+        return (
+            
+            <View style={{height: '100%'}}>
+                <SignUpHeader goBack= {this.goBack}/>
+                {this.screens[this.state.index]}
+            </View>
+
+
+        )
+            
     }
 };

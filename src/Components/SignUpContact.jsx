@@ -8,7 +8,7 @@ import TextInput from "./TextInput.jsx";
 
 export default class SignUpInfo extends React.Component {
 
-    state = {email: '', phoneNumber: ''};
+     state = {email: '', phoneNumber: ''};
 
     setEmail = (email) => {
         this.setState({email: email})
