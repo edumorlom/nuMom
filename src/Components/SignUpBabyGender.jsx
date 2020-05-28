@@ -50,6 +50,7 @@ export default class SignUpBabyGender extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={{...appStyles.container, backgroundColor: backgroundColor}}>
                     <View style={{
+                        paddingTop: appStyles.win.height * 0.2,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute'}}>
