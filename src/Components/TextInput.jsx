@@ -1,5 +1,5 @@
 import React from "react";
-import {TextInput as TextBox, View} from 'react-native'
+import {TextInput as TextBox, View, AsyncStorage} from 'react-native'
 import appStyles from "./AppStyles";
 
 export default class TextInput extends React.Component {
@@ -32,6 +32,7 @@ export default class TextInput extends React.Component {
             let date = this.convertTextToDate(cleanedText);
             this.setState({date: date});
             this.props.onChangeText(date);
+            AsyncStorage.setItem('dob', date);
         }
     };
 
@@ -39,6 +40,16 @@ export default class TextInput extends React.Component {
         if (this.props.type === 'date') this.onChangeDate(text);
         else this.props.onChangeText(text);
     };
+
+    componentDidMount() {
+        AsyncStorage.getItem('dob').then((value) => {
+          if (value !== null && value !== ''){
+          // saved input is available
+          this.setState({ date: value }); // Note: update state with last entered value
+          this.props.onChangeText(value);
+        }
+        }).done();
+      }
 
     render() {
         return (
@@ -49,7 +60,8 @@ export default class TextInput extends React.Component {
                          autoCapitalize='none'
                          placeholder={this.props.placeholder}
                          onChangeText={this.onChangeText} value={this.state.date || null}
-                         caretHidden={this.props.type === 'date'}/>
+                         caretHidden={this.props.type === 'date'}
+                         value= {this.props.type === 'date' ? this.state.date : null}/>
             </View>
         )
     }

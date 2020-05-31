@@ -1,4 +1,4 @@
-import { Keyboard, Text, TouchableOpacity, View} from 'react-native';
+import { Keyboard, Text, TouchableOpacity, TextInput as TextBox, View, AsyncStorage} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -13,7 +13,8 @@ export default class SignUpInfo extends React.Component {
     state = {fullName: '', dob: ''};
 
     setFullName = (fullName) => {
-        this.setState({fullName: fullName})
+        this.setState({fullName: fullName});
+        AsyncStorage.setItem('name', fullName);
     };
 
     setDob = (dob) => {
@@ -36,6 +37,19 @@ export default class SignUpInfo extends React.Component {
         return regex.test(date);
     };
 
+    componentDidMount() {
+        AsyncStorage.getItem('name').then((value) => {
+          if (value !== null && value !== ''){
+          // saved input is available
+          this.setState({ fullName: value }); // Note: update state with last entered value
+        }
+        }).done();
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
     render() {
         let titleText = this.state.fullName ? this.props.getLocalizedText("cool") : this.props.getLocalizedText("greatToMeetYou");
         return (
@@ -54,7 +68,9 @@ export default class SignUpInfo extends React.Component {
                             !
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName}/>
+                            <View style={appStyles.TextInput.View}>
+                                <TextBox placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName} value= {this.state.fullName} style={appStyles.TextInput.TextInput}/>
+                            </View>
                             <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>
                     </View>

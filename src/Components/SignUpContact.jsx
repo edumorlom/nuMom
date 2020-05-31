@@ -1,4 +1,4 @@
-import {Keyboard, Text, TouchableOpacity, View} from 'react-native';
+import {Keyboard, Text, TouchableOpacity, View, TextInput as TextBox, AsyncStorage} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -11,11 +11,15 @@ export default class SignUpInfo extends React.Component {
      state = {email: '', phoneNumber: ''};
 
     setEmail = (email) => {
-        this.setState({email: email})
+        this.setState({email: email});
+        AsyncStorage.setItem('e-mail', email);
+
     };
 
     setPhoneNumber = (phoneNumber) => {
-        this.setState({phoneNumber: phoneNumber})
+        this.setState({phoneNumber: phoneNumber});
+        AsyncStorage.setItem('phone', phoneNumber);
+
     };
 
 
@@ -42,6 +46,25 @@ export default class SignUpInfo extends React.Component {
         }
     };
 
+    componentDidMount() {
+        AsyncStorage.getItem('e-mail').then((value) => {
+          if (value !== null && value !== ''){
+          // saved input is available
+          this.setState({ email: value }); // Note: update state with last entered value
+        }
+        }).done();
+        AsyncStorage.getItem('phone').then((value) => {
+            if (value !== null && value !== ''){
+            // saved input is available
+            this.setState({ phoneNumber: value }); // Note: update state with last entered value
+          }
+        }).done();
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
     render() {
         return (
             <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
@@ -56,8 +79,18 @@ export default class SignUpInfo extends React.Component {
                             <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("contactInformation")}</Text>
                         </View>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
+                            <View style={appStyles.TextInput.View}>
+                                <TextBox placeholder={this.props.getLocalizedText("emailInput")} onChangeText={this.setEmail} value= {this.state.email} style={appStyles.TextInput.TextInput}/>
+                            </View>
+                            <View style={appStyles.TextInput.View}>
+                                <TextBox placeholder={this.props.getLocalizedText("phoneNumberInput")} onChangeText={this.setPhoneNumber} keyboardType={"numeric"} value= {this.state.phoneNumber} style={appStyles.TextInput.TextInput}/>
+                            </View>
+
+                            
+                            {/*
                             <TextInput placeholder={this.props.getLocalizedText("emailInput")} onChangeText={this.setEmail}/>
                             <TextInput placeholder={this.props.getLocalizedText("phoneNumberInput")} onChangeText={this.setPhoneNumber} keyboardType={"numeric"}/>
+                            */}
                         </View>
                     </View>
                     <View style={{

@@ -12,11 +12,12 @@ export default class Homepage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.getCurrentLocation();
+        this.state = {fullPanel: true, clinics: Clinics(), clinicToView: null, lowerPanelContent: 'selection', currentLocation: this.getCurrentLocation() ? this.getCurrentLocation() : null};
+        //this.getCurrentLocation();
     }
 
 
-    state = {fullPanel: true, clinics: Clinics(), clinicToView: null, lowerPanelContent: 'selection', currentLocation: null};
+    
 
     getCurrentLocation = () => {
         this.watchID = navigator.geolocation.watchPosition((position) => {
@@ -24,7 +25,9 @@ export default class Homepage extends React.Component {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
             };
-            this.setState({currentLocation: currentLocation})
+            
+            return currentLocation;
+            //this.setState({currentLocation: currentLocation})
         }, (error) => console.log(error));
     };
 

@@ -78,6 +78,10 @@ export default class LowerPanel extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
     //movePanel(fullPanel)
 
     render() {

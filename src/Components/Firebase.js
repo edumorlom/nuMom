@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
-import firebaseAccount from '../firebase_account.json'
+import firebaseAccount from '../firebase_account.json';
 
 
 export default class Firebase {
@@ -22,7 +22,7 @@ export default class Firebase {
     createUserWithEmailAndPassword = (email, password) => {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     };
-
+    
     logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
     storeObjectInDatabase = (uid, object) => {
@@ -53,6 +53,21 @@ export default class Firebase {
         phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
         let name = fullName.split(" ")[0];
         let message = getLocalizedText(deviceLanguage, 'welcomeSMS').replace("{NAME}", name);
+        console.log(message);
+            return await fetch(
+                `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({message: message})
+                }
+            );
+    }
+
+    async sendCustomSMS(phoneNumber, message) {
         console.log(message);
             return await fetch(
                 `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
