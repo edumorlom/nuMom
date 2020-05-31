@@ -4,6 +4,7 @@ import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
 import SignUpBabyGender from "./SignUpBabyGender";
+import SignUpBabyDob from "./SignUpBabyDob";
 import Firebase from "./Firebase";
 import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
@@ -16,7 +17,7 @@ export default class SignUp extends React.Component {
 
 
 
-    state = {index: 0, email: null, phoneNumber: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null, liveMiami: null};
+    state = {index: 0, email: null, phoneNumber: null, password: null, fullName: null, dob: null, pregnant: null, infant: null, babyGender: null, liveMiami: null, babyDOB: null};
     showGenderSelection = false;
     showMiamiOnlyAlert = true;
 
@@ -94,8 +95,8 @@ export default class SignUp extends React.Component {
 
     signUpAndUploadData = () => {
         let fb = new Firebase();
-        fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
-        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat'];
+fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender, this.state.babyDOB);
+let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat'];
         AsyncStorage.multiRemove(keys, (err) => {});
         setTimeout( () => {
             this.props.login(this.state.email, this.state.password)
@@ -126,6 +127,7 @@ export default class SignUp extends React.Component {
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("areYouPregnant")} value={"pregnant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpYesorNo setUserInfo={this.setUserInfo} question={this.props.getLocalizedText("doYouHaveInfants")} value={"infant"} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpBabyGender setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
+        <SignUpBabyDob setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
         <SignUpLoading signUpAndUploadData={this.signUpAndUploadData} getLocalizedText={this.props.getLocalizedText}/>
     ];
 

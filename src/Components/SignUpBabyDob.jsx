@@ -1,4 +1,4 @@
-import { Keyboard, Text, TouchableOpacity, TextInput as TextBox, View, AsyncStorage} from 'react-native';
+import { Keyboard, Text, TouchableOpacity, View} from 'react-native';
 import React from "react";
 import appStyles from './AppStyles'
 import Button from "./Button";
@@ -8,26 +8,21 @@ import TextInput from "./TextInput.jsx";
 
 
 
-export default class SignUpInfo extends React.Component {
+export default class SignUpBabyDob extends React.Component {
 
-    state = {fullName: '', dob: ''};
+    state = {babyDOB: ''};
 
-    setFullName = (fullName) => {
-        this.setState({fullName: fullName});
-        AsyncStorage.setItem('name', fullName);
-    };
-
-    setDob = (dob) => {
-        this.setState({dob: dob})
+    setDob = (babyDOB) => {
+        this.setState({babyDOB: babyDOB})
     };
 
     onPress = () => {
-        if (!this.state.fullName || !this.state.dob) {
+        if (!this.state.babyDOB) {
             alert(this.props.getLocalizedText("fillOutAllFields"))
-        } else if (!this.isValidDate(this.state.dob)){
+        } else if (!this.isValidDate(this.state.babyDOB)){
             alert(this.props.getLocalizedText("invalidDate"))
         } else {
-            this.props.setUserInfo({fullName: this.state.fullName, dob: this.state.dob});
+            this.props.setUserInfo({babyDOB: this.state.babyDOB});
             this.props.getNextScreen();
         }
     };
@@ -37,21 +32,8 @@ export default class SignUpInfo extends React.Component {
         return regex.test(date);
     };
 
-    componentDidMount() {
-        AsyncStorage.getItem('name').then((value) => {
-          if (value !== null && value !== ''){
-          // saved input is available
-          this.setState({ fullName: value }); // Note: update state with last entered value
-        }
-        }).done();
-      }
-
-      componentWillUnmount() {
-        clearInterval(this.interval);
-      }
-
     render() {
-        let titleText = this.state.fullName ? this.props.getLocalizedText("cool") : this.props.getLocalizedText("greatToMeetYou");
+        let titletext = this.props.getLocalizedText("babydob");
         return (
             <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
                     <View style={{
@@ -60,17 +42,9 @@ export default class SignUpInfo extends React.Component {
                         position: 'absolute',
                     }}>
                         <Text style={appStyles.titleBlue}>
-                            {titleText}
-            
-                            <Text style={appStyles.titlePink}>
-                                {this.state.fullName ? this.state.fullName.split(' ')[0] : ''}
-                            </Text>
-                            !
+                            {titletext}
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <View style={appStyles.TextInput.View}>
-                                <TextBox placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName} value= {this.state.fullName} style={appStyles.TextInput.TextInput}/>
-                            </View>
                             <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
                         </View>
                     </View>
