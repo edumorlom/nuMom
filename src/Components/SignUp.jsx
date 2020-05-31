@@ -1,5 +1,5 @@
 import React from "react";
-import {View} from "react-native";
+import {View, AsyncStorage} from "react-native";
 import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
@@ -95,17 +95,26 @@ export default class SignUp extends React.Component {
     signUpAndUploadData = () => {
         let fb = new Firebase();
         fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender);
+        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat'];
+        AsyncStorage.multiRemove(keys, (err) => {});
         setTimeout( () => {
             this.props.login(this.state.email, this.state.password)
         }, 2000);
     };
 
+
+
     componentDidUpdate = (prevProps) => {
         if (this.state.index < 0 ) {
             this.props.setAppState({screen: 'login'})
+            
         }
         
     }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
 
     screens = [
         <LetsGetStarted setUserInfo={this.setUserInfo} getNextScreen={this.getNextScreen} getLocalizedText={this.props.getLocalizedText}/>,
@@ -121,10 +130,12 @@ export default class SignUp extends React.Component {
     ];
 
     render() {
+        let male = this.state.babyGender ? this.state.babyGender.male : false;
+        let female = this.state.babyGender ? this.state.babyGender.female : false;
         return (
             
             <View style={{height: '100%'}}>
-                <SignUpHeader goBack= {this.goBack}/>
+                <SignUpHeader goBack= {this.goBack} male = {male} female = {female} index = {this.state.index}/>
                 {this.screens[this.state.index]}
             </View>
 

@@ -19,7 +19,8 @@ export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.25,
-    shadowRadius: 5
+    shadowRadius: 5,
+    elevation: 1
 };
 
 export default {
