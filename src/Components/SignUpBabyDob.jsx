@@ -45,7 +45,7 @@ export default class SignUpBabyDob extends React.Component {
                             {titletext}
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
+                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"} dob = {"baby"}/>
                         </View>
                     </View>
                     <View style={{

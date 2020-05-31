@@ -17,7 +17,7 @@ export default function LowerPanelSelection(props) {
             config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
             style={{width: '100%', height: '100%', alignItems: 'center'}}>
                 <TouchableHighlight   onPress={() => props.setFullPanel(true)} underlayColor={'transparent'}  style = {{height:  '10%', width: '100%' }}>
-                    <Text> </Text>
+                    <Text></Text>
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
                 <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}

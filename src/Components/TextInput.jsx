@@ -4,7 +4,7 @@ import appStyles from "./AppStyles";
 
 export default class TextInput extends React.Component {
 
-    state = {date: ''};
+    state = {date: '', babyDOB: ''};
 
     convertTextToDate = (text) => {
         let initialText = 'MM/DD/YYYY';
@@ -32,7 +32,10 @@ export default class TextInput extends React.Component {
             let date = this.convertTextToDate(cleanedText);
             this.setState({date: date});
             this.props.onChangeText(date);
-            AsyncStorage.setItem('dob', date);
+            //We differenciate between mother's DOB and baby's DOB
+            this.props.dob === "mother" ? AsyncStorage.setItem('dob', date) : AsyncStorage.setItem('babyDOB', date);
+               
+            
         }
     };
 
@@ -42,7 +45,7 @@ export default class TextInput extends React.Component {
     };
 
     componentDidMount() {
-        AsyncStorage.getItem('dob').then((value) => {
+        AsyncStorage.getItem(this.props.dob === "mother" ? 'dob' : 'babyDOB').then((value) => {
           if (value !== null && value !== ''){
           // saved input is available
           this.setState({ date: value }); // Note: update state with last entered value
