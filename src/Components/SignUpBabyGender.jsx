@@ -1,6 +1,6 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import appStyles from './AppStyles';
 import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 
@@ -29,6 +29,15 @@ export default class SignUpBabyGender extends React.Component {
         this.setState({babyGender: {male: male, female: female}})
     };
 
+    componentDidMount() {
+        this.props.setUserInfo({babyGender: {male: this.state.babyGender.male, female: this.state.babyGender.female}});
+        //This is to reset the color of the sign up header when babyGender loads
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
     render() {
         let genderSelected = this.state.babyGender.male || this.state.babyGender.female;
         let backgroundColor = "white";
@@ -50,13 +59,16 @@ export default class SignUpBabyGender extends React.Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={{...appStyles.container, backgroundColor: backgroundColor}}>
                     <View style={{
+                        paddingTop: appStyles.win.height * 0.2,
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute'}}>
                         <Text style={{color: textColor, fontSize: appStyles.titleFontSize, fontWeight: 'bold', padding: 10, textAlign: 'center'}}>{this.props.getLocalizedText("selectGenders")}</Text>
                             <View style={appStyles.rowContainer}>
-                                <MultipleChoiceButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onPress={() => this.setBabyGender('male')}/>
-                                <MultipleChoiceButton text={"♀"} color={appStyles.pinkColor} selected={this.state.babyGender.female} onPress={() => this.setBabyGender('female')}/>
+                                <MultipleChoiceButton text={'♂'} color={appStyles.blueColor} selected={this.state.babyGender.male} onPress={() => {this.setBabyGender('male');
+                                                            this.props.setUserInfo({babyGender: {male: !this.state.babyGender.male, female: this.state.babyGender.female}});}}/>
+                                <MultipleChoiceButton text={"♀"} color={appStyles.pinkColor} selected={this.state.babyGender.female} onPress={() => {this.setBabyGender('female'); 
+                                                                this.props.setUserInfo({babyGender: {male: this.state.babyGender.male, female: !this.state.babyGender.female}});}}/>
                             </View>
                     </View>
                     <View style={{

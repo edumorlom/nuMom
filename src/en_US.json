@@ -15,6 +15,7 @@
   "greatToMeetYou": "Great To Meet You",
   "fullName": "Full Name",
   "dob": "DOB (MM/DD/YYYY)",
+  "babydob":"Child's Date of Birth:",
   "continueButton": "Continue",
   "contactInformation": "Contact Information",
   "fillOutAllFields": "Please fill out all of the fields!",
