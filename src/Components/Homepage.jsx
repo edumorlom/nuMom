@@ -55,6 +55,7 @@ export default class Homepage extends React.Component {
         if (this.state.lowerPanelContent === 'clinicInfo') this.setLowerPanelContent('findCare');
         if (this.state.lowerPanelContent === 'learn') this.setLowerPanelContent('selection');
         if (this.state.lowerPanelContent === 'tips') this.setLowerPanelContent('selection');
+        if (this.state.lowerPanelContent === 'edit') this.setLowerPanelContent('selection');
     };
 
 
