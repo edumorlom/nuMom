@@ -105,10 +105,9 @@ export default class SignUp extends React.Component {
 
 
 
-    componentDidUpdate = (prevProps) => {
+    componentDidUpdate = () => {
         if (this.state.index < 0 ) {
             this.props.setAppState({screen: 'login'})
-            
         }
         
     }

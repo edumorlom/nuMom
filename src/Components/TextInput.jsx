@@ -33,7 +33,7 @@ export default class TextInput extends React.Component {
             this.setState({date: date});
             this.props.onChangeText(date);
             //We differenciate between mother's DOB and baby's DOB
-            this.props.dob === "mother" ? AsyncStorage.setItem('dob', date) : AsyncStorage.setItem('babyDOB', date);
+            AsyncStorage.setItem(this.props.dob === "mother" ? 'dob' : 'babyDOB', date);
                
             
         }
