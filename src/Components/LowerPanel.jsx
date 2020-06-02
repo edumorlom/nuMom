@@ -6,6 +6,7 @@ import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
+import STDInfo from "./STDInfo";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
