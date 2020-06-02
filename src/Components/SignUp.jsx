@@ -97,7 +97,7 @@ export default class SignUp extends React.Component {
         let fb = new Firebase();
         fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender, this.state.babyDOB);
         let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB'];
-        AsyncStorage.multiRemove(keys, (err) => {});
+        AsyncStorage.multiRemove(keys, (err) => {console.log(err)});
         setTimeout( () => {
             this.props.login(this.state.email, this.state.password)
         }, 2000);
