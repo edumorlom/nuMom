@@ -1,4 +1,3 @@
-import getLocalizedText from "./src/Components/getLocalizedText";
 import React from "react";
 import { TouchableHighlight, Text, View } from "react-native";
 import appStyles from "./AppStyles";
