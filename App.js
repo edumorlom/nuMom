@@ -94,7 +94,7 @@ export default class App extends React.Component {
   };
 
   goBack = () => {
-    if (this.state.screen === 'setting') this.setAppState({screen: 'login'});
+    if (this.state.screen === 'setting') this.setAppState({screen: 'homepage'});
   }
 
   render() {
@@ -107,7 +107,7 @@ export default class App extends React.Component {
         this.setAppState({screen: 'login'})
       }
     } else if (this.state.screen === 'setting'){
-      return (<SettingScreen setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
+      return (<SettingScreen email={this.state.email} password={this.state.password}  setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
     }else {
       return (<Homepage setAppState={this.setAppState}  fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
     }
