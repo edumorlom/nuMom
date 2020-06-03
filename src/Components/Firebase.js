@@ -11,9 +11,9 @@ export default class Firebase {
         if (!firebase.apps.length) firebase.initializeApp(config);
     }
 
-    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender, babyDOB) => {
+    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB).then(() => {
+                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week).then(() => {
                     this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: E-Mail is already associated with another account!");})
@@ -35,7 +35,7 @@ export default class Firebase {
         });
     };
 
-    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB) => {
+    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
         if (!uid) return;
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,
@@ -44,7 +44,9 @@ export default class Firebase {
             pregnant: pregnant,
             infant: infant,
             babyGender: babyGender,
-            babyDOB: babyDOB
+            babyDOB: babyDOB,
+            nextWeek: nextWeek,
+            week: week
         });
 
     };
