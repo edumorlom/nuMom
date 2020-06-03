@@ -6,7 +6,7 @@ import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
-import EdditScreen from "./EditScreen";
+
 
 export default class LowerPanel extends React.Component {
 
@@ -60,18 +60,15 @@ export default class LowerPanel extends React.Component {
             return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else if (this.props.lowerPanelContent === 'learn') {
             return <Learn setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
-        }  else if (this.props.lowerPanelContent === 'edit') {
-              //this was added to get the EdditScreen added by alex 
-              return <EdditScreen setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText} fullName={this.props.fullName}
-               logout={this.props.logout} email={this.props.email} password={this.props.password}
-              /> 
-          } else {
+        }else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
                                         setFullPanel={this.props.setFullPanel}
                                         fullPanel={this.props.fullPanel}
                                         setLowerPanelContent={this.props.setLowerPanelContent}
-                                        getLocalizedText={this.props.getLocalizedText}/>
+                                        getLocalizedText={this.props.getLocalizedText}
+                                        setAppState={this.props.setAppState}
+                                        />
         }
     };
     

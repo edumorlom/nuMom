@@ -5,6 +5,7 @@ import Homepage from "./src/Components/Homepage";
 import Firebase from "./src/Components/Firebase";
 import {AsyncStorage, NativeModules} from 'react-native';
 import getLocalizedText from "./src/Components/getLocalizedText";
+import SettingScreen from "./src/Components/SettingScreen";
 
 
 
@@ -92,6 +93,10 @@ export default class App extends React.Component {
     this.saveCookie('password', '');
   };
 
+  goBack = () => {
+    if (this.state.screen === 'setting') this.setAppState({screen: 'login'});
+  }
+
   render() {
     if (this.state.screen === 'login') {
       return (<LogIn setAppState={this.setAppState} login={this.loginWithEmailPassword} getLocalizedText={this.getLocalizedText}/>)
@@ -101,8 +106,10 @@ export default class App extends React.Component {
       } catch (err) {
         this.setAppState({screen: 'login'})
       }
-    } else {
-      return (<Homepage setAppState={this.setAppState} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
+    } else if (this.state.screen === 'setting'){
+      return (<SettingScreen setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
+    }else {
+      return (<Homepage setAppState={this.setAppState}  fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
     }
   }
 }

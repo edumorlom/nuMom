@@ -7,7 +7,7 @@ import lightBulb from "../../assets/light-bulb.png";
 import WelcomeUserBanner from "./WelcomeUserBanner";
 import SelectionButton from "./SelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 
 export default function LowerPanelSelection(props) {
@@ -21,8 +21,8 @@ export default function LowerPanelSelection(props) {
                     <Text> </Text>
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
-                <TouchableOpacity onPress={() => props.setLowerPanelContent('edit')} text={props.getLocalizedText('edit')}>
-                    <FontAwesome5  name='user-edit' size={40} style={styles.userEditStyle} />
+                <TouchableOpacity onPress={() => props.setAppState({screen: 'setting'})} >
+                    <MaterialIcons  name='settings' size={40} style={styles.userEditStyle} />
                 </TouchableOpacity>
                 <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                                 onPress={() => props.setLowerPanelContent('findCare')}/>
