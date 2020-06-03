@@ -6,6 +6,8 @@ import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
+import Tips from "./TipsAndTricks";
+
 
 export default class LowerPanel extends React.Component {
 
@@ -59,6 +61,8 @@ export default class LowerPanel extends React.Component {
             return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else if (this.props.lowerPanelContent === 'learn') {
             return <Learn setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else if (this.props.lowerPanelContent === 'tips') {
+            return <Tips setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
         } else {
             return <LowerPanelSelection fullName={this.props.fullName}
                                         logout={this.props.logout}
