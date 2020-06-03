@@ -40,7 +40,7 @@ const SettingScreen = (props) => {
     infant: null,
     babyGender: null,
     liveMiami: null,
-    deviceLanguage:  Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
+    //deviceLanguage:  Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
   });
 
   const {
@@ -51,7 +51,6 @@ const SettingScreen = (props) => {
     infant,
     babyGender,
     liveMiami,
-    deviceLanguage,
   } = formData;
 
   const onChangeText = (object) => {
@@ -78,73 +77,69 @@ const SettingScreen = (props) => {
     });
   };
 
-    loginWithEmailPassword = (email, password) => {
-      
-      if (email && password) {
-        let fb = new Firebase();
-        fb.logIn(email, password).then(
-          (response) => {
-            fetchUserInfo(response.user.uid);
-            console.log("->>>>>>>:", response.user.uid);  //to check if I got the userUID
-            console.log("Successful Login!", response);
-          },
-          (e) => {
-            alert("Invalid E-mail and Password Combination!");
-          }
-        );
-      } else {
-        alert("Please enter your E-Mail and Password!");
-      }
-    };
+
 
 
 
   
 
-fetchUserInfo = (uid) => {
+fetchUserInfo = () => {
   let fb = new Firebase();
-  let today = new Date();
-  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes();
-  fb.storeObjectInDatabase(uid, {lastInteraction: date, deviceLanguage: deviceLanguage})
-  fb.getUserInfo(uid).on('value', (snapshot) => {
-    setFormData({fullName: snapshot.val().fullName,
-                  babyGender: snapshot.val().babyGender,
-                  phoneNumber: snapshot.val().phoneNumber,
-                  pregnant: snapshot.val().pregnant,
-                  infant: snapshot.val().infant,
-                  dob: snapshot.val().dob,
-                  liveMiami: snapshot.val().liveMiami,
-                  screen: 'setting'});
-  });
+  let uid = firebase.auth().currentUser.uid;
+  
+  if (uid !== null) {
+    console.log("User id >>>>>>>>>: " + uid);
+    fb.getUserInfo(uid).on('value', (snapshot) => {
+      setFormData({fullName: snapshot.val().fullName,
+                    babyGender: snapshot.val().babyGender,
+                    phoneNumber: snapshot.val().phoneNumber,
+                    pregnant: snapshot.val().pregnant,
+                    infant: snapshot.val().infant,
+                    dob: snapshot.val().dob,
+                    liveMiami: snapshot.val().liveMiami,
+                    screen: 'setting'});
+    });
+
+  }else {
+    alert("Error: Couldn't get the user Information");
+  }
+ 
 
 }
 
  useEffect(() => {
-    loginWithEmailPassword(email, password);
+    fetchUserInfo();
    
  }, []);
 
+ 
 
-onSubmit = () => {
-  let fb = new Firebase();
-  if (!formData) {
-    alert(props.getLocalizedText("fillOutAllFields"));
+onSubmit = (fullName, dob, phoneNumber) => {
+  Haptics.selectionAsync().then();
+  let uid = firebase.auth().currentUser.uid;
+
+  if (uid !== null) {
+
+    if (!formData) {
+      alert(props.getLocalizedText("fillOutAllFields"));
+      
+    }else{
+      
+        firebase.database().ref('users/'+ uid).update({
+          fullName: fullName,
+          phoneNumber: phoneNumber,
+          dob: dob,
+  
+        }, e => {alert("Error: Couldn't save the Information")});
+     
+      window.alert('your Information has been save');
+    }
     
   }else{
-    fb.logIn(email, password).then(response => {
-      firebase.database().ref('users/'+ response.user.uid).update({
-        fullName: fullName,
-        phoneNumber: phoneNumber,
-        pregnant: pregnant,
-        infant: infant,
-        dob: dob,
-
-      }, e => {alert("Error: Couldn't save the Information")});
-    }, (e) => {
-      alert("Invalid E-mail and Password Combination!");
-    });
-    window.alert('your Information has been save');
+    alert("Error: Couldn't get user Information");
   }
+ 
+  
 }
 
 
@@ -179,42 +174,49 @@ onSubmit = () => {
           <TextInput
             placeholder='Enter your new Phone Number'
             style={styles.input}
-            onChangeText={(phoneNumber) => onChangeText({ phoneNumber })}
+            value={phoneNumber}
+            onChangeText={(e) => onChangeText({phoneNumber: e})}
           />
 
           <Text style={styles.label}>Your Birth Date: {dob}</Text>
           <TextInput
             placeholder='Enter your new Birth Date'
             style={styles.input}
-            onChangeText={(dob) => onChangeText({ dob })}
+            value={dob}
+            onChangeText={(e) => onChangeText({dob: e})}
           />
 
-          <Text style={styles.label}>Your Pregnant status: {pregnant}</Text>
+          {/* <Text style={styles.label}>Your Pregnant status: {String(pregnant)}</Text>
           <TextInput
             placeholder='Enter your new pregnant Status'
             style={styles.input}
-            onChangeText={(pregnant) => onChangeText({ pregnant })}
+            value={String(pregnant)}
+            name='pregnant'
+            onChangeText={onChangeText}
           />
 
-          <Text style={styles.label}>Your infant status: {infant}</Text>
+          <Text style={styles.label}>Your infant status: {String(infant)}</Text>
           <TextInput
             placeholder='Enter your new infant status'
             style={styles.input}
-            onChangeText={(infant) => onChangeText({ infant })}
-          />
+            value={String(infant)}
+            name='infant'
+            onChangeText={onChangeText}
+          /> */}
 
           <Text style={styles.label}>Your full name: {fullName}</Text>
           <TextInput
             placeholder='Enter your new full Name'
             style={styles.input}
-            onChangeText={(fullName) => onChangeText({ fullName })}
+            value={fullName}
+            onChangeText={(e) => onChangeText({fullName: e})}
           />
        
         </View>
 
         <Button
           title='Save'
-          onPress={onSubmit}
+          onPress={() => onSubmit(fullName, dob, phoneNumber)}
         />
 
         <Button
@@ -230,6 +232,7 @@ onSubmit = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   input: {
