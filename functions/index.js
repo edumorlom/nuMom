@@ -44,14 +44,14 @@ exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
       let nextWeekNo = childSnapshot.val().week + 1;
       (nextWeekNo < 25) ? null : nextWeekNo = null;  //The messages are only for the first 24 weeks.
       nextWeekNo ? null : nextWeek = null;       //Set the date to null as well. This will remove it from firebase
-      childSnapshot.ref.set({
+      childSnapshot.ref.update({
         nextWeek: nextWeek,
         week: nextWeekNo
       });
     })
     return null;
   }).catch(e => console.log(e)) //Redeploy the function
- 
+ return res.status(200).send("Sucess");
 
 });
 
