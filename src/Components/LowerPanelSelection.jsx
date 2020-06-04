@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableHighlight, Text, View, StyleSheet, TouchableOpacity} from "react-native";
 import babyBottle from "../../assets/baby-bottle.png";
-import appStyles from "./AppStyles";
 import clinicLogo from "../../assets/clinic-logo.png";
 import lightBulb from "../../assets/light-bulb.png";
 import WelcomeUserBanner from "./WelcomeUserBanner";
@@ -18,7 +17,7 @@ export default function LowerPanelSelection(props) {
             config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
             style={{width: '100%', height: '100%', alignItems: 'center'}}>
                 <TouchableHighlight   onPress={() => props.setFullPanel(true)} underlayColor={'transparent'}  style = {{height:  '10%', width: '100%' }}>
-                    <Text> </Text>
+                    <Text></Text>
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
                 <TouchableOpacity onPress={() => props.setAppState({screen: 'setting'})} >
@@ -29,7 +28,7 @@ export default function LowerPanelSelection(props) {
                 <SelectionButton text={props.getLocalizedText("learn")} icon={babyBottle}
                                 onPress={() => {props.setLowerPanelContent('learn');}}/>
                 <SelectionButton text={props.getLocalizedText("tipsAndTricks")} icon={lightBulb}
-                                onPress={() => {props.setLowerPanelContent('selection'); alert(props.getLocalizedText("comingSoon"))}}/>
+                                onPress={() => {props.setLowerPanelContent('tips');}}/>
         </GestureRecognizer>
     )
 }

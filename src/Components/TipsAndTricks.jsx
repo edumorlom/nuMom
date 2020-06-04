@@ -1,14 +1,14 @@
 import React from 'react';
 import {ScrollView} from "react-native";
 import clinicLogo from '../../assets/clinic-logo.png'
-import Resources from './Resources'
+import TipResources from './TipResources'
 import LearnSelectionButton from "./LearnSelectionButton";
 
 
 
 export default function Learn(props) {
 
-    let resourceButtons = Resources().map((resource, key) =>
+    let resourceButtons = TipResources().map((resource, key) =>
         <LearnSelectionButton key={key}
                                      icon={resource.icon}
                                      onPress={() => {

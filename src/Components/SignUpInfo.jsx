@@ -71,7 +71,7 @@ export default class SignUpInfo extends React.Component {
                             <View style={appStyles.TextInput.View}>
                                 <TextBox placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName} value= {this.state.fullName} style={appStyles.TextInput.TextInput}/>
                             </View>
-                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"}/>
+                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"} dob = {"mother"}/>
                         </View>
                     </View>
                     <View style={{
