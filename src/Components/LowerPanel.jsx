@@ -8,6 +8,10 @@ import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import STDInfo from "./STDInfo";
 import Tips from "./TipsAndTricks";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 142cfab641bf7a39d8022710a8a96578cf6ef2bc
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -36,18 +40,18 @@ export default class LowerPanel extends React.Component {
 
   goDown = () => {
     clearInterval(this.transition);
-    this.transition = setInterval(() => {
-      let panelStyle = { ...appStyles.lowerPanel };
-      panelStyle["bottom"] = this.state.panelStyle.bottom - 30;
+    this.transition = setInterval( () => {
+        let panelStyle = {...appStyles.lowerPanel};
+        panelStyle["bottom"] = this.state.panelStyle.bottom - 30;
 
       if (this.state.panelStyle.bottom <= appStyles.lowerPanel.bottom) {
         clearInterval(this.transition);
         panelStyle["bottom"] = appStyles.lowerPanel.bottom;
       }
 
-      this.setState({ panelStyle: panelStyle });
+      /* this.setState({ panelStyle: panelStyle });
     }, 0.1);
-  };
+  }; */
 
   showContent = () => {
     if (this.props.lowerPanelContent === "findCare") {
