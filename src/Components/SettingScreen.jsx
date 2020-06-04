@@ -168,7 +168,7 @@ componentDidMount(){
             logout={this.props.logout}
             getLocalizedText={this.props.getLocalizedText}
           />
-          <View style={{ alignItems: 'center'}}>
+          <View style={{ alignItems: 'center', padding: 20}}>
               <Text style={appStyles.blueColor}>your Number: {phoneNumber}</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
