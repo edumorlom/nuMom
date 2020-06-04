@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
+  TextInput as TextBox,
   Button,
   ScrollView,
   TouchableHighlight,
@@ -17,6 +17,7 @@ import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
 import {AsyncStorage, NativeModules} from 'react-native';
 import * as firebase from 'firebase';
+import TextInput from "./TextInput.jsx";
 
 
 
@@ -167,65 +168,58 @@ componentDidMount(){
             logout={this.props.logout}
             getLocalizedText={this.props.getLocalizedText}
           />
-          <View>
-            <Text style={styles.label}>your Number: {phoneNumber}</Text>
-            <TextInput
-              placeholder='Enter your new Phone Number'
-              style={styles.input}
-              value={phoneNumber}
-              onChangeText={(e)=> this.onChangeText({phoneNumber: e})}
-            />
+          <View style={{ alignItems: 'center'}}>
+              <Text style={appStyles.blueColor}>your Number: {phoneNumber}</Text>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("phoneNumberInput")}
+                style={appStyles.TextInput.TextInput}
+                value={phoneNumber}
+                keyboardType={"numeric"}
+                onChangeText={(e)=> this.onChangeText({phoneNumber: e})}
+              />
+            </View>
 
-            <Text style={styles.label}>Your Birth Date: {dob}</Text>
-            <TextInput
-              placeholder='Enter your new Birth Date'
-              style={styles.input}
-              value={dob}
-              onChangeText={(e)=> this.onChangeText({dob: e})}
-            />
+            <Text style={appStyles.blueColor}>Your Birth Date: {dob}</Text>
+            <View>
+              <TextInput
+                placeholder={this.props.getLocalizedText("dob")}
+                style={appStyles.TextInput.TextInput}
+                value={dob}
+                type={'date'}
+                keyboardType={"numeric"}
+                onChangeText={(e)=> this.onChangeText({dob: e})}
+              />
+            </View>
 
-            {/* <Text style={styles.label}>Your Pregnant status: {String(pregnant)}</Text>
-            <TextInput
-              placeholder='Enter your new pregnant Status'
-              style={styles.input}
-              value={String(pregnant)}
-              name='pregnant'
-              onChangeText={onChangeText}
-            />
-
-            <Text style={styles.label}>Your infant status: {String(infant)}</Text>
-            <TextInput
-              placeholder='Enter your new infant status'
-              style={styles.input}
-              value={String(infant)}
-              name='infant'
-              onChangeText={onChangeText}
-            /> */}
-
-            <Text style={styles.label}>Your full name: {fullName}</Text>
-            <TextInput
-              placeholder='Enter your new full Name'
-              style={styles.input}
-              value={fullName}
-              onChangeText={(e)=> this.onChangeText({fullName: e})}
-            />
+            <Text style={appStyles.blueColor}>Your full name: {fullName}</Text>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("fullName")}
+                style={appStyles.TextInput.TextInput}
+                value={fullName}
+                onChangeText={(e)=> this.onChangeText({fullName: e})}
+              />
+            </View>
         
           </View>
+          <View style={{justifyContent: 'center', flexDirection: 'row', padding: 50}}>
+            <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  onPress={() => this.onSubmit(fullName, dob, phoneNumber)} >
+            <Text style={appStyles.button.text}>{this.props.getLocalizedText("save")}</Text>
+            </TouchableHighlight>
 
-          <Button
-            title='Save'
-            onPress={() => this.onSubmit(fullName, dob, phoneNumber)}
-          />
-
-          <Button
-            title='Logout'
-            onPress={() => {
-              this.AsyncAlert().then((response) => {
-                response ? this.props.logout() : null;
-              });
-            }}
-            style={{ color: "red" }}
-          />
+            <TouchableHighlight
+              onPress={() => {
+                this.AsyncAlert().then((response) => {
+                  response ? this.props.logout() : null;
+                });
+              }}
+              style={appStyles.button.TouchableHighlight}
+              underlayColor={appStyles.greyColor}
+            >
+              <Text style={appStyles.button.text}>{this.props.getLocalizedText("logout")}</Text>
+            </TouchableHighlight>
+          </View>
         </ScrollView>
       </View>
     );
@@ -234,20 +228,20 @@ componentDidMount(){
 
 
 const styles = StyleSheet.create({
-  input: {
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 15,
-    padding: 5,
-    margin: 5,
-  },
+  // input: {
+  //   fontSize: 18,
+  //   borderWidth: 1,
+  //   borderColor: "black",
+  //   marginBottom: 15,
+  //   padding: 5,
+  //   margin: 5,
+  // },
 
-  label: {
-    fontSize: 20,
-    marginBottom: 5,
-    marginLeft: 5,
-  },
+  // label: {
+  //   fontSize: 20,
+  //   marginBottom: 5,
+  //   marginLeft: 5,
+  // },
 });
 
 export default SettingScreen;
