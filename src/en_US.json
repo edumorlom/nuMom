@@ -42,5 +42,6 @@
   "callClinic": "Call Clinic",
   "services": "Services",
   "logout": "Log Out",
-  "youLoggedOut": "You have logged out!"
+  "youLoggedOut": "You have logged out!",
+  "save": "Save"
 }

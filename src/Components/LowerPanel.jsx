@@ -9,6 +9,7 @@ import Learn from "./Learn";
 import Tips from "./TipsAndTricks";
 
 
+
 export default class LowerPanel extends React.Component {
 
     constructor(props) {
@@ -69,7 +70,9 @@ export default class LowerPanel extends React.Component {
                                         setFullPanel={this.props.setFullPanel}
                                         fullPanel={this.props.fullPanel}
                                         setLowerPanelContent={this.props.setLowerPanelContent}
-                                        getLocalizedText={this.props.getLocalizedText}/>
+                                        getLocalizedText={this.props.getLocalizedText}
+                                        setAppState={this.props.setAppState}
+                                        />
         }
     };
     
