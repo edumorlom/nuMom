@@ -14,13 +14,6 @@ export default class Map extends Component {
             region: {latitude: 25.709346556969518, longitude: -80.26424665653634, latitudeDelta: 0.25, longitudeDelta: 0.3}
             } */
     
-/*     anon = () => {
-        var ref = firebase.database().ref("users");
-        let today = null;
-        ref.orderByChild("nextWeek").equalTo(today).on("child_added", function(snapshot) {
-            console.log(snapshot.key);
-          });
-    }     */
 
     
 

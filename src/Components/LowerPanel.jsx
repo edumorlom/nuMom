@@ -7,6 +7,8 @@ import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import STDInfo from "./STDInfo";
+import Tips from "./TipsAndTricks";
+
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -35,18 +37,59 @@ export default class LowerPanel extends React.Component {
 
   goDown = () => {
     clearInterval(this.transition);
-    this.transition = setInterval(() => {
-      let panelStyle = { ...appStyles.lowerPanel };
-      panelStyle["bottom"] = this.state.panelStyle.bottom - 30;
+    this.transition = setInterval( () => {
+        let panelStyle = {...appStyles.lowerPanel};
+        panelStyle["bottom"] = this.state.panelStyle.bottom - 30;
 
-      if (this.state.panelStyle.bottom <= appStyles.lowerPanel.bottom) {
-        clearInterval(this.transition);
-        panelStyle["bottom"] = appStyles.lowerPanel.bottom;
+        if (this.state.panelStyle.bottom <= appStyles.lowerPanel.bottom) {
+            clearInterval(this.transition);
+            panelStyle["bottom"] = appStyles.lowerPanel.bottom;
+        }
+
+        this.setState({panelStyle: panelStyle});
+    }, 0.1);
+};
+
+    showContent = () => {
+        if (this.props.lowerPanelContent === 'findCare') {
+            return <FindCare clinics={this.props.clinics}
+                             setClinicToView={this.props.setClinicToView}
+                             setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else if (this.props.lowerPanelContent === 'clinicInfo') {
+            return <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else if (this.props.lowerPanelContent === 'learn') {
+            return <Learn setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else if (this.props.lowerPanelContent === 'tips') {
+            return <Tips setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}/>
+        } else {
+            return <LowerPanelSelection fullName={this.props.fullName}
+                                        logout={this.props.logout}
+                                        setFullPanel={this.props.setFullPanel}
+                                        fullPanel={this.props.fullPanel}
+                                        setLowerPanelContent={this.props.setLowerPanelContent}
+                                        getLocalizedText={this.props.getLocalizedText}/>
+        }
+    
+    }
+  
+    
+    
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.fullPanel && !this.props.fullPanel) {
+            this.goDown()
+        } else if (!prevProps.fullPanel && this.props.fullPanel){
+            this.goUp()
+        }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
       }
 
-      this.setState({ panelStyle: panelStyle });
+      /* this.setState({ panelStyle: panelStyle });
     }, 0.1);
-  };
+  }; */
 
   showContent = () => {
     if (this.props.lowerPanelContent === "findCare") {

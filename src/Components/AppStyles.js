@@ -119,9 +119,9 @@ export default {
             justifyContent: 'center',
             flexDirection: 'row',
             marginRight: '30%',
-            marginTop: win.height * 0.015,
+            //marginTop: win.height * 0.015,
             padding: win.height * 0.025,
-            marginBottom: win.height * 0.025,
+            marginBottom: win.height * 0.02,
             width: '75%'
         }
     },

@@ -1,6 +1,6 @@
-import React from "react";
-import { TouchableHighlight, Text, View } from "react-native";
-import appStyles from "./AppStyles";
+import React from 'react';
+import {ScrollView, View} from "react-native";
+import Resources from './Resources'
 import LearnSelectionButton from "./LearnSelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
 import breastfeeding from "../../assets/breastfeeding.png";
@@ -10,12 +10,7 @@ import butterfly from "../../assets/butterfly.png";
 
 export default function STDInfo(props) {
   return (
-    <GestureRecognizer
-      onSwipeUp={() => props.setFullPanel(true)}
-      onSwipeDown={() => props.setFullPanel(false)}
-      config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
-      style={{ width: "100%", height: "100%", alignItems: "center" }}
-    >
+    <View>
       <LearnSelectionButton
         text={props.getLocalizedText("breastFeedingMiami")}
         subtitle={props.getLocalizedText("learnBreastFeeding")}
@@ -46,6 +41,20 @@ export default function STDInfo(props) {
           props.setLowerPanelContent("STDInfo");
         }}
       />
-    </GestureRecognizer>
+    </View>
+
+/* let resourceButtons = Resources().map((resource, key) =>
+<LearnSelectionButton key={key}
+                             icon={resource.icon}
+                             onPress={() => {
+                                 props.setClinicToView(clinicLogo);
+                                 props.setLowerPanelContent('clinicInfo');
+                             }} resource={resource}/>);
+
+return (
+<ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
+    {resourceButtons}
+</ScrollView>
+) */
   );
 }
