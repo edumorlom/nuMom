@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import {
   View,
   Text,
@@ -19,51 +19,40 @@ import {AsyncStorage, NativeModules} from 'react-native';
 import * as firebase from 'firebase';
 
 
-const SettingScreen = (props) => {
-  //state = { uid: null, phoneNumber: null,  dob: null, pregnant: null, infant: null, babyGender: null, liveMiami: null};
 
-  //console.log("this is props of Setting Section>>>>>:", props);
+class SettingScreen extends React.Component {
 
-  //const [name, setName] = useState(props.fullName);
-  const [email, setEmail] = useState(props.email);
-  const [password, setPassword] = useState(props.password);
+  _isMounted = false;
 
+  constructor(props){
+    super(props);
+    this.state = { 
+      phoneNumber: null,  
+      dob: null, 
+      pregnant: null, 
+      infant: null, 
+      babyGender: null, 
+      liveMiami: null,
+      fullName: null,
+      };
+
+    this.onChangeText = this.onChangeText.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+  }
   
-  
 
-  const [formData, setFormData] = useState({
-    Screen: 'setting',
-    fullName: null,
-    phoneNumber: null,
-    dob: null,
-    pregnant: null,
-    infant: null,
-    babyGender: null,
-    liveMiami: null,
-    //deviceLanguage:  Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
-  });
 
-  const {
-    fullName,
-    phoneNumber,
-    dob,
-    pregnant,
-    infant,
-    babyGender,
-    liveMiami,
-  } = formData;
-
-  const onChangeText = (object) => {
-    //setFormData({...formData, [e.target.name]: e.target.value });
-    setFormData(object);
+  onChangeText = (object) => {
+    this.setState(object);
   };
 
-  let goBack = () => {
+   goBack = () => {
     Haptics.selectionAsync().then();
-    props.goBack();
+    this.props.goBack();
   };
 
-   const AsyncAlert = () => {
+    AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
         "Log Out",
@@ -78,26 +67,27 @@ const SettingScreen = (props) => {
   };
 
 
-
-
-
-  
-
 fetchUserInfo = () => {
   let fb = new Firebase();
   let uid = firebase.auth().currentUser.uid;
+  this._isMounted = true;
   
   if (uid !== null) {
     console.log("User id >>>>>>>>>: " + uid);
     fb.getUserInfo(uid).on('value', (snapshot) => {
-      setFormData({fullName: snapshot.val().fullName,
-                    babyGender: snapshot.val().babyGender,
-                    phoneNumber: snapshot.val().phoneNumber,
-                    pregnant: snapshot.val().pregnant,
-                    infant: snapshot.val().infant,
-                    dob: snapshot.val().dob,
-                    liveMiami: snapshot.val().liveMiami,
-                    screen: 'setting'});
+      if (this._isMounted){
+
+        this.setState({fullName: snapshot.val().fullName,
+          babyGender: snapshot.val().babyGender,
+          phoneNumber: snapshot.val().phoneNumber,
+          pregnant: snapshot.val().pregnant,
+          infant: snapshot.val().infant,
+          dob: snapshot.val().dob,
+          liveMiami: snapshot.val().liveMiami,
+          screen: 'setting'});
+        
+      }
+     
     });
 
   }else {
@@ -105,12 +95,9 @@ fetchUserInfo = () => {
   }
  
 
-}
+};
 
- useEffect(() => {
-    fetchUserInfo();
-   
- }, []);
+
 
  
 
@@ -120,8 +107,8 @@ onSubmit = (fullName, dob, phoneNumber) => {
 
   if (uid !== null) {
 
-    if (!formData) {
-      alert(props.getLocalizedText("fillOutAllFields"));
+    if (!this.state.fullName && !this.state.dob && !this.state.phoneNumber) {
+      alert(this.props.getLocalizedText("fillOutAllFields"));
       
     }else{
       
@@ -130,7 +117,7 @@ onSubmit = (fullName, dob, phoneNumber) => {
           phoneNumber: phoneNumber,
           dob: dob,
   
-        }, e => {alert("Error: Couldn't save the Information")});
+        }, e => {console.log("Error update: ", e)});
      
       window.alert('your Information has been save');
     }
@@ -140,98 +127,110 @@ onSubmit = (fullName, dob, phoneNumber) => {
   }
  
   
+};
+
+componentWillUnmount(){
+  this._isMounted = false;
 }
 
 
-  return (
-    <View style={{ flex: 1 }}>
-      <ScrollView>
-        <TouchableHighlight
-          onPress={goBack}
-          underlayColor={"transparent"}
-          style={{
-            height: appStyles.win.height * 0.04,
-            marginTop: "12%",
-            marginLeft: "3%",
-            width: appStyles.win.width * 0.07,
-          }}
-        >
-          <Image
+componentDidMount(){
+  this.fetchUserInfo();
+}
+
+
+ render() {
+   const { fullName, dob, phoneNumber} = this.state;
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          <TouchableHighlight
+            onPress={this.goBack}
+            underlayColor={"transparent"}
             style={{
-              height: appStyles.win.width * 0.06,
-              width: appStyles.win.width * 0.06,
+              height: appStyles.win.height * 0.04,
+              marginTop: "12%",
+              marginLeft: "3%",
+              width: appStyles.win.width * 0.07,
             }}
-            source={goBackImg}
+          >
+            <Image
+              style={{
+                height: appStyles.win.width * 0.06,
+                width: appStyles.win.width * 0.06,
+              }}
+              source={goBackImg}
+            />
+          </TouchableHighlight>
+          <WelcomeUserBanner
+            fullName={this.props.fullName}
+            logout={this.props.logout}
+            getLocalizedText={this.props.getLocalizedText}
           />
-        </TouchableHighlight>
-        <WelcomeUserBanner
-          fullName={props.fullName}
-          logout={props.logout}
-          getLocalizedText={props.getLocalizedText}
-        />
-        <View>
-          <Text style={styles.label}>your Number: {phoneNumber}</Text>
-          <TextInput
-            placeholder='Enter your new Phone Number'
-            style={styles.input}
-            value={phoneNumber}
-            onChangeText={(e) => onChangeText({phoneNumber: e})}
+          <View>
+            <Text style={styles.label}>your Number: {phoneNumber}</Text>
+            <TextInput
+              placeholder='Enter your new Phone Number'
+              style={styles.input}
+              value={phoneNumber}
+              onChangeText={(e)=> this.onChangeText({phoneNumber: e})}
+            />
+
+            <Text style={styles.label}>Your Birth Date: {dob}</Text>
+            <TextInput
+              placeholder='Enter your new Birth Date'
+              style={styles.input}
+              value={dob}
+              onChangeText={(e)=> this.onChangeText({dob: e})}
+            />
+
+            {/* <Text style={styles.label}>Your Pregnant status: {String(pregnant)}</Text>
+            <TextInput
+              placeholder='Enter your new pregnant Status'
+              style={styles.input}
+              value={String(pregnant)}
+              name='pregnant'
+              onChangeText={onChangeText}
+            />
+
+            <Text style={styles.label}>Your infant status: {String(infant)}</Text>
+            <TextInput
+              placeholder='Enter your new infant status'
+              style={styles.input}
+              value={String(infant)}
+              name='infant'
+              onChangeText={onChangeText}
+            /> */}
+
+            <Text style={styles.label}>Your full name: {fullName}</Text>
+            <TextInput
+              placeholder='Enter your new full Name'
+              style={styles.input}
+              value={fullName}
+              onChangeText={(e)=> this.onChangeText({fullName: e})}
+            />
+        
+          </View>
+
+          <Button
+            title='Save'
+            onPress={() => this.onSubmit(fullName, dob, phoneNumber)}
           />
 
-          <Text style={styles.label}>Your Birth Date: {dob}</Text>
-          <TextInput
-            placeholder='Enter your new Birth Date'
-            style={styles.input}
-            value={dob}
-            onChangeText={(e) => onChangeText({dob: e})}
+          <Button
+            title='Logout'
+            onPress={() => {
+              this.AsyncAlert().then((response) => {
+                response ? this.props.logout() : null;
+              });
+            }}
+            style={{ color: "red" }}
           />
-
-          {/* <Text style={styles.label}>Your Pregnant status: {String(pregnant)}</Text>
-          <TextInput
-            placeholder='Enter your new pregnant Status'
-            style={styles.input}
-            value={String(pregnant)}
-            name='pregnant'
-            onChangeText={onChangeText}
-          />
-
-          <Text style={styles.label}>Your infant status: {String(infant)}</Text>
-          <TextInput
-            placeholder='Enter your new infant status'
-            style={styles.input}
-            value={String(infant)}
-            name='infant'
-            onChangeText={onChangeText}
-          /> */}
-
-          <Text style={styles.label}>Your full name: {fullName}</Text>
-          <TextInput
-            placeholder='Enter your new full Name'
-            style={styles.input}
-            value={fullName}
-            onChangeText={(e) => onChangeText({fullName: e})}
-          />
-       
-        </View>
-
-        <Button
-          title='Save'
-          onPress={() => onSubmit(fullName, dob, phoneNumber)}
-        />
-
-        <Button
-          title='Logout'
-          onPress={() => {
-            AsyncAlert().then((response) => {
-              response ? props.logout() : null;
-            });
-          }}
-          style={{ color: "red" }}
-        />
-      </ScrollView>
-    </View>
-  );
-};
+        </ScrollView>
+      </View>
+    );
+  }
+}
 
 
 const styles = StyleSheet.create({
