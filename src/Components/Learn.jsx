@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableHighlight, Text, View, ScrollView } from "react-native";
 import appStyles from "./AppStyles";
-import LearnSelectionButton from "./LearnSelectionButton";
+import LearnSelectionButton from "./LearnSelectionButtonTemp";
 import butterfly from "../../assets/butterfly.png";
 
 export default function learn(props) {
