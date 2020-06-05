@@ -70,20 +70,7 @@ export default class Firebase {
             );
     }
 
-    async sendCustomSMS(phoneNumber, message) {
-        console.log(message);
-            return await fetch(
-                `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({message: message})
-                }
-            );
-    }
+
 
     getUserInfo = (uid) => firebase.database().ref('users/' + uid);
 }

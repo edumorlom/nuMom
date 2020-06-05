@@ -5,6 +5,7 @@ import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
 import Clinics from "./Clinics";
+import { getPreciseDistance } from "geolib";
 
 export default class Homepage extends React.Component {
   constructor(props) {
@@ -14,11 +15,46 @@ export default class Homepage extends React.Component {
       clinics: Clinics(),
       clinicToView: null,
       lowerPanelContent: "selection",
-      currentLocation: this.getCurrentLocation()
-        ? this.getCurrentLocation()
-        : null,
+      currentLocation: null,
     };
-    //this.getCurrentLocation();
+  }
+
+  getPosition = function (options) {
+    return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+  };
+
+  componentDidMount() {
+    //All the logic for clinic sorting is here, for no particular reason other than I want the updated clinics ASAP
+    this.getPosition()
+      .then((position) => {
+        //console.log(position.coords.latitude, position.coords.longitude);
+        this.setState({
+          currentLocation: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+        });
+
+        let clinics = Clinics();
+        clinics.forEach((clinic) => {
+          let dist = getPreciseDistance(clinic.coordinate, {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+
+          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); //Two decimal places in miles
+          clinic.distance = distanceInMiles;
+        });
+        clinics.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+        this.setState({ clinics: clinics });
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   }
 
   getCurrentLocation = () => {
