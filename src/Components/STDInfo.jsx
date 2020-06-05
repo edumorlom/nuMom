@@ -1,27 +1,61 @@
 import React from "react";
-import { TouchableHighlight, Text, View } from "react-native";
+import { TouchableHighlight, Text, View, ScrollView } from "react-native";
 import appStyles from "./AppStyles";
-import LearnSelectionButton from "./LearnSelectionButton";
-import GestureRecognizer from "react-native-swipe-gestures";
+import STDSelectionButton from "./STDSelectionButton";
 
 export default function STDInfo(props) {
   return (
-    <GestureRecognizer
-      onSwipeUp={() => props.setFullPanel(true)}
-      onSwipeDown={() => props.setFullPanel(false)}
-      config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
-      style={{ width: "100%", height: "100%", alignItems: "center" }}
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
-      <Text
-        style={{
-          color: props.color,
-          fontSize: appStyles.regularFontSize - 4,
-          fontWeight: "bold",
-          textAlign: "center",
+      <STDSelectionButton
+        text={"Gonorrhea"}
+        onPress={() => {
+          props.setLowerPanelContent("Gonorrhea");
         }}
-      >
-        {"To Be Added"}
-      </Text>
-    </GestureRecognizer>
+      />
+      <STDSelectionButton
+        text={"Chlamydia"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"Human Papillomavirus (HPV)"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"Genital Herpes"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"Syphilis"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"Bacterial Vaginosis"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"Trichomoniasis"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+      <STDSelectionButton
+        text={"HIV/AIDS"}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+    </ScrollView>
   );
 }

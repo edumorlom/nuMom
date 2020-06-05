@@ -22,10 +22,12 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("findCare");
     if (props.lowerPanelContent === "learn")
       return props.getLocalizedText("learn");
-    if (props.lowerPanelContent === "STDInfod")
+    if (props.lowerPanelContent === "STDInfo")
       return props.getLocalizedText("STDInfo");
     if (props.lowerPanelContent === "tips")
       return props.getLocalizedText("tipsAndTricks");
+    if (props.lowerPanelContent === "Gonorrhea")
+      return props.getLocalizedText("gonorrhea");
   };
 
   return (

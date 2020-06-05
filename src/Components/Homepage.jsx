@@ -69,6 +69,8 @@ export default class Homepage extends React.Component {
       this.setLowerPanelContent("learn");
     if (this.state.lowerPanelContent === "tips")
       this.setLowerPanelContent("selection");
+    if (this.state.lowerPanelContent === "Gonorrhea")
+      this.setLowerPanelContent("STDInfo");
   };
 
   render() {

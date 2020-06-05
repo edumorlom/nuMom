@@ -8,6 +8,7 @@ import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import Tips from "./TipsAndTricks";
 import STDInfo from "./STDInfo";
+import Gonorrhea from "./Gonorrhea";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -84,6 +85,13 @@ export default class LowerPanel extends React.Component {
     } else if (this.props.lowerPanelContent === "tips") {
       return (
         <Tips
+          setLowerPanelContent={this.props.setLowerPanelContent}
+          getLocalizedText={this.props.getLocalizedText}
+        />
+      );
+    } else if (this.props.lowerPanelContent === "Gonorrhea") {
+      return (
+        <Gonorrhea
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
