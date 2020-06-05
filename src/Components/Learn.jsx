@@ -1,24 +1,22 @@
-import React from 'react';
-import {ScrollView} from "react-native";
-import clinicLogo from '../../assets/clinic-logo.png'
-import Resources from './Resources'
+import React from "react";
+import { TouchableHighlight, Text, View, ScrollView } from "react-native";
+import appStyles from "./AppStyles";
 import LearnSelectionButton from "./LearnSelectionButton";
+import butterfly from "../../assets/butterfly.png";
 
-
-
-export default function Learn(props) {
-
-    let resourceButtons = Resources().map((resource, key) =>
-        <LearnSelectionButton key={key}
-                                     icon={resource.icon}
-                                     onPress={() => {
-                                         props.setClinicToView(clinicLogo);
-                                         props.setLowerPanelContent('clinicInfo');
-                                     }} resource={resource}/>);
-
-    return (
-        <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
-            {resourceButtons}
-        </ScrollView>
-    )
+export default function learn(props) {
+  return (
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+    >
+      <LearnSelectionButton
+        text={props.getLocalizedText("STDAwareness")}
+        subtitle={props.getLocalizedText("learnSTDs")}
+        icon={butterfly}
+        onPress={() => {
+          props.setLowerPanelContent("STDInfo");
+        }}
+      />
+    </ScrollView>
+  );
 }

@@ -6,7 +6,7 @@ export default class Map extends Component {
 
     constructor(props) {
         super(props);
-        this.state = this.props.currentLocation ? { region: {...this.props.currentLocation, latitudeDelta: 0.65, longitudeDelta: 0.3}} : 
+        this.state = this.props.currentLocation ? { region: {...this.props.currentLocation, latitudeDelta: 0.2, longitudeDelta: 0.3}} : 
                 { region: {latitude: 25.782220701733717, longitude: -80.26424665653634, latitudeDelta: 0.65, longitudeDelta: 0.3}};
         
         }

@@ -63,7 +63,7 @@ export default class App extends React.Component {
       let fb = new Firebase();
       fb.logIn(email, password).then(response => {
         this.loginWithUid(response.user.uid);
-        console.log("Successful Login!", response);
+        //console.log("Successful Login!", response);
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })

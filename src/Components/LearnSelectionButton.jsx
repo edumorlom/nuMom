@@ -1,43 +1,66 @@
-import {Image, Linking, Text, TouchableHighlight, View} from "react-native";
-import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
+import { Image, Text, TouchableHighlight, View } from "react-native";
+import appStyles, { borderRadius, greyColor, shadow } from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 
+export default function LearnSelectionButton(props) {
+  let onPress = () => {
+    Haptics.selectionAsync().then();
+    props.onPress();
+  };
 
+  return (
+    <TouchableHighlight
+      style={{
+        margin: appStyles.win.height * 0.009,
+        backgroundColor: "white",
+        ...shadow,
+        height: appStyles.win.height * 0.15,
+        width: "85%",
+        borderColor: greyColor,
+        borderRadius: borderRadius,
+      }}
+      underlayColor={appStyles.underlayColor}
+      onPress={onPress}
+    >
+      <View
+        style={{
+          flexDirection: "column",
+          height: "100%",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          marginLeft: "5%",
+        }}
+      >
+        <Image
+          style={{
+            width: appStyles.win.height * 0.06,
+            height: appStyles.win.height * 0.06,
+            marginRight: appStyles.win.width * 0.04,
+          }}
+          source={props.icon}
+        />
 
-export default function LearnSelectionButton(props){
-
-    let onPress = () => {
-        Haptics.selectionAsync().then();
-        Linking.openURL('http://' + props.resource.website)
-    };
-
-
-    let resourceName = props.resource.resource.length > 40 ? props.resource.resource.substring(0, 40)  + '...': props.resource.resource;
-    return (
-        <TouchableHighlight underlayColor={appStyles.underlayColor}
-                            onPress={onPress}
-                            style={{
-                                margin: 5,
-                                padding: 20,
-                                backgroundColor: 'white',
-                                ...shadow,
-                                minHeight: appStyles.win.height * 0.2,
-                                maxHeight: appStyles.win.height * 0.3,
-                                width: appStyles.win.width * 0.95,
-                                borderColor: greyColor,
-                                borderRadius: borderRadius,
-                                alignItems: 'center',
-                                flexDirection: 'row'}}>
-            <React.Fragment>
-                <View style={{height: '100%', width: '70%', marginRight: 20}}>
-                    <Text style={{color: appStyles.blueColor, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{resourceName}</Text>
-                    <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.resource.subtitle}</Text>
-                </View>
-                <View style={{height: '100%', width: '7%', justifyContent: 'center'}}>
-                    <Image style={{width: 65, height: 65}} source={props.resource.icon} />
-                </View>
-            </React.Fragment>
-        </TouchableHighlight>
-    )
+        <Text
+          style={{
+            color: props.color,
+            fontSize: appStyles.regularFontSize - 4,
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          {props.text}
+        </Text>
+        <Text
+          style={{
+            color: appStyles.greyColor,
+            fontSize: appStyles.regularFontSize - 4,
+            textAlign: "center",
+          }}
+        >
+          {props.subtitle}
+        </Text>
+      </View>
+    </TouchableHighlight>
+  );
 }
