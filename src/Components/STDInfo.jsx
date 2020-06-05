@@ -9,51 +9,51 @@ export default function STDInfo(props) {
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
       <STDSelectionButton
-        text={"Gonorrhea"}
+        text={props.getLocalizedText("gonorrhea")}
         onPress={() => {
           props.setLowerPanelContent("Gonorrhea");
         }}
       />
       <STDSelectionButton
-        text={"Chlamydia"}
+        text={props.getLocalizedText("chlamydia")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("Chlamydia");
         }}
       />
       <STDSelectionButton
-        text={"Human Papillomavirus (HPV)"}
+        text={props.getLocalizedText("HPV")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("HPV");
         }}
       />
       <STDSelectionButton
-        text={"Genital Herpes"}
+        text={props.getLocalizedText("genitalHerpes")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("GenitalHerpes");
         }}
       />
       <STDSelectionButton
-        text={"Syphilis"}
+        text={props.getLocalizedText("syphilis")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("Syphilis");
         }}
       />
       <STDSelectionButton
-        text={"Bacterial Vaginosis"}
+        text={props.getLocalizedText("bacterialVaginosis")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("BacterialVaginosis");
         }}
       />
       <STDSelectionButton
-        text={"Trichomoniasis"}
+        text={props.getLocalizedText("trichomoniasis")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("Trichomoniasis");
         }}
       />
       <STDSelectionButton
-        text={"HIV/AIDS"}
+        text={props.getLocalizedText("HIVAIDS")}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("HIVAIDS");
         }}
       />
     </ScrollView>

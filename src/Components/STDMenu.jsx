@@ -22,7 +22,8 @@ export default function STDMenu(props) {
         justifyContent: "center",
         backgroundColor: "white",
         ...shadow,
-        height: appStyles.win.height * 0.5,
+        minHeight: appStyles.win.height * 0.2,
+        maxHeight: appStyles.win.height * 0.5,
         width: appStyles.win.width * 0.95,
         borderRadius: borderRadius,
       }}
@@ -42,7 +43,7 @@ export default function STDMenu(props) {
           <Text
             style={{
               color: appStyles.greyColor,
-              fontSize: appStyles.regularFontSize,
+              fontSize: appStyles.regularFontSize - 5,
             }}
           >
             {props.info}

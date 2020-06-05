@@ -107,6 +107,20 @@ export default class Homepage extends React.Component {
       this.setLowerPanelContent("selection");
     if (this.state.lowerPanelContent === "Gonorrhea")
       this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "Chlamydia")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "HPV")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "GenitalHerpes")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "Syphilis")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "BacterialVaginosis")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "Trichomoniasis")
+      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "HIVAIDS")
+      this.setLowerPanelContent("STDInfo");
   };
 
   render() {
@@ -134,7 +148,7 @@ export default class Homepage extends React.Component {
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
-          setAppState={this.props.setAppState} 
+          setAppState={this.props.setAppState}
         />
       </View>
     );

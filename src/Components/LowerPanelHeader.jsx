@@ -28,6 +28,19 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("tipsAndTricks");
     if (props.lowerPanelContent === "Gonorrhea")
       return props.getLocalizedText("gonorrhea");
+    if (props.lowerPanelContent === "Chlamydia")
+      return props.getLocalizedText("chlamydia");
+    if (props.lowerPanelContent === "HPV") return props.getLocalizedText("HPV");
+    if (props.lowerPanelContent === "GenitalHerpes")
+      return props.getLocalizedText("genitalHerpes");
+    if (props.lowerPanelContent === "Syphilis")
+      return props.getLocalizedText("syphilis");
+    if (props.lowerPanelContent === "BacterialVaginosis")
+      return props.getLocalizedText("bacterialVaginosis");
+    if (props.lowerPanelContent === "Trichomoniasis")
+      return props.getLocalizedText("trichomoniasis");
+    if (props.lowerPanelContent === "HIVAIDS")
+      return props.getLocalizedText("HIVAIDS");
   };
 
   return (
