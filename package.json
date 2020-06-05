@@ -8,6 +8,7 @@
     "eject": "./node_modules/.bin/expo eject"
   },
   "dependencies": {
+    "@react-native-community/picker": "^1.6.1",
     "expo": "^37.0.8",
     "expo-haptics": "~8.1.0",
     "expo-permissions": "~8.1.0",

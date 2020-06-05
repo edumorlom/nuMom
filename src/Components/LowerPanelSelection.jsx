@@ -20,9 +20,9 @@ export default function LowerPanelSelection(props) {
                     <Text></Text>
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
-                <TouchableOpacity onPress={() => props.setAppState({screen: 'setting'})} >
-                    <MaterialIcons  name='settings' size={40} style={styles.userEditStyle} />
-                </TouchableOpacity>
+                <TouchableHighlight>
+                    <MaterialIcons  name='settings' size={40} style={styles.userEditStyle} onPress={() => props.setAppState({screen: 'setting'})} />
+                </TouchableHighlight>
                 <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                                 onPress={() => props.setLowerPanelContent('findCare')}/>
                 <SelectionButton text={props.getLocalizedText("learn")} icon={babyBottle}

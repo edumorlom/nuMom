@@ -15,10 +15,10 @@ import Firebase from "./Firebase";
 import goBackImg from "../../assets/go-back.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
-import {AsyncStorage, NativeModules} from 'react-native';
+import {AsyncStorage, NativeModules, Picker} from 'react-native';
 import * as firebase from 'firebase';
 import TextInput from "./TextInput.jsx";
-
+//import {Picker} from '@react-native-community/picker';
 
 
 class SettingScreen extends React.Component {
@@ -32,16 +32,21 @@ class SettingScreen extends React.Component {
       dob: null, 
       pregnant: null, 
       infant: null, 
-      babyGender: null, 
+      babyGender:{
+        male: null,
+        female: null
+      }, 
       liveMiami: null,
       fullName: null,
       };
 
     this.onChangeText = this.onChangeText.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    
 
   }
   
+
 
 
   onChangeText = (object) => {
@@ -79,7 +84,10 @@ fetchUserInfo = () => {
       if (this._isMounted){
 
         this.setState({fullName: snapshot.val().fullName,
-          babyGender: snapshot.val().babyGender,
+          babyGender:{
+            male: snapshot.val().babyGender.male,
+            female: snapshot.val().babyGender.female,
+          }, 
           phoneNumber: snapshot.val().phoneNumber,
           pregnant: snapshot.val().pregnant,
           infant: snapshot.val().infant,
@@ -102,9 +110,22 @@ fetchUserInfo = () => {
 
  
 
-onSubmit = (fullName, dob, phoneNumber) => {
+onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender) => {
   Haptics.selectionAsync().then();
   let uid = firebase.auth().currentUser.uid;
+  let male = babyGender.male;
+  let female = babyGender.female;
+
+    if (male === true) {
+      female = false;
+
+    }else if (female === false) {
+      female = true;
+      
+    } else {
+      male = false;
+    }
+  
 
   if (uid !== null) {
 
@@ -117,6 +138,13 @@ onSubmit = (fullName, dob, phoneNumber) => {
           fullName: fullName,
           phoneNumber: phoneNumber,
           dob: dob,
+          infant: infant,
+          pregnant: pregnant,
+          liveMiami: liveMiami,
+          babyGender:{
+            male: male,
+            female: female
+          }
   
         }, e => {console.log("Error update: ", e)});
      
@@ -141,10 +169,10 @@ componentDidMount(){
 
 
  render() {
-   const { fullName, dob, phoneNumber} = this.state;
+   const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender} = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView>
+       <ScrollView>
           <TouchableHighlight
             onPress={this.goBack}
             underlayColor={"transparent"}
@@ -168,8 +196,8 @@ componentDidMount(){
             logout={this.props.logout}
             getLocalizedText={this.props.getLocalizedText}
           />
-          <View style={{ alignItems: 'center', padding: 20}}>
-              <Text style={appStyles.blueColor}>your Number: {phoneNumber}</Text>
+          <View style={{ alignItems: 'center', paddingTop: 20}}>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}: {phoneNumber}</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={this.props.getLocalizedText("phoneNumberInput")}
@@ -180,7 +208,7 @@ componentDidMount(){
               />
             </View>
 
-            <Text style={appStyles.blueColor}>Your Birth Date: {dob}</Text>
+            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}: {dob}</Text>
             <View>
               <TextInput
                 placeholder={this.props.getLocalizedText("dob")}
@@ -192,7 +220,7 @@ componentDidMount(){
               />
             </View>
 
-            <Text style={appStyles.blueColor}>Your full name: {fullName}</Text>
+            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}: {fullName}</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={this.props.getLocalizedText("fullName")}
@@ -201,10 +229,59 @@ componentDidMount(){
                 onChangeText={(e)=> this.onChangeText({fullName: e})}
               />
             </View>
+            <View style={{ alignItems: 'center', height:160 }}>
+            <Text >{this.props.getLocalizedText("liveMiami")}</Text>
+                <Picker
+                    selectedValue={liveMiami}
+                    style={{width: 100, bottom: 50}}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.onChangeText({liveMiami: itemValue})
+                    }>
+                    <Picker.Item label="Yes" value={true} />
+                    <Picker.Item label="No" value={false} />
+                  </Picker>
+            </View>
+            <View style={{ alignItems: 'center', height:160}}>
+                  <Text >{this.props.getLocalizedText("areYouPregnant")}</Text>
+                <Picker
+                    selectedValue={pregnant}
+                    style={{width: 100,  bottom: 50}}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.onChangeText({pregnant: itemValue})
+                    }>
+                    <Picker.Item label="Yes" value={true} />
+                    <Picker.Item label="No" value={false} />
+                  </Picker>
+            </View>
+            <View style={{alignItems: 'center', height:160}}>
+                  <Text >{this.props.getLocalizedText("doYouHaveInfants")}</Text>
+                <Picker
+                    selectedValue={infant}
+                    style={{width: 100, bottom: 50}}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.onChangeText({infant: itemValue})
+                    }>
+                    <Picker.Item label="Yes" value={true} />
+                    <Picker.Item label="No" value={false} />
+                  </Picker>
+            </View>
+            <View style={{alignItems: 'center', height:160}}>
+                  <Text >{this.props.getLocalizedText("selectGenders")}</Text>
+                <Picker
+                    selectedValue={(babyGender.male && babyGender.female)}
+                    style={{width: 100, bottom: 50}}
+                    onValueChange={(itemValue, itemIndex) =>{
+                        return this.setState({babyGender:{male: itemValue, female: itemValue}})
+                    }}>
+                    <Picker.Item label="Male" value={true} key='1' />
+                    <Picker.Item label="Female" value={false}  key='2'/>
+                 </Picker>
+            </View>
         
           </View>
-          <View style={{justifyContent: 'center', flexDirection: 'row', padding: 50}}>
-            <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  onPress={() => this.onSubmit(fullName, dob, phoneNumber)} >
+          <View style={{justifyContent: 'center', flexDirection: 'row', padding: 90}}>
+            <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
+            onPress={() => this.onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender)} >
             <Text style={appStyles.button.text}>{this.props.getLocalizedText("save")}</Text>
             </TouchableHighlight>
 
@@ -228,20 +305,7 @@ componentDidMount(){
 
 
 const styles = StyleSheet.create({
-  // input: {
-  //   fontSize: 18,
-  //   borderWidth: 1,
-  //   borderColor: "black",
-  //   marginBottom: 15,
-  //   padding: 5,
-  //   margin: 5,
-  // },
 
-  // label: {
-  //   fontSize: 20,
-  //   marginBottom: 5,
-  //   marginLeft: 5,
-  // },
 });
 
 export default SettingScreen;
