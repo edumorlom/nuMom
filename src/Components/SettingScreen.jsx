@@ -197,7 +197,7 @@ componentDidMount(){
             getLocalizedText={this.props.getLocalizedText}
           />
           <View style={{ alignItems: 'center', paddingTop: 20}}>
-              <Text style={appStyles.blueColor}>Your Phone Number: {phoneNumber}</Text>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}: {phoneNumber}</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={this.props.getLocalizedText("phoneNumberInput")}
@@ -208,7 +208,7 @@ componentDidMount(){
               />
             </View>
 
-            <Text style={appStyles.blueColor}>Your Birth Date: {dob}</Text>
+            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}: {dob}</Text>
             <View>
               <TextInput
                 placeholder={this.props.getLocalizedText("dob")}
@@ -220,7 +220,7 @@ componentDidMount(){
               />
             </View>
 
-            <Text style={appStyles.blueColor}>Your full name: {fullName}</Text>
+            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}: {fullName}</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={this.props.getLocalizedText("fullName")}
@@ -230,7 +230,7 @@ componentDidMount(){
               />
             </View>
             <View style={{ alignItems: 'center', height:160 }}>
-                <Text >Do you still live in Miami?</Text>
+            <Text >{this.props.getLocalizedText("liveMiami")}</Text>
                 <Picker
                     selectedValue={liveMiami}
                     style={{width: 100, bottom: 50}}
@@ -242,7 +242,7 @@ componentDidMount(){
                   </Picker>
             </View>
             <View style={{ alignItems: 'center', height:160}}>
-                <Text >Are you pregnant?</Text>
+                  <Text >{this.props.getLocalizedText("areYouPregnant")}</Text>
                 <Picker
                     selectedValue={pregnant}
                     style={{width: 100,  bottom: 50}}
@@ -254,7 +254,7 @@ componentDidMount(){
                   </Picker>
             </View>
             <View style={{alignItems: 'center', height:160}}>
-                <Text >Do you have infant?</Text>
+                  <Text >{this.props.getLocalizedText("doYouHaveInfants")}</Text>
                 <Picker
                     selectedValue={infant}
                     style={{width: 100, bottom: 50}}
@@ -266,20 +266,16 @@ componentDidMount(){
                   </Picker>
             </View>
             <View style={{alignItems: 'center', height:160}}>
-                <Text >what is your baby Gender?</Text>
+                  <Text >{this.props.getLocalizedText("selectGenders")}</Text>
                 <Picker
                     selectedValue={(babyGender.male && babyGender.female)}
                     style={{width: 100, bottom: 50}}
                     onValueChange={(itemValue, itemIndex) =>{
-            
                         return this.setState({babyGender:{male: itemValue, female: itemValue}})
-
-                    }
-                      
-                    }>
+                    }}>
                     <Picker.Item label="Male" value={true} key='1' />
                     <Picker.Item label="Female" value={false}  key='2'/>
-                  </Picker>
+                 </Picker>
             </View>
         
           </View>
