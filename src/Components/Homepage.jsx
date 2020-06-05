@@ -134,6 +134,7 @@ export default class Homepage extends React.Component {
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
+          setAppState={this.props.setAppState} 
         />
       </View>
     );
