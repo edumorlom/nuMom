@@ -65,7 +65,7 @@ export default class SignUpInfo extends React.Component {
                             <Text style={appStyles.titlePink}>
                                 {this.state.fullName ? this.state.fullName.split(' ')[0] : ''}
                             </Text>
-                            !
+                            
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             <View style={appStyles.TextInput.View}>

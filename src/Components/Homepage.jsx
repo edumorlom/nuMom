@@ -17,16 +17,18 @@ export default class Homepage extends React.Component {
       lowerPanelContent: "selection",
       currentLocation: null,
     };
+    this.getPosition = this.getPosition.bind(this) 
   }
 
-  getPosition = function (options) {
-    return new Promise(function (resolve, reject) {
+  getPosition =  (options) => {
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     //All the logic for clinic sorting is here, for no particular reason other than I want the updated clinics ASAP
+    //Consider moving this logic inside a Component that handles clinic sorting, filtering and such
     this.getPosition()
       .then((position) => {
         //console.log(position.coords.latitude, position.coords.longitude);
@@ -47,7 +49,7 @@ export default class Homepage extends React.Component {
           let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); //Two decimal places in miles
           clinic.distance = distanceInMiles;
         });
-        clinics.sort(function (a, b) {
+        clinics.sort((a, b) => {
           return a.distance - b.distance;
         });
         this.setState({ clinics: clinics });
@@ -57,20 +59,7 @@ export default class Homepage extends React.Component {
       });
   }
 
-  getCurrentLocation = () => {
-    this.watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        let currentLocation = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        };
 
-        return currentLocation;
-        //this.setState({currentLocation: currentLocation})
-      },
-      (error) => console.log(error)
-    );
-  };
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
