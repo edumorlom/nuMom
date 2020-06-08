@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   Image,
   Alert,
+  Platform
 } from "react-native";
 import WelcomeUserBanner from "./WelcomeUserBanner";
 import Firebase from "./Firebase";
@@ -229,11 +230,11 @@ componentDidMount(){
                 onChangeText={(e)=> this.onChangeText({fullName: e})}
               />
             </View>
-            <View style={{ alignItems: 'center', height:160 }}>
+            <View style={styles.containerDropDown}>
             <Text >{this.props.getLocalizedText("liveMiami")}</Text>
                 <Picker
                     selectedValue={liveMiami}
-                    style={{width: 100, bottom: 50}}
+                    style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({liveMiami: itemValue})
                     }>
@@ -241,11 +242,11 @@ componentDidMount(){
                     <Picker.Item label="No" value={false} />
                   </Picker>
             </View>
-            <View style={{ alignItems: 'center', height:160}}>
+            <View style={styles.containerDropDown}>
                   <Text >{this.props.getLocalizedText("areYouPregnant")}</Text>
                 <Picker
                     selectedValue={pregnant}
-                    style={{width: 100,  bottom: 50}}
+                    style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({pregnant: itemValue})
                     }>
@@ -253,11 +254,11 @@ componentDidMount(){
                     <Picker.Item label="No" value={false} />
                   </Picker>
             </View>
-            <View style={{alignItems: 'center', height:160}}>
+            <View style={styles.containerDropDown}>
                   <Text >{this.props.getLocalizedText("doYouHaveInfants")}</Text>
                 <Picker
                     selectedValue={infant}
-                    style={{width: 100, bottom: 50}}
+                    style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({infant: itemValue})
                     }>
@@ -265,11 +266,12 @@ componentDidMount(){
                     <Picker.Item label="No" value={false} />
                   </Picker>
             </View>
-            <View style={{alignItems: 'center', height:160}}>
+            {infant === true ? 
+            <View style={styles.containerDropDown}>
                   <Text >{this.props.getLocalizedText("selectGenders")}</Text>
                 <Picker
                     selectedValue={(babyGender.male && babyGender.female)}
-                    style={{width: 100, bottom: 50}}
+                    style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>{
                         return this.setState({babyGender:{male: itemValue, female: itemValue}})
                     }}>
@@ -277,6 +279,7 @@ componentDidMount(){
                     <Picker.Item label="Female" value={false}  key='2'/>
                  </Picker>
             </View>
+            : null}
         
           </View>
           <View style={{justifyContent: 'center', flexDirection: 'row', padding: 90}}>
@@ -305,6 +308,34 @@ componentDidMount(){
 
 
 const styles = StyleSheet.create({
+ containerDropDown: {
+   ...Platform.select({
+     ios: {
+      marginTop: 30,
+      alignItems: 'center', 
+      height:160,
+     },
+     android: {
+       marginTop: 30,
+      alignItems: 'center', 
+      height:110,
+     },
+     
+   })
+ },
+ questionsDropDown: {
+  ...Platform.select({
+    ios: {
+      width: 100, 
+      bottom: 50,
+    },
+    android: {
+      width: 100, 
+      bottom: 10,
+    },
+    
+  })
+}
 
 });
 
