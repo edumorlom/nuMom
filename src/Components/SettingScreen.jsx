@@ -19,7 +19,7 @@ import appStyles from "./AppStyles";
 import {AsyncStorage, NativeModules, Picker} from 'react-native';
 import * as firebase from 'firebase';
 import TextInput from "./TextInput.jsx";
-//import {Picker} from '@react-native-community/picker';
+
 
 
 class SettingScreen extends React.Component {
@@ -39,6 +39,7 @@ class SettingScreen extends React.Component {
       }, 
       liveMiami: null,
       fullName: null,
+      babyDOB: null,
       };
 
     this.onChangeText = this.onChangeText.bind(this);
@@ -94,6 +95,7 @@ fetchUserInfo = () => {
           infant: snapshot.val().infant,
           dob: snapshot.val().dob,
           liveMiami: snapshot.val().liveMiami,
+          babyDOB:  snapshot.val().babyDOB,
           screen: 'setting'});
         
       }
@@ -111,12 +113,13 @@ fetchUserInfo = () => {
 
  
 
-onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender) => {
+onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender, babyDOB) => {
   Haptics.selectionAsync().then();
   let uid = firebase.auth().currentUser.uid;
   let male = babyGender.male;
   let female = babyGender.female;
 
+  //this is to check whether infant if is male or female 
     if (male === true) {
       female = false;
 
@@ -126,11 +129,18 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender)
     } else {
       male = false;
     }
+
+    //this is if the user choose not infant then setup male, female to false and babyDob to null
+    if (infant === false) {
+      male = false;
+      female = false;
+      babyDOB = null;
+    }
   
 
   if (uid !== null) {
 
-    if (!this.state.fullName && !this.state.dob && !this.state.phoneNumber) {
+    if (!this.state.fullName && !this.state.phoneNumber) {
       alert(this.props.getLocalizedText("fillOutAllFields"));
       
     }else{
@@ -142,6 +152,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender)
           infant: infant,
           pregnant: pregnant,
           liveMiami: liveMiami,
+          babyDOB: babyDOB,
           babyGender:{
             male: male,
             female: female
@@ -170,7 +181,7 @@ componentDidMount(){
 
 
  render() {
-   const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender} = this.state;
+   const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
        <ScrollView>
@@ -216,6 +227,7 @@ componentDidMount(){
                 style={appStyles.TextInput.TextInput}
                 value={dob}
                 type={'date'}
+                dob = {"mother"}
                 keyboardType={"numeric"}
                 onChangeText={(e)=> this.onChangeText({dob: e})}
               />
@@ -280,11 +292,25 @@ componentDidMount(){
                  </Picker>
             </View>
             : null}
+            {infant === true ?
+            <View >
+              <Text style={{alignSelf: 'center'}}>{this.props.getLocalizedText("babydob")} {babyDOB}</Text>
+                  <TextInput
+                  placeholder={this.props.getLocalizedText("dob")}
+                  style={appStyles.TextInput.TextInput}
+                  value={babyDOB}
+                  type={'date'}
+                  keyboardType={"numeric"}
+                  dob = {"baby"}
+                  onChangeText={(e)=> this.onChangeText({babyDOB: e})}
+                />
+            </View>
+            : null}
         
           </View>
           <View style={{justifyContent: 'center', flexDirection: 'row', padding: 90}}>
             <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
-            onPress={() => this.onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender)} >
+            onPress={() => this.onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender, babyDOB)} >
             <Text style={appStyles.button.text}>{this.props.getLocalizedText("save")}</Text>
             </TouchableHighlight>
 
