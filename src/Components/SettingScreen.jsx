@@ -277,8 +277,8 @@ getNextWeekAndWeekNo = () => {
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({liveMiami: itemValue})
                     }>
-                    <Picker.Item label="Yes" value={true} />
-                    <Picker.Item label="No" value={false} />
+                    <Picker.Item label={this.props.getLocalizedText("Yes")} value={true} />
+                    <Picker.Item label={this.props.getLocalizedText("No")} value={false} />
                   </Picker>
             </View>
             <View style={styles.containerDropDown}>
@@ -289,8 +289,8 @@ getNextWeekAndWeekNo = () => {
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({pregnant: itemValue})
                     }>
-                    <Picker.Item label="Yes" value={true} />
-                    <Picker.Item label="No" value={false} />
+                    <Picker.Item label={this.props.getLocalizedText("Yes")} value={true} />
+                    <Picker.Item label={this.props.getLocalizedText("No")} value={false} />
                   </Picker>
             </View>
             <View style={styles.containerDropDown}>
@@ -301,8 +301,8 @@ getNextWeekAndWeekNo = () => {
                     onValueChange={(itemValue, itemIndex) =>
                       this.onChangeText({infant: itemValue})
                     }>
-                    <Picker.Item label="Yes" value={true} />
-                    <Picker.Item label="No" value={false} />
+                    <Picker.Item label={this.props.getLocalizedText("Yes")} value={true} />
+                    <Picker.Item label={this.props.getLocalizedText("No")} value={false} />
                   </Picker>
             </View>
             {infant === true ? 
@@ -314,8 +314,8 @@ getNextWeekAndWeekNo = () => {
                     onValueChange={(itemValue, itemIndex) =>{
                         return this.setState({babyGender:{male: itemValue, female: itemValue}})
                     }}>
-                    <Picker.Item label="Male" value={true} key='1' />
-                    <Picker.Item label="Female" value={false}  key='2'/>
+                    <Picker.Item label={this.props.getLocalizedText("Male")} value={true} key='1' />
+                    <Picker.Item label={this.props.getLocalizedText("Female")} value={false}  key='2'/>
                  </Picker>
             </View>
             : null}
