@@ -119,6 +119,9 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
   let male = babyGender.male;
   let female = babyGender.female;
 
+  //this will give you the week and nextWeek fields for the baby birth day messages
+  let babyInfo = this.getNextWeekAndWeekNo();
+
   //this is to check whether infant if is male or female 
     if (male === true) {
       female = false;
@@ -156,7 +159,9 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
           babyGender:{
             male: male,
             female: female
-          }
+          },
+          nextWeek: babyInfo[0],
+          week: babyInfo[1],
   
         }, e => {console.log("Error update: ", e)});
      
@@ -179,6 +184,18 @@ componentDidMount(){
   this.fetchUserInfo();
 }
 
+getNextWeekAndWeekNo = () => {
+  let babyDOB = new Date(this.state.babyDOB); 
+  let today = new Date(); 
+  let daysDifference = (today.getTime() - babyDOB.getTime()) / (1000 * 3600 * 24) | 0;
+  let daysTillNextWeek = (7 - daysDifference % 7) % 7;        
+  let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysTillNextWeek);
+  let nextWeek = (nextweek.getMonth()+1).toString().padStart(2, "0") +'/'+nextweek.getDate().toString().padStart(2, "0") +'/'+ nextweek.getFullYear()
+  let weekNo = daysTillNextWeek === 0 ? (daysDifference / 7)  | 0 : ((daysDifference / 7) + 1) | 0;
+  if (weekNo > 24) { nextWeek = null; weekNo = null }
+  return [nextWeek, weekNo]
+}
+
 
  render() {
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
@@ -190,8 +207,9 @@ componentDidMount(){
             underlayColor={"transparent"}
             style={{
               height: appStyles.win.height * 0.04,
-              marginTop: "12%",
+              marginTop: "8%",
               marginLeft: "3%",
+              marginBottom: '5%',
               width: appStyles.win.width * 0.07,
             }}
           >
@@ -203,44 +221,53 @@ componentDidMount(){
               source={goBackImg}
             />
           </TouchableHighlight>
-          <WelcomeUserBanner
-            fullName={this.props.fullName}
-            logout={this.props.logout}
-            getLocalizedText={this.props.getLocalizedText}
-          />
+          <View 
+            style={appStyles.WelcomeUserBanner.TouchableHighlight}
+            underlayColor={appStyles.pinkColor}
+          ><Text 
+            style={{
+            color: "white",
+            fontSize: appStyles.regularFontSize,
+            fontWeight: 'bold'
+            }}>{this.props.getLocalizedText('welcomeSetting')}</Text></View>
           <View style={{ alignItems: 'center', paddingTop: 20}}>
+            <View style={{marginBottom: 30, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}: {phoneNumber}</Text>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={this.props.getLocalizedText("phoneNumberInput")}
-                style={appStyles.TextInput.TextInput}
-                value={phoneNumber}
-                keyboardType={"numeric"}
-                onChangeText={(e)=> this.onChangeText({phoneNumber: e})}
-              />
+              <View style={appStyles.TextInput.View}>
+                <TextBox
+                  placeholder={this.props.getLocalizedText("phoneNumberInput")}
+                  style={appStyles.TextInput.TextInput}
+                  value={phoneNumber}
+                  keyboardType={"numeric"}
+                  onChangeText={(e)=> this.onChangeText({phoneNumber: e})}
+                />
+              </View>
             </View>
 
-            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}: {dob}</Text>
-            <View>
-              <TextInput
-                placeholder={this.props.getLocalizedText("dob")}
-                style={appStyles.TextInput.TextInput}
-                value={dob}
-                type={'date'}
-                dob = {"mother"}
-                keyboardType={"numeric"}
-                onChangeText={(e)=> this.onChangeText({dob: e})}
-              />
+            <View style={{marginBottom: 30, alignItems: 'center'}}>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}: {dob}</Text>
+              <View>
+                <TextInput
+                  placeholder={this.props.getLocalizedText("dob")}
+                  style={appStyles.TextInput.TextInput}
+                  value={dob}
+                  type={'date'}
+                  dob = {"mother"}
+                  keyboardType={"numeric"}
+                  onChangeText={(e)=> this.onChangeText({dob: e})}
+                />
+              </View>
             </View>
-
-            <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}: {fullName}</Text>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={this.props.getLocalizedText("fullName")}
-                style={appStyles.TextInput.TextInput}
-                value={fullName}
-                onChangeText={(e)=> this.onChangeText({fullName: e})}
-              />
+            <View style={{marginBottom: 30, alignItems: 'center' }}>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}: {fullName}</Text>
+              <View style={appStyles.TextInput.View}>
+                <TextBox
+                  placeholder={this.props.getLocalizedText("fullName")}
+                  style={appStyles.TextInput.TextInput}
+                  value={fullName}
+                  onChangeText={(e)=> this.onChangeText({fullName: e})}
+                />
+              </View>
             </View>
             <View style={styles.containerDropDown}>
             <Text >{this.props.getLocalizedText("liveMiami")}</Text>
