@@ -14,6 +14,7 @@ export default class Homepage extends React.Component {
       fullPanel: true,
       clinics: Clinics(),
       clinicToView: null,
+      STDToView: null,
       lowerPanelContent: "selection",
       currentLocation: null,
     };
@@ -88,7 +89,9 @@ export default class Homepage extends React.Component {
   setClinicToView = (clinic) => {
     this.setState({ clinicToView: clinic });
   };
-
+  setSTDToView = (std) => {
+    this.setState({ STDToView: std });
+  };
   setLowerPanelContent = (lowerPanelContent) => {
     this.setState({ lowerPanelContent: lowerPanelContent });
   };
@@ -101,26 +104,12 @@ export default class Homepage extends React.Component {
       this.setLowerPanelContent("findCare");
     if (this.state.lowerPanelContent === "learn")
       this.setLowerPanelContent("selection");
-    if (this.state.lowerPanelContent === "STDInfo")
+    if (this.state.lowerPanelContent === "STDSelection")
       this.setLowerPanelContent("learn");
     if (this.state.lowerPanelContent === "tips")
       this.setLowerPanelContent("selection");
-    if (this.state.lowerPanelContent === "Gonorrhea")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "Chlamydia")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "HPV")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "GenitalHerpes")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "Syphilis")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "BacterialVaginosis")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "Trichomoniasis")
-      this.setLowerPanelContent("STDInfo");
-    if (this.state.lowerPanelContent === "HIVAIDS")
-      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "STDInfo")
+      this.setLowerPanelContent("STDSelection");
   };
 
   render() {
@@ -143,6 +132,8 @@ export default class Homepage extends React.Component {
           logout={this.props.logout}
           clinics={this.state.clinics}
           clinicToView={this.state.clinicToView}
+          STDToView={this.state.STDToView}
+          setSTDToView={this.setSTDToView}
           setClinicToView={this.setClinicToView}
           lowerPanelContent={this.state.lowerPanelContent}
           goBack={this.goBack}

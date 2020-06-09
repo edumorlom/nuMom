@@ -7,15 +7,8 @@ import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import Tips from "./TipsAndTricks";
+import STDSelection from "./STDSelection";
 import STDInfo from "./STDInfo";
-import Gonorrhea from "./Gonorrhea";
-import Chlamydia from "./Chlamydia";
-import HPV from "./HPV";
-import GenitalHerpes from "./GenitalHerpes";
-import Syphilis from "./Syphilis";
-import BacterialVaginosis from "./BacterialVaginosis";
-import Trichomoniasis from "./Trichomoniasis";
-import HIVAIDS from "./HIVAIDS";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -82,11 +75,12 @@ export default class LowerPanel extends React.Component {
           getLocalizedText={this.props.getLocalizedText}
         />
       );
-    } else if (this.props.lowerPanelContent === "STDInfo") {
+    } else if (this.props.lowerPanelContent === "STDSelection") {
       return (
-        <STDInfo
+        <STDSelection
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
+          setSTDToView={this.props.setSTDToView}
         />
       );
     } else if (this.props.lowerPanelContent === "tips") {
@@ -96,60 +90,12 @@ export default class LowerPanel extends React.Component {
           getLocalizedText={this.props.getLocalizedText}
         />
       );
-    } else if (this.props.lowerPanelContent === "Gonorrhea") {
+    } else if (this.props.lowerPanelContent === "STDInfo") {
       return (
-        <Gonorrhea
+        <STDInfo
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "Chlamydia") {
-      return (
-        <Chlamydia
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "HPV") {
-      return (
-        <HPV
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "GenitalHerpes") {
-      return (
-        <GenitalHerpes
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "Syphilis") {
-      return (
-        <Syphilis
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "BacterialVaginosis") {
-      return (
-        <BacterialVaginosis
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "Trichomoniasis") {
-      return (
-        <Trichomoniasis
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-        />
-      );
-    } else if (this.props.lowerPanelContent === "HIVAIDS") {
-      return (
-        <HIVAIDS
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+          STDToView={this.props.STDToView}
         />
       );
     } else {

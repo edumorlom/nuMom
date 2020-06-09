@@ -1,60 +1,34 @@
 import React from "react";
 import { TouchableHighlight, Text, View, ScrollView } from "react-native";
 import appStyles from "./AppStyles";
-import STDSelectionButton from "./STDSelectionButton";
+import STDMenu from "./STDMenu";
+import STD from "./STD";
 
 export default function STDInfo(props) {
+  console.log(props.STDToView);
   return (
     <ScrollView
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
-      <STDSelectionButton
-        text={props.getLocalizedText("gonorrhea")}
-        onPress={() => {
-          props.setLowerPanelContent("Gonorrhea");
-        }}
+      <STDMenu
+        title={props.getLocalizedText("symptoms")}
+        info={props.getLocalizedText(props.STDToView.symptoms)}
       />
-      <STDSelectionButton
-        text={props.getLocalizedText("chlamydia")}
-        onPress={() => {
-          props.setLowerPanelContent("Chlamydia");
-        }}
+      <STDMenu
+        title={props.getLocalizedText("testing")}
+        info={props.getLocalizedText(props.STDToView.diagnosis)}
       />
-      <STDSelectionButton
-        text={props.getLocalizedText("HPV")}
-        onPress={() => {
-          props.setLowerPanelContent("HPV");
-        }}
+      <STDMenu
+        title={props.getLocalizedText("treatment")}
+        info={props.getLocalizedText(props.STDToView.treatment)}
       />
-      <STDSelectionButton
-        text={props.getLocalizedText("genitalHerpes")}
-        onPress={() => {
-          props.setLowerPanelContent("GenitalHerpes");
-        }}
+      <STDMenu
+        title={props.getLocalizedText("consequences")}
+        info={props.getLocalizedText(props.STDToView.consequences)}
       />
-      <STDSelectionButton
-        text={props.getLocalizedText("syphilis")}
-        onPress={() => {
-          props.setLowerPanelContent("Syphilis");
-        }}
-      />
-      <STDSelectionButton
-        text={props.getLocalizedText("bacterialVaginosis")}
-        onPress={() => {
-          props.setLowerPanelContent("BacterialVaginosis");
-        }}
-      />
-      <STDSelectionButton
-        text={props.getLocalizedText("trichomoniasis")}
-        onPress={() => {
-          props.setLowerPanelContent("Trichomoniasis");
-        }}
-      />
-      <STDSelectionButton
-        text={props.getLocalizedText("HIVAIDS")}
-        onPress={() => {
-          props.setLowerPanelContent("HIVAIDS");
-        }}
+      <STDMenu
+        title={props.getLocalizedText("safeSex")}
+        info={props.getLocalizedText(props.STDToView.safeSex)}
       />
     </ScrollView>
   );
