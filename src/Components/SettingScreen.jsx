@@ -62,11 +62,11 @@ class SettingScreen extends React.Component {
     AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
-        "Log Out",
-        "Are you sure you want to log out of this account?",
+        this.props.getLocalizedText("logout"),
+        this.props.getLocalizedText('WantToLogout'),
         [
-          { text: "YES", onPress: () => resolve(true) },
-          { text: "NO", onPress: () => resolve(false) },
+          { text: this.props.getLocalizedText("Yes"), onPress: () => resolve(true) },
+          { text: this.props.getLocalizedText("No"), onPress: () => resolve(false) },
         ],
         { cancelable: false }
       );
@@ -173,7 +173,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
   
         }, e => {console.log("Error update: ", e)});
      
-      window.alert('your Information has been save');
+      window.alert(this.props.getLocalizedText("savedInfo"));
     }
     
   }else{
