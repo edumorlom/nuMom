@@ -11,7 +11,6 @@ import {
   Alert,
   Platform
 } from "react-native";
-import WelcomeUserBanner from "./WelcomeUserBanner";
 import Firebase from "./Firebase";
 import goBackImg from "../../assets/go-back.png";
 import * as Haptics from "expo-haptics";
@@ -138,6 +137,15 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
       male = false;
       female = false;
       babyDOB = null;
+    }
+
+    // first try, when the user register for first time we set the liveMiami,infant pregnant to false
+    if(liveMiami === null ){
+      liveMiami = false; 
+    }else if(infant === null ){
+      infant = false;
+    }else if(pregnant === null){
+      pregnant = false;
     }
   
 
