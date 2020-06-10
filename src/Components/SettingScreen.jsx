@@ -132,11 +132,13 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
       male = false;
     }
 
-    //this is if the user choose not infant then setup male, female to false and babyDob to null
+    //this is if the user choose not infant then setup male, female to false and babyDob, week, weekNext to null
     if (infant === false) {
       male = false;
       female = false;
       babyDOB = null;
+      babyInfo[0] = null;
+      babyInfo[1] = null;
     }
 
     // first try, when the user register for first time we set the liveMiami,infant pregnant to false
