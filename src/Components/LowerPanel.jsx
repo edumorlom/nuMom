@@ -55,7 +55,9 @@ export default class LowerPanel extends React.Component {
       return (
         <FindCare
           clinics={this.props.clinics}
+          sortedClinics = {this.props.sortedClinics}
           setClinicToView={this.props.setClinicToView}
+          setClinics = {this.props.setClinics}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />

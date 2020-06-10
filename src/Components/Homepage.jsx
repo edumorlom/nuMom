@@ -1,6 +1,6 @@
 import React from "react";
 import Map from "./Map";
-import { View } from "react-native";
+import { View, AsyncStorage } from "react-native";
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
@@ -12,10 +12,10 @@ export default class Homepage extends React.Component {
     super(props);
     this.state = {
       fullPanel: true,
-      clinics: Clinics(),
+      clinics: Clinics(),   //try making it null at the start
+      sortedClinics: null,
       clinicToView: null,
       lowerPanelContent: "selection",
-      currentLocation: null,
     };
     this.getPosition = this.getPosition.bind(this) 
   }
@@ -31,14 +31,6 @@ export default class Homepage extends React.Component {
     //Consider moving this logic inside a Component that handles clinic sorting, filtering and such
     this.getPosition()
       .then((position) => {
-        //console.log(position.coords.latitude, position.coords.longitude);
-        this.setState({
-          currentLocation: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          },
-        });
-
         let clinics = Clinics();
         clinics.forEach((clinic) => {
           let dist = getPreciseDistance(clinic.coordinate, {
@@ -46,13 +38,15 @@ export default class Homepage extends React.Component {
             longitude: position.coords.longitude,
           });
 
-          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); //Two decimal places in miles
+          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); 
           clinic.distance = distanceInMiles;
         });
         clinics.sort((a, b) => {
           return a.distance - b.distance;
         });
-        this.setState({ clinics: clinics });
+        this.setState({ clinics: clinics, sortedClinics: clinics });  //SortedClinics never changed, where as clinics does get filtered
+        
+        //AsyncStorage.setItem('clinics', clinics);
       })
       .catch((err) => {
         console.error(err.message);
@@ -62,7 +56,11 @@ export default class Homepage extends React.Component {
 
 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+    navigator.geolocation.clearWatch(this.watchID)
+  }
+
+  setClinics = (clinics) => {
+    this.setState({ clinics: clinics });
   }
 
   setFullPanel = (fullPanel) => {
@@ -99,6 +97,7 @@ export default class Homepage extends React.Component {
   };
 
   render() {
+    //Clinics().forEach(clinic => console.log(clinic.services))
     return (
       <View style={appStyles.container}>
         <Map
@@ -107,18 +106,19 @@ export default class Homepage extends React.Component {
           clinicToView={this.state.clinicToView}
           setClinicToView={this.setClinicToView}
           clinics={this.state.clinics}
-          currentLocation={this.state.currentLocation}
           getLocalizedText={this.props.getLocalizedText}
         />
         <SOSButton />
-        <LowerPanel //onPress={() => this.setFullPanel(true)}
+        <LowerPanel 
           setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
           fullPanel={this.state.fullPanel}
           fullName={this.props.fullName}
           logout={this.props.logout}
           clinics={this.state.clinics}
+          sortedClinics = {this.state.sortedClinics}
           clinicToView={this.state.clinicToView}
           setClinicToView={this.setClinicToView}
+          setClinics = {this.setClinics}
           lowerPanelContent={this.state.lowerPanelContent}
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}
