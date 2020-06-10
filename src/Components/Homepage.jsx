@@ -44,7 +44,8 @@ export default class Homepage extends React.Component {
         clinics.sort((a, b) => {
           return a.distance - b.distance;
         });
-        this.setState({ clinics: clinics, sortedClinics: clinics });  //SortedClinics never changed, where as clinics does get filtered
+        this.setState({ clinics: clinics});  
+        this.setState({ sortedClinics: clinics }); //SortedClinics never changed, where as clinics does get filtered
         
         //AsyncStorage.setItem('clinics', clinics);
       })
@@ -98,6 +99,7 @@ export default class Homepage extends React.Component {
 
   render() {
     //Clinics().forEach(clinic => console.log(clinic.services))
+    //console.log(this.state.clinics[0].services)
     return (
       <View style={appStyles.container}>
         <Map
@@ -108,7 +110,7 @@ export default class Homepage extends React.Component {
           clinics={this.state.clinics}
           getLocalizedText={this.props.getLocalizedText}
         />
-        <SOSButton />
+        {/*<SOSButton />*/}
         <LowerPanel 
           setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
           fullPanel={this.state.fullPanel}

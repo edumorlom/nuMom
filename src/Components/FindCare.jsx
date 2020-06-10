@@ -26,12 +26,9 @@ export default function FindCare(props) {
     }
 
 
-    filterClinics = (filter) => {
-        console.log(filter);
+    let filterClinics = (filter) => {
         if (filter !== 'All' && clinics) {
-            clinics.filter((item) => {
-                item.services.includes(filter)
-            })
+            clinics = clinics.filter((item) => item.services.includes(filter))
         }
         props.setClinics(clinics)
         setValue(filter);
@@ -41,17 +38,17 @@ export default function FindCare(props) {
     [
         {label: 'All', value: 'All'},
         {label: 'Education', value: 'Education'},
-        {label: 'Support & Counceling', value: 'Support & Counceling'},
+        {label: 'Support & Counseling', value: 'Support & Counseling'},
         {label: 'Free Materials', value: 'Free Materials'}
     ]
 
     return (
         <>
         <View style={{flexDirection: "row"}}>
-            <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={services} 
-            label="Distance" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>this.setValueNow(value)} />
+            {/* <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={services} 
+            label="Distance" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>setValueNow(value)} /> */}
             <Dropdown containerStyle= {{width: '30%', left: '50%'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} 
-            label="Services" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>this.filterClinics(value)} />
+            label="Services" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value)} />
         </View>
             <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                 
