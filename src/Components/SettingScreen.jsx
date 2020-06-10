@@ -164,7 +164,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
           dob: dob,
           infant: infant,
           pregnant: pregnant,
-          liveMiami: liveMiami,
+          liveMiami: liveMiami || false,
           babyDOB: babyDOB,
           babyGender:{
             male: male,
