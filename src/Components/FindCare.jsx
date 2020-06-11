@@ -5,7 +5,7 @@ import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown"
 
 export default function FindCare(props) {
-    const [value, setValue] = useState('All');
+    const [value, setValue] = useState(props.filter);
 
     let clinicsButtons = props.clinics.map((clinic, key) =>
         <SelectionButtonImageOnRight key={key}
@@ -19,28 +19,23 @@ export default function FindCare(props) {
     let clinics = props.sortedClinics;
 
     
-
-    setValueNow = (value) => {
-        setValue(value);
-        console.log(value);
-    }
-
+    //To apply both filters you have to start at sortedClinics, then filter by distance, then filter by services
+    //So filterClinics(distFilter, servFilter) when you call it like filterClinics(value, filterS) or filterClinics(filterD, value)                                
 
     let filterClinics = (filter) => {
         if (filter !== 'All' && clinics) {
             clinics = clinics.filter((item) => item.services.includes(filter))
         }
         props.setClinics(clinics)
+        props.setFilter(filter)
         setValue(filter);
     }
 
-    let services = 
-    [
-        {label: 'All', value: 'All'},
-        {label: 'Education', value: 'Education'},
-        {label: 'Support & Counseling', value: 'Support & Counseling'},
-        {label: 'Free Materials', value: 'Free Materials'}
-    ]
+    let servicesArray = ["All", "Education", "Support & Counseling", "Free Materials", "Referrals", "STD Tests", "STD Treatment", "Yearly Exam", "Pregnancy Tests", 
+                            "Ultrasound", "Immunization", "Abortions", "Medical Care", "Lab services"];
+    
+    let services = servicesArray.map ((service) => 
+        ({label: service, value: service}))  //Change label to adjust for different languages
 
     return (
         <>

@@ -393,7 +393,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "(305) 442-9448",
                 "website": "",
-                "services": ["Pregnancy Test", "Support & Counseling", "Medicaid Assistance", "Food Stamps"],
+                "services": ["Pregnancy Tests", "Support & Counseling", "Medicaid Assistance", "Food Stamps"],
                 "other": "Clients must fill out an intake form for an individual need assessment. Services in English and Spanish"
             },
             {
@@ -429,7 +429,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "(305) 575-3800",
                 "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
-                "services": ["Yearly Exam", "Support & Counseling", "STD Treatment", "Emergency Testing", "STD Tests", "Pregnancy Testing"],
+                "services": ["Yearly Exam", "Support & Counseling", "STD Treatment", "Emergency Testing", "STD Tests", "Pregnancy Tests"],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
             {
@@ -447,7 +447,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": " (305) 225-5950",
                 "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
-                "services": ["Yearly Exam", "STD Treatment", "Emergency Testing", "STD Tests", "Support & Counseling", "Pregnancy Testing"],
+                "services": ["Yearly Exam", "STD Treatment", "Emergency Testing", "STD Tests", "Support & Counseling", "Pregnancy Tests"],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
             {
@@ -465,7 +465,7 @@ export default function Clinics() {
                 },
                 "phoneNumber": "305-575-3800",
                 "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
-                "services": ["Yearly Exam", "STD Treatment", "Emergency Testing", "STD Tests", "Support & Counseling", "Pregnancy Testing"],
+                "services": ["Yearly Exam", "STD Treatment", "Emergency Testing", "STD Tests", "Support & Counseling", "Pregnancy Tests"],
                 "other": "Services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
             },
             {

@@ -47,7 +47,9 @@ export default class Homepage extends React.Component {
         this.setState({ clinics: clinics});  
         this.setState({ sortedClinics: clinics }); //SortedClinics never changed, where as clinics does get filtered
         
-        //AsyncStorage.setItem('clinics', clinics);
+        // let cprint = "";
+        // Clinics().forEach(clinic => clinic.services.forEach((service) => cprint = cprint + ', ' + service))
+        // console.log(cprint)
       })
       .catch((err) => {
         console.error(err.message);
