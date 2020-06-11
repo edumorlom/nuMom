@@ -5,7 +5,8 @@ import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown"
 
 export default function FindCare(props) {
-    const [value, setValue] = useState(props.filter);
+    const [service, setService] = useState(props.filter);
+    const [dist, setDist] = useState('All');
 
     let clinicsButtons = props.clinics.map((clinic, key) =>
         <SelectionButtonImageOnRight key={key}
@@ -37,13 +38,29 @@ export default function FindCare(props) {
     let services = servicesArray.map ((service) => 
         ({label: service, value: service}))  //Change label to adjust for different languages
 
+    // let filterClinicsByDistance= (filterValue) =>{
+    //     if (filterValue !== 10000 && clinics) {
+    //         clinics = clinics.filter(function (x) {
+    //             return x.distance <= filterValue
+    //         });
+    //     }
+    //     console.log(distanceValue);
+    //     console.log(serviceValue);
+    //     props.setClinics(clinics)
+    //     setValue(filterValue);
+    // }
+
+        
+
+    let distances = [ {label: 'All',value: 10000}, {label: '5 Miles',value: 5.5}, {label: '15 Miles',value: 15.5}, {label: '20 Miles',value: 20.5} ]
+
     return (
         <>
         <View style={{flexDirection: "row"}}>
-            {/* <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={services} 
-            label="Distance" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>setValueNow(value)} /> */}
+            { <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={distances} 
+            label="Distance" value= {distanceValue} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinicsByDistance(value)} /> }
             <Dropdown containerStyle= {{width: '30%', left: '50%'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} 
-            label="Services" value= {value} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value)} />
+            label="Services" value= {serviceValue} itemColor={'red'} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinicsByService(value)} />
         </View>
             <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                 
