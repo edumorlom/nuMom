@@ -43,6 +43,8 @@
   "services": "Services",
   "logout": "Log Out",
   "youLoggedOut": "You have logged out!",
+  "appointment": "Appointments",
+  "appointmentInfo": "Info",
   "STDInfo": "View STD",
   "STDSelection": "Select The STD",
   "STDAwareness": "STD Awareness",

@@ -9,6 +9,7 @@ import Learn from "./Learn";
 import Tips from "./TipsAndTricks";
 import STDSelection from "./STDSelection";
 import STDInfo from "./STDInfo";
+import Appointment from "./Appointment";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -96,6 +97,13 @@ export default class LowerPanel extends React.Component {
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
           STDToView={this.props.STDToView}
+        />
+      );
+    } else if (this.props.lowerPanelContent === "Appointment") {
+      return (
+        <Appointment
+          setLowerPanelContent={this.props.setLowerPanelContent}
+          getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else {
