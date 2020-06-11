@@ -16,7 +16,10 @@ export default class LowerPanel extends React.Component {
     this.goUp();
   }
 
-  state = { panelStyle: { ...appStyles.lowerPanel }, filter: 'All' };
+  state = { 
+    panelStyle: { ...appStyles.lowerPanel }, 
+    filters: [10000, 'All']
+  };
 
   transition = null;
 
@@ -50,8 +53,8 @@ export default class LowerPanel extends React.Component {
     }, 0.1);
   };
 
-  setFilter = (filter) => {
-    this.setState({filter: filter})
+  setFilters = (distance, service) => {
+    this.setState({filters: [distance, service]})
   } 
 
   showContent = () => {
@@ -62,8 +65,8 @@ export default class LowerPanel extends React.Component {
           sortedClinics = {this.props.sortedClinics}
           setClinicToView={this.props.setClinicToView}
           setClinics = {this.props.setClinics}
-          setFilter = {this.setFilter}
-          filter = {this.state.filter}
+          setFilters = {this.setFilters}
+          filters = {this.state.filters}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
