@@ -6,7 +6,7 @@ import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
-import Tips from "./TipsAndTricks";
+import Resources from "./ResourcesPage";
 import STDInfo from "./STDInfo";
 import Gonorrhea from "./Gonorrhea";
 
@@ -93,9 +93,9 @@ export default class LowerPanel extends React.Component {
           getLocalizedText={this.props.getLocalizedText}
         />
       );
-    } else if (this.props.lowerPanelContent === "tips") {
+    } else if (this.props.lowerPanelContent === "resources") {
       return (
-        <Tips
+        <Resources
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />

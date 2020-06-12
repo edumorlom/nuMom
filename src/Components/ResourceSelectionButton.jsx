@@ -5,7 +5,7 @@ import * as Haptics from "expo-haptics";
 
 
 
-export default function TipsSelectionButton(props){
+export default function ResourceSelectionButton(props){
 
     let onPress = () => {
         Haptics.selectionAsync().then();

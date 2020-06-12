@@ -21,20 +21,20 @@ export default function LowerPanelSelection(props) {
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
                 <View>
-                    <MaterialIcons  name='settings' size={40} style={styles.userEditStyle} onPress={() => props.setAppState({screen: 'setting'})} />
+                    <MaterialIcons  name='settings' size={40} style={styles.userSettingStyle} onPress={() => props.setAppState({screen:'setting'})} />
                 </View>
                 <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                                 onPress={() => props.setLowerPanelContent('findCare')}/>
                 <SelectionButton text={props.getLocalizedText("learn")} icon={babyBottle}
                                 onPress={() => {props.setLowerPanelContent('learn');}}/>
-                <SelectionButton text={props.getLocalizedText("tipsAndTricks")} icon={lightBulb}
-                                onPress={() => {props.setLowerPanelContent('tips');}}/>
+                <SelectionButton text={props.getLocalizedText("resources")} icon={lightBulb}
+                                onPress={() => {props.setLowerPanelContent('resources');}}/>
         </GestureRecognizer>
     )
 }
 
 const styles = StyleSheet.create({
-    userEditStyle: {
+    userSettingStyle: {
     //  borderWidth: 1,
     //  borderColor: 'red',
      position: 'absolute',
