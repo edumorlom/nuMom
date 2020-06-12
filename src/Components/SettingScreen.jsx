@@ -148,7 +148,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender)
   
         }, e => {console.log("Error update: ", e)});
      
-      window.alert('your Information has been save');
+      window.alert('your Information has been saved');
     }
     
   }else{

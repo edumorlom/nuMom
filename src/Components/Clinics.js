@@ -154,8 +154,8 @@ export default function Clinics() {
                     "zipCode": "33165"
                 },
                 "coordinate": {
-                    "latitude": 27.242570,
-                    "longitude": -80.848210
+                    "latitude": 25.7372611,
+                    "longitude": -80.3680834
                 },
                 "phoneNumber": "305-273-8507",
                 "website": "respectlifemiami.org/",
@@ -172,8 +172,8 @@ export default function Clinics() {
                     "zipCode": "33161"
                 },
                 "coordinate": {
-                    "latitude": 29.920250,
-                    "longitude": -82.800160
+                    "latitude": 25.8901490,
+                    "longitude": -80.1850909
                 },
                 "phoneNumber": "305-685-6010",
                 "website": "heartbeatofmiami.org/",

@@ -36,9 +36,9 @@ export default class Homepage extends React.Component {
           let dist = getPreciseDistance(clinic.coordinate, {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
+          });   //Returns a precise distance between the two coordinates given (Clinic & User)
 
-          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); 
+          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convertion from meters to miles with 2 decimal places 
           clinic.distance = distanceInMiles;
         });
         clinics.sort((a, b) => {
@@ -46,10 +46,6 @@ export default class Homepage extends React.Component {
         });
         this.setState({ clinics: clinics});  
         this.setState({ sortedClinics: clinics }); //SortedClinics never changed, where as clinics does get filtered
-        
-        // let cprint = "";
-        // Clinics().forEach(clinic => clinic.services.forEach((service) => cprint = cprint + ', ' + service))
-        // console.log(cprint)
       })
       .catch((err) => {
         console.error(err.message);
