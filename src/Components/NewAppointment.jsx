@@ -12,23 +12,39 @@ import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 
 export default class NewAppointment extends React.Component {
-  state = { fullName: "", dob: "" };
+  state = { name: "", address: "", date: "", time: "", reason: "" };
 
-  setFullName = (fullName) => {
-    this.setState({ fullName: fullName });
-    AsyncStorage.setItem("name", fullName);
+  setName = (name) => {
+    this.setState({ name: name });
+  };
+  setAddress = (address) => {
+    this.setState({ address: address });
+  };
+  setDate = (date) => {
+    this.setState({ date: date });
+  };
+  setTime = (time) => {
+    this.setState({ time: time });
+  };
+  setReason = (reason) => {
+    this.setState({ reason: reason });
   };
 
-  setDob = (dob) => {
-    this.setState({ dob: dob });
-  };
   onPress = () => {
-    if (!this.state.fullName || !this.state.dob) {
+    if (
+      !this.state.name ||
+      !this.state.address ||
+      !this.state.date ||
+      !this.state.time
+    ) {
       alert(this.props.getLocalizedText("fillOutAllFields"));
     } else {
-      this.props.setUserInfo({
-        fullName: this.state.fullName,
-        dob: this.state.dob,
+      this.props.setAppointmentInfo({
+        name: this.state.name,
+        address: this.state.address,
+        date: this.state.date,
+        time: this.state.time,
+        reason: this.state.reason,
       });
       this.props.getNextScreen();
     }
@@ -48,22 +64,47 @@ export default class NewAppointment extends React.Component {
             position: "absolute",
           }}
         >
-          <View style={{ paddingTop: appStyles.win.height * 0.1 }}>
+          <View>
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={this.props.getLocalizedText("fullName")}
-                onChangeText={this.setFullName}
-                value={this.state.fullName}
+                placeholder={this.props.getLocalizedText("appointmentName")}
+                onChangeText={this.setName}
+                value={this.state.name}
                 style={appStyles.TextInput.TextInput}
               />
             </View>
-            <TextInput
-              placeholder={this.props.getLocalizedText("dob")}
-              type={"date"}
-              onChangeText={this.setDob}
-              keyboardType={"numeric"}
-              dob={"mother"}
-            />
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("appointmentAddress")}
+                onChangeText={this.setAddress}
+                value={this.state.address}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("appointmentDate")}
+                onChangeText={this.setDate}
+                value={this.state.date}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("appointmentTime")}
+                onChangeText={this.setTime}
+                value={this.state.time}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={this.props.getLocalizedText("appointmentReason")}
+                onChangeText={this.setReason}
+                value={this.state.reason}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
           </View>
         </View>
         <View

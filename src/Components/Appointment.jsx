@@ -1,25 +1,35 @@
 import React from "react";
 import { ScrollView, View, StyleSheet, Button } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
+import NewAppointment from "./NewAppointment";
 
-export default function Appointment(props) {
-  let newAppointmentButton = (
-    <AppointmentMenu place={props.getLocalizedText("appointment")} />
+export default class Appointment extends React.Component {
+  state = { name: "", address: "", date: "", time: "", reason: "" };
+  constructor(props) {
+    super(props);
+  }
+  newAppointmentButton = (
+    <AppointmentMenu place={this.props.getLocalizedText("appointment")} />
   );
-  return (
-    <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
-    >
-      <View></View>
-      <View>
-        <Button
-          title={props.getLocalizedText("wantNewAppointment")}
-          onPress={() => {
-            props.setLowerPanelContent("NewAppointment");
-          }}
-        />
-      </View>
-      {newAppointmentButton}
-    </ScrollView>
-  );
+  setAppointmentInfo = (keyToValue) => {
+    this.setState(keyToValue);
+  };
+  render() {
+    return (
+      <ScrollView
+        contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      >
+        <View></View>
+        <View>
+          <Button
+            title={this.props.getLocalizedText("wantNewAppointment")}
+            onPress={() => {
+              this.props.setLowerPanelContent("NewAppointment");
+            }}
+          />
+        </View>
+        {this.newAppointmentButton}
+      </ScrollView>
+    );
+  }
 }
