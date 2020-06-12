@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'react-native';
-import goBackImg from "../../assets/go-back.png";
+import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
 import Firebase from './Firebase';
+
 
 
 class ForgotPasswordPage extends Component {
@@ -74,14 +75,13 @@ class ForgotPasswordPage extends Component {
                     }}
                     source={goBackImg}/>
                 </TouchableHighlight>
-                <View 
-                    style={appStyles.WelcomeUserBanner.TouchableHighlight}
-                    underlayColor={appStyles.pinkColor}>
+                <View>
                     <Text 
                         style={{
-                        color: "white",
-                        fontSize: appStyles.regularFontSize,
-                        fontWeight: 'bold'
+                        color: appStyles.pinkColor,
+                        fontSize: appStyles.titleFontSize,
+                        fontWeight: 'bold',
+                        alignSelf: 'center'
                         }}>{this.props.getLocalizedText("forgotPassword")}</Text>
                 </View>
 
