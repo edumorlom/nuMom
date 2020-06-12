@@ -24,8 +24,8 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("learn");
     if (props.lowerPanelContent === "STDInfo")
       return props.getLocalizedText("STDInfo");
-    if (props.lowerPanelContent === "tips")
-      return props.getLocalizedText("tipsAndTricks");
+    if (props.lowerPanelContent === "resources")
+      return props.getLocalizedText("resources");
     if (props.lowerPanelContent === "Gonorrhea")
       return props.getLocalizedText("gonorrhea");
   };
