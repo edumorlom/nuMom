@@ -1,22 +1,25 @@
 import React from "react";
-import { TouchableHighlight, Text, View, ScrollView } from "react-native";
-import appStyles from "./AppStyles";
-import LearnSelectionButton from "./LearnSelectionButtonTemp";
-import butterfly from "../../assets/butterfly.png";
+import { ScrollView, View, StyleSheet, Button } from "react-native";
+import AppointmentMenu from "./AppointmentMenu";
 
 export default function Appointment(props) {
+  let newAppointmentButton = (
+    <AppointmentMenu place={props.getLocalizedText("appointment")} />
+  );
   return (
     <ScrollView
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
-      <LearnSelectionButton
-        text={props.getLocalizedText("STDAwareness")}
-        subtitle={props.getLocalizedText("learnSTDs")}
-        icon={butterfly}
-        onPress={() => {
-          props.setLowerPanelContent("STDSelection");
-        }}
-      />
+      <View></View>
+      <View>
+        <Button
+          title={props.getLocalizedText("wantNewAppointment")}
+          onPress={() => {
+            props.setLowerPanelContent("NewAppointment");
+          }}
+        />
+      </View>
+      {newAppointmentButton}
     </ScrollView>
   );
 }

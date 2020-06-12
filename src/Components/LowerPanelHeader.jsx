@@ -24,12 +24,14 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("learn");
     if (props.lowerPanelContent === "STDSelection")
       return props.getLocalizedText("STDSelection");
-    if (props.lowerPanelContent === "tips")
-      return props.getLocalizedText("tipsAndTricks");
+    if (props.lowerPanelContent === "resources")
+      return props.getLocalizedText("resources");
     if (props.lowerPanelContent === "STDInfo")
       return props.getLocalizedText("STDInfo");
     if (props.lowerPanelContent === "Appointment")
       return props.getLocalizedText("appointment");
+    if (props.lowerPanelContent === "NewAppointment")
+      return props.getLocalizedText("newAppointment");
   };
 
   return (

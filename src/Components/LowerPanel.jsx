@@ -6,10 +6,10 @@ import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
-import Tips from "./TipsAndTricks";
-import STDSelection from "./STDSelection";
+import Resources from "./ResourcesPage";
 import STDInfo from "./STDInfo";
 import Appointment from "./Appointment";
+import NewAppointment from "./NewAppointment";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -84,9 +84,9 @@ export default class LowerPanel extends React.Component {
           setSTDToView={this.props.setSTDToView}
         />
       );
-    } else if (this.props.lowerPanelContent === "tips") {
+    } else if (this.props.lowerPanelContent === "resources") {
       return (
-        <Tips
+        <Resources
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
@@ -102,6 +102,13 @@ export default class LowerPanel extends React.Component {
     } else if (this.props.lowerPanelContent === "Appointment") {
       return (
         <Appointment
+          setLowerPanelContent={this.props.setLowerPanelContent}
+          getLocalizedText={this.props.getLocalizedText}
+        />
+      );
+    } else if (this.props.lowerPanelContent === "NewAppointment") {
+      return (
+        <NewAppointment
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />

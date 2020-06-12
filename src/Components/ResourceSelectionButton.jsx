@@ -3,7 +3,7 @@ import appStyles, { borderRadius, greyColor, shadow } from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 
-export default function TipsSelectionButton(props) {
+export default function ResourceSelectionButton(props) {
   let onPress = () => {
     Haptics.selectionAsync().then();
     Linking.openURL(props.resource.website);
