@@ -1,28 +1,62 @@
 import React, { Component } from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import appStyles from './AppStyles';
+import * as Location from 'expo-location';
 
 export default class Map extends Component {
 
     constructor(props) {
         super(props);
-        this.state = this.props.currentLocation ? { region: {...this.props.currentLocation, latitudeDelta: 0.2, longitudeDelta: 0.3}} : 
-                { region: {latitude: 25.782220701733717, longitude: -80.26424665653634, latitudeDelta: 0.65, longitudeDelta: 0.3}};
-        
+        this.state = {region: null, errorMessage: null };
         }
-        /* state = {
-            region: {latitude: 25.709346556969518, longitude: -80.26424665653634, latitudeDelta: 0.25, longitudeDelta: 0.3}
-            } */
+        /* this.state = this.props.currentLocation ? { region: {...this.props.currentLocation, latitudeDelta: 0.2, longitudeDelta: 0.3}} : 
+                { region: {latitude: 25.782220701733717, longitude: -80.26424665653634, latitudeDelta: 0.65, longitudeDelta: 0.3}}; */
     
 
+    getLocationAsync = async()=> {
+        let {status} = await Location.requestPermissionsAsync();
+        if(status!=='granted'){
+            this.setState({errorMessage:"Permissions not granted."})
+        }
+        let location = await Location.getCurrentPositionAsync({});
+        
+        this.setState({region : {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.2,
+            longitudeDelta: 0.3,
+        }})
+        this.mapView.animateToRegion({
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.2,
+            longitudeDelta: 0.3
+        }, 400)
+        
+    }
+        
     
+    async componentDidMount() {
+        await this.getLocationAsync();
+        }
+
+        /* getPosition =  (options) => {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+    }; */
+
 
     render() {
         return (
             <MapView
-                //region={this.state.region}
+                ref = {(ref) => this.mapView=ref}
+                initialRegion={this.state.region}
+                loadingEnabled = {true}
                 onPress={this.props.onPress}
                 provider="google"
+                showsMyLocationButton={true}
+                showsCompass={true}
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -31,9 +65,7 @@ export default class Map extends Component {
                     right: 0,
                     height: appStyles.win.height * 0.5
                 }}
-                initialRegion={
-                    this.state.region 
-                  }
+                //initialRegion={ this.state.region }
                 zoomEnabled={true}
                 onRegionChangeComplete={region => {
                     this.setState({region});
