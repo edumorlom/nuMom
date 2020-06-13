@@ -4,7 +4,7 @@ import appStyles from "./AppStyles";
 
 export default class TextInput extends React.Component {
 
-    state = {date: '', babyDOB: ''};
+    state = {date: null, babyDOB: null};
 
     convertTextToDate = (text) => {
         let initialText = 'MM/DD/YYYY';
@@ -52,6 +52,7 @@ export default class TextInput extends React.Component {
           this.props.onChangeText(value);
         }
         }).done();
+
       }
 
     render() {
@@ -64,7 +65,7 @@ export default class TextInput extends React.Component {
                          placeholder={this.props.placeholder}
                          onChangeText={this.onChangeText} value={this.state.date || null}
                          caretHidden={this.props.type === 'date'}
-                         value= {this.props.type === 'date' ? this.state.date : null}/>
+                         value= {!this.props.value && this.props.type === 'date' ? this.state.date : this.props.value}/>
             </View>
         )
     }

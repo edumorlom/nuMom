@@ -6,6 +6,7 @@ import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
 import Clinics from "./Clinics";
 import { getPreciseDistance } from "geolib";
+import CancelFilterButton from "./CancelFilterButton";
 
 export default class Homepage extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Homepage extends React.Component {
       fullPanel: true,
       clinics: Clinics(),   //try making it null at the start
       sortedClinics: null,
+      filters: [10000, 'All'],   //Default filters (10000 represents infinity distance)
       clinicToView: null,
       lowerPanelContent: "selection",
     };
@@ -79,6 +81,10 @@ export default class Homepage extends React.Component {
     this.setState({ lowerPanelContent: lowerPanelContent });
   };
 
+  setFilters = (distance, service) => {
+    this.setState({filters: [distance, service]})
+  } 
+
   goBack = () => {
     if (this.state.lowerPanelContent === "selection") return;
     if (this.state.lowerPanelContent === "findCare")
@@ -108,6 +114,7 @@ export default class Homepage extends React.Component {
           clinics={this.state.clinics}
           getLocalizedText={this.props.getLocalizedText}
         />
+        <CancelFilterButton  resetFilters= {() => {this.setClinics(this.state.sortedClinics); this.setFilters(...[10000, 'All'])}}/>
         {/*<SOSButton />*/}
         <LowerPanel 
           setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
@@ -119,6 +126,8 @@ export default class Homepage extends React.Component {
           clinicToView={this.state.clinicToView}
           setClinicToView={this.setClinicToView}
           setClinics = {this.setClinics}
+          filters = {this.state.filters}
+          setFilters = {this.setFilters}
           lowerPanelContent={this.state.lowerPanelContent}
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}

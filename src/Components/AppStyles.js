@@ -132,8 +132,8 @@ export default {
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: borderRadius,
-        height: 55,
-        width: 55,
+        height: 40,
+        width: 40,
         
     },
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView, View} from "react-native";
 import SelectionButtonImageOnRight from "./ClinicSelectionButton";
 import clinicLogo from '../../assets/clinic-logo.png';
@@ -8,6 +8,11 @@ export default function FindCare(props) {
     const [distFilter, servFilter] = props.filters;   //Array destructuring to mimic tuples
     const [dist, setDist] = useState(distFilter);
     const [service, setService] = useState(servFilter);
+
+    useEffect(() => {
+        setDist(props.filters[0]);
+        setService(props.filters[1])
+    } )
 
     let clinicsButtons = props.clinics.map((clinic, key) =>
         <SelectionButtonImageOnRight key={key}
