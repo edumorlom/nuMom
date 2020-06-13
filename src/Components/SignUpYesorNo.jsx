@@ -15,7 +15,7 @@ export default class SignUpYesorNo extends React.Component {
         return (
             <View style={appStyles.container}>
                 <View style={{
-                    paddingTop: appStyles.win.height * 0.3,
+                    paddingTop: appStyles.win.height * 0.2,
                     justifyContent: 'center',
                     alignItems: 'center',
                     position: 'absolute'}}>

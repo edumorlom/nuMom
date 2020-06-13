@@ -19,7 +19,8 @@ export let shadow = {
     shadowColor: darkGreyColor,
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.25,
-    shadowRadius: 5
+    shadowRadius: 5,
+    elevation: 1
 };
 
 export default {
@@ -104,6 +105,20 @@ export default {
             textAlign: 'center',
         }
     },
+    TextInputMask: {
+        ...shadow,
+            height: 60,
+            width: win.width * 0.8,
+            margin: 9,
+            borderColor: 'white',
+            borderWidth: 0.5,
+            borderRadius: borderRadius,
+            justifyContent: 'center',
+            backgroundColor: 'white',
+            fontSize: regularFontSize,
+            textAlign: 'center'
+
+    },
     ClickableText: {
         color: blueColor,
         fontSize: regularFontSize,
@@ -118,26 +133,24 @@ export default {
             justifyContent: 'center',
             flexDirection: 'row',
             marginRight: '30%',
-            marginTop: win.height * 0.015,
+            //marginTop: win.height * 0.015,
             padding: win.height * 0.025,
-            marginBottom: win.height * 0.025,
+            marginBottom: win.height * 0.02,
             width: '75%'
         }
     },
     WhitePanelButton: {
         ...shadow,
-        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
         borderColor: 'white',
         borderWidth: 0.5,
         borderRadius: borderRadius,
-        marginTop: 30,
-        marginLeft: 30,
-        height: 55,
-        width: 170,
-        flexDirection: 'row',
+        height: 40,
+        width: 40,
+        
     },
+
     lowerPanel: {
         overflow: 'hidden',
         backgroundColor: 'white',
@@ -147,7 +160,8 @@ export default {
         borderBottomLeftRadius: 0,
         width: '100%',
         height: '70%',
-        bottom: 0 - Math.ceil(win.height * 0.4 / 100) * 100,
+        bottom: 0 - win.height * 0.20,
+        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'

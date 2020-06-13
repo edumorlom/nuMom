@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
-import firebaseAccount from '../firebase_account.json'
+import firebaseAccount from '../firebase_account.json';
 
 
 export default class Firebase {
@@ -11,9 +11,9 @@ export default class Firebase {
         if (!firebase.apps.length) firebase.initializeApp(config);
     }
 
-    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender) => {
+    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender).then(() => {
+                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week).then(() => {
                     this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: E-Mail is already associated with another account!");})
@@ -22,7 +22,7 @@ export default class Firebase {
     createUserWithEmailAndPassword = (email, password) => {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     };
-
+    
     logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
     storeObjectInDatabase = (uid, object) => {
@@ -35,7 +35,7 @@ export default class Firebase {
         });
     };
 
-    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender) => {
+    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
         if (!uid) return;
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,
@@ -43,7 +43,10 @@ export default class Firebase {
             dob: dob,
             pregnant: pregnant,
             infant: infant,
-            babyGender: babyGender
+            babyGender: babyGender,
+            babyDOB: babyDOB,
+            nextWeek: nextWeek,
+            week: week
         });
 
     };
@@ -66,6 +69,8 @@ export default class Firebase {
                 }
             );
     }
+
+
 
     getUserInfo = (uid) => firebase.database().ref('users/' + uid);
 }

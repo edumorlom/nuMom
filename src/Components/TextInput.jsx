@@ -1,10 +1,10 @@
 import React from "react";
-import {TextInput as TextBox, View} from 'react-native'
+import {TextInput as TextBox, View, AsyncStorage} from 'react-native'
 import appStyles from "./AppStyles";
 
 export default class TextInput extends React.Component {
 
-    state = {date: ''};
+    state = {date: null, babyDOB: null};
 
     convertTextToDate = (text) => {
         let initialText = 'MM/DD/YYYY';
@@ -32,6 +32,10 @@ export default class TextInput extends React.Component {
             let date = this.convertTextToDate(cleanedText);
             this.setState({date: date});
             this.props.onChangeText(date);
+            //We differenciate between mother's DOB and baby's DOB
+            AsyncStorage.setItem(this.props.dob === "mother" ? 'dob' : 'babyDOB', date);
+               
+            
         }
     };
 
@@ -39,6 +43,17 @@ export default class TextInput extends React.Component {
         if (this.props.type === 'date') this.onChangeDate(text);
         else this.props.onChangeText(text);
     };
+
+    componentDidMount() {
+        AsyncStorage.getItem(this.props.dob === "mother" ? 'dob' : 'babyDOB').then((value) => {
+          if (value !== null && value !== ''){
+          // saved input is available
+          this.setState({ date: value }); // Note: update state with last entered value
+          this.props.onChangeText(value);
+        }
+        }).done();
+
+      }
 
     render() {
         return (
@@ -49,7 +64,8 @@ export default class TextInput extends React.Component {
                          autoCapitalize='none'
                          placeholder={this.props.placeholder}
                          onChangeText={this.onChangeText} value={this.state.date || null}
-                         caretHidden={this.props.type === 'date'}/>
+                         caretHidden={this.props.type === 'date'}
+                         value= {!this.props.value && this.props.type === 'date' ? this.state.date : this.props.value}/>
             </View>
         )
     }
