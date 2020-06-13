@@ -13,19 +13,19 @@ export default class WelcomeUserBanner extends React.Component {
 
     state = {text: `${this.props.getLocalizedText('welcomeUserBanner')} ${this.props.fullName ? this.props.fullName.split(' ')[0] : ''}`};
 
-    AsyncAlert = () => {
-        return new Promise((resolve, reject) => {
-            Alert.alert(
-                'Log Out',
-                'Are you sure you want to log out of this account?',
-                [
-                    {text: 'YES', onPress: () => resolve(true) },
-                    {text: 'NO', onPress: () => resolve(false) }
-                ],
-                { cancelable: false }
-            )
-        })
-    } 
+    // AsyncAlert = () => {
+    //     return new Promise((resolve, reject) => {
+    //         Alert.alert(
+    //             'Log Out',
+    //             'Are you sure you want to log out of this account?',
+    //             [
+    //                 {text: 'YES', onPress: () => resolve(true) },
+    //                 {text: 'NO', onPress: () => resolve(false) }
+    //             ],
+    //             { cancelable: false }
+    //         )
+    //     })
+    // } 
 
     render() {
         
@@ -35,10 +35,6 @@ export default class WelcomeUserBanner extends React.Component {
                                 underlayColor={appStyles.pinkColor}
                                 onPress={
                                     () => {
-                                        this.AsyncAlert().then(response => {
-                                            response ? this.props.logout() : null
-                                        }
-                                        ) 
                                     }
                                 }>
                 <Text style={{

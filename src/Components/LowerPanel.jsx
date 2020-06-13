@@ -17,7 +17,9 @@ export default class LowerPanel extends React.Component {
     this.goUp();
   }
 
-  state = { panelStyle: { ...appStyles.lowerPanel } };
+  state = { 
+    panelStyle: { ...appStyles.lowerPanel }
+  };
 
   transition = null;
 
@@ -51,12 +53,18 @@ export default class LowerPanel extends React.Component {
     }, 0.1);
   };
 
+  
+
   showContent = () => {
     if (this.props.lowerPanelContent === "findCare") {
       return (
         <FindCare
           clinics={this.props.clinics}
+          sortedClinics = {this.props.sortedClinics}
           setClinicToView={this.props.setClinicToView}
+          setClinics = {this.props.setClinics}
+          setFilters = {this.props.setFilters}
+          filters = {this.props.filters}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
