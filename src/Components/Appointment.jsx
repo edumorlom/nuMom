@@ -9,17 +9,17 @@ export default class Appointment extends React.Component {
     super(props);
   }
   newAppointmentButton = (
-    <AppointmentMenu place={this.props.getLocalizedText("appointment")} />
+    <AppointmentMenu name={this.props.getLocalizedText("appointment")} />
   );
   setAppointmentInfo = (keyToValue) => {
-    this.setState(keyToValue);
+    this.setState({ keyToValue: keyToValue });
   };
+
   render() {
     return (
       <ScrollView
-        contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+        contentContainerStyle={{ alignItems: "flex-end", maxWidth: "100%" }}
       >
-        <View></View>
         <View>
           <Button
             title={this.props.getLocalizedText("wantNewAppointment")}

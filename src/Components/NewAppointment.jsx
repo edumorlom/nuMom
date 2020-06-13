@@ -46,7 +46,7 @@ export default class NewAppointment extends React.Component {
         time: this.state.time,
         reason: this.state.reason,
       });
-      this.props.getNextScreen();
+      //this.props.getNextScreen();
     }
   };
 

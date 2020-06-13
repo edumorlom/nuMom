@@ -38,7 +38,7 @@ export default function AppointmentMenu(props) {
               fontWeight: "bold",
             }}
           >
-            {props.place}
+            {props.name}
           </Text>
           <Text
             style={{
