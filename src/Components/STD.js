@@ -58,7 +58,7 @@ export default function STDS() {
     },
     {
       name: "HIVAIDS",
-      symptoms: "HIVAIDSymptoms",
+      symptoms: "HIVAIDSSymptoms",
       diagnosis: "HIVAIDSDiagnosis",
       treatment: "HIVAIDSTreatment",
       consequences: "HIVAIDSConsequences",

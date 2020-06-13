@@ -29,7 +29,6 @@ export default function Resources(props) {
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
       {resourceButtons}
-      {appointmentButton}
     </ScrollView>
   );
 }
