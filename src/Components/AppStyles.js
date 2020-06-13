@@ -105,6 +105,20 @@ export default {
             textAlign: 'center',
         }
     },
+    TextInputMask: {
+        ...shadow,
+            height: 60,
+            width: win.width * 0.8,
+            margin: 9,
+            borderColor: 'white',
+            borderWidth: 0.5,
+            borderRadius: borderRadius,
+            justifyContent: 'center',
+            backgroundColor: 'white',
+            fontSize: regularFontSize,
+            textAlign: 'center'
+
+    },
     ClickableText: {
         color: blueColor,
         fontSize: regularFontSize,

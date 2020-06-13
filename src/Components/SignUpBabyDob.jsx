@@ -1,8 +1,8 @@
-import { Keyboard, Text, TouchableOpacity, View} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import { Keyboard, Text, TouchableOpacity, View, AsyncStorage } from 'react-native';
+import appStyles from './AppStyles';
 import Button from "./Button";
-import TextInput from "./TextInput.jsx";
+import { TextInputMask } from "react-native-masked-text";
 
 
 
@@ -14,6 +14,8 @@ export default class SignUpBabyDob extends React.Component {
 
     setDob = (babyDOB) => {
         this.setState({babyDOB: babyDOB})
+        AsyncStorage.setItem('babyDOB', babyDOB);
+
     };
 
     onPress = () => {
@@ -32,6 +34,15 @@ export default class SignUpBabyDob extends React.Component {
         return regex.test(date);
     };
 
+    componentDidMount() {
+        AsyncStorage.getItem('babyDOB').then((value) => {
+            if (value !== null && value !== ''){
+            // saved input is available
+            this.setState({ babyDOB: value }); // Note: update state with last entered value
+          }
+          }).done();
+      }
+
     render() {
         let titletext = this.props.getLocalizedText("babydob");
         return (
@@ -45,7 +56,23 @@ export default class SignUpBabyDob extends React.Component {
                             {titletext}
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"} dob = {"baby"}/>
+                        <TextInputMask 
+                                placeholder={this.props.getLocalizedText("dob")} 
+                                type={'datetime'}
+                                options={{
+                                  format: 'MM/DD/YYYY',
+                                  validator: function(value, settings) {
+                                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+                                    return regex.test(value);
+                                  }  //This validator function is read by isValid(), still to be used
+                                  
+                                }} 
+                                style={appStyles.TextInputMask}
+                                value={this.state.babyDOB}
+                                onChangeText = {this.setDob}
+                                ref={(ref) => this.babyDOB = ref}
+                                />
+                            {/* <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
                         </View>
                     </View>
                     <View style={{

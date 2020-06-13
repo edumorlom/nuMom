@@ -23,6 +23,7 @@
     "react-native-confetti-cannon": "^1.5.0",
     "react-native-haptic-feedback": "^1.10.0",
     "react-native-maps": "0.26.1",
+    "react-native-masked-text": "^1.13.0",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",

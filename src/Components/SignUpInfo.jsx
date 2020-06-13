@@ -1,8 +1,8 @@
-import { Keyboard, Text, TouchableOpacity, TextInput as TextBox, View, AsyncStorage} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
+import appStyles from './AppStyles';
 import Button from "./Button";
-import TextInput from "./TextInput.jsx";
 
 
 
@@ -19,6 +19,7 @@ export default class SignUpInfo extends React.Component {
 
     setDob = (dob) => {
         this.setState({dob: dob})
+        AsyncStorage.setItem('dob', dob);
     };
 
     onPress = () => {
@@ -44,6 +45,12 @@ export default class SignUpInfo extends React.Component {
           this.setState({ fullName: value }); // Note: update state with last entered value
         }
         }).done();
+        AsyncStorage.getItem('dob').then((value) => {
+            if (value !== null && value !== ''){
+            // saved input is available
+            this.setState({ dob: value }); // Note: update state with last entered value
+          }
+          }).done();
       }
 
       componentWillUnmount() {
@@ -71,7 +78,23 @@ export default class SignUpInfo extends React.Component {
                             <View style={appStyles.TextInput.View}>
                                 <TextBox placeholder={this.props.getLocalizedText("fullName")} onChangeText={this.setFullName} value= {this.state.fullName} style={appStyles.TextInput.TextInput}/>
                             </View>
-                            <TextInput placeholder={this.props.getLocalizedText("dob")} type={'date'} onChangeText={this.setDob} keyboardType={"numeric"} dob = {"mother"}/>
+                            <TextInputMask 
+                                placeholder={this.props.getLocalizedText("dob")} 
+                                type={'datetime'}
+                                options={{
+                                  format: 'MM/DD/YYYY',
+                                  validator: function(value, settings) {
+                                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+                                    return regex.test(value);
+                                  }  //This validator function is read by isValid(), still to be used
+                                  
+                                }} 
+                                style={appStyles.TextInputMask}
+                                value={this.state.dob}
+                                onChangeText = {this.setDob}
+                                ref={(ref) => this.motherDOB = ref}
+                                />
+                            
                         </View>
                     </View>
                     <View style={{
