@@ -214,7 +214,7 @@ getNextWeekAndWeekNo = () => {
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
-       <ScrollView showsVerticalScrollIndicator="none">
+       <ScrollView showsVerticalScrollIndicator={false}>
           <TouchableHighlight
             onPress={this.goBack}
             underlayColor={"transparent"}
