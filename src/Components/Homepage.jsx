@@ -1,79 +1,67 @@
 import React from "react";
 import Map from "./Map";
-import { View } from "react-native";
+import { View, AsyncStorage } from "react-native";
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
 import Clinics from "./Clinics";
 import { getPreciseDistance } from "geolib";
+import CancelFilterButton from "./CancelFilterButton";
 
 export default class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fullPanel: true,
-      clinics: Clinics(),
+      clinics: Clinics(),   //try making it null at the start
+      sortedClinics: null,
+      filters: [10000, 'All'],   //Default filters (10000 represents infinity distance)
       clinicToView: null,
       lowerPanelContent: "selection",
-      currentLocation: null,
     };
+    this.getPosition = this.getPosition.bind(this) 
   }
 
-  getPosition = function (options) {
-    return new Promise(function (resolve, reject) {
+  getPosition =  (options) => {
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     //All the logic for clinic sorting is here, for no particular reason other than I want the updated clinics ASAP
+    //Consider moving this logic inside a Component that handles clinic sorting, filtering and such
     this.getPosition()
       .then((position) => {
-        //console.log(position.coords.latitude, position.coords.longitude);
-        this.setState({
-          currentLocation: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          },
-        });
-
         let clinics = Clinics();
         clinics.forEach((clinic) => {
           let dist = getPreciseDistance(clinic.coordinate, {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
+          });   //Returns a precise distance between the two coordinates given (Clinic & User)
 
-          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(3)); //Two decimal places in miles
+          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convertion from meters to miles with 2 decimal places 
           clinic.distance = distanceInMiles;
         });
-        clinics.sort(function (a, b) {
+        clinics.sort((a, b) => {
           return a.distance - b.distance;
         });
-        this.setState({ clinics: clinics });
+        this.setState({ clinics: clinics});  
+        this.setState({ sortedClinics: clinics }); //SortedClinics never changed, where as clinics does get filtered
       })
       .catch((err) => {
         console.error(err.message);
       });
   }
 
-  getCurrentLocation = () => {
-    this.watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        let currentLocation = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        };
 
-        return currentLocation;
-        //this.setState({currentLocation: currentLocation})
-      },
-      (error) => console.log(error)
-    );
-  };
 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+    navigator.geolocation.clearWatch(this.watchID)
+  }
+
+  setClinics = (clinics) => {
+    this.setState({ clinics: clinics });
   }
 
   setFullPanel = (fullPanel) => {
@@ -93,6 +81,10 @@ export default class Homepage extends React.Component {
     this.setState({ lowerPanelContent: lowerPanelContent });
   };
 
+  setFilters = (distance, service) => {
+    this.setState({filters: [distance, service]})
+  } 
+
   goBack = () => {
     if (this.state.lowerPanelContent === "selection") return;
     if (this.state.lowerPanelContent === "findCare")
@@ -110,6 +102,8 @@ export default class Homepage extends React.Component {
   };
 
   render() {
+    //Clinics().forEach(clinic => console.log(clinic.services))
+    //console.log(this.state.clinics[0].services)
     return (
       <View style={appStyles.container}>
         <Map
@@ -118,18 +112,22 @@ export default class Homepage extends React.Component {
           clinicToView={this.state.clinicToView}
           setClinicToView={this.setClinicToView}
           clinics={this.state.clinics}
-          currentLocation={this.state.currentLocation}
           getLocalizedText={this.props.getLocalizedText}
         />
-        <SOSButton />
-        <LowerPanel //onPress={() => this.setFullPanel(true)}
+        <CancelFilterButton  resetFilters= {() => {this.setClinics(this.state.sortedClinics); this.setFilters(...[10000, 'All'])}}/>
+        {/*<SOSButton />*/}
+        <LowerPanel 
           setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}
           fullPanel={this.state.fullPanel}
           fullName={this.props.fullName}
           logout={this.props.logout}
           clinics={this.state.clinics}
+          sortedClinics = {this.state.sortedClinics}
           clinicToView={this.state.clinicToView}
           setClinicToView={this.setClinicToView}
+          setClinics = {this.setClinics}
+          filters = {this.state.filters}
+          setFilters = {this.setFilters}
           lowerPanelContent={this.state.lowerPanelContent}
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}

@@ -1,8 +1,7 @@
-import {Keyboard, Text, TouchableOpacity, View, TextInput as TextBox, AsyncStorage} from 'react-native';
 import React from "react";
-import appStyles from './AppStyles'
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View } from 'react-native';
+import appStyles from './AppStyles';
 import Button from "./Button";
-import TextInput from "./TextInput.jsx";
 
 
 export default class SignUpPassword extends React.Component {

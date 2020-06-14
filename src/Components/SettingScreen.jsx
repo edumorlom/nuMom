@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
+import { TextInputMask } from 'react-native-masked-text';
 import {
   View,
   Text,
@@ -209,6 +210,7 @@ getNextWeekAndWeekNo = () => {
 
 
  render() {
+   this.datetimeField?console.log(this.datetimeField.isValid()):null
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -265,15 +267,26 @@ getNextWeekAndWeekNo = () => {
             <View style={{marginBottom: 30, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}:</Text>
               <View>
-                <TextInput
-                  placeholder={this.props.getLocalizedText("dob")}
-                  style={appStyles.TextInput.TextInput}
-                  value={dob}
-                  type={'date'}
-                  dob = {"mother"}
-                  keyboardType={"numeric"}
-                  onChangeText={(e)=> this.onChangeText({dob: e})}
-                />
+              <TextInputMask
+                type={'datetime'}
+                options={{
+                  format: 'MM/DD/YYYY',
+                  validator: function(value, settings) {
+                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+                    return regex.test(value);
+                  }  //This validator function is read by isValid()
+                    //Still need to implement a check for isValid
+                }}
+                style={appStyles.TextInputMask}
+                value={dob}
+                placeholder={this.props.getLocalizedText("dob")}
+                onChangeText = {text => {
+                  this.setState({ dob: text })
+                }}
+                // Ref for use of isValid(), like this.datetimeField.isValid()
+                ref={(ref) => this.datetimeField = ref}
+              />
+                
               </View>
             </View>
             <View style={{marginBottom: 30, alignItems: 'center' }}>
@@ -339,8 +352,26 @@ getNextWeekAndWeekNo = () => {
             : null}
             {infant === true ?
             <View >
-              <Text style={{alignSelf: 'center'}}>{this.props.getLocalizedText("babydob")}</Text>
-                  <TextInput
+              <Text style={{alignSelf: 'center'}}>{this.props.getLocalizedText("babydob")} {babyDOB}</Text>
+              <TextInputMask
+                type={'datetime'}
+                options={{
+                  format: 'MM/DD/YYYY',
+                  validator: function(value, settings) {
+                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+                    return regex.test(value);
+                  }  
+                }}
+                style={appStyles.TextInputMask}
+                value={babyDOB}
+                placeholder={this.props.getLocalizedText("dob")}
+                onChangeText = {text => {
+                  this.setState({ babyDOB: text })
+                }}
+                // Ref for use of isValid(), like this.dateBaby.isValid()
+                ref={(ref) => this.dateBaby = ref}
+              />
+                  {/* <TextInput
                   placeholder={this.props.getLocalizedText("dob")}
                   style={appStyles.TextInput.TextInput}
                   // value={babyDOB}
@@ -348,7 +379,7 @@ getNextWeekAndWeekNo = () => {
                   keyboardType={"numeric"}
                   dob = {"baby"}
                   onChangeText={(e)=> this.onChangeText({babyDOB: e})}
-                />
+                /> */}
             </View>
             : null}
         
@@ -397,7 +428,7 @@ const styles = StyleSheet.create({
     
   })
 }
+})
 
-});
 
 export default SettingScreen;

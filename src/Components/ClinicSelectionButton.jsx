@@ -34,6 +34,8 @@ export default function ClinicSelectionButton(props){
                     <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{props.clinic.address.street}</Text>
                     <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.city}`}</Text>
                     <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.address.state}, ${props.clinic.address.zipCode}`}</Text>
+                    <Text style={{color: appStyles.greyColor, fontSize: appStyles.regularFontSize}}>{`${props.clinic.distance} miles`}</Text>
+
                 </View>
                 <View style={{height: '100%', width: '7%', justifyContent: 'center'}}>
                     <Image style={{width: 40, height: 40}} source={props.icon} />
