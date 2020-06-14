@@ -17,6 +17,7 @@ export default class Homepage extends React.Component {
       sortedClinics: null,
       filters: [10000, 'All'],   //Default filters (10000 represents infinity distance)
       clinicToView: null,
+      STDToView: null,
       lowerPanelContent: "selection",
     };
     this.getPosition = this.getPosition.bind(this) 
@@ -76,7 +77,9 @@ export default class Homepage extends React.Component {
   setClinicToView = (clinic) => {
     this.setState({ clinicToView: clinic });
   };
-
+  setSTDToView = (std) => {
+    this.setState({ STDToView: std });
+  };
   setLowerPanelContent = (lowerPanelContent) => {
     this.setState({ lowerPanelContent: lowerPanelContent });
   };
@@ -93,12 +96,16 @@ export default class Homepage extends React.Component {
       this.setLowerPanelContent("findCare");
     if (this.state.lowerPanelContent === "learn")
       this.setLowerPanelContent("selection");
-    if (this.state.lowerPanelContent === "STDInfo")
+    if (this.state.lowerPanelContent === "STDSelection")
       this.setLowerPanelContent("learn");
     if (this.state.lowerPanelContent === "resources")
       this.setLowerPanelContent("selection");
-    if (this.state.lowerPanelContent === "Gonorrhea")
-      this.setLowerPanelContent("STDInfo");
+    if (this.state.lowerPanelContent === "STDInfo")
+      this.setLowerPanelContent("STDSelection");
+    if (this.state.lowerPanelContent === "Appointment")
+      this.setLowerPanelContent("resources");
+    if (this.state.lowerPanelContent === "NewAppointment")
+      this.setLowerPanelContent("Appointment");
   };
 
   render() {
@@ -124,6 +131,8 @@ export default class Homepage extends React.Component {
           clinics={this.state.clinics}
           sortedClinics = {this.state.sortedClinics}
           clinicToView={this.state.clinicToView}
+          STDToView={this.state.STDToView}
+          setSTDToView={this.setSTDToView}
           setClinicToView={this.setClinicToView}
           setClinics = {this.setClinics}
           filters = {this.state.filters}
@@ -132,7 +141,7 @@ export default class Homepage extends React.Component {
           goBack={this.goBack}
           setLowerPanelContent={this.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
-          setAppState={this.props.setAppState} 
+          setAppState={this.props.setAppState}
         />
       </View>
     );

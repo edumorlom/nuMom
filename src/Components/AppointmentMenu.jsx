@@ -8,7 +8,7 @@ import appStyles, {
 import React from "react";
 import * as Haptics from "expo-haptics";
 
-export default function STDMenu(props) {
+export default function AppointmentMenu(props) {
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
@@ -22,8 +22,8 @@ export default function STDMenu(props) {
         justifyContent: "center",
         backgroundColor: "white",
         ...shadow,
-        minHeight: appStyles.win.height * 0.2,
-        maxHeight: appStyles.win.height * 0.5,
+        minHeight: appStyles.win.height * 0,
+        maxHeight: appStyles.win.height * 0.2,
         width: appStyles.win.width * 0.95,
         borderRadius: borderRadius,
       }}
@@ -38,7 +38,7 @@ export default function STDMenu(props) {
               fontWeight: "bold",
             }}
           >
-            {props.title}
+            {props.name}
           </Text>
           <Text
             style={{
@@ -46,7 +46,31 @@ export default function STDMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.info}
+            {props.address}
+          </Text>
+          <Text
+            style={{
+              color: appStyles.greyColor,
+              fontSize: appStyles.regularFontSize - 5,
+            }}
+          >
+            {props.day}
+          </Text>
+          <Text
+            style={{
+              color: appStyles.greyColor,
+              fontSize: appStyles.regularFontSize - 5,
+            }}
+          >
+            {props.time}
+          </Text>
+          <Text
+            style={{
+              color: appStyles.greyColor,
+              fontSize: appStyles.regularFontSize - 5,
+            }}
+          >
+            {props.reason}
           </Text>
         </View>
       </View>

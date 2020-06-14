@@ -3,16 +3,12 @@ import appStyles, { borderRadius, greyColor, shadow } from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 
-export default function ResourceSelectionButton(props) {
+export default function AppointmentSelectionButton(props) {
   let onPress = () => {
     Haptics.selectionAsync().then();
-    Linking.openURL(props.resource.website);
+    props.onPress();
   };
 
-  let resourceName =
-    props.resource.resource.length > 40
-      ? props.resource.resource.substring(0, 40) + "..."
-      : props.resource.resource;
   return (
     <TouchableHighlight
       underlayColor={appStyles.underlayColor}
@@ -40,7 +36,7 @@ export default function ResourceSelectionButton(props) {
               fontWeight: "bold",
             }}
           >
-            {resourceName}
+            {props.title}
           </Text>
           <Text
             style={{
@@ -48,14 +44,11 @@ export default function ResourceSelectionButton(props) {
               fontSize: appStyles.regularFontSize,
             }}
           >
-            {props.resource.subtitle}
+            {props.subtitle}
           </Text>
         </View>
         <View style={{ height: "100%", width: "7%", justifyContent: "center" }}>
-          <Image
-            style={{ width: 65, height: 65 }}
-            source={props.resource.icon}
-          />
+          <Image style={{ width: 65, height: 65 }} source={props.icon} />
         </View>
       </React.Fragment>
     </TouchableHighlight>
