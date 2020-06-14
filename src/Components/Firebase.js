@@ -73,6 +73,11 @@ export default class Firebase {
 
 
     getUserInfo = (uid) => firebase.database().ref('users/' + uid);
+
+
+    passwordReset = (email) => {
+        return firebase.auth().sendPasswordResetEmail(email)
+    }
 }
 
 

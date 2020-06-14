@@ -6,6 +6,7 @@ import Firebase from "./src/Components/Firebase";
 import {AsyncStorage, NativeModules} from 'react-native';
 import getLocalizedText from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
+import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
 
 
 
@@ -95,6 +96,7 @@ export default class App extends React.Component {
 
   goBack = () => {
     if (this.state.screen === 'setting') this.setAppState({screen: 'homepage'});
+    if (this.state.screen === 'forgotPassword') this.setAppState({screen: 'login'});
   }
 
   render() {
@@ -108,7 +110,10 @@ export default class App extends React.Component {
       }
     } else if (this.state.screen === 'setting'){
       return (<SettingScreen email={this.state.email} password={this.state.password}  setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
-    }else {
+    
+    } else if (this.state.screen === 'forgotPassword'){
+      return (<ForgotPasswordPage setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen}  getLocalizedText={this.getLocalizedText}/>)
+    } else {
       return (<Homepage setAppState={this.setAppState}  fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
     }
   }
