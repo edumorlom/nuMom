@@ -13,12 +13,13 @@ import {
   Platform
 } from "react-native";
 import Firebase from "./Firebase";
-import goBackImg from "../../assets/go-back.png";
+import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
 import {AsyncStorage, NativeModules, Picker} from 'react-native';
 import * as firebase from 'firebase';
 import TextInput from "./TextInput.jsx";
+import { AntDesign } from '@expo/vector-icons'; 
 
 
 
@@ -165,7 +166,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
           dob: dob,
           infant: infant,
           pregnant: pregnant,
-          liveMiami: liveMiami,
+          liveMiami: liveMiami || false,
           babyDOB: babyDOB,
           babyGender:{
             male: male,
@@ -213,15 +214,15 @@ getNextWeekAndWeekNo = () => {
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
-       <ScrollView>
+       <ScrollView showsVerticalScrollIndicator="none">
           <TouchableHighlight
             onPress={this.goBack}
             underlayColor={"transparent"}
             style={{
               height: appStyles.win.height * 0.04,
-              marginTop: "8%",
+              marginTop: "5%",
               marginLeft: "3%",
-              marginBottom: '5%',
+              // marginBottom: '3%',
               width: appStyles.win.width * 0.07,
             }}
           >
@@ -233,18 +234,25 @@ getNextWeekAndWeekNo = () => {
               source={goBackImg}
             />
           </TouchableHighlight>
-          <View 
-            style={appStyles.WelcomeUserBanner.TouchableHighlight}
-            underlayColor={appStyles.pinkColor}
-          ><Text 
+          <View style={{ position: 'absolute', right: 30, top: 20}}>
+            <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
+                this.AsyncAlert().then((response) => {
+                  response ? this.props.logout() : null;
+                });
+              }} />
+          </View>
+          <View>
+          <Text 
             style={{
-            color: "white",
-            fontSize: appStyles.regularFontSize,
-            fontWeight: 'bold'
+            color: appStyles.blueColor,
+            fontSize: appStyles.titleFontSize,
+            fontWeight: 'bold',
+            alignSelf: 'center',
+            paddingTop: 10
             }}>{this.props.getLocalizedText('welcomeSetting')}</Text></View>
-          <View style={{ alignItems: 'center', paddingTop: 20}}>
+          <View style={{ alignItems: 'center', paddingTop: 25}}>
             <View style={{marginBottom: 30, alignItems: 'center'}}>
-              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}: {phoneNumber}</Text>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}:</Text>
               <View style={appStyles.TextInput.View}>
                 <TextBox
                   placeholder={this.props.getLocalizedText("phoneNumberInput")}
@@ -257,7 +265,7 @@ getNextWeekAndWeekNo = () => {
             </View>
 
             <View style={{marginBottom: 30, alignItems: 'center'}}>
-              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}: {dob}</Text>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}:</Text>
               <View>
               <TextInputMask
                 type={'datetime'}
@@ -282,7 +290,7 @@ getNextWeekAndWeekNo = () => {
               </View>
             </View>
             <View style={{marginBottom: 30, alignItems: 'center' }}>
-              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}: {fullName}</Text>
+              <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}:</Text>
               <View style={appStyles.TextInput.View}>
                 <TextBox
                   placeholder={this.props.getLocalizedText("fullName")}
@@ -366,7 +374,7 @@ getNextWeekAndWeekNo = () => {
                   {/* <TextInput
                   placeholder={this.props.getLocalizedText("dob")}
                   style={appStyles.TextInput.TextInput}
-                  value={babyDOB}
+                  // value={babyDOB}
                   type={'date'}
                   keyboardType={"numeric"}
                   dob = {"baby"}
@@ -382,17 +390,7 @@ getNextWeekAndWeekNo = () => {
             <Text style={appStyles.button.text}>{this.props.getLocalizedText("save")}</Text>
             </TouchableHighlight>
 
-            <TouchableHighlight
-              onPress={() => {
-                this.AsyncAlert().then((response) => {
-                  response ? this.props.logout() : null;
-                });
-              }}
-              style={appStyles.button.TouchableHighlight}
-              underlayColor={appStyles.greyColor}
-            >
-              <Text style={appStyles.button.text}>{this.props.getLocalizedText("logout")}</Text>
-            </TouchableHighlight>
+            
           </View>
         </ScrollView>
       </View>
