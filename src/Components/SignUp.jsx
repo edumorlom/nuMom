@@ -42,7 +42,7 @@ export default class SignUp extends React.Component {
     goBack = () => {
         let index = this.state.index;
 
-        if (!this.showMiamiOnlyAlert && index === 3){
+        if (index === 3){    //Skip Miami Pnly Alert when going back (user already saw it)
             index--;
         }
 
@@ -144,6 +144,10 @@ export default class SignUp extends React.Component {
     ];
 
     render() {
+        console.log("Live Miami = " + this.state.liveMiami);
+        console.log("Page No. = " + this.state.index);
+        console.log("Alert = " + this.showMiamiOnlyAlert);
+
         let male = this.state.babyGender ? this.state.babyGender.male : false;
         let female = this.state.babyGender ? this.state.babyGender.female : false;
         return (

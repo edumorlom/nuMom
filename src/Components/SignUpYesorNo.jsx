@@ -4,14 +4,14 @@ import appStyles from './AppStyles'
 import MultipleChoiceButton from "./MultipleChoiceButton";
 
 
-export default class SignUpYesorNo extends React.Component {
+export default SignUpYesorNo = (props) =>  {
 
-    onPress = (userResponse) => {
-        this.props.setUserInfo({[this.props.value]: userResponse});
-        this.props.getNextScreen();
+    let onPress = (userResponse) => {
+        props.setUserInfo({[props.value]: userResponse});
+        props.getNextScreen();
     };
 
-    render() {
+    
         return (
             <View style={appStyles.container}>
                 <View style={{
@@ -23,13 +23,12 @@ export default class SignUpYesorNo extends React.Component {
                         color: 'black',
                         fontSize: appStyles.titleFontSize,
                         fontWeight: 'bold',
-                        textAlign: 'center'}}>{this.props.question}</Text>
+                        textAlign: 'center'}}>{props.question}</Text>
                     <View style={appStyles.rowContainer}>
-                        <MultipleChoiceButton text={'✓'} color={appStyles.blueColor} onPress={() => this.onPress(true)}/>
-                        <MultipleChoiceButton text={'X'} color={appStyles.pinkColor} onPress={() => this.onPress(false)}/>
+                        <MultipleChoiceButton text={'✓'} color={appStyles.blueColor} onPress={() => onPress(true)}/>
+                        <MultipleChoiceButton text={'X'} color={appStyles.pinkColor} onPress={() => onPress(false)}/>
                     </View>
                 </View>
             </View>
         );
     }
-}
