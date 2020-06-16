@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
      position: 'absolute',
      left: 120,
      bottom: 27,
-     color: 'grey'
+     color: '#706e6c'
      //  alignSelf: 'flex-start',
 
     }
