@@ -216,14 +216,13 @@ getNextWeekAndWeekNo = () => {
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
-       <ScrollView showsVerticalScrollIndicator={false}>
-          <TouchableHighlight
+         <TouchableHighlight
             onPress={this.goBack}
             underlayColor={"transparent"}
             style={{
               height: appStyles.win.height * 0.04,
-              marginTop: "5%",
-              marginLeft: "3%",
+              marginTop: "10%",
+              marginLeft: "5%",
               // marginBottom: '3%',
               width: appStyles.win.width * 0.07,
             }}
@@ -236,22 +235,24 @@ getNextWeekAndWeekNo = () => {
               source={goBackImg}
             />
           </TouchableHighlight>
-          <View style={{ position: 'absolute', right: 30, top: 20}}>
+          <View style={{ position: 'absolute', right: 30, top: 40}}>
             <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
                 this.AsyncAlert().then((response) => {
                   response ? this.props.logout() : null;
                 });
               }} />
           </View>
+       <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-          <Text 
-            style={{
-            color: appStyles.blueColor,
-            fontSize: appStyles.titleFontSize,
-            fontWeight: 'bold',
-            alignSelf: 'center',
-            paddingTop: 10
-            }}>{this.props.getLocalizedText('welcomeSetting')}</Text></View>
+            <Text 
+              style={{
+              color: appStyles.blueColor,
+              fontSize: appStyles.titleFontSize,
+              fontWeight: 'bold',
+              alignSelf: 'center',
+              paddingTop: 15
+              }}>{this.props.getLocalizedText('welcomeSetting')}</Text>
+          </View>
           <View style={{ alignItems: 'center', paddingTop: 25}}>
             <View style={{marginBottom: 30, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}:</Text>
