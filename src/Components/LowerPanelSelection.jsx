@@ -21,7 +21,7 @@ export default function LowerPanelSelection(props) {
                 </TouchableHighlight>
                 <WelcomeUserBanner fullName={props.fullName} logout={props.logout} getLocalizedText={props.getLocalizedText}/>
                 <View>
-                    <MaterialIcons  name='settings' size={40} style={styles.userSettingStyle} onPress={() => props.setAppState({screen:'setting'})} />
+                    <MaterialIcons  name='settings' size={45} style={styles.userSettingStyle} onPress={() => props.setAppState({screen:'setting'})} />
                 </View>
                 <SelectionButton text={props.getLocalizedText("findCare")} icon={clinicLogo}
                                 onPress={() => props.setLowerPanelContent('findCare')}/>
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     //  borderColor: 'red',
      position: 'absolute',
      left: 120,
-     bottom: 30,
+     bottom: 27,
+     color: 'grey'
      //  alignSelf: 'flex-start',
 
     }
