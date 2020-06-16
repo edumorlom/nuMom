@@ -254,7 +254,7 @@ getNextWeekAndWeekNo = () => {
               }}>{this.props.getLocalizedText('welcomeSetting')}</Text>
           </View>
           <View style={{ alignItems: 'center', paddingTop: 25}}>
-            <View style={{marginBottom: 30, alignItems: 'center'}}>
+            <View style={{marginBottom: 15, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("phoneNumberInput")}:</Text>
               <View style={appStyles.TextInput.View}>
                 <TextBox
@@ -267,7 +267,7 @@ getNextWeekAndWeekNo = () => {
               </View>
             </View>
 
-            <View style={{marginBottom: 30, alignItems: 'center'}}>
+            <View style={{marginBottom: 15, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("dob")}:</Text>
               <View>
               <TextInputMask
@@ -292,7 +292,7 @@ getNextWeekAndWeekNo = () => {
                 
               </View>
             </View>
-            <View style={{marginBottom: 30, alignItems: 'center' }}>
+            <View style={{marginBottom: 10, alignItems: 'center' }}>
               <Text style={appStyles.blueColor}>{this.props.getLocalizedText("fullName")}:</Text>
               <View style={appStyles.TextInput.View}>
                 <TextBox
