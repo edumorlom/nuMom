@@ -14,7 +14,7 @@ export default function learn(props) {
         subtitle={props.getLocalizedText("learnSTDs")}
         icon={butterfly}
         onPress={() => {
-          props.setLowerPanelContent("STDInfo");
+          props.setLowerPanelContent("STDSelection");
         }}
       />
     </ScrollView>
