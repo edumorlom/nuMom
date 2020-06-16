@@ -97,9 +97,9 @@ export default class SignUp extends React.Component {
         let fb = new Firebase();
         let info = this.getNextWeekAndWeekNo();
         fb.signUp(this.state.email, this.state.phoneNumber, this.state.password, this.state.fullName, 
-            this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender, this.state.babyDOB, ...info);
+            this.state.dob, this.state.pregnant, this.state.infant, this.state.babyGender, this.state.babyDOB, this.state.liveMiami, ...info);
         //Unbinds Async Storage keys used in sign up after successful sign up
-        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB'];
+        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];
         AsyncStorage.multiRemove(keys, (err) => {console.log(err)});
         setTimeout( () => {
             this.props.login(this.state.email, this.state.password)

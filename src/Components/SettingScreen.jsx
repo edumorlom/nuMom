@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   TextInput as TextBox,
-  Button,
   ScrollView,
   TouchableHighlight,
   Image,
@@ -18,7 +17,6 @@ import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
 import {AsyncStorage, NativeModules, Picker} from 'react-native';
 import * as firebase from 'firebase';
-import TextInput from "./TextInput.jsx";
 import { AntDesign } from '@expo/vector-icons'; 
 
 
@@ -85,20 +83,24 @@ fetchUserInfo = () => {
     console.log("User id >>>>>>>>>: " + uid);
     fb.getUserInfo(uid).on('value', (snapshot) => {
       if (this._isMounted){
+          const exists = (snapshot.val() !== null);
+          if(exists || snapshot.exists() || snapshot.val() !== 'undefined'){
+            this.setState({
+              fullName: snapshot.val()?.fullName,
+              babyGender:{
+                male: snapshot.val()?.babyGender?.male,
+                female: snapshot.val()?.babyGender?.female,
+              }, 
+              phoneNumber: snapshot.val()?.phoneNumber,
+              pregnant: snapshot.val()?.pregnant,
+              infant: snapshot.val()?.infant,
+              dob: snapshot.val()?.dob,
+              liveMiami: snapshot.val()?.liveMiami,
+              babyDOB:  snapshot.val()?.babyDOB,
+              screen: 'setting'});
+            
+          }
 
-        this.setState({fullName: snapshot.val().fullName,
-          babyGender:{
-            male: snapshot.val().babyGender.male,
-            female: snapshot.val().babyGender.female,
-          }, 
-          phoneNumber: snapshot.val().phoneNumber,
-          pregnant: snapshot.val().pregnant,
-          infant: snapshot.val().infant,
-          dob: snapshot.val().dob,
-          liveMiami: snapshot.val().liveMiami,
-          babyDOB:  snapshot.val().babyDOB,
-          screen: 'setting'});
-        
       }
      
     });
@@ -143,19 +145,19 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
       babyInfo[1] = null;
     }
 
-    // first try, when the user register for first time we set the liveMiami,infant pregnant to false
-    if(liveMiami === null ){
+    // by default in case the values are undefined or null we set their values to false;
+    if(liveMiami === null || liveMiami === 'undefined' ){
       liveMiami = false; 
-    }else if(infant === null ){
+    }else if(infant === null || infant === 'undefined' ){
       infant = false;
-    }else if(pregnant === null){
+    }else if(pregnant === null || pregnant === 'undefined'){
       pregnant = false;
     }
   
 
   if (uid !== null) {
 
-    if (!this.state.fullName && !this.state.phoneNumber) {
+    if (!this.state.fullName || !this.state.phoneNumber || !this.state.dob) {
       alert(this.props.getLocalizedText("fillOutAllFields"));
       
     }else{
@@ -175,7 +177,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyGender,
           nextWeek: babyInfo[0],
           week: babyInfo[1],
   
-        }, e => {console.log("Error update: ", e)});
+        }).catch(err => console.log(err));
      
       window.alert(this.props.getLocalizedText("savedInfo"));
     }
