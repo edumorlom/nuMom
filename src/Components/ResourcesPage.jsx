@@ -1,21 +1,34 @@
-import React from 'react';
-import {ScrollView} from "react-native";
-import ResourcesInfo from './ResourcesInformation'
+import React from "react";
+import { ScrollView } from "react-native";
 import ResourceSelectionButton from "./ResourceSelectionButton";
-
-
+import AppointmentSelectionButton from "./AppointmentSelectionButton";
+import document from "../../assets/document.png";
+import ResourcesInfo from "./ResourcesInformation";
 
 export default function Resources(props) {
-
-    let resourceButtons = ResourcesInfo().map((resource, key) =>
-        <ResourceSelectionButton key={key}
-                                     icon={resource.icon}
-                                     onPress
-                                     resource={resource}/>);
-
-    return (
-        <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
-            {resourceButtons}
-        </ScrollView>
-    )
+  let resourceButtons = ResourcesInfo().map((resource, key) => (
+    <ResourceSelectionButton
+      key={key}
+      icon={resource.icon}
+      onPress
+      resource={resource}
+    />
+  ));
+  let appointmentButton = (
+    <AppointmentSelectionButton
+      title={props.getLocalizedText("appointment")}
+      subtitle={props.getLocalizedText("appointmentInfo")}
+      icon={document}
+      onPress={() => {
+        props.setLowerPanelContent("Appointment");
+      }}
+    />
+  );
+  return (
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+    >
+      {resourceButtons}
+    </ScrollView>
+  );
 }

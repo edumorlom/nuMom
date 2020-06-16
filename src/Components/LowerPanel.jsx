@@ -8,7 +8,9 @@ import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import Resources from "./ResourcesPage";
 import STDInfo from "./STDInfo";
-import Gonorrhea from "./Gonorrhea";
+import Appointment from "./Appointment";
+import NewAppointment from "./NewAppointment";
+import STDSelection from "./STDSelection";
 
 export default class LowerPanel extends React.Component {
   constructor(props) {
@@ -16,8 +18,8 @@ export default class LowerPanel extends React.Component {
     this.goUp();
   }
 
-  state = { 
-    panelStyle: { ...appStyles.lowerPanel }
+  state = {
+    panelStyle: { ...appStyles.lowerPanel },
   };
 
   transition = null;
@@ -52,18 +54,16 @@ export default class LowerPanel extends React.Component {
     }, 0.1);
   };
 
-  
-
   showContent = () => {
     if (this.props.lowerPanelContent === "findCare") {
       return (
         <FindCare
           clinics={this.props.clinics}
-          sortedClinics = {this.props.sortedClinics}
+          sortedClinics={this.props.sortedClinics}
           setClinicToView={this.props.setClinicToView}
-          setClinics = {this.props.setClinics}
-          setFilters = {this.props.setFilters}
-          filters = {this.props.filters}
+          setClinics={this.props.setClinics}
+          setFilters={this.props.setFilters}
+          filters={this.props.filters}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
@@ -83,11 +83,12 @@ export default class LowerPanel extends React.Component {
           getLocalizedText={this.props.getLocalizedText}
         />
       );
-    } else if (this.props.lowerPanelContent === "STDInfo") {
+    } else if (this.props.lowerPanelContent === "STDSelection") {
       return (
-        <STDInfo
+        <STDSelection
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
+          setSTDToView={this.props.setSTDToView}
         />
       );
     } else if (this.props.lowerPanelContent === "resources") {
@@ -97,9 +98,24 @@ export default class LowerPanel extends React.Component {
           getLocalizedText={this.props.getLocalizedText}
         />
       );
-    } else if (this.props.lowerPanelContent === "Gonorrhea") {
+    } else if (this.props.lowerPanelContent === "STDInfo") {
       return (
-        <Gonorrhea
+        <STDInfo
+          setLowerPanelContent={this.props.setLowerPanelContent}
+          getLocalizedText={this.props.getLocalizedText}
+          STDToView={this.props.STDToView}
+        />
+      );
+    } else if (this.props.lowerPanelContent === "Appointment") {
+      return (
+        <Appointment
+          setLowerPanelContent={this.props.setLowerPanelContent}
+          getLocalizedText={this.props.getLocalizedText}
+        />
+      );
+    } else if (this.props.lowerPanelContent === "NewAppointment") {
+      return (
+        <NewAppointment
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />

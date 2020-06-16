@@ -35,7 +35,7 @@ export default function STDSelectionButton(props) {
               fontWeight: "bold",
             }}
           >
-            {props.text}
+            {props.name}
           </Text>
         </View>
       </React.Fragment>
