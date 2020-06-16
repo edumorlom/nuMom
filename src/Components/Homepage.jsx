@@ -121,7 +121,8 @@ export default class Homepage extends React.Component {
           clinics={this.state.clinics}
           getLocalizedText={this.props.getLocalizedText}
         />
-        <CancelFilterButton  resetFilters= {() => {this.setClinics(this.state.sortedClinics); this.setFilters(...[10000, 'All'])}}/>
+        {/* Compare current filters with default filters, is different show reset filter button */}
+        {JSON.stringify(this.state.filters) !== JSON.stringify([10000, 'All']) && <CancelFilterButton  resetFilters= {() => {this.setClinics(this.state.sortedClinics); this.setFilters(...[10000, 'All'])}}/>}
         {/*<SOSButton />*/}
         <LowerPanel 
           setFullPanel={() => this.setFullPanel(!this.state.fullPanel)}

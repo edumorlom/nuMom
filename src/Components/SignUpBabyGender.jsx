@@ -4,7 +4,7 @@ import appStyles from './AppStyles';
 import MultipleChoiceButton from "./MultipleChoiceButton";
 import Button from "./Button";
 
-
+//Kinda a Deprecated component, would change it to use Functions, but we kinda not using it anymore
 export default class SignUpBabyGender extends React.Component {
     state = {babyGender: {male: false, female: false}};
 
