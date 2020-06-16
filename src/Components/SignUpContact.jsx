@@ -39,7 +39,8 @@ export default SignUpInfo = (props) => {
         } else if (!isValidPhoneNumber(phone)) {
             alert(props.getLocalizedText("invalidPhoneNumber"))
         } else {
-            props.setUserInfo({email: email, phoneNumber: phone});
+            props.setUserInfo({email: email});
+            props.setUserInfo({phoneNumber: phone});
             AsyncStorage.setItem('e-mail', email);
             AsyncStorage.setItem('phone', phone);
             props.getNextScreen();

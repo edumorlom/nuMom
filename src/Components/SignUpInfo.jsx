@@ -26,7 +26,8 @@ export default function SignUpInfo(props) {
         } else if (!isValidDate(dob)){
             alert(props.getLocalizedText("invalidDate"))
         } else {
-            props.setUserInfo({fullName: name, dob: dob});
+            props.setUserInfo({fullName: name});
+            props.setUserInfo({dob: dob});
             AsyncStorage.setItem('name', name);
             AsyncStorage.setItem('dob', dob);
             props.getNextScreen();
