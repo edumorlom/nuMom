@@ -43,6 +43,7 @@ export default function Resources(props) {
     >
       {resourceButtons}
       {documentUploadButton}
+      {appointmentButton}
     </ScrollView>
   );
 }

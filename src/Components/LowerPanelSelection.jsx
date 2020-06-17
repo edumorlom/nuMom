@@ -39,6 +39,7 @@ export default function LowerPanelSelection(props) {
         <MaterialIcons
           name="settings"
           size={45}
+          color= "gray"
           style={styles.userSettingStyle}
           onPress={() => props.setAppState({ screen: "setting" })}
         />
