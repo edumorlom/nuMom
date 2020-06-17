@@ -124,7 +124,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) =>
     if (infant === false) {
       // male = false;
       // female = false;
-      // babyDOB = null;
+       babyDOB = null;
       babyInfo[0] = null;
       babyInfo[1] = null;
     }
