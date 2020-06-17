@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
 import firebaseAccount from '../firebase_account.json';
@@ -8,11 +8,10 @@ import * as Permissions from 'expo-permissions';
 
 
 export default class Firebase {
-
-    constructor() {
-        const config = firebaseAccount;
-        if (!firebase.apps.length) firebase.initializeApp(config);
-    }
+  constructor() {
+    const config = firebaseAccount;
+    if (!firebase.apps.length) firebase.initializeApp(config);
+  }
 
     signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
@@ -30,15 +29,18 @@ export default class Firebase {
         
     
 
-    storeObjectInDatabase = (uid, object) => {
-        if (!uid) return;
-        this.getUserInfo(uid).on('value', (snapshot) => {
-            firebase.database().ref('users/' + uid).set({
-                ...snapshot.val(),
-                ...object
-            });
+  storeObjectInDatabase = (uid, object) => {
+    if (!uid) return;
+    this.getUserInfo(uid).on("value", (snapshot) => {
+      firebase
+        .database()
+        .ref("users/" + uid)
+        .set({
+          ...snapshot.val(),
+          ...object,
         });
-    };
+    });
+}
 
     saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
         if (!uid) return;
@@ -76,8 +78,9 @@ export default class Firebase {
 
 
 
-    getUserInfo = (uid) => firebase.database().ref('users/' + uid);
 
+
+  getUserInfo = (uid) => firebase.database().ref("users/" + uid);
 
     passwordReset = (email) => {
         return firebase.auth().sendPasswordResetEmail(email)
@@ -108,5 +111,3 @@ export default class Firebase {
     }
 
 }
-
-
