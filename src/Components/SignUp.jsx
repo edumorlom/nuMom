@@ -30,14 +30,6 @@ export default function SignUp(props) {
     }
   });
 
-  //if (!this.showGenderSelection && currentIndex === 7) {
-  //  currentIndex++;
-  // }
-
-  if (currentIndex < this.screens.length - 1) {
-    currentIndex++;
-  }
-
   let showGenderSelection = false;
   let showMiamiOnlyAlert = true;
 
@@ -165,7 +157,7 @@ export default function SignUp(props) {
       dob,
       pregnant,
       infant,
-      babyGender,
+      //babyGender,
       babyDOB,
       ...info
     );

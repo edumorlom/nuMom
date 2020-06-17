@@ -12,16 +12,19 @@ import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 
 export default function NewAppointment(props) {
-  const [name, setName] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
-  const [reason, setReason] = useState(null);
+  appointment = [
+    ([name, setName] = useState(null)),
+    ([address, setAddress] = useState(null)),
+    ([date, setDate] = useState(null)),
+    ([time, setTime] = useState(null)),
+    ([reason, setReason] = useState(null)),
+  ];
 
   onPress = () => {
     if (!name || !address || !date || !time) {
       alert(props.getLocalizedText("fillOutAllFields"));
     } else {
+      alert(name);
       //props.setLowerPanelContent("Appointment");
     }
   };
