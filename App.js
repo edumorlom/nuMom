@@ -7,6 +7,7 @@ import { AsyncStorage, NativeModules } from "react-native";
 import getLocalizedText from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
 import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
+import * as firebase from "firebase";
 
 export default class App extends React.Component {
   state = {
@@ -102,11 +103,15 @@ export default class App extends React.Component {
   };
 
   logout = () => {
+    
     this.setAppState({ uid: null });
     this.setAppState({ fullName: null });
     this.setAppState({ screen: "login" });
     this.saveCookie("email", "");
     this.saveCookie("password", "");
+    let fb = new Firebase();
+    let user = firebase.auth().currentUser;
+    fb.registerForPushNotificationsAsync(user);
   };
 
   goBack = () => {
