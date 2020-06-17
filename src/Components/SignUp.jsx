@@ -125,7 +125,7 @@ export default function SignUp(props) {
         fb.signUp(email, phoneNumber, password, fullName, 
             dob, pregnant, infant, babyDOB, ...info);
         //Unbinds Async Storage keys used in sign up after successful sign up
-        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB'];
+        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];
         AsyncStorage.multiRemove(keys, (err) => {console.log(err)});
         setTimeout( () => {
             props.login(email, password)

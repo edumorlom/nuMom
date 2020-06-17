@@ -51,9 +51,10 @@ export default class Firebase {
             pregnant: pregnant,
             infant: infant,
             babyDOB: babyDOB,
+            liveMiami: liveMiami,
             nextWeek: nextWeek,
             week: week
-        });
+        }).catch(err => console.log(err));
 
     };
     //Hardcoded to work only inside the US (+1). Would have to be changed for other countries.
