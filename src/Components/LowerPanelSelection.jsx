@@ -37,7 +37,7 @@ export default function LowerPanelSelection(props) {
       <View>
         <MaterialIcons
           name="settings"
-          size={40}
+          size={45}
           style={styles.userSettingStyle}
           onPress={() => props.setAppState({ screen: "setting" })}
         />
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     //  borderColor: 'red',
     position: "absolute",
     left: 120,
-    bottom: 30,
+    bottom: 25,
+    color: '#706e6c'
     //  alignSelf: 'flex-start',
   },
 });

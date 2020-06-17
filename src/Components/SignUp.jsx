@@ -131,9 +131,9 @@ export default function SignUp (props) {
         let fb = new Firebase();
         let info = getNextWeekAndWeekNo();
         fb.signUp(email, phoneNumber, password, fullName, 
-            dob, pregnant, infant, babyGender, babyDOB, ...info);
+            dob, pregnant, infant, babyGender, babyDOB, liveMiami, ...info);
         //Unbinds Async Storage keys used in sign up after successful sign up
-        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB'];
+        let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];
         AsyncStorage.multiRemove(keys, (err) => {console.log(err)});
         setTimeout( () => {
             props.login(email, password)
