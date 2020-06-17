@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   Image,
   Alert,
-  Platform
+  Platform,
 } from "react-native";
 import Firebase from "./Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
@@ -56,6 +56,35 @@ const SettingScreen = (props) => {
     });
   };
 
+  fetchUserInfo = () => {
+    let fb = new Firebase();
+    let uid = firebase.auth().currentUser.uid;
+    this._isMounted = true;
+
+    if (uid !== null) {
+      console.log("User id >>>>>>>>>: " + uid);
+      fb.getUserInfo(uid).on("value", (snapshot) => {
+        if (this._isMounted) {
+          this.setState({
+            fullName: snapshot.val().fullName,
+            //babyGender: {
+            // male: snapshot.val().babyGender.male,
+            // female: snapshot.val().babyGender.female,
+            // },
+            phoneNumber: snapshot.val().phoneNumber,
+            pregnant: snapshot.val().pregnant,
+            infant: snapshot.val().infant,
+            dob: snapshot.val().dob,
+            liveMiami: snapshot.val().liveMiami,
+            babyDOB: snapshot.val().babyDOB,
+            screen: "setting",
+          });
+        }
+      });
+    } else {
+      alert("Error: Couldn't get the user Information");
+    }
+  };
 
   fetchUserInfo = () => {
     let fb = new Firebase();
@@ -138,40 +167,32 @@ const SettingScreen = (props) => {
       pregnant = false;
     }
 
-
-    if (uid !== null) {
-
-      if (!fullName || !phoneNumber || !dob) {
-        alert(props.getLocalizedText("fillOutAllFields"));
-
-      } else {
-
-        firebase.database().ref('users/' + uid).update({
-          fullName: fullName,
-          phoneNumber: phoneNumber,
-          dob: dob,
-          infant: infant,
-          pregnant: pregnant,
-          liveMiami: liveMiami || false,
-          babyDOB: babyDOB,
-          // babyGender:{
-          //   male: male,
-          //   female: female
-          // },
-          nextWeek: babyInfo[0],
-          week: babyInfo[1],
-
-        }).catch(err => console.log(err));
-
-        window.alert(props.getLocalizedText("savedInfo"));
-      }
+    if (!fullName || !phoneNumber || !dob) {
+      alert(props.getLocalizedText("fillOutAllFields"));
 
     } else {
-      alert("Error: Couldn't get user Information");
+
+      firebase.database().ref('users/' + uid).update({
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        dob: dob,
+        infant: infant,
+        pregnant: pregnant,
+        liveMiami: liveMiami || false,
+        babyDOB: babyDOB,
+        // babyGender:{
+        //   male: male,
+        //   female: female
+        // },
+        nextWeek: babyInfo[0],
+        week: babyInfo[1],
+
+      }).catch(err => console.log(err));
+
+      window.alert(props.getLocalizedText("savedInfo"));
     }
 
-
-  };
+  }
 
 
   useEffect(() => {
@@ -193,8 +214,6 @@ const SettingScreen = (props) => {
     return [nextWeek, weekNo]
   }
 
-
-  datetimeField.current ? console.log(datetimeField.current.isValid()) : null
 
   return (
     <View style={{ flex: 1 }}>
@@ -222,7 +241,8 @@ const SettingScreen = (props) => {
           AsyncAlert().then((response) => {
             response ? props.logout() : null;
           });
-        }} />
+        }}
+        />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
@@ -253,13 +273,13 @@ const SettingScreen = (props) => {
             <Text style={appStyles.blueColor}>{props.getLocalizedText("dob")}:</Text>
             <View>
               <TextInputMask
-                type={'datetime'}
+                type={"datetime"}
                 options={{
-                  format: 'MM/DD/YYYY',
+                  format: "MM/DD/YYYY",
                   validator: function (value, settings) {
                     let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                     return regex.test(value);
-                  }  //This validator function is read by isValid()
+                  }, //This validator function is read by isValid()
                   //Still need to implement a check for isValid
                 }}
                 style={appStyles.TextInputMask}
@@ -365,8 +385,6 @@ const SettingScreen = (props) => {
             onPress={() => onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB)} >
             <Text style={appStyles.button.text}>{props.getLocalizedText("save")}</Text>
           </TouchableHighlight>
-
-
         </View>
       </ScrollView>
     </View>
@@ -374,22 +392,20 @@ const SettingScreen = (props) => {
 
 }
 
-
 const styles = StyleSheet.create({
   containerDropDown: {
     ...Platform.select({
       ios: {
         marginTop: 30,
-        alignItems: 'center',
+        alignItems: "center",
         height: 160,
       },
       android: {
         marginTop: 30,
-        alignItems: 'center',
+        alignItems: "center",
         height: 110,
       },
-
-    })
+    }),
   },
   questionsDropDown: {
     ...Platform.select({
@@ -401,10 +417,8 @@ const styles = StyleSheet.create({
         width: 100,
         bottom: 10,
       },
-
-    })
-  }
-})
-
+    }),
+  },
+});
 
 export default SettingScreen;

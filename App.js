@@ -66,15 +66,12 @@ export default class App extends React.Component {
 
     if (email && password) {
       let fb = new Firebase();
-      fb.logIn(email, password).then(
-        (response) => {
-          this.loginWithUid(response.user.uid);
-          //console.log("Successful Login!", response);
-        },
-        (e) => {
-          alert("Invalid E-mail and Password Combination!");
-        }
-      );
+      fb.logIn(email, password).then(response => {
+        this.loginWithUid(response.user.uid);
+        fb.registerForPushNotificationsAsync(response.user)
+      }, e => {
+        alert("Invalid E-mail and Password Combination!")
+      })
     } else {
       alert("Please enter your E-Mail and Password!");
     }

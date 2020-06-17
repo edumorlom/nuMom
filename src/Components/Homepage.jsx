@@ -53,6 +53,17 @@ export default class Homepage extends React.Component {
       .catch((err) => {
         console.error(err.message);
       });
+
+
+    //   listener = firebase.auth().onAuthStateChanged(function (user) {
+    //     if (user != null) {
+
+    //         that.registerForPushNotificationsAsync(currentUser)
+    //     }
+
+    //     listener();
+
+    // });
   }
 
 
