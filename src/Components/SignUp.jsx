@@ -144,59 +144,6 @@ export default function SignUp(props) {
         return [nextWeek, weekNo]
     }
 
-    
-
-  let signUpAndUploadData = () => {
-    let fb = new Firebase();
-    let info = getNextWeekAndWeekNo();
-    fb.signUp(
-      email,
-      phoneNumber,
-      password,
-      fullName,
-      dob,
-      pregnant,
-      infant,
-      babyDOB,
-      ...info
-    );
-    //Unbinds Async Storage keys used in sign up after successful sign up
-    let keys = ["name", "dob", "e-mail", "phone", "pass", "repeat", "babyDOB"];
-    AsyncStorage.multiRemove(keys, (err) => {
-      console.log(err);
-    });
-    setTimeout(() => {
-      props.login(email, password);
-    }, 2000);
-  };
-
-  let getNextWeekAndWeekNo = () => {
-    let babyDOB = new Date(babyDOB);
-    let today = new Date();
-    let daysDifference =
-      ((today.getTime() - babyDOB.getTime()) / (1000 * 3600 * 24)) | 0;
-    let daysTillNextWeek = (7 - (daysDifference % 7)) % 7;
-    let nextweek = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() + daysTillNextWeek
-    );
-    let nextWeek =
-      (nextweek.getMonth() + 1).toString().padStart(2, "0") +
-      "/" +
-      nextweek.getDate().toString().padStart(2, "0") +
-      "/" +
-      nextweek.getFullYear();
-    let weekNo =
-      daysTillNextWeek === 0
-        ? (daysDifference / 7) | 0
-        : (daysDifference / 7 + 1) | 0;
-    if (weekNo > 24) {
-      nextWeek = null;
-      weekNo = null;
-    }
-    return [nextWeek, weekNo];
-  };
 
   let screens = [
     <LetsGetStarted
