@@ -2,6 +2,9 @@ import * as firebase from 'firebase';
 import getLocalizedText from "./getLocalizedText";
 import {NativeModules} from "react-native";
 import firebaseAccount from '../firebase_account.json';
+import { Notifications } from 'expo'; 
+import * as Permissions from 'expo-permissions';
+
 
 
 export default class Firebase {
@@ -11,9 +14,9 @@ export default class Firebase {
         if (!firebase.apps.length) firebase.initializeApp(config);
     }
 
-    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
+    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week).then(() => {
+                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyDOB, nextWeek, week).then(() => {
                     this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: E-Mail is already associated with another account!");})
@@ -23,10 +26,9 @@ export default class Firebase {
         return firebase.auth().createUserWithEmailAndPassword(email, password);
     };
     
-    logIn = (email, password) => {
-        firebase.auth().signInWithEmailAndPassword(email, password);
+    logIn = (email, password) =>  firebase.auth().signInWithEmailAndPassword(email, password);
         
-    }
+    
 
     storeObjectInDatabase = (uid, object) => {
         if (!uid) return;
@@ -38,7 +40,7 @@ export default class Firebase {
         });
     };
 
-    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyGender, babyDOB, nextWeek, week) => {
+    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
         if (!uid) return;
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,
@@ -46,7 +48,6 @@ export default class Firebase {
             dob: dob,
             pregnant: pregnant,
             infant: infant,
-            babyGender: babyGender,
             babyDOB: babyDOB,
             nextWeek: nextWeek,
             week: week
@@ -85,7 +86,6 @@ export default class Firebase {
     registerForPushNotificationsAsync = async (currentUser) => {
         const { existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
         let finalStatus = existingStatus;
-
         // only ask if permissions have not already been determined, because
         // iOS won't necessarily prompt the user a second time.
         if (existingStatus !== 'granted') {
@@ -94,19 +94,16 @@ export default class Firebase {
             const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
             finalStatus = status;
         }
-
         // Stop here if the user did not grant permissions
         if (finalStatus !== 'granted') {
             return;
         }
-
         // Get the token that uniquely identifies this device
         let token = await Notifications.getExpoPushTokenAsync();
-
         // POST the token to our backend so we can use it to send pushes from there
         var updates = {}
         updates['/expoToken'] = token
-        await firebase.database().ref('/users/' + currentUser.uid).update(updates)
+        await firebase.database().ref('users/' + currentUser.uid).update(updates)
         //call the push notification 
     }
 

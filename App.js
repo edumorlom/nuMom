@@ -65,12 +65,17 @@ export default class App extends React.Component {
       fb.logIn(email, password).then(response => {
         this.loginWithUid(response.user.uid);
         //console.log("Successful Login!", response);
+        fb.registerForPushNotificationsAsync(response.user)
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })
     } else {
       alert("Please enter your E-Mail and Password!")
     }
+  //   .then((result => {
+  //     //result.user = user reference
+  //     this.registerForPushNotificationsAsync(result.user)
+  // })
   };
 
   loginWithUid = (uid) => {
@@ -84,6 +89,8 @@ export default class App extends React.Component {
       this.setAppState({screen: 'homepage'});
     });
   };
+
+
 
 
   logout = () => {

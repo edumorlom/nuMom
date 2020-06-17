@@ -210,7 +210,6 @@ getNextWeekAndWeekNo = () => {
 
 
  render() {
-   this.datetimeField?console.log(this.datetimeField.isValid()):null
    const { fullName, dob, phoneNumber, liveMiami, infant, pregnant, babyGender, babyDOB} = this.state;
     return (
       <View style={{ flex: 1 }}>
