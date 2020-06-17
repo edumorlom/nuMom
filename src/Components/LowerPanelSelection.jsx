@@ -9,6 +9,7 @@ import {
 import babyBottle from "../../assets/baby-bottle.png";
 import clinicLogo from "../../assets/clinic-logo.png";
 import lightBulb from "../../assets/light-bulb.png";
+import document from "../../assets/document.png";
 import WelcomeUserBanner from "./WelcomeUserBanner";
 import SelectionButton from "./SelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -59,6 +60,13 @@ export default function LowerPanelSelection(props) {
         icon={lightBulb}
         onPress={() => {
           props.setLowerPanelContent("resources");
+        }}
+      />
+      <SelectionButton
+        text={props.getLocalizedText("documents")}
+        icon={document}
+        onPress={() => {
+          props.setLowerPanelContent("documents");
         }}
       />
     </GestureRecognizer>
