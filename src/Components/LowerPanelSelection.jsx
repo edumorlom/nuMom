@@ -63,13 +63,13 @@ export default function LowerPanelSelection(props) {
           props.setLowerPanelContent("resources");
         }}
       />
-      <SelectionButton
+      {/* <SelectionButton
         text={props.getLocalizedText("documents")}
         icon={document}
         onPress={() => {
           props.setLowerPanelContent("documents");
         }}
-      />
+      /> */}
     </GestureRecognizer>
   );
 }

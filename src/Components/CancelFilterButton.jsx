@@ -16,7 +16,7 @@ export default function CancelFilterButton(props) {
         <TouchableOpacity  style={{position: 'absolute', right: '2%', top: '2%', width: '13%', flexDirection: 'row-reverse', marginTop: 30}}
                 onPress={onPress}>
             <View style={appStyles.WhitePanelButton}>
-                <Image style={{width: 25, height: 25,  marginLeft: 'auto', marginRight: 'auto'}} source={filterImage} />
+                <Image style={{width: 30, height: 30,  marginLeft: 'auto', marginRight: 'auto'}} source={filterImage} />
             </View>
         </TouchableOpacity>
     )
