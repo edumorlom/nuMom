@@ -123,7 +123,7 @@ export default class Homepage extends React.Component {
 
   render() {
     //Clinics().forEach(clinic => console.log(clinic.services))
-    //console.log(this.state.clinics[0].services)
+    //console.log(this.state.filters);
     return (
       <View style={appStyles.container}>
         <Map
@@ -134,7 +134,7 @@ export default class Homepage extends React.Component {
           clinics={this.state.clinics}
           getLocalizedText={this.props.getLocalizedText}
         />
-        {/* Compare current filters with default filters, is different show reset filter button */}
+        {/* Compare current filters with default filters, if different show reset filter button */}
         {JSON.stringify(this.state.filters) !== JSON.stringify([10000, 'All']) && <CancelFilterButton  resetFilters= {() => {this.setClinics(this.state.sortedClinics); this.setFilters(...[10000, 'All'])}}/>}
         {/*<SOSButton />*/}
         <LowerPanel 

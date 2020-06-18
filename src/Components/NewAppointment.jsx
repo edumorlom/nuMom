@@ -9,7 +9,6 @@ import {
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
 import Button from "./Button";
-import TextInput from "./TextInput.jsx";
 
 export default function NewAppointment(props) {
   const [name, setName] = useState(null);
