@@ -117,6 +117,8 @@ export default class Homepage extends React.Component {
       this.setLowerPanelContent("resources");
     if (this.state.lowerPanelContent === "NewAppointment")
       this.setLowerPanelContent("Appointment");
+    if (this.state.lowerPanelContent === "documents")
+      this.setLowerPanelContent("documents");
   };
 
   render() {

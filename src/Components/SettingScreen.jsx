@@ -56,35 +56,6 @@ const SettingScreen = (props) => {
     });
   };
 
-  fetchUserInfo = () => {
-    let fb = new Firebase();
-    let uid = firebase.auth().currentUser.uid;
-    this._isMounted = true;
-
-    if (uid !== null) {
-      console.log("User id >>>>>>>>>: " + uid);
-      fb.getUserInfo(uid).on("value", (snapshot) => {
-        if (this._isMounted) {
-          this.setState({
-            fullName: snapshot.val().fullName,
-            //babyGender: {
-            // male: snapshot.val().babyGender.male,
-            // female: snapshot.val().babyGender.female,
-            // },
-            phoneNumber: snapshot.val().phoneNumber,
-            pregnant: snapshot.val().pregnant,
-            infant: snapshot.val().infant,
-            dob: snapshot.val().dob,
-            liveMiami: snapshot.val().liveMiami,
-            babyDOB: snapshot.val().babyDOB,
-            screen: "setting",
-          });
-        }
-      });
-    } else {
-      alert("Error: Couldn't get the user Information");
-    }
-  };
 
   fetchUserInfo = () => {
     let fb = new Firebase();
