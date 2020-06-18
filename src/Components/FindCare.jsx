@@ -5,11 +5,11 @@ import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown"
 
 export default function FindCare(props) {
-    const [distFilter, servFilter] = props.filters;  
-    const [dist, setDist] = useState(distFilter);
-    const [service, setService] = useState(servFilter);
+    const [dist, setDist] = useState(props.filters[0]);
+    const [service, setService] = useState(props.filters[1]);
 
     useEffect(() => {
+        //This runs on every re-render
         setDist(props.filters[0]);
         setService(props.filters[1])
     } )
@@ -41,7 +41,7 @@ export default function FindCare(props) {
             clinics = clinics.filter((clinic) => clinic.services.includes(service))
         }
         props.setClinics(clinics);
-        props.setFilters(distance, service);
+        props.setFilters([distance, service]);
         setDist(distance);
         setService(service);
     }
