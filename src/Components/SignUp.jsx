@@ -26,7 +26,7 @@ export default function SignUp(props) {
 
   useEffect(() => {
     if (index < 0) {
-      props.setAppState({ screen: "login" });
+      props.setScreen("login" );
     }
   });
 
