@@ -3,7 +3,6 @@ import { ScrollView } from "react-native";
 import ResourceSelectionButton from "./ResourceSelectionButton";
 import DocumentSelectionButton from "./DocumentUploadButton";
 import AppointmentSelectionButton from "./AppointmentSelectionButton";
-import document from "../../assets/document.png";
 import appointments from "../../assets/appointments.png";
 import ResourcesInfo from "./ResourcesInformation";
 
