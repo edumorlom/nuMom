@@ -112,7 +112,7 @@ export default Homepage = props => {
           goBack={goBack}
           setLowerPanelContent={setLowerPanelContent}
           getLocalizedText={props.getLocalizedText}
-          setAppState={props.setAppState}
+          setScreen={props.setScreen}
         />
       </View>
     );

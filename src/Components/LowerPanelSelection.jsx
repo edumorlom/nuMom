@@ -41,7 +41,7 @@ export default function LowerPanelSelection(props) {
           size={45}
           color= "gray"
           style={styles.userSettingStyle}
-          onPress={() => props.setAppState({ screen: "setting" })}
+          onPress={() => props.setScreen("setting")}
         />
       </View>
       <SelectionButton
