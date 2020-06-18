@@ -17,13 +17,15 @@ export default function STDMenu(props) {
   return (
     <TouchableHighlight
       style={{
-        margin: 15,
+        margin: 10,
         paddingLeft: 10,
         justifyContent: "center",
         backgroundColor: "white",
         ...shadow,
-        minHeight: appStyles.win.height * 0.2,
-        maxHeight: appStyles.win.height * 0.5,
+        //minHeight: appStyles.win.height * 0.2,
+        //maxHeight: appStyles.win.height * 0.5,
+        top: 15,
+        bottom: 15,
         width: appStyles.win.width * 0.95,
         borderRadius: borderRadius,
       }}

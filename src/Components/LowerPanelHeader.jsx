@@ -32,6 +32,8 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("appointment");
     if (props.lowerPanelContent === "NewAppointment")
       return props.getLocalizedText("newAppointment");
+    if (props.lowerPanelContent === "documents")
+      return props.getLocalizedText("documents");
   };
 
   return (

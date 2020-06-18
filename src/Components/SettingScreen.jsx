@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   Image,
   Alert,
-  Platform
+  Platform,
 } from "react-native";
 import Firebase from "./Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
@@ -37,12 +37,12 @@ const SettingScreen = (props) =>  {
      let _isMounted = false;
 
 
-   goBack = () => {
+  goBack = () => {
     Haptics.selectionAsync().then();
     props.goBack();
   };
 
-    AsyncAlert = () => {
+  AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
         props.getLocalizedText("logout"),
@@ -137,9 +137,6 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) =>
     }else if(pregnant === null || pregnant === 'undefined'){
       pregnant = false;
     }
-  
-
-  if (uid !== null) {
 
     if (!fullName || !phoneNumber || !dob) {
       alert(props.getLocalizedText("fillOutAllFields"));
@@ -166,12 +163,7 @@ onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) =>
       window.alert(props.getLocalizedText("savedInfo"));
     }
     
-  }else{
-    alert("Error: Couldn't get user Information");
   }
- 
-  
-};
 
 
 useEffect(() => {
@@ -193,8 +185,6 @@ getNextWeekAndWeekNo = () => {
   return [nextWeek, weekNo]
 }
 
-
- datetimeField.current?console.log(datetimeField.current.isValid()):null
 
 return (
   <View style={{ flex: 1 }}>
@@ -222,7 +212,8 @@ return (
                 AsyncAlert().then((response) => {
                   response ? props.logout() : null;
                 });
-              }} />
+              }}
+            />
           </View>
        <ScrollView showsVerticalScrollIndicator={false}>
           <View>
@@ -252,14 +243,14 @@ return (
             <View style={{marginBottom: 15, alignItems: 'center'}}>
               <Text style={appStyles.blueColor}>{props.getLocalizedText("dob")}:</Text>
               <View>
-              <TextInputMask
-                type={'datetime'}
-                options={{
-                  format: 'MM/DD/YYYY',
-                  validator: function(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
-                    return regex.test(value);
-                  }  //This validator function is read by isValid()
+                <TextInputMask
+                  type={"datetime"}
+                  options={{
+                    format: "MM/DD/YYYY",
+                    validator: function (value, settings) {
+                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      return regex.test(value);
+                    }, //This validator function is read by isValid()
                     //Still need to implement a check for isValid
                 }}
                 style={appStyles.TextInputMask}
@@ -365,8 +356,6 @@ return (
             onPress={() => onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB)} >
             <Text style={appStyles.button.text}>{props.getLocalizedText("save")}</Text>
             </TouchableHighlight>
-
-            
           </View>
         </ScrollView>
       </View>
@@ -374,37 +363,33 @@ return (
   
 }
 
-
 const styles = StyleSheet.create({
- containerDropDown: {
-   ...Platform.select({
-     ios: {
-      marginTop: 30,
-      alignItems: 'center', 
-      height:160,
-     },
-     android: {
-       marginTop: 30,
-      alignItems: 'center', 
-      height:110,
-     },
-     
-   })
- },
- questionsDropDown: {
-  ...Platform.select({
-    ios: {
-      width: 100, 
-      bottom: 50,
-    },
-    android: {
-      width: 100, 
-      bottom: 10,
-    },
-    
-  })
-}
-})
-
+  containerDropDown: {
+    ...Platform.select({
+      ios: {
+        marginTop: 30,
+        alignItems: "center",
+        height: 160,
+      },
+      android: {
+        marginTop: 30,
+        alignItems: "center",
+        height: 110,
+      },
+    }),
+  },
+  questionsDropDown: {
+    ...Platform.select({
+      ios: {
+        width: 100,
+        bottom: 50,
+      },
+      android: {
+        width: 100,
+        bottom: 10,
+      },
+    }),
+  },
+});
 
 export default SettingScreen;
