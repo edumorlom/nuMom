@@ -10,8 +10,11 @@ import React, { useState } from "react";
 import appStyles from "./AppStyles";
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
+import Firebase from "./Firebase";
+import * as firebase from 'firebase';
 
 export default function NewAppointment(props) {
+
   appointment = [
     ([name, setName] = useState(null)),
     ([address, setAddress] = useState(null)),
@@ -20,12 +23,24 @@ export default function NewAppointment(props) {
     ([reason, setReason] = useState(null)),
   ];
 
+  appointmentInfo = { "name": name, "address": address, "date": date, "time": time, "reason": reason }
+
+
+  addAppointment = () => {
+    let fb = new Firebase();
+    let uid = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/' + uid + '/appointments').push({
+      appointment: appointmentInfo
+    }).catch(err => console.log(err));
+  }
+
   onPress = () => {
     if (!name || !address || !date || !time) {
       alert(props.getLocalizedText("fillOutAllFields"));
     } else {
-      alert(name);
-      //props.setLowerPanelContent("Appointment");
+      addAppointment();
+
+      props.setLowerPanelContent("Appointment");
     }
   };
 

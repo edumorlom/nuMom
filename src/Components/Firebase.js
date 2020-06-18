@@ -52,7 +52,8 @@ export default class Firebase {
       babyDOB: babyDOB,
       liveMiami: liveMiami,
       nextWeek: nextWeek,
-      week: week
+      week: week,
+      appointments: null
     }).catch(err => console.log(err));
 
   };
