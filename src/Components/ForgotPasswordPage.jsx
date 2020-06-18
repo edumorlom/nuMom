@@ -42,7 +42,7 @@ class ForgotPasswordPage extends Component {
             await fb.passwordReset(email);
             alert("Password Reset email sent Successfully!!\n Check your email ");
             console.log("Password Reset email sent Successfully!")
-            this.props.setAppState({screen: 'login'});
+            this.props.setScreen('login');
             
         } catch (error) {
             alert("Sorry something went wrong Unsuccessful.");

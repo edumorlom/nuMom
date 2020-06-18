@@ -24,21 +24,37 @@ export default App = (props) => {
   //       : NativeModules.I18nManager.localeIdentifier,
   // };
 
-  const initState = { screen: "login", uid: null, email: null, password: null, fullName: null, 
-                /*babyGender: null,*/ }
+  const initState = {uid: null, email: null, password: null, fullName: null  /*babyGender: null,*/ }
   const deviceLanguage = Platform.OS === "ios"
         ? NativeModules.SettingsManager.settings.AppleLocale ||
         NativeModules.SettingsManager.settings.AppleLanguages[0]
       : NativeModules.I18nManager.localeIdentifier 
   const [appState, setAppState] = useState(initState);
+  const [screen, setScreen] = useState("login");
 
   useEffect(() => {
+    let _email = null;
+    let _password = null;
+    let _fullName = null;
+    let _uid = null;
     getCookie("email").then((email) => {
+          _email = email;
           getCookie("password").then((password) => {
+            _password = password;
             if (email && password) loginWithEmailPassword(email, password);
           });
-        });
+    setTimeout(() => {
+      getCookie("fullName").then((fullName) => _fullName = fullName)
+      getCookie("uid").then((uid) => _uid = uid)
+    }, 400)
+    
+    })
+    setTimeout(() => {
+      setAppState({email: _email, password: _password, fullName: _fullName, uid: _uid});
+    }, 600)
+    
   },[])
+
   // constructor(props) {
   //   super(props);
   //   getCookie("email").then((email) => {
@@ -54,9 +70,7 @@ export default App = (props) => {
 
   let saveCookie = async (key, value) => {
     try {
-      await AsyncStorage.setItem(key, value).then((r) =>
-        console.log("Stored key to value: ", key, value)
-      );
+      await AsyncStorage.setItem(key, value).then();
     } catch (e) {
       console.log("Error storeData: " + e);
     }
@@ -71,7 +85,6 @@ export default App = (props) => {
   };
 
   let loginWithEmailPassword = (email, password) => {
-    setAppState({...appState, email: email, password: password });
     saveCookie("email", email);
     saveCookie("password", password);
 
@@ -79,7 +92,7 @@ export default App = (props) => {
       let fb = new Firebase();
       fb.logIn(email, password).then(response => {
         loginWithUid(response.user.uid);
-        fb.registerForPushNotificationsAsync(response.user)
+        fb.registerForPushNotificationsAsync(response.user) 
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })
@@ -106,76 +119,77 @@ export default App = (props) => {
       deviceLanguage: deviceLanguage
     });
     fb.getUserInfo(uid).on("value", (snapshot) => {
-      setAppState({...appState, fullName: snapshot.val().fullName, screen: "homepage"  });
+      saveCookie("fullName", snapshot.val().fullName)
+      saveCookie("uid", uid)
+      setScreen("homepage")
       //setAppState({babyGender: snapshot.val().babyGender});
     });
   };
 
   let logout = () => {
-    
-    setAppState({...appState, uid: null, fullName: null, screen: "login"  });
+    setScreen("login");
     saveCookie("email", "");
     saveCookie("password", "");
+    saveCookie("uid", "");
+    saveCookie("fullName", "");
     let fb = new Firebase();
     let user = firebase.auth().currentUser;
     fb.registerForPushNotificationsAsync(user);
   };
 
+
   let goBack = () => {
-    if (appState.screen === "setting")
-      setAppState({...appState, screen: "homepage" });
-    if (appState.screen === "forgotPassword")
-      setAppState({...appState, screen: "login" });
+    if (screen === "setting")
+      setScreen("homepage")
+      if (screen === "forgotPassword")
+      setScreen("login")
   };
 
-  console.log(appState.fullName)
  
-    if (appState.screen === "login") {
+    if (screen === "login") {
       return (
         <LogIn
-          setAppState={setAppState}
+          setScreen={setScreen}
           login={loginWithEmailPassword}
           getLocalizedText={getLocalizedText}
         />
       );
-    } else if (appState.screen === "signup") {
+    } else if (screen === "signup") {
       try {
         return (
           <SignUp
-            setAppState={setAppState}
+            setScreen={setScreen}
             login={loginWithEmailPassword}
             getLocalizedText={getLocalizedText}
           />
         );
       } catch (err) {
-        setAppState({...appState, screen: "login" });
+        setScreen("login");
       }
-    } else if (appState.screen === "setting") {
+    } else if (screen === "setting") {
       return (
         <SettingScreen
           email={appState.email}
           password={appState.password}
-          setAppState={setAppState}
+          setScreen={setScreen}
           goBack={goBack}
-          setScreen={appState.screen}
           fullName={appState.fullName}
           logout={logout}
           getLocalizedText={getLocalizedText}
         />
       );
-    } else if (appState.screen === "forgotPassword") {
+    } else if (screen === "forgotPassword") {
       return (
         <ForgotPasswordPage
-          setAppState={setAppState}
+          setScreen={setScreen}
           goBack={goBack}
-          setScreen={appState.screen}
           getLocalizedText={getLocalizedText}
         />
       );
     } else {
       return (
         <Homepage
-          setAppState={setAppState}
+          setScreen={setScreen}
           fullName={appState.fullName}
           logout={logout}
           getLocalizedText={getLocalizedText}

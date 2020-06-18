@@ -48,12 +48,12 @@ export default LogIn = props => {
                         <TextBox  style={appStyles.TextInputMask} placeholder={props.getLocalizedText('passwordInput')} onChangeText={setPassword} secureTextEntry={true}/>
                         <View style={{height: appStyles.win.height * 0.03}}/>
                         <Button onPress={() => props.login(email, password)} text={props.getLocalizedText('signInButton')}/>
-                        <TouchableHighlight onPress={() => props.setAppState({screen: 'forgotPassword'})} ><Text style={{paddingTop: 20, color: 'white', fontWeight: '500'}}>{props.getLocalizedText("forgotPassword")}</Text></TouchableHighlight>
+                        <TouchableHighlight onPress={() => props.setScreen('forgotPassword')} ><Text style={{paddingTop: 20, color: 'white', fontWeight: '500'}}>{props.getLocalizedText("forgotPassword")}</Text></TouchableHighlight>
                     </View>
                     </TouchableOpacity>
                 </Animated.View>
                 <SwipeUp text={props.getLocalizedText('swipeUpToSignUp')}
-                         onSwipeUp={() => props.setAppState({screen: 'signup'})}/>
+                         onSwipeUp={() => props.setScreen('signup')}/>
             </React.Fragment>
 
   // _start = () => {
@@ -118,7 +118,7 @@ export default LogIn = props => {
   //       </Animated.View>
   //       <SwipeUp
   //         text={props.getLocalizedText("swipeUpToSignUp")}
-  //         onSwipeUp={() => props.setAppState({ screen: "signup" })}
+  //         onSwipeUp={() => props.setScreen( "signup" )}
   //       />
   //     </React.Fragment>
     );
