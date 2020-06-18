@@ -1,47 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LogIn from "./src/Components/LogIn";
 import SignUp from "./src/Components/SignUp";
 import Homepage from "./src/Components/Homepage";
 import Firebase from "./src/Components/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
-import getLocalizedText from "./src/Components/getLocalizedText";
+import translate from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
 import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
 import * as firebase from "firebase";
 
-export default class App extends React.Component {
-  state = {
-    screen: "login",
-    uid: null,
-    email: null,
-    password: null,
-    fullName: null,
-    //babyGender: null,
-    deviceLanguage:
-      Platform.OS === "ios"
+export default App = (props) => {
+  // state = {
+  //   screen: "login",
+  //   uid: null,
+  //   email: null,
+  //   password: null,
+  //   fullName: null,
+  //   //babyGender: null,
+  //   deviceLanguage:
+  //     Platform.OS === "ios"
+  //       ? NativeModules.SettingsManager.settings.AppleLocale ||
+  //         NativeModules.SettingsManager.settings.AppleLanguages[0]
+  //       : NativeModules.I18nManager.localeIdentifier,
+  // };
+
+  const initState = { screen: "login", uid: null, email: null, password: null, fullName: null, 
+                /*babyGender: null,*/ }
+  const deviceLanguage = Platform.OS === "ios"
         ? NativeModules.SettingsManager.settings.AppleLocale ||
-          NativeModules.SettingsManager.settings.AppleLanguages[0]
-        : NativeModules.I18nManager.localeIdentifier,
+        NativeModules.SettingsManager.settings.AppleLanguages[0]
+      : NativeModules.I18nManager.localeIdentifier 
+  const [appState, setAppState] = useState(initState);
+
+  useEffect(() => {
+    getCookie("email").then((email) => {
+          getCookie("password").then((password) => {
+            if (email && password) loginWithEmailPassword(email, password);
+          });
+        });
+  },[])
+  // constructor(props) {
+  //   super(props);
+  //   getCookie("email").then((email) => {
+  //     getCookie("password").then((password) => {
+  //       if (email && password) loginWithEmailPassword(email, password);
+  //     });
+  //   });
+  // }
+
+  let getLocalizedText = (key) => {
+    return translate(deviceLanguage, key);
   };
 
-  constructor(props) {
-    super(props);
-    this.getCookie("email").then((email) => {
-      this.getCookie("password").then((password) => {
-        if (email && password) this.loginWithEmailPassword(email, password);
-      });
-    });
-  }
-
-  getLocalizedText = (key) => {
-    return getLocalizedText(this.state.deviceLanguage, key);
-  };
-
-  setAppState = (object) => {
-    this.setState(object);
-  };
-
-  saveCookie = async (key, value) => {
+  let saveCookie = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value).then((r) =>
         console.log("Stored key to value: ", key, value)
@@ -51,7 +62,7 @@ export default class App extends React.Component {
     }
   };
 
-  getCookie = async (key) => {
+  let getCookie = async (key) => {
     try {
       return await AsyncStorage.getItem(key);
     } catch (e) {
@@ -59,16 +70,15 @@ export default class App extends React.Component {
     }
   };
 
-  loginWithEmailPassword = (email, password) => {
-    this.setAppState({ email: email });
-    this.setAppState({ password: password });
-    this.saveCookie("email", email);
-    this.saveCookie("password", password);
+  let loginWithEmailPassword = (email, password) => {
+    setAppState({...appState, email: email, password: password });
+    saveCookie("email", email);
+    saveCookie("password", password);
 
     if (email && password) {
       let fb = new Firebase();
       fb.logIn(email, password).then(response => {
-        this.loginWithUid(response.user.uid);
+        loginWithUid(response.user.uid);
         fb.registerForPushNotificationsAsync(response.user)
       }, e => {
         alert("Invalid E-mail and Password Combination!")
@@ -78,7 +88,7 @@ export default class App extends React.Component {
     }
   };
 
-  loginWithUid = (uid) => {
+  let loginWithUid = (uid) => {
     let fb = new Firebase();
     let today = new Date();
     let date =
@@ -93,86 +103,84 @@ export default class App extends React.Component {
       today.getMinutes();
     fb.storeObjectInDatabase(uid, {
       lastInteraction: date,
-      deviceLanguage: this.state.deviceLanguage,
+      deviceLanguage: deviceLanguage
     });
     fb.getUserInfo(uid).on("value", (snapshot) => {
-      this.setAppState({ fullName: snapshot.val().fullName });
-      //this.setAppState({babyGender: snapshot.val().babyGender});
-      this.setAppState({ screen: "homepage" });
+      setAppState({...appState, fullName: snapshot.val().fullName, screen: "homepage"  });
+      //setAppState({babyGender: snapshot.val().babyGender});
     });
   };
 
-  logout = () => {
+  let logout = () => {
     
-    this.setAppState({ uid: null });
-    this.setAppState({ fullName: null });
-    this.setAppState({ screen: "login" });
-    this.saveCookie("email", "");
-    this.saveCookie("password", "");
+    setAppState({...appState, uid: null, fullName: null, screen: "login"  });
+    saveCookie("email", "");
+    saveCookie("password", "");
     let fb = new Firebase();
     let user = firebase.auth().currentUser;
     fb.registerForPushNotificationsAsync(user);
   };
 
-  goBack = () => {
-    if (this.state.screen === "setting")
-      this.setAppState({ screen: "homepage" });
-    if (this.state.screen === "forgotPassword")
-      this.setAppState({ screen: "login" });
+  let goBack = () => {
+    if (appState.screen === "setting")
+      setAppState({...appState, screen: "homepage" });
+    if (appState.screen === "forgotPassword")
+      setAppState({...appState, screen: "login" });
   };
 
-  render() {
-    if (this.state.screen === "login") {
+  console.log(appState.fullName)
+ 
+    if (appState.screen === "login") {
       return (
         <LogIn
-          setAppState={this.setAppState}
-          login={this.loginWithEmailPassword}
-          getLocalizedText={this.getLocalizedText}
+          setAppState={setAppState}
+          login={loginWithEmailPassword}
+          getLocalizedText={getLocalizedText}
         />
       );
-    } else if (this.state.screen === "signup") {
+    } else if (appState.screen === "signup") {
       try {
         return (
           <SignUp
-            setAppState={this.setAppState}
-            login={this.loginWithEmailPassword}
-            getLocalizedText={this.getLocalizedText}
+            setAppState={setAppState}
+            login={loginWithEmailPassword}
+            getLocalizedText={getLocalizedText}
           />
         );
       } catch (err) {
-        this.setAppState({ screen: "login" });
+        setAppState({...appState, screen: "login" });
       }
-    } else if (this.state.screen === "setting") {
+    } else if (appState.screen === "setting") {
       return (
         <SettingScreen
-          email={this.state.email}
-          password={this.state.password}
-          setAppState={this.setAppState}
-          goBack={this.goBack}
-          setScreen={this.state.screen}
-          fullName={this.state.fullName}
-          logout={this.logout}
-          getLocalizedText={this.getLocalizedText}
+          email={appState.email}
+          password={appState.password}
+          setAppState={setAppState}
+          goBack={goBack}
+          setScreen={appState.screen}
+          fullName={appState.fullName}
+          logout={logout}
+          getLocalizedText={getLocalizedText}
         />
       );
-    } else if (this.state.screen === "forgotPassword") {
+    } else if (appState.screen === "forgotPassword") {
       return (
         <ForgotPasswordPage
-          setAppState={this.setAppState}
-          goBack={this.goBack}
-          setScreen={this.state.screen}
-          getLocalizedText={this.getLocalizedText}
+          setAppState={setAppState}
+          goBack={goBack}
+          setScreen={appState.screen}
+          getLocalizedText={getLocalizedText}
         />
       );
     } else {
       return (
         <Homepage
-          setAppState={this.setAppState}
-          fullName={this.state.fullName}
-          logout={this.logout}
-          getLocalizedText={this.getLocalizedText}
+          setAppState={setAppState}
+          fullName={appState.fullName}
+          logout={logout}
+          getLocalizedText={getLocalizedText}
         />
       );
     }
-  }
+  
 }

@@ -24,11 +24,7 @@ export default Homepage = props => {
 
 
   useEffect( () => {
-    //Put all of this in another async functions, then await for it
-    
-
     sortClinics();
-    
   },[])
 
   let sortClinics = async () => {
