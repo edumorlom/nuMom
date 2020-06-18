@@ -5,14 +5,15 @@ import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown"
 
 export default function FindCare(props) {
-    const [distFilter, servFilter] = props.filters;  
-    const [dist, setDist] = useState(distFilter);
-    const [service, setService] = useState(servFilter);
+    const [dist, setDist] = useState(props.filters[0]);
+    const [service, setService] = useState(props.filters[1]);
 
     useEffect(() => {
+        //This runs on every re-render
         setDist(props.filters[0]);
         setService(props.filters[1])
-    } , [])
+    } )
+
 
     let clinicsButtons = props.clinics.map((clinic, key) =>
         <SelectionButtonImageOnRight key={key}
@@ -40,7 +41,7 @@ export default function FindCare(props) {
             clinics = clinics.filter((clinic) => clinic.services.includes(service))
         }
         props.setClinics(clinics);
-        props.setFilters(distance, service);
+        props.setFilters([distance, service]);
         setDist(distance);
         setService(service);
     }
@@ -59,10 +60,8 @@ export default function FindCare(props) {
         //The <> tag is shorthand for React.Fragment <= look it up
         <>
             <View style={{flexDirection: "row"}}>
-                { <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={distances} 
-                label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value, service)} /> }
-                <Dropdown containerStyle= {{width: '30%', left: '50%'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} 
-                label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
+                { <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={distances} label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value, service)} /> }
+                <Dropdown containerStyle= {{width: '30%', left: '50%'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
             </View>
                 <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                     

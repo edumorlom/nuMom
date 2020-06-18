@@ -56,6 +56,7 @@ export default class LowerPanel extends React.Component {
   };
 
   showContent = () => {
+    //console.log(this.props.filters)
     if (this.props.lowerPanelContent === "findCare") {
       return (
         <FindCare
