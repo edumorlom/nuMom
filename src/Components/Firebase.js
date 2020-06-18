@@ -6,16 +6,15 @@ import { Notifications } from 'expo'; 
 import * as Permissions from 'expo-permissions';
 
 
-
 export default class Firebase {
   constructor() {
     const config = firebaseAccount;
     if (!firebase.apps.length) firebase.initializeApp(config);
   }
 
-    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
+    signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, liveMiami, babyDOB, nextWeek, week) => {
         this.createUserWithEmailAndPassword(email, password).then(response => {
-                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, babyDOB, nextWeek, week).then(() => {
+                this.saveUserInfo(response.user.uid, phoneNumber, fullName, dob, pregnant, infant, liveMiami, babyDOB, nextWeek, week).then(() => {
                     this.sendWelcomeSMS(fullName, phoneNumber).then(response => console.log("Text Message Sent Successfully!"));
             }, e => {alert("ERROR: Couldn't save user information!")})
         }, e => {alert("ERROR: E-Mail is already associated with another account!");})
@@ -42,7 +41,7 @@ export default class Firebase {
     });
 }
 
-    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, babyDOB, nextWeek, week) => {
+    saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, liveMiami, babyDOB, nextWeek, week) => {
         if (!uid) return;
         return firebase.database().ref('users/' + uid).set({
             phoneNumber: phoneNumber,

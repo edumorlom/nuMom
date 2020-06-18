@@ -30,7 +30,8 @@ exports.sendPushNotification = functions.database.ref('users/{id}').onUpdate(eve
             messages.push({
                 "to": expoToken,
                 "sound": "default",
-                "body": body
+                "body": body,
+                "_displayInForeground": true 
                 // "body": `Hello ${name} our user info has been updated`
               });
               fetch('https://exp.host/--/api/v2/push/send', {
