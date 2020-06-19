@@ -70,7 +70,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.reason}
+            {props.extra}
           </Text>
         </View>
       </View>

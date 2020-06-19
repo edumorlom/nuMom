@@ -50,7 +50,7 @@
   "appointmentAddress": "Address",
   "appointmentDate": "Date",
   "appointmentTime": "Time",
-  "appointmentReason": "Reason",
+  "appointmentExtra": "Extra Information",
   "appointmentInfo": "Info",
   "STDInfo": "View STD",
   "STDSelection": "Select The STD",
