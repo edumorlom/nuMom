@@ -36,7 +36,7 @@ const ForgotPasswordPage = (props) => {
             await fb.passwordReset(email);
             alert("Password Reset email sent Successfully!!\n Check your email ");
             console.log("Password Reset email sent Successfully!")
-            props.setAppState({screen: 'login'});
+            props.setScreen('login');
             
         } catch (error) {
             alert("Sorry something went wrong Unsuccessful.");
