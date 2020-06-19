@@ -138,7 +138,7 @@ export default class LowerPanel extends React.Component {
           fullPanel={this.props.fullPanel}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
-          setAppState={this.props.setAppState}
+          setScreen={this.props.setScreen}
         />
       );
     }
