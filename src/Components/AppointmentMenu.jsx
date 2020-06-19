@@ -9,6 +9,9 @@ import React from "react";
 import * as Haptics from "expo-haptics";
 
 export default function AppointmentMenu(props) {
+
+  const {name, date, time, address, extra} = props.appointments;
+
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
@@ -38,7 +41,7 @@ export default function AppointmentMenu(props) {
               fontWeight: "bold",
             }}
           >
-            {props.name}
+            {name}
           </Text>
           <Text
             style={{
@@ -46,7 +49,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.address}
+            {address}
           </Text>
           <Text
             style={{
@@ -54,7 +57,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.date}
+            {date}
           </Text>
           <Text
             style={{
@@ -62,7 +65,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.time}
+            {time}
           </Text>
           <Text
             style={{
@@ -70,7 +73,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.extra}
+            {extra}
           </Text>
         </View>
       </View>

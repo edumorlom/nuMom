@@ -25,11 +25,19 @@ export default function NewAppointment(props) {
   appointmentInfo = { "name": name, "address": address, "date": date, "time": time, "extra": extra }
 
 
+  // addAppointment = () => {
+  //   let uid = firebase.auth().currentUser.uid;
+  //   firebase.database().ref('users/' + uid + '/appointments').child(name).set({
+  //     appointmentInfo
+  //   }).catch(err => console.log(err));
+  // }
+
   addAppointment = () => {
     let uid = firebase.auth().currentUser.uid;
-    firebase.database().ref('users/' + uid + '/appointments').child(name).set({
-      appointmentInfo
+    firebase.database().ref('users/' + uid + '/appointments').push({
+      appointment: appointmentInfo
     }).catch(err => console.log(err));
+    console.log(props);
   }
 
   onPress = () => {
