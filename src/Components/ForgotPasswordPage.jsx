@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'react-native';
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
@@ -7,23 +7,17 @@ import Firebase from './Firebase';
 
 
 
-class ForgotPasswordPage extends Component {
-    constructor(props){
-        super(props);
-        this.state ={
-            email: null
-        }
-
-        this.onChangeText = this.onChangeText.bind(this);
-    }
+const ForgotPasswordPage = (props) => {
+    
+    const [email, setEmail] = useState(null);
 
     onChangeText = (object) => {
-        this.setState(object);
+        setEmail(object);
       };
 
     goBack = () => {
         Haptics.selectionAsync().then();
-        this.props.goBack();
+        props.goBack();
       };
 
     isValidEmail = (email) => {
@@ -36,13 +30,13 @@ class ForgotPasswordPage extends Component {
         let fb = new Firebase();
 
         try {
-            if(!this.isValidEmail(email)){
+            if(!isValidEmail(email)){
                 return alert("Invalid Email: Please input Valid Email");
             }
             await fb.passwordReset(email);
             alert("Password Reset email sent Successfully!!\n Check your email ");
             console.log("Password Reset email sent Successfully!")
-            this.props.setAppState({screen: 'login'});
+            props.setAppState({screen: 'login'});
             
         } catch (error) {
             alert("Sorry something went wrong Unsuccessful.");
@@ -52,13 +46,10 @@ class ForgotPasswordPage extends Component {
        
     }
 
-
-    render() {
-        const { email } = this.state;
         return (
             <View style={{flex: 1}}>
                 <TouchableHighlight
-                    onPress={this.goBack}
+                    onPress={goBack}
                     underlayColor={"transparent"}
                     style={{
                     height: appStyles.win.height * 0.04,
@@ -82,28 +73,28 @@ class ForgotPasswordPage extends Component {
                         fontSize: appStyles.titleFontSize,
                         fontWeight: 'bold',
                         alignSelf: 'center'
-                        }}>{this.props.getLocalizedText("forgotPassword")}</Text>
+                        }}>{props.getLocalizedText("forgotPassword")}</Text>
                 </View>
 
                 <View style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}>
-                    <Text style={appStyles.titleBlue}>{this.props.getLocalizedText("emailInput")}:</Text>
+                    <Text style={appStyles.titleBlue}>{props.getLocalizedText("emailInput")}:</Text>
                     <View style={appStyles.TextInput.View}>
                         <TextBox
-                        placeholder={this.props.getLocalizedText("emailInput")}
+                        placeholder={props.getLocalizedText("emailInput")}
                         style={appStyles.TextInput.TextInput}
                         value={email}
-                        onChangeText={(e)=> this.onChangeText({email: e})}
+                        onChangeText={(e)=> onChangeText(e)}
                         />
                     </View>
 
                     <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
-                    onPress={() => this.PasswordReset(email)} >
-                    <Text style={appStyles.button.text}>{this.props.getLocalizedText("send")}</Text>
+                    onPress={() => PasswordReset(email)} >
+                    <Text style={appStyles.button.text}>{props.getLocalizedText("send")}</Text>
                     </TouchableHighlight>
                 </View>
             </View>
         )
-    }
+    
 }
 
 
