@@ -17,6 +17,8 @@ exports.sendCustomSMS = functions.https.onRequest((req, res) => {
 exports.sendPushNotification = functions.database.ref('users/{id}').onUpdate(event => {
   //const ref = admin.database().ref("users/{id}");
   const snapshot = event.after;
+  //event.after.ref.parent     (returns a reference)
+  //On which you can do .once() or anything else
 
   var messages = []
 

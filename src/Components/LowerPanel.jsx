@@ -21,6 +21,7 @@ export default class LowerPanel extends React.Component {
 
   state = {
     panelStyle: { ...appStyles.lowerPanel },
+    filterToShow: false
   };
 
   transition = null;
@@ -66,6 +67,7 @@ export default class LowerPanel extends React.Component {
           setClinics={this.props.setClinics}
           setFilters={this.props.setFilters}
           filters={this.props.filters}
+          filterToShow = {this.state.filterToShow}
           setLowerPanelContent={this.props.setLowerPanelContent}
           getLocalizedText={this.props.getLocalizedText}
         />
@@ -156,6 +158,11 @@ export default class LowerPanel extends React.Component {
     clearInterval(this.interval);
   }
 
+  setFilterToShow = () => {
+    let changeView = !this.state.filterToShow;
+    this.setState({filterToShow : changeView});
+  }
+
   //movePanel(fullPanel)
 
   render() {
@@ -164,6 +171,7 @@ export default class LowerPanel extends React.Component {
         {this.props.lowerPanelContent !== "selection" && (
           <LowerPanelHeader
             onPress={this.props.setFullPanel}
+            setFilterToShow = {this.setFilterToShow}
             goBack={this.props.goBack}
             lowerPanelContent={this.props.lowerPanelContent}
             getLocalizedText={this.props.getLocalizedText}

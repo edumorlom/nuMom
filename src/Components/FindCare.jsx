@@ -14,6 +14,7 @@ export default function FindCare(props) {
         setService(props.filters[1])
     } )
 
+    //props.filterToShow
 
     let clinicsButtons = props.clinics.map((clinic, key) =>
         <SelectionButtonImageOnRight key={key}
@@ -59,10 +60,10 @@ export default function FindCare(props) {
     return (
         //The <> tag is shorthand for React.Fragment <= look it up
         <>
-            <View style={{flexDirection: "row"}}>
+            {props.filterToShow ? <View style={{flexDirection: "row"}}>
                 { <Dropdown containerStyle= {{width: '30%', right: '50%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={distances} label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value, service)} /> }
                 <Dropdown containerStyle= {{width: '30%', left: '50%'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
-            </View>
+            </View> : null}
                 <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                     
                     {clinicsButtons}
