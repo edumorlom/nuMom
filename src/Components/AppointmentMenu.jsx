@@ -22,8 +22,8 @@ export default function AppointmentMenu(props) {
         justifyContent: "center",
         backgroundColor: "white",
         ...shadow,
-        minHeight: appStyles.win.height * 0,
-        maxHeight: appStyles.win.height * 0.2,
+        //minHeight: appStyles.win.height * 0,
+        //maxHeight: appStyles.win.height * 0.2,
         width: appStyles.win.width * 0.95,
         borderRadius: borderRadius,
       }}
@@ -54,7 +54,7 @@ export default function AppointmentMenu(props) {
               fontSize: appStyles.regularFontSize - 5,
             }}
           >
-            {props.day}
+            {props.date}
           </Text>
           <Text
             style={{

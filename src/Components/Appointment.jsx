@@ -1,8 +1,8 @@
-import React from "react";
-import { ScrollView, View, StyleSheet, Button, useState } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, View, StyleSheet, Button } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
-import NewAppointment from "./NewAppointment";
 import * as firebase from 'firebase';
+import Firebase from "./Firebase";
 
 export default function Appointment(props) {
   let _isMounted = false;
@@ -16,11 +16,16 @@ export default function Appointment(props) {
   getAppointment = () => {
     let fb = new Firebase();
     let uid = firebase.auth().currentUser.uid;
+    var key = " "
     _isMounted = true;
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
-      fb.getUserInfo(uid).on('value', (snapshot) => {
-
+      var ref = firebase.database().ref('users/' + uid + '/appointments');
+      ref.on("child_added", function (snapshot) {
+        key = snapshot.key;
+        console.log(key);
+      })
+      firebase.database().ref('users/' + uid + '/appointments/' + key + '/appointmentInfo/').on('value', (snapshot) => {
         const exists = (snapshot.val() !== null);
         if (exists || snapshot.exists() || snapshot.val() !== 'undefined') {
           if (_isMounted) {
@@ -37,6 +42,16 @@ export default function Appointment(props) {
     }
 
   }
+
+  useEffect(() => {
+    getAppointment();
+    /*console.log(name);
+    console.log(address);
+    console.log(date);
+    console.log(time);
+    console.log(name);*/
+
+  });
 
   newAppointmentButton = (
     <AppointmentMenu

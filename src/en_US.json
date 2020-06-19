@@ -46,7 +46,7 @@
   "appointment": "Appointments",
   "newAppointment": "Enter in Appointment Information:",
   "wantNewAppointment": "New Appointment+",
-  "appointmentName": "Name",
+  "appointmentName": "Name of Appointment",
   "appointmentAddress": "Address",
   "appointmentDate": "Date",
   "appointmentTime": "Time",

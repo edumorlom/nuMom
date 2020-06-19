@@ -27,8 +27,8 @@ export default function NewAppointment(props) {
 
   addAppointment = () => {
     let uid = firebase.auth().currentUser.uid;
-    firebase.database().ref('users/' + uid + '/appointments').push({
-      appointment: appointmentInfo
+    firebase.database().ref('users/' + uid + '/appointments').child(name).set({
+      appointmentInfo
     }).catch(err => console.log(err));
   }
 
