@@ -9,20 +9,7 @@ import SettingScreen from "./src/Components/SettingScreen";
 import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
 import * as firebase from "firebase";
 
-export default App = (props) => {
-  // state = {
-  //   screen: "login",
-  //   uid: null,
-  //   email: null,
-  //   password: null,
-  //   fullName: null,
-  //   //babyGender: null,
-  //   deviceLanguage:
-  //     Platform.OS === "ios"
-  //       ? NativeModules.SettingsManager.settings.AppleLocale ||
-  //         NativeModules.SettingsManager.settings.AppleLanguages[0]
-  //       : NativeModules.I18nManager.localeIdentifier,
-  // };
+export default App = () => {
 
   const initState = {uid: null, email: null, password: null, fullName: null  /*babyGender: null,*/ }
   const deviceLanguage = Platform.OS === "ios"
@@ -52,17 +39,9 @@ export default App = (props) => {
     setTimeout(() => {
       setAppState({email: _email, password: _password, fullName: _fullName, uid: _uid});
     }, 600)
-    
+    //All the timeouts are to make sure all the properties get their actual value (not null)
   },[])
 
-  // constructor(props) {
-  //   super(props);
-  //   getCookie("email").then((email) => {
-  //     getCookie("password").then((password) => {
-  //       if (email && password) loginWithEmailPassword(email, password);
-  //     });
-  //   });
-  // }
 
   let getLocalizedText = (key) => {
     return translate(deviceLanguage, key);
