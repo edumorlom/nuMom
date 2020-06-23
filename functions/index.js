@@ -14,9 +14,11 @@ exports.sendCustomSMS = functions.https.onRequest((req, res) => {
     .catch(e => console.log(e))
 });
 
-exports.sendPushNotification = functions.database.ref('users/{id}').onUpdate(event => {
+exports.sendPushNotification = functions.database.ref('users/{id}/infant').onUpdate(event => {
   //const ref = admin.database().ref("users/{id}");
   const snapshot = event.after;
+  const ref = event.after.ref.parent     //(returns a reference)
+  //On which you can do .once() or anything else
 
   var messages = []
 
@@ -24,28 +26,56 @@ exports.sendPushNotification = functions.database.ref('users/{id}').onUpdate(eve
   // return ref.once('value').then((snapshot) => {
   //         console.log(snapshot);
   //         var expoToken = snapshot.val().expoToken;
-  var expoToken = snapshot.val().expoToken;
-  var name = snapshot.val().fullName.split(" ")[0];
-  let body = `Hello ${name}, your user info has been updated`;
-  messages.push({
-    "to": expoToken,
-    "sound": "default",
-    "body": body,
-    "_displayInForeground": true
-    // "body": `Hello ${name} our user info has been updated`
+//   var expoToken = snapshot.val().expoToken;
+//   var name = snapshot.val().fullName.split(" ")[0];
+//   let body = `Hello ${name}, your user info has been updated`;
+//   messages.push({
+//     "to": expoToken,
+//     "sound": "default",
+//     "body": body,
+//     "_displayInForeground": true
+//     // "body": `Hello ${name} our user info has been updated`
+//   });
+//   fetch('https://exp.host/--/api/v2/push/send', {
+//     method: 'POST',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(messages)
+
+//   });
+// })
+
+
+    //return the main promise 
+    if (snapshot.val() === true) {   //If infant is true/ changed to true
+      return ref.once('value').then((snapshot) => {
+        console.log(snapshot);
+        var expoToken = snapshot.val().expoToken;
+        //var name = snapshot.val().fullName.split(" ")[0];
+        //let body = `Hello ${name}, your user info has been updated`;
+              messages.push({
+                  "to": expoToken,
+                  "sound": "default",
+                  "body": "Congratulations on the new baby, we wish your baby a happy and healthy life",
+                  "_displayInForeground": true 
+                });
+                fetch('https://exp.host/--/api/v2/push/send', {
+                  method: 'POST',
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(messages)
+
+              });
+            return Promise(messages);
+        })
+    }
+    return null
   });
-  fetch('https://exp.host/--/api/v2/push/send', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(messages)
-
-  });
-})
-
-
+  
 
 
 
