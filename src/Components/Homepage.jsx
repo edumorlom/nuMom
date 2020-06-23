@@ -12,7 +12,7 @@ export default Homepage = props => {
   
     
   const [fullPanel, setFullPanel] = useState(true);
-  const [clinics, setClinics] = useState(Clinics());
+  const [clinics, setClinics] = useState(Clinics());    //Pass it empty array and see what happens
   const [sortedClinics, setSortedClinics] = useState(null);
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);

@@ -18,9 +18,8 @@ exports.sendPushNotification = functions.database.ref('users/{id}/infant').onUpd
   //const ref = admin.database().ref("users/{id}");
   const snapshot = event.after;
   const ref = event.after.ref.parent     //(returns a reference)
-  //On which you can do .once() or anything else
 
-  var messages = []
+  var messages = [];
 
     //return the main promise 
     if (snapshot.val() === true) {   //If infant is true/ changed to true
@@ -89,7 +88,34 @@ exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
       });
     })
     return null;
-  }).catch(e => console.log(e)) //Redeploy the function
+  }).catch(e => console.log(e)) 
+ return res.status(200).send("Sucess");
+
+});
+
+
+exports.sendAppointmentReminder = functions.https.onRequest((req, res) => {
+  var ref = admin.database().ref("users");
+  let today = new Date();
+  let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
+  let date = (tomorrow.getMonth()+1).toString().padStart(2, "0") +'/'+tomorrow.getDate().toString().padStart(2, "0") +'/'+ tomorrow.getFullYear();
+  ref.once("value")
+  .then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      let appointmentSnapshot = childSnapshot.child("appointments");
+      let phoneNumber = childSnapshot.val().phoneNumber;
+      let deviceLanguage = childSnapshot.val().deviceLanguage;
+      let msg = "Hello, you got an appointment tomorrow";
+      
+      appointmentSnapshot.forEach( childAptmtSnapshot => {
+        let aptmtDate = childAptmtSnapshot.child("date").val();
+        if (aptmtDate === date) {   //Date equals tomorrow
+          message.sendCustomSMS(phoneNumber, msg);
+        }
+      })
+    })
+    return null;
+  }).catch(e => console.log(e)) 
  return res.status(200).send("Sucess");
 
 });
