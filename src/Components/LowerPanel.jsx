@@ -16,7 +16,7 @@ import Documents from "./Documents";
 export default class LowerPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.goUp();
+    this.movePanel(true);
   }
 
   state = {
@@ -26,7 +26,7 @@ export default class LowerPanel extends React.Component {
 
   transition = null;
 
-  goUp = () => {
+  /* goUp = () => {
     clearInterval(this.transition);
     this.transition = setInterval(() => {
       let panelStyle = { ...appStyles.lowerPanel };
@@ -48,6 +48,27 @@ export default class LowerPanel extends React.Component {
       panelStyle["bottom"] = this.state.panelStyle.bottom - 30;
 
       if (this.state.panelStyle.bottom <= appStyles.lowerPanel.bottom) {
+        clearInterval(this.transition);
+        panelStyle["bottom"] = appStyles.lowerPanel.bottom;
+      }
+
+      this.setState({ panelStyle: panelStyle });
+    }, 0.1);
+  }; */
+
+  movePanel = (up) => {
+    clearInterval(this.transition);
+    this.transition = setInterval(() => {
+      let panelStyle = { ...appStyles.lowerPanel };
+      let panelState = this.state.panelStyle;
+      panelStyle["bottom"] = up ? panelState.bottom + 20 : panelState.bottom - 20;
+
+      if (up && panelState.bottom >= 0) {
+        clearInterval(this.transition);
+        panelStyle["bottom"] = 0;
+      }
+      
+      else if (!up && panelState.bottom <= appStyles.lowerPanel.bottom ) {
         clearInterval(this.transition);
         panelStyle["bottom"] = appStyles.lowerPanel.bottom;
       }
@@ -112,11 +133,13 @@ export default class LowerPanel extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.fullPanel && !this.props.fullPanel) {
+    let fullPanel = this.props.fullPanel;
+    this.movePanel(fullPanel);
+    /* if (prevProps.fullPanel && !this.props.fullPanel) {
       this.goDown();
     } else if (!prevProps.fullPanel && this.props.fullPanel) {
       this.goUp();
-    }
+    } */
   }
 
   componentWillUnmount() {

@@ -18,9 +18,8 @@ exports.sendPushNotification = functions.database.ref('users/{id}/infant').onUpd
   //const ref = admin.database().ref("users/{id}");
   const snapshot = event.after;
   const ref = event.after.ref.parent     //(returns a reference)
-  //On which you can do .once() or anything else
 
-  var messages = []
+  var messages = [];
 
   //return the main promise 
   // return ref.once('value').then((snapshot) => {
@@ -85,37 +84,64 @@ exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
   let today = new Date();
   let date = (today.getMonth() + 1).toString().padStart(2, "0") + '/' + today.getDate().toString().padStart(2, "0") + '/' + today.getFullYear();
   ref.orderByChild("nextWeek").equalTo(date).once("value")
-    .then((snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        let phoneNumber = childSnapshot.val().phoneNumber;
-        let week = "Week" + childSnapshot.val().week;
-        let deviceLanguage = childSnapshot.val().deviceLanguage;
-        //get messages based on week and device language and whether it is baby message or mother message like "Week1Mother" or "Week1Baby"
+  .then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      let phoneNumber = childSnapshot.val().phoneNumber;
+      let week = "Week" + childSnapshot.val().week;
+      let deviceLanguage = childSnapshot.val().deviceLanguage;
+      //get messages based on week and device language and whether it is baby message or mother message like "Week1Mother" or "Week1Baby"
 
-        let motherKey = week + "Mother";
-        let babyKey = week + "Baby";
-        let motherMsg = getLocalizedText.translate(deviceLanguage, motherKey)
-        let babyMsg = getLocalizedText.translate(deviceLanguage, babyKey)
+      let motherKey = week + "Mother";
+      let babyKey = week + "Baby";
+      let motherMsg = getLocalizedText.translate(deviceLanguage, motherKey)
+      let babyMsg = getLocalizedText.translate(deviceLanguage, babyKey)
 
-        //create SMS with message for mother and another with message for baby
+      //create SMS with message for mother and another with message for baby
+     
+      message.sendCustomSMS(phoneNumber, motherMsg);
+      message.sendCustomSMS(phoneNumber, babyMsg);
 
-        message.sendCustomSMS(phoneNumber, motherMsg);
-        message.sendCustomSMS(phoneNumber, babyMsg);
+      //Update nextWeek by adding 7 days
+      //Update week number   (If weekNumber > 24 set it to null)
+      let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+      let nextWeek = (nextweek.getMonth()+1).toString().padStart(2, "0") +'/'+nextweek.getDate().toString().padStart(2, "0") +'/'+ nextweek.getFullYear()
+      let nextWeekNo = childSnapshot.val().week + 1;
+      (nextWeekNo < 25) ? null : nextWeekNo = null;  //The messages are only for the first 24 weeks.
+      nextWeekNo ? null : nextWeek = null;       //Set the date to null as well. This will remove it from firebase
+      childSnapshot.ref.update({
+        nextWeek: nextWeek,
+        week: nextWeekNo
+      });
+    })
+    return null;
+  }).catch(e => console.log(e)) 
+ return res.status(200).send("Sucess");
 
-        //Update nextWeek by adding 7 days
-        //Update week number   (If weekNumber > 24 set it to null)
-        let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-        let nextWeek = (nextweek.getMonth() + 1).toString().padStart(2, "0") + '/' + nextweek.getDate().toString().padStart(2, "0") + '/' + nextweek.getFullYear()
-        let nextWeekNo = childSnapshot.val().week + 1;
-        (nextWeekNo < 25) ? null : nextWeekNo = null;  //The messages are only for the first 24 weeks.
-        nextWeekNo ? null : nextWeek = null;       //Set the date to null as well. This will remove it from firebase
-        childSnapshot.ref.update({
-          nextWeek: nextWeek,
-          week: nextWeekNo
-        });
+});
+
+
+exports.sendAppointmentReminder = functions.https.onRequest((req, res) => {
+  var ref = admin.database().ref("users");
+  let today = new Date();
+  let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
+  let date = (tomorrow.getMonth()+1).toString().padStart(2, "0") +'/'+tomorrow.getDate().toString().padStart(2, "0") +'/'+ tomorrow.getFullYear();
+  ref.once("value")
+  .then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      let appointmentSnapshot = childSnapshot.child("appointments");
+      let phoneNumber = childSnapshot.val().phoneNumber;
+      let deviceLanguage = childSnapshot.val().deviceLanguage;
+      let msg = "Hello, you got an appointment tomorrow";
+      
+      appointmentSnapshot.forEach( childAptmtSnapshot => {
+        let aptmtDate = childAptmtSnapshot.child("date").val();
+        if (aptmtDate === date) {   //Date represents tomorrow's date
+          message.sendCustomSMS(phoneNumber, msg);
+        }
       })
-      return null;
-    }).catch(e => console.log(e)) //Redeploy the function
-  return res.status(200).send("Sucess");
+    })
+    return null;
+  }).catch(e => console.log(e)) 
+ return res.status(200).send("Sucess");
 
 });
