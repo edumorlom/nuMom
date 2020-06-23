@@ -1,21 +1,41 @@
-import { Image, Text, TouchableHighlight, View } from "react-native";
+import { Image, Text, TouchableHighlight, View, Alert, } from "react-native";
 import appStyles, {
   borderRadius,
   greyColor,
   pinkColor,
   shadow,
 } from "./AppStyles";
-import React from "react";
+import React, { useEffect } from "react";
 import * as Haptics from "expo-haptics";
+import { Feather } from '@expo/vector-icons';
+
 
 export default function AppointmentMenu(props) {
 
-  const {name, date, time, address, extra} = props.appointments;
+  const {name, date, time, address, extra} = props.appointments.val();
 
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };
+
+   const AsyncAlert = () => {
+    return new Promise((resolve, reject) => {
+      Alert.alert(
+        props.getLocalizedText("RemoveAppointment"),
+        props.getLocalizedText('WantToRemoveAppointment'),
+        [
+          { text: props.getLocalizedText("Yes"), onPress: () => resolve(true) },
+          { text: props.getLocalizedText("No"), onPress: () => resolve(false) },
+        ],
+        { cancelable: false }
+      );
+    });
+  };
+
+
+
+  
 
   return (
     <TouchableHighlight
@@ -32,7 +52,7 @@ export default function AppointmentMenu(props) {
       }}
       underlayColor={appStyles.underlayColor}
     >
-      <View style={{ alignItems: "center", flexDirection: "row" }}>
+      <View style={{ alignItems: "center", flexDirection: "row", justifyContent: 'space-between', paddingVertical: 10, paddingHorizontal: 15 }}>
         <View>
           <Text
             style={{
@@ -76,6 +96,13 @@ export default function AppointmentMenu(props) {
             {extra}
           </Text>
         </View>
+        <TouchableHighlight underlayColor="transparent"  onPress={() => {
+          AsyncAlert().then((response) => {
+            response ? props.deleteAppointment(props.appointments.key) : null;
+          })
+        } }>
+            <Feather name="trash" size={40}  color='#eb1800'  />
+        </TouchableHighlight>
       </View>
     </TouchableHighlight>
   );
