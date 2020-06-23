@@ -5,6 +5,7 @@ import {
   TextInput as TextBox,
   View,
   AsyncStorage,
+  ScrollView
 } from "react-native";
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
@@ -40,75 +41,78 @@ export default function NewAppointment(props) {
   };
 
   return (
-    <TouchableOpacity
-      onPress={Keyboard.dismiss}
-      accessible={false}
-      style={appStyles.container}
-    >
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-        }}
+    <ScrollView contentContainerStyle={{ alignItems: 'center', maxWidth: '100%' }}>
+      <TouchableOpacity
+        onPress={Keyboard.dismiss}
+        accessible={false}
+        style={appStyles.container}
       >
-        <View>
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={props.getLocalizedText("appointmentName")}
-              onChangeText={setName}
-              value={name}
-              style={appStyles.TextInput.TextInput}
-            />
-          </View>
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={props.getLocalizedText("appointmentAddress")}
-              onChangeText={setAddress}
-              value={address}
-              style={appStyles.TextInput.TextInput}
-            />
-          </View>
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={props.getLocalizedText("appointmentDate")}
-              onChangeText={setDate}
-              value={date}
-              style={appStyles.TextInput.TextInput}
-            />
-          </View>
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={props.getLocalizedText("appointmentTime")}
-              onChangeText={setTime}
-              value={time}
-              style={appStyles.TextInput.TextInput}
-            />
-          </View>
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={props.getLocalizedText("appointmentExtra")}
-              onChangeText={setExtra}
-              value={extra}
-              style={appStyles.TextInput.TextInput}
-            />
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+          }}
+        >
+          <View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={props.getLocalizedText("appointmentName")}
+                onChangeText={setName}
+                value={name}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={props.getLocalizedText("appointmentAddress")}
+                onChangeText={setAddress}
+                value={address}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={props.getLocalizedText("appointmentDate")}
+                onChangeText={setDate}
+                value={date}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={props.getLocalizedText("appointmentTime")}
+                onChangeText={setTime}
+                value={time}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={props.getLocalizedText("appointmentExtra")}
+                onChangeText={setExtra}
+                value={extra}
+                style={appStyles.TextInput.TextInput}
+              />
+            </View>
           </View>
         </View>
-      </View>
-      <View
-        style={{
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "absolute",
-          bottom: "12%",
-        }}
-      >
-        <Button
-          text={props.getLocalizedText("continueButton")}
-          onPress={onPress}
-        />
-      </View>
-    </TouchableOpacity>
+        <View
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            bottom: "12%",
+          }}
+        >
+          <Button
+            text={props.getLocalizedText("continueButton")}
+            onPress={onPress}
+          />
+        </View>
+      </TouchableOpacity>
+    </ScrollView>
+
   );
 }
