@@ -9,19 +9,33 @@ import {
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
 import Button from "./Button";
+import TextInput from "./TextInput.jsx";
+import * as firebase from 'firebase';
 
 export default function NewAppointment(props) {
-  const [name, setName] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
-  const [reason, setReason] = useState(null);
+
+  appointment = [
+    ([name, setName] = useState(null)),
+    ([address, setAddress] = useState(null)),
+    ([date, setDate] = useState(null)),
+    ([time, setTime] = useState(null)),
+    ([extra, setExtra] = useState(null)),
+  ];
+
+  appointmentInfo = { "name": name, "address": address, "date": date, "time": time, "extra": extra }
+
+  addAppointment = () => {
+    let uid = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/' + uid + '/appointments').push(appointmentInfo).catch(err => console.log(err));
+    console.log(props);
+  }
 
   onPress = () => {
     if (!name || !address || !date || !time) {
       alert(props.getLocalizedText("fillOutAllFields"));
     } else {
-      //props.setLowerPanelContent("Appointment");
+      addAppointment();
+      props.setLowerPanelContent("Appointment");
     }
   };
 
@@ -73,9 +87,9 @@ export default function NewAppointment(props) {
           </View>
           <View style={appStyles.TextInput.View}>
             <TextBox
-              placeholder={props.getLocalizedText("appointmentReason")}
-              onChangeText={setReason}
-              value={reason}
+              placeholder={props.getLocalizedText("appointmentExtra")}
+              onChangeText={setExtra}
+              value={extra}
               style={appStyles.TextInput.TextInput}
             />
           </View>
