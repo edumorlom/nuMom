@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, Component } from "react";
 import { TextInputMask } from 'react-native-masked-text';
+import React, { useState, useEffect, useRef, Component } from "react";
 import {
   View,
   Text,
