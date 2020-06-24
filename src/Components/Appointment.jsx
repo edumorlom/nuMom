@@ -59,25 +59,20 @@ export default function Appointment(props) {
   }, []);
 
 
-  useEffect(() => {
-    console.log("state value changed", objects);
-  
-    
-   }, [objects]);
-
-
-
   const deleteAppointment = (id) => {
     let uid = firebase.auth().currentUser.uid;
     console.log("ID>>>:", id);
+    const currentObject = objects;
 
-    if (uid !== null){
-     firebase.database().ref('users/' + uid + '/appointments/' + id ).remove();
     
-     
+    if (uid !== null){
+
+      console.log("UPDATE OBJECT>>:", currentObject.filter((item) => item.key !== id));
+      setObjects(currentObject.filter((item) => item.key !== id));
+
+     firebase.database().ref('users/' + uid + '/appointments/' + id ).remove();
      
       alert("Your appointment has been removed.")
-
 
     }else{
       console.log("Error: Couldn't get the User appointment Info")
