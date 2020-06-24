@@ -2,6 +2,7 @@ import { Image, Text, TouchableHighlight, View } from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import goBackImg from "../../assets/go-back-arrow.png";
+import filterButton from "../../assets/Filter.png";
 import * as Haptics from "expo-haptics";
 import GestureRecognizer from "react-native-swipe-gestures";
 
@@ -32,7 +33,10 @@ export default function LowerPanelHeader(props) {
       return props.getLocalizedText("appointment");
     if (props.lowerPanelContent === "NewAppointment")
       return props.getLocalizedText("newAppointment");
+    if (props.lowerPanelContent === "documents")
+      return props.getLocalizedText("documents");
   };
+
 
   return (
     <GestureRecognizer //The clinics section is slow on the swipe, I suspect it is because of the amount of clinics it is loading
@@ -54,6 +58,7 @@ export default function LowerPanelHeader(props) {
           style={{
             left: appStyles.win.width * 0.03,
             width: appStyles.win.width * 0.1,
+            height: appStyles.win.width * 0.08,
           }}
         >
           <Image
@@ -67,18 +72,40 @@ export default function LowerPanelHeader(props) {
         <TouchableHighlight
           onPress={onPress}
           underlayColor={"transparent"}
-          style={{ width: appStyles.win.width * 0.9 }}
+          style={{ width: appStyles.win.width * 0.8, height: appStyles.win.width * 0.08, }}
         >
           <Text
             style={{
               ...appStyles.paragraphText,
               textAlign: "center",
               width: appStyles.win.width * 0.8,
+              
             }}
           >
             {getCurrentHeaderTitle()}
           </Text>
         </TouchableHighlight>
+        {props.lowerPanelContent === "findCare" ? 
+        <TouchableHighlight
+          onPress={props.setFilterToShow}
+          underlayColor={"transparent"}
+          style={{
+            right: appStyles.win.width * 0.00,
+            width: appStyles.win.width * 0.1,
+            height: appStyles.win.width * 0.08,
+          }}
+        >
+          <Image
+            style={{
+              left: appStyles.win.width * 0.008,
+              height: appStyles.win.width * 0.085,
+              width: appStyles.win.width * 0.085,
+            }}
+            source={filterButton}
+          />
+        </TouchableHighlight>
+        : <Text style={{width: appStyles.win.width * 0.1 }}> </Text> }
+        {/* <View style={{width: appStyles.win.width * 0.1 }}>  <Text> </Text> </View> */}
       </View>
     </GestureRecognizer>
   );

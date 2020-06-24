@@ -1,24 +1,26 @@
 import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import appStyles from './AppStyles'
 import dnaLoading from "../../assets/dna-loading.gif";
 
 
-export default class SignUpLoading extends React.Component {
+export default function SignUpLoading (props) {
 
-    state = {loadingText: this.props.getLocalizedText("registeringAccount"), color: appStyles.greyColor};
-
-    constructor(props) {
-        super(props);
+    const [loadingText, setLoadingText] = useState(props.getLocalizedText("registeringAccount"));
+    const [color, setColor] = useState(appStyles.greyColor);
+    
+    useEffect(() => {
         setTimeout(() => {
-            this.setState({loadingText: this.props.getLocalizedText("allSet"), color: appStyles.pinkColor});
+            setLoadingText(props.getLocalizedText("allSet"))
+            setColor(appStyles.pinkColor)
             setTimeout(() => {
-                this.props.signUpAndUploadData();
+                props.signUpAndUploadData();
             }, 1000);
         }, 2000);
-    }
+    }, [])
 
-    render() {
+
+  
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
@@ -28,10 +30,10 @@ export default class SignUpLoading extends React.Component {
                         alignItems: 'center',
                         position: 'absolute'}}>
                         <Image source={dnaLoading} style={{width: 250, height: 250}}/>
-                        <Text style={{...appStyles.paragraphText, color: this.state.color}}>{this.state.loadingText}</Text>
+                        <Text style={{...appStyles.paragraphText, color: color}}>{loadingText}</Text>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
         );
-    }
+  
 }

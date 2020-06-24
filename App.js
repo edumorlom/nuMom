@@ -1,115 +1,179 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import LogIn from "./src/Components/LogIn";
 import SignUp from "./src/Components/SignUp";
 import Homepage from "./src/Components/Homepage";
 import Firebase from "./src/Components/Firebase";
-import {AsyncStorage, NativeModules} from 'react-native';
-import getLocalizedText from "./src/Components/getLocalizedText";
+import { AsyncStorage, NativeModules } from "react-native";
+import translate from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
+import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
+import * as firebase from "firebase";
+
+export default App = () => {
+
+  const initState = {uid: null, email: null, password: null, fullName: null  /*babyGender: null,*/ }
+  const deviceLanguage = Platform.OS === "ios"
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+        NativeModules.SettingsManager.settings.AppleLanguages[0]
+      : NativeModules.I18nManager.localeIdentifier 
+  const [appState, setAppState] = useState(initState);
+  const [screen, setScreen] = useState("login");
+
+  useEffect(() => {
+    let _email = null;
+    let _password = null;
+    let _fullName = null;
+    let _uid = null;
+    getCookie("email").then((email) => {
+          _email = email;
+          getCookie("password").then((password) => {
+            _password = password;
+            if (email && password) loginWithEmailPassword(email, password);
+          });
+    setTimeout(() => {
+      getCookie("fullName").then((fullName) => _fullName = fullName)
+      getCookie("uid").then((uid) => _uid = uid)
+    }, 400)
+    
+    })
+    setTimeout(() => {
+      setAppState({email: _email, password: _password, fullName: _fullName, uid: _uid});
+    }, 600)
+    //All the timeouts are to make sure all the properties get their actual value (not null)
+  },[])
 
 
-
-export default class App extends React.Component {
-  state = {
-    screen: 'login',
-    uid: null,
-    email: null,
-    password: null,
-    fullName: null,
-    babyGender: null,
-    deviceLanguage: Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier
+  let getLocalizedText = (key) => {
+    return translate(deviceLanguage, key);
   };
 
-  constructor(props) {
-    super(props);
-    this.getCookie('email').then((email) => {
-      this.getCookie('password').then((password) => {
-        if (email && password) this.loginWithEmailPassword(email, password);
-      })
-  });
-}
-
-  getLocalizedText = (key) => {
-    return getLocalizedText(this.state.deviceLanguage, key)
-  };
-
-  setAppState = (object) => {
-    this.setState(object)
-  };
-
-  saveCookie = async (key, value) => {
+  let saveCookie = async (key, value) => {
     try {
-      await AsyncStorage.setItem(key, value).then(r => console.log('Stored key to value: ', key, value))
+      await AsyncStorage.setItem(key, value).then();
     } catch (e) {
-      console.log("Error storeData: " + e)
+      console.log("Error storeData: " + e);
     }
   };
 
-  getCookie = async (key) => {
+  let getCookie = async (key) => {
     try {
       return await AsyncStorage.getItem(key);
-    } catch(e) {
-      console.log("Error getData: " + e)
+    } catch (e) {
+      console.log("Error getData: " + e);
     }
   };
 
-  loginWithEmailPassword = (email, password) => {
-    this.setAppState({email: email});
-    this.setAppState({password: password});
-    this.saveCookie('email', email);
-    this.saveCookie('password', password);
+  let loginWithEmailPassword = (email, password) => {
+    saveCookie("email", email);
+    saveCookie("password", password);
 
     if (email && password) {
       let fb = new Firebase();
       fb.logIn(email, password).then(response => {
-        this.loginWithUid(response.user.uid);
-        //console.log("Successful Login!", response);
+        loginWithUid(response.user.uid);
+        fb.registerForPushNotificationsAsync(response.user) 
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })
     } else {
-      alert("Please enter your E-Mail and Password!")
+      alert("Please enter your E-Mail and Password!");
     }
   };
 
-  loginWithUid = (uid) => {
+  let loginWithUid = (uid) => {
     let fb = new Firebase();
     let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+'@'+today.getHours()+':'+today.getMinutes();
-    fb.storeObjectInDatabase(uid, {lastInteraction: date, deviceLanguage: this.state.deviceLanguage})
-    fb.getUserInfo(uid).on('value', (snapshot) => {
-      this.setAppState({fullName: snapshot.val().fullName});
-      this.setAppState({babyGender: snapshot.val().babyGender});
-      this.setAppState({screen: 'homepage'});
+    let date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate() +
+      "@" +
+      today.getHours() +
+      ":" +
+      today.getMinutes();
+    fb.storeObjectInDatabase(uid, {
+      lastInteraction: date,
+      deviceLanguage: deviceLanguage
+    });
+    fb.getUserInfo(uid).on("value", (snapshot) => {
+      saveCookie("fullName", snapshot.val().fullName)
+      saveCookie("uid", uid)
+      setScreen("homepage")
+      //setAppState({babyGender: snapshot.val().babyGender});
     });
   };
 
-
-  logout = () => {
-    this.setAppState({uid: null});
-    this.setAppState({fullName: null});
-    this.setAppState({screen: 'login'});
-    this.saveCookie('email', '');
-    this.saveCookie('password', '');
+  let logout = () => {
+    setScreen("login");
+    saveCookie("email", "");
+    saveCookie("password", "");
+    saveCookie("uid", "");
+    saveCookie("fullName", "");
+    let fb = new Firebase();
+    let user = firebase.auth().currentUser;
+    fb.registerForPushNotificationsAsync(user);
   };
 
-  goBack = () => {
-    if (this.state.screen === 'setting') this.setAppState({screen: 'homepage'});
-  }
 
-  render() {
-    if (this.state.screen === 'login') {
-      return (<LogIn setAppState={this.setAppState} login={this.loginWithEmailPassword} getLocalizedText={this.getLocalizedText}/>)
-    } else if (this.state.screen === 'signup') {
+  let goBack = () => {
+    if (screen === "setting")
+      setScreen("homepage")
+      if (screen === "forgotPassword")
+      setScreen("login")
+  };
+
+ 
+    if (screen === "login") {
+      return (
+        <LogIn
+          setScreen={setScreen}
+          login={loginWithEmailPassword}
+          getLocalizedText={getLocalizedText}
+        />
+      );
+    } else if (screen === "signup") {
       try {
-        return (<SignUp setAppState={this.setAppState} login={this.loginWithEmailPassword} getLocalizedText={this.getLocalizedText}/>)
+        return (
+          <SignUp
+            setScreen={setScreen}
+            login={loginWithEmailPassword}
+            getLocalizedText={getLocalizedText}
+          />
+        );
       } catch (err) {
-        this.setAppState({screen: 'login'})
+        setScreen("login");
       }
-    } else if (this.state.screen === 'setting'){
-      return (<SettingScreen email={this.state.email} password={this.state.password}  setAppState={this.setAppState} goBack={this.goBack} setScreen={this.state.screen} fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
-    }else {
-      return (<Homepage setAppState={this.setAppState}  fullName={this.state.fullName} logout={this.logout} getLocalizedText={this.getLocalizedText}/>)
+    } else if (screen === "setting") {
+      return (
+        <SettingScreen
+          email={appState.email}
+          password={appState.password}
+          setScreen={setScreen}
+          goBack={goBack}
+          fullName={appState.fullName}
+          logout={logout}
+          getLocalizedText={getLocalizedText}
+        />
+      );
+    } else if (screen === "forgotPassword") {
+      return (
+        <ForgotPasswordPage
+          setScreen={setScreen}
+          goBack={goBack}
+          getLocalizedText={getLocalizedText}
+        />
+      );
+    } else {
+      return (
+        <Homepage
+          setScreen={setScreen}
+          fullName={appState.fullName}
+          logout={logout}
+          getLocalizedText={getLocalizedText}
+        />
+      );
     }
-  }
+  
 }
