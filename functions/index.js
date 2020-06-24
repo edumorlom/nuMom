@@ -145,3 +145,26 @@ exports.sendAppointmentReminder = functions.https.onRequest((req, res) => {
  return res.status(200).send("Sucess");
 
 });
+
+exports.deleteAppointment = functions.https.onRequest((req, res) => {
+  var ref = admin.database().ref("users");
+  let today = new Date();
+  let yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+  let date = (yesterday.getMonth()+1).toString().padStart(2, "0") +'/'+yesterday.getDate().toString().padStart(2, "0") +'/'+ yesterday.getFullYear();
+  ref.once("value")
+  .then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      let appointmentSnapshot = childSnapshot.child("appointments");
+      
+      appointmentSnapshot.forEach( childAptmtSnapshot => {
+        let aptmtDate = childAptmtSnapshot.child("date").val();
+        if (aptmtDate === date) {   //Date represents yesterday's date
+          childAptmtSnapshot.ref.remove()
+        }
+      })
+    })
+    return null;
+  }).catch(e => console.log(e)) 
+ return res.status(200).send("Sucess");
+
+});

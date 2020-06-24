@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, StyleSheet, Button } from "react-native";
+import { ScrollView, View, StyleSheet, Button, Image } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
+import Spinner from "../../assets/spinner.gif";
 
 
 
 export default function Appointment(props) {
   let _isMounted = false;
   const [objects, setObjects] = useState([])
+  const [loading, setLoading] = useState(true);
 
 
-  const getAppointment = () => {
+  const getAppointment = async () => {
 
     let uid = firebase.auth().currentUser.uid;
     _isMounted = true;
@@ -18,7 +20,7 @@ export default function Appointment(props) {
 
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
-      firebase.database().ref('users/' + uid + '/appointments/').once('value', (snapshot) => {
+      await firebase.database().ref('users/' + uid + '/appointments/').once('value', (snapshot) => {
 
         snapshot.forEach(function (childSnapshot) {
           let childKey = childSnapshot.key;
@@ -30,6 +32,7 @@ export default function Appointment(props) {
             if (_isMounted) {
 
               setObjects(prevArray => [...prevArray, childSnapshot]);
+              setLoading(false);
 
             }
 
@@ -59,25 +62,20 @@ export default function Appointment(props) {
   }, []);
 
 
-  useEffect(() => {
-    console.log("state value changed", objects);
-
-
-  }, [objects]);
-
-
-
   const deleteAppointment = (id) => {
     let uid = firebase.auth().currentUser.uid;
     console.log("ID>>>:", id);
+    const currentObject = objects;
+
 
     if (uid !== null) {
+
+      console.log("UPDATE OBJECT>>:", currentObject.filter((item) => item.key !== id));
+      setObjects(currentObject.filter((item) => item.key !== id));
+
       firebase.database().ref('users/' + uid + '/appointments/' + id).remove();
 
-
-
       alert("Your appointment has been removed.")
-
 
     } else {
       console.log("Error: Couldn't get the User appointment Info")
@@ -100,7 +98,17 @@ export default function Appointment(props) {
         />
       </View>
       <View >
-        {objects.map((appointments, index) => {
+        {loading ? <Image
+          style={{
+            height: 200,
+            width: 200,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: 50
+          }}
+          source={Spinner}
+        /> : objects.map((appointments, index) => {
           return (
             <AppointmentMenu
               key={index}
