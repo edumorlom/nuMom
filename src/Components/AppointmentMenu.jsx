@@ -12,14 +12,14 @@ import { Feather } from '@expo/vector-icons';
 
 export default function AppointmentMenu(props) {
 
-  const {name, date, time, address, extra} = props.appointments.val();
+  const { name, date, time, address, extra } = props.appointments.val();
 
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };
 
-   const AsyncAlert = () => {
+  const AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
         props.getLocalizedText("RemoveAppointment"),
@@ -35,7 +35,7 @@ export default function AppointmentMenu(props) {
 
 
 
-  
+
 
   return (
     <TouchableHighlight
@@ -57,7 +57,7 @@ export default function AppointmentMenu(props) {
           <Text
             style={{
               color: appStyles.blueColor,
-              fontSize: appStyles.regularFontSize,
+              fontSize: appStyles.regularFontSize + 7,
               fontWeight: "bold",
             }}
           >
@@ -66,7 +66,7 @@ export default function AppointmentMenu(props) {
           <Text
             style={{
               color: appStyles.greyColor,
-              fontSize: appStyles.regularFontSize - 5,
+              fontSize: appStyles.regularFontSize - 3,
             }}
           >
             {address}
@@ -74,7 +74,7 @@ export default function AppointmentMenu(props) {
           <Text
             style={{
               color: appStyles.greyColor,
-              fontSize: appStyles.regularFontSize - 5,
+              fontSize: appStyles.regularFontSize - 3,
             }}
           >
             {date}
@@ -82,7 +82,7 @@ export default function AppointmentMenu(props) {
           <Text
             style={{
               color: appStyles.greyColor,
-              fontSize: appStyles.regularFontSize - 5,
+              fontSize: appStyles.regularFontSize - 3,
             }}
           >
             {time}
@@ -90,18 +90,18 @@ export default function AppointmentMenu(props) {
           <Text
             style={{
               color: appStyles.greyColor,
-              fontSize: appStyles.regularFontSize - 5,
+              fontSize: appStyles.regularFontSize - 3,
             }}
           >
             {extra}
           </Text>
         </View>
-        <TouchableHighlight underlayColor="transparent"  onPress={() => {
+        <TouchableHighlight underlayColor="transparent" onPress={() => {
           AsyncAlert().then((response) => {
             response ? props.deleteAppointment(props.appointments.key) : null;
           })
-        } }>
-            <Feather name="trash" size={40}  color='#eb1800'  />
+        }}>
+          <Feather name="trash" size={40} color='#eb1800' />
         </TouchableHighlight>
       </View>
     </TouchableHighlight>

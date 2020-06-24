@@ -13,33 +13,33 @@ export default function Appointment(props) {
 
 
   const getAppointment = async () => {
-   
+
     let uid = firebase.auth().currentUser.uid;
     _isMounted = true;
 
 
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
-     await firebase.database().ref('users/' + uid + '/appointments/').once('value', (snapshot) => {
+      await firebase.database().ref('users/' + uid + '/appointments/').once('value', (snapshot) => {
 
-        snapshot.forEach(function(childSnapshot) {
+        snapshot.forEach(function (childSnapshot) {
           let childKey = childSnapshot.key;
-          let childData = childSnapshot.val(); 
+          let childData = childSnapshot.val();
           console.log(childKey);
           console.log(childData);
-          
+
           if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
-              if(_isMounted){
-              
-                setObjects(prevArray => [...prevArray, childSnapshot]);
-                setLoading(false);
-              
-              }
-            
+            if (_isMounted) {
+
+              setObjects(prevArray => [...prevArray, childSnapshot]);
+              setLoading(false);
+
+            }
+
           }
 
         });
-         
+
       });
 
 
@@ -54,9 +54,9 @@ export default function Appointment(props) {
 
   useEffect(() => {
     getAppointment();
-    
 
-   return () => _isMounted = false;
+
+    return () => _isMounted = false;
 
 
   }, []);
@@ -67,22 +67,22 @@ export default function Appointment(props) {
     console.log("ID>>>:", id);
     const currentObject = objects;
 
-    
-    if (uid !== null){
+
+    if (uid !== null) {
 
       console.log("UPDATE OBJECT>>:", currentObject.filter((item) => item.key !== id));
       setObjects(currentObject.filter((item) => item.key !== id));
 
-     firebase.database().ref('users/' + uid + '/appointments/' + id ).remove();
-     
+      firebase.database().ref('users/' + uid + '/appointments/' + id).remove();
+
       alert("Your appointment has been removed.")
 
-    }else{
+    } else {
       console.log("Error: Couldn't get the User appointment Info")
     }
-      
+
   }
-  
+
 
   return (
     <ScrollView
@@ -99,24 +99,24 @@ export default function Appointment(props) {
       </View>
       <View >
         {loading ? <Image
-            style={{
-              height: 200,
-              width: 200,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              top: 50
-            }}
-            source={Spinner}
-          /> : objects.map((appointments, index) => {
+          style={{
+            height: 200,
+            width: 200,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: 50
+          }}
+          source={Spinner}
+        /> : objects.map((appointments, index) => {
           return (
-            <AppointmentMenu 
-            key={index} 
-            appointments={appointments} 
-            deleteAppointment={deleteAppointment} 
-            getLocalizedText={props.getLocalizedText} />
+            <AppointmentMenu
+              key={index}
+              appointments={appointments}
+              deleteAppointment={deleteAppointment}
+              getLocalizedText={props.getLocalizedText} />
           )
-        })} 
+        })}
       </View>
     </ScrollView>
   );
