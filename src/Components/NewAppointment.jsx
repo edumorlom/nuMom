@@ -12,6 +12,8 @@ import appStyles from "./AppStyles";
 import Button from "./Button";
 import TextInput from "./TextInput.jsx";
 import * as firebase from 'firebase';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { TextInputMask } from "react-native-masked-text";
 
 export default function NewAppointment(props) {
 
@@ -39,80 +41,95 @@ export default function NewAppointment(props) {
       props.setLowerPanelContent("Appointment");
     }
   };
+  isValidDate = (date) => {
+    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    return regex.test(date);
+  };
 
   return (
-    <ScrollView contentContainerStyle={{ alignItems: 'center', maxWidth: '100%' }}>
-      <TouchableOpacity
-        onPress={Keyboard.dismiss}
-        accessible={false}
-        style={appStyles.container}
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flex: 1, alignItems: "center", maxWidth: "100%" }}
+      scrollEnabled
+    >
+
+      <View style={appStyles.TextInput.View}>
+        <TextBox
+          placeholder={props.getLocalizedText("appointmentName")}
+          onChangeText={setName}
+          value={name}
+          style={appStyles.TextInput.TextInput}
+        />
+      </View>
+      <View style={appStyles.TextInput.View}>
+        <TextBox
+          placeholder={props.getLocalizedText("appointmentAddress")}
+          onChangeText={setAddress}
+          value={address}
+          style={appStyles.TextInput.TextInput}
+        />
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
+        <TextInputMask
+          placeholder={props.getLocalizedText("appointmentDate")}
+          type={"datetime"}
+          options={{
+            format: "MM/DD/YYYY",
+            validator: function (value, settings) {
+              let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+              return regex.test(value);
+            },
           }}
-        >
-          <View>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={props.getLocalizedText("appointmentName")}
-                onChangeText={setName}
-                value={name}
-                style={appStyles.TextInput.TextInput}
-              />
-            </View>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={props.getLocalizedText("appointmentAddress")}
-                onChangeText={setAddress}
-                value={address}
-                style={appStyles.TextInput.TextInput}
-              />
-            </View>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={props.getLocalizedText("appointmentDate")}
-                onChangeText={setDate}
-                value={date}
-                style={appStyles.TextInput.TextInput}
-              />
-            </View>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={props.getLocalizedText("appointmentTime")}
-                onChangeText={setTime}
-                value={time}
-                style={appStyles.TextInput.TextInput}
-              />
-            </View>
-            <View style={appStyles.TextInput.View}>
-              <TextBox
-                placeholder={props.getLocalizedText("appointmentExtra")}
-                onChangeText={setExtra}
-                value={extra}
-                style={appStyles.TextInput.TextInput}
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            bottom: "12%",
+          style={appStyles.TextInputMask}
+          value={date}
+          onChangeText={setDate}
+        />
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <TextInputMask
+          placeholder={props.getLocalizedText("appointmentTime")}
+          type={"datetime"}
+          options={{
+            format: "H:MN",
           }}
-        >
-          <Button
-            text={props.getLocalizedText("continueButton")}
-            onPress={onPress}
-          />
-        </View>
-      </TouchableOpacity>
-    </ScrollView>
+          style={appStyles.TextInputMask}
+          value={time}
+          onChangeText={setTime}
+        />
+      </View>
+      <View style={appStyles.TextInput.View}>
+        <TextBox
+          placeholder={props.getLocalizedText("appointmentExtra")}
+          onChangeText={setExtra}
+          value={extra}
+          style={appStyles.TextInput.TextInput}
+        />
+      </View>
+
+      <View
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "absolute",
+          bottom: "10%",
+        }}
+      >
+        <Button
+          text={props.getLocalizedText("continueButton")}
+          onPress={onPress}
+        />
+      </View>
+    </KeyboardAwareScrollView>
 
   );
 }
