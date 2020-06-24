@@ -2,15 +2,22 @@ import React, { Component, useState, useEffect } from 'react';
 import MapView, {Marker} from 'react-native-maps';
 import appStyles from './AppStyles';
 import * as Location from 'expo-location';
+import { Image } from 'react-native';
+import Spinner from "../../assets/loading-blue.gif";
 
 export default function Map (props) {
     
     const defaultRegion = {latitude: 25.782220701733717, longitude: -80.26424665653634, latitudeDelta: 0.65, longitudeDelta: 0.3}
     const [region, setRegion] = useState(defaultRegion);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getLocationAsync();
+        setTimeout(() => {
+            setLoading(false);
+        }, 200);  //After 200 milliseconds load the map, with the sorted clinics
+        
     },[])
 
     let getLocationAsync = async () => {
@@ -27,17 +34,29 @@ export default function Map (props) {
             latitudeDelta: 0.2,
             longitudeDelta: 0.3
         })
-        mapView.animateToRegion({
+        /* mapView.animateToRegion({
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
             latitudeDelta: 0.2,
             longitudeDelta: 0.3
-        }, 200)
+        }, 200) */
         
     }
      
         return (
-            <MapView
+            <>
+            {loading ? <Image
+            style={{
+              height: 200,
+              width: 200,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              top: appStyles.win.height * 0.1
+            }}
+            source={Spinner}
+          />
+                : <MapView
                 ref = {(ref) => mapView=ref}
                 initialRegion={region}
                 loadingEnabled = {true}
@@ -69,7 +88,8 @@ export default function Map (props) {
                         onPress={(e) => {e.stopPropagation(); props.setClinicToView(clinic)}}
                         />))}
 
-            </MapView>
+            </MapView>}
+        </>
         );
    
 }
