@@ -49,7 +49,7 @@
   "appointmentAddress": "Placeholder",
   "appointmentDate": "Placeholder",
   "appointmentTime": "Placeholder",
-  "appointmentReason": "Placeholder",
+  "appointmentExtra": "Placeholder",
   "appointmentInfo": "Placeholder",
   "STDInfo": "STDs",
   "STDSelection": "Placeholder",
@@ -120,5 +120,7 @@
   "HIVAIDSConsequences": "Las infecciones oportunistas son las que ocurren con más frecuencia y son más graves en las personas que tienen el sistema inmunitario debilitado, incluidas aquellas con el VIH. Sin embargo, muchas personas con el VIH todavía presentan infecciones oportunistas porque posiblemente no saben que tienen el VIH, no reciben tratamiento, o el tratamiento no mantiene los niveles de VIH lo suficientemente bajos para que su sistema inmunitario combata las infecciones. Las mejores maneras de evitar contraer una infección oportunista son mantenerse bajo atención médica y tomar los medicamentos para el VIH según las indicaciones",
   "HIVAIDSSafeSex": "Los medicamentos para el VIH reducen la cantidad de virus (carga viral) que tiene en el cuerpo y, al tomarlos según las indicaciones, pueden reducir su carga viral a niveles indetectables. Si su carga viral se mantiene indetectable, usted no tiene efectivamente ningún riesgo de transmitirle el VIH a una pareja VIH negativa a través de las relaciones sexuales. Usar condones de la manera correcta cada vez que tenga relaciones sexuales anales o vaginales.",
   "documents": "Documentos",
-  "documentsSubtitle": "Ver/Cargar"
+  "documentsSubtitle": "Ver/Cargar",
+  "WantToRemoveAppointment": "¿Seguro que quieres eliminar esta cita?",
+  "RemoveAppointment": "Eliminar la cita"
 }

@@ -16,16 +16,17 @@ import Documents from "./Documents";
 export default class LowerPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.goUp();
+    this.movePanel(true);
   }
 
   state = {
     panelStyle: { ...appStyles.lowerPanel },
+    filterToShow: false
   };
 
   transition = null;
 
-  goUp = () => {
+  /* goUp = () => {
     clearInterval(this.transition);
     this.transition = setInterval(() => {
       let panelStyle = { ...appStyles.lowerPanel };
@@ -53,107 +54,101 @@ export default class LowerPanel extends React.Component {
 
       this.setState({ panelStyle: panelStyle });
     }, 0.1);
+  }; */
+
+  movePanel = (up) => {
+    clearInterval(this.transition);
+    this.transition = setInterval(() => {
+      let panelStyle = { ...appStyles.lowerPanel };
+      let panelState = this.state.panelStyle;
+      panelStyle["bottom"] = up ? panelState.bottom + 20 : panelState.bottom - 20;
+
+      if (up && panelState.bottom >= 0) {
+        clearInterval(this.transition);
+        panelStyle["bottom"] = 0;
+      }
+      
+      else if (!up && panelState.bottom <= appStyles.lowerPanel.bottom ) {
+        clearInterval(this.transition);
+        panelStyle["bottom"] = appStyles.lowerPanel.bottom;
+      }
+
+      this.setState({ panelStyle: panelStyle });
+    }, 0.1);
   };
 
   showContent = () => {
     //console.log(this.props.filters)
     if (this.props.lowerPanelContent === "findCare") {
       return (
-        <FindCare
-          clinics={this.props.clinics}
-          sortedClinics={this.props.sortedClinics}
-          setClinicToView={this.props.setClinicToView}
-          setClinics={this.props.setClinics}
-          setFilters={this.props.setFilters}
-          filters={this.props.filters}
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <FindCare clinics={this.props.clinics} sortedClinics={this.props.sortedClinics} setClinicToView={this.props.setClinicToView} setClinics={this.props.setClinics} setFilters={this.props.setFilters} filters={this.props.filters} filterToShow = {this.state.filterToShow} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "clinicInfo") {
       return (
-        <ClinicInfo
-          clinic={this.props.clinicToView}
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <ClinicInfo clinic={this.props.clinicToView} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "learn") {
       return (
-        <Learn
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <Learn setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "STDSelection") {
       return (
-        <STDSelection
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-          setSTDToView={this.props.setSTDToView}
+        <STDSelection setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText} setSTDToView={this.props.setSTDToView}
         />
       );
     } else if (this.props.lowerPanelContent === "resources") {
       return (
-        <Resources
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <Resources setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "STDInfo") {
       return (
-        <STDInfo
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-          STDToView={this.props.STDToView}
+        <STDInfo setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText} STDToView={this.props.STDToView}
         />
       );
     } else if (this.props.lowerPanelContent === "Appointment") {
       return (
-        <Appointment
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <Appointment setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "NewAppointment") {
       return (
-        <NewAppointment
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <NewAppointment setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else if (this.props.lowerPanelContent === "documents") {
       return (
-        <Documents
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
+        <Documents setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText}
         />
       );
     } else {
       return (
-        <LowerPanelSelection
-          fullName={this.props.fullName}
-          logout={this.props.logout}
-          setFullPanel={this.props.setFullPanel}
-          fullPanel={this.props.fullPanel}
-          setLowerPanelContent={this.props.setLowerPanelContent}
-          getLocalizedText={this.props.getLocalizedText}
-          setScreen={this.props.setScreen}
+        <LowerPanelSelection fullName={this.props.fullName} logout={this.props.logout} setFullPanel={this.props.setFullPanel} fullPanel={this.props.fullPanel} setLowerPanelContent={this.props.setLowerPanelContent} getLocalizedText={this.props.getLocalizedText} setScreen={this.props.setScreen}
         />
       );
     }
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.fullPanel && !this.props.fullPanel) {
+    let fullPanel = this.props.fullPanel;
+    this.movePanel(fullPanel);
+    /* if (prevProps.fullPanel && !this.props.fullPanel) {
       this.goDown();
     } else if (!prevProps.fullPanel && this.props.fullPanel) {
       this.goUp();
-    }
+    } */
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  setFilterToShow = () => {
+    let changeView = !this.state.filterToShow;
+    this.setState({filterToShow : changeView});
   }
 
   //movePanel(fullPanel)
@@ -162,13 +157,7 @@ export default class LowerPanel extends React.Component {
     return (
       <View style={{ ...this.state.panelStyle, overflow: "hidden" }}>
         {this.props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader
-            onPress={this.props.setFullPanel}
-            goBack={this.props.goBack}
-            lowerPanelContent={this.props.lowerPanelContent}
-            getLocalizedText={this.props.getLocalizedText}
-            setFullPanel={this.props.setFullPanel}
-            fullPanel={this.props.fullPanel}
+          <LowerPanelHeader onPress={this.props.setFullPanel} setFilterToShow = {this.setFilterToShow} goBack={this.props.goBack} lowerPanelContent={this.props.lowerPanelContent} getLocalizedText={this.props.getLocalizedText} setFullPanel={this.props.setFullPanel} fullPanel={this.props.fullPanel}
           />
         )}
         {this.showContent()}
