@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from "expo-haptics";
+import { Camera } from 'expo-camera';
 import Firebase from "./Firebase";
 import Constants from 'expo-constants';
 
 export default function Documents() {
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
+  useEffect(() => { (async () => {
       if (Constants.platform.ios | Constants.platform.android) {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
@@ -28,7 +28,7 @@ export default function Documents() {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -46,6 +46,7 @@ export default function Documents() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button title="Camera roll" onPress={onPress} />
       <Button title="Camera roll" onPress={onPress} />
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
     </View>
