@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, View, StyleSheet, Button, Image } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
-import Spinner from "../../assets/spinner.gif";
+import Spinner from "../../assets/dna-loading2.gif";
 
 
 
@@ -54,6 +54,10 @@ export default function Appointment(props) {
 
   useEffect(() => {
     getAppointment();
+
+    if(!objects.length){
+      setLoading(null);
+    }
 
 
     return () => _isMounted = false;
