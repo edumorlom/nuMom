@@ -81,7 +81,7 @@ export default class Firebase {
 
 
 
-  getUserInfo = (uid) => firebase.database().ref("users/" + uid);
+    getUserInfo = (uid) => firebase.database().ref("users/" + uid);
 
   passwordReset = (email) => {
     return firebase.auth().sendPasswordResetEmail(email)
@@ -110,5 +110,10 @@ export default class Firebase {
     await firebase.database().ref('users/' + currentUser.uid).update(updates)
     //call the push notification 
   }
-
+uploadImage = async(uri) => {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        var ref = firebase.storage().ref().child("my-image");
+        return ref.put(blob);
+      }
 }
