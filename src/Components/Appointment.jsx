@@ -79,7 +79,7 @@ export default function Appointment(props) {
 
       firebase.database().ref('users/' + uid + '/appointments/' + id).remove();
 
-      alert("Your appointment has been removed.")
+      // alert("Your appointment has been removed.")
 
     } else {
       console.log("Error: Couldn't get the User appointment Info")
