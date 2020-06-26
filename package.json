@@ -10,7 +10,9 @@
   "dependencies": {
     "@react-native-community/picker": "^1.6.1",
     "expo": "^37.0.12",
-    "expo-haptics": "~8.1.0",
+    "expo-constants": "^9.1.1",
+    "expo-haptics": "^8.1.0",
+    "expo-image-picker": "^8.3.0",
     "expo-location": "~8.1.0",
     "expo-permissions": "~8.1.0",
     "firebase": "^7.15.1",
@@ -22,6 +24,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
     "react-native-confetti-cannon": "^1.5.0",
     "react-native-haptic-feedback": "^1.10.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-maps": "0.26.1",
     "react-native-masked-text": "^1.13.0",
     "react-native-material-dropdown": "^0.11.1",

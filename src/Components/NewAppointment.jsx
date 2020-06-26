@@ -88,7 +88,7 @@ export default function NewAppointment(props) {
           }}
           style={appStyles.TextInputMask}
           value={date}
-          onChangeText={setDate}
+          onChangeText={(input) => setDate(input)}
         />
       </View>
       <View
@@ -101,11 +101,11 @@ export default function NewAppointment(props) {
           placeholder={props.getLocalizedText("appointmentTime")}
           type={"datetime"}
           options={{
-            format: "H:MN",
+            format: "HH:MN",
           }}
           style={appStyles.TextInputMask}
           value={time}
-          onChangeText={setTime}
+          onChangeText={(input) => setTime(input)}
         />
       </View>
 

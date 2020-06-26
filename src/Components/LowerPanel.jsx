@@ -1,6 +1,6 @@
 import { View, Animated } from "react-native";
 import appStyles from "./AppStyles";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
 import ClinicInfo from "./ClinicInfo";
@@ -16,12 +16,9 @@ import Documents from "./Documents";
 export default LowerPanel = props => {
   
 
-  const [panelStyle, setPanelStyle] = useState({...appStyles.lowerPanel});
   const [filterToShow, setFilterToShow] = useState(false);
   const fullPanel = props.fullPanel;
-  const prevFullPanel = usePrevious(fullPanel);
   const [moveAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
-  var transition = null;
   
   useEffect(() => {  //Substitute ComponentDidMount
     //movePanel(true) //Move up
@@ -31,18 +28,8 @@ export default LowerPanel = props => {
   useEffect(() => {  //Substitute ComponentDidUpdate
     movePanel(fullPanel)
   }, [fullPanel])
-  
-  //To understand this visit: https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
 
   let movePanel = (moveUp) => {
-    console.log(typeof moveAnim)
     if (moveUp) {
       //MoveUp
       Animated.timing(moveAnim, {
@@ -60,7 +47,6 @@ export default LowerPanel = props => {
   };
 
   showContent = () => {
-    //console.log(props.filters)
     if (props.lowerPanelContent === "findCare") {
       return (
         <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow = {filterToShow} setLowerPanelContent={props.setLowerPanelContent} getLocalizedText={props.getLocalizedText}
@@ -118,7 +104,7 @@ export default LowerPanel = props => {
     return (
       <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
         {props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader onPress={props.setFullPanel} setFilterToShow = {setFilterToShow} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} getLocalizedText={props.getLocalizedText} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel}
+          <LowerPanelHeader onPress={props.setFullPanel} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} getLocalizedText={props.getLocalizedText} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel}
           />
         )}
         {showContent()}
