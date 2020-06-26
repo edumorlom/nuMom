@@ -8,7 +8,9 @@ import {
   storeObjectInDatabase,
   getUserInfo
 } 
-  from "./src/Firebase";
+from "./src/Firebase";
+import * as firebase from 'firebase';
+import firebaseAccount from './src/firebase_account.json';
 import { AsyncStorage, NativeModules } from "react-native";
 import translate from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
@@ -25,29 +27,23 @@ export default App = () => {
   const [appState, setAppState] = useState(initState);
   const [screen, setScreen] = useState("login");
 
-  useEffect(() => {
-    let _email = null;
-    let _password = null;
-    let _fullName = null;
-    let _uid = null;
-    getCookie("email").then((email) => {
-          _email = email;
-          getCookie("password").then((password) => {
-            _password = password;
-            if (email && password) loginWithEmailPassword(email, password);
-          });
-    setTimeout(() => {
-      getCookie("fullName").then((fullName) => _fullName = fullName)
-      getCookie("uid").then((uid) => _uid = uid)
-    }, 400)
-    
-    })
-    setTimeout(() => {
-      setAppState({email: _email, password: _password, fullName: _fullName, uid: _uid});
-    }, 600)
-    //All the timeouts are to make sure all the properties get their actual value (not null)
-  },[])
+  //if (!firebase.apps.length) firebase.initializeApp(firebaseAccount);
 
+  useEffect(() => {
+    getCookies();
+  }, [])
+
+  let getCookies = async () => {
+    let email = await getCookie("email");
+    let password = await getCookie("password");
+    if (email && password) loginWithEmailPassword(email, password);
+    let fullName = await getCookie("fullName");
+    let uid = await getCookie("uid");
+  
+    setAppState({email: email, password: password, fullName: fullName, uid: uid});
+    
+}
+  
 
   let getLocalizedText = (key) => {
     return translate(deviceLanguage, key);
@@ -87,7 +83,7 @@ export default App = () => {
 
   let loginWithUid = (uid) => {
     let today = new Date();
-    let date = today.getFullYear() + "-" + today.getMonth() + 1) + "-" + today.getDate() + "@" + today.getHours() + 
+    let date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "@" + today.getHours() + 
     ":" + today.getMinutes();
     storeObjectInDatabase(uid, {
       lastInteraction: date,

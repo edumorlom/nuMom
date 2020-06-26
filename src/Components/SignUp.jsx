@@ -3,9 +3,8 @@ import { View, AsyncStorage } from "react-native";
 import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
-//import SignUpfrom "./SignUp;
 import SignUpBabyDob from "./SignUpBabyDob";
-import Firebase from "../Firebase";
+import signUp from "../Firebase";
 import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
@@ -123,9 +122,8 @@ export default function SignUp(props) {
   };
 
   let signUpAndUploadData = () => {
-    let fb = new Firebase();
     let info = getNextWeekAndWeekNo();
-    fb.signUp(email, phoneNumber, password, fullName,
+    signUp(email, phoneNumber, password, fullName,
       dob, pregnant, infant, liveMiami, babyDOB, ...info);
     //Unbinds Async Storage keys used in sign up after successful sign up
     let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];

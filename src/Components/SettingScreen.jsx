@@ -11,7 +11,7 @@ import {
   Alert,
   Platform,
 } from "react-native";
-import Firebase from "../Firebase";
+import {getUserInfo, getUid} from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
@@ -36,6 +36,7 @@ const SettingScreen = (props) => {
   const datetimeField = useRef(null);
   let _isMounted = false;
 
+  const uid = getUid();
 
   goBack = () => {
     Haptics.selectionAsync().then();
@@ -58,14 +59,12 @@ const SettingScreen = (props) => {
 
 
   fetchUserInfo = () => {
-    let fb = new Firebase();
-    let uid = firebase.auth().currentUser.uid;
     _isMounted = true;
 
 
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
-      fb.getUserInfo(uid).on('value', (snapshot) => {
+      getUserInfo(uid).on('value', (snapshot) => {
 
         const exists = (snapshot.val() !== null);
         if (exists || snapshot.exists() || snapshot.val() !== 'undefined') {
@@ -102,7 +101,6 @@ const SettingScreen = (props) => {
 
   onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) => {
     Haptics.selectionAsync().then();
-    let uid = firebase.auth().currentUser.uid;
     // let male = babyGender.male;
     // let female = babyGender.female;
 
@@ -176,7 +174,7 @@ const SettingScreen = (props) => {
   getNextWeekAndWeekNo = () => {
     let newbabyDOB = new Date(babyDOB);
     let today = new Date();
-    let daysDifference = (today.getTime() - newbabyDOB.getTime()) / (1000 * 3600 * 24) | 0;
+    let daysDifference = (today.getTime() - newbabyDOB.getTime()) / (1000 * 3600 * 24) | 0; //The | 0 is just a way to cast to int
     let daysTillNextWeek = (7 - daysDifference % 7) % 7;
     let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysTillNextWeek);
     let nextWeek = (nextweek.getMonth() + 1).toString().padStart(2, "0") + '/' + nextweek.getDate().toString().padStart(2, "0") + '/' + nextweek.getFullYear()

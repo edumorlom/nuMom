@@ -1,4 +1,4 @@
-import * as firebase from "firebase.json";
+import * as firebase from "firebase";
 import getLocalizedText from "./Components/getLocalizedText";
 import { NativeModules } from "react-native";
 import firebaseAccount from './firebase_account.json';
@@ -9,7 +9,7 @@ import * as Permissions from 'expo-permissions';
 
   const config = firebaseAccount;
     
-  if (!firebase.apps.length) firebase.initializeApp(config);
+  firebase.initializeApp(config);
   
 
   export const signUp = (email, phoneNumber, password, fullName, dob, pregnant, infant, liveMiami, babyDOB, nextWeek, week) => {
@@ -34,10 +34,7 @@ import * as Permissions from 'expo-permissions';
       firebase
         .database()
         .ref("users/" + uid)
-        .set({
-          ...snapshot.val(),
-          ...object,
-        });
+        .update( object );
     });
   }
 
@@ -112,3 +109,7 @@ import * as Permissions from 'expo-permissions';
         var ref = firebase.storage().ref().child("my-image");
         return ref.put(blob);
       }
+
+  export const getUid = () => {
+    return firebase.auth().currentUser.uid;
+  }

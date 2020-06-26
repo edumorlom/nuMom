@@ -9,10 +9,15 @@ export default LetsGetStarted = (props) => {
 
     const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
 
+    let _isMounted = false;
+
     useEffect(() => {
-        confettiVibration();
-        _start();
-        setTimeout(() => props.getNextScreen(), 4000)
+        _isMounted = true;
+        _isMounted && confettiVibration();
+        _isMounted && _start();
+        _isMounted && setTimeout(() => props.getNextScreen(), 4000)
+
+        return () => _isMounted = false;
     }, [])
 
     let _start = () => {
@@ -31,22 +36,6 @@ export default LetsGetStarted = (props) => {
         await Haptics.selectionAsync();
         await Haptics.selectionAsync();
         await Haptics.selectionAsync();
-        /* Haptics.selectionAsync().then(() => {
-            Haptics.selectionAsync().then(() => {
-                Haptics.selectionAsync().then(() => {
-                    Haptics.selectionAsync().then(() => {
-                        Haptics.selectionAsync().then(() => {
-                            Haptics.selectionAsync().then(() => {
-                                Haptics.selectionAsync().then(() => {
-                                    Haptics.selectionAsync().then(() => {
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        }); */
     };
 
     
