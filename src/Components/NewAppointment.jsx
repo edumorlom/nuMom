@@ -5,7 +5,8 @@ import {
   TextInput as TextBox,
   View,
   AsyncStorage,
-  ScrollView
+  ScrollView,
+  Picker
 } from "react-native";
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
@@ -23,9 +24,10 @@ export default function NewAppointment(props) {
     ([date, setDate] = useState(null)),
     ([time, setTime] = useState(null)),
     ([extra, setExtra] = useState(null)),
+    ([ampm, setAMPM] = useState(null)),
   ];
 
-  appointmentInfo = { "name": name, "address": address, "date": date, "time": time, "extra": extra }
+  appointmentInfo = { "name": name, "address": address, "date": date, "time": time, "extra": extra, "ampm": ampm }
 
   addAppointment = () => {
     let uid = firebase.auth().currentUser.uid;
@@ -106,6 +108,7 @@ export default function NewAppointment(props) {
           onChangeText={setTime}
         />
       </View>
+
       <View style={appStyles.TextInput.View}>
         <TextBox
           placeholder={props.getLocalizedText("appointmentExtra")}
@@ -121,7 +124,7 @@ export default function NewAppointment(props) {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          bottom: "10%",
+          height: appStyles.win.height * 1.05,
         }}
       >
         <Button
