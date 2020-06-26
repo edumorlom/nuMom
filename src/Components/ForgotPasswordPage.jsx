@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'rea
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
-import Firebase from './Firebase';
+import Firebase from '../Firebase';
 
 
 

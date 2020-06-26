@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import LogIn from "./src/Components/LogIn";
 import SignUp from "./src/Components/SignUp";
 import Homepage from "./src/Components/Homepage";
-import Firebase from "./src/Components/Firebase";
+import {
+  logIn, 
+  registerForPushNotificationsAsync, 
+  storeObjectInDatabase,
+  getUserInfo
+} 
+  from "./src/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
 import translate from "./src/Components/getLocalizedText";
 import SettingScreen from "./src/Components/SettingScreen";
 import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
-import * as firebase from "firebase";
+//import * as firebase from "firebase";
 
 export default App = () => {
 
@@ -68,10 +74,9 @@ export default App = () => {
     saveCookie("password", password);
 
     if (email && password) {
-      let fb = new Firebase();
-      fb.logIn(email, password).then(response => {
+      logIn(email, password).then(response => {
         loginWithUid(response.user.uid);
-        fb.registerForPushNotificationsAsync(response.user) 
+        registerForPushNotificationsAsync(response.user) 
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })
@@ -81,23 +86,14 @@ export default App = () => {
   };
 
   let loginWithUid = (uid) => {
-    let fb = new Firebase();
     let today = new Date();
-    let date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate() +
-      "@" +
-      today.getHours() +
-      ":" +
-      today.getMinutes();
-    fb.storeObjectInDatabase(uid, {
+    let date = today.getFullYear() + "-" + today.getMonth() + 1) + "-" + today.getDate() + "@" + today.getHours() + 
+    ":" + today.getMinutes();
+    storeObjectInDatabase(uid, {
       lastInteraction: date,
       deviceLanguage: deviceLanguage
     });
-    fb.getUserInfo(uid).on("value", (snapshot) => {
+    getUserInfo(uid).on("value", (snapshot) => {
       saveCookie("fullName", snapshot.val().fullName)
       saveCookie("uid", uid)
       setScreen("homepage")
@@ -111,9 +107,6 @@ export default App = () => {
     saveCookie("password", "");
     saveCookie("uid", "");
     saveCookie("fullName", "");
-    let fb = new Firebase();
-    let user = firebase.auth().currentUser;
-    fb.registerForPushNotificationsAsync(user);
   };
 
 

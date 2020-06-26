@@ -22,8 +22,16 @@ export default LetsGetStarted = (props) => {
         }).start();
     };
 
-    let confettiVibration = () => {
-        Haptics.selectionAsync().then(() => {
+    let confettiVibration = async () => {
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        await Haptics.selectionAsync();
+        /* Haptics.selectionAsync().then(() => {
             Haptics.selectionAsync().then(() => {
                 Haptics.selectionAsync().then(() => {
                     Haptics.selectionAsync().then(() => {
@@ -38,7 +46,7 @@ export default LetsGetStarted = (props) => {
                     });
                 });
             });
-        });
+        }); */
     };
 
     

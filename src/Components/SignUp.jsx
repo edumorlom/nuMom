@@ -5,7 +5,7 @@ import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
 //import SignUpfrom "./SignUp;
 import SignUpBabyDob from "./SignUpBabyDob";
-import Firebase from "./Firebase";
+import Firebase from "../Firebase";
 import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";

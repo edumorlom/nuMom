@@ -11,7 +11,7 @@ import {
   Alert,
   Platform,
 } from "react-native";
-import Firebase from "./Firebase";
+import Firebase from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
