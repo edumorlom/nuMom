@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, View } from 'react-native';
+import { Button, Image, View} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from "expo-haptics";
-import Firebase from "./Firebase";
 import Constants from 'expo-constants';
+import Firebase from "./Firebase";
+import * as firebase from "firebase";
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -20,23 +21,21 @@ export default function Documents() {
 
   let onPress = () => {
     Haptics.selectionAsync().then();
-    
     pickImage();
-    
-};
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
+      allowsEditing: false,
       quality: 1,
     });
 
     console.log(result);
     
     let fb = new Firebase();
-    fb.uploadImage(result.uri);
+    let user = firebase.auth().currentUser;
+    fb.uploadImage(result.uri, user);
 
     if (!result.cancelled) {
       setImage(result.uri);

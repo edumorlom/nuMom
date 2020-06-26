@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/picker": "^1.6.1",
     "expo": "^37.0.12",
+    "expo-camera": "^8.3.1",
     "expo-constants": "^9.1.1",
     "expo-haptics": "^8.1.0",
     "expo-image-picker": "^8.3.0",

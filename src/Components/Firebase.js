@@ -110,10 +110,12 @@ export default class Firebase {
     await firebase.database().ref('users/' + currentUser.uid).update(updates)
     //call the push notification 
   }
-uploadImage = async(uri) => {
+
+
+uploadImage = async(uri, user) => {
         const response = await fetch(uri);
         const blob = await response.blob();
-        var ref = firebase.storage().ref().child("my-image");
+        var ref = firebase.storage().ref().child(user.uid + '/' + "my-image");
         return ref.put(blob);
       }
 }

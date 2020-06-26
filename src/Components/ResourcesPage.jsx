@@ -15,6 +15,7 @@ export default function Resources(props) {
       resource={resource}
     />
   ));
+  
   let appointmentButton = (
     <AppointmentSelectionButton
       title={props.getLocalizedText("appointment")}
