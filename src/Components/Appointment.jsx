@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, View, StyleSheet, Button, Image } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
-import Spinner from "../../assets/spinner.gif";
+import Spinner from "../../assets/dna-loading2.gif";
 
 
 
@@ -55,6 +55,10 @@ export default function Appointment(props) {
   useEffect(() => {
     getAppointment();
 
+    if(!objects.length){
+      setLoading(null);
+    }
+
 
     return () => _isMounted = false;
 
@@ -75,7 +79,7 @@ export default function Appointment(props) {
 
       firebase.database().ref('users/' + uid + '/appointments/' + id).remove();
 
-      alert("Your appointment has been removed.")
+      // alert("Your appointment has been removed.")
 
     } else {
       console.log("Error: Couldn't get the User appointment Info")
