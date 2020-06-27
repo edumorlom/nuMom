@@ -8,14 +8,14 @@
     "eject": "./node_modules/.bin/expo eject"
   },
   "dependencies": {
-    "@react-native-community/picker": "^1.6.1",
+    "@react-native-community/picker": "^1.6.5",
     "expo": "^37.0.12",
     "expo-constants": "^9.1.1",
-    "expo-haptics": "^8.1.0",
+    "expo-haptics": "^8.2.1",
     "expo-image-picker": "^8.3.0",
     "expo-location": "~8.1.0",
     "expo-permissions": "~8.1.0",
-    "firebase": "^7.15.1",
+    "firebase": "^7.15.5",
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.7.0",
     "geolib": "^3.3.1",
@@ -30,11 +30,11 @@
     "react-native-material-dropdown": "^0.11.1",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
-    "twilio": "^3.46.0"
+    "twilio": "^3.47.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "babel-preset-expo": "^8.2.1"
+    "@babel/core": "^7.10.3",
+    "babel-preset-expo": "^8.2.3"
   },
   "private": true
 }
