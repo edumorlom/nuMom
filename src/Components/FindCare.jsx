@@ -50,8 +50,7 @@ export default function FindCare(props) {
         setService(service);
     }
 
-    let servicesArray = ["All", "Education", "Support & Counseling", "Free Materials", "Referrals", "STD Tests", "STD Treatment", "Yearly Exam", "Pregnancy Tests", 
-                            "Ultrasound", "Immunization", "Abortions", "Medical Care", "Lab services"];
+    let servicesArray = ["All", "Education", "Support & Counseling", "Free Materials", "Referrals", "STD Tests", "STD Treatment", "Yearly Exam", "Pregnancy Tests", "Ultrasound", "Immunization", "Abortions", "Medical Care", "Lab services"];
     
     let services = servicesArray.map ((service) => 
         ({label: service, value: service}))  //Change label to adjust for different languages
@@ -65,7 +64,7 @@ export default function FindCare(props) {
         <>
             {props.filterToShow ? <View style={{flexDirection: "row", height: window.height * 0.03}}>
                 { <Dropdown containerStyle= {{...styles.Dropdown, right: '30%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} fontSize= {12} data={distances} label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(value, service)} /> }
-                <Dropdown containerStyle= {{...styles.Dropdown, left: '30%'}} itemTextStyle = {{textAlign: 'right'}} dropdownOffset= {{top: 0, bottom: 0,left: 5, right: 0}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
+                <Dropdown containerStyle= {{...styles.Dropdown, left: '30%'}}  dropdownOffset= {{top: 0, bottom: 0,left: 0}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
             </View> : null}
                 <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                     
@@ -82,5 +81,6 @@ const styles = StyleSheet.create({
         borderColor: greyColor,
         borderRadius: 5,
         width: '42%',
+        bottom: 5
     },
   });
