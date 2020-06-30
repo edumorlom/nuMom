@@ -6,7 +6,7 @@ import directionsArrow from '../../assets/directions-arrow.png'
 import appStyles from './AppStyles'
 import visitSiteIcon from '../../assets/safari-visit-site.png'
 import callIcon from '../../assets/call-icon.png'
-
+import translate from "app/Components/getLocalizedText";
 
 export default function ClinicInfo(props){
 
@@ -36,10 +36,10 @@ export default function ClinicInfo(props){
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                 <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
-                <ActionButton mainAction={props.getLocalizedText("visitSite")} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
-                <ActionButton mainAction={props.getLocalizedText("callClinic")} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
+                <ActionButton mainAction={translate("visitSite")} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
+                <ActionButton mainAction={translate("callClinic")} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
                 <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
-                    <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>{props.getLocalizedText("services")}</Text>
+                    <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>{translate("services")}</Text>
                         {services}
                 </View>
         </ScrollView>

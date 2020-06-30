@@ -5,6 +5,7 @@ import DocumentSelectionButton from "./DocumentUploadButton";
 import AppointmentSelectionButton from "./AppointmentSelectionButton";
 import appointments from "../../assets/appointments.png";
 import ResourcesInfo from "./ResourcesInformation";
+import translate from "app/Components/getLocalizedText";
 
 export default function Resources(props) {
   let resourceButtons = ResourcesInfo().map((resource, key) => (
@@ -17,8 +18,8 @@ export default function Resources(props) {
   ));
   let appointmentButton = (
     <AppointmentSelectionButton
-      title={props.getLocalizedText("appointment")}
-      subtitle={props.getLocalizedText("appointmentInfo")}
+      title={translate("appointment")}
+      subtitle={translate("appointmentInfo")}
       icon={appointments}
       onPress={() => {
         props.setLowerPanelContent("Appointment");
@@ -28,8 +29,8 @@ export default function Resources(props) {
 
   let documentUploadButton = (
     <DocumentSelectionButton
-      title={props.getLocalizedText("documents")}
-      subtitle={props.getLocalizedText("documentsSubtitle")}
+      title={translate("documents")}
+      subtitle={translate("documentsSubtitle")}
       onPress={() => {
         props.setLowerPanelContent("documents");
       }}

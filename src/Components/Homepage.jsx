@@ -8,6 +8,7 @@ import { getPreciseDistance } from "geolib";
 import CancelFilterButton from "./CancelFilterButton";
 import {getRef} from "../Firebase"
 
+
 export default Homepage = props => {
   
     
@@ -18,6 +19,7 @@ export default Homepage = props => {
   const [clinicToView, setClinicToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState("selection");
+
 
   useEffect( () => {
     getSortedClinics();
@@ -92,7 +94,6 @@ export default Homepage = props => {
           clinicToView={clinicToView}
           setClinicToView={setClinicToView}
           clinics={clinics}
-          getLocalizedText={props.getLocalizedText}
         />
         {/* Compare current filters with default filters, if different show reset filter button */}
         {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && <CancelFilterButton  resetFilters= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
@@ -114,7 +115,6 @@ export default Homepage = props => {
           lowerPanelContent={lowerPanelContent}
           goBack={goBack}
           setLowerPanelContent={setLowerPanelContent}
-          getLocalizedText={props.getLocalizedText}
           setScreen={props.setScreen}
         />
       </View>

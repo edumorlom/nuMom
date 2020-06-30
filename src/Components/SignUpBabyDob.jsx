@@ -3,6 +3,7 @@ import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, } from "react-nat
 import appStyles from "./AppStyles";
 import Button from "./Button";
 import { TextInputMask } from "react-native-masked-text";
+import translate from "app/Components/getLocalizedText";
 
 export default SignUpBabyDob = (props) => {
 
@@ -24,9 +25,9 @@ export default SignUpBabyDob = (props) => {
 
   let onPress = () => {
     if (!babyDob) {
-      alert(props.getLocalizedText("fillOutAllFields"));
+      alert(translate("fillOutAllFields"));
     } else if (!isValidDate(babyDob)) {
-      alert(props.getLocalizedText("invalidDate"));
+      alert(translate("invalidDate"));
     } else {
       props.setUserInfo({ babyDOB: babyDob }); 
       props.getNextScreen();
@@ -39,7 +40,7 @@ export default SignUpBabyDob = (props) => {
   };
 
   
-let titletext = props.getLocalizedText("babydob");
+let titletext = translate("babydob");
 
     return (
       <TouchableOpacity
@@ -57,7 +58,7 @@ let titletext = props.getLocalizedText("babydob");
           <Text style={appStyles.titleBlue}>{titletext}</Text>
           <View style={{ paddingTop: appStyles.win.height * 0.1 }}>
             <TextInputMask
-              placeholder={props.getLocalizedText("dob")}
+              placeholder={translate("dob")}
               type={"datetime"}
               options={{
                 format: "MM/DD/YYYY",
@@ -71,7 +72,7 @@ let titletext = props.getLocalizedText("babydob");
               onChangeText={setDob}
               // ref={(ref) => (babyDOB = ref)}
             />
-            {/* <TextInput placeholder={props.getLocalizedText("dob")} type={'date'} onChangeText={setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
+            {/* <TextInput placeholder={translate("dob")} type={'date'} onChangeText={setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
           </View>
         </View>
         <View
@@ -84,7 +85,7 @@ let titletext = props.getLocalizedText("babydob");
           }}
         >
           <Button
-            text={props.getLocalizedText("continueButton")}
+            text={translate("continueButton")}
             onPress={onPress}
           />
         </View>

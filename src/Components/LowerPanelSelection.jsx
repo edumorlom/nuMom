@@ -14,6 +14,7 @@ import WelcomeUserBanner from "./WelcomeUserBanner";
 import SelectionButton from "./SelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { MaterialIcons } from "@expo/vector-icons";
+import translate from "app/Components/getLocalizedText";
 
 export default function LowerPanelSelection(props) {
   return (
@@ -33,7 +34,6 @@ export default function LowerPanelSelection(props) {
       <WelcomeUserBanner
         fullName={props.fullName}
         logout={props.logout}
-        getLocalizedText={props.getLocalizedText}
       />
       <View>
         <MaterialIcons
@@ -45,19 +45,19 @@ export default function LowerPanelSelection(props) {
         />
       </View>
       <SelectionButton
-        text={props.getLocalizedText("findCare")}
+        text={translate("findCare")}
         icon={clinicLogo}
         onPress={() => props.setLowerPanelContent("findCare")}
       />
       <SelectionButton
-        text={props.getLocalizedText("learn")}
+        text={translate("learn")}
         icon={babyBottle}
         onPress={() => {
           props.setLowerPanelContent("learn");
         }}
       />
       <SelectionButton
-        text={props.getLocalizedText("resources")}
+        text={translate("resources")}
         icon={lightBulb}
         onPress={() => {
           props.setLowerPanelContent("resources");

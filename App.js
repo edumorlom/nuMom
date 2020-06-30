@@ -10,7 +10,6 @@ import {
 } 
 from "app/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
-import translate from "app/Components/getLocalizedText";
 import SettingScreen from "app/Components/SettingScreen";
 import ForgotPasswordPage from "app/Components/ForgotPasswordPage";
 //import * as firebase from "firebase";
@@ -42,10 +41,6 @@ export default App = () => {
     
 }
   
-
-  let getLocalizedText = (key) => {
-    return translate(deviceLanguage, key);
-  };
 
   let saveCookie = async (key, value) => {
     try {
@@ -117,7 +112,6 @@ export default App = () => {
         <LogIn
           setScreen={setScreen}
           login={loginWithEmailPassword}
-          getLocalizedText={getLocalizedText}
         />
       );
     } else if (screen === "signup") {
@@ -126,7 +120,6 @@ export default App = () => {
           <SignUp
             setScreen={setScreen}
             login={loginWithEmailPassword}
-            getLocalizedText={getLocalizedText}
           />
         );
       } catch (err) {
@@ -141,7 +134,6 @@ export default App = () => {
           goBack={goBack}
           fullName={appState.fullName}
           logout={logout}
-          getLocalizedText={getLocalizedText}
         />
       );
     } else if (screen === "forgotPassword") {
@@ -149,7 +141,6 @@ export default App = () => {
         <ForgotPasswordPage
           setScreen={setScreen}
           goBack={goBack}
-          getLocalizedText={getLocalizedText}
         />
       );
     } else {
@@ -158,7 +149,6 @@ export default App = () => {
           setScreen={setScreen}
           fullName={appState.fullName}
           logout={logout}
-          getLocalizedText={getLocalizedText}
         />
       );
     }

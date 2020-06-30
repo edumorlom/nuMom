@@ -8,7 +8,7 @@ import appStyles, {
 import React, { useEffect } from "react";
 import * as Haptics from "expo-haptics";
 import { Feather } from '@expo/vector-icons';
-
+import translate from "app/Components/getLocalizedText";
 
 export default function AppointmentMenu(props) {
 
@@ -22,11 +22,11 @@ export default function AppointmentMenu(props) {
   const AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
-        props.getLocalizedText("RemoveAppointment"),
-        props.getLocalizedText('WantToRemoveAppointment'),
+        translate("RemoveAppointment"),
+        translate('WantToRemoveAppointment'),
         [
-          { text: props.getLocalizedText("Yes"), onPress: () => resolve(true) },
-          { text: props.getLocalizedText("No"), onPress: () => resolve(false) },
+          { text: translate("Yes"), onPress: () => resolve(true) },
+          { text: translate("No"), onPress: () => resolve(false) },
         ],
         { cancelable: false }
       );

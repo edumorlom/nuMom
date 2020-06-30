@@ -3,6 +3,7 @@ import { TouchableHighlight, Text, View, ScrollView } from "react-native";
 import appStyles from "./AppStyles";
 import STDSelectionButton from "./STDSelectionButton";
 import STD from "./STD";
+import translate from "app/Components/getLocalizedText";
 
 export default function STDSelection(props) {
   let onPress = (std) => {
@@ -15,7 +16,7 @@ export default function STDSelection(props) {
     >
       {STD().map((std) => (
         <STDSelectionButton
-          name={props.getLocalizedText(std.name)}
+          name={translate(std.name)}
           onPress={() => onPress(std)}
         />
       ))}
