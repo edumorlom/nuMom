@@ -6,7 +6,8 @@ import {
   View,
   AsyncStorage,
   ScrollView,
-  Picker
+  Picker,
+  StyleSheet
 } from "react-native";
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
@@ -109,6 +110,8 @@ export default function NewAppointment(props) {
         />
       </View>
 
+
+
       <View style={appStyles.TextInput.View}>
         <TextBox
           placeholder={props.getLocalizedText("appointmentExtra")}
@@ -136,3 +139,10 @@ export default function NewAppointment(props) {
 
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 40,
+    alignItems: "center"
+  }
+});
