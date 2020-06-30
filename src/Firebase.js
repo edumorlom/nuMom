@@ -77,7 +77,8 @@ import * as Permissions from 'expo-permissions';
 
 
   export const getUserInfo = (uid) => firebase.database().ref("users/" + uid);
-
+  
+  export const getRef = (address) => firebase.database().ref(address);
 
   export const passwordReset = (email) => {
     return firebase.auth().sendPasswordResetEmail(email)
