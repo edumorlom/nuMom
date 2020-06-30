@@ -4,44 +4,58 @@ import { View, AsyncStorage } from "react-native";
 import LowerPanel from "./LowerPanel";
 import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
-import Clinics from "./Clinics";
 import { getPreciseDistance } from "geolib";
 import CancelFilterButton from "./CancelFilterButton";
+import {getRef} from "../Firebase"
 
 export default Homepage = props => {
   
     
   const [fullPanel, setFullPanel] = useState(true);
-  const [clinics, setClinics] = useState(Clinics());    //Pass it empty array and see what happens
+  const [clinics, setClinics] = useState([]);  
   const [sortedClinics, setSortedClinics] = useState(null);
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState("selection");
 
-  
-
-
-
   useEffect( () => {
-    sortClinics();
+    getSortedClinics();
   },[])
 
-  let sortClinics = async () => {
-    await getPosition().then((position) => {
-        let clinics = Clinics();
-        clinics.forEach((clinic) => {
-          let loc = position.coords;
-          //Returns a precise distance between the two coordinates given (Clinic & User)
-          let dist = getPreciseDistance(clinic.coordinate, { latitude: loc.latitude, longitude: loc.longitude});   
-          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
-          clinic.distance = distanceInMiles;
-        });
-        clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
-        setClinics(clinics);
-        setSortedClinics(clinics);  
-        //SortedClinics is never changed, where as clinics does get filtered and therefore changed
-      }).catch((err) => { console.error(err.message); });
+  let getSortedClinics = async () => {
+    let Clinics = await fetchClinics();
+    sortClinics(Clinics);  //Sets the state with the sorted Clinics
+    
+  }
+
+  let fetchClinics = async () => {
+    return new Promise ((resolve, reject) => {
+      let clinicsRef = getRef("Clinics");
+      clinicsRef.once('value', (snapshot) => {
+      resolve(snapshot.val())
+      })
+    })
+  }
+  
+
+  let sortClinics = async (clinics) => {
+    try {
+      let position = await getPosition();
+      let Clinics = clinics;
+      let latitude = position.coords.latitude
+      let longitude = position.coords.longitude
+      Clinics.forEach((clinic) => {
+        //Returns a precise distance between the two coordinates given (Clinic & User)
+        let dist = getPreciseDistance(clinic.coordinate, { latitude: latitude, longitude: longitude});   
+        let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
+        clinic.distance = distanceInMiles;
+      });
+      Clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
+      setClinics(Clinics);
+      setSortedClinics(Clinics);  
+      //SortedClinics is never changed, where as clinics does get filtered and therefore changed
+    } catch (err) {console.error(err)}
   }
 
   let getPosition =  (options) => {
@@ -49,15 +63,6 @@ export default Homepage = props => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   };
-
-  // setFullPanel = (fullPanel) => {
-  //   fullPanel && !fullPanel
-  //     ? setState({ fullPanel: fullPanel })
-  //     : null;
-  //   !fullPanel && fullPanel
-  //     ? setState({ fullPanel: fullPanel })
-  //     : null;
-  // };
 
 
   let goBack = () => {
@@ -79,8 +84,6 @@ export default Homepage = props => {
   };
 
   
-    //Clinics().forEach(clinic => console.log(clinic.services))
-    //console.log(filters);
     return (
       <View style={appStyles.container}>
         <Map

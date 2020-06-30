@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'rea
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
-import Firebase from './Firebase';
+import passwordReset from '../Firebase';
 
 
 
@@ -26,14 +26,13 @@ const ForgotPasswordPage = (props) => {
     };
 
     PasswordReset = async (email) => {
-        Haptics.selectionAsync().then();
-        let fb = new Firebase();
+        await Haptics.selectionAsync();
 
         try {
             if(!isValidEmail(email)){
                 return alert("Invalid Email: Please input Valid Email");
             }
-            await fb.passwordReset(email);
+            await passwordReset(email);
             alert("Password Reset email sent Successfully!!\n Check your email ");
             console.log("Password Reset email sent Successfully!")
             props.setScreen('login');

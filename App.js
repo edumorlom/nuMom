@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
-import LogIn from "./src/Components/LogIn";
-import SignUp from "./src/Components/SignUp";
-import Homepage from "./src/Components/Homepage";
-import Firebase from "./src/Components/Firebase";
+import LogIn from "app/Components/LogIn";  //absolute import paths
+import SignUp from "app/Components/SignUp";
+import Homepage from "app/Components/Homepage";
+import {
+  logIn, 
+  registerForPushNotificationsAsync, 
+  storeObjectInDatabase,
+  getUserInfo
+} 
+from "app/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
-import translate from "./src/Components/getLocalizedText";
-import SettingScreen from "./src/Components/SettingScreen";
-import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
-import * as firebase from "firebase";
+import translate from "app/Components/getLocalizedText";
+import SettingScreen from "app/Components/SettingScreen";
+import ForgotPasswordPage from "app/Components/ForgotPasswordPage";
+//import * as firebase from "firebase";
 
 export default App = () => {
 
@@ -19,29 +25,23 @@ export default App = () => {
   const [appState, setAppState] = useState(initState);
   const [screen, setScreen] = useState("login");
 
-  useEffect(() => {
-    let _email = null;
-    let _password = null;
-    let _fullName = null;
-    let _uid = null;
-    getCookie("email").then((email) => {
-          _email = email;
-          getCookie("password").then((password) => {
-            _password = password;
-            if (email && password) loginWithEmailPassword(email, password);
-          });
-    setTimeout(() => {
-      getCookie("fullName").then((fullName) => _fullName = fullName)
-      getCookie("uid").then((uid) => _uid = uid)
-    }, 400)
-    
-    })
-    setTimeout(() => {
-      setAppState({email: _email, password: _password, fullName: _fullName, uid: _uid});
-    }, 600)
-    //All the timeouts are to make sure all the properties get their actual value (not null)
-  },[])
+  //if (!firebase.apps.length) firebase.initializeApp(firebaseAccount);
 
+  useEffect(() => {
+    getCookies();
+  }, [])
+
+  let getCookies = async () => {
+    let email = await getCookie("email");
+    let password = await getCookie("password");
+    if (email && password) loginWithEmailPassword(email, password);
+    let fullName = await getCookie("fullName");
+    let uid = await getCookie("uid");
+  
+    setAppState({email: email, password: password, fullName: fullName, uid: uid});
+    
+}
+  
 
   let getLocalizedText = (key) => {
     return translate(deviceLanguage, key);
@@ -68,10 +68,9 @@ export default App = () => {
     saveCookie("password", password);
 
     if (email && password) {
-      let fb = new Firebase();
-      fb.logIn(email, password).then(response => {
+      logIn(email, password).then(response => {
         loginWithUid(response.user.uid);
-        fb.registerForPushNotificationsAsync(response.user) 
+        registerForPushNotificationsAsync(response.user) 
       }, e => {
         alert("Invalid E-mail and Password Combination!")
       })
@@ -81,23 +80,14 @@ export default App = () => {
   };
 
   let loginWithUid = (uid) => {
-    let fb = new Firebase();
     let today = new Date();
-    let date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate() +
-      "@" +
-      today.getHours() +
-      ":" +
-      today.getMinutes();
-    fb.storeObjectInDatabase(uid, {
+    let date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "@" + today.getHours() + 
+    ":" + today.getMinutes();
+    storeObjectInDatabase(uid, {
       lastInteraction: date,
       deviceLanguage: deviceLanguage
     });
-    fb.getUserInfo(uid).on("value", (snapshot) => {
+    getUserInfo(uid).on("value", (snapshot) => {
       saveCookie("fullName", snapshot.val().fullName)
       saveCookie("uid", uid)
       setScreen("homepage")
@@ -111,9 +101,6 @@ export default App = () => {
     saveCookie("password", "");
     saveCookie("uid", "");
     saveCookie("fullName", "");
-    let fb = new Firebase();
-    let user = firebase.auth().currentUser;
-    fb.registerForPushNotificationsAsync(user);
   };
 
 
