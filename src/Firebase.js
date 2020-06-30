@@ -80,36 +80,30 @@ export const getUserInfo = (uid) => firebase.database().ref("users/" + uid);
 
 export const getRef = (address) => firebase.database().ref(address);
 
-
-
-getUserInfo = (uid) => firebase.database().ref("users/" + uid);
-
-passwordReset = (email) => {
-  export const passwordReset = (email) => {
-    return firebase.auth().sendPasswordResetEmail(email)
-  }
-
-  export const registerForPushNotificationsAsync = async (currentUser) => {
-    const { existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      finalStatus = status;
-    }
-    // Stop here if the user did not grant permissions
-    if (finalStatus !== 'granted') {
-      return;
-    }
-    // Get the token that uniquely identifies this device
-    let token = await Notifications.getExpoPushTokenAsync();
-    // POST the token to our backend so we can use it to send pushes from there
-    var updates = {}
-    updates['/expoToken'] = token
-    await firebase.database().ref('users/' + currentUser.uid).update(updates)
-    //call the push notification 
-  }
-
+export const passwordReset = (email) => {
+  return firebase.auth().sendPasswordResetEmail(email)
 }
+
+export const registerForPushNotificationsAsync = async (currentUser) => {
+  const { existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+  let finalStatus = existingStatus;
+  if (existingStatus !== 'granted') {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    finalStatus = status;
+  }
+  // Stop here if the user did not grant permissions
+  if (finalStatus !== 'granted') {
+    return;
+  }
+  // Get the token that uniquely identifies this device
+  let token = await Notifications.getExpoPushTokenAsync();
+  // POST the token to our backend so we can use it to send pushes from there
+  var updates = {}
+  updates['/expoToken'] = token
+  await firebase.database().ref('users/' + currentUser.uid).update(updates)
+  //call the push notification 
+}
+
 export const uploadImage = async (uri) => {
   const response = await fetch(uri);
   const blob = await response.blob();
