@@ -1,6 +1,6 @@
 import {View, Linking, Text, ScrollView} from "react-native";
 import React from "react";
-import ClinicSelectionButton from "./ClinicSelectionButton";
+import SelectionButton from "./SelectionButton";
 import ActionButton from "./ActionButton";
 import directionsArrow from '../../assets/directions-arrow.png'
 import appStyles from './AppStyles'
@@ -30,12 +30,27 @@ export default function ClinicInfo(props){
         Linking.openURL('http://' + props.clinic.website)
     };
 
+    let getResourceName = (name) => {
+        return name.length > 40
+        ? name.substring(0, 40) + "..."
+        : name;
+      }
+
     let services = props.clinic.services.map((service, key) => <Text key={key} style={{...appStyles.regularFontSize}}>{service}</Text>);
+
+    let clinicInfo = props.clinic.address.street + '\n' + props.clinic.address.city + '\n' + props.clinic.address.state +', '+ props.clinic.address.zipCode + '\n' + props.clinic.distance + ' miles';
 
 
     return (
         <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
-                <ClinicSelectionButton clinic={props.clinic} icon={directionsArrow} onPress={getDirections}/>
+                <SelectionButton 
+                    style={appStyles.ClinicSelectionButton}
+                    text={getResourceName(props.clinic.resource)}
+                    subtext={`${clinicInfo}`}
+                    icon={directionsArrow} 
+                    onPress={getDirections}
+                    /* clinic={props.clinic}  */
+                />
                 <ActionButton mainAction={translate("visitSite")} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
                 <ActionButton mainAction={translate("callClinic")} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
                 <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>

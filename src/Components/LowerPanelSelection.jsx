@@ -15,6 +15,7 @@ import SelectionButton from "./SelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { MaterialIcons } from "@expo/vector-icons";
 import translate from "app/Components/getLocalizedText";
+import appStyles from "./AppStyles";
 
 export default function LowerPanelSelection(props) {
   return (
@@ -45,11 +46,13 @@ export default function LowerPanelSelection(props) {
         />
       </View>
       <SelectionButton
+        style={appStyles.PanelSelectionButton}
         text={translate("findCare")}
         icon={clinicLogo}
         onPress={() => props.setLowerPanelContent("findCare")}
       />
       <SelectionButton
+        style={appStyles.PanelSelectionButton}
         text={translate("learn")}
         icon={babyBottle}
         onPress={() => {
@@ -57,6 +60,7 @@ export default function LowerPanelSelection(props) {
         }}
       />
       <SelectionButton
+        style={appStyles.PanelSelectionButton}
         text={translate("resources")}
         icon={lightBulb}
         onPress={() => {
