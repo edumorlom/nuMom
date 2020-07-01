@@ -121,7 +121,7 @@ export default function NewAppointment(props) {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          bottom: "10%",
+          bottom: appStyles.win.height * 0.005,
         }}
       >
         <Button

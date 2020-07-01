@@ -1,5 +1,5 @@
 import { TextInputMask } from 'react-native-masked-text';
-import React, { useState, useEffect, useRef, Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -188,32 +188,32 @@ const SettingScreen = (props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <TouchableHighlight
-        onPress={goBack}
-        underlayColor={"transparent"}
-        style={{
-          height: appStyles.win.height * 0.04,
-          marginTop: "10%",
-          marginLeft: "5%",
-          // marginBottom: '3%',
-          width: appStyles.win.width * 0.07,
-        }}
-      >
-        <Image
+      <View style={{flexDirection: "row", justifyContent: 'space-between', paddingHorizontal: 25, paddingTop: 40}}>
+        <TouchableHighlight
+          onPress={goBack}
+          underlayColor={"transparent"}
           style={{
-            height: appStyles.win.width * 0.06,
-            width: appStyles.win.width * 0.06,
+            height: appStyles.win.height * 0.04,
+            // marginTop: "10%",
+            // marginLeft: "5%",
+            // marginBottom: '3%',
+            width: appStyles.win.width * 0.07,
           }}
-          source={goBackImg}
-        />
-      </TouchableHighlight>
-      <View style={{ position: 'absolute', right: 30, top: 40 }}>
-        <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
-          AsyncAlert().then((response) => {
-            response ? props.logout() : null;
-          });
-        }}
-        />
+        >
+          <Image
+            style={{
+              height: appStyles.win.width * 0.06,
+              width: appStyles.win.width * 0.06,
+            }}
+            source={goBackImg}
+          />
+        </TouchableHighlight>
+          <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
+            AsyncAlert().then((response) => {
+              response ? props.logout() : null;
+            });
+          }}
+          />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>

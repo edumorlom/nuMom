@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Button, Image } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
 import Spinner from "../../assets/dna-loading2.gif";
+import appStyles from './AppStyles';
 
 
 
@@ -109,7 +110,7 @@ export default function Appointment(props) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            top: 50
+            top: appStyles.win.height * 0.06
           }}
           source={Spinner}
         /> : objects.map((appointments, index) => {
