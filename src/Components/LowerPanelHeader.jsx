@@ -5,6 +5,7 @@ import goBackImg from "../../assets/go-back-arrow.png";
 import filterButton from "../../assets/Filter.png";
 import * as Haptics from "expo-haptics";
 import GestureRecognizer from "react-native-swipe-gestures";
+import translate from "app/Components/getLocalizedText";
 
 export default function LowerPanelHeader(props) {
   let onPress = () => {
@@ -17,24 +18,23 @@ export default function LowerPanelHeader(props) {
   };
 
   let getCurrentHeaderTitle = () => {
-    if (props.lowerPanelContent === "findCare")
-      return props.getLocalizedText("findCare");
-    if (props.lowerPanelContent === "clinicInfo")
-      return props.getLocalizedText("findCare");
-    if (props.lowerPanelContent === "learn")
-      return props.getLocalizedText("learn");
-    if (props.lowerPanelContent === "STDSelection")
-      return props.getLocalizedText("STDSelection");
-    if (props.lowerPanelContent === "resources")
-      return props.getLocalizedText("resources");
-    if (props.lowerPanelContent === "STDInfo")
-      return props.getLocalizedText("STDInfo");
-    if (props.lowerPanelContent === "Appointment")
-      return props.getLocalizedText("appointment");
-    if (props.lowerPanelContent === "NewAppointment")
-      return props.getLocalizedText("newAppointment");
-    if (props.lowerPanelContent === "documents")
-      return props.getLocalizedText("documents");
+    let content = props.lowerPanelContent;
+    if (content === "findCare" || content === "clinicInfo")
+      return translate("findCare");
+    if (content === "learn")
+      return translate("learn");
+    if (content === "STDSelection")
+      return translate("STDSelection");
+    if (content === "resources")
+      return translate("resources");
+    if (content === "STDInfo")
+      return translate("STDInfo");
+    if (content === "Appointment")
+      return translate("appointment");
+    if (content === "NewAppointment")
+      return translate("newAppointment");
+    if (content === "documents")
+      return translate("documents");
   };
 
 

@@ -16,6 +16,7 @@ import TextInput from "./TextInput.jsx";
 import * as firebase from 'firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInputMask } from "react-native-masked-text";
+import translate from "app/Components/getLocalizedText";
 
 export default function NewAppointment(props) {
 
@@ -38,7 +39,7 @@ export default function NewAppointment(props) {
 
   onPress = () => {
     if (!name || !address || !date || !time) {
-      alert(props.getLocalizedText("fillOutAllFields"));
+      alert(translate("fillOutAllFields"));
     } else {
       addAppointment();
       props.setLowerPanelContent("Appointment");
@@ -57,7 +58,7 @@ export default function NewAppointment(props) {
 
       <View style={appStyles.TextInput.View}>
         <TextBox
-          placeholder={props.getLocalizedText("appointmentName")}
+          placeholder={translate("appointmentName")}
           onChangeText={setName}
           value={name}
           style={appStyles.TextInput.TextInput}
@@ -65,7 +66,7 @@ export default function NewAppointment(props) {
       </View>
       <View style={appStyles.TextInput.View}>
         <TextBox
-          placeholder={props.getLocalizedText("appointmentAddress")}
+          placeholder={translate("appointmentAddress")}
           onChangeText={setAddress}
           value={address}
           style={appStyles.TextInput.TextInput}
@@ -78,7 +79,7 @@ export default function NewAppointment(props) {
         }}
       >
         <TextInputMask
-          placeholder={props.getLocalizedText("appointmentDate")}
+          placeholder={translate("appointmentDate")}
           type={"datetime"}
           options={{
             format: "MM/DD/YYYY",
@@ -99,7 +100,7 @@ export default function NewAppointment(props) {
         }}
       >
         <TextInputMask
-          placeholder={props.getLocalizedText("appointmentTime")}
+          placeholder={translate("appointmentTime")}
           type={"datetime"}
           options={{
             format: "HH:MN",
@@ -114,7 +115,7 @@ export default function NewAppointment(props) {
 
       <View style={appStyles.TextInput.View}>
         <TextBox
-          placeholder={props.getLocalizedText("appointmentExtra")}
+          placeholder={translate("appointmentExtra")}
           onChangeText={setExtra}
           value={extra}
           style={appStyles.TextInput.TextInput}
@@ -131,7 +132,7 @@ export default function NewAppointment(props) {
         }}
       >
         <Button
-          text={props.getLocalizedText("continueButton")}
+          text={translate("continueButton")}
           onPress={onPress}
         />
       </View>

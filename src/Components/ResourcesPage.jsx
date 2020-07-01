@@ -1,24 +1,36 @@
 import React from "react";
-import { ScrollView } from "react-native";
-import ResourceSelectionButton from "./ResourceSelectionButton";
-import DocumentSelectionButton from "./DocumentUploadButton";
-import AppointmentSelectionButton from "./AppointmentSelectionButton";
+import { ScrollView, Linking } from "react-native";
+import SelectionButton from "./SelectionButton";
 import appointments from "../../assets/appointments.png";
+import document from "../../assets/document.png";
 import ResourcesInfo from "./ResourcesInformation";
+import translate from "app/Components/getLocalizedText";
+import appStyles from "./AppStyles";
 
 export default function Resources(props) {
+
+  let getResourceName = (name) => {
+    return name.length > 40
+    ? name.substring(0, 40) + "..."
+    : name;
+  }
+
+
   let resourceButtons = ResourcesInfo().map((resource, key) => (
-    <ResourceSelectionButton
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
       key={key}
       icon={resource.icon}
-      onPress
-      resource={resource}
+      text={getResourceName(resource.resource)}
+      subtext={resource.subtitle}
+      onPress={() => Linking.openURL(resource.website)}
     />
   ));
   let appointmentButton = (
-    <AppointmentSelectionButton
-      title={props.getLocalizedText("appointment")}
-      subtitle={props.getLocalizedText("appointmentInfo")}
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text={translate("appointment")}
+      subtext={translate("appointmentInfo")}
       icon={appointments}
       onPress={() => {
         props.setLowerPanelContent("Appointment");
@@ -27,15 +39,18 @@ export default function Resources(props) {
   );
 
   let documentUploadButton = (
-    <DocumentSelectionButton
-      title={props.getLocalizedText("documents")}
-      subtitle={props.getLocalizedText("documentsSubtitle")}
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text={translate("documents")}
+      subtext={translate("documentsSubtitle")}
+      icon={document}
       onPress={() => {
         props.setLowerPanelContent("documents");
       }}
     />
   );
 
+  
 
   return (
     <ScrollView

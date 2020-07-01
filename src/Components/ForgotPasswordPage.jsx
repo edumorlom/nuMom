@@ -4,7 +4,7 @@ import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import * as Haptics from "expo-haptics";
 import passwordReset from '../Firebase';
-
+import translate from "app/Components/getLocalizedText";
 
 
 const ForgotPasswordPage = (props) => {
@@ -72,14 +72,14 @@ const ForgotPasswordPage = (props) => {
                         fontSize: appStyles.titleFontSize,
                         fontWeight: 'bold',
                         alignSelf: 'center'
-                        }}>{props.getLocalizedText("forgotPassword")}</Text>
+                        }}>{translate("forgotPassword")}</Text>
                 </View>
 
                 <View style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}>
-                    <Text style={appStyles.titleBlue}>{props.getLocalizedText("emailInput")}:</Text>
+                    <Text style={appStyles.titleBlue}>{translate("emailInput")}:</Text>
                     <View style={appStyles.TextInput.View}>
                         <TextBox
-                        placeholder={props.getLocalizedText("emailInput")}
+                        placeholder={translate("emailInput")}
                         style={appStyles.TextInput.TextInput}
                         value={email}
                         onChangeText={(e)=> onChangeText(e)}
@@ -88,7 +88,7 @@ const ForgotPasswordPage = (props) => {
 
                     <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
                     onPress={() => PasswordReset(email)} >
-                    <Text style={appStyles.button.text}>{props.getLocalizedText("send")}</Text>
+                    <Text style={appStyles.button.text}>{translate("send")}</Text>
                     </TouchableHighlight>
                 </View>
             </View>

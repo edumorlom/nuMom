@@ -16,6 +16,7 @@ import Button from "./Button";
 import SwipeUp from "./SwipeUp";
 import background from "../../assets/background.gif";
 import loginMainImage from "../../assets/child.png";
+import translate from "app/Components/getLocalizedText";
 
 export default LogIn = props => {
 
@@ -44,83 +45,19 @@ export default LogIn = props => {
                     <ImageBackground source={background} style={{position: 'absolute', opacity: 0.75, width: appStyles.win.width, height: appStyles.win.height}}/>
                     <View style={{paddingTop: appStyles.win.height * 0.05, alignItems: 'center'}}>
                         <Image style={{width: appStyles.win.height * 0.17, height: appStyles.win.height * 0.17, margin: appStyles.win.height * 0.02}} source={loginMainImage}/>
-                        <TextBox style={appStyles.TextInputMask} placeholder={props.getLocalizedText('emailInput')} onChangeText={setEmail}/>
-                        <TextBox  style={appStyles.TextInputMask} placeholder={props.getLocalizedText('passwordInput')} onChangeText={setPassword} secureTextEntry={true}/>
+                        <TextBox style={appStyles.TextInputMask} placeholder={translate('emailInput')} onChangeText={setEmail}/>
+                        <TextBox  style={appStyles.TextInputMask} placeholder={translate('passwordInput')} onChangeText={setPassword} secureTextEntry={true}/>
                         <View style={{height: appStyles.win.height * 0.03}}/>
-                        <Button onPress={() => props.login(email, password)} text={props.getLocalizedText('signInButton')}/>
-                        <TouchableHighlight onPress={() => props.setScreen('forgotPassword')} ><Text style={{paddingTop: 20, color: 'white', fontWeight: '500'}}>{props.getLocalizedText("forgotPassword")}</Text></TouchableHighlight>
+                        <Button onPress={() => props.login(email, password)} text={translate('signInButton')}/>
+                        <TouchableHighlight onPress={() => props.setScreen('forgotPassword')} ><Text style={{paddingTop: 20, color: 'white', fontWeight: '500'}}>{translate("forgotPassword")}</Text></TouchableHighlight>
                     </View>
                     </TouchableOpacity>
                 </Animated.View>
-                <SwipeUp text={props.getLocalizedText('swipeUpToSignUp')}
+                <SwipeUp text={translate('swipeUpToSignUp')}
                          onSwipeUp={() => props.setScreen('signup')}/>
             </React.Fragment>
 
-  // _start = () => {
-  //   Animated.timing(fadeValue, {
-  //     toValue: 1,
-  //     duration: 2000,
-  //   }).start();
-  // };
-
-  // render() {
-  //   return (
-  //     <React.Fragment>
-  //       <Animated.View
-  //         style={{
-  //           opacity: fadeValue,
-  //           height: "100%",
-  //           width: "100%",
-  //         }}
-  //       >
-  //         <TouchableOpacity onPress={Keyboard.dismiss} accessible={false}>
-  //           <ImageBackground
-  //             source={background}
-  //             style={{
-  //               position: "absolute",
-  //               opacity: 0.75,
-  //               width: appStyles.win.width,
-  //               height: appStyles.win.height,
-  //             }}
-  //           />
-  //           <View
-  //             style={{
-  //               paddingTop: appStyles.win.height * 0.05,
-  //               alignItems: "center",
-  //             }}
-  //           >
-  //             <Image
-  //               style={{
-  //                 width: appStyles.win.height * 0.17,
-  //                 height: appStyles.win.height * 0.17,
-  //                 margin: appStyles.win.height * 0.02,
-  //               }}
-  //               source={loginMainImage}
-  //             />
-  //             <TextInput
-  //               placeholder={props.getLocalizedText("emailInput")}
-  //               onChangeText={setEmail}
-  //             />
-  //             <TextInput
-  //               type={"password"}
-  //               placeholder={props.getLocalizedText("passwordInput")}
-  //               onChangeText={setPassword}
-  //             />
-  //             <View style={{ height: appStyles.win.height * 0.03 }} />
-  //             <Button
-  //               onPress={() =>
-  //                 props.login(email, password)
-  //               }
-  //               text={props.getLocalizedText("signInButton")}
-  //             />
-  //           </View>
-  //         </TouchableOpacity>
-  //       </Animated.View>
-  //       <SwipeUp
-  //         text={props.getLocalizedText("swipeUpToSignUp")}
-  //         onSwipeUp={() => props.setScreen( "signup" )}
-  //       />
-  //     </React.Fragment>
+  
     );
   
 }

@@ -18,7 +18,7 @@ import appStyles from "./AppStyles";
 import { AsyncStorage, NativeModules, Picker } from 'react-native';
 import * as firebase from 'firebase';
 import { AntDesign } from '@expo/vector-icons';
-
+import translate from "app/Components/getLocalizedText";
 
 
 const SettingScreen = (props) => {
@@ -46,11 +46,11 @@ const SettingScreen = (props) => {
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
-        props.getLocalizedText("logout"),
-        props.getLocalizedText('WantToLogout'),
+        translate("logout"),
+        translate('WantToLogout'),
         [
-          { text: props.getLocalizedText("Yes"), onPress: () => resolve(true) },
-          { text: props.getLocalizedText("No"), onPress: () => resolve(false) },
+          { text: translate("Yes"), onPress: () => resolve(true) },
+          { text: translate("No"), onPress: () => resolve(false) },
         ],
         { cancelable: false }
       );
@@ -137,7 +137,7 @@ const SettingScreen = (props) => {
     }
 
     if (!fullName || !phoneNumber || !dob) {
-      alert(props.getLocalizedText("fillOutAllFields"));
+      alert(translate("fillOutAllFields"));
 
     } else {
 
@@ -158,7 +158,7 @@ const SettingScreen = (props) => {
 
       }).catch(err => console.log(err));
 
-      window.alert(props.getLocalizedText("savedInfo"));
+      window.alert(translate("savedInfo"));
     }
 
   }
@@ -222,14 +222,14 @@ const SettingScreen = (props) => {
               fontWeight: 'bold',
               alignSelf: 'center',
               paddingTop: 15
-            }}>{props.getLocalizedText('welcomeSetting')}</Text>
+            }}>{translate('welcomeSetting')}</Text>
         </View>
         <View style={{ alignItems: 'center', paddingTop: 25 }}>
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("phoneNumberInput")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={props.getLocalizedText("phoneNumberInput")}
+                placeholder={translate("phoneNumberInput")}
                 style={appStyles.TextInput.TextInput}
                 value={phoneNumber}
                 keyboardType={"numeric"}
@@ -239,7 +239,7 @@ const SettingScreen = (props) => {
           </View>
 
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("dob")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("dob")}:</Text>
             <View>
               <TextInputMask
                 type={"datetime"}
@@ -253,7 +253,7 @@ const SettingScreen = (props) => {
                 }}
                 style={appStyles.TextInputMask}
                 value={dob}
-                placeholder={props.getLocalizedText("dob")}
+                placeholder={translate("dob")}
                 onChangeText={
                   (text) => setdob(text)
                 }
@@ -264,10 +264,10 @@ const SettingScreen = (props) => {
             </View>
           </View>
           <View style={{ marginBottom: 10, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("fullName")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("fullName")}:</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={props.getLocalizedText("fullName")}
+                placeholder={translate("fullName")}
                 style={appStyles.TextInput.TextInput}
                 value={fullName}
                 onChangeText={(text) => setFullName(text)}
@@ -275,58 +275,58 @@ const SettingScreen = (props) => {
             </View>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("liveMiami")}</Text>
+            <Text >{translate("liveMiami")}</Text>
             <Picker
               selectedValue={liveMiami}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setLiveMiami(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("areYouPregnant")}</Text>
+            <Text >{translate("areYouPregnant")}</Text>
             <Picker
               selectedValue={pregnant}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setPregnant(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("doYouHaveInfants")}</Text>
+            <Text >{translate("doYouHaveInfants")}</Text>
             <Picker
               selectedValue={infant}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setInfant(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           {/*{infant === true ? 
             <View style={styles.containerDropDown}>
-                  <Text >{props.getLocalizedText("selectGenders")}</Text>
+                  <Text >{translate("selectGenders")}</Text>
                  <Picker
                     selectedValue={(babyGender.male && babyGender.female)}
                     style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>{
                         return setBabyGender({babyGender:{male: itemValue, female: itemValue}})
                     }}>
-                    <Picker.Item label={props.getLocalizedText("Male")} value={true} key='1' />
-                    <Picker.Item label={props.getLocalizedText("Female")} value={false}  key='2'/>
+                    <Picker.Item label={translate("Male")} value={true} key='1' />
+                    <Picker.Item label={translate("Female")} value={false}  key='2'/>
                  </Picker> 
             </View>
               : null} */}
           {infant === true ?
             <View >
-              <Text style={{ alignSelf: 'center' }}>{props.getLocalizedText("babydob")}</Text>
+              <Text style={{ alignSelf: 'center' }}>{translate("babydob")}</Text>
               <TextInputMask
                 type={'datetime'}
                 options={{
@@ -338,7 +338,7 @@ const SettingScreen = (props) => {
                 }}
                 style={appStyles.TextInputMask}
                 value={babyDOB}
-                placeholder={props.getLocalizedText("dob")}
+                placeholder={translate("dob")}
                 onChangeText={
                   (text) => setBabyDOB(text)
                 }
@@ -352,7 +352,7 @@ const SettingScreen = (props) => {
         <View style={{ justifyContent: 'center', flexDirection: 'row', padding: 90 }}>
           <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}
             onPress={() => onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB)} >
-            <Text style={appStyles.button.text}>{props.getLocalizedText("save")}</Text>
+            <Text style={appStyles.button.text}>{translate("save")}</Text>
           </TouchableHighlight>
         </View>
       </ScrollView>

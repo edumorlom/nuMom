@@ -78,6 +78,17 @@ export const sendWelcomeSMS = async (fullName, phoneNumber) => {
 
 export const getUserInfo = (uid) => firebase.database().ref("users/" + uid);
 
+export const getUserData = async (property) => {
+  let uid = firebase.auth().currentUser.uid;
+  let address = `users/${uid}/${property}`;
+  let value = '';
+  await firebase.database().ref(address).once('value', (snapshot) => {
+    value = snapshot.val();
+  });
+  return value;
+}
+
+
 export const getRef = (address) => firebase.database().ref(address);
 
 export const passwordReset = (email) => {
@@ -113,4 +124,8 @@ export const uploadImage = async (uri) => {
 
 export const getUid = () => {
   return firebase.auth().currentUser.uid;
+}
+
+export const getAuth = () => {
+  return firebase.auth()
 }
