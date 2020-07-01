@@ -2,16 +2,16 @@ import {Image, Keyboard, Text, TouchableWithoutFeedback, View} from 'react-nativ
 import React, { useEffect, useState } from "react";
 import appStyles from './AppStyles'
 import dnaLoading from "../../assets/dna-loading.gif";
-
+import translate from "app/Components/getLocalizedText";
 
 export default function SignUpLoading (props) {
 
-    const [loadingText, setLoadingText] = useState(props.getLocalizedText("registeringAccount"));
+    const [loadingText, setLoadingText] = useState(translate("registeringAccount"));
     const [color, setColor] = useState(appStyles.greyColor);
     
     useEffect(() => {
         setTimeout(() => {
-            setLoadingText(props.getLocalizedText("allSet"))
+            setLoadingText(translate("allSet"))
             setColor(appStyles.pinkColor)
             setTimeout(() => {
                 props.signUpAndUploadData();

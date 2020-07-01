@@ -11,25 +11,55 @@ export default function SelectionButton(props){
         props.onPress();
     };
 
+    let showText = () => {
+        return (
+        <View>
+            <Text style={props.style.Text}>
+                {props.text}
+            </Text>
+            {props.style.Subtext ? //If it has subtext, display it
+            <Text style={props.style.Subtext}>
+                {props.subtext}
+            </Text> : null} 
+        </View>
+        )
+    }
+
+    let showImage = () => {
+        return <Image style={props.style.Image} 
+        source={props.icon} 
+        />
+    }
+
+    let showImageInView = () => {
+        return <Image style={props.style.ImageInView} 
+        source={props.icon} 
+        />
+    }
+
+   /*  let displayContent = () => {
+        return (<>
+            {props.style.Image ? showImage() : null}
+            {props.style.Text ? showText() : null}
+        </>);
+    } */
+
     return (
-        <TouchableHighlight style={{
-            margin: appStyles.win.height * 0.009,
-            backgroundColor: 'white',
-            ...shadow,
-            height: appStyles.win.height * 0.15,
-            width: '85%',
-            borderColor: greyColor,
-            borderRadius: borderRadius}}
-                            underlayColor={appStyles.underlayColor}
-                            onPress={onPress}>
-            <View style={{flexDirection: 'row',
-                height: '100%',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                marginLeft: '14%'}}>
-                <Image style={{width: appStyles.win.height * 0.07, height: appStyles.win.height * 0.07, marginRight: appStyles.win.width * 0.105}} source={props.icon} />
-                <Text style={{color: props.color, fontSize: appStyles.regularFontSize, fontWeight: 'bold'}}>{props.text}</Text>
+        <TouchableHighlight 
+            underlayColor={appStyles.underlayColor}
+            onPress={onPress}
+            style={props.style.Touchable}
+        >
+            <>
+            <View style={props.style.View}>
+                {props.style.Image ? showImage() : null}
+                {props.style.Text ? showText() : null}
             </View>
+            {props.style.ImageView ? 
+            <View style={props.style.ImageView}>
+                {showImageInView()}
+            </View> : null}
+            </>
         </TouchableHighlight>
     )
 }

@@ -165,5 +165,139 @@ export default {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'
+    },
+
+    PanelSelectionButton: {
+        Touchable: {
+            margin: win.height * 0.009,
+            backgroundColor: 'white',
+            ...shadow,
+            height: win.height * 0.15,
+            width: '85%',
+            borderColor: greyColor,
+            borderRadius: borderRadius
+        },
+        View: {
+            flexDirection: 'row',
+            height: '100%',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            marginLeft: '14%'
+        },
+        Image: {
+            width: win.height * 0.07, 
+            height: win.height * 0.07, 
+            marginRight: win.width * 0.105
+        },
+        Text: {
+            fontSize: regularFontSize, 
+            fontWeight: 'bold'
+        }
+    },
+    ImageOnRightSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            minHeight: win.height * 0.2,
+            maxHeight: win.height * 0.3,
+            width: win.width * 0.95,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "row",
+        },
+        View: {
+            height: "100%", 
+            width: "70%", 
+            marginRight: 20
+        },
+        ImageView: {
+            height: "100%", 
+            width: "7%", 
+            justifyContent: "center"
+        },
+        ImageInView: {
+            width: 65, 
+            height: 65
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize,
+        }
+    },
+    STDSelectionButton: {
+        Touchable:{
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            minHeight: win.height * 0.002,
+            maxHeight: win.height * 0.08,
+            width: win.width * 0.8,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+            
+        },
+        View:{
+            height: "100%", 
+            width: "90%", 
+            marginRight: 50
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        }
+
+    },
+    ClinicSelectionButton: {
+        Touchable:{
+            margin: 5,
+            padding: 20,
+            backgroundColor: 'white',
+            ...shadow,
+            minHeight: win.height * 0.2,
+            maxHeight: win.height * 0.3,
+            width: win.width * 0.95,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: 'center',
+            flexDirection: 'row'
+        },
+        View:{
+            height: '100%', 
+            width: '80%'
+        },
+        ImageView: {
+            height: '100%', 
+            width: '7%', 
+            justifyContent: 'center'
+        },
+        ImageInView: {
+            width: 40, 
+            height: 40
+        },
+        
+        Text: {
+            color: blueColor, 
+            fontSize: regularFontSize, fontWeight: 'bold'
+
+        },
+        Subtext: {
+            color: greyColor, 
+            fontSize: regularFontSize
+
+        },
     }
+    
 };

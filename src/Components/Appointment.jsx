@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Button, Image } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
 import Spinner from "../../assets/dna-loading2.gif";
+import translate from "app/Components/getLocalizedText";
 
 
 
@@ -95,7 +96,7 @@ export default function Appointment(props) {
     >
       <View>
         <Button
-          title={props.getLocalizedText("wantNewAppointment")}
+          title={translate("wantNewAppointment")}
           onPress={() => {
             props.setLowerPanelContent("NewAppointment");
           }}
@@ -117,8 +118,7 @@ export default function Appointment(props) {
             <AppointmentMenu
               key={index}
               appointments={appointments}
-              deleteAppointment={deleteAppointment}
-              getLocalizedText={props.getLocalizedText} />
+              deleteAppointment={deleteAppointment} />
           )
         })}
       </View>

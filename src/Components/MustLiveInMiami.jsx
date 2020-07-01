@@ -3,6 +3,7 @@ import appStyles from "./AppStyles";
 import React from "react";
 import miamiImage from "../../assets/palm-tree-beach.png";
 import Button from "./Button";
+import translate from "app/Components/getLocalizedText";
 
 export default function MustLiveInMiami(props) {
 
@@ -13,12 +14,12 @@ export default function MustLiveInMiami(props) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'absolute'}}>
-                <Text style={appStyles.titleBlack}>{props.getLocalizedText("pleaseNote")}</Text>
+                <Text style={appStyles.titleBlack}>{translate("pleaseNote")}</Text>
                 <View style={{padding: '8%'}}>
                 <Image style={{width: appStyles.win.width, height: 175}} source={miamiImage}/>
                 </View>
                 <View style={{width: appStyles.win.width * 0.8}}>
-                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>{props.getLocalizedText("someFeaturesOnlyMiami")}</Text>
+                    <Text style={{...appStyles.paragraphText, textAlign: 'center'} }>{translate("someFeaturesOnlyMiami")}</Text>
                 </View>
             </View>
             <View style={{
@@ -28,7 +29,7 @@ export default function MustLiveInMiami(props) {
                 position: 'absolute',
                 bottom: '12%'
             }}>
-                <Button text={props.getLocalizedText("iUnderstandButton")} onPress={() => props.getNextScreen()}/>
+                <Button text={translate("iUnderstandButton")} onPress={() => props.getNextScreen()}/>
             </View>
         </View>
     )

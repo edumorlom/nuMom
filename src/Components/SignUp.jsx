@@ -10,6 +10,7 @@ import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
 import MustLiveInMiami from "./MustLiveInMiami";
 import SignUpHeader from "./SignUpHeader";
+import translate from "app/Components/getLocalizedText";
 
 export default function SignUp(props) {
   const [index, setIndex] = useState(0);
@@ -158,58 +159,48 @@ export default function SignUp(props) {
     <LetsGetStarted
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("liveMiami")}
+      question={translate("liveMiami")}
       value={"liveMiami"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <MustLiveInMiami
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpInfo
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpContact
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
       email={email}
     />,
     <SignUpPassword
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("areYouPregnant")}
+      question={translate("areYouPregnant")}
       value={"pregnant"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("doYouHaveInfants")}
+      question={translate("doYouHaveInfants")}
       value={"infant"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
-    // <SignUpsetUserInfo={setUserInfo} getNextScreen={getNextScreen} getLocalizedText={props.getLocalizedText}/>,
+    // <SignUpsetUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
     <SignUpBabyDob
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpLoading
       signUpAndUploadData={signUpAndUploadData}
-      getLocalizedText={props.getLocalizedText}
     /> 
   ];
 
