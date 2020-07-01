@@ -3,14 +3,14 @@ import { View, AsyncStorage } from "react-native";
 import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
-//import SignUpfrom "./SignUp;
 import SignUpBabyDob from "./SignUpBabyDob";
-import Firebase from "./Firebase";
+import {signUp} from "../Firebase";
 import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
 import MustLiveInMiami from "./MustLiveInMiami";
 import SignUpHeader from "./SignUpHeader";
+import translate from "app/Components/getLocalizedText";
 
 export default function SignUp(props) {
   const [index, setIndex] = useState(0);
@@ -31,6 +31,10 @@ export default function SignUp(props) {
   });
 
   let showMiamiOnlyAlert = true;
+  let showBabyDob = false;
+
+  
+
 
   let getNextScreen = () => {
     let currentIndex = index;
@@ -39,7 +43,7 @@ export default function SignUp(props) {
       currentIndex++;
     }
 
-    if (!infant && currentIndex === 7) {
+    if (!showBabyDob && currentIndex === 7) {
       currentIndex++;
     }
 
@@ -96,16 +100,20 @@ export default function SignUp(props) {
   };
 
   let setUserInfo = (keyToValue) => {
-
+    //This function is to be used only with one property
+    //For example {infant: true}, Cannot be {fullName: "John", password: "password"}
     if (isEquivalent(keyToValue, { liveMiami: true })) {
       showMiamiOnlyAlert = false;
+    }
+    if (isEquivalent(keyToValue, { infant: true })) {
+      showBabyDob = true;
     }
 
     let property = Object.getOwnPropertyNames(keyToValue)[0];
     let value = keyToValue[property];
 
-    //This had to happen when switching to function useState
-    //Fixed in the future with useContext and the Context API
+    //This had to happen when switching to function useState hooks
+    //To be fixed in the future with useContext() and the Context API
     switch (property) {
       case 'index': setIndex(value); break;
       case 'email': setEmail(value); break;
@@ -123,9 +131,8 @@ export default function SignUp(props) {
   };
 
   let signUpAndUploadData = () => {
-    let fb = new Firebase();
     let info = getNextWeekAndWeekNo();
-    fb.signUp(email, phoneNumber, password, fullName,
+    signUp(email, phoneNumber, password, fullName,
       dob, pregnant, infant, liveMiami, babyDOB, ...info);
     //Unbinds Async Storage keys used in sign up after successful sign up
     let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];
@@ -136,9 +143,9 @@ export default function SignUp(props) {
   };
 
   let getNextWeekAndWeekNo = () => {
-    let babyDOB = new Date(babyDOB);
+    let babyDob = new Date(babyDOB);
     let today = new Date();
-    let daysDifference = (today.getTime() - babyDOB.getTime()) / (1000 * 3600 * 24) | 0;
+    let daysDifference = (today.getTime() - babyDob.getTime()) / (1000 * 3600 * 24) | 0;  //Milliseconds to days
     let daysTillNextWeek = (7 - daysDifference % 7) % 7;
     let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysTillNextWeek);
     let nextWeek = (nextweek.getMonth() + 1).toString().padStart(2, "0") + '/' + nextweek.getDate().toString().padStart(2, "0") + '/' + nextweek.getFullYear()
@@ -152,59 +159,49 @@ export default function SignUp(props) {
     <LetsGetStarted
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("liveMiami")}
+      question={translate("liveMiami")}
       value={"liveMiami"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <MustLiveInMiami
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpInfo
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpContact
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
       email={email}
     />,
     <SignUpPassword
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("areYouPregnant")}
+      question={translate("areYouPregnant")}
       value={"pregnant"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpYesorNo
       setUserInfo={setUserInfo}
-      question={props.getLocalizedText("doYouHaveInfants")}
+      question={translate("doYouHaveInfants")}
       value={"infant"}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
-    // <SignUpsetUserInfo={setUserInfo} getNextScreen={getNextScreen} getLocalizedText={props.getLocalizedText}/>,
+    // <SignUpsetUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
     <SignUpBabyDob
       setUserInfo={setUserInfo}
       getNextScreen={getNextScreen}
-      getLocalizedText={props.getLocalizedText}
     />,
     <SignUpLoading
       signUpAndUploadData={signUpAndUploadData}
-      getLocalizedText={props.getLocalizedText}
-    />,
+    /> 
   ];
 
   // let male = ? male : false;

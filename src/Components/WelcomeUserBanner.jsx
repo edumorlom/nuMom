@@ -1,11 +1,14 @@
 import {Text, TouchableHighlight, View, Alert} from "react-native";
 import appStyles from "./AppStyles";
-import * as Haptics from "expo-haptics";
 import React, { useState } from 'react';
+import {getUid, getUserInfo} from "../Firebase";
+import translate from "app/Components/getLocalizedText";
 
 export default WelcomeUserBanner = props => {
 
-    let initialText = `${props.getLocalizedText('welcomeUserBanner')} ${props.fullName ? props.fullName.split(' ')[0] : ''}`;
+    let fullName = null;
+    getUserInfo(getUid()).once('value', (snapshot) => {fullName = snapshot.val()?.fullName});  //Get fullName from DB
+    let initialText = `${translate('welcomeUserBanner')} ${fullName ? fullName.split(' ')[0] : ''}`;
     const [text, setText] = useState(initialText);
 
         return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from "expo-haptics";
-import Firebase from "./Firebase";
+import uploadImage from "../Firebase";
 import Constants from 'expo-constants';
 
 export default function Documents() {
@@ -33,10 +33,9 @@ export default function Documents() {
       quality: 1,
     });
 
-    console.log(result);
+    //console.log(result);
     
-    let fb = new Firebase();
-    fb.uploadImage(result.uri);
+    uploadImage(result.uri);
 
     if (!result.cancelled) {
       setImage(result.uri);

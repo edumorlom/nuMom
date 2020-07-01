@@ -1,7 +1,7 @@
 import { Image, Text, TouchableHighlight, View } from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
-import goBackImg from "../../assets/go-back.png";
+import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 
 export default function SignUpHeader(props) {
