@@ -48,7 +48,7 @@ export default LogIn = props => {
                         <TextBox style={appStyles.TextInputMask} placeholder={translate('emailInput')} onChangeText={setEmail}/>
                         <TextBox  style={appStyles.TextInputMask} placeholder={translate('passwordInput')} onChangeText={setPassword} secureTextEntry={true}/>
                         <View style={{height: appStyles.win.height * 0.03}}/>
-                        <Button onPress={() => props.login(email, password)} text={translate('signInButton')}/>
+                        <Button style = {appStyles.button} onPress={() => props.login(email, password)} text={translate('signInButton')}/>
                         <TouchableHighlight onPress={() => props.setScreen('forgotPassword')} ><Text style={{paddingTop: 20, color: 'white', fontWeight: '500'}}>{translate("forgotPassword")}</Text></TouchableHighlight>
                     </View>
                     </TouchableOpacity>

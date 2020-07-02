@@ -70,7 +70,7 @@ export default {
     },
     underlayColor: 'grey',
     button: {
-        TouchableHighlight: {
+        Touchable: {
             ...shadow,
             margin: win.height * 0.01,
             alignItems: 'center',
@@ -81,11 +81,12 @@ export default {
             paddingRight: 30,
             borderRadius: borderRadius,
         },
-        text: {
+        Text: {
             color: 'white',
             fontSize: regularFontSize,
             fontWeight: 'normal'
-        }
+        },
+        underlayColor: blueColor
     },
     TextInput: {
         View: {
@@ -290,7 +291,8 @@ export default {
         
         Text: {
             color: blueColor, 
-            fontSize: regularFontSize, fontWeight: 'bold'
+            fontSize: regularFontSize, 
+            fontWeight: 'bold'
 
         },
         Subtext: {
@@ -298,6 +300,84 @@ export default {
             fontSize: regularFontSize
 
         },
+    },
+    CancelFilterButton: {
+        Touchable: {
+            position: 'absolute', 
+            right: '2%', 
+            top: '2%', 
+            width: '13%', 
+            flexDirection: 'row-reverse', 
+            marginTop: 30
+        },
+        View: {
+            ...shadow,
+            justifyContent: 'center',
+            backgroundColor: 'white',
+            borderColor: 'white',
+            borderWidth: 0.5,
+            borderRadius: borderRadius,
+            height: 40,
+            width: 40,
+        },
+
+        Image: {
+            width: 30, 
+            height: 30,  
+            marginLeft: 'auto', 
+            marginRight: 'auto'
+
+        },
+    },
+    ActionButton: {
+        Touchable: {
+            margin: 4,
+            paddingLeft: 20,
+            justifyContent: 'center',
+            backgroundColor: 'white',
+            ...shadow,
+            height: win.height * 0.11,
+            width: win.width * 0.95,
+            borderRadius: borderRadius
+            
+        },
+        View: {
+            alignItems: 'center', 
+            flexDirection: 'row'
+        },
+
+        Image: {
+            width: 40, 
+            height: 40, 
+            marginRight: 20
+        },
+        TextView: {
+
+        },
+        TextInView: {
+            color: blueColor, 
+            fontSize: regularFontSize, 
+            fontWeight: 'bold'
+        },
+        SubtextInView: {
+            color: greyColor, 
+            fontSize: regularFontSize
+        }
+    },
+    MultipleChoiceButton: {
+        Touchable: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: win.height * 0.11,
+            width: win.width * 0.24,
+            margin: 20,
+            borderRadius: borderRadius,
+            ...shadow
+
+        },
+        Text: {
+            fontSize: RFValue(45)
+        }
     }
     
 };
