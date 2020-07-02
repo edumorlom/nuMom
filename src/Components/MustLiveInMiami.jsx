@@ -29,7 +29,7 @@ export default function MustLiveInMiami(props) {
                 position: 'absolute',
                 bottom: '12%'
             }}>
-                <Button text={translate("iUnderstandButton")} onPress={() => props.getNextScreen()}/>
+                <Button style = {appStyles.button} text={translate("iUnderstandButton")} onPress={() => props.getNextScreen()}/>
             </View>
         </View>
     )

@@ -55,7 +55,7 @@ export default SignUpPassword = (props) => {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%',}}>
-                        <Button text={translate("continueButton")} onPress={onPress}/>
+                        <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                     </View>
             </TouchableOpacity>
         );
