@@ -299,7 +299,7 @@ const SettingScreen = (props) => {
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{translate("doYouHaveInfants")}</Text>
+            <Text >{translate("didYouHaveInfants")}</Text>
             <Picker
               selectedValue={infant}
               style={styles.questionsDropDown}
