@@ -1,7 +1,7 @@
 import {View, Linking, Text, ScrollView} from "react-native";
 import React from "react";
 import SelectionButton from "./SelectionButton";
-import ActionButton from "./ActionButton";
+import ActionButton from "./Button";
 import directionsArrow from '../../assets/directions-arrow.png'
 import appStyles from './AppStyles'
 import visitSiteIcon from '../../assets/safari-visit-site.png'
@@ -51,8 +51,19 @@ export default function ClinicInfo(props){
                     onPress={getDirections}
                     /* clinic={props.clinic}  */
                 />
-                <ActionButton mainAction={translate("visitSite")} subAction={props.clinic.website.split('/')[0]} onPress={visitSite} icon={visitSiteIcon}/>
-                <ActionButton mainAction={translate("callClinic")} subAction={props.clinic.phoneNumber} onPress={call} icon={callIcon}/>
+                <ActionButton 
+                style={appStyles.ActionButton}
+                text={translate("visitSite")} 
+                subtext={props.clinic.website.split('/')[0]} 
+                onPress={visitSite} 
+                icon={visitSiteIcon}
+                />
+                <ActionButton 
+                style={appStyles.ActionButton}
+                text={translate("callClinic")} 
+                subtext={props.clinic.phoneNumber} 
+                onPress={call} 
+                icon={callIcon}/>
                 <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
                     <Text style={{...appStyles.paragraphText, justifyContent: 'center', color: 'black'}}>{translate("services")}</Text>
                         {services}

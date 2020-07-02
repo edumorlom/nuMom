@@ -85,6 +85,7 @@ let titletext = translate("babydob");
           }}
         >
           <Button
+            style = {appStyles.button}
             text={translate("continueButton")}
             onPress={onPress}
           />
