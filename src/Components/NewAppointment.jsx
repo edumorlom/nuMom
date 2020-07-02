@@ -10,7 +10,6 @@ import {
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
 import Button from "./Button";
-import TextInput from "./TextInput.jsx";
 import * as firebase from 'firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInputMask } from "react-native-masked-text";
@@ -126,6 +125,7 @@ export default function NewAppointment(props) {
         }}
       >
         <Button
+          style = {appStyles.button}
           text={translate("continueButton")}
           onPress={onPress}
         />

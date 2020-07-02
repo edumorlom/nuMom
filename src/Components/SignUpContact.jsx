@@ -73,7 +73,7 @@ export default SignUpInfo = (props) => {
                     position: 'absolute',
                     bottom: '12%'
                 }}>
-                    <Button text={translate("continueButton")} onPress={onPress}/>
+                    <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                 </View>
             </View>
         </TouchableOpacity>

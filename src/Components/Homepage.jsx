@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Map from "./Map";
 import { View, AsyncStorage } from "react-native";
 import LowerPanel from "./LowerPanel";
-import SOSButton from "./SOSButton";
+//import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
 import { getPreciseDistance } from "geolib";
-import CancelFilterButton from "./CancelFilterButton";
-import {getRef} from "../Firebase"
+import CancelFilterButton from "./Button";
+import {getRef} from "../Firebase";
+import filterImage from "../../assets/delete-filter.png";
 
 
 export default Homepage = props => {
@@ -96,7 +97,11 @@ export default Homepage = props => {
           clinics={clinics}
         />
         {/* Compare current filters with default filters, if different show reset filter button */}
-        {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && <CancelFilterButton  resetFilters= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
+        {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && 
+        <CancelFilterButton  
+        style={appStyles.CancelFilterButton}
+        icon={filterImage}
+        onPress= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
         {/*<SOSButton />*/}
         <LowerPanel 
           setFullPanel={() => setFullPanel(!fullPanel)}

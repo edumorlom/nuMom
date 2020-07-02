@@ -17,10 +17,10 @@ export default function SelectionButton(props){
             <Text style={props.style.Text}>
                 {props.text}
             </Text>
-            {props.style.Subtext ? //If it has subtext, display it
+            {props.style.Subtext && //If it has subtext, display it
             <Text style={props.style.Subtext}>
                 {props.subtext}
-            </Text> : null} 
+            </Text>} 
         </View>
         )
     }
@@ -39,8 +39,8 @@ export default function SelectionButton(props){
 
    /*  let displayContent = () => {
         return (<>
-            {props.style.Image ? showImage() : null}
-            {props.style.Text ? showText() : null}
+            {props.style.Image && showImage()}
+            {props.style.Text && showText()}
         </>);
     } */
 
@@ -52,13 +52,13 @@ export default function SelectionButton(props){
         >
             <>
             <View style={props.style.View}>
-                {props.style.Image ? showImage() : null}
-                {props.style.Text ? showText() : null}
+                {props.style.Image && showImage()}
+                {props.style.Text && showText()}
             </View>
-            {props.style.ImageView ? 
+            {props.style.ImageView && 
             <View style={props.style.ImageView}>
                 {showImageInView()}
-            </View> : null}
+            </View>}
             </>
         </TouchableHighlight>
     )
