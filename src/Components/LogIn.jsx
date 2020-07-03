@@ -24,6 +24,8 @@ export default LogIn = props => {
   const [password, setPassword] = useState(null);
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
 
+  //Remove async tasks on unMount using _isMounted
+
   useEffect(() => {
     _start();
   }, [])

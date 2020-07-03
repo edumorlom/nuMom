@@ -85,7 +85,11 @@ export default function Map (props) {
                         coordinate={clinic.coordinate}
                         title={clinic.resource}
                         description={clinic.phoneNumber}
-                        onPress={(e) => {e.stopPropagation(); props.setClinicToView(clinic)}}
+                        onPress={(e) => {
+                            e.stopPropagation(); 
+                            props.setClinicToView(clinic)
+                            props.setLowerPanelContent('clinicInfo')
+                        }}
                         />))}
 
             </MapView>}
