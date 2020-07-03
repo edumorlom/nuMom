@@ -35,6 +35,10 @@ export default function LowerPanelHeader(props) {
       return translate("newAppointment");
     if (content === "documents")
       return translate("documents");
+    if (content === "FemaleCondom")
+      return translate("FemaleCondom");
+    if (content === "FCInfo")
+      return translate("FCInfo");
   };
 
 
@@ -79,32 +83,32 @@ export default function LowerPanelHeader(props) {
               ...appStyles.paragraphText,
               textAlign: "center",
               width: appStyles.win.width * 0.8,
-              
+
             }}
           >
             {getCurrentHeaderTitle()}
           </Text>
         </TouchableHighlight>
-        {props.lowerPanelContent === "findCare" ? 
-        <TouchableHighlight
-          onPress={props.setFilterToShow}
-          underlayColor={"transparent"}
-          style={{
-            right: appStyles.win.width * 0.00,
-            width: appStyles.win.width * 0.1,
-            height: appStyles.win.width * 0.08,
-          }}
-        >
-          <Image
+        {props.lowerPanelContent === "findCare" ?
+          <TouchableHighlight
+            onPress={props.setFilterToShow}
+            underlayColor={"transparent"}
             style={{
-              left: appStyles.win.width * 0.008,
-              height: appStyles.win.width * 0.085,
-              width: appStyles.win.width * 0.085,
+              right: appStyles.win.width * 0.00,
+              width: appStyles.win.width * 0.1,
+              height: appStyles.win.width * 0.08,
             }}
-            source={filterButton}
-          />
-        </TouchableHighlight>
-        : <Text style={{width: appStyles.win.width * 0.1 }}> </Text> }
+          >
+            <Image
+              style={{
+                left: appStyles.win.width * 0.008,
+                height: appStyles.win.width * 0.085,
+                width: appStyles.win.width * 0.085,
+              }}
+              source={filterButton}
+            />
+          </TouchableHighlight>
+          : <Text style={{ width: appStyles.win.width * 0.1 }}> </Text>}
         {/* <View style={{width: appStyles.win.width * 0.1 }}>  <Text> </Text> </View> */}
       </View>
     </GestureRecognizer>

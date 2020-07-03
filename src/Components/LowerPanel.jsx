@@ -12,18 +12,20 @@ import Appointment from "./Appointment";
 import NewAppointment from "./NewAppointment";
 import STDSelection from "./STDSelection";
 import Documents from "./Documents";
+import FemaleCondom from "./FemaleCondom";
+import FCInfo from "./FCInfo";
 
 export default LowerPanel = props => {
-  
+
 
   const [filterToShow, setFilterToShow] = useState(false);
   const fullPanel = props.fullPanel;
   const [moveAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
-  
+
   useEffect(() => {  //Substitute ComponentDidMount
     //movePanel(true) //Move up
-    
-  },[])
+
+  }, [])
 
   useEffect(() => {  //Substitute ComponentDidUpdate
     movePanel(fullPanel)
@@ -38,7 +40,7 @@ export default LowerPanel = props => {
       }).start();
     }
     else if (!moveUp) {
-    //Move Down
+      //Move Down
       Animated.timing(moveAnim, {
         toValue: appStyles.lowerPanel.bottom,
         duration: 150,
@@ -49,17 +51,17 @@ export default LowerPanel = props => {
   showContent = () => {
     if (props.lowerPanelContent === "findCare") {
       return (
-        <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow = {filterToShow} setLowerPanelContent={props.setLowerPanelContent}
+        <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow={filterToShow} setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "clinicInfo") {
       return (
-        <ClinicInfo clinic={props.clinicToView} setLowerPanelContent={props.setLowerPanelContent} 
+        <ClinicInfo clinic={props.clinicToView} setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "learn") {
       return (
-        <Learn setLowerPanelContent={props.setLowerPanelContent} 
+        <Learn setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "STDSelection") {
@@ -69,7 +71,7 @@ export default LowerPanel = props => {
       );
     } else if (props.lowerPanelContent === "resources") {
       return (
-        <Resources setLowerPanelContent={props.setLowerPanelContent} 
+        <Resources setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "STDInfo") {
@@ -79,36 +81,46 @@ export default LowerPanel = props => {
       );
     } else if (props.lowerPanelContent === "Appointment") {
       return (
-        <Appointment setLowerPanelContent={props.setLowerPanelContent} 
+        <Appointment setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "NewAppointment") {
       return (
-        <NewAppointment setLowerPanelContent={props.setLowerPanelContent} 
+        <NewAppointment setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "FemaleCondom") {
+      return (
+        <FemaleCondom setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "FCInfo") {
+      return (
+        <FCInfo setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "documents") {
       return (
-        <Documents setLowerPanelContent={props.setLowerPanelContent} 
+        <Documents setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else {
       return (
-        <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel} setLowerPanelContent={props.setLowerPanelContent}  setScreen={props.setScreen}
+        <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel} setLowerPanelContent={props.setLowerPanelContent} setScreen={props.setScreen}
         />
       );
     }
   };
 
 
-    return (
-      <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
-        {props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader onPress={props.setFullPanel} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent}setFullPanel={props.setFullPanel} fullPanel={props.fullPanel}
-          />
-        )}
-        {showContent()}
-      </Animated.View>
-    );
-  }
+  return (
+    <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
+      {props.lowerPanelContent !== "selection" && (
+        <LowerPanelHeader onPress={props.setFullPanel} setFilterToShow={() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel}
+        />
+      )}
+      {showContent()}
+    </Animated.View>
+  );
+}
 
