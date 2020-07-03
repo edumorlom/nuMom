@@ -8,6 +8,7 @@
     "eject": "./node_modules/.bin/expo eject"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^2.5.0",
     "@react-native-community/picker": "1.6.5",
     "expo": "^37.0.0",
     "expo-constants": "~9.1.1",
@@ -19,6 +20,7 @@
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.7.0",
     "geolib": "^3.3.1",
+    "moment": "^2.27.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
@@ -28,6 +30,7 @@
     "react-native-maps": "0.27.1",
     "react-native-masked-text": "^1.13.0",
     "react-native-material-dropdown": "^0.11.1",
+    "react-native-modal-datetime-picker": "^8.7.1",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
     "twilio": "^3.47.0"
