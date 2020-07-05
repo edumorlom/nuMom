@@ -32,6 +32,10 @@ export default function Button(props){
         return <Text style={props.style.Subtext}>{props.subtext}</Text>
     }
 
+    let showImage = () => {
+        return <Image style= {props.style.Image} source={props.icon}/>
+    }
+
     let underlayColor = props.underlayColor ? props.underlayColor : appStyles.underlayColor;
 
     return (
@@ -46,6 +50,8 @@ export default function Button(props){
                 {props.style.View && withView()}
                 {props.style.Text && showText()}
                 {props.style.Subtext && showSubtext()}
+                {/* Image without View */}
+                {props.style.Image && !props.style.View && showImage()}
             </>
             </TouchableHighlight>
     )

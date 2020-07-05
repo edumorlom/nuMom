@@ -104,7 +104,6 @@ const backButton = StyleSheet.create({
     height: appStyles.win.width * 0.08,
 
   },
-  View: { },
   Image: {
     height: appStyles.win.width * 0.06,
     width: appStyles.win.width * 0.06,
@@ -133,7 +132,6 @@ const FilterButton = StyleSheet.create({
     height: appStyles.win.width * 0.08,
 
   },
-  View: { },
   Image: {
     left: appStyles.win.width * 0.008,
     height: appStyles.win.width * 0.085,

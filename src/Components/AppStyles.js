@@ -389,7 +389,6 @@ export default {
             width: win.width * 0.07,
 
         },
-        View: { },
         Image: {
             height: win.width * 0.06,
             width: win.width * 0.06,

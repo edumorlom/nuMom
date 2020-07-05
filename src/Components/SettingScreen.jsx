@@ -11,6 +11,8 @@ import {
   Alert,
   Platform,
 } from "react-native";
+import BackButton from './Button'
+import Button from './Button'
 import {getUserInfo, getUid} from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
@@ -38,7 +40,7 @@ const SettingScreen = (props) => {
 
   const uid = getUid();
 
-  goBack = () => {
+  const goBack = () => {
     Haptics.selectionAsync().then();
     props.goBack();
   };
@@ -99,13 +101,14 @@ const SettingScreen = (props) => {
 
 
 
-  onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) => {
+  onSubmit = () => {
     Haptics.selectionAsync().then();
     // let male = babyGender.male;
     // let female = babyGender.female;
 
     //this will give you the week and nextWeek fields for the baby birth day messages
     let babyInfo = getNextWeekAndWeekNo();
+    let babyDob = babyDOB; //So we can mutate babyDOB
 
     //this is to check whether infant if is male or female 
     // if (male === true) {
@@ -122,7 +125,7 @@ const SettingScreen = (props) => {
     if (infant === false) {
       // male = false;
       // female = false;
-      babyDOB = null;
+      babyDob = null;
       babyInfo[0] = null;
       babyInfo[1] = null;
     }
@@ -148,7 +151,7 @@ const SettingScreen = (props) => {
         infant: infant,
         pregnant: pregnant,
         liveMiami: liveMiami || false,
-        babyDOB: babyDOB,
+        babyDOB: babyDob,
         // babyGender:{
         //   male: male,
         //   female: female
@@ -186,25 +189,12 @@ const SettingScreen = (props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <TouchableHighlight
-        onPress={goBack}
-        underlayColor={"transparent"}
-        style={{
-          height: appStyles.win.height * 0.04,
-          marginTop: "10%",
-          marginLeft: "5%",
-          // marginBottom: '3%',
-          width: appStyles.win.width * 0.07,
-        }}
-      >
-        <Image
-          style={{
-            height: appStyles.win.width * 0.06,
-            width: appStyles.win.width * 0.06,
-          }}
-          source={goBackImg}
+      <BackButton
+          style={backButton}
+          icon={goBackImg}
+          underlayColor={"transparent"}
+          onPress= {goBack}
         />
-      </TouchableHighlight>
       <View style={{ position: 'absolute', right: 30, top: 40 }}>
         <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
           AsyncAlert().then((response) => {
@@ -350,10 +340,11 @@ const SettingScreen = (props) => {
 
         </View>
         <View style={{ justifyContent: 'center', flexDirection: 'row', padding: 90 }}>
-          <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}
-            onPress={() => onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB)} >
-            <Text style={appStyles.button.text}>{translate("save")}</Text>
-          </TouchableHighlight>
+          <Button 
+          style={SubmitButton} 
+          underlayColor={appStyles.blueColor}
+          text={translate("save")}
+          onPress={() => onSubmit()} />
         </View>
       </ScrollView>
     </View>
@@ -388,6 +379,26 @@ const styles = StyleSheet.create({
       },
     }),
   },
+});
+
+const backButton = StyleSheet.create({
+  Touchable: {
+    height: appStyles.win.height * 0.04,
+    width: appStyles.win.width * 0.07,
+    marginTop: "10%",
+    marginLeft: "5%",
+
+  },
+  Image: {
+    height: appStyles.win.width * 0.06,
+    width: appStyles.win.width * 0.06,
+
+  },
+});
+
+const SubmitButton = StyleSheet.create({
+  Touchable: appStyles.button.Touchable,
+  Text: appStyles.button.Text,
 });
 
 export default SettingScreen;
