@@ -2,6 +2,7 @@ import { Image, Text, TouchableHighlight, View } from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import goBackImg from "../../assets/go-back-arrow.png";
+import BackButton from "./Button"
 import * as Haptics from "expo-haptics";
 
 export default function SignUpHeader(props) {
@@ -31,24 +32,11 @@ export default function SignUpHeader(props) {
         backgroundColor: backgroundColor,
       }}
     >
-      <TouchableHighlight
-        onPress={goBack}
-        underlayColor={"transparent"}
-        style={{
-          height: appStyles.win.height * 0.04,
-          marginTop: "12%",
-          marginLeft: "3%",
-          width: appStyles.win.width * 0.07,
-        }}
-      >
-        <Image
-          style={{
-            height: appStyles.win.width * 0.06,
-            width: appStyles.win.width * 0.06,
-          }}
-          source={goBackImg}
-        />
-      </TouchableHighlight>
+      <BackButton
+        style={appStyles.BackButton } 
+        icon={goBackImg}
+        onPress= {goBack}
+      />
     </View>
   );
 }

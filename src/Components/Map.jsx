@@ -11,12 +11,15 @@ export default function Map (props) {
     const [region, setRegion] = useState(defaultRegion);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(true);
+    //The following is to rerender the Map after the user allows location tracking
+   /*  const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []); */
 
     useEffect(() => {
         getLocationAsync();
         setTimeout(() => {
             setLoading(false);
-        }, 200);  //After 200 milliseconds load the map, with the sorted clinics
+        }, 200);  //After 200 milliseconds load the map, with the user location
         
     },[])
 
