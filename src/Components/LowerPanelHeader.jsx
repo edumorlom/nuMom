@@ -36,7 +36,7 @@ export default function LowerPanelHeader(props) {
     if (content === "documents")
       return translate("documents");
     if (content === "FemaleCondom")
-      return translate("FemaleCondom");
+      return translate("FC");
     if (content === "FCInfo")
       return translate("FCInfo");
   };

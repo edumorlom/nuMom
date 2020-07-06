@@ -82,7 +82,7 @@ export default Homepage = props => {
       case 'Appointment': setLowerPanelContent("resources"); break;
       case 'NewAppointment': setLowerPanelContent("Appointment"); break;
       case 'documents': setLowerPanelContent("resources"); break;
-      case 'FemaleCondom': setLowerPanelContent("FemaleCondom"); break;
+      case 'FemaleCondom': setLowerPanelContent("learn"); break;
       case 'FCInfo': setLowerPanelContent("FCInfo"); break;
       default: throw new Error('That is not one of the state elements in Homepage')
     }
