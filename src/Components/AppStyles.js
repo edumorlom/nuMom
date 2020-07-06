@@ -380,10 +380,7 @@ export default {
         }
     },
     viewPlus: {
-        // position: 'absolute',
-        // right: 17,
-        // left: 70,
-        // top: 2,
+       
         height: 50,
         width: 50,
         backgroundColor: '#2E66E7',
@@ -395,5 +392,22 @@ export default {
         right: 20
         
       },
+
+    BackButton: {
+        Touchable: {
+            height: win.height * 0.04,
+            marginTop: "12%",
+            marginLeft: "3%",
+            marginBottom: '5%',
+            width: win.width * 0.07,
+
+        },
+        Image: {
+            height: win.width * 0.06,
+            width: win.width * 0.06,
+
+        },
+        underlayColor: "transparent"
+    }
     
 };

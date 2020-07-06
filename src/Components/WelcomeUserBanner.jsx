@@ -13,10 +13,11 @@ export default WelcomeUserBanner = props => {
 
         return (
             
-            <TouchableHighlight style={appStyles.WelcomeUserBanner.TouchableHighlight}
-                                underlayColor={appStyles.pinkColor}
-                                onPress={ () => { }
-                                }>
+            <TouchableHighlight 
+            style={appStyles.WelcomeUserBanner.TouchableHighlight}
+            underlayColor={appStyles.pinkColor}
+            onPress={ () => { }
+            }>
                 <Text style={{
                     color: "white",
                     fontSize: appStyles.regularFontSize,

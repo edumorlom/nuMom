@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import appStyles from './AppStyles';
 import Button from "./Button";
 import translate from "app/Components/getLocalizedText";
@@ -34,7 +34,8 @@ export default SignUpPassword = (props) => {
         }
     };
         return (
-            <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
+            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} style={appStyles.container}>
+            <>
                     <View style={{
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -57,6 +58,7 @@ export default SignUpPassword = (props) => {
                         bottom: '12%',}}>
                         <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                     </View>
-            </TouchableOpacity>
+            </>
+            </TouchableHighlight>
         );
     }

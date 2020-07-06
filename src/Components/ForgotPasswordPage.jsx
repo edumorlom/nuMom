@@ -2,9 +2,11 @@ import React, { Component, useState } from 'react';
 import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'react-native';
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
+import BackButton from "./Button"
 import * as Haptics from "expo-haptics";
 import passwordReset from '../Firebase';
 import translate from "app/Components/getLocalizedText";
+import Button from './Button';
 
 
 const ForgotPasswordPage = (props) => {
@@ -47,24 +49,11 @@ const ForgotPasswordPage = (props) => {
 
         return (
             <View style={{flex: 1}}>
-                <TouchableHighlight
-                    onPress={goBack}
-                    underlayColor={"transparent"}
-                    style={{
-                    height: appStyles.win.height * 0.04,
-                    marginTop: "8%",
-                    marginLeft: "3%",
-                    marginBottom: '5%',
-                    width: appStyles.win.width * 0.07,
-                    }}
-                >
-                <Image
-                    style={{
-                        height: appStyles.win.width * 0.06,
-                        width: appStyles.win.width * 0.06,
-                    }}
-                    source={goBackImg}/>
-                </TouchableHighlight>
+                <BackButton
+                style={appStyles.BackButton } 
+                icon={goBackImg}
+                onPress= {goBack}
+                />
                 <View>
                     <Text 
                         style={{
@@ -86,10 +75,8 @@ const ForgotPasswordPage = (props) => {
                         />
                     </View>
 
-                    <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
-                    onPress={() => PasswordReset(email)} >
-                    <Text style={appStyles.button.text}>{translate("send")}</Text>
-                    </TouchableHighlight>
+                    
+                    <Button style = {appStyles.button} text={translate("send")} onPress={() => PasswordReset(email)}/>
                 </View>
             </View>
         )
