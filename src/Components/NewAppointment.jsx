@@ -189,11 +189,11 @@ export default function NewAppointment(props) {
           paddingTop: 5
         }}
       >
-        <Text style={{ color: "#9CAAC4", fontSize: 16, fontWeight: "600" }}>
+        <Text style={styles.textTitle}>
           Date
         </Text>
         <TouchableOpacity onPress={showDatePicker}>
-          <Text style={{ fontSize: 19, alignSelf: "center", paddingTop: 10 }}>{date}</Text>
+          <Text style={styles.textStyle}>{date}</Text>
         </TouchableOpacity>
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
@@ -212,17 +212,11 @@ export default function NewAppointment(props) {
           paddingTop: 5
         }}
       >
-        <Text
-          style={{
-            color: "#9CAAC4",
-            fontSize: 16,
-            fontWeight: "600",
-          }}
-        >
+        <Text style={styles.textTitle}>
           Times
         </Text>
         <TouchableOpacity onPress={showTimePicker}>
-          <Text style={{ fontSize: 19, alignSelf: "center", paddingTop: 10 }}>{time}</Text>
+          <Text style={styles.textStyle}>{time}</Text>
         </TouchableOpacity>
         <DateTimePickerModal
           isVisible={isTimePickerVisible}
@@ -234,7 +228,6 @@ export default function NewAppointment(props) {
         />
       </View>
       <View style={styles.sepeerator} />
-     
       <View
         style={{
           width: "100%",
@@ -262,6 +255,37 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 10,
   },
+
+  textTitle: {
+    ...Platform.select({
+      ios: {
+        color:"#9CAAC4",
+        fontWeight: "600",
+        fontSize: 16,
+      },
+      android: {
+        color:"#9CAAC4",
+        fontWeight: "600",
+        fontSize: 16,
+      },
+    }),
+
+  },
+
+  textStyle: {
+    ...Platform.select({
+      ios: {
+        fontSize: 19,
+        alignSelf: "center",
+        paddingTop: 10,
+      },
+      android: {
+        fontSize: 19,
+        alignSelf: "center",
+        paddingTop: 5,
+      },
+    }),
+  }
 
 
 });
