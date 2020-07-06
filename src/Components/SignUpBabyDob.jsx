@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, } from "react-native";
+import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, TouchableHighlight, } from "react-native";
 import appStyles from "./AppStyles";
 import Button from "./Button";
 import { TextInputMask } from "react-native-masked-text";
@@ -43,11 +43,13 @@ export default SignUpBabyDob = (props) => {
 let titletext = translate("babydob");
 
     return (
-      <TouchableOpacity
+      <TouchableHighlight
+        style={appStyles.container}
+        underlayColor={"transparent"}
         onPress={Keyboard.dismiss}
         accessible={false}
-        style={appStyles.container}
       >
+      <>
         <View
           style={{
             justifyContent: "center",
@@ -90,7 +92,8 @@ let titletext = translate("babydob");
             onPress={onPress}
           />
         </View>
-      </TouchableOpacity>
+      </>
+      </TouchableHighlight>
     );
   
 }

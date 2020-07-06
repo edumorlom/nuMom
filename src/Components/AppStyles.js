@@ -378,6 +378,23 @@ export default {
         Text: {
             fontSize: RFValue(45)
         }
+    },
+
+    BackButton: {
+        Touchable: {
+            height: win.height * 0.04,
+            marginTop: "12%",
+            marginLeft: "3%",
+            marginBottom: '5%',
+            width: win.width * 0.07,
+
+        },
+        Image: {
+            height: win.width * 0.06,
+            width: win.width * 0.06,
+
+        },
+        underlayColor: "transparent"
     }
     
 };

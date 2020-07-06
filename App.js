@@ -59,12 +59,11 @@ export default App = () => {
   };
 
   let loginWithEmailPassword = (email, password) => {
-    saveCookie("email", email);
-    saveCookie("password", password);
-
     if (email && password) {
       logIn(email, password).then(response => {
         loginWithUid(response.user.uid);
+        saveCookie("email", email);
+        saveCookie("password", password);
         registerForPushNotificationsAsync(response.user) 
       }, e => {
         alert("Invalid E-mail and Password Combination!")
