@@ -378,6 +378,36 @@ export default {
         Text: {
             fontSize: RFValue(45)
         }
+    },
+    viewPlus: {
+       
+        height: 50,
+        width: 50,
+        backgroundColor: '#2E66E7',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        zIndex: 999,
+        right: 20
+        
+      },
+
+    BackButton: {
+        Touchable: {
+            height: win.height * 0.04,
+            marginTop: "12%",
+            marginLeft: "3%",
+            marginBottom: '5%',
+            width: win.width * 0.07,
+
+        },
+        Image: {
+            height: win.width * 0.06,
+            width: win.width * 0.06,
+
+        },
+        underlayColor: "transparent"
     }
 
 };

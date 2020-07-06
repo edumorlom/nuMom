@@ -24,24 +24,34 @@ export default function Button(props){
     } 
 
     let showText = () => {
-        return <Text style={props.style.Text}>{props.text}</Text>  //appStyles.button.text
+        //props.style.Text && props.style.Text means that if style.Text exists pass it to the Text style, otherwise pass nothing
+        return <Text style={props.style.Text}>{props.text}</Text>  
     }
 
     let showSubtext = () => {
         return <Text style={props.style.Subtext}>{props.subtext}</Text>
     }
 
+    let showImage = () => {
+        return <Image style= {props.style.Image} source={props.icon}/>
+    }
+
+    let underlayColor = props.underlayColor ? props.underlayColor : appStyles.underlayColor;
+
     return (
             <TouchableHighlight
-                style={props.style.Touchable}  
+            //props.style.Touchable && props.style.Touchable means that if style.Touchable exists pass it to the Touchable style, otherwise pass nothing
+                style={props.style.Touchable && props.style.Touchable}  
                 onPress={onPress}
-                underlayColor={props.style.underlayColor ? props.style.underlayColor : appStyles.underlayColor}
+                underlayColor={props.style.underlayColor ? props.style.underlayColor : underlayColor}
                 //appStyles.blueColor
             >
             <>
                 {props.style.View && withView()}
                 {props.style.Text && showText()}
                 {props.style.Subtext && showSubtext()}
+                {/* Image without View */}
+                {props.style.Image && !props.style.View && showImage()}
             </>
             </TouchableHighlight>
     )

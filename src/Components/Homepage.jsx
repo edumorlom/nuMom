@@ -96,6 +96,7 @@ export default Homepage = props => {
         setFullPanel={setFullPanel}
         clinicToView={clinicToView}
         setClinicToView={setClinicToView}
+        setLowerPanelContent={setLowerPanelContent}
         clinics={clinics}
       />
       {/* Compare current filters with default filters, if different show reset filter button */}

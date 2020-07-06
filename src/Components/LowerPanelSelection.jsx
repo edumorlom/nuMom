@@ -16,6 +16,7 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import { MaterialIcons } from "@expo/vector-icons";
 import translate from "app/Components/getLocalizedText";
 import appStyles from "./AppStyles";
+import Button from "./Button";
 
 export default function LowerPanelSelection(props) {
   return (
@@ -25,13 +26,14 @@ export default function LowerPanelSelection(props) {
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
       style={{ width: "100%", height: "100%", alignItems: "center" }}
     >
-      <TouchableHighlight
-        onPress={() => props.setFullPanel(true)}
-        underlayColor={"transparent"}
-        style={{ height: "10%", width: "100%" }}
-      >
-        <Text></Text>
-      </TouchableHighlight>
+      <Button 
+      style= {{
+        Touchable: {height: "10%", width: "100%"}, Text: {}
+      }}
+      text={''}
+      underlayColor={"transparent" }
+      onPress={() => props.setFullPanel(true)}
+      />
       <WelcomeUserBanner
         fullName={props.fullName}
         logout={props.logout}
