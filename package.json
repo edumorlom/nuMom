@@ -33,7 +33,9 @@
     "react-native-modal-datetime-picker": "^8.7.1",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
-    "twilio": "^3.47.0"
+    "twilio": "^3.47.0",
+    "expo-calendar": "~8.1.0",
+    "expo-localization": "~8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

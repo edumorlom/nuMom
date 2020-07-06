@@ -7,6 +7,7 @@ import {
   AsyncStorage,
   ScrollView,
   StyleSheet,
+  Alert
 } from "react-native";
 import React, { useState } from "react";
 import appStyles from "./AppStyles";
@@ -17,15 +18,18 @@ import { TextInputMask } from "react-native-masked-text";
 import translate from "app/Components/getLocalizedText";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment";
+import * as Calendar from 'expo-calendar';
+import * as Localization from 'expo-localization';
+import * as Permissions from 'expo-permissions';
+
+
 
 export default function NewAppointment(props) {
   appointment = [
     ([name, setName] = useState(null)),
     ([address, setAddress] = useState(null)),
     ([date, setDate] = useState(
-      `${moment().format("MM")}/${moment().format("DD")}/${moment().format(
-        "YYYY"
-      )}`
+      `${moment().format("MM")}/${moment().format("DD")}/${moment().format("YYYY")}`
     )),
     ([time, setTime] = useState(
       `${moment().format("h")}:${moment().format("mm")}`
@@ -33,7 +37,9 @@ export default function NewAppointment(props) {
     ([extra, setExtra] = useState(null)),
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
     ([isTimePickerVisible, setTimePickerVisibility] = useState(false)),
+   
   ];
+
 
   appointmentInfo = {
     name: name,
@@ -43,8 +49,10 @@ export default function NewAppointment(props) {
     extra: extra,
   };
 
-  addAppointment = () => {
+  addAppointment = async () => {
     let uid = firebase.auth().currentUser.uid;
+    
+   
     firebase
       .database()
       .ref("users/" + uid + "/appointments")
@@ -53,11 +61,12 @@ export default function NewAppointment(props) {
     console.log(props);
   };
 
-  onPress = () => {
+  onPress = async () => {
     if (!name || !address ) {
       alert(translate("fillOutAllFields"));
     } else {
-      addAppointment();
+     await addAppointment();
+     await SynchronizeCalendar();
       props.setLowerPanelContent("Appointment");
     }
   };
@@ -86,11 +95,59 @@ export default function NewAppointment(props) {
   };
 
   const handleConfirmTime = (time) => {
-    const newTime = moment(time).format("h:mm");
+    const newTime = moment(time).format("h:mm a");
     setTime(newTime);
     console.log("A date has been picked: ", newTime);
     hideTimePicker();
   };
+
+  const addEventsToCalendar = async (calendardId) => {
+    let hours = moment(time, ['HH:mm a', 'h:mm a']).hours();
+    let minutes = moment(time, ['HH:mm a', 'h:mm a']).minutes();
+    let addHours = moment(time, ['HH:mm a', 'h:mm a']).add(1, 'h').hours();
+    let addMinutes = moment(time, ['HH:mm a', 'h:mm a']).add(30, 'm').minutes();
+    // console.log("Hours:", hours);
+    // console.log("minute:", minutes);
+    // console.log("TIME:", time);
+    // console.log("hours added: ", addHours);
+    // console.log("minutes aded: ", addMinutes);
+    
+    const event = {
+      title: name,
+      notes: extra,
+      location: address,
+      startDate: moment(date, ["MM-DD-YYYY", "YYYY-MM-DD"]).set({'hour': hours, 'minute': minutes }).toDate(),
+      endDate: moment(date, ["MM-DD-YYYY", "YYYY-MM-DD"]).set({'hour': addHours, 'minute': addMinutes }).toDate(),
+      timeZone: Localization.timezone,
+    };
+    try {
+      const createEventAsyncRes = await Calendar.createEventAsync(calendardId.toString(), event);
+      return createEventAsyncRes;
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const SynchronizeCalendar = async ()  => {
+
+    const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+
+    if (status === 'granted'){
+        
+      const calendars = await Calendar.getCalendarsAsync();
+      console.log("CALENDARS:", calendars);
+
+      try {
+        const createEventAsyncRes = await addEventsToCalendar(calendars[0].id);
+        console.log(createEventAsyncRes);
+      
+      } catch (err) {
+        Alert.alert(err.message);
+        
+      }
+    }
+
+  }
 
   return (
     <KeyboardAwareScrollView
@@ -177,6 +234,7 @@ export default function NewAppointment(props) {
         />
       </View>
       <View style={styles.sepeerator} />
+     
       <View
         style={{
           width: "100%",

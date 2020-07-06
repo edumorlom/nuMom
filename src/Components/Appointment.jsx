@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, View, StyleSheet, Button, Image, TouchableOpacity } from "react-native";
+import { ScrollView, View, StyleSheet, Button, Image, TouchableOpacity, Text } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import * as firebase from 'firebase';
 import Spinner from "../../assets/dna-loading2.gif";
@@ -8,10 +8,11 @@ import translate from "app/Components/getLocalizedText";
 import Plus from "../../assets/plus.png";
 
 
+
 export default function Appointment(props) {
   let _isMounted = false;
   const [objects, setObjects] = useState([])
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
 
   const getAppointment = async () => {
@@ -34,7 +35,7 @@ export default function Appointment(props) {
             if (_isMounted) {
 
               setObjects(prevArray => [...prevArray, childSnapshot]);
-              setLoading(false);
+              // setLoading(false);
 
             }
 
@@ -57,13 +58,11 @@ export default function Appointment(props) {
   useEffect(() => {
     getAppointment();
 
-    if(!objects.length){
-      setLoading(null);
-    }
-
+    // if(!objects.length){
+    //   setLoading(null);
+    // }
 
     return () => _isMounted = false;
-
 
   }, []);
 
@@ -103,18 +102,9 @@ export default function Appointment(props) {
           style={{ height: 25, width: 25 }}
         />
       </TouchableOpacity>
+     
       <View >
-        {loading ? <Image
-          style={{
-            height: 200,
-            width: 200,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: appStyles.win.height * 0.06
-          }}
-          source={Spinner}
-        /> : objects.map((appointments, index) => {
+         {objects.map((appointments, index) => {
           return (
             <AppointmentMenu
               key={index}
