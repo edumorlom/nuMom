@@ -32,11 +32,13 @@ const SettingScreen = (props) => {
   const [fullName, setFullName] = useState(null);
   const [liveMiami, setLiveMiami] = useState(null);
   const [infant, setInfant] = useState(null);
-  // const [babyGender, setBabyGender] = useState({male: null, female: null});
+ 
   const [babyDOB, setBabyDOB] = useState(null);
   const [pregnant, setPregnant] = useState(null);
   const datetimeField = useRef(null);
+  const [databaseInfo, setDatabaseInfo] = useState([])
   let _isMounted = false;
+
 
   const uid = getUid();
 
@@ -67,26 +69,23 @@ const SettingScreen = (props) => {
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
       getUserInfo(uid).on('value', (snapshot) => {
-
-        const exists = (snapshot.val() !== null);
-        if (exists || snapshot.exists() || snapshot.val() !== 'undefined') {
           if (_isMounted) {
-            setFullName(snapshot.val()?.fullName);
-            // setBabyGender({
-            //     male: snapshot.val()?.babyGender?.male,
-            //     female: snapshot.val()?.babyGender?.female,
-            //   }); 
-            setPhoneNumber(snapshot.val()?.phoneNumber);
-            setPregnant(snapshot.val()?.pregnant);
-            setInfant(snapshot.val()?.infant);
-            setdob(snapshot.val()?.dob);
-            setLiveMiami(snapshot.val()?.liveMiami);
-            setBabyDOB(snapshot.val()?.babyDOB);
+            let SnapShot = snapshot.val();
+            /*  Info currently from the database*/
+            let databaseInfo = [SnapShot?.fullName, SnapShot?.phoneNumber, SnapShot?.dob, SnapShot?.infant, SnapShot?.pregnant, SnapShot?.liveMiami, SnapShot?.babyDOB]
+
+            let [fullName, phoneNumber, dob, infant, pregnant, liveMiami, babyDOB] = databaseInfo;
+
+            setFullName(fullName);
+            setPhoneNumber(phoneNumber);
+            setPregnant(pregnant);
+            setInfant(infant);
+            setdob(dob);
+            setLiveMiami(liveMiami);
+            setBabyDOB(babyDOB);
+
+            setDatabaseInfo(databaseInfo)
           }
-
-        }
-
-
 
       });
 
@@ -103,63 +102,50 @@ const SettingScreen = (props) => {
 
   onSubmit = () => {
     Haptics.selectionAsync().then();
-    // let male = babyGender.male;
-    // let female = babyGender.female;
-
-    //this will give you the week and nextWeek fields for the baby birth day messages
+    /* This function returns an array with nextWeek and week number */
     let babyInfo = getNextWeekAndWeekNo();
-    let babyDob = babyDOB; //So we can mutate babyDOB
+    /* We make copies of the state variables so we can mutate them */
+    let [FullName, PhoneNumber, Dob, Infant, Pregnant, LiveMiami, BabyDOB] = [fullName, phoneNumber, dob, infant, pregnant, liveMiami, babyDOB]
 
-    //this is to check whether infant if is male or female 
-    // if (male === true) {
-    //   female = false;
+    /* Original user info from the database */
+    let [_fullName, _phoneNumber, _dob, _infant, _pregnant, _liveMiami, _babyDOB] = databaseInfo;
 
-    // }else if (female === false) {
-    //   female = true;
-
-    // } else {
-    //   male = false;
-    // }
-
-    //this is if the user choose not infant then setup male, female to false and babyDob, week, weekNext to null
-    if (infant === false) {
-      // male = false;
-      // female = false;
-      babyDob = null;
+    if (!Infant) {
+      BabyDOB = null;
       babyInfo[0] = null;
       babyInfo[1] = null;
     }
+    // Making sure some values are not null
 
-    // by default in case the values are undefined or null we set their values to false;
-    if (liveMiami === null || liveMiami === 'undefined') {
-      liveMiami = false;
-    } else if (infant === null || infant === 'undefined') {
-      infant = false;
-    } else if (pregnant === null || pregnant === 'undefined') {
-      pregnant = false;
+    /*  If value is undefined/null, set it to false*/ 
+    !LiveMiami ? LiveMiami = false : null
+    !Infant ? Infant = false : null
+    !Pregnant ? Pregnant = false : null
+
+
+    let userInfo = {};
+    FullName !== _fullName ? userInfo.fullName = FullName : null
+    PhoneNumber !== _phoneNumber ? userInfo.phoneNumber = PhoneNumber : null
+    Dob !== _dob ? userInfo.dob = Dob : null
+    Pregnant !== _pregnant ? userInfo.pregnant = Pregnant : null
+    LiveMiami !== _liveMiami ? userInfo.liveMiami = LiveMiami : null
+    BabyDOB !== _babyDOB ? userInfo.babyDOB = BabyDOB : null
+
+    if (Infant !== _infant ) {
+      userInfo.infant = Infant;
+      userInfo.nextWeek = babyInfo[0];
+      userInfo.week = babyInfo[1];
     }
 
-    if (!fullName || !phoneNumber || !dob) {
+    if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB) ) {
       alert(translate("fillOutAllFields"));
+    } else if (Object.keys(userInfo).length === 0) { //All info same
+      
+      alert("No user information was changed");
 
     } else {
-
-      firebase.database().ref('users/' + uid).update({
-        fullName: fullName,
-        phoneNumber: phoneNumber,
-        dob: dob,
-        infant: infant,
-        pregnant: pregnant,
-        liveMiami: liveMiami || false,
-        babyDOB: babyDob,
-        // babyGender:{
-        //   male: male,
-        //   female: female
-        // },
-        nextWeek: babyInfo[0],
-        week: babyInfo[1],
-
-      }).catch(err => console.log(err));
+      firebase.database().ref('users/' + uid).update(userInfo)
+      .catch(err => console.log(err));
 
       window.alert(translate("savedInfo"));
     }
