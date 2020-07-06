@@ -379,6 +379,19 @@ export default {
             fontSize: RFValue(45)
         }
     },
+    viewPlus: {
+       
+        height: 50,
+        width: 50,
+        backgroundColor: '#2E66E7',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        zIndex: 999,
+        right: 20
+        
+      },
 
     BackButton: {
         Touchable: {

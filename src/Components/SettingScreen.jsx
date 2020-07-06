@@ -1,5 +1,5 @@
 import { TextInputMask } from 'react-native-masked-text';
-import React, { useState, useEffect, useRef, Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -275,7 +275,7 @@ const SettingScreen = (props) => {
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{translate("doYouHaveInfants")}</Text>
+            <Text >{translate("didYouHaveInfants")}</Text>
             <Picker
               selectedValue={infant}
               style={styles.questionsDropDown}
