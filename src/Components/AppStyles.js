@@ -389,7 +389,7 @@ export default {
         alignItems: 'center',
         elevation: 5,
         zIndex: 999,
-        right: 20
+        marginRight: 25
         
       },
 
