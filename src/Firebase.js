@@ -129,3 +129,42 @@ export const getUid = () => {
 export const getAuth = () => {
   return firebase.auth()
 }
+
+export const deleteAppointment = async (id, uid, objects, setObjects) => {
+  if (uid !== null) {
+
+    setObjects(objects.filter((item) => item.key !== id));
+
+    const appointments = firebase.database().ref('users/' + uid + '/appointments/' + id);
+    return appointments.remove();
+
+  } else {
+    console.log("Error: Couldn't get the User appointment Info");
+  }
+
+}
+
+export const fetchAppointment = async (uid, setObjects, _isMounted) => {
+  _isMounted = true;
+  if (uid !== null) {
+    await firebase.database().ref('users/' + uid + '/appointments/').once('value', (snapshot) => {
+      snapshot.forEach(function (childSnapshot) {
+        let childKey = childSnapshot.key;
+        let childData = childSnapshot.val();
+        console.log(childKey);
+        console.log(childData);
+        if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (_isMounted) {
+            setObjects(prevArray => [...prevArray, childSnapshot]);
+          }
+        }
+      });
+    });
+  } else {
+    alert("Error: Couldn't get the Appointment Info");
+  }
+}
+
+export const addAppointment = async (uid, appointmentInfo) => {
+  firebase.database().ref("users/" + uid + "/appointments").push(appointmentInfo).catch((err) => console.log(err));
+}

@@ -1,434 +1,254 @@
-import { RFValue } from "react-native-responsive-fontsize";
-import { Dimensions } from "react-native";
+import {
+    Text,
+    TouchableOpacity,
+    TextInput as TextBox,
+    View,
+    StyleSheet,
+    Alert,
+} from "react-native";
+import React, { useState } from "react";
+import appStyles from "./AppStyles";
+import Button from "./Button";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import translate from "app/Components/getLocalizedText";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from "moment";
+import * as Calendar from "expo-calendar";
+import * as Localization from "expo-localization";
+import * as Permissions from "expo-permissions";
+import { getUid, addAppointment } from "../Firebase";
 
-export let win = Dimensions.get('window');
-export let pinkColor = "#DF2172";
-export let blueColor = "#0052A1";
-export let greyColor = "#A9A9A9";
-export let darkGreyColor = "#5E5E5E";
-export let backgroundColor = "white";
-export let titleFontSize = RFValue(30);
-export let regularFontSize = RFValue(20);
-export let title = {
-    fontSize: titleFontSize,
-    fontWeight: 'bold',
-    textAlign: 'center'
-};
-export let borderRadius = 20;
-export let shadow = {
-    shadowColor: darkGreyColor,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    elevation: 1
-};
+export default function NewAppointment(props) {
+    appointment = [
+        ([name, setName] = useState(null)),
+        ([address, setAddress] = useState(null)),
+        ([date, setDate] = useState(
+            `${moment().format("MM")}/${moment().format("DD")}/${moment().format(
+                "YYYY"
+            )}`
+        )),
+        ([time, setTime] = useState(
+            `${moment().format("h")}:${moment().format("mm")}`
+        )),
+        ([extra, setExtra] = useState(null)),
+        ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
+        ([isTimePickerVisible, setTimePickerVisibility] = useState(false)),
+    ];
+    const uid = getUid();
 
-export default {
-    win: win,
+    appointmentInfo = {
+        name: name,
+        address: address,
+        date: date,
+        time: time,
+        extra: extra,
+    };
+
+    onPress = async () => {
+        if (!name || !address) {
+            alert(translate("fillOutAllFields"));
+        } else {
+            await addAppointment(uid, appointmentInfo);
+            await SynchronizeCalendar();
+            props.setLowerPanelContent("Appointment");
+        }
+    };
+
+    showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    handleConfirm = (date) => {
+        const newDate = moment(date).format("MM/DD/YYYY");
+        setDate(newDate);
+        console.log("A date has been picked: ", newDate);
+        hideDatePicker();
+    };
+
+    showTimePicker = () => {
+        setTimePickerVisibility(true);
+    };
+
+    hideTimePicker = () => {
+        setTimePickerVisibility(false);
+    };
+
+    handleConfirmTime = (time) => {
+        const newTime = moment(time).format("h:mm a");
+        setTime(newTime);
+        console.log("A date has been picked: ", newTime);
+        hideTimePicker();
+    };
+
+    addEventsToCalendar = async (calendardId) => {
+        let hours = moment(time, ["HH:mm a", "h:mm a"]).hours();
+        let minutes = moment(time, ["HH:mm a", "h:mm a"]).minutes();
+        let addHours = moment(time, ["HH:mm a", "h:mm a"]).add(1, "h").hours();
+        let addMinutes = moment(time, ["HH:mm a", "h:mm a"]).add(30, "m").minutes();
+
+        const event = {
+            title: name,
+            notes: extra,
+            location: address,
+            startDate: moment(date, ["MM-DD-YYYY", "YYYY-MM-DD"])
+                .set({ hour: hours, minute: minutes })
+                .toDate(),
+            endDate: moment(date, ["MM-DD-YYYY", "YYYY-MM-DD"])
+                .set({ hour: addHours, minute: addMinutes })
+                .toDate(),
+            timeZone: Localization.timezone,
+        };
+        try {
+            const createEventAsyncRes = await Calendar.createEventAsync(
+                calendardId.toString(),
+                event
+            );
+            return createEventAsyncRes;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    SynchronizeCalendar = async () => {
+        const { status } = await Permissions.askAsync(Permissions.CALENDAR);
+
+        if (status === "granted") {
+            const calendars = await Calendar.getCalendarsAsync();
+            try {
+                const createEventAsyncRes = await addEventsToCalendar(calendars[0].id);
+                console.log(createEventAsyncRes);
+            } catch (err) {
+                Alert.alert(err.message);
+            }
+        }
+    };
+
+    return (
+        <KeyboardAwareScrollView
+            contentContainerStyle={{
+                flex: 1,
+                alignItems: "center",
+                maxWidth: "100%",
+            }}
+            scrollEnabled
+        >
+            <View style={appStyles.TextInput.View}>
+                <TextBox
+                    placeholder={translate("appointmentName")}
+                    onChangeText={setName}
+                    value={name}
+                    style={appStyles.TextInput.TextInput}
+                />
+            </View>
+            <View style={appStyles.TextInput.View}>
+                <TextBox
+                    placeholder={translate("appointmentAddress")}
+                    onChangeText={setAddress}
+                    value={address}
+                    style={appStyles.TextInput.TextInput}
+                />
+            </View>
+            <View style={appStyles.TextInput.View}>
+                <TextBox
+                    placeholder={translate("appointmentExtra")}
+                    onChangeText={setExtra}
+                    value={extra}
+                    style={appStyles.TextInput.TextInput}
+                />
+            </View>
+            <View style={styles.container}>
+                <Text style={styles.textTitle}>Date</Text>
+                <TouchableOpacity onPress={showDatePicker}>
+                    <Text style={styles.textStyle}>{date}</Text>
+                </TouchableOpacity>
+                <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode='date'
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                    is24Hour={true}
+                    headerTextIOS='Pick a date'
+                />
+            </View>
+            <View style={styles.sepeerator} />
+            <View style={styles.container}>
+                <Text style={styles.textTitle}>Times</Text>
+                <TouchableOpacity onPress={showTimePicker}>
+                    <Text style={styles.textStyle}>{time}</Text>
+                </TouchableOpacity>
+                <DateTimePickerModal
+                    isVisible={isTimePickerVisible}
+                    mode='time'
+                    onConfirm={handleConfirmTime}
+                    onCancel={hideTimePicker}
+                    is24Hour={true}
+                    headerTextIOS='Pick a time'
+                />
+            </View>
+            <View style={styles.sepeerator} />
+            <View
+                style={{
+                    width: "100%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    bottom: appStyles.win.height * 0.005,
+                }}
+            >
+                <Button
+                    style={appStyles.button}
+                    text={translate("continueButton")}
+                    onPress={onPress}
+                />
+            </View>
+        </KeyboardAwareScrollView>
+    );
+}
+
+const styles = StyleSheet.create({
+    sepeerator: {
+        height: 0.2,
+        width: "100%",
+        backgroundColor: "#979797",
+        alignSelf: "center",
+        marginVertical: 10,
+    },
     container: {
-        alignItems: 'center',
-        flex: 1
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 5,
     },
-    rowContainer: {
-        flexDirection: 'row'
-    },
-    background: {
-        color: backgroundColor
-    },
-    shadow: shadow,
-    pinkColor: pinkColor,
-    blueColor: blueColor,
-    greyColor: greyColor,
-    darkGreyColor: darkGreyColor,
-    titleFontSize: titleFontSize,
-    regularFontSize: regularFontSize,
-    title: title,
-    titleBlue: {
-        color: blueColor,
-        ...title
-    },
-    titlePink: {
-        ...title,
-        color: pinkColor,
-    },
-    titleBlack: {
-        ...title,
-        color: 'black'
-    },
-    titleGrey: {
-        ...title,
-        color: greyColor
-    },
-    titleWhite: {
-        ...title,
-        color: 'white',
-    },
-    paragraphText: {
-        color: greyColor,
-        fontSize: regularFontSize,
-        fontWeight: 'bold'
-    },
-    underlayColor: 'grey',
-    button: {
-        Touchable: {
-            ...shadow,
-            margin: win.height * 0.01,
-            alignItems: 'center',
-            backgroundColor: pinkColor,
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 30,
-            paddingRight: 30,
-            borderRadius: borderRadius,
-        },
-        Text: {
-            color: 'white',
-            fontSize: regularFontSize,
-            fontWeight: 'normal'
-        },
-        underlayColor: blueColor
-    },
-    TextInput: {
-        View: {
-            ...shadow,
-            height: 60,
-            width: win.width * 0.8,
-            margin: 9,
-            borderColor: 'white',
-            borderWidth: 0.5,
-            borderRadius: borderRadius,
-            justifyContent: 'center',
-            backgroundColor: 'white'
-
-        },
-        TextInput: {
-            fontSize: regularFontSize,
-            textAlign: 'center',
-        }
-    },
-    TextInputMask: {
-        ...shadow,
-        height: 60,
-        width: win.width * 0.8,
-        margin: 9,
-        borderColor: 'white',
-        borderWidth: 0.5,
-        borderRadius: borderRadius,
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        fontSize: regularFontSize,
-        textAlign: 'center'
-
-    },
-    ClickableText: {
-        color: blueColor,
-        fontSize: regularFontSize,
-        fontWeight: 'bold',
-    },
-    WelcomeUserBanner: {
-        TouchableHighlight: {
-            ...shadow,
-            backgroundColor: blueColor,
-            borderBottomRightRadius: borderRadius,
-            borderTopRightRadius: borderRadius,
-            justifyContent: 'center',
-            flexDirection: 'row',
-            marginRight: '30%',
-            //marginTop: win.height * 0.015,
-            padding: win.height * 0.025,
-            marginBottom: win.height * 0.02,
-            width: '75%'
-        }
-    },
-    WhitePanelButton: {
-        ...shadow,
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        borderColor: 'white',
-        borderWidth: 0.5,
-        borderRadius: borderRadius,
-        height: 40,
-        width: 40,
-
+    textTitle: {
+        ...Platform.select({
+            ios: {
+                color: "#9CAAC4",
+                fontWeight: "600",
+                fontSize: 16,
+            },
+            android: {
+                color: "#9CAAC4",
+                fontWeight: "600",
+                fontSize: 16,
+            },
+        }),
     },
 
-    lowerPanel: {
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        borderWidth: 0,
-        borderRadius: borderRadius,
-        borderBottomRightRadius: 0,
-        borderBottomLeftRadius: 0,
-        width: '100%',
-        height: '70%',
-        bottom: 0 - win.height * 0.20,
-        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute'
+    textStyle: {
+        ...Platform.select({
+            ios: {
+                fontSize: 19,
+                alignSelf: "center",
+                paddingTop: 10,
+            },
+            android: {
+                fontSize: 19,
+                alignSelf: "center",
+                paddingTop: 5,
+            },
+        }),
     },
-
-    PanelSelectionButton: {
-        Touchable: {
-            margin: win.height * 0.009,
-            backgroundColor: 'white',
-            ...shadow,
-            height: win.height * 0.15,
-            width: '85%',
-            borderColor: greyColor,
-            borderRadius: borderRadius
-        },
-        View: {
-            flexDirection: 'row',
-            height: '100%',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            marginLeft: '14%'
-        },
-        Image: {
-            width: win.height * 0.07,
-            height: win.height * 0.07,
-            marginRight: win.width * 0.105
-        },
-        Text: {
-            fontSize: regularFontSize,
-            fontWeight: 'bold'
-        }
-    },
-    ImageOnRightSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            minHeight: win.height * 0.2,
-            maxHeight: win.height * 0.3,
-            width: win.width * 0.95,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "row",
-        },
-        View: {
-            height: "100%",
-            width: "70%",
-            marginRight: 20
-        },
-        ImageView: {
-            height: "100%",
-            width: "7%",
-            justifyContent: "center"
-        },
-        ImageInView: {
-            width: 65,
-            height: 65
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-        },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize,
-        }
-    },
-    STDSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            minHeight: win.height * 0.002,
-            maxHeight: win.height * 0.08,
-            width: win.width * 0.8,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        View: {
-            height: "100%",
-            width: "90%",
-            marginRight: 50
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-
-    },
-    FCSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            width: win.width,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-
-    },
-    ClinicSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: 'white',
-            ...shadow,
-            minHeight: win.height * 0.2,
-            maxHeight: win.height * 0.3,
-            width: win.width * 0.95,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: 'center',
-            flexDirection: 'row'
-        },
-        View: {
-            height: '100%',
-            width: '80%'
-        },
-        ImageView: {
-            height: '100%',
-            width: '7%',
-            justifyContent: 'center'
-        },
-        ImageInView: {
-            width: 40,
-            height: 40
-        },
-
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: 'bold'
-
-        },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize
-
-        },
-    },
-    CancelFilterButton: {
-        Touchable: {
-            position: 'absolute',
-            right: '2%',
-            top: '2%',
-            width: '13%',
-            flexDirection: 'row-reverse',
-            marginTop: 30
-        },
-        View: {
-            ...shadow,
-            justifyContent: 'center',
-            backgroundColor: 'white',
-            borderColor: 'white',
-            borderWidth: 0.5,
-            borderRadius: borderRadius,
-            height: 40,
-            width: 40,
-        },
-
-        Image: {
-            width: 30,
-            height: 30,
-            marginLeft: 'auto',
-            marginRight: 'auto'
-
-        },
-    },
-    ActionButton: {
-        Touchable: {
-            margin: 4,
-            paddingLeft: 20,
-            justifyContent: 'center',
-            backgroundColor: 'white',
-            ...shadow,
-            height: win.height * 0.11,
-            width: win.width * 0.95,
-            borderRadius: borderRadius
-
-        },
-        View: {
-            alignItems: 'center',
-            flexDirection: 'row'
-        },
-
-        Image: {
-            width: 40,
-            height: 40,
-            marginRight: 20
-        },
-        TextView: {
-
-        },
-        TextInView: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: 'bold'
-        },
-        SubtextInView: {
-            color: greyColor,
-            fontSize: regularFontSize
-        }
-    },
-    MultipleChoiceButton: {
-        Touchable: {
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: win.height * 0.11,
-            width: win.width * 0.24,
-            margin: 20,
-            borderRadius: borderRadius,
-            ...shadow
-
-        },
-        Text: {
-            fontSize: RFValue(45)
-        }
-    },
-    viewPlus: {
-
-        height: 50,
-        width: 50,
-        backgroundColor: '#2E66E7',
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5,
-        zIndex: 999,
-        right: 20
-
-    },
-
-    BackButton: {
-        Touchable: {
-            height: win.height * 0.04,
-            marginTop: "12%",
-            marginLeft: "3%",
-            marginBottom: '5%',
-            width: win.width * 0.07,
-
-        },
-        Image: {
-            height: win.width * 0.06,
-            width: win.width * 0.06,
-
-        },
-        underlayColor: "transparent"
-    }
-
-};
+});
