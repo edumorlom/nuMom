@@ -262,6 +262,27 @@ export default {
         }
 
     },
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        }
+
+    },
     ClinicSelectionButton: {
         Touchable: {
             margin: 5,
