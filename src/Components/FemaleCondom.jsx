@@ -29,19 +29,15 @@ export default function FemaleCondom(props) {
         let currentIndex = index;
 
         if (currentIndex === 3) {
-            //Skip Miami Pnly Alert when going back (user already saw it)
             currentIndex--;
         }
-
-        // if (!showGenderSelection && currentIndex === 9) { 
-        //     currentIndex--;
-        // }
         currentIndex--;
 
         setIndex(currentIndex);
     };
 
     let screens = [
+        <FCMain></FCMain>,
         <FCDoDont
             getNextScreen={getNextScreen}
         />,
