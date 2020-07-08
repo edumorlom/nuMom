@@ -166,7 +166,7 @@ export default function NewAppointment(props) {
         />
       </View>
       <View style={styles.container}>
-        <Text style={styles.textTitle}>Date</Text>
+    <Text style={styles.textTitle}>{translate("Date")}</Text>
         <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.textStyle}>{date}</Text>
         </TouchableOpacity>
@@ -181,7 +181,7 @@ export default function NewAppointment(props) {
       </View>
       <View style={styles.sepeerator} />
       <View style={styles.container}>
-        <Text style={styles.textTitle}>Times</Text>
+        <Text style={styles.textTitle}>{translate("Time")}</Text>
         <TouchableOpacity onPress={showTimePicker}>
           <Text style={styles.textStyle}>{time}</Text>
         </TouchableOpacity>
