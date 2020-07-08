@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from "expo-haptics";
 import uploadImage from "../Firebase";
 import Constants from 'expo-constants';
+import * as firebase from "firebase";
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -33,9 +34,8 @@ export default function Documents() {
       quality: 1,
     });
 
-    //console.log(result);
-    
-    uploadImage(result.uri);
+    let user = firebase.auth().currentUser;
+    uploadImage(result.uri,user);
 
     if (!result.cancelled) {
       setImage(result.uri);
