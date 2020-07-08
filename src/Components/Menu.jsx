@@ -8,7 +8,7 @@ import appStyles, {
 import React from "react";
 import * as Haptics from "expo-haptics";
 
-export default function STDMenu(props) {
+export default function Menu(props) {
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
@@ -22,8 +22,6 @@ export default function STDMenu(props) {
         justifyContent: "center",
         backgroundColor: "white",
         ...shadow,
-        //minHeight: appStyles.win.height * 0.2,
-        //maxHeight: appStyles.win.height * 0.5,
         top: 15,
         bottom: 15,
         width: appStyles.win.width * 0.95,
@@ -50,6 +48,18 @@ export default function STDMenu(props) {
           >
             {props.info}
           </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              //height: '100%',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              marginLeft: '14%'
+            }}>
+            <Image style={{ width: appStyles.win.height * 0.07, height: appStyles.win.height * 0.07, marginRight: appStyles.win.width * 0.105 }} source={props.icon} />
+
+
+          </View>
         </View>
       </View>
     </TouchableHighlight>

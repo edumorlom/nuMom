@@ -38,25 +38,28 @@ export default function LowerPanelHeader(props) {
       return translate("newAppointment");
     if (content === "documents")
       return translate("documents");
+    if (content === "FemaleCondom")
+      return translate("FC");
 
 
     switch (content) {
       case 'findCare': return translate(content);
-      case 'clinicInfo': return translate("findCare"); 
-      case 'learn': return translate(content); 
-      case 'STDSelection': return translate(content); 
-      case 'resources': return translate(content); 
-      case 'STDInfo': return translate(content); 
-      case 'Appointment': return translate("appointment"); 
-      case 'NewAppointment': return translate("newAppointment"); 
-      case 'documents': return translate(content); 
+      case 'clinicInfo': return translate("findCare");
+      case 'learn': return translate(content);
+      case 'STDSelection': return translate(content);
+      case 'resources': return translate(content);
+      case 'STDInfo': return translate(content);
+      case 'Appointment': return translate("appointment");
+      case 'NewAppointment': return translate("newAppointment");
+      case 'documents': return translate(content);
+      case 'FemaleCondom': return translate("FC")
       default: throw new Error('That is not one of the state elements in SignUp')
     }
   };
 
 
   return (
-    <GestureRecognizer 
+    <GestureRecognizer
       onSwipeUp={() => props.setFullPanel(true)}
       onSwipeDown={() => props.setFullPanel(false)}
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
@@ -70,27 +73,27 @@ export default function LowerPanelHeader(props) {
         }}
       >
         <BackButton
-          style={backButton } 
+          style={backButton}
           icon={goBackImg}
-          underlayColor={"transparent" }
-          onPress= {goBack}
+          underlayColor={"transparent"}
+          onPress={goBack}
         />
         <Button
-        style={HeaderTitle} 
-        text={getCurrentHeaderTitle()}
-        underlayColor={"transparent" }
-        onPress={onPress}
+          style={HeaderTitle}
+          text={getCurrentHeaderTitle()}
+          underlayColor={"transparent"}
+          onPress={onPress}
         />
-        {props.lowerPanelContent === "findCare" ? 
-        <Button
-        style={FilterButton} 
-        icon={filterButton}
-        underlayColor={"transparent" }
-        onPress={props.setFilterToShow}
-        />
-        : <Text style={{width: appStyles.win.width * 0.1 }}>
-          {/* This Text component is used to fill space */}
-         </Text> }
+        {props.lowerPanelContent === "findCare" ?
+          <Button
+            style={FilterButton}
+            icon={filterButton}
+            underlayColor={"transparent"}
+            onPress={props.setFilterToShow}
+          />
+          : <Text style={{ width: appStyles.win.width * 0.1 }}>
+            {/* This Text component is used to fill space */}
+          </Text>}
       </View>
     </GestureRecognizer>
   );
@@ -116,13 +119,13 @@ const HeaderTitle = StyleSheet.create({
   Touchable: {
     width: appStyles.win.width * 0.8,
     height: appStyles.win.width * 0.08,
-    
+
   },
   Text: {
     ...appStyles.paragraphText,
     textAlign: "center",
     width: appStyles.win.width * 0.8,
-    
+
   },
 });
 
