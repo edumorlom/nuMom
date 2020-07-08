@@ -1,4 +1,3 @@
-
 import { RFValue } from "react-native-responsive-fontsize";
 import { Dimensions } from "react-native";
 
@@ -260,7 +259,91 @@ export default {
             fontWeight: "bold",
 
         }
+    },
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
 
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        }
+
+    },
+    FCMenu: {
+        Touchable: {
+            margin: 5,
+            padding: 11,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
+        },
+        Text: {
+            color: greyColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize - 4
+
+        },
+
+    },
+    FCMenuImage: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            minHeight: win.height * 0.2,
+            maxHeight: win.height * 0.3,
+            width: win.width * 0.95,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "row",
+        },
+        View: {
+            height: "100%",
+            width: "70%",
+            marginRight: -5
+        },
+        ImageView: {
+            height: "100%",
+            width: "7%",
+            justifyContent: "center"
+        },
+        ImageInView: {
+            width: 100,
+            height: 100
+        },
+        Text: {
+            color: greyColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize,
+        }
     },
     ClinicSelectionButton: {
         Touchable: {

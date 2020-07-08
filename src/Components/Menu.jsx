@@ -48,18 +48,6 @@ export default function Menu(props) {
           >
             {props.info}
           </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              //height: '100%',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              marginLeft: '14%'
-            }}>
-            <Image style={{ width: appStyles.win.height * 0.07, height: appStyles.win.height * 0.07, marginRight: appStyles.win.width * 0.105 }} source={props.icon} />
-
-
-          </View>
         </View>
       </View>
     </TouchableHighlight>
