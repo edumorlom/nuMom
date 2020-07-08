@@ -33,6 +33,7 @@ export default function NewAppointment(props) {
     ([extra, setExtra] = useState(null)),
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
     ([isTimePickerVisible, setTimePickerVisibility] = useState(false)),
+    ([eventId, setEventId] = useState(null)),
   ];
   const uid = getUid();
 
@@ -42,14 +43,15 @@ export default function NewAppointment(props) {
     date: date,
     time: time,
     extra: extra,
+    eventId: eventId,
   };
 
   onPress = async () => {
     if (!name || !address) {
       alert(translate("fillOutAllFields"));
     } else {
-      await addAppointment(uid, appointmentInfo);
       await SynchronizeCalendar();
+      await addAppointment(uid, appointmentInfo);
       props.setLowerPanelContent("Appointment");
     }
   };
@@ -118,9 +120,12 @@ export default function NewAppointment(props) {
 
     if (status === "granted") {
       const calendars = await Calendar.getCalendarsAsync();
+      const defaultCalendars = calendars.filter(item => item.allowsModifications ===  true);
+
       try {
-        const createEventAsyncRes = await addEventsToCalendar(calendars[0].id);
+        const createEventAsyncRes = await addEventsToCalendar(defaultCalendars[0].id);
         console.log(createEventAsyncRes);
+        setEventId(createEventAsyncRes.toString());
       } catch (err) {
         Alert.alert(err.message);
       }

@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import translate from "app/Components/getLocalizedText";
 
 export default function AppointmentMenu(props) {
-  const { name, date, time, address, extra } = props.appointments.val();
+  const { name, date, time, address, extra, eventId } = props.appointments.val();
 
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
@@ -90,7 +90,7 @@ export default function AppointmentMenu(props) {
           underlayColor='transparent'
           onPress={() => {
             AsyncAlert().then((response) => {
-              response ? props.removeAppointment(props.appointments.key) : null;
+              response ? props.removeAppointment(props.appointments.key, eventId) : null;
             });
           }}
         >
