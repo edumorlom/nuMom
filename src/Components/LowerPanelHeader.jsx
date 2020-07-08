@@ -40,8 +40,6 @@ export default function LowerPanelHeader(props) {
       return translate("documents");
     if (content === "FemaleCondom")
       return translate("FC");
-    if (content === "FCInfo")
-      return translate("FCInfo");
 
 
     switch (content) {
@@ -54,8 +52,7 @@ export default function LowerPanelHeader(props) {
       case 'Appointment': return translate("appointment");
       case 'NewAppointment': return translate("newAppointment");
       case 'documents': return translate(content);
-      case 'FemaleCondom': return translate(content)
-      case 'FCInfo': return translate(content)
+      case 'FemaleCondom': return translate("FC")
       default: throw new Error('That is not one of the state elements in SignUp')
     }
   };

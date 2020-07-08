@@ -22,7 +22,7 @@ export default function learn(props) {
       />
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
-        text={translate("SafeSex")}
+        text={translate("ProtectedSex")}
         subtext={translate("FCSubtext")}
         icon={FC}
         onPress={() => {

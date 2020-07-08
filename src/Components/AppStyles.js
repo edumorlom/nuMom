@@ -261,6 +261,27 @@ export default {
         }
 
     },
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        }
+
+    },
     ClinicSelectionButton: {
         Touchable: {
             margin: 5,
@@ -380,7 +401,7 @@ export default {
         }
     },
     viewPlus: {
-       
+
         height: 50,
         width: 50,
         backgroundColor: '#2E66E7',
@@ -390,8 +411,8 @@ export default {
         elevation: 5,
         zIndex: 999,
         right: 20
-        
-      },
+
+    },
 
     BackButton: {
         Touchable: {

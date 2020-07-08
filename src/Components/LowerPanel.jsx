@@ -13,7 +13,6 @@ import NewAppointment from "./NewAppointment";
 import STDSelection from "./STDSelection";
 import Documents from "./Documents";
 import FemaleCondom from "./FemaleCondom";
-import FCInfo from "./FCInfo";
 
 export default LowerPanel = props => {
 
@@ -92,11 +91,6 @@ export default LowerPanel = props => {
     } else if (props.lowerPanelContent === "FemaleCondom") {
       return (
         <FemaleCondom setLowerPanelContent={props.setLowerPanelContent}
-        />
-      );
-    } else if (props.lowerPanelContent === "FCInfo") {
-      return (
-        <FCInfo setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "documents") {

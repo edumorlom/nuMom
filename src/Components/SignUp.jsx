@@ -4,7 +4,7 @@ import SignUpInfo from "./SignUpInfo";
 import LetsGetStarted from "./LetsGetStarted";
 import SignUpPassword from "./SignUpPassword";
 import SignUpBabyDob from "./SignUpBabyDob";
-import {signUp} from "../Firebase";
+import { signUp } from "../Firebase";
 import SignUpContact from "./SignUpContact";
 import SignUpLoading from "./SignUpLoading";
 import SignUpYesorNo from "./SignUpYesorNo";
@@ -26,14 +26,12 @@ export default function SignUp(props) {
 
   useEffect(() => {
     if (index < 0) {
-      props.setScreen("login" );
+      props.setScreen("login");
     }
   });
 
   let showMiamiOnlyAlert = true;
   let showBabyDob = false;
-
-  
 
 
   let getNextScreen = () => {
@@ -201,7 +199,7 @@ export default function SignUp(props) {
     />,
     <SignUpLoading
       signUpAndUploadData={signUpAndUploadData}
-    /> 
+    />
   ];
 
   // let male = ? male : false;
