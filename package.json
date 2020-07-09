@@ -11,11 +11,17 @@
     "@react-native-community/datetimepicker": "^2.5.0",
     "@react-native-community/picker": "1.6.5",
     "expo": "^37.0.0",
+<<<<<<< HEAD
     "expo-calendar": "~8.1.0",
     "expo-constants": "~9.1.1",
     "expo-haptics": "~8.2.1",
     "expo-image-picker": "~8.3.0",
     "expo-localization": "~8.1.0",
+=======
+    "expo-constants": "~9.1.1",
+    "expo-haptics": "~8.2.1",
+    "expo-image-picker": "~8.3.0",
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
     "expo-location": "~8.2.1",
     "expo-permissions": "~9.0.1",
     "firebase": "7.15.5",
@@ -36,7 +42,13 @@
     "react-native-modal-datetime-picker": "^8.7.1",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
+<<<<<<< HEAD
     "twilio": "^3.47.0"
+=======
+    "twilio": "^3.47.0",
+    "expo-calendar": "~8.1.0",
+    "expo-localization": "~8.1.0"
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

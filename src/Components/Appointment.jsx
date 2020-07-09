@@ -27,8 +27,8 @@ export default function Appointment(props) {
     return () => (_isMounted = false);
   }, []);
 
-  removeAppointment = (id) => {
-    deleteAppointment(id, uid, objects, setObjects);
+  removeAppointment = (id, eventId) => {
+    deleteAppointment(id, uid, objects, setObjects, eventId);
   };
 
   return (

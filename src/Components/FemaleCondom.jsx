@@ -6,12 +6,17 @@ import translate from "app/Components/getLocalizedText";
 import FC from "../../assets/FemaleCondom.png"
 import FCDoDont from "./FCDoDont"
 import FCSteps from "./FCSteps"
+<<<<<<< HEAD
+=======
+import FCMain from "./FCMain"
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
 
 export default function FemaleCondom(props) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         if (index < 0) {
+<<<<<<< HEAD
             props.setLowerPanelContent("FemaleCondom");
         }
     });
@@ -38,6 +43,29 @@ export default function FemaleCondom(props) {
 
     let screens = [
         <FCMain></FCMain>,
+=======
+            props.setLowerPanelContent("FCMain");
+        }
+    });
+
+    /*let goBack = () => {
+        if (index == 0) {
+            props.setLowerPanelContent("learn")
+        } else {
+            setIndex(0);
+        }
+    };
+    */
+
+    let getNextScreen = (value) => {
+        setIndex(value);
+    };
+
+    let screens = [
+        <FCMain
+            getNextScreen={getNextScreen}
+        />,
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
         <FCDoDont
             getNextScreen={getNextScreen}
         />,
@@ -46,6 +74,7 @@ export default function FemaleCondom(props) {
         />
     ];
     return (
+<<<<<<< HEAD
         <ScrollView
             contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
         >
@@ -71,6 +100,10 @@ export default function FemaleCondom(props) {
                     props.getNextScreen();
                 }}
             />
+=======
+        <ScrollView style={{ height: "100%" }}>
+            {screens[index]}
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
         </ScrollView>
     );
 }

@@ -4,7 +4,7 @@ import { NativeModules } from "react-native";
 import firebaseAccount from './firebase_account.json';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
-
+import * as Calendar from "expo-calendar";
 
 
 const config = firebaseAccount;
@@ -130,9 +130,11 @@ export const getAuth = () => {
   return firebase.auth()
 }
 
-export const deleteAppointment = async (id, uid, objects, setObjects) => {
+export const deleteAppointment = async (id, uid, objects, setObjects, eventId) => {
   if (uid !== null) {
 
+    console.log("EVENT ID >>:", eventId);
+    Calendar.deleteEventAsync(eventId).catch(err => err.message);
     setObjects(objects.filter((item) => item.key !== id));
 
     const appointments = firebase.database().ref('users/' + uid + '/appointments/' + id);

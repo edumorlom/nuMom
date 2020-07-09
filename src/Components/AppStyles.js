@@ -260,7 +260,10 @@ export default {
             fontWeight: "bold",
 
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
     },
     FCSelectionButton: {
         Touchable: {
@@ -283,6 +286,98 @@ export default {
         }
 
     },
+<<<<<<< HEAD
+=======
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width * 0.8,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize - 1,
+            fontWeight: "bold",
+            textAlign: 'center'
+
+        }
+
+    },
+    FCMenu: {
+        Touchable: {
+            margin: 5,
+            padding: 11,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width - 10,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+        },
+        Text: {
+            color: greyColor,
+            fontSize: regularFontSize - 2,
+            fontWeight: "bold",
+
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize - 4
+
+        },
+
+    },
+    FCMenuImage: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            minHeight: win.height * 0.2,
+            maxHeight: win.height * 0.3,
+            width: win.width * 0.95,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "row",
+        },
+        View: {
+            height: "100%",
+            width: "70%",
+            marginRight: -5
+        },
+        ImageView: {
+            height: "100%",
+            width: "7%",
+            justifyContent: "center",
+            paddingLeft: 10,
+            paddingBottom: 10,
+        },
+        ImageInView: {
+            width: 100,
+            height: 100,
+
+        },
+        Text: {
+            color: greyColor,
+            fontSize: 18,
+            fontWeight: "600",
+            textAlign: 'left'
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize,
+        }
+    },
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
     ClinicSelectionButton: {
         Touchable: {
             margin: 5,
@@ -412,8 +507,13 @@ export default {
         elevation: 5,
         zIndex: 999,
         marginRight: 25
+<<<<<<< HEAD
     
       },
+=======
+
+    },
+>>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
 
     BackButton: {
         Touchable: {
