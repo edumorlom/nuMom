@@ -12,10 +12,12 @@ export default function FCSteps(props) {
     >
       <Text
         style={{
-          fontSize: appStyles.regularFontSize + 2,
+          fontSize: appStyles.regularFontSize + 1,
           justifyContent: "center",
           color: appStyles.blueColor,
           fontWeight: "bold",
+          textAlign: 'center',
+          paddingBottom: 15
         }}>
         {translate("FCHowTo")}</Text>
 

@@ -287,7 +287,7 @@ export default {
             padding: 20,
             backgroundColor: "white",
             ...shadow,
-            width: win.width,
+            width: win.width * 0.8,
             borderColor: greyColor,
             borderRadius: borderRadius,
             alignItems: "center",
@@ -296,8 +296,9 @@ export default {
         },
         Text: {
             color: blueColor,
-            fontSize: regularFontSize,
+            fontSize: regularFontSize - 1,
             fontWeight: "bold",
+            textAlign: 'center'
 
         }
 
@@ -308,7 +309,7 @@ export default {
             padding: 11,
             backgroundColor: "white",
             ...shadow,
-            width: win.width,
+            width: win.width - 10,
             borderColor: greyColor,
             borderRadius: borderRadius,
             alignItems: "center",
@@ -350,16 +351,20 @@ export default {
         ImageView: {
             height: "100%",
             width: "7%",
-            justifyContent: "center"
+            justifyContent: "center",
+            paddingLeft: 10,
+            paddingBottom: 10,
         },
         ImageInView: {
             width: 100,
-            height: 100
+            height: 100,
+
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
+            fontSize: 18,
+            fontWeight: "600",
+            textAlign: 'left'
         },
         Subtext: {
             color: greyColor,

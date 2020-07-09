@@ -11,11 +11,14 @@ export default function FemaleCondom(props) {
         <ScrollView
             contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
         >
-            <Image style={{ justifyContent: "center" }} source={FC}></Image>
+            <Image style={{ justifyContent: "center", width: 300, height: 140 }} source={FC}></Image>
             <Text
                 style={{
-                    fontSize: appStyles.regularFontSize,
-                    justifyContent: "center"
+                    fontSize: appStyles.regularFontSize - 5,
+                    justifyContent: "center",
+                    paddingHorizontal: 20,
+                    paddingBottom: 5,
+                    paddingTop: 5
                 }}>
                 {translate("WhatIsFC")}</Text>
 
