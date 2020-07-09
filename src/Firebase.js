@@ -115,10 +115,10 @@ export const registerForPushNotificationsAsync = async (currentUser) => {
   //call the push notification 
 }
 
-export const uploadImage = async(uri, user) => {
+export const uploadImage = async(uri, user, fileName) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  var ref = firebase.storage().ref().child(user.uid + '/' + "my-image");
+  var ref = firebase.storage().ref().child(user.uid + '/' + fileName);
   return ref.put(blob);
 }
 
