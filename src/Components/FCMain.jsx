@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TouchableHighlight, Text, View, ScrollView, Image } from "react-native";
-import appStyles from "./AppStyles";
+import appStyles, { blueColor, greyColor } from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import translate from "app/Components/getLocalizedText";
 import FC from "../../assets/FemaleCondom.png"

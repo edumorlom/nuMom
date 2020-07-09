@@ -17,6 +17,14 @@ export default function FemaleCondom(props) {
         }
     });
 
+    /*let goBack = () => {
+        if (index == 0) {
+            props.setLowerPanelContent("learn")
+        } else {
+            setIndex(0);
+        }
+    };
+    */
 
     let getNextScreen = (value) => {
         setIndex(value);
@@ -35,7 +43,6 @@ export default function FemaleCondom(props) {
     ];
     return (
         <ScrollView style={{ height: "100%" }}>
-            {/* <SignUpHeader goBack= {goBack} male = {male} female = {female} index = {index}/> */}
             {screens[index]}
         </ScrollView>
     );

@@ -314,11 +314,10 @@ export default {
             borderRadius: borderRadius,
             alignItems: "center",
             flexDirection: "column",
-
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize,
+            fontSize: regularFontSize - 2,
             fontWeight: "bold",
 
         },
