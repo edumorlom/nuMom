@@ -1,19 +1,32 @@
 import React from "react";
 import { TouchableHighlight, Text, View, ScrollView, Button } from "react-native";
 import appStyles from "./AppStyles";
-import SelectionButton from "./SelectionButton";
+import BetterMenu from "./BetterMenu";
 import translate from "app/Components/getLocalizedText";
-import FC from "../../assets/FC.png";
+import FCDD from "./FCDD"
 
 export default function FCDoDont(props) {
-    let onPress = () => {
-        props.getNextScreen();
-    };
     return (
         <ScrollView
             contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
         >
-            <Button title="DoDont" onPress={onPress} />
+            <Text
+                style={{
+                    fontSize: appStyles.regularFontSize + 2,
+                    justifyContent: "center",
+                    color: appStyles.blueColor,
+                    fontWeight: "bold",
+                }}>
+                {translate("FCDoDont")}</Text>
+
+            {FCDD().map((fcdd, key) => (
+                <BetterMenu
+                    style={appStyles.FCMenu}
+                    key={key}
+                    text={translate(fcdd.dodont)}
+                />
+            ))}
+
         </ScrollView>
     );
 }

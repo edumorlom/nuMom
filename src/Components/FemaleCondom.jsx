@@ -6,38 +6,34 @@ import translate from "app/Components/getLocalizedText";
 import FC from "../../assets/FemaleCondom.png"
 import FCDoDont from "./FCDoDont"
 import FCSteps from "./FCSteps"
+import FCMain from "./FCMain"
 
 export default function FemaleCondom(props) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         if (index < 0) {
-            props.setLowerPanelContent("FemaleCondom");
+            props.setLowerPanelContent("FCMain");
         }
     });
 
-    let getNextScreen = () => {
-        let currentIndex = index;
-
-        if (currentIndex < screens.length - 1) {
-            currentIndex++;
+    /*let goBack = () => {
+        if (index == 0) {
+            props.setLowerPanelContent("learn")
+        } else {
+            setIndex(0);
         }
-        setIndex(currentIndex);
     };
+    */
 
-    let goBack = () => {
-        let currentIndex = index;
-
-        if (currentIndex === 3) {
-            currentIndex--;
-        }
-        currentIndex--;
-
-        setIndex(currentIndex);
+    let getNextScreen = (value) => {
+        setIndex(value);
     };
 
     let screens = [
-        <FCMain></FCMain>,
+        <FCMain
+            getNextScreen={getNextScreen}
+        />,
         <FCDoDont
             getNextScreen={getNextScreen}
         />,
@@ -46,31 +42,8 @@ export default function FemaleCondom(props) {
         />
     ];
     return (
-        <ScrollView
-            contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
-        >
-            <Image style={{ justifyContent: "center" }} source={FC}></Image>
-            <Text
-                style={{
-                    fontSize: appStyles.regularFontSize,
-                    justifyContent: "center"
-                }}>
-                {translate("WhatIsFC")}</Text>
-
-            <SelectionButton
-                style={appStyles.FCSelectionButton}
-                text={translate("FCDoDont")}
-                onPress={() => {
-                    props.getNextScreen();
-                }}
-            />
-            <SelectionButton
-                style={appStyles.FCSelectionButton}
-                text={translate("FCHowTo")}
-                onPress={() => {
-                    props.getNextScreen();
-                }}
-            />
+        <ScrollView style={{ height: "100%" }}>
+            {screens[index]}
         </ScrollView>
     );
 }
