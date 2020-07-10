@@ -104,8 +104,8 @@ export default function Map (props) {
                         pinColor={appStyles.blueColor}
                         onPress={(e) => {
                             e.stopPropagation(); 
-                            /* props.setClinicToView(clinic)
-                            props.setLowerPanelContent('clinicInfo') */
+                            props.setShelterToView(shelter)
+                            props.setLowerPanelContent('shelterInfo')
                         }}
                     />))
                 }

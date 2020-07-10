@@ -24,8 +24,9 @@ export default function LowerPanelHeader(props) {
 
     switch (content) {
       case 'findCare': return translate(content);
-      case 'shelters': return "Shelters";
+      case 'shelters': return translate(content);
       case 'clinicInfo': return translate("findCare"); 
+      case 'shelterInfo': return translate("shelters"); break;
       case 'learn': return translate(content); 
       case 'STDSelection': return translate(content); 
       case 'resources': return translate(content); 
@@ -34,7 +35,7 @@ export default function LowerPanelHeader(props) {
       case 'NewAppointment': return translate("newAppointment"); 
       case 'documents': return translate(content); 
       case 'FemaleCondom': return translate("FC")
-      default: throw new Error('That is not one of the state elements in SignUp')
+      default: throw new Error('That is not one of the state elements in lowerPanelHeader')
     }
   };
 

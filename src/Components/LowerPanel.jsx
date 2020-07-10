@@ -6,6 +6,8 @@ import FindCare from "./FindCare";
 import Shelters from "./Shelters";
 
 import ClinicInfo from "./ClinicInfo";
+import ShelterInfo from "./ShelterInfo";
+
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import Resources from "./ResourcesPage";
@@ -57,12 +59,17 @@ export default LowerPanel = props => {
       );
     } else if (props.lowerPanelContent === "shelters") {
       return (
-        <Shelters shelters={props.shelters} setLowerPanelContent={props.setLowerPanelContent}
+        <Shelters shelters={props.shelters} setShelterToView={props.setShelterToView} setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "clinicInfo") {
       return (
         <ClinicInfo clinic={props.clinicToView} setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "shelterInfo") {
+      return (
+        <ShelterInfo shelter={props.shelterToView} setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "learn") {
