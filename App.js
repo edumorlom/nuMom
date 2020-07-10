@@ -40,7 +40,7 @@ export default App = () => {
     setAppState({email: email, password: password, fullName: fullName, uid: uid});
     
 }
-  
+  console.log(deviceLanguage)
 
   let saveCookie = async (key, value) => {
     try {
