@@ -5,35 +5,44 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import babyBottle from "../../assets/baby-bottle.png";
 import clinicLogo from "../../assets/clinic-logo.png";
+import shelterLogo from "../../assets/shelter-logo.png";
 import lightBulb from "../../assets/light-bulb.png";
 import document from "../../assets/document.png";
 import WelcomeUserBanner from "./WelcomeUserBanner";
 import SelectionButton from "./SelectionButton";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { MaterialIcons } from "@expo/vector-icons";
+import translate from "app/Components/getLocalizedText";
+import appStyles from "./AppStyles";
+import Button from "./Button";
 
 export default function LowerPanelSelection(props) {
   return (
+    <>
     <GestureRecognizer
       onSwipeUp={() => props.setFullPanel(true)}
       onSwipeDown={() => props.setFullPanel(false)}
-      config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
-      style={{ width: "100%", height: "100%", alignItems: "center" }}
+      style={{ 
+        width: appStyles.win.width, 
+        height: appStyles.win.height * 0.18, 
+        alignItems: "center" 
+      }}
     >
-      <TouchableHighlight
-        onPress={() => props.setFullPanel(true)}
-        underlayColor={"transparent"}
-        style={{ height: "10%", width: "100%" }}
-      >
-        <Text></Text>
-      </TouchableHighlight>
+      <Button 
+      style= {{
+        Touchable: {height: appStyles.win.height * 0.08, width: appStyles.win.width}, Text: {}
+      }}
+      text={''}
+      underlayColor={"transparent" }
+      onPress={() => props.setFullPanel(!props.fullPanel)}
+      />
       <WelcomeUserBanner
         fullName={props.fullName}
         logout={props.logout}
-        getLocalizedText={props.getLocalizedText}
       />
       <View>
         <MaterialIcons
@@ -44,33 +53,39 @@ export default function LowerPanelSelection(props) {
           onPress={() => props.setScreen("setting")}
         />
       </View>
+      </GestureRecognizer>
+      <ScrollView contentContainerStyle={{alignItems: 'center', width: appStyles.win.width}}>
       <SelectionButton
-        text={props.getLocalizedText("findCare")}
+        style={appStyles.PanelSelectionButton}
+        text={translate("findCare")}
         icon={clinicLogo}
         onPress={() => props.setLowerPanelContent("findCare")}
       />
       <SelectionButton
-        text={props.getLocalizedText("learn")}
+        style={appStyles.PanelSelectionButton}
+        text={translate("shelters")}
+        icon={shelterLogo}
+        onPress={() => props.setLowerPanelContent("shelters")}
+      />
+      <SelectionButton
+        style={appStyles.PanelSelectionButton}
+        text={translate("learn")}
         icon={babyBottle}
         onPress={() => {
           props.setLowerPanelContent("learn");
         }}
       />
       <SelectionButton
-        text={props.getLocalizedText("resources")}
+        style={appStyles.PanelSelectionButton}
+        text={translate("resources")}
         icon={lightBulb}
         onPress={() => {
           props.setLowerPanelContent("resources");
         }}
       />
-      {/* <SelectionButton
-        text={props.getLocalizedText("documents")}
-        icon={document}
-        onPress={() => {
-          props.setLowerPanelContent("documents");
-        }}
-      /> */}
-    </GestureRecognizer>
+      </ScrollView>
+      </>
+    
   );
 }
 

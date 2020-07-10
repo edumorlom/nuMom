@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import appStyles from './AppStyles';
 import Button from "./Button";
+import translate from "app/Components/getLocalizedText";
 
 export default function SignUpInfo(props) {
     
@@ -22,9 +23,9 @@ export default function SignUpInfo(props) {
     
     let onPress = () => {
         if (!name || !dob) {
-            alert(props.getLocalizedText("fillOutAllFields"))
+            alert(translate("fillOutAllFields"))
         } else if (!isValidDate(dob)){
-            alert(props.getLocalizedText("invalidDate"))
+            alert(translate("invalidDate"))
         } else {
             props.setUserInfo({fullName: name});
             props.setUserInfo({dob: dob});
@@ -40,11 +41,12 @@ export default function SignUpInfo(props) {
     };
 
 
-    let titleText = name ? props.getLocalizedText("cool") : props.getLocalizedText("greatToMeetYou");
+    let titleText = name ? translate("cool") : translate("greatToMeetYou");
 
 
         return (
-            <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
+            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} style={appStyles.container}>
+            <>
                     <View style={{
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -59,9 +61,9 @@ export default function SignUpInfo(props) {
                             
                         </Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                            <TextBox placeholder={props.getLocalizedText("fullName")} onChangeText={text => setName(text)} value= {name} style={appStyles.TextInputMask}/>
+                            <TextBox placeholder={translate("fullName")} onChangeText={text => setName(text)} value= {name} style={appStyles.TextInputMask}/>
                             <TextInputMask 
-                                placeholder={props.getLocalizedText("dob")} 
+                                placeholder={translate("dob")} 
                                 type={'datetime'}
                                 options={{
                                   format: 'MM/DD/YYYY',
@@ -86,9 +88,10 @@ export default function SignUpInfo(props) {
                         position: 'absolute',
                         bottom: '12%'
                     }}>
-                        <Button text={props.getLocalizedText("continueButton")} onPress={onPress}/>
+                        <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                     </View>
-            </TouchableOpacity>
+            </>
+            </TouchableHighlight>
         );
     }
 

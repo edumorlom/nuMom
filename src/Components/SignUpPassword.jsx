@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
 import appStyles from './AppStyles';
 import Button from "./Button";
-
+import translate from "app/Components/getLocalizedText";
 
 export default SignUpPassword = (props) => {
 
@@ -21,11 +21,11 @@ export default SignUpPassword = (props) => {
 
     let onPress = () => {
         if (password !== repeat) {
-            alert(props.getLocalizedText("passwordMismatch"))
+            alert(translate("passwordMismatch"))
         } else if (!password || !repeat) {
-            alert(props.getLocalizedText("fillOutAllFields"))
+            alert(translate("fillOutAllFields"))
         } else if (password.length < 6){
-            alert(props.getLocalizedText("passwordTooShort"))
+            alert(translate("passwordTooShort"))
         } else {
             props.setUserInfo({password: password});
             AsyncStorage.setItem('pass', password);
@@ -34,18 +34,19 @@ export default SignUpPassword = (props) => {
         }
     };
         return (
-            <TouchableOpacity onPress={Keyboard.dismiss} accessible={false} style={appStyles.container}>
+            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} style={appStyles.container}>
+            <>
                     <View style={{
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                        <Text style={appStyles.titleBlue}>{props.getLocalizedText("createPassword")}</Text>
+                        <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             
-                            <TextBox placeholder={props.getLocalizedText("passwordInput")} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
+                            <TextBox placeholder={translate("passwordInput")} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
                         
-                            <TextBox placeholder={props.getLocalizedText("repeatPasswordInput")} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
+                            <TextBox placeholder={translate("repeatPasswordInput")} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
                             
                         </View>
                     </View>
@@ -55,8 +56,9 @@ export default SignUpPassword = (props) => {
                         alignItems: 'center',
                         position: 'absolute',
                         bottom: '12%',}}>
-                        <Button text={props.getLocalizedText("continueButton")} onPress={onPress}/>
+                        <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                     </View>
-            </TouchableOpacity>
+            </>
+            </TouchableHighlight>
         );
     }

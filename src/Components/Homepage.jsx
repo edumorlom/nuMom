@@ -2,62 +2,80 @@ import React, { useState, useEffect } from "react";
 import Map from "./Map";
 import { View, AsyncStorage } from "react-native";
 import LowerPanel from "./LowerPanel";
-import SOSButton from "./SOSButton";
+//import SOSButton from "./SOSButton";
 import appStyles from "./AppStyles";
-import Clinics from "./Clinics";
 import { getPreciseDistance } from "geolib";
-import CancelFilterButton from "./CancelFilterButton";
+import CancelFilterButton from "./Button";
+import { getRef } from "../Firebase";
+import filterImage from "../../assets/delete-filter.png";
+
 
 export default Homepage = props => {
-  
-    
+
+
   const [fullPanel, setFullPanel] = useState(true);
-  const [clinics, setClinics] = useState(Clinics());    //Pass it empty array and see what happens
+  const [clinics, setClinics] = useState([]);
   const [sortedClinics, setSortedClinics] = useState(null);
+  const [shelters, setShelters] = useState([]); 
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
+  const [shelterToView, setShelterToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState("selection");
 
-  
-
-
 
   useEffect( () => {
-    sortClinics();
+    fetchResources();  //Can only call one function inside useEffect when dealing with asyncs
   },[])
 
-  let sortClinics = async () => {
-    await getPosition().then((position) => {
-        let clinics = Clinics();
-        clinics.forEach((clinic) => {
-          let loc = position.coords;
-          //Returns a precise distance between the two coordinates given (Clinic & User)
-          let dist = getPreciseDistance(clinic.coordinate, { latitude: loc.latitude, longitude: loc.longitude});   
-          let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
-          clinic.distance = distanceInMiles;
-        });
-        clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
-        setClinics(clinics);
-        setSortedClinics(clinics);  
-        //SortedClinics is never changed, where as clinics does get filtered and therefore changed
-      }).catch((err) => { console.error(err.message); });
+  let fetchResources = async () => {
+    sortClinics(await fetchClinics());
+    setShelters(await fetchShelters())
+    
   }
 
-  let getPosition =  (options) => {
+  let fetchClinics = async () => {
+    return new Promise((resolve, reject) => {
+      let clinicsRef = getRef("Clinics");
+      clinicsRef.once('value', (snapshot) => {
+        resolve(snapshot.val())
+      })
+    })
+  }
+  
+  let fetchShelters = async () => {
+    return new Promise ((resolve, reject) => {
+      let sheltersRef = getRef("Shelters");
+      sheltersRef.once('value', (snapshot) => {
+      resolve(snapshot.val())
+      })
+    })
+  }
+
+  let sortClinics = async (clinics) => {
+    try {
+      let position = await getPosition();
+      let Clinics = clinics;  //For mutation
+      let latitude = position.coords.latitude
+      let longitude = position.coords.longitude
+      Clinics.forEach((clinic) => {
+        //Returns a precise distance between the two coordinates given (Clinic & User)
+        let dist = getPreciseDistance(clinic.coordinate, { latitude: latitude, longitude: longitude });
+        let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
+        clinic.distance = distanceInMiles;
+      });
+      Clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
+      setClinics(Clinics);
+      setSortedClinics(Clinics);
+      //SortedClinics is never changed, where as clinics does get filtered and therefore changed
+    } catch (err) { console.error(err) }
+  }
+
+  let getPosition = (options) => {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
   };
-
-  // setFullPanel = (fullPanel) => {
-  //   fullPanel && !fullPanel
-  //     ? setState({ fullPanel: fullPanel })
-  //     : null;
-  //   !fullPanel && fullPanel
-  //     ? setState({ fullPanel: fullPanel })
-  //     : null;
-  // };
 
 
   let goBack = () => {
@@ -66,33 +84,41 @@ export default Homepage = props => {
       switch(content) {
         case 'selection':  break;
         case 'findCare': setLowerPanelContent("selection"); break;
+        case 'shelters': setLowerPanelContent("selection"); break;
         case 'clinicInfo': setLowerPanelContent("findCare"); break;
+        case 'shelterInfo': setLowerPanelContent("shelters"); break;
         case 'learn': setLowerPanelContent("selection"); break;
         case 'STDSelection': setLowerPanelContent("learn"); break;
         case 'resources': setLowerPanelContent("selection"); break;
         case 'STDInfo': setLowerPanelContent("STDSelection"); break;
         case 'Appointment': setLowerPanelContent("resources"); break;
         case 'NewAppointment': setLowerPanelContent("Appointment"); break;
-        case 'documents': setLowerPanelContent("documents"); break;
+        case 'documents': setLowerPanelContent("resources"); break;
+        case 'FemaleCondom': setLowerPanelContent("learn"); break;
         default: throw new Error('That is not one of the state elements in Homepage')
       }
   };
 
   
-    //Clinics().forEach(clinic => console.log(clinic.services))
-    //console.log(filters);
     return (
       <View style={appStyles.container}>
         <Map
           onPress={() => setFullPanel(false)}
           setFullPanel={setFullPanel}
           clinicToView={clinicToView}
+          shelterToView={shelterToView}
           setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
+          setLowerPanelContent={setLowerPanelContent}
           clinics={clinics}
-          getLocalizedText={props.getLocalizedText}
+          shelters={shelters}
         />
         {/* Compare current filters with default filters, if different show reset filter button */}
-        {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && <CancelFilterButton  resetFilters= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
+        {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && 
+        <CancelFilterButton  
+        style={appStyles.CancelFilterButton}
+        icon={filterImage}
+        onPress= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
         {/*<SOSButton />*/}
         <LowerPanel 
           setFullPanel={() => setFullPanel(!fullPanel)}
@@ -101,17 +127,19 @@ export default Homepage = props => {
           logout={props.logout}
           clinics={clinics}
           sortedClinics = {sortedClinics}
+          shelters={shelters}
           clinicToView={clinicToView}
+          shelterToView={shelterToView}
           STDToView={STDToView}
           setSTDToView={setSTDToView}
           setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
           setClinics = {setClinics}
           filters = {filters}
           setFilters = {setFilters}
           lowerPanelContent={lowerPanelContent}
           goBack={goBack}
           setLowerPanelContent={setLowerPanelContent}
-          getLocalizedText={props.getLocalizedText}
           setScreen={props.setScreen}
         />
       </View>

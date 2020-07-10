@@ -2,9 +2,11 @@ import React, { Component, useState } from 'react';
 import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'react-native';
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
+import BackButton from "./Button"
 import * as Haptics from "expo-haptics";
-import Firebase from './Firebase';
-
+import passwordReset from '../Firebase';
+import translate from "app/Components/getLocalizedText";
+import Button from './Button';
 
 
 const ForgotPasswordPage = (props) => {
@@ -26,14 +28,13 @@ const ForgotPasswordPage = (props) => {
     };
 
     PasswordReset = async (email) => {
-        Haptics.selectionAsync().then();
-        let fb = new Firebase();
+        await Haptics.selectionAsync();
 
         try {
             if(!isValidEmail(email)){
                 return alert("Invalid Email: Please input Valid Email");
             }
-            await fb.passwordReset(email);
+            await passwordReset(email);
             alert("Password Reset email sent Successfully!!\n Check your email ");
             console.log("Password Reset email sent Successfully!")
             props.setScreen('login');
@@ -48,24 +49,11 @@ const ForgotPasswordPage = (props) => {
 
         return (
             <View style={{flex: 1}}>
-                <TouchableHighlight
-                    onPress={goBack}
-                    underlayColor={"transparent"}
-                    style={{
-                    height: appStyles.win.height * 0.04,
-                    marginTop: "8%",
-                    marginLeft: "3%",
-                    marginBottom: '5%',
-                    width: appStyles.win.width * 0.07,
-                    }}
-                >
-                <Image
-                    style={{
-                        height: appStyles.win.width * 0.06,
-                        width: appStyles.win.width * 0.06,
-                    }}
-                    source={goBackImg}/>
-                </TouchableHighlight>
+                <BackButton
+                style={appStyles.BackButton } 
+                icon={goBackImg}
+                onPress= {goBack}
+                />
                 <View>
                     <Text 
                         style={{
@@ -73,24 +61,22 @@ const ForgotPasswordPage = (props) => {
                         fontSize: appStyles.titleFontSize,
                         fontWeight: 'bold',
                         alignSelf: 'center'
-                        }}>{props.getLocalizedText("forgotPassword")}</Text>
+                        }}>{translate("forgotPassword")}</Text>
                 </View>
 
                 <View style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}>
-                    <Text style={appStyles.titleBlue}>{props.getLocalizedText("emailInput")}:</Text>
+                    <Text style={appStyles.titleBlue}>{translate("emailInput")}:</Text>
                     <View style={appStyles.TextInput.View}>
                         <TextBox
-                        placeholder={props.getLocalizedText("emailInput")}
+                        placeholder={translate("emailInput")}
                         style={appStyles.TextInput.TextInput}
                         value={email}
                         onChangeText={(e)=> onChangeText(e)}
                         />
                     </View>
 
-                    <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}  
-                    onPress={() => PasswordReset(email)} >
-                    <Text style={appStyles.button.text}>{props.getLocalizedText("send")}</Text>
-                    </TouchableHighlight>
+                    
+                    <Button style = {appStyles.button} text={translate("send")} onPress={() => PasswordReset(email)}/>
                 </View>
             </View>
         )

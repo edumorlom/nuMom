@@ -1,10 +1,13 @@
-import { Image, Text, TouchableHighlight, View } from "react-native";
+import { Image, Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import goBackImg from "../../assets/go-back-arrow.png";
+import BackButton from "./Button"
+import Button from "./Button";
 import filterButton from "../../assets/Filter.png";
 import * as Haptics from "expo-haptics";
 import GestureRecognizer from "react-native-swipe-gestures";
+import translate from "app/Components/getLocalizedText";
 
 export default function LowerPanelHeader(props) {
   let onPress = () => {
@@ -17,29 +20,28 @@ export default function LowerPanelHeader(props) {
   };
 
   let getCurrentHeaderTitle = () => {
-    if (props.lowerPanelContent === "findCare")
-      return props.getLocalizedText("findCare");
-    if (props.lowerPanelContent === "clinicInfo")
-      return props.getLocalizedText("findCare");
-    if (props.lowerPanelContent === "learn")
-      return props.getLocalizedText("learn");
-    if (props.lowerPanelContent === "STDSelection")
-      return props.getLocalizedText("STDSelection");
-    if (props.lowerPanelContent === "resources")
-      return props.getLocalizedText("resources");
-    if (props.lowerPanelContent === "STDInfo")
-      return props.getLocalizedText("STDInfo");
-    if (props.lowerPanelContent === "Appointment")
-      return props.getLocalizedText("appointment");
-    if (props.lowerPanelContent === "NewAppointment")
-      return props.getLocalizedText("newAppointment");
-    if (props.lowerPanelContent === "documents")
-      return props.getLocalizedText("documents");
+    let content = props.lowerPanelContent;
+
+    switch (content) {
+      case 'findCare': return translate(content);
+      case 'shelters': return translate(content);
+      case 'clinicInfo': return translate("findCare"); 
+      case 'shelterInfo': return translate("shelters"); break;
+      case 'learn': return translate(content); 
+      case 'STDSelection': return translate(content); 
+      case 'resources': return translate(content); 
+      case 'STDInfo': return translate(content); 
+      case 'Appointment': return translate("appointment"); 
+      case 'NewAppointment': return translate("newAppointment"); 
+      case 'documents': return translate(content); 
+      case 'FemaleCondom': return translate("FC")
+      default: throw new Error('That is not one of the state elements in lowerPanelHeader')
+    }
   };
 
 
   return (
-    <GestureRecognizer //The clinics section is slow on the swipe, I suspect it is because of the amount of clinics it is loading
+    <GestureRecognizer
       onSwipeUp={() => props.setFullPanel(true)}
       onSwipeDown={() => props.setFullPanel(false)}
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
@@ -52,61 +54,73 @@ export default function LowerPanelHeader(props) {
           margin: "3%",
         }}
       >
-        <TouchableHighlight
+        <BackButton
+          style={backButton}
+          icon={goBackImg}
+          underlayColor={"transparent"}
           onPress={goBack}
+        />
+        <Button
+          style={HeaderTitle}
+          text={getCurrentHeaderTitle()}
           underlayColor={"transparent"}
-          style={{
-            left: appStyles.win.width * 0.03,
-            width: appStyles.win.width * 0.1,
-            height: appStyles.win.width * 0.08,
-          }}
-        >
-          <Image
-            style={{
-              height: appStyles.win.width * 0.06,
-              width: appStyles.win.width * 0.06,
-            }}
-            source={goBackImg}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
           onPress={onPress}
-          underlayColor={"transparent"}
-          style={{ width: appStyles.win.width * 0.8, height: appStyles.win.width * 0.08, }}
-        >
-          <Text
-            style={{
-              ...appStyles.paragraphText,
-              textAlign: "center",
-              width: appStyles.win.width * 0.8,
-              
-            }}
-          >
-            {getCurrentHeaderTitle()}
-          </Text>
-        </TouchableHighlight>
+        />
         {props.lowerPanelContent === "findCare" ? 
-        <TouchableHighlight
-          onPress={props.setFilterToShow}
-          underlayColor={"transparent"}
-          style={{
-            right: appStyles.win.width * 0.00,
-            width: appStyles.win.width * 0.1,
-            height: appStyles.win.width * 0.08,
-          }}
-        >
-          <Image
-            style={{
-              left: appStyles.win.width * 0.008,
-              height: appStyles.win.width * 0.085,
-              width: appStyles.win.width * 0.085,
-            }}
-            source={filterButton}
-          />
-        </TouchableHighlight>
-        : <Text style={{width: appStyles.win.width * 0.1 }}> </Text> }
-        {/* <View style={{width: appStyles.win.width * 0.1 }}>  <Text> </Text> </View> */}
+        <Button
+        style={FilterButton} 
+        icon={filterButton}
+        underlayColor={"transparent" }
+        onPress={props.setFilterToShow}
+        />
+        : <Text style={{width: appStyles.win.width * 0.15 }}>
+          {/* This Text component is used to fill space */}
+         </Text> }
       </View>
     </GestureRecognizer>
   );
 }
+
+//Styles
+const backButton = StyleSheet.create({
+  Touchable: {
+    left: appStyles.win.width * 0.025,
+    width: appStyles.win.width * 0.15,
+    height: appStyles.win.width * 0.08,
+
+  },
+  Image: {
+    height: appStyles.win.width * 0.06,
+    width: appStyles.win.width * 0.06,
+
+  },
+});
+
+
+const HeaderTitle = StyleSheet.create({
+  Touchable: {
+    width: appStyles.win.width * 0.70,
+    height: appStyles.win.width * 0.08,
+
+  },
+  Text: {
+    ...appStyles.paragraphText,
+    textAlign: "center",
+    width: appStyles.win.width * 0.70,
+    
+  },
+});
+
+const FilterButton = StyleSheet.create({
+  Touchable: {
+    width: appStyles.win.width * 0.15,
+    height: appStyles.win.width * 0.08,
+
+  },
+  Image: {
+    left: appStyles.win.width * 0.008,
+    height: appStyles.win.width * 0.085,
+    width: appStyles.win.width * 0.085,
+
+  },
+});

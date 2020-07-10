@@ -1,5 +1,5 @@
 import { TextInputMask } from 'react-native-masked-text';
-import React, { useState, useEffect, useRef, Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -11,14 +11,16 @@ import {
   Alert,
   Platform,
 } from "react-native";
-import Firebase from "./Firebase";
+import BackButton from './Button'
+import Button from './Button'
+import {getUserInfo, getUid} from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
 import { AsyncStorage, NativeModules, Picker } from 'react-native';
 import * as firebase from 'firebase';
 import { AntDesign } from '@expo/vector-icons';
-
+import translate from "app/Components/getLocalizedText";
 
 
 const SettingScreen = (props) => {
@@ -30,14 +32,17 @@ const SettingScreen = (props) => {
   const [fullName, setFullName] = useState(null);
   const [liveMiami, setLiveMiami] = useState(null);
   const [infant, setInfant] = useState(null);
-  // const [babyGender, setBabyGender] = useState({male: null, female: null});
+ 
   const [babyDOB, setBabyDOB] = useState(null);
   const [pregnant, setPregnant] = useState(null);
   const datetimeField = useRef(null);
+  const [databaseInfo, setDatabaseInfo] = useState([])
   let _isMounted = false;
 
 
-  goBack = () => {
+  const uid = getUid();
+
+  const goBack = () => {
     Haptics.selectionAsync().then();
     props.goBack();
   };
@@ -45,11 +50,11 @@ const SettingScreen = (props) => {
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
-        props.getLocalizedText("logout"),
-        props.getLocalizedText('WantToLogout'),
+        translate("logout"),
+        translate('WantToLogout'),
         [
-          { text: props.getLocalizedText("Yes"), onPress: () => resolve(true) },
-          { text: props.getLocalizedText("No"), onPress: () => resolve(false) },
+          { text: translate("Yes"), onPress: () => resolve(true) },
+          { text: translate("No"), onPress: () => resolve(false) },
         ],
         { cancelable: false }
       );
@@ -58,34 +63,29 @@ const SettingScreen = (props) => {
 
 
   fetchUserInfo = () => {
-    let fb = new Firebase();
-    let uid = firebase.auth().currentUser.uid;
     _isMounted = true;
 
 
     if (uid !== null) {
       console.log("User id >>>>>>>>>: " + uid);
-      fb.getUserInfo(uid).on('value', (snapshot) => {
-
-        const exists = (snapshot.val() !== null);
-        if (exists || snapshot.exists() || snapshot.val() !== 'undefined') {
+      getUserInfo(uid).on('value', (snapshot) => {
           if (_isMounted) {
-            setFullName(snapshot.val()?.fullName);
-            // setBabyGender({
-            //     male: snapshot.val()?.babyGender?.male,
-            //     female: snapshot.val()?.babyGender?.female,
-            //   }); 
-            setPhoneNumber(snapshot.val()?.phoneNumber);
-            setPregnant(snapshot.val()?.pregnant);
-            setInfant(snapshot.val()?.infant);
-            setdob(snapshot.val()?.dob);
-            setLiveMiami(snapshot.val()?.liveMiami);
-            setBabyDOB(snapshot.val()?.babyDOB);
+            let SnapShot = snapshot.val();
+            /*  Info currently from the database*/
+            let databaseInfo = [SnapShot?.fullName, SnapShot?.phoneNumber, SnapShot?.dob, SnapShot?.infant, SnapShot?.pregnant, SnapShot?.liveMiami, SnapShot?.babyDOB]
+
+            let [fullName, phoneNumber, dob, infant, pregnant, liveMiami, babyDOB] = databaseInfo;
+
+            setFullName(fullName);
+            setPhoneNumber(phoneNumber);
+            setPregnant(pregnant);
+            setInfant(infant);
+            setdob(dob);
+            setLiveMiami(liveMiami);
+            setBabyDOB(babyDOB);
+
+            setDatabaseInfo(databaseInfo)
           }
-
-        }
-
-
 
       });
 
@@ -100,67 +100,54 @@ const SettingScreen = (props) => {
 
 
 
-  onSubmit = (fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB) => {
+  onSubmit = () => {
     Haptics.selectionAsync().then();
-    let uid = firebase.auth().currentUser.uid;
-    // let male = babyGender.male;
-    // let female = babyGender.female;
-
-    //this will give you the week and nextWeek fields for the baby birth day messages
+    /* This function returns an array with nextWeek and week number */
     let babyInfo = getNextWeekAndWeekNo();
+    /* We make copies of the state variables so we can mutate them */
+    let [FullName, PhoneNumber, Dob, Infant, Pregnant, LiveMiami, BabyDOB] = [fullName, phoneNumber, dob, infant, pregnant, liveMiami, babyDOB]
 
-    //this is to check whether infant if is male or female 
-    // if (male === true) {
-    //   female = false;
+    /* Original user info from the database */
+    let [_fullName, _phoneNumber, _dob, _infant, _pregnant, _liveMiami, _babyDOB] = databaseInfo;
 
-    // }else if (female === false) {
-    //   female = true;
-
-    // } else {
-    //   male = false;
-    // }
-
-    //this is if the user choose not infant then setup male, female to false and babyDob, week, weekNext to null
-    if (infant === false) {
-      // male = false;
-      // female = false;
-      babyDOB = null;
+    if (!Infant) {
+      BabyDOB = null;
       babyInfo[0] = null;
       babyInfo[1] = null;
     }
+    // Making sure some values are not null
 
-    // by default in case the values are undefined or null we set their values to false;
-    if (liveMiami === null || liveMiami === 'undefined') {
-      liveMiami = false;
-    } else if (infant === null || infant === 'undefined') {
-      infant = false;
-    } else if (pregnant === null || pregnant === 'undefined') {
-      pregnant = false;
+    /*  If value is undefined/null, set it to false*/ 
+    !LiveMiami ? LiveMiami = false : null
+    !Infant ? Infant = false : null
+    !Pregnant ? Pregnant = false : null
+
+
+    let userInfo = {};
+    FullName !== _fullName ? userInfo.fullName = FullName : null
+    PhoneNumber !== _phoneNumber ? userInfo.phoneNumber = PhoneNumber : null
+    Dob !== _dob ? userInfo.dob = Dob : null
+    Pregnant !== _pregnant ? userInfo.pregnant = Pregnant : null
+    LiveMiami !== _liveMiami ? userInfo.liveMiami = LiveMiami : null
+    BabyDOB !== _babyDOB ? userInfo.babyDOB = BabyDOB : null
+
+    if (Infant !== _infant ) {
+      userInfo.infant = Infant;
+      userInfo.nextWeek = babyInfo[0];
+      userInfo.week = babyInfo[1];
     }
 
-    if (!fullName || !phoneNumber || !dob) {
-      alert(props.getLocalizedText("fillOutAllFields"));
+    if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB) ) {
+      alert(translate("fillOutAllFields"));
+    } else if (Object.keys(userInfo).length === 0) { //All info same
+      
+      alert("No user information was changed");
 
     } else {
+      firebase.database().ref('users/' + uid).update(userInfo)
+      .catch(err => console.log(err));
 
-      firebase.database().ref('users/' + uid).update({
-        fullName: fullName,
-        phoneNumber: phoneNumber,
-        dob: dob,
-        infant: infant,
-        pregnant: pregnant,
-        liveMiami: liveMiami || false,
-        babyDOB: babyDOB,
-        // babyGender:{
-        //   male: male,
-        //   female: female
-        // },
-        nextWeek: babyInfo[0],
-        week: babyInfo[1],
-
-      }).catch(err => console.log(err));
-
-      window.alert(props.getLocalizedText("savedInfo"));
+      window.alert(translate("savedInfo"));
     }
 
   }
@@ -176,7 +163,7 @@ const SettingScreen = (props) => {
   getNextWeekAndWeekNo = () => {
     let newbabyDOB = new Date(babyDOB);
     let today = new Date();
-    let daysDifference = (today.getTime() - newbabyDOB.getTime()) / (1000 * 3600 * 24) | 0;
+    let daysDifference = (today.getTime() - newbabyDOB.getTime()) / (1000 * 3600 * 24) | 0; //The | 0 is just a way to cast to int
     let daysTillNextWeek = (7 - daysDifference % 7) % 7;
     let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysTillNextWeek);
     let nextWeek = (nextweek.getMonth() + 1).toString().padStart(2, "0") + '/' + nextweek.getDate().toString().padStart(2, "0") + '/' + nextweek.getFullYear()
@@ -188,25 +175,12 @@ const SettingScreen = (props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <TouchableHighlight
-        onPress={goBack}
-        underlayColor={"transparent"}
-        style={{
-          height: appStyles.win.height * 0.04,
-          marginTop: "10%",
-          marginLeft: "5%",
-          // marginBottom: '3%',
-          width: appStyles.win.width * 0.07,
-        }}
-      >
-        <Image
-          style={{
-            height: appStyles.win.width * 0.06,
-            width: appStyles.win.width * 0.06,
-          }}
-          source={goBackImg}
+      <BackButton
+          style={backButton}
+          icon={goBackImg}
+          underlayColor={"transparent"}
+          onPress= {goBack}
         />
-      </TouchableHighlight>
       <View style={{ position: 'absolute', right: 30, top: 40 }}>
         <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
           AsyncAlert().then((response) => {
@@ -224,14 +198,14 @@ const SettingScreen = (props) => {
               fontWeight: 'bold',
               alignSelf: 'center',
               paddingTop: 15
-            }}>{props.getLocalizedText('welcomeSetting')}</Text>
+            }}>{translate('welcomeSetting')}</Text>
         </View>
         <View style={{ alignItems: 'center', paddingTop: 25 }}>
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("phoneNumberInput")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={props.getLocalizedText("phoneNumberInput")}
+                placeholder={translate("phoneNumberInput")}
                 style={appStyles.TextInput.TextInput}
                 value={phoneNumber}
                 keyboardType={"numeric"}
@@ -241,7 +215,7 @@ const SettingScreen = (props) => {
           </View>
 
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("dob")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("dob")}:</Text>
             <View>
               <TextInputMask
                 type={"datetime"}
@@ -255,7 +229,7 @@ const SettingScreen = (props) => {
                 }}
                 style={appStyles.TextInputMask}
                 value={dob}
-                placeholder={props.getLocalizedText("dob")}
+                placeholder={translate("dob")}
                 onChangeText={
                   (text) => setdob(text)
                 }
@@ -266,10 +240,10 @@ const SettingScreen = (props) => {
             </View>
           </View>
           <View style={{ marginBottom: 10, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{props.getLocalizedText("fullName")}:</Text>
+            <Text style={appStyles.blueColor}>{translate("fullName")}:</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={props.getLocalizedText("fullName")}
+                placeholder={translate("fullName")}
                 style={appStyles.TextInput.TextInput}
                 value={fullName}
                 onChangeText={(text) => setFullName(text)}
@@ -277,58 +251,58 @@ const SettingScreen = (props) => {
             </View>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("liveMiami")}</Text>
+            <Text >{translate("liveMiami")}</Text>
             <Picker
               selectedValue={liveMiami}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setLiveMiami(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("areYouPregnant")}</Text>
+            <Text >{translate("areYouPregnant")}</Text>
             <Picker
               selectedValue={pregnant}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setPregnant(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           <View style={styles.containerDropDown}>
-            <Text >{props.getLocalizedText("doYouHaveInfants")}</Text>
+            <Text >{translate("didYouHaveInfants")}</Text>
             <Picker
               selectedValue={infant}
               style={styles.questionsDropDown}
               onValueChange={(itemValue, itemIndex) =>
                 setInfant(itemValue)
               }>
-              <Picker.Item label={props.getLocalizedText("Yes")} value={true} />
-              <Picker.Item label={props.getLocalizedText("No")} value={false} />
+              <Picker.Item label={translate("Yes")} value={true} />
+              <Picker.Item label={translate("No")} value={false} />
             </Picker>
           </View>
           {/*{infant === true ? 
             <View style={styles.containerDropDown}>
-                  <Text >{props.getLocalizedText("selectGenders")}</Text>
+                  <Text >{translate("selectGenders")}</Text>
                  <Picker
                     selectedValue={(babyGender.male && babyGender.female)}
                     style={styles.questionsDropDown}
                     onValueChange={(itemValue, itemIndex) =>{
                         return setBabyGender({babyGender:{male: itemValue, female: itemValue}})
                     }}>
-                    <Picker.Item label={props.getLocalizedText("Male")} value={true} key='1' />
-                    <Picker.Item label={props.getLocalizedText("Female")} value={false}  key='2'/>
+                    <Picker.Item label={translate("Male")} value={true} key='1' />
+                    <Picker.Item label={translate("Female")} value={false}  key='2'/>
                  </Picker> 
             </View>
               : null} */}
           {infant === true ?
             <View >
-              <Text style={{ alignSelf: 'center' }}>{props.getLocalizedText("babydob")}</Text>
+              <Text style={{ alignSelf: 'center' }}>{translate("babydob")}</Text>
               <TextInputMask
                 type={'datetime'}
                 options={{
@@ -340,7 +314,7 @@ const SettingScreen = (props) => {
                 }}
                 style={appStyles.TextInputMask}
                 value={babyDOB}
-                placeholder={props.getLocalizedText("dob")}
+                placeholder={translate("dob")}
                 onChangeText={
                   (text) => setBabyDOB(text)
                 }
@@ -352,10 +326,11 @@ const SettingScreen = (props) => {
 
         </View>
         <View style={{ justifyContent: 'center', flexDirection: 'row', padding: 90 }}>
-          <TouchableHighlight style={appStyles.button.TouchableHighlight} underlayColor={appStyles.blueColor}
-            onPress={() => onSubmit(fullName, dob, phoneNumber, infant, pregnant, liveMiami, babyDOB)} >
-            <Text style={appStyles.button.text}>{props.getLocalizedText("save")}</Text>
-          </TouchableHighlight>
+          <Button 
+          style={SubmitButton} 
+          underlayColor={appStyles.blueColor}
+          text={translate("save")}
+          onPress={() => onSubmit()} />
         </View>
       </ScrollView>
     </View>
@@ -390,6 +365,26 @@ const styles = StyleSheet.create({
       },
     }),
   },
+});
+
+const backButton = StyleSheet.create({
+  Touchable: {
+    height: appStyles.win.height * 0.04,
+    width: appStyles.win.width * 0.07,
+    marginTop: "10%",
+    marginLeft: "5%",
+
+  },
+  Image: {
+    height: appStyles.win.width * 0.06,
+    width: appStyles.win.width * 0.06,
+
+  },
+});
+
+const SubmitButton = StyleSheet.create({
+  Touchable: appStyles.button.Touchable,
+  Text: appStyles.button.Text,
 });
 
 export default SettingScreen;

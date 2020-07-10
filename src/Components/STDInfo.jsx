@@ -1,8 +1,9 @@
 import React from "react";
 import { TouchableHighlight, Text, View, ScrollView } from "react-native";
 import appStyles from "./AppStyles";
-import STDMenu from "./STDMenu";
+import Menu from "./Menu";
 import STD from "./STD";
+import {STDTranslate} from "app/Components/getLocalizedText";
 
 export default function STDInfo(props) {
   console.log(props.STDToView);
@@ -10,25 +11,25 @@ export default function STDInfo(props) {
     <ScrollView
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
     >
-      <STDMenu
-        title={props.getLocalizedText("symptoms")}
-        info={props.getLocalizedText(props.STDToView.symptoms)}
+      <Menu
+        title={STDTranslate("symptoms")}
+        info={STDTranslate(props.STDToView.symptoms)}
       />
-      <STDMenu
-        title={props.getLocalizedText("testing")}
-        info={props.getLocalizedText(props.STDToView.diagnosis)}
+      <Menu
+        title={STDTranslate("testing")}
+        info={STDTranslate(props.STDToView.diagnosis)}
       />
-      <STDMenu
-        title={props.getLocalizedText("treatment")}
-        info={props.getLocalizedText(props.STDToView.treatment)}
+      <Menu
+        title={STDTranslate("treatment")}
+        info={STDTranslate(props.STDToView.treatment)}
       />
-      <STDMenu
-        title={props.getLocalizedText("consequences")}
-        info={props.getLocalizedText(props.STDToView.consequences)}
+      <Menu
+        title={STDTranslate("consequences")}
+        info={STDTranslate(props.STDToView.consequences)}
       />
-      <STDMenu
-        title={props.getLocalizedText("safeSex")}
-        info={props.getLocalizedText(props.STDToView.safeSex)}
+      <Menu
+        title={STDTranslate("safeSex")}
+        info={STDTranslate(props.STDToView.safeSex)}
       />
     </ScrollView>
   );

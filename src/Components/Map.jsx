@@ -11,12 +11,15 @@ export default function Map (props) {
     const [region, setRegion] = useState(defaultRegion);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(true);
+    //The following is to rerender the Map after the user allows location tracking
+   /*  const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []); */
 
     useEffect(() => {
         getLocationAsync();
         setTimeout(() => {
             setLoading(false);
-        }, 200);  //After 200 milliseconds load the map, with the sorted clinics
+        }, 200);  //After 200 milliseconds load the map, with the user location
         
     },[])
 
@@ -85,8 +88,27 @@ export default function Map (props) {
                         coordinate={clinic.coordinate}
                         title={clinic.resource}
                         description={clinic.phoneNumber}
-                        onPress={(e) => {e.stopPropagation(); props.setClinicToView(clinic)}}
-                        />))}
+                        onPress={(e) => {
+                            e.stopPropagation(); 
+                            props.setClinicToView(clinic)
+                            props.setLowerPanelContent('clinicInfo')
+                        }}
+                    />))
+                }
+                {props.shelters.map((shelter, index) => (
+                    <Marker
+                        key={index}
+                        coordinate={shelter.coordinate}
+                        title={shelter.resource}
+                        description={shelter.phoneNumber}
+                        pinColor={appStyles.blueColor}
+                        onPress={(e) => {
+                            e.stopPropagation(); 
+                            props.setShelterToView(shelter)
+                            props.setLowerPanelContent('shelterInfo')
+                        }}
+                    />))
+                }
 
             </MapView>}
         </>
