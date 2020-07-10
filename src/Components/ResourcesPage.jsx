@@ -54,7 +54,7 @@ export default function Resources(props) {
   let namesReferenceButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate("ReferenceNames")}
+      text={translate("NameReference")}
       subtext={translate("ReferenceSubtitle")}
       icon={doctor}
       onPress={() => {

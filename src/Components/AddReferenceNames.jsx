@@ -5,6 +5,7 @@ import appStyles from "./AppStyles";
 import translate from "app/Components/getLocalizedText";
 import Button from "./Button";
 import { useState } from 'react';
+import { getUid, addReference } from "../Firebase";
 
 
 function AddReferenceNames(props) {
@@ -12,23 +13,32 @@ function AddReferenceNames(props) {
     const [phone, setPhone ] = useState(null);
     const [email, setEmail ] = useState(null);
     const [specialities, setSpecialities ] = useState(null);
+    const uid = getUid();
 
 
-    // ReferenceInfo = {
-    //     name: name,
-    //     phone: phone,
-    //     email: email
-    //   };
+    referenceInfo = {
+        name: name,
+        phone: phone,
+        email: email,
+        specialities: specialities
+      };
+
 
     onPress = async () => {
-        if (!name || !phone || email) {
+        if (!name || !phone || !email || !specialities) {
           alert(translate("fillOutAllFields"));
+        } else if (!isValidEmail(email)){
+          return alert("Invalid Email: Please input Valid Email");
         } else {
-        //   await SynchronizeCalendar();
-        //   await addAppointment(uid, appointmentInfo);
+          await addReference(uid, referenceInfo);
           props.setLowerPanelContent("ReferenceNames");
         }
       };
+
+    isValidEmail = (email) => {
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    };
 
     return (
         <KeyboardAwareScrollView

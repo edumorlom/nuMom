@@ -13,7 +13,7 @@ import { Feather } from "@expo/vector-icons";
 import translate from "app/Components/getLocalizedText";
 
 function ReferenceInfo(props) {
-    const { name, phone, email, specialties } = props.references;
+    const { name, phone, email, specialities } = props.references?.val();
 
     AsyncAlert = () => {
       return new Promise((resolve, reject) => {
@@ -60,7 +60,7 @@ function ReferenceInfo(props) {
             <View style={{marginHorizontal: 65}}>
               <Text style={styles.TextName}>Name: {name}</Text>
               <Text style={styles.TextInfo}>Specialties:</Text>
-              <Text style={styles.TextInfo}>{specialties}</Text>
+              <Text style={styles.TextInfo}>{specialities}</Text>
               <Text style={styles.TextInfo}>Phone: {phone}</Text>
               <Text style={styles.TextInfo}>Email:</Text>
               <Text style={styles.TextInfo}>{email}</Text>
@@ -70,11 +70,11 @@ function ReferenceInfo(props) {
           underlayColor='transparent'
           onPress={() => {
             AsyncAlert().then((response) => {
-              response ? props.removeAppointment(props.appointments.key, eventId) : null;
+              response ? props.removeReference(props.references?.key) : null;
             });
           }}
         >
-          <Feather name='trash' size={40} color='#eb1800' style={{right: 20 }} />
+          <Feather name='trash' size={40} color='#eb1800' style={{ position: 'absolute', right: 15, bottom: -20}} />
         </TouchableHighlight>
       </View>
     </TouchableHighlight>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     TextInfo: {
       color: appStyles.greyColor,
       fontWeight: "500",
-      fontSize: appStyles.regularFontSize - 3,
+      fontSize: appStyles.regularFontSize - 4,
      
     },
     iconStyle: {

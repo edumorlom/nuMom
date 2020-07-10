@@ -34,9 +34,9 @@ export default function LowerPanelHeader(props) {
       case 'Appointment': return translate("appointment"); 
       case 'NewAppointment': return translate("newAppointment"); 
       case 'documents': return translate(content); 
-      case 'FemaleCondom': return translate("FC")
-      case 'ReferenceNames': return translate(content)
-      case 'AddReferenceNames': return translate(content)
+      case 'FemaleCondom': return translate("FC");
+      case 'ReferenceNames': return translate("NameReference");
+      case 'AddReferenceNames': return translate("AddNameReference");
       default: throw new Error('That is not one of the state elements in SignUp')
     }
   };
