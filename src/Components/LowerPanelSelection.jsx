@@ -28,13 +28,13 @@ export default function LowerPanelSelection(props) {
       onSwipeDown={() => props.setFullPanel(false)}
       style={{ 
         width: appStyles.win.width, 
-        height: appStyles.win.height * 0.2, 
+        height: appStyles.win.height * 0.18, 
         alignItems: "center" 
       }}
     >
       <Button 
       style= {{
-        Touchable: {height: appStyles.win.height * 0.1, width: appStyles.win.width}, Text: {}
+        Touchable: {height: appStyles.win.height * 0.08, width: appStyles.win.width}, Text: {}
       }}
       text={''}
       underlayColor={"transparent" }

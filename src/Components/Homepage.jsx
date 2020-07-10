@@ -19,24 +19,19 @@ export default Homepage = props => {
   const [shelters, setShelters] = useState([]); 
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
+  const [shelterToView, setShelterToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState("selection");
 
 
   useEffect( () => {
-    fetchResources();
+    fetchResources();  //Can only call one function inside useEffect when dealing with asyncs
   },[])
 
   let fetchResources = async () => {
-    await getSortedClinics();
+    sortClinics(await fetchClinics());
     setShelters(await fetchShelters())
     
-  }
-
-  let getSortedClinics = async () => {
-    let Clinics = await fetchClinics();
-    sortClinics(Clinics);  //Sets the state with the sorted Clinics
-
   }
 
   let fetchClinics = async () => {
@@ -91,6 +86,7 @@ export default Homepage = props => {
         case 'findCare': setLowerPanelContent("selection"); break;
         case 'shelters': setLowerPanelContent("selection"); break;
         case 'clinicInfo': setLowerPanelContent("findCare"); break;
+        case 'shelterInfo': setLowerPanelContent("shelters"); break;
         case 'learn': setLowerPanelContent("selection"); break;
         case 'STDSelection': setLowerPanelContent("learn"); break;
         case 'resources': setLowerPanelContent("selection"); break;
@@ -110,7 +106,9 @@ export default Homepage = props => {
           onPress={() => setFullPanel(false)}
           setFullPanel={setFullPanel}
           clinicToView={clinicToView}
+          shelterToView={shelterToView}
           setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
           setLowerPanelContent={setLowerPanelContent}
           clinics={clinics}
           shelters={shelters}
@@ -131,9 +129,11 @@ export default Homepage = props => {
           sortedClinics = {sortedClinics}
           shelters={shelters}
           clinicToView={clinicToView}
+          shelterToView={shelterToView}
           STDToView={STDToView}
           setSTDToView={setSTDToView}
           setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
           setClinics = {setClinics}
           filters = {filters}
           setFilters = {setFilters}

@@ -24,7 +24,7 @@ export default function Shelters(props) {
             subtext={shelter.address.street + '\n' + shelter.address.city + '\n' + shelter.address.state +', '+ shelter.address.zipCode}
             icon={shelterLogo}
             onPress={() => {
-            //props.setClinicToView(shelter);
+            props.setShelterToView(shelter);
             props.setLowerPanelContent('shelterInfo');
             }}
             />);
