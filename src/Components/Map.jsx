@@ -16,12 +16,14 @@ export default function Map (props) {
     const forceUpdate = useCallback(() => updateState({}), []); */
 
     useEffect(() => {
-        getLocationAsync();
-        setTimeout(() => {
-            setLoading(false);
-        }, 200);  //After 200 milliseconds load the map, with the user location
+        onMount();
         
     },[])
+
+    let onMount = async () => {
+        await getLocationAsync();
+        setLoading(false);
+    }
 
     let getLocationAsync = async () => {
         let {status} = await Location.requestPermissionsAsync();
@@ -37,12 +39,6 @@ export default function Map (props) {
             latitudeDelta: 0.2,
             longitudeDelta: 0.3
         })
-        /* mapView.animateToRegion({
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-            latitudeDelta: 0.2,
-            longitudeDelta: 0.3
-        }, 200) */
         
     }
      

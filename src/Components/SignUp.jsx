@@ -24,11 +24,19 @@ export default function SignUp(props) {
   const [liveMiami, setLiveMiami] = useState(null);
   const [babyDOB, setBabyDOB] = useState("");
 
+  let _isMounted = false;
+
   useEffect(() => {
     if (index < 0) {
       props.setScreen("login");
     }
   });
+  
+  useEffect(() => {
+    _isMounted = true;
+
+    return () => _isMounted = false;
+  }, []);
 
   let showMiamiOnlyAlert = true;
   let showBabyDob = false;
@@ -135,7 +143,7 @@ export default function SignUp(props) {
     //Unbinds Async Storage keys used in sign up after successful sign up
     let keys = ['name', 'dob', 'e-mail', 'phone', 'pass', 'repeat', 'babyDOB', 'liveMiami'];
     AsyncStorage.multiRemove(keys, (err) => { console.log(err) });
-    setTimeout(() => {
+    _isMounted && setTimeout(() => {
       props.login(email, password)
     }, 2000);
   };
