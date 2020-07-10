@@ -3,6 +3,8 @@ import appStyles from "./AppStyles";
 import React, { useState, useEffect } from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
+import Shelters from "./Shelters";
+
 import ClinicInfo from "./ClinicInfo";
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
@@ -17,7 +19,7 @@ export default LowerPanel = props => {
   
 
   const [filterToShow, setFilterToShow] = useState(false);
-  const fullPanel = props.fullPanel;
+  const [fullPanel, setFullPanel] = useState(props.fullPanel);
   const [moveAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
   
   useEffect(() => {  //Substitute ComponentDidMount
@@ -50,6 +52,11 @@ export default LowerPanel = props => {
     if (props.lowerPanelContent === "findCare") {
       return (
         <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow = {filterToShow} setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "shelters") {
+      return (
+        <Shelters shelters={props.shelters} setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else if (props.lowerPanelContent === "clinicInfo") {
@@ -94,7 +101,7 @@ export default LowerPanel = props => {
       );
     } else {
       return (
-        <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={props.setFullPanel} fullPanel={props.fullPanel} setLowerPanelContent={props.setLowerPanelContent}  setScreen={props.setScreen}
+        <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={setFullPanel} fullPanel={fullPanel} setLowerPanelContent={props.setLowerPanelContent}  setScreen={props.setScreen}
         />
       );
     }
@@ -104,7 +111,7 @@ export default LowerPanel = props => {
     return (
       <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
         {props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader onPress={props.setFullPanel} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent}setFullPanel={props.setFullPanel} fullPanel={props.fullPanel}
+          <LowerPanelHeader onPress={() => setFullPanel(!fullPanel)} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={setFullPanel} fullPanel={fullPanel}
           />
         )}
         {showContent()}

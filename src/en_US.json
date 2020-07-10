@@ -122,5 +122,6 @@
   "documents": "Documents",
   "documentsSubtitle": "View/Upload",
   "WantToRemoveAppointment": "Are you sure want to remove this appointment?",
-  "RemoveAppointment": "Remove The Appointment"
+  "RemoveAppointment": "Remove The Appointment",
+  "shelters": "Shelters"
 }

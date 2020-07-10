@@ -16,6 +16,7 @@ export default Homepage = props => {
   const [fullPanel, setFullPanel] = useState(true);
   const [clinics, setClinics] = useState([]);  
   const [sortedClinics, setSortedClinics] = useState(null);
+  const [shelters, setShelters] = useState([]); 
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
@@ -23,8 +24,14 @@ export default Homepage = props => {
 
 
   useEffect( () => {
-    getSortedClinics();
+    fetchResources();
   },[])
+
+  let fetchResources = async () => {
+    await getSortedClinics();
+    setShelters(await fetchShelters())
+    
+  }
 
   let getSortedClinics = async () => {
     let Clinics = await fetchClinics();
@@ -41,11 +48,19 @@ export default Homepage = props => {
     })
   }
   
+  let fetchShelters = async () => {
+    return new Promise ((resolve, reject) => {
+      let sheltersRef = getRef("Shelters");
+      sheltersRef.once('value', (snapshot) => {
+      resolve(snapshot.val())
+      })
+    })
+  }
 
   let sortClinics = async (clinics) => {
     try {
       let position = await getPosition();
-      let Clinics = clinics;
+      let Clinics = clinics;  //For mutation
       let latitude = position.coords.latitude
       let longitude = position.coords.longitude
       Clinics.forEach((clinic) => {
@@ -74,6 +89,7 @@ export default Homepage = props => {
       switch(content) {
         case 'selection':  break;
         case 'findCare': setLowerPanelContent("selection"); break;
+        case 'shelters': setLowerPanelContent("selection"); break;
         case 'clinicInfo': setLowerPanelContent("findCare"); break;
         case 'learn': setLowerPanelContent("selection"); break;
         case 'STDSelection': setLowerPanelContent("learn"); break;
@@ -96,6 +112,7 @@ export default Homepage = props => {
           setClinicToView={setClinicToView}
           setLowerPanelContent={setLowerPanelContent}
           clinics={clinics}
+          shelters={shelters}
         />
         {/* Compare current filters with default filters, if different show reset filter button */}
         {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && 
@@ -111,6 +128,7 @@ export default Homepage = props => {
           logout={props.logout}
           clinics={clinics}
           sortedClinics = {sortedClinics}
+          shelters={shelters}
           clinicToView={clinicToView}
           STDToView={STDToView}
           setSTDToView={setSTDToView}

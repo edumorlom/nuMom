@@ -70,7 +70,8 @@ export default function FindCare(props) {
     return (
         //The <> tag is shorthand for React.Fragment <= look it up
         <>
-            {props.filterToShow && <View style={{flexDirection: "row", height: window.height * 0.03}}>
+            {props.filterToShow && 
+            <View style={{flexDirection: "row", height: window.height * 0.03}}>
                 { <Dropdown containerStyle= {{...styles.Dropdown, right: '30%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}} textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={distances} label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data) => filterClinics(value, service)} /> }
 
                 <Dropdown containerStyle= {{...styles.Dropdown, left: '30%'}}  dropdownOffset= {{top: 0, bottom: 0,left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}}  textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />

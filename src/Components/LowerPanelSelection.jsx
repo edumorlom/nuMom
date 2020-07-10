@@ -5,9 +5,11 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import babyBottle from "../../assets/baby-bottle.png";
 import clinicLogo from "../../assets/clinic-logo.png";
+import shelterLogo from "../../assets/shelter-logo.png";
 import lightBulb from "../../assets/light-bulb.png";
 import document from "../../assets/document.png";
 import WelcomeUserBanner from "./WelcomeUserBanner";
@@ -20,19 +22,23 @@ import Button from "./Button";
 
 export default function LowerPanelSelection(props) {
   return (
+    <>
     <GestureRecognizer
       onSwipeUp={() => props.setFullPanel(true)}
       onSwipeDown={() => props.setFullPanel(false)}
-      config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
-      style={{ width: "100%", height: "100%", alignItems: "center" }}
+      style={{ 
+        width: appStyles.win.width, 
+        height: appStyles.win.height * 0.2, 
+        alignItems: "center" 
+      }}
     >
       <Button 
       style= {{
-        Touchable: {height: "10%", width: "100%"}, Text: {}
+        Touchable: {height: appStyles.win.height * 0.1, width: appStyles.win.width}, Text: {}
       }}
       text={''}
       underlayColor={"transparent" }
-      onPress={() => props.setFullPanel(true)}
+      onPress={() => props.setFullPanel(!props.fullPanel)}
       />
       <WelcomeUserBanner
         fullName={props.fullName}
@@ -47,11 +53,19 @@ export default function LowerPanelSelection(props) {
           onPress={() => props.setScreen("setting")}
         />
       </View>
+      </GestureRecognizer>
+      <ScrollView contentContainerStyle={{alignItems: 'center', width: appStyles.win.width}}>
       <SelectionButton
         style={appStyles.PanelSelectionButton}
         text={translate("findCare")}
         icon={clinicLogo}
         onPress={() => props.setLowerPanelContent("findCare")}
+      />
+      <SelectionButton
+        style={appStyles.PanelSelectionButton}
+        text={translate("shelters")}
+        icon={shelterLogo}
+        onPress={() => props.setLowerPanelContent("shelters")}
       />
       <SelectionButton
         style={appStyles.PanelSelectionButton}
@@ -69,7 +83,9 @@ export default function LowerPanelSelection(props) {
           props.setLowerPanelContent("resources");
         }}
       />
-    </GestureRecognizer>
+      </ScrollView>
+      </>
+    
   );
 }
 

@@ -22,26 +22,10 @@ export default function LowerPanelHeader(props) {
   let getCurrentHeaderTitle = () => {
     let content = props.lowerPanelContent;
 
-    if (content === "findCare" || content === "clinicInfo")
-      return translate("findCare");
-    if (content === "learn")
-      return translate("learn");
-    if (content === "STDSelection")
-      return translate("STDSelection");
-    if (content === "resources")
-      return translate("resources");
-    if (content === "STDInfo")
-      return translate("STDInfo");
-    if (content === "Appointment")
-      return translate("appointment");
-    if (content === "NewAppointment")
-      return translate("newAppointment");
-    if (content === "documents")
-      return translate("documents");
-
 
     switch (content) {
       case 'findCare': return translate(content);
+      case 'shelters': return "Shelters";
       case 'clinicInfo': return translate("findCare"); 
       case 'learn': return translate(content); 
       case 'STDSelection': return translate(content); 
@@ -88,7 +72,7 @@ export default function LowerPanelHeader(props) {
         underlayColor={"transparent" }
         onPress={props.setFilterToShow}
         />
-        : <Text style={{width: appStyles.win.width * 0.1 }}>
+        : <Text style={{width: appStyles.win.width * 0.15 }}>
           {/* This Text component is used to fill space */}
          </Text> }
       </View>
@@ -99,8 +83,8 @@ export default function LowerPanelHeader(props) {
 //Styles
 const backButton = StyleSheet.create({
   Touchable: {
-    left: appStyles.win.width * 0.03,
-    width: appStyles.win.width * 0.1,
+    left: appStyles.win.width * 0.025,
+    width: appStyles.win.width * 0.15,
     height: appStyles.win.width * 0.08,
 
   },
@@ -114,21 +98,21 @@ const backButton = StyleSheet.create({
 
 const HeaderTitle = StyleSheet.create({
   Touchable: {
-    width: appStyles.win.width * 0.8,
+    width: appStyles.win.width * 0.70,
     height: appStyles.win.width * 0.08,
     
   },
   Text: {
     ...appStyles.paragraphText,
     textAlign: "center",
-    width: appStyles.win.width * 0.8,
+    width: appStyles.win.width * 0.70,
     
   },
 });
 
 const FilterButton = StyleSheet.create({
   Touchable: {
-    width: appStyles.win.width * 0.1,
+    width: appStyles.win.width * 0.15,
     height: appStyles.win.width * 0.08,
 
   },
