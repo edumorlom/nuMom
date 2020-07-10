@@ -1,16 +1,8 @@
 import { Image, Text, TouchableHighlight, View } from "react-native";
 import appStyles, { borderRadius, greyColor, shadow } from "./AppStyles";
 import React from "react";
-import * as Haptics from "expo-haptics";
 
-
-export default function SelectionButton(props) {
-
-    let onPress = () => {
-        Haptics.selectionAsync().then();
-        props.onPress();
-    };
-
+export default function BetterMenu(props) {
     let showText = () => {
         return (
             <View>
@@ -37,17 +29,9 @@ export default function SelectionButton(props) {
         />
     }
 
-    /*  let displayContent = () => {
-         return (<>
-             {props.style.Image && showImage()}
-             {props.style.Text && showText()}
-         </>);
-     } */
-
     return (
         <TouchableHighlight
             underlayColor={appStyles.underlayColor}
-            onPress={onPress}
             style={props.style.Touchable}
         >
             <>

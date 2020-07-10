@@ -22,7 +22,6 @@ export default function LowerPanelHeader(props) {
   let getCurrentHeaderTitle = () => {
     let content = props.lowerPanelContent;
 
-
     switch (content) {
       case 'findCare': return translate(content);
       case 'shelters': return "Shelters";
@@ -34,13 +33,14 @@ export default function LowerPanelHeader(props) {
       case 'Appointment': return translate("appointment"); 
       case 'NewAppointment': return translate("newAppointment"); 
       case 'documents': return translate(content); 
+      case 'FemaleCondom': return translate("FC")
       default: throw new Error('That is not one of the state elements in SignUp')
     }
   };
 
 
   return (
-    <GestureRecognizer 
+    <GestureRecognizer
       onSwipeUp={() => props.setFullPanel(true)}
       onSwipeDown={() => props.setFullPanel(false)}
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
@@ -54,16 +54,16 @@ export default function LowerPanelHeader(props) {
         }}
       >
         <BackButton
-          style={backButton } 
+          style={backButton}
           icon={goBackImg}
-          underlayColor={"transparent" }
-          onPress= {goBack}
+          underlayColor={"transparent"}
+          onPress={goBack}
         />
         <Button
-        style={HeaderTitle} 
-        text={getCurrentHeaderTitle()}
-        underlayColor={"transparent" }
-        onPress={onPress}
+          style={HeaderTitle}
+          text={getCurrentHeaderTitle()}
+          underlayColor={"transparent"}
+          onPress={onPress}
         />
         {props.lowerPanelContent === "findCare" ? 
         <Button
@@ -100,7 +100,7 @@ const HeaderTitle = StyleSheet.create({
   Touchable: {
     width: appStyles.win.width * 0.70,
     height: appStyles.win.width * 0.08,
-    
+
   },
   Text: {
     ...appStyles.paragraphText,

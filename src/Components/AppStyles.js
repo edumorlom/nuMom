@@ -1,5 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
-import {Dimensions} from "react-native";
+import { Dimensions } from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -17,7 +17,7 @@ export let title = {
 export let borderRadius = 20;
 export let shadow = {
     shadowColor: darkGreyColor,
-    shadowOffset: {width: 1, height: 1},
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.25,
     shadowRadius: 5,
     elevation: 1
@@ -108,16 +108,16 @@ export default {
     },
     TextInputMask: {
         ...shadow,
-            height: 60,
-            width: win.width * 0.8,
-            margin: 9,
-            borderColor: 'white',
-            borderWidth: 0.5,
-            borderRadius: borderRadius,
-            justifyContent: 'center',
-            backgroundColor: 'white',
-            fontSize: regularFontSize,
-            textAlign: 'center'
+        height: 60,
+        width: win.width * 0.8,
+        margin: 9,
+        borderColor: 'white',
+        borderWidth: 0.5,
+        borderRadius: borderRadius,
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        fontSize: regularFontSize,
+        textAlign: 'center'
 
     },
     ClickableText: {
@@ -149,7 +149,7 @@ export default {
         borderRadius: borderRadius,
         height: 40,
         width: 40,
-        
+
     },
 
     lowerPanel: {
@@ -186,12 +186,12 @@ export default {
             marginLeft: '14%'
         },
         Image: {
-            width: win.height * 0.07, 
-            height: win.height * 0.07, 
+            width: win.height * 0.07,
+            height: win.height * 0.07,
             marginRight: win.width * 0.105
         },
         Text: {
-            fontSize: regularFontSize, 
+            fontSize: regularFontSize,
             fontWeight: 'bold'
         }
     },
@@ -210,17 +210,17 @@ export default {
             flexDirection: "row",
         },
         View: {
-            height: "100%", 
-            width: "70%", 
+            height: "100%",
+            width: "70%",
             marginRight: 20
         },
         ImageView: {
-            height: "100%", 
-            width: "7%", 
+            height: "100%",
+            width: "7%",
             justifyContent: "center"
         },
         ImageInView: {
-            width: 65, 
+            width: 65,
             height: 65
         },
         Text: {
@@ -234,7 +234,7 @@ export default {
         }
     },
     STDSelectionButton: {
-        Touchable:{
+        Touchable: {
             margin: 5,
             padding: 20,
             backgroundColor: "white",
@@ -246,12 +246,32 @@ export default {
             borderRadius: borderRadius,
             alignItems: "center",
             flexDirection: "column",
-            
+
         },
-        View:{
-            height: "100%", 
-            width: "90%", 
+        View: {
+            height: "100%",
+            width: "90%",
             marginRight: 50
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize,
+            fontWeight: "bold",
+
+        }
+    },
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
         },
         Text: {
             color: blueColor,
@@ -261,8 +281,97 @@ export default {
         }
 
     },
+    FCSelectionButton: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width * 0.8,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+
+        },
+        Text: {
+            color: blueColor,
+            fontSize: regularFontSize - 1,
+            fontWeight: "bold",
+            textAlign: 'center'
+
+        }
+
+    },
+    FCMenu: {
+        Touchable: {
+            margin: 5,
+            padding: 11,
+            backgroundColor: "white",
+            ...shadow,
+            width: win.width - 10,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "column",
+        },
+        Text: {
+            color: greyColor,
+            fontSize: regularFontSize - 2,
+            fontWeight: "bold",
+
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize - 4
+
+        },
+
+    },
+    FCMenuImage: {
+        Touchable: {
+            margin: 5,
+            padding: 20,
+            backgroundColor: "white",
+            ...shadow,
+            minHeight: win.height * 0.2,
+            maxHeight: win.height * 0.3,
+            width: win.width * 0.95,
+            borderColor: greyColor,
+            borderRadius: borderRadius,
+            alignItems: "center",
+            flexDirection: "row",
+        },
+        View: {
+            height: "100%",
+            width: "70%",
+            marginRight: -5
+        },
+        ImageView: {
+            height: "100%",
+            width: "7%",
+            justifyContent: "center",
+            paddingLeft: 10,
+            paddingBottom: 10,
+        },
+        ImageInView: {
+            width: 100,
+            height: 100,
+
+        },
+        Text: {
+            color: greyColor,
+            fontSize: 18,
+            fontWeight: "600",
+            textAlign: 'left'
+        },
+        Subtext: {
+            color: greyColor,
+            fontSize: regularFontSize,
+        }
+    },
     ClinicSelectionButton: {
-        Touchable:{
+        Touchable: {
             margin: 5,
             padding: 20,
             backgroundColor: 'white',
@@ -275,39 +384,39 @@ export default {
             alignItems: 'center',
             flexDirection: 'row'
         },
-        View:{
-            height: '100%', 
+        View: {
+            height: '100%',
             width: '80%'
         },
         ImageView: {
-            height: '100%', 
-            width: '7%', 
+            height: '100%',
+            width: '7%',
             justifyContent: 'center'
         },
         ImageInView: {
-            width: 40, 
+            width: 40,
             height: 40
         },
-        
+
         Text: {
-            color: blueColor, 
-            fontSize: regularFontSize, 
+            color: blueColor,
+            fontSize: regularFontSize,
             fontWeight: 'bold'
 
         },
         Subtext: {
-            color: greyColor, 
+            color: greyColor,
             fontSize: regularFontSize
 
         },
     },
     CancelFilterButton: {
         Touchable: {
-            position: 'absolute', 
-            right: '2%', 
-            top: '2%', 
-            width: '13%', 
-            flexDirection: 'row-reverse', 
+            position: 'absolute',
+            right: '2%',
+            top: '2%',
+            width: '13%',
+            flexDirection: 'row-reverse',
             marginTop: 30
         },
         View: {
@@ -322,9 +431,9 @@ export default {
         },
 
         Image: {
-            width: 30, 
-            height: 30,  
-            marginLeft: 'auto', 
+            width: 30,
+            height: 30,
+            marginLeft: 'auto',
             marginRight: 'auto'
 
         },
@@ -339,28 +448,28 @@ export default {
             height: win.height * 0.11,
             width: win.width * 0.95,
             borderRadius: borderRadius
-            
+
         },
         View: {
-            alignItems: 'center', 
+            alignItems: 'center',
             flexDirection: 'row'
         },
 
         Image: {
-            width: 40, 
-            height: 40, 
+            width: 40,
+            height: 40,
             marginRight: 20
         },
         TextView: {
 
         },
         TextInView: {
-            color: blueColor, 
-            fontSize: regularFontSize, 
+            color: blueColor,
+            fontSize: regularFontSize,
             fontWeight: 'bold'
         },
         SubtextInView: {
-            color: greyColor, 
+            color: greyColor,
             fontSize: regularFontSize
         }
     },
@@ -380,7 +489,7 @@ export default {
         }
     },
     viewPlus: {
-       
+
         height: 50,
         width: 50,
         backgroundColor: '#2E66E7',
@@ -389,9 +498,9 @@ export default {
         alignItems: 'center',
         elevation: 5,
         zIndex: 999,
-        right: 20
-        
-      },
+        marginRight: 25
+
+    },
 
     BackButton: {
         Touchable: {
@@ -409,5 +518,5 @@ export default {
         },
         underlayColor: "transparent"
     }
-    
+
 };

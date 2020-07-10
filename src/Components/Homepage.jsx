@@ -6,15 +6,15 @@ import LowerPanel from "./LowerPanel";
 import appStyles from "./AppStyles";
 import { getPreciseDistance } from "geolib";
 import CancelFilterButton from "./Button";
-import {getRef} from "../Firebase";
+import { getRef } from "../Firebase";
 import filterImage from "../../assets/delete-filter.png";
 
 
 export default Homepage = props => {
-  
-    
+
+
   const [fullPanel, setFullPanel] = useState(true);
-  const [clinics, setClinics] = useState([]);  
+  const [clinics, setClinics] = useState([]);
   const [sortedClinics, setSortedClinics] = useState(null);
   const [shelters, setShelters] = useState([]); 
   const [filters, setFilters] = useState([10000, 'All']);
@@ -36,14 +36,14 @@ export default Homepage = props => {
   let getSortedClinics = async () => {
     let Clinics = await fetchClinics();
     sortClinics(Clinics);  //Sets the state with the sorted Clinics
-    
+
   }
 
   let fetchClinics = async () => {
-    return new Promise ((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let clinicsRef = getRef("Clinics");
       clinicsRef.once('value', (snapshot) => {
-      resolve(snapshot.val())
+        resolve(snapshot.val())
       })
     })
   }
@@ -65,18 +65,18 @@ export default Homepage = props => {
       let longitude = position.coords.longitude
       Clinics.forEach((clinic) => {
         //Returns a precise distance between the two coordinates given (Clinic & User)
-        let dist = getPreciseDistance(clinic.coordinate, { latitude: latitude, longitude: longitude});   
+        let dist = getPreciseDistance(clinic.coordinate, { latitude: latitude, longitude: longitude });
         let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
         clinic.distance = distanceInMiles;
       });
       Clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
       setClinics(Clinics);
-      setSortedClinics(Clinics);  
+      setSortedClinics(Clinics);
       //SortedClinics is never changed, where as clinics does get filtered and therefore changed
-    } catch (err) {console.error(err)}
+    } catch (err) { console.error(err) }
   }
 
-  let getPosition =  (options) => {
+  let getPosition = (options) => {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
@@ -98,6 +98,7 @@ export default Homepage = props => {
         case 'Appointment': setLowerPanelContent("resources"); break;
         case 'NewAppointment': setLowerPanelContent("Appointment"); break;
         case 'documents': setLowerPanelContent("resources"); break;
+        case 'FemaleCondom': setLowerPanelContent("learn"); break;
         default: throw new Error('That is not one of the state elements in Homepage')
       }
   };
