@@ -93,7 +93,22 @@ export default function Map (props) {
                             props.setClinicToView(clinic)
                             props.setLowerPanelContent('clinicInfo')
                         }}
-                        />))}
+                    />))
+                }
+                {props.shelters.map((shelter, index) => (
+                    <Marker
+                        key={index}
+                        coordinate={shelter.coordinate}
+                        title={shelter.resource}
+                        description={shelter.phoneNumber}
+                        pinColor={appStyles.blueColor}
+                        onPress={(e) => {
+                            e.stopPropagation(); 
+                            /* props.setClinicToView(clinic)
+                            props.setLowerPanelContent('clinicInfo') */
+                        }}
+                    />))
+                }
 
             </MapView>}
         </>
