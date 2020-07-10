@@ -13,6 +13,8 @@ import NewAppointment from "./NewAppointment";
 import STDSelection from "./STDSelection";
 import Documents from "./Documents";
 import FemaleCondom from "./FemaleCondom";
+import ReferenceNames from './ReferenceNames';
+import AddReferenceNames from './AddReferenceNames';
 
 export default LowerPanel = props => {
 
@@ -96,6 +98,16 @@ export default LowerPanel = props => {
     } else if (props.lowerPanelContent === "documents") {
       return (
         <Documents setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "ReferenceNames") {
+      return (
+        <ReferenceNames setLowerPanelContent={props.setLowerPanelContent}
+        />
+      );
+    } else if (props.lowerPanelContent === "AddReferenceNames") {
+      return (
+        <AddReferenceNames setLowerPanelContent={props.setLowerPanelContent}
         />
       );
     } else {

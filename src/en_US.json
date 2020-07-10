@@ -149,5 +149,15 @@
   "ProtectedSex": "Protected Sex",
   "FCSubtext": "Protect yourself and have a safe time",
   "Time": "Time",
-  "Date": "Date"
+  "Date": "Date",
+  "ReferenceNames": "Reference Names",
+  "ReferenceSubtitle": "Reference your Doctor or Medical Specialities",
+  "AddReferenceNames": "Add Reference Name",
+  "referenceName": "Name of Reference",
+  "referencePhone": "Phone of Reference",
+  "referenceEmail": "Email of Reference",
+  "MedicalSpecialities": "Medical Specialities",
+  "RemoveReference": "Remove The Reference",
+  "WantToRemoveReference": "Are you sure want to remove this reference?"
+  
 }

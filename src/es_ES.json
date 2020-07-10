@@ -105,5 +105,14 @@
   "SafeSex": "Placeholder",
   "FCSubtext": "Placeholder",
   "Time": "Hora",
-  "Date": "Fecha"
+  "Date": "Fecha",
+  "ReferenceNames": "Nombres de Referencia",
+  "ReferenceSubtitle": "Referencia a su Doctor o Especialidades Medicas",
+  "AddReferenceNames": "Agregar Nombre De Referencia",
+  "referenceName": "Nombre de referencia",
+  "referencePhone": "Teléfono de referencia",
+  "referenceEmail": "Correo electrónico de referencia",
+  "MedicalSpecialities": "Especialidades Medicas",
+  "RemoveReference": "Eliminar la referencia",
+  "WantToRemoveReference": "¿Seguro que quieres eliminar esta referencia?"
 }
