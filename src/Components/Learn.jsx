@@ -4,7 +4,7 @@ import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import butterfly from "../../assets/butterfly.png";
 import translate from "app/Components/getLocalizedText";
-import FC from "../../assets/FC.png";
+import FemaleCondom from "../../assets/FC.png";
 
 export default function learn(props) {
   return (
@@ -23,8 +23,8 @@ export default function learn(props) {
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
         text={translate("ProtectedSex")}
-        subtext={translate("FCSubtext")}
-        icon={FC}
+        subtext={translate("FemaleCondomSubtext")}
+        icon={FemaleCondom}
         onPress={() => {
           props.setLowerPanelContent("FemaleCondom");
         }}
