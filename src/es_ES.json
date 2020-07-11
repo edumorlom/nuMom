@@ -104,5 +104,7 @@
   "referenceEmail": "Correo electrónico de referencia",
   "MedicalSpecialities": "Especialidades Medicas",
   "RemoveReference": "Eliminar la referencia",
-  "WantToRemoveReference": "¿Seguro que quieres eliminar esta referencia?"
+  "WantToRemoveReference": "¿Seguro que quieres eliminar esta referencia?",
+  "email": "Mandar un correo electrónico",
+  "call": "Haz una llamada" 
 }
