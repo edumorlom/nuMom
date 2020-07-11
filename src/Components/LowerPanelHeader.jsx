@@ -25,16 +25,16 @@ export default function LowerPanelHeader(props) {
     switch (content) {
       case 'findCare': return translate(content);
       case 'shelters': return translate(content);
-      case 'clinicInfo': return translate("findCare"); 
+      case 'clinicInfo': return translate("findCare");
       case 'shelterInfo': return translate("shelters"); break;
-      case 'learn': return translate(content); 
-      case 'STDSelection': return translate(content); 
-      case 'resources': return translate(content); 
-      case 'STDInfo': return translate(content); 
-      case 'Appointment': return translate("appointment"); 
-      case 'NewAppointment': return translate("newAppointment"); 
-      case 'documents': return translate(content); 
-      case 'FemaleCondom': return translate("FC")
+      case 'learn': return translate(content);
+      case 'STDSelection': return translate(content);
+      case 'resources': return translate(content);
+      case 'STDInfo': return translate(content);
+      case 'Appointment': return translate("appointment");
+      case 'NewAppointment': return translate("newAppointment");
+      case 'documents': return translate(content);
+      case 'FemaleCondom': return translate("FemaleCondom")
       default: throw new Error('That is not one of the state elements in lowerPanelHeader')
     }
   };
@@ -66,16 +66,16 @@ export default function LowerPanelHeader(props) {
           underlayColor={"transparent"}
           onPress={onPress}
         />
-        {props.lowerPanelContent === "findCare" ? 
-        <Button
-        style={FilterButton} 
-        icon={filterButton}
-        underlayColor={"transparent" }
-        onPress={props.setFilterToShow}
-        />
-        : <Text style={{width: appStyles.win.width * 0.15 }}>
-          {/* This Text component is used to fill space */}
-         </Text> }
+        {props.lowerPanelContent === "findCare" ?
+          <Button
+            style={FilterButton}
+            icon={filterButton}
+            underlayColor={"transparent"}
+            onPress={props.setFilterToShow}
+          />
+          : <Text style={{ width: appStyles.win.width * 0.15 }}>
+            {/* This Text component is used to fill space */}
+          </Text>}
       </View>
     </GestureRecognizer>
   );
@@ -107,7 +107,7 @@ const HeaderTitle = StyleSheet.create({
     ...appStyles.paragraphText,
     textAlign: "center",
     width: appStyles.win.width * 0.70,
-    
+
   },
 });
 
