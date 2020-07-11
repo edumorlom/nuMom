@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
+  Linking
 } from "react-native";
 import appStyles, { borderRadius, shadow } from "./AppStyles";
 import { Feather } from "@expo/vector-icons";
@@ -28,6 +29,14 @@ function ReferenceInfo(props) {
         );
       });
     };
+
+    let call = () => {
+      Linking.openURL('tel:' + phone)
+  };
+
+  let sendEmail = () => {
+      Linking.openURL('mailto:' + email)
+  };
    
 
   return (
