@@ -94,5 +94,16 @@
   "ProtectedSex": "Placeholder",
   "FemaleCondomSubtext": "Placeholder",
   "Time": "Hora",
-  "Date": "Fecha"
+  "Date": "Fecha",
+  "NameReference": "Nombres de Referencia",
+  "ReferenceSubtitle": "Referencia a su Doctor o Especialidades Medicas",
+  "AddNameReference": "Agregar Nombre De Referencia",
+  "referenceName": "Nombre de referencia",
+  "referencePhone": "Teléfono de referencia",
+  "referenceEmail": "Correo electrónico de referencia",
+  "MedicalSpecialities": "Especialidades Medicas",
+  "RemoveReference": "Eliminar la referencia",
+  "WantToRemoveReference": "¿Seguro que quieres eliminar esta referencia?",
+  "email": "Mandar un correo electrónico",
+  "call": "Haz una llamada" 
 }
