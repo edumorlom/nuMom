@@ -109,6 +109,10 @@
   "RemoveReference": "Remove The Reference",
   "WantToRemoveReference": "Are you sure want to remove this reference?",
   "email": "Send an email",
-  "call": "Make a call" 
+  "call": "Make a call",
+  "Name": "Name",
+  "Specialties": "Specialties",
+  "Phone": "Phone",
+  "Email": "Email"
   
 }
