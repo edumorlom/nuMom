@@ -33,10 +33,7 @@ export default function NewAppointment(props) {
     ([extra, setExtra] = useState(null)),
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
     ([isTimePickerVisible, setTimePickerVisibility] = useState(false)),
-<<<<<<< HEAD
-=======
     ([eventId, setEventId] = useState(null)),
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
   ];
   const uid = getUid();
 
@@ -46,23 +43,15 @@ export default function NewAppointment(props) {
     date: date,
     time: time,
     extra: extra,
-<<<<<<< HEAD
-=======
     eventId: eventId,
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
   };
 
   onPress = async () => {
     if (!name || !address) {
       alert(translate("fillOutAllFields"));
     } else {
-<<<<<<< HEAD
-      await addAppointment(uid, appointmentInfo);
-      await SynchronizeCalendar();
-=======
       await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
       props.setLowerPanelContent("Appointment");
     }
   };
@@ -131,18 +120,12 @@ export default function NewAppointment(props) {
 
     if (status === "granted") {
       const calendars = await Calendar.getCalendarsAsync();
-<<<<<<< HEAD
-      try {
-        const createEventAsyncRes = await addEventsToCalendar(calendars[0].id);
-        console.log(createEventAsyncRes);
-=======
       const defaultCalendars = calendars.filter(item => item.allowsModifications ===  true);
 
       try {
         const createEventAsyncRes = await addEventsToCalendar(defaultCalendars[0].id);
         console.log(createEventAsyncRes);
         setEventId(createEventAsyncRes.toString());
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
       } catch (err) {
         Alert.alert(err.message);
       }
@@ -183,11 +166,7 @@ export default function NewAppointment(props) {
         />
       </View>
       <View style={styles.container}>
-<<<<<<< HEAD
-        <Text style={styles.textTitle}>Date</Text>
-=======
     <Text style={styles.textTitle}>{translate("Date")}</Text>
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
         <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.textStyle}>{date}</Text>
         </TouchableOpacity>
@@ -202,11 +181,7 @@ export default function NewAppointment(props) {
       </View>
       <View style={styles.sepeerator} />
       <View style={styles.container}>
-<<<<<<< HEAD
-        <Text style={styles.textTitle}>Times</Text>
-=======
         <Text style={styles.textTitle}>{translate("Time")}</Text>
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
         <TouchableOpacity onPress={showTimePicker}>
           <Text style={styles.textStyle}>{time}</Text>
         </TouchableOpacity>
