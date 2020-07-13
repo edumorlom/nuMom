@@ -16,20 +16,22 @@ export default Homepage = props => {
   const [fullPanel, setFullPanel] = useState(true);
   const [clinics, setClinics] = useState([]);
   const [sortedClinics, setSortedClinics] = useState(null);
+  const [shelters, setShelters] = useState([]); 
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
+  const [shelterToView, setShelterToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState("selection");
 
 
-  useEffect(() => {
-    getSortedClinics();
-  }, [])
+  useEffect( () => {
+    fetchResources();  //Can only call one function inside useEffect when dealing with asyncs
+  },[])
 
-  let getSortedClinics = async () => {
-    let Clinics = await fetchClinics();
-    sortClinics(Clinics);  //Sets the state with the sorted Clinics
-
+  let fetchResources = async () => {
+    sortClinics(await fetchClinics());
+    setShelters(await fetchShelters())
+    
   }
 
   let fetchClinics = async () => {
@@ -40,12 +42,20 @@ export default Homepage = props => {
       })
     })
   }
-
+  
+  let fetchShelters = async () => {
+    return new Promise ((resolve, reject) => {
+      let sheltersRef = getRef("Shelters");
+      sheltersRef.once('value', (snapshot) => {
+      resolve(snapshot.val())
+      })
+    })
+  }
 
   let sortClinics = async (clinics) => {
     try {
       let position = await getPosition();
-      let Clinics = clinics;
+      let Clinics = clinics;  //For mutation
       let latitude = position.coords.latitude
       let longitude = position.coords.longitude
       Clinics.forEach((clinic) => {
@@ -71,60 +81,70 @@ export default Homepage = props => {
   let goBack = () => {
     let content = lowerPanelContent;
 
-    switch (content) {
-      case 'selection': break;
-      case 'findCare': setLowerPanelContent("selection"); break;
-      case 'clinicInfo': setLowerPanelContent("findCare"); break;
-      case 'learn': setLowerPanelContent("selection"); break;
-      case 'STDSelection': setLowerPanelContent("learn"); break;
-      case 'resources': setLowerPanelContent("selection"); break;
-      case 'STDInfo': setLowerPanelContent("STDSelection"); break;
-      case 'Appointment': setLowerPanelContent("resources"); break;
-      case 'NewAppointment': setLowerPanelContent("Appointment"); break;
-      case 'documents': setLowerPanelContent("resources"); break;
-      case 'FemaleCondom': setLowerPanelContent("learn"); break;
-      default: throw new Error('That is not one of the state elements in Homepage')
-    }
+      switch(content) {
+        case 'selection':  break;
+        case 'findCare': setLowerPanelContent("selection"); break;
+        case 'shelters': setLowerPanelContent("selection"); break;
+        case 'clinicInfo': setLowerPanelContent("findCare"); break;
+        case 'shelterInfo': setLowerPanelContent("shelters"); break;
+        case 'learn': setLowerPanelContent("selection"); break;
+        case 'STDSelection': setLowerPanelContent("learn"); break;
+        case 'resources': setLowerPanelContent("selection"); break;
+        case 'STDInfo': setLowerPanelContent("STDSelection"); break;
+        case 'Appointment': setLowerPanelContent("resources"); break;
+        case 'NewAppointment': setLowerPanelContent("Appointment"); break;
+        case 'documents': setLowerPanelContent("resources"); break;
+        case 'FemaleCondom': setLowerPanelContent("learn"); break;
+        case 'ReferenceNames': setLowerPanelContent("resources"); break;
+        case 'AddReferenceNames': setLowerPanelContent("ReferenceNames"); break;
+        default: throw new Error('That is not one of the state elements in Homepage')
+      }
   };
 
-
-  return (
-    <View style={appStyles.container}>
-      <Map
-        onPress={() => setFullPanel(false)}
-        setFullPanel={setFullPanel}
-        clinicToView={clinicToView}
-        setClinicToView={setClinicToView}
-        setLowerPanelContent={setLowerPanelContent}
-        clinics={clinics}
-      />
-      {/* Compare current filters with default filters, if different show reset filter button */}
-      {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) &&
-        <CancelFilterButton
-          style={appStyles.CancelFilterButton}
-          icon={filterImage}
-          onPress={() => { setClinics(sortedClinics); setFilters([10000, 'All']) }} />}
-      {/*<SOSButton />*/}
-      <LowerPanel
-        setFullPanel={() => setFullPanel(!fullPanel)}
-        fullPanel={fullPanel}
-        fullName={props.fullName}
-        logout={props.logout}
-        clinics={clinics}
-        sortedClinics={sortedClinics}
-        clinicToView={clinicToView}
-        STDToView={STDToView}
-        setSTDToView={setSTDToView}
-        setClinicToView={setClinicToView}
-        setClinics={setClinics}
-        filters={filters}
-        setFilters={setFilters}
-        lowerPanelContent={lowerPanelContent}
-        goBack={goBack}
-        setLowerPanelContent={setLowerPanelContent}
-        setScreen={props.setScreen}
-      />
-    </View>
-  );
-
+  
+    return (
+      <View style={appStyles.container}>
+        <Map
+          onPress={() => setFullPanel(false)}
+          setFullPanel={setFullPanel}
+          clinicToView={clinicToView}
+          shelterToView={shelterToView}
+          setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
+          setLowerPanelContent={setLowerPanelContent}
+          clinics={clinics}
+          shelters={shelters}
+        />
+        {/* Compare current filters with default filters, if different show reset filter button */}
+        {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && 
+        <CancelFilterButton  
+        style={appStyles.CancelFilterButton}
+        icon={filterImage}
+        onPress= {() => {setClinics(sortedClinics); setFilters([10000, 'All'])}}/>}
+        {/*<SOSButton />*/}
+        <LowerPanel 
+          setFullPanel={() => setFullPanel(!fullPanel)}
+          fullPanel={fullPanel}
+          fullName={props.fullName}
+          logout={props.logout}
+          clinics={clinics}
+          sortedClinics = {sortedClinics}
+          shelters={shelters}
+          clinicToView={clinicToView}
+          shelterToView={shelterToView}
+          STDToView={STDToView}
+          setSTDToView={setSTDToView}
+          setClinicToView={setClinicToView}
+          setShelterToView={setShelterToView}
+          setClinics = {setClinics}
+          filters = {filters}
+          setFilters = {setFilters}
+          lowerPanelContent={lowerPanelContent}
+          goBack={goBack}
+          setLowerPanelContent={setLowerPanelContent}
+          setScreen={props.setScreen}
+        />
+      </View>
+    );
+  
 }

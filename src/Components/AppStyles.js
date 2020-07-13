@@ -261,28 +261,7 @@ export default {
 
         }
     },
-    FCSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            width: win.width,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-
-    },
-    FCSelectionButton: {
+    FemaleCondomSelectionButton: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -304,7 +283,7 @@ export default {
         }
 
     },
-    FCMenu: {
+    FemaleCondomMenu: {
         Touchable: {
             margin: 5,
             padding: 11,
@@ -329,7 +308,7 @@ export default {
         },
 
     },
-    FCMenuImage: {
+    FemaleCondomMenuImage: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -502,6 +481,20 @@ export default {
         marginRight: 25
 
     },
+
+      viewPlusReference: {
+
+        height: 50,
+        width: 50,
+        backgroundColor: '#2E66E7',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        zIndex: 999,
+        marginRight: 25
+    
+      },
 
     BackButton: {
         Touchable: {

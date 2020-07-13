@@ -3,15 +3,15 @@ import { TouchableHighlight, Text, View, ScrollView, Image } from "react-native"
 import appStyles, { blueColor, greyColor } from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import translate from "app/Components/getLocalizedText";
-import FC from "../../assets/FemaleCondom.png"
+import FemaleCondom from "../../assets/FemaleCondom.png"
 
-export default function FemaleCondom(props) {
+export default function FemaleCondomMain(props) {
 
     return (
         <ScrollView
             contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
         >
-            <Image style={{ justifyContent: "center", width: 300, height: 140 }} source={FC}></Image>
+            <Image style={{ justifyContent: "center", width: 300, height: 140 }} source={FemaleCondom}></Image>
             <Text
                 style={{
                     fontSize: appStyles.regularFontSize - 5,
@@ -20,18 +20,18 @@ export default function FemaleCondom(props) {
                     paddingBottom: 5,
                     paddingTop: 5
                 }}>
-                {translate("WhatIsFC")}</Text>
+                {translate("WhatIsFemaleCondom")}</Text>
 
             <SelectionButton
-                style={appStyles.FCSelectionButton}
-                text={translate("FCDoDont")}
+                style={appStyles.FemaleCondomSelectionButton}
+                text={translate("FemaleCondomDoDont")}
                 onPress={() => {
                     props.getNextScreen(1);
                 }}
             />
             <SelectionButton
-                style={appStyles.FCSelectionButton}
-                text={translate("FCHowTo")}
+                style={appStyles.FemaleCondomSelectionButton}
+                text={translate("FemaleCondomHowTo")}
                 onPress={() => {
                     props.getNextScreen(2);
                 }}

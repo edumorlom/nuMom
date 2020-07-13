@@ -21,33 +21,6 @@ exports.sendPushNotification = functions.database.ref('users/{id}/infant').onUpd
 
   var messages = [];
 
-  //return the main promise 
-  // return ref.once('value').then((snapshot) => {
-  //         console.log(snapshot);
-  //         var expoToken = snapshot.val().expoToken;
-//   var expoToken = snapshot.val().expoToken;
-//   var name = snapshot.val().fullName.split(" ")[0];
-//   let body = `Hello ${name}, your user info has been updated`;
-//   messages.push({
-//     "to": expoToken,
-//     "sound": "default",
-//     "body": body,
-//     "_displayInForeground": true
-//     // "body": `Hello ${name} our user info has been updated`
-//   });
-//   fetch('https://exp.host/--/api/v2/push/send', {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(messages)
-
-//   });
-// })
-
-
-    //return the main promise 
     if (snapshot.val() === true) {   //If infant is true/ changed to true
       return ref.once('value').then((snapshot) => {
         console.log(snapshot);
@@ -87,14 +60,11 @@ exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
   .then((snapshot) => {
     snapshot.forEach((childSnapshot) => {
       let phoneNumber = childSnapshot.val().phoneNumber;
-      let week = "Week" + childSnapshot.val().week;
+      let week = "week" + childSnapshot.val().week;
       let deviceLanguage = childSnapshot.val().deviceLanguage;
-      //get messages based on week and device language and whether it is baby message or mother message like "Week1Mother" or "Week1Baby"
 
-      let motherKey = week + "Mother";
-      let babyKey = week + "Baby";
-      let motherMsg = getLocalizedText.translate(deviceLanguage, motherKey)
-      let babyMsg = getLocalizedText.translate(deviceLanguage, babyKey)
+      let motherMsg = getLocalizedText.translate(deviceLanguage, week, "Mother")
+      let babyMsg = getLocalizedText.translate(deviceLanguage, week, "Baby")
 
       //create SMS with message for mother and another with message for baby
      

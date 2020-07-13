@@ -170,3 +170,42 @@ export const fetchAppointment = async (uid, setObjects, _isMounted) => {
 export const addAppointment = async (uid, appointmentInfo) => {
   firebase.database().ref("users/" + uid + "/appointments").push(appointmentInfo).catch((err) => console.log(err));
 }
+
+export const addReference = async (uid, referenceInfo) => {
+  firebase.database().ref("users/" + uid + "/references").push(referenceInfo).catch((err) => console.log(err));
+}
+
+export const fetchReference = async (uid, setReferences, _isMounted) => {
+  _isMounted = true;
+  if (uid !== null){
+    await firebase.database().ref("users/" + uid + "/references/").once("value", (snapshot) => {
+      snapshot.forEach(function(childSnapshot) {
+        let childKey = childSnapshot.key;
+        let childData = childSnapshot.val();
+        console.log(childKey);
+        console.log(childData);
+        if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (_isMounted) {
+            setReferences(prevArray => [...prevArray, childSnapshot]);
+          }
+        }
+      });
+    }).catch((err) => console.log(err.message));
+  } else {
+    alert("Error: Couldn't get Reference Info");
+  }
+  
+}
+
+export const deleteReference = async (id, uid, references, setReferences,) => {
+  if (uid !== null) {
+
+    setReferences(references.filter((item) => item.key !== id));
+    const reference = firebase.database().ref('users/' + uid + '/references/' + id);
+    return reference.remove().catch((err) => console.log(err.message));
+
+  } else {
+    console.log("Error: Couldn't get the User appointment Info");
+  }
+
+} 
