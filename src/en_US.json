@@ -99,16 +99,20 @@
   "FemaleCondomSubtext": "Protect yourself and have a safe time",
   "Time": "Time",
   "Date": "Date",
-  "NameReference": "Names Reference",
-  "ReferenceSubtitle": "Reference your Doctor or Medical Specialities",
-  "AddNameReference": "Add Name Reference",
+  "NameReference": "Reference",
+  "ReferenceSubtitle": "Reference your Doctor or Medical Specialties",
+  "AddNameReference": "Add Reference",
   "referenceName": "Name of Reference",
   "referencePhone": "Phone of Reference",
   "referenceEmail": "Email of Reference",
-  "MedicalSpecialities": "Medical Specialities",
+  "MedicalSpecialties": "Medical Specialties",
   "RemoveReference": "Remove The Reference",
   "WantToRemoveReference": "Are you sure want to remove this reference?",
   "email": "Send an email",
-  "call": "Make a call" 
+  "call": "Make a call",
+  "Name": "Name",
+  "Specialties": "Specialties",
+  "Phone": "Phone",
+  "Email": "Email"
   
 }

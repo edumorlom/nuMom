@@ -87,6 +87,7 @@ export default function AppointmentMenu(props) {
           </Text>
         </View>
         <TouchableHighlight
+          style={{ position: 'absolute', right: appStyles.win.width * 0.05, bottom: appStyles.win.height * 0.07 }}
           underlayColor='transparent'
           onPress={() => {
             AsyncAlert().then((response) => {

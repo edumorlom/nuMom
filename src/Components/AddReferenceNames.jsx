@@ -12,7 +12,7 @@ function AddReferenceNames(props) {
     const [name, setName ] = useState(null);
     const [phone, setPhone ] = useState(null);
     const [email, setEmail ] = useState(null);
-    const [specialities, setSpecialities ] = useState(null);
+    const [specialties, setSpecialties ] = useState(null);
     const uid = getUid();
 
 
@@ -20,12 +20,12 @@ function AddReferenceNames(props) {
         name: name,
         phone: phone,
         email: email,
-        specialities: specialities
+        specialties: specialties
       };
 
 
     onPress = async () => {
-        if (!name || !phone || !email || !specialities) {
+        if (!name || !phone || !email || !specialties) {
           alert(translate("fillOutAllFields"));
         } else if (!isValidEmail(email)){
           return alert("Invalid Email: Please input Valid Email");
@@ -59,9 +59,9 @@ function AddReferenceNames(props) {
         </View>
         <View style={appStyles.TextInput.View}>
           <TextInput
-            placeholder={translate("MedicalSpecialities")}
-            onChangeText={setSpecialities}
-            value={specialities}
+            placeholder={translate("MedicalSpecialties")}
+            onChangeText={setSpecialties}
+            value={specialties}
             style={appStyles.TextInput.TextInput}
           />
         </View>

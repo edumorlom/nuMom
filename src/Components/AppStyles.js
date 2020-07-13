@@ -1,6 +1,6 @@
 
 import { RFValue } from "react-native-responsive-fontsize";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -511,6 +511,52 @@ export default {
 
         },
         underlayColor: "transparent"
-    }
+    },
+    buttonProfile: {
+        ...Platform.select({
+            ios: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize,
+                    fontWeight: 'normal'
+                },
+                underlayColor: blueColor
+
+            },
+            android: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    margin: win.width * 0.03,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+                
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize - 5,
+                    fontWeight: 'normal',
+                    textAlign: 'center'
+                },
+                underlayColor: blueColor
+            },
+        }),
+    },
 
 };

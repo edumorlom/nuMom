@@ -19,7 +19,7 @@ import Button from "./Button";
 import Avatar from "../../assets/Avatar-Doctor.jpg";
 
 function ReferenceInfo(props) {
-    const { name, phone, email, specialities } = props.references?.val();
+    const { name, phone, email, specialties } = props.references?.val();
     const [modalOpen, setModalOpen] = useState(false);
 
     AsyncAlert = () => {
@@ -69,15 +69,15 @@ function ReferenceInfo(props) {
         }}
         >
         <View>
-        <TouchableHighlight style={{position: "absolute", top: 20 }} underlayColor={appStyles.underlayColor} onPress={() => setModalOpen(true)}>
+        <TouchableHighlight style={{position: "absolute",  bottom: appStyles.win.height * 0.05, left:appStyles.win.height * -0.02  }} underlayColor={appStyles.underlayColor} onPress={() => setModalOpen(true)}>
           <Image source={Avatar} style={styles.iconStyle} />
         </TouchableHighlight>
             <View style={{marginHorizontal: 65}} >
-              <Text style={styles.TextName}>Name: {name}</Text>
-              <Text style={styles.TextInfo}>Specialties:</Text>
-              <Text style={styles.TextInfo}>{specialities}</Text>
-              <Text style={styles.TextInfo}>Phone: {phone}</Text>
-              <Text style={styles.TextInfo}>Email:</Text>
+              <Text style={styles.TextName}>{translate("Name")}: {name}</Text>
+              <Text style={styles.TextInfo}>{translate("Specialties")}:</Text>
+              <Text style={styles.TextInfo}>{specialties}</Text>
+              <Text style={styles.TextInfo}>{translate("Phone")}: {phone}</Text>
+              <Text style={styles.TextInfo}>{translate("Email")}:</Text>
               <Text style={styles.TextInfo}>{email}</Text>
             </View>
         </View>
@@ -86,21 +86,21 @@ function ReferenceInfo(props) {
           <View style={styles.ModalContent}>
               <Image source={Avatar} style={{...styles.iconStyle, ...styles.modalIcon}} />
               <View style={{paddingTop: 50}}>
-                <Text style={{...styles.TextName, ...styles.modalTextName}}>Name: {name}</Text>
-                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Specialties:</Text>
-                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{specialities}</Text>
-                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Phone: {phone}</Text>
-                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Email:</Text>
+                <Text style={{...styles.TextName, ...styles.modalTextName}}>{translate("Name")}: {name}</Text>
+                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{translate("Specialties")}:</Text>
+                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{specialties}</Text>
+                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{translate("Phone")}: {phone}</Text>
+                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{translate("Email")}:</Text>
                 <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{email}</Text>
               </View>
-              <View style={{ width: "100%", flexDirection: "row", justifyContent: "center", alignItems: "center", position: "absolute", bottom: appStyles.win.height * 0.12}}>
+              <View style={{  flexDirection: "row", justifyContent: "center", alignItems: "center", position: "absolute", bottom: appStyles.win.height * 0.12}}>
                 <Button
-                  style={appStyles.button}
+                  style={appStyles.buttonProfile}
                   text={translate("call")}
                   onPress={call}
                 />
                  <Button
-                  style={appStyles.button}
+                  style={appStyles.buttonProfile}
                   text={translate("email")}
                   onPress={sendEmail}
                 />
@@ -109,13 +109,14 @@ function ReferenceInfo(props) {
         </Modal>
         <TouchableHighlight
           underlayColor='transparent'
+          style={{ position: 'absolute', right: appStyles.win.width * 0.05, bottom: appStyles.win.height * 0.07 }}
           onPress={() => {
             AsyncAlert().then((response) => {
               response ? props.removeReference(props.references?.key) : null;
             });
           }}
         >
-          <Feather name='trash' size={40} color='#eb1800' style={{ position: 'absolute', right: 15, bottom: -20}} />
+          <Feather name='trash' size={40} color='#eb1800' />
         </TouchableHighlight>
       </View>
     </TouchableHighlight>
@@ -141,8 +142,7 @@ const styles = StyleSheet.create({
       width: 60,
       height: 60,
       borderRadius: 100,
-      top: 20,
-      right: 10
+   
 
     },
 
