@@ -5,6 +5,7 @@ import BetterMenu from "./BetterMenu";
 import translate from "app/Components/getLocalizedText";
 import FemaleCondomDoDont from "./FemaleCondomDoDont"
 
+
 export default function FemaleCondomDoDonts(props) {
     return (
         <ScrollView
@@ -30,3 +31,4 @@ export default function FemaleCondomDoDonts(props) {
         </ScrollView>
     );
 }
+

@@ -7,7 +7,6 @@ import * as Permissions from 'expo-permissions';
 import * as Calendar from "expo-calendar";
 
 
-
 const config = firebaseAccount;
 
 firebase.initializeApp(config);
@@ -116,10 +115,10 @@ export const registerForPushNotificationsAsync = async (currentUser) => {
   //call the push notification 
 }
 
-export const uploadImage = async (uri) => {
+export const uploadImage = async(uri, user, fileName) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  var ref = firebase.storage().ref().child("my-image");
+  var ref = firebase.storage().ref().child(user.uid + '/' + fileName);
   return ref.put(blob);
 }
 
