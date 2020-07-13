@@ -19,7 +19,7 @@ import Button from "./Button";
 import Avatar from "../../assets/Avatar-Doctor.jpg";
 
 function ReferenceInfo(props) {
-    const { name, phone, email, specialities } = props.references?.val();
+    const { name, phone, email, specialties } = props.references?.val();
     const [modalOpen, setModalOpen] = useState(false);
 
     AsyncAlert = () => {
@@ -75,7 +75,7 @@ function ReferenceInfo(props) {
             <View style={{marginHorizontal: 65}} >
               <Text style={styles.TextName}>Name: {name}</Text>
               <Text style={styles.TextInfo}>Specialties:</Text>
-              <Text style={styles.TextInfo}>{specialities}</Text>
+              <Text style={styles.TextInfo}>{specialties}</Text>
               <Text style={styles.TextInfo}>Phone: {phone}</Text>
               <Text style={styles.TextInfo}>Email:</Text>
               <Text style={styles.TextInfo}>{email}</Text>
@@ -88,7 +88,7 @@ function ReferenceInfo(props) {
               <View style={{paddingTop: 50}}>
                 <Text style={{...styles.TextName, ...styles.modalTextName}}>Name: {name}</Text>
                 <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Specialties:</Text>
-                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{specialities}</Text>
+                <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{specialties}</Text>
                 <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Phone: {phone}</Text>
                 <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>Email:</Text>
                 <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>{email}</Text>
