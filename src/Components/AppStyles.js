@@ -260,10 +260,6 @@ export default {
             fontWeight: "bold",
 
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
     },
     FCSelectionButton: {
         Touchable: {
@@ -286,8 +282,6 @@ export default {
         }
 
     },
-<<<<<<< HEAD
-=======
     FCSelectionButton: {
         Touchable: {
             margin: 5,
@@ -377,7 +371,6 @@ export default {
             fontSize: regularFontSize,
         }
     },
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
     ClinicSelectionButton: {
         Touchable: {
             margin: 5,
@@ -507,13 +500,8 @@ export default {
         elevation: 5,
         zIndex: 999,
         marginRight: 25
-<<<<<<< HEAD
-    
-      },
-=======
 
     },
->>>>>>> 7de06b158b4696b0c2ca9c5a46ddc6b57dec0ad1
 
     BackButton: {
         Touchable: {
