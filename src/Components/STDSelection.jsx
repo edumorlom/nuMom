@@ -20,7 +20,7 @@ export default function STDSelection(props) {
     >
       {STD().map((std, key) => (
         <SelectionButton
-          style={appStyles.STDSelectionButton}
+          style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
           text={STDTranslate(std.name)}
           onPress={() => onPress(std)}
@@ -28,7 +28,7 @@ export default function STDSelection(props) {
       ))}
       {STDResources().map((stdr, key) => (
         <SelectionButton
-          style={appStyles.STDSelectionButton}
+          style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
           text={stdr.name}
           onPress={() => onPress2(stdr.website)}

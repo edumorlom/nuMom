@@ -23,14 +23,14 @@ export default function FemaleCondomMain(props) {
                 {translate("WhatIsFemaleCondom")}</Text>
 
             <SelectionButton
-                style={appStyles.FemaleCondomSelectionButton}
+                style={appStyles.STDFemaleCondomSelectionButton}
                 text={translate("FemaleCondomDoDont")}
                 onPress={() => {
                     props.getNextScreen(1);
                 }}
             />
             <SelectionButton
-                style={appStyles.FemaleCondomSelectionButton}
+                style={appStyles.STDFemaleCondomSelectionButton}
                 text={translate("FemaleCondomHowTo")}
                 onPress={() => {
                     props.getNextScreen(2);
