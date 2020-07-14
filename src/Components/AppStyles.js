@@ -234,34 +234,7 @@ export default {
             fontSize: regularFontSize,
         }
     },
-    STDSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            minHeight: win.height * 0.002,
-            maxHeight: win.height * 0.08,
-            width: win.width * 0.8,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        View: {
-            height: "100%",
-            width: "90%",
-            marginRight: 50
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-    },
-    FemaleCondomSelectionButton: {
+    STDFemaleCondomSelectionButton: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -281,7 +254,6 @@ export default {
             textAlign: 'center'
 
         }
-
     },
     FemaleCondomMenu: {
         Touchable: {
@@ -482,7 +454,7 @@ export default {
 
     },
 
-      viewPlusReference: {
+    viewPlusReference: {
 
         height: 50,
         width: 50,
@@ -493,8 +465,8 @@ export default {
         elevation: 5,
         zIndex: 999,
         marginRight: 25
-    
-      },
+
+    },
 
     BackButton: {
         Touchable: {
@@ -546,7 +518,7 @@ export default {
                     paddingLeft: 30,
                     paddingRight: 30,
                     borderRadius: borderRadius,
-                
+
                 },
                 Text: {
                     color: 'white',
