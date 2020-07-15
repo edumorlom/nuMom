@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
     //  borderWidth: 1,
     //  borderColor: 'red',
     position: "absolute",
-    left: 120,
-    bottom: 25,
+    left: appStyles.win.width * 0.27,
+    bottom: appStyles.win.height * 0.025,
     color: '#706e6c'
-    //  alignSelf: 'flex-start',
+    
   },
 });

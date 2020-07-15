@@ -181,8 +181,8 @@ const SettingScreen = (props) => {
           underlayColor={"transparent"}
           onPress= {goBack}
         />
-      <View style={{ position: 'absolute', right: 30, top: 40 }}>
-        <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
+      <View style={styles.logOutButton}>
+        <AntDesign name="logout" size={25} color={appStyles.pinkColor} onPress={() => {
           AsyncAlert().then((response) => {
             response ? props.logout() : null;
           });
@@ -365,6 +365,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  logOutButton: {
+    position: 'absolute', 
+    right: appStyles.win.height * 0.03, 
+    top: appStyles.win.width * 0.09,
+  }
 });
 
 const backButton = StyleSheet.create({
@@ -386,5 +391,7 @@ const SubmitButton = StyleSheet.create({
   Touchable: appStyles.button.Touchable,
   Text: appStyles.button.Text,
 });
+
+
 
 export default SettingScreen;
