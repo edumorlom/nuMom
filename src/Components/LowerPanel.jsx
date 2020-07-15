@@ -26,33 +26,30 @@ export default LowerPanel = props => {
 
   const [filterToShow, setFilterToShow] = useState(false);
   const [fullPanel, setFullPanel] = useState(props.fullPanel);
-  const [moveAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
+  const [fullScreen, setFullScreen] = useState(false);
+  const [moveAnim] = useState(new Animated.Value(0)); 
 
-  useEffect(() => {  //Substitute ComponentDidMount
-    //movePanel(true) //Move up
+  useEffect(() => {  
 
   }, [])
 
   useEffect(() => {  //Substitute ComponentDidUpdate
-    movePanel(fullPanel)
+    movePanel(fullPanel);
   }, [fullPanel])
 
   let movePanel = (moveUp) => {
-    if (moveUp) {
-      //MoveUp
+      let destination = moveUp ? 0 : appStyles.lowerPanel.bottom;
       Animated.timing(moveAnim, {
-        toValue: 0,
+        toValue: destination,
         duration: 150,
       }).start();
-    }
-    else if (!moveUp) {
-      //Move Down
-      Animated.timing(moveAnim, {
-        toValue: appStyles.lowerPanel.bottom,
-        duration: 150,
-      }).start();
-    }
+    
   };
+
+
+  let fullScreenPanel = () => {
+    //Make the lower panel go full screen
+  }
 
   let lowerPanelContent = {
     findCare: <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow={filterToShow} setLowerPanelContent={props.setLowerPanelContent} />,

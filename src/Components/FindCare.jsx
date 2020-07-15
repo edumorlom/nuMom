@@ -64,7 +64,7 @@ export default function FindCare(props) {
     let services = servicesArray.map ((service) => 
         ({label: translate(service), value: service}))  //Change label to adjust for different languages
 
-    let distances = [ {label: 'All',value: 10000}, {label: '5 Miles',value: 5.5}, {label: '15 Miles',value: 15.5}, {label: '20 Miles',value: 20.5} ]
+    let distances = [ {label: translate('All'),value: 10000}, {label: '5 Miles',value: 5.5}, {label: '15 Miles',value: 15.5}, {label: '20 Miles',value: 20.5} ]
 
 
 
