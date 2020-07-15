@@ -27,7 +27,7 @@ export default function ShelterInfo(props){
     };
 
     let visitSite = () => {
-        Linking.openURL('http://' + props.shelter.website)
+        Linking.openURL(props.shelter.website)
     };
 
     let getResourceName = (name) => {
@@ -36,6 +36,7 @@ export default function ShelterInfo(props){
         : name;
       }
 
+      console.log(props.shelter.website);
 
     let shelterInfo = props.shelter.address.street + '\n' + props.shelter.address.city + '\n' + props.shelter.address.state +', '+ props.shelter.address.zipCode;
 
@@ -53,7 +54,7 @@ export default function ShelterInfo(props){
                 <ActionButton 
                 style={appStyles.ActionButton}
                 text={translate("visitSite")} 
-                subtext={props.shelter.website.split('/')[0]} 
+                subtext={props.shelter.website.split('/')[2]}  //Anything after https://
                 onPress={visitSite} 
                 icon={visitSiteIcon}
                 />

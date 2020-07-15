@@ -1,6 +1,6 @@
 import { Image, Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import appStyles from "./AppStyles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import goBackImg from "../../assets/go-back-arrow.png";
 import BackButton from "./Button"
 import Button from "./Button";
@@ -10,9 +10,28 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import translate from "app/Components/getLocalizedText";
 
 export default function LowerPanelHeader(props) {
+
+  const [fullScreen, setFullScreen] = useState(false);
+
+  useEffect( () => {
+    let content = props.lowerPanelContent;
+    //Check if the lowerPanelContent should have a fullscreen lower Panel
+    if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection"].includes(content)) 
+    {
+      props.setFullScreen(true);
+      props.setIsFullScreen(true);
+      setFullScreen(true);
+      
+    }
+    return () => {props.setFullScreen(false); props.setIsFullScreen(false)}
+  }, [])
+
+
+
   let onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
+  
   };
   let goBack = () => {
     Haptics.selectionAsync().then();
@@ -26,7 +45,7 @@ export default function LowerPanelHeader(props) {
       case 'findCare': return translate(content);
       case 'shelters': return translate(content);
       case 'clinicInfo': return translate("findCare");
-      case 'shelterInfo': return translate("shelters"); break;
+      case 'shelterInfo': return translate("shelters");
       case 'learn': return translate(content); 
       case 'STDSelection': return translate(content); 
       case 'resources': return translate(content); 
@@ -48,6 +67,10 @@ export default function LowerPanelHeader(props) {
       onSwipeDown={() => props.setFullPanel(false)}
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
     >
+      <>
+      { fullScreen ?
+        <Text style={{height: appStyles.win.height * 0.03}} > </Text> 
+        : null}
       <View
         style={{
           flexDirection: "row",
@@ -79,6 +102,7 @@ export default function LowerPanelHeader(props) {
             {/* This Text component is used to fill space */}
           </Text>}
       </View>
+      </>
     </GestureRecognizer>
   );
 }
@@ -88,7 +112,7 @@ const backButton = StyleSheet.create({
   Touchable: {
     left: appStyles.win.width * 0.025,
     width: appStyles.win.width * 0.15,
-    height: appStyles.win.width * 0.08,
+    height: appStyles.win.height * 0.02,
 
   },
   Image: {

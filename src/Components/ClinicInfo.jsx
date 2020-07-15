@@ -36,7 +36,7 @@ export default function ClinicInfo(props){
         : name;
       }
 
-    let services = props.clinic.services.map((service, key) => <Text key={key} style={{...appStyles.regularFontSize}}>{service}</Text>);
+    let services = props.clinic.services.map((service, key) => <Text key={key} style={{...appStyles.regularFontSize}}>{translate(service)}</Text>);
 
     let clinicInfo = props.clinic.address.street + '\n' + props.clinic.address.city + '\n' + props.clinic.address.state +', '+ props.clinic.address.zipCode + '\n' + props.clinic.distance + ' miles';
 
