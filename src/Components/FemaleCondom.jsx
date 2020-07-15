@@ -3,17 +3,16 @@ import { TouchableHighlight, Text, View, ScrollView, Image } from "react-native"
 import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import translate from "app/Components/getLocalizedText";
-import FC from "../../assets/FemaleCondom.png"
-import FCDoDont from "./FCDoDont"
-import FCSteps from "./FCSteps"
-import FCMain from "./FCMain"
+import FemaleCondomDoDont from "./FemaleCondomDoDonts"
+import FemaleCondomSteps from "./FemaleCondomSteps"
+import FemaleCondomMain from "./FemaleCondomMain"
 
 export default function FemaleCondom(props) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         if (index < 0) {
-            props.setLowerPanelContent("FCMain");
+            props.setLowerPanelContent("FemaleCondomMain");
         }
     });
 
@@ -31,13 +30,13 @@ export default function FemaleCondom(props) {
     };
 
     let screens = [
-        <FCMain
+        <FemaleCondomMain
             getNextScreen={getNextScreen}
         />,
-        <FCDoDont
+        <FemaleCondomDoDont
             getNextScreen={getNextScreen}
         />,
-        <FCSteps
+        <FemaleCondomSteps
             getNextScreen={getNextScreen}
         />
     ];

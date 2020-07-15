@@ -1,14 +1,18 @@
 import React from "react";
-import { TouchableHighlight, Text, View, ScrollView } from "react-native";
+import { TouchableHighlight, Text, View, ScrollView, Linking } from "react-native";
 import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import STD from "./STD";
-import {STDTranslate} from "app/Components/getLocalizedText";
+import STDResources from "./STDResources"
+import { STDTranslate } from "app/Components/getLocalizedText";
 
 export default function STDSelection(props) {
   let onPress = (std) => {
     props.setLowerPanelContent("STDInfo");
     props.setSTDToView(std);
+  };
+  let onPress2 = (stdr) => {
+    Linking.openURL(stdr)
   };
   return (
     <ScrollView
@@ -16,10 +20,18 @@ export default function STDSelection(props) {
     >
       {STD().map((std, key) => (
         <SelectionButton
-          style={appStyles.STDSelectionButton}
-          key= {key}
+          style={appStyles.STDFemaleCondomSelectionButton}
+          key={key}
           text={STDTranslate(std.name)}
           onPress={() => onPress(std)}
+        />
+      ))}
+      {STDResources().map((stdr, key) => (
+        <SelectionButton
+          style={appStyles.STDFemaleCondomSelectionButton}
+          key={key}
+          text={stdr.name}
+          onPress={() => onPress2(stdr.website)}
         />
       ))}
     </ScrollView>

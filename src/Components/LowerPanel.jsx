@@ -17,6 +17,9 @@ import NewAppointment from "./NewAppointment";
 import STDSelection from "./STDSelection";
 import Documents from "./Documents";
 import FemaleCondom from "./FemaleCondom";
+import ReferenceNames from './ReferenceNames';
+import AddReferenceNames from './AddReferenceNames';
+
 
 export default LowerPanel = props => {
 
@@ -64,6 +67,8 @@ export default LowerPanel = props => {
     NewAppointment: <NewAppointment setLowerPanelContent={props.setLowerPanelContent} />,
     FemaleCondom: <FemaleCondom setLowerPanelContent={props.setLowerPanelContent} />,
     documents: <Documents setLowerPanelContent={props.setLowerPanelContent} />,
+    ReferenceNames: <ReferenceNames setLowerPanelContent={props.setLowerPanelContent} />,
+    AddReferenceNames: <AddReferenceNames setLowerPanelContent={props.setLowerPanelContent} />,
     selection: <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={setFullPanel} fullPanel={fullPanel} setLowerPanelContent={props.setLowerPanelContent}  setScreen={props.setScreen}
     />
   }

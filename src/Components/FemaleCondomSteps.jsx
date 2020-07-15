@@ -3,9 +3,10 @@ import { TouchableHighlight, Text, View, ScrollView, Button } from "react-native
 import appStyles from "./AppStyles";
 import BetterMenu from "./BetterMenu";
 import translate from "app/Components/getLocalizedText";
-import FCStep from "./FCStep"
+import FemaleCondomStep from "./FemaleCondomStep"
 
-export default function FCSteps(props) {
+
+export default function FemaleCondomSteps(props) {
   return (
     <ScrollView
       contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
@@ -19,11 +20,11 @@ export default function FCSteps(props) {
           textAlign: 'center',
           paddingBottom: 15
         }}>
-        {translate("FCHowTo")}</Text>
+        {translate("FemaleCondomHowTo")}</Text>
 
-      {FCStep().map((fcs, key) => (
+      {FemaleCondomStep().map((fcs, key) => (
         <BetterMenu
-          style={appStyles.FCMenuImage}
+          style={appStyles.FemaleCondomMenuImage}
           key={key}
           text={translate(fcs.step)}
           icon={fcs.icon}

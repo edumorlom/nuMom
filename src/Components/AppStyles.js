@@ -1,5 +1,6 @@
+
 import { RFValue } from "react-native-responsive-fontsize";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -233,55 +234,7 @@ export default {
             fontSize: regularFontSize,
         }
     },
-    STDSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            minHeight: win.height * 0.002,
-            maxHeight: win.height * 0.08,
-            width: win.width * 0.8,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        View: {
-            height: "100%",
-            width: "90%",
-            marginRight: 50
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-    },
-    FCSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            width: win.width,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-
-    },
-    FCSelectionButton: {
+    STDFemaleCondomSelectionButton: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -301,9 +254,8 @@ export default {
             textAlign: 'center'
 
         }
-
     },
-    FCMenu: {
+    FemaleCondomMenu: {
         Touchable: {
             margin: 5,
             padding: 11,
@@ -328,7 +280,7 @@ export default {
         },
 
     },
-    FCMenuImage: {
+    FemaleCondomMenuImage: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -502,6 +454,20 @@ export default {
 
     },
 
+    viewPlusReference: {
+
+        height: 50,
+        width: 50,
+        backgroundColor: '#2E66E7',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        zIndex: 999,
+        marginRight: 25
+
+    },
+
     BackButton: {
         Touchable: {
             height: win.height * 0.04,
@@ -517,6 +483,52 @@ export default {
 
         },
         underlayColor: "transparent"
-    }
+    },
+    buttonProfile: {
+        ...Platform.select({
+            ios: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize,
+                    fontWeight: 'normal'
+                },
+                underlayColor: blueColor
+
+            },
+            android: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    margin: win.width * 0.03,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize - 5,
+                    fontWeight: 'normal',
+                    textAlign: 'center'
+                },
+                underlayColor: blueColor
+            },
+        }),
+    },
 
 };
