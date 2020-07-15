@@ -161,9 +161,6 @@ export default {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
         width: '100%',
-        height: '70%',
-        bottom: 0 - win.height * 0.20,
-        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'

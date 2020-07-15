@@ -84,6 +84,8 @@ export default function LowerPanelSelection(props) {
         }}
       />
       </ScrollView>
+      {/* This sets a bottom padding of 30% */}
+      {/* <Text style={{height: appStyles.win.height * 0.3}} > </Text>  */}
       </>
     
   );

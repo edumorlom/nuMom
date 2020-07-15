@@ -67,7 +67,7 @@ export default function Resources(props) {
 
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%"}}
     >
       {resourceButtons}
       {documentUploadButton}

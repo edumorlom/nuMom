@@ -9,7 +9,7 @@ import FemaleCondom from "../../assets/FC.png";
 export default function learn(props) {
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      contentContainerStyle={{ alignItems: "center", height: appStyles.win.height * 0.92 }}
     >
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}

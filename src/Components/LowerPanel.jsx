@@ -1,5 +1,5 @@
 import { View, Animated } from "react-native";
-import appStyles from "./AppStyles";
+import appStyles, {win} from "./AppStyles";
 import React, { useState, useEffect } from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
@@ -25,20 +25,22 @@ export default LowerPanel = props => {
 
 
   const [filterToShow, setFilterToShow] = useState(false);
-  const [fullPanel, setFullPanel] = useState(props.fullPanel);
+  const [fullPanel, setFullPanel] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
-  const [moveAnim] = useState(new Animated.Value(0)); 
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  useEffect(() => {  
+  const [moveAnim] = useState(new Animated.Value(win.height * 0.30)); 
 
-  }, [])
-
-  useEffect(() => {  //Substitute ComponentDidUpdate
+  useEffect(() => {  //When fullPanel changes move Panel
     movePanel(fullPanel);
   }, [fullPanel])
+  
+  useEffect(() => {  //When fullScreen changes make fullscreen
+    fullScreenPanel(fullScreen);
+  }, [fullScreen])
 
   let movePanel = (moveUp) => {
-      let destination = moveUp ? 0 : appStyles.lowerPanel.bottom;
+      let destination = moveUp ? win.height * 0.30 : win.height * 0.50;
       Animated.timing(moveAnim, {
         toValue: destination,
         duration: 150,
@@ -46,9 +48,16 @@ export default LowerPanel = props => {
     
   };
 
+  let fullScreenPanel = (moveUp) => {
+    let destination = moveUp ? 0 : win.height * 0.30;
+      Animated.timing(moveAnim, {
+        toValue: destination,
+        duration: 0,
+      }).start();
+  }
 
-  let fullScreenPanel = () => {
-    //Make the lower panel go full screen
+  let onPress = () => {
+    isFullScreen ? setFullScreen(!fullScreen) : setFullPanel(!fullPanel)
   }
 
   let lowerPanelContent = {
@@ -71,9 +80,11 @@ export default LowerPanel = props => {
   }
 
     return (
-      <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
+      <Animated.View style={{ ...appStyles.lowerPanel, top: moveAnim, overflow: "hidden", 
+            height: isFullScreen ? "100%" : "70%"}}>
         {props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader onPress={() => setFullPanel(!fullPanel)} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={setFullPanel} fullPanel={fullPanel}
+          <LowerPanelHeader onPress={onPress} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={setFullPanel} fullPanel={fullPanel}
+          setFullScreen = {setFullScreen} fullScreen={fullScreen} setIsFullScreen={setIsFullScreen}
           />
         )}
         {lowerPanelContent[props.lowerPanelContent]}
