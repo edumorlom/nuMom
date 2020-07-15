@@ -41,7 +41,7 @@ export default function Documents() {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
+      allowsEditing: true,
       quality: 1,
     });
     setIsDialogVisible(true);
