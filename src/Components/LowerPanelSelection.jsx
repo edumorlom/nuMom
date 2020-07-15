@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     //  borderColor: 'red',
     position: "absolute",
     left: appStyles.win.width * 0.27,
-    bottom: appStyles.win.height * 0.025,
+    bottom: appStyles.win.height * 0.030,
     color: '#706e6c'
     
   },

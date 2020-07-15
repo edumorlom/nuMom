@@ -182,7 +182,7 @@ const SettingScreen = (props) => {
           onPress= {goBack}
         />
       <View style={styles.logOutButton}>
-        <AntDesign name="logout" size={25} color={appStyles.pinkColor} onPress={() => {
+        <AntDesign name="logout" size={28} color={appStyles.pinkColor} onPress={() => {
           AsyncAlert().then((response) => {
             response ? props.logout() : null;
           });
