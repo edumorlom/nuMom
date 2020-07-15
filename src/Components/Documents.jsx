@@ -8,9 +8,8 @@ import * as firebase from "firebase";
 import * as FB from "../Firebase";
 import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
-import uploadIcon from "../../assets/documentUpload.png";
+import Plus from "../../assets/plus.png";
 import documentIcon from "../../assets/document.png";
-
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -88,8 +87,8 @@ export default function Documents() {
       {!renderedButtons && resetDocumentsList()}
       <TouchableOpacity
         onPress={() => {onPress();}}
-        style={appStyles.DocumentUploadButton}>
-        <Image source={uploadIcon} style={{ height: 50, width: 50}} />
+        style={appStyles.viewPlus}>
+        <Image source={Plus} style={{ height: 50, width: 50}} />
       </TouchableOpacity>
       
       {documentsButtons}
