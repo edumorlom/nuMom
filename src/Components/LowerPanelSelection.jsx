@@ -28,13 +28,13 @@ export default function LowerPanelSelection(props) {
       onSwipeDown={() => props.setFullPanel(false)}
       style={{ 
         width: appStyles.win.width, 
-        height: appStyles.win.height * 0.18, 
+        height: appStyles.win.height * 0.16, 
         alignItems: "center" 
       }}
     >
       <Button 
       style= {{
-        Touchable: {height: appStyles.win.height * 0.08, width: appStyles.win.width}, Text: {}
+        Touchable: {height: appStyles.win.height * 0.06, width: appStyles.win.width}, Text: {}
       }}
       text={''}
       underlayColor={"transparent" }
@@ -84,8 +84,6 @@ export default function LowerPanelSelection(props) {
         }}
       />
       </ScrollView>
-      {/* This sets a bottom padding of 30% */}
-      {/* <Text style={{height: appStyles.win.height * 0.3}} > </Text>  */}
       </>
     
   );
