@@ -122,6 +122,32 @@ export const uploadImage = async(uri, user, fileName) => {
   return ref.put(blob);
 }
 
+export const grabImages = (user) => {
+  var storageRef = firebase.storage().ref(user.uid);
+  // Now we get the references of these images
+  storageRef.listAll().then(function(result) {
+    result.items.forEach(function(imageRef) {
+      // Push to list of objects representing documents by url and name
+      imageRef.getDownloadURL().then(function(url){
+        makeDocumentsList(url, imageRef.name);
+      })
+      //displayImage(imageRef);
+    });
+  }).catch(function(error) {
+    // Handle any errors
+  });
+}
+
+export var documentsList = [];
+
+const makeDocumentsList = (url, name) => {
+  let found = false;
+  documentsList.forEach(item => {if(item.url == url){found = true}})
+  
+  if(!found){
+  documentsList.push({url: url, name: name});}
+}
+
 export const getUid = () => {
   return firebase.auth().currentUser.uid;
 }
