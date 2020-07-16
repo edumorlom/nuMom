@@ -161,9 +161,6 @@ export default {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
         width: '100%',
-        height: '70%',
-        bottom: 0 - win.height * 0.20,
-        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'
@@ -258,24 +255,17 @@ export default {
     FemaleCondomMenu: {
         Touchable: {
             margin: 5,
-            padding: 11,
+            padding: 10,
+            justifyContent: "center",
             backgroundColor: "white",
             ...shadow,
-            width: win.width - 10,
-            borderColor: greyColor,
+            width: win.width * 0.95,
             borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize - 2,
+            fontSize: regularFontSize,
             fontWeight: "bold",
-
-        },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize - 4
 
         },
 

@@ -27,6 +27,7 @@ export default Homepage = props => {
   useEffect( () => {
     fetchResources();  //Can only call one function inside useEffect when dealing with asyncs
   },[])
+  
 
   let fetchResources = async () => {
     sortClinics(await fetchClinics());
@@ -105,7 +106,7 @@ export default Homepage = props => {
     return (
       <View style={appStyles.container}>
         <Map
-          onPress={() => setFullPanel(false)}
+          onPress={() => setFullPanel(false)} //This does not work, explanation at the bottom **
           setFullPanel={setFullPanel}
           clinicToView={clinicToView}
           shelterToView={shelterToView}
@@ -148,3 +149,8 @@ export default Homepage = props => {
     );
   
 }
+
+/* ** Changing the fullPanel hook/variable in the Homepage does not work because we are using the fullPanel from the 
+LowerPanel.jsx to move the lowerPanel. This is bacause using the fullPanel from Homepage had a bug where any
+change to the fullPanel variable would move the lowerPanel (like if a function tried setting lowerPanel to true, 
+  and it was already up it would move down, where it should only move down if you set it to false) */

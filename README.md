@@ -1,6 +1,6 @@
 # Keeping Moms and Infants Healthy (nuMom) -- Mobile Application <version 2.0>
 
-Authors: Moises Bentolila, Eduardo Morales, Gabriel Alfonso
+Authors: Moises Bentolila, Eduardo Morales, Gabriel Alfonso, Michael Llanes
 
 Product Owner: Jean Hannan
 
