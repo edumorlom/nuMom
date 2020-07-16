@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, View, TextInput } from 'react-native';
+import {Image, TouchableOpacity, ScrollView, Linking, View} from 'react-native';
 import DialogInput from 'react-native-dialog-input';
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from "expo-haptics";
-import * as FB from "../Firebase";
 import Constants from 'expo-constants';
 import * as firebase from "firebase";
+import * as FB from "../Firebase";
+import appStyles from "./AppStyles";
+import SelectionButton from "./SelectionButton";
+import Plus from "../../assets/plus.png";
+import documentIcon from "../../assets/document.png";
 
 export default function Documents() {
   const [image, setImage] = useState(null);
   const [isDialogVisible, setIsDialogVisible] = useState(true);
-  const [value, onChangeText] = useState('Useless Placeholder');
+  const [textChanged, setTextChanged] = useState(false);
+  const [uploadDone, setUploadDone] = useState(false);
+  const [value, onChangeText] = useState(null);
+  const [documentsButtons, setDocumentsButtons] = useState(null);
+  const [renderedButtons, setRenderedButtons] = useState(false);
   const [buttonClickedStatus, setButtonClickedStatus] = useState(false);
 
   useEffect(() => { (async () => {
@@ -21,7 +29,7 @@ export default function Documents() {
         }
       }
     })();
-  }, []);
+  });
 
   let onPress = () => {
     Haptics.selectionAsync().then();
@@ -34,10 +42,9 @@ export default function Documents() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
     });
-
+    setIsDialogVisible(true);
     setButtonClickedStatus(true);
 
     if (!result.cancelled) {
@@ -48,19 +55,53 @@ export default function Documents() {
   let upload = () => {
     let user = firebase.auth().currentUser;
     FB.uploadImage(image,user,value);
+    setTextChanged(false);
+    setUploadDone(true);
+  }
+
+  function resetDocumentsList() {
+    var documentsList = grabDocuments();
+    setDocumentsButtons(
+      documentsList.map((document, key) => (
+      <SelectionButton
+        style={appStyles.ImageOnRightSelectionButton}
+        key={key}
+        icon={documentIcon}
+        text={document.name}
+        onPress={() => Linking.openURL(document.url)}
+      />
+    )));
+    setUploadDone(false);
+    setRenderedButtons(true);
+  }
+
+  function grabDocuments() {
+    let user = firebase.auth().currentUser;
+    FB.grabImages(user);
+    return FB.documentsList;
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Camera roll" onPress={onPress} />
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}>
+      {!renderedButtons && resetDocumentsList()}
+      <TouchableOpacity
+        onPress={() => {onPress();}}
+        style={appStyles.viewPlus}>
+        <Image source={Plus} style={{ height: 25, width: 25}} />
+      </TouchableOpacity>
+      
+      {documentsButtons}
 
       {buttonClickedStatus && <DialogInput isDialogVisible={isDialogVisible}
         title={"Name Your File"}
-        submitInput={ (inputText) => {onChangeText(inputText)} }
+        submitInput={ (value) => {onChangeText(value), 
+          setIsDialogVisible(false), setTextChanged(true), setButtonClickedStatus(false)}}
         closeDialog={ () => {setIsDialogVisible(false)}}>
-      </DialogInput>}
-      {upload()}
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-    </View>
+      </DialogInput>}  
+
+      {textChanged && upload()}
+      {uploadDone && resetDocumentsList()}
+    </ScrollView>
   );
 }
