@@ -202,12 +202,12 @@ export default function NewAppointment(props) {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          bottom: appStyles.win.height * 0.005,
+          bottom: appStyles.win.height * 0.05,
         }}
       >
         <Button
           style={appStyles.button}
-          text={translate("continueButton")}
+          text={translate("save")}
           onPress={onPress}
         />
       </View>
