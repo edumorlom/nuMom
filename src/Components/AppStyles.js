@@ -285,32 +285,25 @@ export default {
             flexDirection: "row",
         },
         View: {
-            height: "100%",
+            height: "90%",
             width: "70%",
-            marginRight: -5
         },
         ImageView: {
             height: "100%",
             width: "7%",
-            justifyContent: "center",
-            paddingLeft: 10,
-            paddingBottom: 10,
+            paddingLeft: 15,
+            justifyContent: "center"
         },
         ImageInView: {
-            width: 100,
-            height: 100,
-
+            width: 90,
+            height: 90
         },
         Text: {
             color: greyColor,
-            fontSize: 18,
-            fontWeight: "600",
+            fontSize: 15,
+            fontWeight: "400",
             textAlign: 'left'
         },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize,
-        }
     },
     ClinicSelectionButton: {
         Touchable: {
