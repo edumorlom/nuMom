@@ -29,7 +29,7 @@ export default function Documents() {
         }
       }
     })();
-  }, []);
+  });
 
   let onPress = () => {
     Haptics.selectionAsync().then();
