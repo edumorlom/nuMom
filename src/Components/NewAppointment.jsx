@@ -17,7 +17,7 @@ import * as Calendar from "expo-calendar";
 import * as Localization from "expo-localization";
 import * as Permissions from "expo-permissions";
 import { getUid, addAppointment } from "../Firebase";
-import { app } from "firebase";
+
 
 export default function NewAppointment(props) {
   appointment = [

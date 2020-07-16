@@ -4,7 +4,7 @@ import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import BackButton from "./Button"
 import * as Haptics from "expo-haptics";
-import passwordReset from '../Firebase';
+import { passwordReset } from '../Firebase';
 import translate from "app/Components/getLocalizedText";
 import Button from './Button';
 
