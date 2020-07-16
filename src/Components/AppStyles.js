@@ -255,24 +255,17 @@ export default {
     FemaleCondomMenu: {
         Touchable: {
             margin: 5,
-            padding: 11,
+            padding: 10,
+            justifyContent: "center",
             backgroundColor: "white",
             ...shadow,
-            width: win.width - 10,
-            borderColor: greyColor,
+            width: win.width * 0.95,
             borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize - 2,
+            fontSize: regularFontSize,
             fontWeight: "bold",
-
-        },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize - 4
 
         },
 
