@@ -264,8 +264,9 @@ export default {
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize,
+            fontSize: regularFontSize - 4,
             fontWeight: "bold",
+            textAlign: "justify",
 
         },
 
@@ -287,7 +288,7 @@ export default {
         View: {
             height: "100%",
             width: "70%",
-            marginRight: 20
+            marginRight: win.width * 0.02
         },
         ImageView: {
             height: "100%",
@@ -300,7 +301,7 @@ export default {
         },
         Text: {
             color: greyColor,
-            fontSize: 15,
+            fontSize: regularFontSize - 4,
             fontWeight: 400,
             fontWeight: "bold",
         },
