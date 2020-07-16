@@ -285,24 +285,24 @@ export default {
             flexDirection: "row",
         },
         View: {
-            height: "90%",
+            height: "100%",
             width: "70%",
+            marginRight: 20
         },
         ImageView: {
             height: "100%",
             width: "7%",
-            paddingLeft: 15,
             justifyContent: "center"
         },
         ImageInView: {
-            width: 90,
-            height: 90
+            width: 80,
+            height: 80
         },
         Text: {
             color: greyColor,
             fontSize: 15,
-            fontWeight: "400",
-            textAlign: 'left'
+            fontWeight: 400,
+            fontWeight: "bold",
         },
     },
     ClinicSelectionButton: {
