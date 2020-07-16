@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Text, View, TouchableHighlight, Image, TextInput as TextBox } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TextInput as TextBox } from 'react-native';
 import goBackImg from "../../assets/go-back-arrow.png";
 import appStyles from "./AppStyles";
 import BackButton from "./Button"

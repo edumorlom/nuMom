@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {
-  ScrollView,
   View,
   Text,
   StyleSheet,
@@ -14,7 +13,6 @@ import appStyles, { borderRadius, shadow } from "./AppStyles";
 import { Feather } from "@expo/vector-icons";
 import translate from "app/Components/getLocalizedText";
 import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons'; 
 import Button from "./Button";
 import Avatar from "../../assets/Avatar-Doctor.jpg";
 
@@ -145,7 +143,6 @@ const styles = StyleSheet.create({
    
 
     },
-
     modalClose: {
       marginTop: 25,
       padding: 10,
