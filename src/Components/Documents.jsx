@@ -29,7 +29,7 @@ export default function Documents() {
         }
       }
     })();
-  }, []);
+  });
 
   let onPress = () => {
     Haptics.selectionAsync().then();
@@ -88,7 +88,7 @@ export default function Documents() {
       <TouchableOpacity
         onPress={() => {onPress();}}
         style={appStyles.viewPlus}>
-        <Image source={Plus} style={{ height: 50, width: 50}} />
+        <Image source={Plus} style={{ height: 25, width: 25}} />
       </TouchableOpacity>
       
       {documentsButtons}
