@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import AppointmentMenu from "./AppointmentMenu";
 import appStyles from "./AppStyles";
-import translate from "app/Components/getLocalizedText";
 import Plus from "../../assets/plus.png";
 import { deleteAppointment, fetchAppointment, getUid } from "../Firebase";
 
