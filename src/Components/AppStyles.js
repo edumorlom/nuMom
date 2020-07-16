@@ -525,7 +525,7 @@ export default {
             ...shadow,
             height: win.height * 0.09,
             width: win.width * 0.8,
-            margin: 5,
+            margin: 9,
             borderColor: 'white',
             borderWidth: 0.5,
             borderRadius: borderRadius,
