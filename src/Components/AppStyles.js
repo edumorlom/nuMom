@@ -530,5 +530,23 @@ export default {
             },
         }),
     },
+    TextInputAppointment: {
+        View: {
+            ...shadow,
+            height: win.height * 0.09,
+            width: win.width * 0.8,
+            margin: 5,
+            borderColor: 'white',
+            borderWidth: 0.5,
+            borderRadius: borderRadius,
+            justifyContent: 'center',
+            backgroundColor: 'white'
+
+        },
+        TextInput: {
+            fontSize: regularFontSize,
+            textAlign: 'center',
+        }
+    },
 
 };
