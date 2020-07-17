@@ -6,8 +6,6 @@ import {
   StyleSheet,
   TextInput as TextBox,
   ScrollView,
-  TouchableHighlight,
-  Image,
   Alert,
   Platform,
 } from "react-native";
@@ -17,7 +15,7 @@ import {getUserInfo, getUid} from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
-import { AsyncStorage, NativeModules, Picker } from 'react-native';
+import { Picker } from 'react-native';
 import * as firebase from 'firebase';
 import { AntDesign } from '@expo/vector-icons';
 import translate from "app/Components/getLocalizedText";
@@ -36,7 +34,7 @@ const SettingScreen = (props) => {
   const [babyDOB, setBabyDOB] = useState(null);
   const [pregnant, setPregnant] = useState(null);
   const datetimeField = useRef(null);
-  const [databaseInfo, setDatabaseInfo] = useState([])
+  const [databaseInfo, setDatabaseInfo] = useState([]);
   let _isMounted = false;
 
 
@@ -84,7 +82,7 @@ const SettingScreen = (props) => {
             setLiveMiami(liveMiami);
             setBabyDOB(babyDOB);
 
-            setDatabaseInfo(databaseInfo)
+            setDatabaseInfo(databaseInfo);
           }
 
       });

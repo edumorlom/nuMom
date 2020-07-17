@@ -17,7 +17,7 @@ import * as Calendar from "expo-calendar";
 import * as Localization from "expo-localization";
 import * as Permissions from "expo-permissions";
 import { getUid, addAppointment } from "../Firebase";
-import { app } from "firebase";
+
 
 export default function NewAppointment(props) {
   appointment = [
@@ -180,7 +180,7 @@ export default function NewAppointment(props) {
           headerTextIOS='Pick a date'
         />
       </View>
-      <View style={styles.sepeerator} />
+      <View style={styles.seperator} />
       <View style={styles.container}>
         <Text style={styles.textTitle}>{translate("Time")}</Text>
         <TouchableOpacity onPress={showTimePicker}>
@@ -195,7 +195,7 @@ export default function NewAppointment(props) {
           headerTextIOS='Pick a time'
         />
       </View>
-      <View style={styles.sepeerator} />
+      <View style={styles.seperator} />
       <View
         style={{
           width: "100%",
@@ -216,7 +216,7 @@ export default function NewAppointment(props) {
 }
 
 const styles = StyleSheet.create({
-  sepeerator: {
+  seperator: {
     height: 0.2,
     width: "100%",
     backgroundColor: "#979797",
