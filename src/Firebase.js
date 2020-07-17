@@ -231,7 +231,7 @@ export const deleteReference = async (id, uid, references, setReferences,) => {
     return reference.remove().catch((err) => console.log(err.message));
 
   } else {
-    console.log("Error: Couldn't get the User appointment Info");
+    console.log("Error: Couldn't get the Reference Info");
   }
 
 } 

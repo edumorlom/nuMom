@@ -264,8 +264,9 @@ export default {
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize,
+            fontSize: regularFontSize - 4,
             fontWeight: "bold",
+            textAlign: "justify",
 
         },
 
@@ -287,30 +288,23 @@ export default {
         View: {
             height: "100%",
             width: "70%",
-            marginRight: -5
+            marginRight: win.width * 0.02
         },
         ImageView: {
             height: "100%",
             width: "7%",
-            justifyContent: "center",
-            paddingLeft: 10,
-            paddingBottom: 10,
+            justifyContent: "center"
         },
         ImageInView: {
-            width: 100,
-            height: 100,
-
+            width: 80,
+            height: 80
         },
         Text: {
             color: greyColor,
-            fontSize: 18,
-            fontWeight: "600",
-            textAlign: 'left'
+            fontSize: regularFontSize - 4,
+            fontWeight: 400,
+            fontWeight: "bold",
         },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize,
-        }
     },
     ClinicSelectionButton: {
         Touchable: {

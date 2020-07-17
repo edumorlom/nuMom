@@ -91,8 +91,6 @@ export default function LowerPanelSelection(props) {
 
 const styles = StyleSheet.create({
   userSettingStyle: {
-    //  borderWidth: 1,
-    //  borderColor: 'red',
     position: "absolute",
     left: appStyles.win.width * 0.27,
     bottom: appStyles.win.height * 0.030,

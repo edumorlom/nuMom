@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
-import appStyles, { shadow, borderRadius } from "./AppStyles";
+import { View, ScrollView, TouchableOpacity, Image } from "react-native";
+import appStyles from "./AppStyles";
 import Plus from "../../assets/plus.png";
 import ReferenceInfo from "./ReferenceInfo";
 import { deleteReference, fetchReference, getUid } from "../Firebase";
