@@ -4,12 +4,14 @@ import pt_BR from '../pt_BR.json'
 import zh_Hans from '../zh_Hans.json'
 import en_STD from '../en_STD.json'
 import es_STD from '../es_STD.json'
+import ht_STD from '../ht_STD.json'
 import { NativeModules } from 'react-native'
 
 let deviceLanguage = Platform.OS === "ios"
-? NativeModules.SettingsManager.settings.AppleLocale ||
-NativeModules.SettingsManager.settings.AppleLanguages[0]
+? NativeModules.SettingsManager.settings.AppleLanguages[0] ||
+NativeModules.SettingsManager.settings.AppleLocale
 : NativeModules.I18nManager.localeIdentifier
+
 
 export default function getLocalizedText(key) {
     if (!deviceLanguage) return en_US[key];

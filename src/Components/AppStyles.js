@@ -171,8 +171,8 @@ export default {
             margin: win.height * 0.009,
             backgroundColor: 'white',
             ...shadow,
-            height: win.height * 0.15,
-            width: '85%',
+            height: win.height * 0.13,
+            width: '90%',
             borderColor: greyColor,
             borderRadius: borderRadius
         },
