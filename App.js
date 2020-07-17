@@ -16,7 +16,7 @@ import ForgotPasswordPage from "app/Components/ForgotPasswordPage";
 
 export default App = () => {
 
-  const initState = {uid: null, email: null, password: null, fullName: null  /*babyGender: null,*/ }
+  const initState = {uid: "", email: "", password: "", fullName: ""  /*babyGender: "",*/ }
   const deviceLanguage = Platform.OS === "ios"
         ? NativeModules.SettingsManager.settings.AppleLanguages[0] ||
         NativeModules.SettingsManager.settings.AppleLocale
