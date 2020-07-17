@@ -18,13 +18,13 @@ export default App = () => {
 
   const initState = {uid: null, email: null, password: null, fullName: null  /*babyGender: null,*/ }
   const deviceLanguage = Platform.OS === "ios"
-        ? NativeModules.SettingsManager.settings.AppleLocale ||
-        NativeModules.SettingsManager.settings.AppleLanguages[0]
+        ? NativeModules.SettingsManager.settings.AppleLanguages[0] ||
+        NativeModules.SettingsManager.settings.AppleLocale
       : NativeModules.I18nManager.localeIdentifier 
   const [appState, setAppState] = useState(initState);
   const [screen, setScreen] = useState("login");
 
-  //if (!firebase.apps.length) firebase.initializeApp(firebaseAccount);
+  console.log(deviceLanguage);
 
   useEffect(() => {
     getCookies();
