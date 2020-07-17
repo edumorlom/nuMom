@@ -246,7 +246,7 @@ export default {
         },
         Text: {
             color: blueColor,
-            fontSize: regularFontSize - 1,
+            fontSize: RFValue(19),
             fontWeight: "bold",
             textAlign: 'center'
 
@@ -264,7 +264,7 @@ export default {
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize - 4,
+            fontSize: RFValue(16),
             fontWeight: "bold",
             textAlign: "justify",
 
@@ -301,7 +301,7 @@ export default {
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize - 4,
+            fontSize: RFValue(16),
             fontWeight: 400,
             fontWeight: "bold",
         },

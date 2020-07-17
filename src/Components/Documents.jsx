@@ -83,11 +83,11 @@ export default function Documents() {
 
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}>
+      contentContainerStyle={{ alignItems: "flex-end", maxWidth: "100%" }}>
       {!renderedButtons && resetDocumentsList()}
       <TouchableOpacity
         onPress={() => {onPress();}}
-        style={appStyles.viewPlus}>
+        style={{ ...appStyles.viewPlus, marginVertical: 10 }}>
         <Image source={Plus} style={{ height: 25, width: 25}} />
       </TouchableOpacity>
       
