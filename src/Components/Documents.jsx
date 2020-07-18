@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {Image, TouchableOpacity, ScrollView, Linking, View} from 'react-native';
 import DialogInput from 'react-native-dialog-input';
 import * as ImagePicker from 'expo-image-picker';
@@ -15,11 +15,10 @@ export default function Documents() {
   const [image, setImage] = useState(null);
   const [isDialogVisible, setIsDialogVisible] = useState(true);
   const [textChanged, setTextChanged] = useState(false);
-  const [uploadDone, setUploadDone] = useState(false);
   const [value, onChangeText] = useState(null);
-  const [documentsButtons, setDocumentsButtons] = useState(null);
-  const [renderedButtons, setRenderedButtons] = useState(false);
   const [buttonClickedStatus, setButtonClickedStatus] = useState(false);
+  const [documents, setDocuments] = useState([]);
+
 
   useEffect(() => { (async () => {
       if (Constants.platform.ios | Constants.platform.android) {
@@ -36,7 +35,7 @@ export default function Documents() {
     
     pickImage();
     
-};
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -54,54 +53,45 @@ export default function Documents() {
 
   let upload = () => {
     let user = firebase.auth().currentUser;
-    FB.uploadImage(image,user,value);
+    FB.uploadImage(image, user, value, documents, setDocuments);
     setTextChanged(false);
-    setUploadDone(true);
-  }
-
-  function resetDocumentsList() {
-    var documentsList = grabDocuments();
-    setDocumentsButtons(
-      documentsList.map((document, key) => (
-      <SelectionButton
-        style={appStyles.ImageOnRightSelectionButton}
-        key={key}
-        icon={documentIcon}
-        text={document.name}
-        onPress={() => Linking.openURL(document.url)}
-      />
-    )));
-    setUploadDone(false);
-    setRenderedButtons(true);
   }
 
   function grabDocuments() {
     let user = firebase.auth().currentUser;
-    FB.grabImages(user);
-    return FB.documentsList;
+    FB.grabImages(user, documents, setDocuments);
   }
+
+  useEffect(() => {
+    grabDocuments();
+
+  }, []);
+
 
   return (
     <ScrollView
       contentContainerStyle={{ alignItems: "flex-end", maxWidth: "100%" }}>
-      {!renderedButtons && resetDocumentsList()}
       <TouchableOpacity
         onPress={() => {onPress();}}
         style={{ ...appStyles.viewPlus, marginVertical: 10 }}>
         <Image source={Plus} style={{ height: 25, width: 25}} />
       </TouchableOpacity>
-      
-      {documentsButtons}
-
+      {documents.map((document, key) => (
+        <SelectionButton
+          style={appStyles.ImageOnRightSelectionButton}
+          key={key}
+          icon={documentIcon}
+          text={document.name}
+          onPress={() => Linking.openURL(document.url)}
+        />
+      ))}
       {buttonClickedStatus && <DialogInput isDialogVisible={isDialogVisible}
         title={"Name Your File"}
         submitInput={ (value) => {onChangeText(value), 
           setIsDialogVisible(false), setTextChanged(true), setButtonClickedStatus(false)}}
         closeDialog={ () => {setIsDialogVisible(false)}}>
       </DialogInput>}  
-
       {textChanged && upload()}
-      {uploadDone && resetDocumentsList()}
     </ScrollView>
   );
 }
