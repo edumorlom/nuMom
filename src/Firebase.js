@@ -115,21 +115,34 @@ export const registerForPushNotificationsAsync = async (currentUser) => {
   //call the push notification 
 }
 
-export const uploadImage = async(uri, user, fileName) => {
+export const uploadImage = async(uri, user, fileName, documents, setDocuments) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  var ref = firebase.storage().ref().child(user.uid + '/' + fileName);
-  return ref.put(blob);
+  const uploadDocument = firebase.storage().ref(user.uid + '/' + fileName).put(blob);
+
+  uploadDocument.on('state_changed',
+    (snapshot) => {
+      //process loading 
+    },
+    (error) => {
+      console.log(error.message);
+    },
+    () => {
+      //successfull uploading and updating the documents state array
+      grabImages(user, documents, setDocuments);
+    }
+  );
+  
 }
 
-export const grabImages = (user) => {
+export const grabImages = (user, documents, setDocuments) => {
   var storageRef = firebase.storage().ref(user.uid);
   // Now we get the references of these images
   storageRef.listAll().then(function(result) {
     result.items.forEach(function(imageRef) {
       // Push to list of objects representing documents by url and name
       imageRef.getDownloadURL().then(function(url){
-        makeDocumentsList(url, imageRef.name);
+        makeDocumentsList(url, imageRef.name, documents, setDocuments);
       })
       //displayImage(imageRef);
     });
@@ -138,14 +151,18 @@ export const grabImages = (user) => {
   });
 }
 
-export var documentsList = [];
 
-const makeDocumentsList = (url, name) => {
+const makeDocumentsList = (url, name, documents, setDocuments) => {
   let found = false;
-  documentsList.forEach(item => {if(item.url == url){found = true}})
-  
+  documents.forEach(item => {if(item.url == url){found = true}});
+
   if(!found){
-  documentsList.push({url: url, name: name});}
+  //created an object to insert the url and name files
+  object = {url: url, name: name}
+
+  //updating the document state to display it on the phone.
+  setDocuments(prevArray => [...prevArray, object]);  
+  }
 }
 
 export const getUid = () => {

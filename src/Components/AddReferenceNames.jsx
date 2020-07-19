@@ -69,6 +69,7 @@ function AddReferenceNames(props) {
           <TextInput
             placeholder={translate("referencePhone")}
             onChangeText={setPhone}
+            keyboardType="numeric"
             value={phone}
             style={appStyles.TextInput.TextInput}
           />
