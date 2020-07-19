@@ -265,8 +265,8 @@ export default {
         Text: {
             color: greyColor,
             fontSize: RFValue(16),
-            fontWeight: "bold",
             textAlign: "justify",
+
 
         },
 
@@ -302,8 +302,6 @@ export default {
         Text: {
             color: greyColor,
             fontSize: RFValue(16),
-            fontWeight: 400,
-            fontWeight: "bold",
         },
     },
     ClinicSelectionButton: {
