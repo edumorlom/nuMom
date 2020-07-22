@@ -9,19 +9,18 @@ export default function SignUpLoading (props) {
     const [loadingText, setLoadingText] = useState(translate("registeringAccount"));
     const [color, setColor] = useState(appStyles.greyColor);
     
-    let _isMounted = false;
+    
 
     useEffect(() => {
-        _isMounted = true;
-        _isMounted && setTimeout(() => {
+        setTimeout(() => {
             setLoadingText(translate("allSet"))
             setColor(appStyles.pinkColor)
-            _isMounted && setTimeout(() => {
+            setTimeout(() => {
                 props.signUpAndUploadData();
             }, 1000);
         }, 2000);
 
-        return () => _isMounted = false;
+        
     }, [])
 
 

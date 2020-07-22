@@ -24,8 +24,6 @@ export default App = () => {
   const [appState, setAppState] = useState(initState);
   const [screen, setScreen] = useState("login");
 
-  console.log(deviceLanguage);
-
   useEffect(() => {
     getCookies();
   }, [])
