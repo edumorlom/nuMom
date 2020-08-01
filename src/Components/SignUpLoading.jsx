@@ -9,6 +9,8 @@ export default function SignUpLoading (props) {
     const [loadingText, setLoadingText] = useState(translate("registeringAccount"));
     const [color, setColor] = useState(appStyles.greyColor);
     
+    
+
     useEffect(() => {
         setTimeout(() => {
             setLoadingText(translate("allSet"))
@@ -17,6 +19,8 @@ export default function SignUpLoading (props) {
                 props.signUpAndUploadData();
             }, 1000);
         }, 2000);
+
+        
     }, [])
 
 

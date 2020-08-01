@@ -4,6 +4,7 @@ import SelectionButton from "./SelectionButton";
 import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown"
 import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
+import translate from "app/Components/getLocalizedText";
 
 export default function FindCare(props) {
     const [dist, setDist] = useState(props.filters[0]);
@@ -61,9 +62,10 @@ export default function FindCare(props) {
     let servicesArray = ["All", "Education", "Support & Counseling", "Free Materials", "Referrals", "STD Tests", "STD Treatment", "Yearly Exam", "Pregnancy Tests", "Ultrasound", "Immunization", "Abortions", "Medical Care", "Lab services"];
     
     let services = servicesArray.map ((service) => 
-        ({label: service, value: service}))  //Change label to adjust for different languages
+        ({label: translate(service), value: service}))  //Change label to adjust for different languages
 
-    let distances = [ {label: 'All',value: 10000}, {label: '5 Miles',value: 5.5}, {label: '15 Miles',value: 15.5}, {label: '20 Miles',value: 20.5} ]
+    let distances = [ {label: translate('All'),value: 10000}, {label: ('5 '+ translate('Miles')),value: 5.5}, 
+    {label: ('10 '+ translate('Miles')),value: 10.5}, {label: ('15 '+ translate('Miles')),value: 15.5}, {label: ('20 '+ translate('Miles')),value: 20.5} ]
 
 
 
@@ -72,9 +74,9 @@ export default function FindCare(props) {
         <>
             {props.filterToShow && 
             <View style={{flexDirection: "row", height: window.height * 0.03}}>
-                { <Dropdown containerStyle= {{...styles.Dropdown, right: '30%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}} textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={distances} label="Distance" value= {dist}  useNativeDriver={true} onChangeText={(value,index,data) => filterClinics(value, service)} /> }
+                { <Dropdown containerStyle= {{...styles.Dropdown, right: '30%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}} textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={distances} label={translate("Distance")} value= {dist}  useNativeDriver={true} onChangeText={(value,index,data) => filterClinics(value, service)} /> }
 
-                <Dropdown containerStyle= {{...styles.Dropdown, left: '30%'}}  dropdownOffset= {{top: 0, bottom: 0,left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}}  textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={services} label="Services" value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
+                <Dropdown containerStyle= {{...styles.Dropdown, left: '30%'}}  dropdownOffset= {{top: 0, bottom: 0,left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}}  textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={services} label= {translate("services")} value= {service} useNativeDriver={true} onChangeText={(value,index,data)=>filterClinics(dist, value)} />
             </View> }
                 <ScrollView contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}>
                     

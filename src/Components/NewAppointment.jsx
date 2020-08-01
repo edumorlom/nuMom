@@ -18,6 +18,7 @@ import * as Localization from "expo-localization";
 import * as Permissions from "expo-permissions";
 import { getUid, addAppointment } from "../Firebase";
 
+
 export default function NewAppointment(props) {
   appointment = [
     ([name, setName] = useState(null)),
@@ -141,28 +142,28 @@ export default function NewAppointment(props) {
       }}
       scrollEnabled
     >
-      <View style={appStyles.TextInput.View}>
+      <View style={appStyles.TextInputAppointment.View}>
         <TextBox
           placeholder={translate("appointmentName")}
           onChangeText={setName}
           value={name}
-          style={appStyles.TextInput.TextInput}
+          style={appStyles.TextInputAppointment.TextInput}
         />
       </View>
-      <View style={appStyles.TextInput.View}>
+      <View style={appStyles.TextInputAppointment.View}>
         <TextBox
           placeholder={translate("appointmentAddress")}
           onChangeText={setAddress}
           value={address}
-          style={appStyles.TextInput.TextInput}
+          style={appStyles.TextInputAppointment.TextInput}
         />
       </View>
-      <View style={appStyles.TextInput.View}>
+      <View style={appStyles.TextInputAppointment.View}>
         <TextBox
           placeholder={translate("appointmentExtra")}
           onChangeText={setExtra}
           value={extra}
-          style={appStyles.TextInput.TextInput}
+          style={appStyles.TextInputAppointment.TextInput}
         />
       </View>
       <View style={styles.container}>
@@ -179,7 +180,7 @@ export default function NewAppointment(props) {
           headerTextIOS='Pick a date'
         />
       </View>
-      <View style={styles.sepeerator} />
+      <View style={styles.seperator} />
       <View style={styles.container}>
         <Text style={styles.textTitle}>{translate("Time")}</Text>
         <TouchableOpacity onPress={showTimePicker}>
@@ -194,19 +195,19 @@ export default function NewAppointment(props) {
           headerTextIOS='Pick a time'
         />
       </View>
-      <View style={styles.sepeerator} />
+      <View style={styles.seperator} />
       <View
         style={{
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          bottom: appStyles.win.height * 0.005,
+          bottom: appStyles.win.height * 0.05,
         }}
       >
         <Button
           style={appStyles.button}
-          text={translate("continueButton")}
+          text={translate("save")}
           onPress={onPress}
         />
       </View>
@@ -215,29 +216,29 @@ export default function NewAppointment(props) {
 }
 
 const styles = StyleSheet.create({
-  sepeerator: {
+  seperator: {
     height: 0.2,
     width: "100%",
     backgroundColor: "#979797",
     alignSelf: "center",
-    marginVertical: 10,
+    marginVertical: 8,
   },
   container: {
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 5,
+    paddingTop: appStyles.win.height * 0.005,
   },
   textTitle: {
     ...Platform.select({
       ios: {
         color: "#9CAAC4",
         fontWeight: "600",
-        fontSize: 16,
+        fontSize: appStyles.regularFontSize - 3,
       },
       android: {
         color: "#9CAAC4",
         fontWeight: "600",
-        fontSize: 16,
+        fontSize: appStyles.regularFontSize - 3,
       },
     }),
   },
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
       ios: {
         fontSize: 19,
         alignSelf: "center",
-        paddingTop: 10,
+        paddingTop: 5,
       },
       android: {
         fontSize: 19,

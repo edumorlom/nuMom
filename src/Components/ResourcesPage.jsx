@@ -3,6 +3,7 @@ import { ScrollView, Linking } from "react-native";
 import SelectionButton from "./SelectionButton";
 import appointments from "../../assets/appointments.png";
 import document from "../../assets/document.png";
+import doctor from "../../assets/doctor.png";
 import ResourcesInfo from "./ResourcesInformation";
 import translate from "app/Components/getLocalizedText";
 import appStyles from "./AppStyles";
@@ -50,15 +51,28 @@ export default function Resources(props) {
     />
   );
 
+  let namesReferenceButton = (
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text={translate("NameReference")}
+      subtext={translate("ReferenceSubtitle")}
+      icon={doctor}
+      onPress={() => {
+        props.setLowerPanelContent("ReferenceNames");
+      }}
+    />
+  );
+
   
 
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      contentContainerStyle={{ alignItems: "center", maxWidth: "100%"}}
     >
       {resourceButtons}
       {documentUploadButton}
       {appointmentButton}
+      {namesReferenceButton}
     </ScrollView>
   );
 }

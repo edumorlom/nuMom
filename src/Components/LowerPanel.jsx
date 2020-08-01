@@ -1,5 +1,5 @@
 import { View, Animated } from "react-native";
-import appStyles from "./AppStyles";
+import appStyles, {win} from "./AppStyles";
 import React, { useState, useEffect } from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
@@ -17,39 +17,48 @@ import NewAppointment from "./NewAppointment";
 import STDSelection from "./STDSelection";
 import Documents from "./Documents";
 import FemaleCondom from "./FemaleCondom";
+import ReferenceNames from './ReferenceNames';
+import AddReferenceNames from './AddReferenceNames';
+
 
 export default LowerPanel = props => {
 
 
   const [filterToShow, setFilterToShow] = useState(false);
-  const [fullPanel, setFullPanel] = useState(props.fullPanel);
-  const [moveAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
+  const [fullPanel, setFullPanel] = useState(true);
+  const [fullScreen, setFullScreen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  useEffect(() => {  //Substitute ComponentDidMount
-    //movePanel(true) //Move up
+  const [moveAnim] = useState(new Animated.Value(win.height * 0.30)); 
 
-  }, [])
-
-  useEffect(() => {  //Substitute ComponentDidUpdate
-    movePanel(fullPanel)
+  useEffect(() => {  //When fullPanel changes move Panel
+    movePanel(fullPanel);
   }, [fullPanel])
+  
+  useEffect(() => {  //When fullScreen changes make fullscreen
+    fullScreenPanel(fullScreen);
+  }, [fullScreen])
 
   let movePanel = (moveUp) => {
-    if (moveUp) {
-      //MoveUp
+      let destination = moveUp ? win.height * 0.30 : win.height * 0.50;
       Animated.timing(moveAnim, {
-        toValue: 0,
+        toValue: destination,
         duration: 150,
       }).start();
-    }
-    else if (!moveUp) {
-      //Move Down
-      Animated.timing(moveAnim, {
-        toValue: appStyles.lowerPanel.bottom,
-        duration: 150,
-      }).start();
-    }
+    
   };
+
+  let fullScreenPanel = (moveUp) => {
+    let destination = moveUp ? 0 : win.height * 0.30;
+      Animated.timing(moveAnim, {
+        toValue: destination,
+        duration: 0,
+      }).start();
+  }
+
+  let onPress = () => {
+    isFullScreen ? setFullScreen(!fullScreen) : setFullPanel(!fullPanel)
+  }
 
   let lowerPanelContent = {
     findCare: <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow={filterToShow} setLowerPanelContent={props.setLowerPanelContent} />,
@@ -64,14 +73,18 @@ export default LowerPanel = props => {
     NewAppointment: <NewAppointment setLowerPanelContent={props.setLowerPanelContent} />,
     FemaleCondom: <FemaleCondom setLowerPanelContent={props.setLowerPanelContent} />,
     documents: <Documents setLowerPanelContent={props.setLowerPanelContent} />,
+    ReferenceNames: <ReferenceNames setLowerPanelContent={props.setLowerPanelContent} />,
+    AddReferenceNames: <AddReferenceNames setLowerPanelContent={props.setLowerPanelContent} />,
     selection: <LowerPanelSelection fullName={props.fullName} logout={props.logout} setFullPanel={setFullPanel} fullPanel={fullPanel} setLowerPanelContent={props.setLowerPanelContent}  setScreen={props.setScreen}
     />
   }
 
     return (
-      <Animated.View style={{ ...appStyles.lowerPanel, bottom: moveAnim, overflow: "hidden" }}>
+      <Animated.View style={{ ...appStyles.lowerPanel, top: moveAnim, overflow: "hidden", 
+            height: isFullScreen ? "100%" : "70%"}}>
         {props.lowerPanelContent !== "selection" && (
-          <LowerPanelHeader onPress={() => setFullPanel(!fullPanel)} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={setFullPanel} fullPanel={fullPanel}
+          <LowerPanelHeader onPress={onPress} setFilterToShow = {() => setFilterToShow(!filterToShow)} goBack={props.goBack} lowerPanelContent={props.lowerPanelContent} setFullPanel={setFullPanel} fullPanel={fullPanel}
+          setFullScreen = {setFullScreen} fullScreen={fullScreen} setIsFullScreen={setIsFullScreen}
           />
         )}
         {lowerPanelContent[props.lowerPanelContent]}

@@ -3,9 +3,10 @@ import { TouchableHighlight, Text, View, ScrollView, Button } from "react-native
 import appStyles from "./AppStyles";
 import BetterMenu from "./BetterMenu";
 import translate from "app/Components/getLocalizedText";
-import FCDD from "./FCDD"
+import FemaleCondomDoDont from "./FemaleCondomDoDont"
 
-export default function FCDoDont(props) {
+
+export default function FemaleCondomDoDonts(props) {
     return (
         <ScrollView
             contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
@@ -17,11 +18,11 @@ export default function FCDoDont(props) {
                     color: appStyles.blueColor,
                     fontWeight: "bold",
                 }}>
-                {translate("FCDoDont")}</Text>
+                {translate("FemaleCondomDoDont")}</Text>
 
-            {FCDD().map((fcdd, key) => (
+            {FemaleCondomDoDont().map((fcdd, key) => (
                 <BetterMenu
-                    style={appStyles.FCMenu}
+                    style={appStyles.FemaleCondomMenu}
                     key={key}
                     text={translate(fcdd.dodont)}
                 />
@@ -30,3 +31,4 @@ export default function FCDoDont(props) {
         </ScrollView>
     );
 }
+

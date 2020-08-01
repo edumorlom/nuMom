@@ -28,13 +28,13 @@ export default function LowerPanelSelection(props) {
       onSwipeDown={() => props.setFullPanel(false)}
       style={{ 
         width: appStyles.win.width, 
-        height: appStyles.win.height * 0.18, 
+        height: appStyles.win.height * 0.16, 
         alignItems: "center" 
       }}
     >
       <Button 
       style= {{
-        Touchable: {height: appStyles.win.height * 0.08, width: appStyles.win.width}, Text: {}
+        Touchable: {height: appStyles.win.height * 0.06, width: appStyles.win.width}, Text: {}
       }}
       text={''}
       underlayColor={"transparent" }
@@ -91,12 +91,10 @@ export default function LowerPanelSelection(props) {
 
 const styles = StyleSheet.create({
   userSettingStyle: {
-    //  borderWidth: 1,
-    //  borderColor: 'red',
     position: "absolute",
-    left: 120,
-    bottom: 25,
+    left: appStyles.win.width * 0.27,
+    bottom: appStyles.win.height * 0.030,
     color: '#706e6c'
-    //  alignSelf: 'flex-start',
+    
   },
 });

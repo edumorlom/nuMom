@@ -1,5 +1,6 @@
+
 import { RFValue } from "react-native-responsive-fontsize";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 export let win = Dimensions.get('window');
 export let pinkColor = "#DF2172";
@@ -160,9 +161,6 @@ export default {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
         width: '100%',
-        height: '70%',
-        bottom: 0 - win.height * 0.20,
-        //bottom: 0 - Math.ceil(win.height * 0.3 / 100) * 100,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute'
@@ -173,8 +171,8 @@ export default {
             margin: win.height * 0.009,
             backgroundColor: 'white',
             ...shadow,
-            height: win.height * 0.15,
-            width: '85%',
+            height: win.height * 0.13,
+            width: '90%',
             borderColor: greyColor,
             borderRadius: borderRadius
         },
@@ -233,55 +231,7 @@ export default {
             fontSize: regularFontSize,
         }
     },
-    STDSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            minHeight: win.height * 0.002,
-            maxHeight: win.height * 0.08,
-            width: win.width * 0.8,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        View: {
-            height: "100%",
-            width: "90%",
-            marginRight: 50
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-    },
-    FCSelectionButton: {
-        Touchable: {
-            margin: 5,
-            padding: 20,
-            backgroundColor: "white",
-            ...shadow,
-            width: win.width,
-            borderColor: greyColor,
-            borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
-
-        },
-        Text: {
-            color: blueColor,
-            fontSize: regularFontSize,
-            fontWeight: "bold",
-
-        }
-
-    },
-    FCSelectionButton: {
+    STDFemaleCondomSelectionButton: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -296,39 +246,32 @@ export default {
         },
         Text: {
             color: blueColor,
-            fontSize: regularFontSize - 1,
+            fontSize: RFValue(19),
             fontWeight: "bold",
             textAlign: 'center'
 
         }
-
     },
-    FCMenu: {
+    FemaleCondomMenu: {
         Touchable: {
             margin: 5,
-            padding: 11,
+            padding: 10,
+            justifyContent: "center",
             backgroundColor: "white",
             ...shadow,
-            width: win.width - 10,
-            borderColor: greyColor,
+            width: win.width * 0.95,
             borderRadius: borderRadius,
-            alignItems: "center",
-            flexDirection: "column",
         },
         Text: {
             color: greyColor,
-            fontSize: regularFontSize - 2,
-            fontWeight: "bold",
+            fontSize: RFValue(16),
+            textAlign: "justify",
 
-        },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize - 4
 
         },
 
     },
-    FCMenuImage: {
+    FemaleCondomMenuImage: {
         Touchable: {
             margin: 5,
             padding: 20,
@@ -345,30 +288,21 @@ export default {
         View: {
             height: "100%",
             width: "70%",
-            marginRight: -5
+            marginRight: win.width * 0.02
         },
         ImageView: {
             height: "100%",
             width: "7%",
-            justifyContent: "center",
-            paddingLeft: 10,
-            paddingBottom: 10,
+            justifyContent: "center"
         },
         ImageInView: {
-            width: 100,
-            height: 100,
-
+            width: 80,
+            height: 80
         },
         Text: {
             color: greyColor,
-            fontSize: 18,
-            fontWeight: "600",
-            textAlign: 'left'
+            fontSize: RFValue(16),
         },
-        Subtext: {
-            color: greyColor,
-            fontSize: regularFontSize,
-        }
     },
     ClinicSelectionButton: {
         Touchable: {
@@ -502,6 +436,20 @@ export default {
 
     },
 
+    viewPlusReference: {
+
+        height: 50,
+        width: 50,
+        backgroundColor: '#2E66E7',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        zIndex: 999,
+        marginRight: 25
+
+    },
+
     BackButton: {
         Touchable: {
             height: win.height * 0.04,
@@ -517,6 +465,70 @@ export default {
 
         },
         underlayColor: "transparent"
-    }
+    },
+    buttonProfile: {
+        ...Platform.select({
+            ios: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize,
+                    fontWeight: 'normal'
+                },
+                underlayColor: blueColor
+
+            },
+            android: {
+                Touchable: {
+                    ...shadow,
+                    margin: win.height * 0.01,
+                    margin: win.width * 0.03,
+                    alignItems: 'center',
+                    backgroundColor: pinkColor,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: borderRadius,
+
+                },
+                Text: {
+                    color: 'white',
+                    fontSize: regularFontSize - 5,
+                    fontWeight: 'normal',
+                    textAlign: 'center'
+                },
+                underlayColor: blueColor
+            },
+        }),
+    },
+    TextInputAppointment: {
+        View: {
+            ...shadow,
+            height: win.height * 0.09,
+            width: win.width * 0.8,
+            margin: 9,
+            borderColor: 'white',
+            borderWidth: 0.5,
+            borderRadius: borderRadius,
+            justifyContent: 'center',
+            backgroundColor: 'white'
+
+        },
+        TextInput: {
+            fontSize: regularFontSize,
+            textAlign: 'center',
+        }
+    },
 
 };

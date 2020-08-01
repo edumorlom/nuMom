@@ -6,8 +6,6 @@ import {
   StyleSheet,
   TextInput as TextBox,
   ScrollView,
-  TouchableHighlight,
-  Image,
   Alert,
   Platform,
 } from "react-native";
@@ -17,7 +15,7 @@ import {getUserInfo, getUid} from "../Firebase";
 import goBackImg from "../../assets/go-back-arrow.png";
 import * as Haptics from "expo-haptics";
 import appStyles from "./AppStyles";
-import { AsyncStorage, NativeModules, Picker } from 'react-native';
+import { Picker } from 'react-native';
 import * as firebase from 'firebase';
 import { AntDesign } from '@expo/vector-icons';
 import translate from "app/Components/getLocalizedText";
@@ -36,7 +34,7 @@ const SettingScreen = (props) => {
   const [babyDOB, setBabyDOB] = useState(null);
   const [pregnant, setPregnant] = useState(null);
   const datetimeField = useRef(null);
-  const [databaseInfo, setDatabaseInfo] = useState([])
+  const [databaseInfo, setDatabaseInfo] = useState([]);
   let _isMounted = false;
 
 
@@ -84,7 +82,7 @@ const SettingScreen = (props) => {
             setLiveMiami(liveMiami);
             setBabyDOB(babyDOB);
 
-            setDatabaseInfo(databaseInfo)
+            setDatabaseInfo(databaseInfo);
           }
 
       });
@@ -181,8 +179,8 @@ const SettingScreen = (props) => {
           underlayColor={"transparent"}
           onPress= {goBack}
         />
-      <View style={{ position: 'absolute', right: 30, top: 40 }}>
-        <AntDesign name="logout" size={30} color={appStyles.pinkColor} onPress={() => {
+      <View style={styles.logOutButton}>
+        <AntDesign name="logout" size={28} color={appStyles.pinkColor} onPress={() => {
           AsyncAlert().then((response) => {
             response ? props.logout() : null;
           });
@@ -365,6 +363,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  logOutButton: {
+    position: 'absolute', 
+    right: appStyles.win.height * 0.03, 
+    top: appStyles.win.width * 0.09,
+  }
 });
 
 const backButton = StyleSheet.create({
@@ -386,5 +389,7 @@ const SubmitButton = StyleSheet.create({
   Touchable: appStyles.button.Touchable,
   Text: appStyles.button.Text,
 });
+
+
 
 export default SettingScreen;

@@ -7,7 +7,6 @@ import * as Permissions from 'expo-permissions';
 import * as Calendar from "expo-calendar";
 
 
-
 const config = firebaseAccount;
 
 firebase.initializeApp(config);
@@ -116,11 +115,54 @@ export const registerForPushNotificationsAsync = async (currentUser) => {
   //call the push notification 
 }
 
-export const uploadImage = async (uri) => {
+export const uploadImage = async(uri, user, fileName, documents, setDocuments) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  var ref = firebase.storage().ref().child("my-image");
-  return ref.put(blob);
+  const uploadDocument = firebase.storage().ref(user.uid + '/' + fileName).put(blob);
+
+  uploadDocument.on('state_changed',
+    (snapshot) => {
+      //process loading 
+    },
+    (error) => {
+      console.log(error.message);
+    },
+    () => {
+      //successfull uploading and updating the documents state array
+      grabImages(user, documents, setDocuments);
+    }
+  );
+  
+}
+
+export const grabImages = (user, documents, setDocuments) => {
+  var storageRef = firebase.storage().ref(user.uid);
+  // Now we get the references of these images
+  storageRef.listAll().then(function(result) {
+    result.items.forEach(function(imageRef) {
+      // Push to list of objects representing documents by url and name
+      imageRef.getDownloadURL().then(function(url){
+        makeDocumentsList(url, imageRef.name, documents, setDocuments);
+      })
+      //displayImage(imageRef);
+    });
+  }).catch(function(error) {
+    // Handle any errors
+  });
+}
+
+
+const makeDocumentsList = (url, name, documents, setDocuments) => {
+  let found = false;
+  documents.forEach(item => {if(item.url == url){found = true}});
+
+  if(!found){
+  //created an object to insert the url and name files
+  object = {url: url, name: name}
+
+  //updating the document state to display it on the phone.
+  setDocuments(prevArray => [...prevArray, object]);  
+  }
 }
 
 export const getUid = () => {
@@ -171,3 +213,42 @@ export const fetchAppointment = async (uid, setObjects, _isMounted) => {
 export const addAppointment = async (uid, appointmentInfo) => {
   firebase.database().ref("users/" + uid + "/appointments").push(appointmentInfo).catch((err) => console.log(err));
 }
+
+export const addReference = async (uid, referenceInfo) => {
+  firebase.database().ref("users/" + uid + "/references").push(referenceInfo).catch((err) => console.log(err));
+}
+
+export const fetchReference = async (uid, setReferences, _isMounted) => {
+  _isMounted = true;
+  if (uid !== null){
+    await firebase.database().ref("users/" + uid + "/references/").once("value", (snapshot) => {
+      snapshot.forEach(function(childSnapshot) {
+        let childKey = childSnapshot.key;
+        let childData = childSnapshot.val();
+        console.log(childKey);
+        console.log(childData);
+        if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (_isMounted) {
+            setReferences(prevArray => [...prevArray, childSnapshot]);
+          }
+        }
+      });
+    }).catch((err) => console.log(err.message));
+  } else {
+    alert("Error: Couldn't get Reference Info");
+  }
+  
+}
+
+export const deleteReference = async (id, uid, references, setReferences,) => {
+  if (uid !== null) {
+
+    setReferences(references.filter((item) => item.key !== id));
+    const reference = firebase.database().ref('users/' + uid + '/references/' + id);
+    return reference.remove().catch((err) => console.log(err.message));
+
+  } else {
+    console.log("Error: Couldn't get the Reference Info");
+  }
+
+} 

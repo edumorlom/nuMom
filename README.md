@@ -1,6 +1,6 @@
-# Keeping Moms and Infants Healthy (nuMom) -- Mobile Application <version 2.0>
+# Keeping Moms and Infants Healthy (nuMom) -- Mobile Application <version 3.0>
 
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes
+Authors: Moises Bentolila, Eduardo Morales, Gabriel Alfonso, Michael Llane, Noe Velasquez, Amin Sheikhnias
 
 Product Owner: Jean Hannan
 
@@ -24,29 +24,23 @@ The following tree structure will be useful to visualize how the project is stru
 
 │       ├── assets
 
-│       │   ├── fonts
-
 │       │   ├── icons
 
 │       │   └── images
+
+│       ├── functions (Cloud functions that serve as an API that lives in the Cloud)
 
 │       ├── node_modules (inside here are all the modules installed after running ``npm install``)
 
 │       └── src
 
-│           ├── actions
+│           ├── Components
 
-│           ├── components
+│           │   └── components
 
-│           ├── constants
+│           ├── JSON files
 
-│           ├── context
-
-│           ├── functions
-
-│           ├── public
-
-│           └── screens
+│           └── documents
 
 ├── Documentation
 
@@ -69,10 +63,6 @@ The root of the ```React-Native-App/src``` directory is where all the source cod
 
 
 Within the root of the ```React-Native-App``` directory is a file called ```package.json```, which defines the scripts that allows to run the application and contains meta-data about the project, in addition to defining the project dependencies.
-
-
-
-Inside the ```React-Native-App/src/screens``` directory is where all the front end(screns) code lies. All development for the front end must be done inside this directory. Static files, such as images, fonts and icons must be stored in the ```src/assets/images``` directory.
 
 
 
