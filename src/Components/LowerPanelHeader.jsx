@@ -9,6 +9,8 @@ import * as Haptics from "expo-haptics";
 import GestureRecognizer from "react-native-swipe-gestures";
 import translate from "app/Components/getLocalizedText";
 
+//This component is the header for the lowerPanel
+//It holds the backButton and the panelName
 export default function LowerPanelHeader(props) {
 
   const [fullScreen, setFullScreen] = useState(false);
@@ -68,7 +70,7 @@ export default function LowerPanelHeader(props) {
       config={{ velocityThreshold: 0.4, directionalOffsetThreshold: 100 }}
     >
       <>
-      { fullScreen ?
+      { fullScreen ? //Some padding on top when in fullScreen mode
         <Text style={{height: appStyles.win.height * 0.03}} > </Text> 
         : null}
       <View

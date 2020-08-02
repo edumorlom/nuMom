@@ -28,10 +28,10 @@ export default Homepage = props => {
     fetchResources();  //Can only call one function inside useEffect when dealing with asyncs
   },[])
   
-
+  //This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = async () => {
-    sortClinics(await fetchClinics());
-    setShelters(await fetchShelters())
+    sortClinics(await fetchClinics());  //Sorts the fetched clinics
+    setShelters(await fetchShelters()); //Stores the fetched shelters, you could sort them by copying the logic from sortClinics
     
   }
 
@@ -56,22 +56,23 @@ export default Homepage = props => {
   let sortClinics = async (clinics) => {
     try {
       let position = await getPosition();
-      let Clinics = clinics;  //For mutation
+      let Clinics = clinics;  //For mutation, cant mutate param
       let latitude = position.coords.latitude
       let longitude = position.coords.longitude
       Clinics.forEach((clinic) => {
         //Returns a precise distance between the two coordinates given (Clinic & User)
         let dist = getPreciseDistance(clinic.coordinate, { latitude: latitude, longitude: longitude });
         let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2));  //Convert meters to miles with 2 decimal places 
-        clinic.distance = distanceInMiles;
+        clinic.distance = distanceInMiles; //store the distance as a property of clinic
       });
       Clinics.sort((a, b) => { return a.distance - b.distance; }); //Sort by lowest distance
       setClinics(Clinics);
       setSortedClinics(Clinics);
-      //SortedClinics is never changed, where as clinics does get filtered and therefore changed
+      //SortedClinics is never changed, where as clinics does get changed
     } catch (err) { console.error(err) }
   }
 
+  //Gets the current user position
   let getPosition = (options) => {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);

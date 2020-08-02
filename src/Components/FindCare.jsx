@@ -42,17 +42,18 @@ export default function FindCare(props) {
 
     let clinics = props.sortedClinics;
                                
-
+    //Filters clinics based on the two filters passed
     let filterClinics = (distance, service) => {
-        if (distance !== 10000 && clinics) {
-            clinics = clinics.filter(function (clinic) {
+        if (distance !== 10000 && clinics) {  //if distance filter is not default value
+            clinics = clinics.filter(function (clinic) {  //filter by distance
                 return clinic.distance <= distance;
             });
         }
         
-        if (service !== 'All' && clinics) {
-            clinics = clinics.filter((clinic) => clinic.services.includes(service))
+        if (service !== 'All' && clinics) { //if service filter is not default value
+            clinics = clinics.filter((clinic) => clinic.services.includes(service))  //filter by service
         }
+        //Update the states with the new info
         props.setClinics(clinics);
         props.setFilters([distance, service]);
         setDist(distance);
@@ -62,7 +63,7 @@ export default function FindCare(props) {
     let servicesArray = ["All", "Education", "Support & Counseling", "Free Materials", "Referrals", "STD Tests", "STD Treatment", "Yearly Exam", "Pregnancy Tests", "Ultrasound", "Immunization", "Abortions", "Medical Care", "Lab services"];
     
     let services = servicesArray.map ((service) => 
-        ({label: translate(service), value: service}))  //Change label to adjust for different languages
+        ({label: translate(service), value: service})) //Creates an array of dropdown data
 
     let distances = [ {label: translate('All'),value: 10000}, {label: ('5 '+ translate('Miles')),value: 5.5}, 
     {label: ('10 '+ translate('Miles')),value: 10.5}, {label: ('15 '+ translate('Miles')),value: 15.5}, {label: ('20 '+ translate('Miles')),value: 20.5} ]
@@ -72,7 +73,7 @@ export default function FindCare(props) {
     return (
         //The <> tag is shorthand for React.Fragment <= look it up
         <>
-            {props.filterToShow && 
+            {props.filterToShow &&    //If filter set to show, display the filter dropdown
             <View style={{flexDirection: "row", height: window.height * 0.03}}>
                 { <Dropdown containerStyle= {{...styles.Dropdown, right: '30%'}} dropdownOffset= {{top: 0, bottom: 0, left: 0}} pickerStyle= {styles.Picker} inputContainerStyle={{ borderBottomColor: 'transparent'}} textAlign= "center" itemTextStyle= {{alignSelf: 'center'}} fontSize= {12} data={distances} label={translate("Distance")} value= {dist}  useNativeDriver={true} onChangeText={(value,index,data) => filterClinics(value, service)} /> }
 

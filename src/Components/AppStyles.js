@@ -1,4 +1,4 @@
-
+//This file provides the styles for the whole App
 import { RFValue } from "react-native-responsive-fontsize";
 import { Dimensions, Platform } from "react-native";
 
@@ -166,6 +166,9 @@ export default {
         position: 'absolute'
     },
 
+    //The styles for the Buttons dictate which type of button will be displayed
+    //For instance if you don't include a Text property there won't be any text
+    
     PanelSelectionButton: {
         Touchable: {
             margin: win.height * 0.009,
