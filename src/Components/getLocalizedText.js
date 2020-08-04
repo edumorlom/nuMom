@@ -12,7 +12,7 @@ let deviceLanguage = Platform.OS === "ios"
 NativeModules.SettingsManager.settings.AppleLocale
 : NativeModules.I18nManager.localeIdentifier
 
-
+//Translates general text in the app
 export default function getLocalizedText(key) {
     if (!deviceLanguage) return en_US[key];
     else if (deviceLanguage.includes("es")) return es_ES[key];
@@ -22,6 +22,7 @@ export default function getLocalizedText(key) {
     else return en_US[key];
 }
 
+//Translates the STD info from the learn tab
 export function STDTranslate(key) {
     if (!deviceLanguage) return en_STD[key];
     else if (deviceLanguage.includes("es")) return es_STD[key];

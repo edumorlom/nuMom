@@ -11,9 +11,6 @@ export default function Map (props) {
     const [region, setRegion] = useState(defaultRegion);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(true);
-    //The following is to rerender the Map after the user allows location tracking
-   /*  const [, updateState] = useState();
-    const forceUpdate = useCallback(() => updateState({}), []); */
 
     useEffect(() => {
         onMount();
@@ -25,6 +22,7 @@ export default function Map (props) {
         setLoading(false);
     }
 
+    //Gets the user location for the Map
     let getLocationAsync = async () => {
         let {status} = await Location.requestPermissionsAsync();
         if(status!=='granted'){
@@ -44,7 +42,8 @@ export default function Map (props) {
      
         return (
             <>
-            {loading ? <Image
+            {loading ? //While loading is true, show a loading gif, until finished loading then show Map
+            <Image
             style={{
               height: 200,
               width: 200,
@@ -78,6 +77,7 @@ export default function Map (props) {
                 }}
                 showsUserLocation={true}
                 >
+                {/* Display markers for each clinic */}
                 {props.clinics.map((clinic, index) => (
                     <Marker
                         key={index}
@@ -91,6 +91,7 @@ export default function Map (props) {
                         }}
                     />))
                 }
+                {/* Display markers for each shelter */}                
                 {props.shelters.map((shelter, index) => (
                     <Marker
                         key={index}

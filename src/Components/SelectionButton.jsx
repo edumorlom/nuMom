@@ -3,7 +3,7 @@ import appStyles, { borderRadius, greyColor, shadow } from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 
-
+//Very similar to Button.jsx but it has a specific functionality, it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function SelectionButton(props) {
 
     let onPress = () => {
@@ -37,12 +37,6 @@ export default function SelectionButton(props) {
         />
     }
 
-    /*  let displayContent = () => {
-         return (<>
-             {props.style.Image && showImage()}
-             {props.style.Text && showText()}
-         </>);
-     } */
 
     return (
         <TouchableHighlight

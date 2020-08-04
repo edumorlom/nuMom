@@ -3,12 +3,17 @@ import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
 
+/* Depending on the props.style passed to this component, it will output a completely different button
+so by manipulating the props.style you can design the button you want without having to create a new Component */
 export default function Button(props){
     let onPress = () => {
         Haptics.selectionAsync().then();
         props.onPress();
     };
 
+    //This function runs if there is a View property engulfing text or image
+    //Note that if you have View you can't also have Image
+    //You would need to have ImageInView (for consistency)
     let withView = () => {
         return <View style = {props.style.View}> 
             {props.style.Image && <Image style= {props.style.Image} source={props.icon}/>}
@@ -22,16 +27,17 @@ export default function Button(props){
             </View>}
         </View> 
     } 
-
+    //If Text property exists
     let showText = () => {
-        //props.style.Text && props.style.Text means that if style.Text exists pass it to the Text style, otherwise pass nothing
         return <Text style={props.style.Text}>{props.text}</Text>  
     }
 
+    //If Subtext property exists
     let showSubtext = () => {
         return <Text style={props.style.Subtext}>{props.subtext}</Text>
     }
 
+    //If Image property exists
     let showImage = () => {
         return <Image style= {props.style.Image} source={props.icon}/>
     }
@@ -44,9 +50,10 @@ export default function Button(props){
                 style={props.style.Touchable && props.style.Touchable}  
                 onPress={onPress}
                 underlayColor={props.style.underlayColor ? props.style.underlayColor : underlayColor}
-                //appStyles.blueColor
             >
             <>
+                {/* Calls the function conditionally note the && operator evaluates the right side
+                only if the left side is truthy (a js term) */}
                 {props.style.View && withView()}
                 {props.style.Text && showText()}
                 {props.style.Subtext && showSubtext()}

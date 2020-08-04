@@ -27,7 +27,6 @@ export const createUserWithEmailAndPassword = (email, password) => {
 export const logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
 
 
-//Change this function to use ref.update instead of set
 export const storeObjectInDatabase = (uid, object) => {
   if (!uid) return;
   getUserInfo(uid).on("value", (snapshot) => {
@@ -55,7 +54,7 @@ export const saveUserInfo = (uid, phoneNumber, fullName, dob, pregnant, infant, 
 
 };
 
-//Hardcoded to work only inside the US (+1). Would have to be changed for other countries.
+//Calls the sendCustomSMS cloud function
 export const sendWelcomeSMS = async (fullName, phoneNumber) => {
   let deviceLanguage = Platform.OS === 'ios' ? NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0] : NativeModules.I18nManager.localeIdentifier;
   phoneNumber = phoneNumber.substring(0, 2) === '+1' ? phoneNumber : '+1' + phoneNumber;
@@ -75,9 +74,10 @@ export const sendWelcomeSMS = async (fullName, phoneNumber) => {
   );
 }
 
-
+//Gets a reference of a specific user
 export const getUserInfo = (uid) => firebase.database().ref("users/" + uid);
 
+//fetches a given property from the current user
 export const getUserData = async (property) => {
   let uid = firebase.auth().currentUser.uid;
   let address = `users/${uid}/${property}`;
@@ -88,13 +88,14 @@ export const getUserData = async (property) => {
   return value;
 }
 
-
+//Gets a ref, any ref
 export const getRef = (address) => firebase.database().ref(address);
 
 export const passwordReset = (email) => {
   return firebase.auth().sendPasswordResetEmail(email)
 }
 
+//Asks for notifications permission
 export const registerForPushNotificationsAsync = async (currentUser) => {
   const { existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
   let finalStatus = existingStatus;
@@ -165,6 +166,7 @@ const makeDocumentsList = (url, name, documents, setDocuments) => {
   }
 }
 
+//Gets current Uid
 export const getUid = () => {
   return firebase.auth().currentUser.uid;
 }

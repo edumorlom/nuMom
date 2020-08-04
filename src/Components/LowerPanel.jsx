@@ -39,6 +39,7 @@ export default LowerPanel = props => {
     fullScreenPanel(fullScreen);
   }, [fullScreen])
 
+  //This function makes an Anination for moving the lowerPanel up and down
   let movePanel = (moveUp) => {
       let destination = moveUp ? win.height * 0.30 : win.height * 0.50;
       Animated.timing(moveAnim, {
@@ -48,6 +49,7 @@ export default LowerPanel = props => {
     
   };
 
+  //This function makes an Anination for making the lowerPanel fullScreen
   let fullScreenPanel = (moveUp) => {
     let destination = moveUp ? 0 : win.height * 0.30;
       Animated.timing(moveAnim, {
@@ -60,6 +62,10 @@ export default LowerPanel = props => {
     isFullScreen ? setFullScreen(!fullScreen) : setFullPanel(!fullPanel)
   }
 
+  /* The following design is quite strange but also brilliant, I came up with it :)
+  This is an object that has components as properties
+  So to call a specific component you only need to know the name of the property (component)
+  and call it like: lowerPanelContent[property]  */
   let lowerPanelContent = {
     findCare: <FindCare clinics={props.clinics} sortedClinics={props.sortedClinics} setClinicToView={props.setClinicToView} setClinics={props.setClinics} setFilters={props.setFilters} filters={props.filters} filterToShow={filterToShow} setLowerPanelContent={props.setLowerPanelContent} />,
     shelters: <Shelters shelters={props.shelters} setShelterToView={props.setShelterToView} setLowerPanelContent={props.setLowerPanelContent} />,
@@ -87,6 +93,7 @@ export default LowerPanel = props => {
           setFullScreen = {setFullScreen} fullScreen={fullScreen} setIsFullScreen={setIsFullScreen}
           />
         )}
+        {/* Here we call the component from the object as expressed above */}
         {lowerPanelContent[props.lowerPanelContent]}
       </Animated.View>
     );
