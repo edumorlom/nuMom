@@ -80,7 +80,11 @@ Inside the root of the ```React-Native-App/src/functions``` directory is another
 
 npm install -g npm
 
-npm install expo-cli --global
+npm install -g expo-cli
+
+npm install expo
+
+expo install
 
 ```
 
@@ -98,7 +102,7 @@ git clone <the link to the project>
 
 Install the expo client on your mobile device or install the Android/Iphone simulator on your computer
 
-ios: https://apps.apple.com/app/apple-store/id982107779
+iOS: https://apps.apple.com/app/apple-store/id982107779
 
 Android: https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www
 
