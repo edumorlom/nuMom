@@ -10,7 +10,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^3.0.2",
     "@react-native-community/picker": "^1.8.0",
-    "expo": "^39.0.0",
+    "expo": "^39.0.3",
     "expo-calendar": "~8.5.0",
     "expo-constants": "~9.2.0",
     "expo-haptics": "~8.3.0",
@@ -23,6 +23,7 @@
     "firebase-functions": "^3.7.0",
     "geolib": "^3.3.1",
     "moment": "^2.27.0",
+    "paper": "^0.12.11",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.0.tar.gz",
@@ -32,10 +33,12 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-maps": "0.27.1",
     "react-native-masked-text": "^1.13.0",
-    "react-native-material-dropdown": "^0.11.1",
+    "react-native-material-dropdown-v2": "^0.11.1",
     "react-native-modal-datetime-picker": "^9.0.0",
+    "react-native-paper": "^4.2.0",
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
+    "react-native-vector-icons": "^7.1.0",
     "twilio": "^3.47.0"
   },
   "devDependencies": {
