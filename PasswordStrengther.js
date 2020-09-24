@@ -1,71 +1,68 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TextInput} from 'react-native';
 
-class App extends React.Component {
-  state = {
-    password: "",
-    strength: 0,
-    strengthResponse: "",
-    strengthColor: ""
-  }
-
-  testFunctions = (e) => {
-    this.checkLength(e)
-    this.checkTyping(e)
-    this.checkStrength(this.state.strength)
-  }
-
-  checkLength = (e) => {
-    this.setState({strength: e.target.value.length})
-  }
-
-  checkTyping = (e) => {
-    this.setState({password: e.target.value})
-  }
-
-  checkStrength = (strength) => {
-    strength += 1
-    if(strength >= 1 && strength <= 4)
-    {
-      this.setState({strengthResponse: "Too easy"})
-      this.setState({strengthColor: "red"})
-    }
-    else if(strength >= 5 && strength <= 9)
-    {
-      this.setState({strengthResponse: "Good"})
-      this.setState({strengthColor: "orange"})
-    }
-    else if(strength >= 10 && strength <= 14)
-    {
-      this.setState({strengthResponse: "Very Good"})
-      this.setState({strengthColor: "green"})
-    }
-    else if(strength > 14)
-    {
-      this.setState({strengthResponse: "Excellet"})
-      this.setState({strengthColor: "blue"})
-    }
-    else
-    {
-      this.setState({strengthResponse: "Please choose a password"})
-      this.setState({strengthColor: "black"})
-    }
-  }
-
+const displayCheckPassword = (list) => {
+  let stre = list[0]
+  let col = list[1]
   
+  const styles = StyleSheet.create({
+    strength: {
+      color: col
+    }
+  });
+ 
+  return (
+    <Text style={styles.strength}>
+       {stre}
+    </Text>
+  );
 
-  render()
+}
+const checkPassword = (password) => {
+  let passwordLength = password.length
+  let list = [2]
+  if(passwordLength >= 1 && passwordLength <= 4)
   {
-    return(
-      <div>
-        <h1>{this.state.strength}</h1>
-        <h1>{this.state.password}</h1>
-        <h1 style={{color: this.state.strengthColor}}>{this.state.strengthResponse}</h1>
-        <input type="text" onChange={this.testFunctions} value={this.state.password}></input>
-      </div>
-    )
+    list = ["Too easy", 'red']
   }
-  
+  else if(passwordLength >= 5 && passwordLength <= 9)
+  {
+    list = ["Good", 'orange']
+  }
+  else if(passwordLength >= 10 && passwordLength <= 14)
+  {
+    list = ["Very Good", 'green']
+  }
+  else if(passwordLength >= 15)
+  {
+    list = ["Excellent", 'blue']
+  }
+  else
+  {
+    list = ["Please type a password", 'black']
+  }
+  return displayCheckPassword(list)
+}
+
+const App = () => {
+  const [password, setPassword] = useState('')
+  const name = "leo"
+  return (
+    <View>
+      <Text>Hi {name}, please enter a password!</Text>
+      <TextInput
+        style={{
+          height: 40,
+          borderColor: 'gray',
+          borderWidth: 1
+        }}
+        placeholder="Enter your password here"
+        onChangeText={password => setPassword(password)}
+        defaultValue={password}
+      />
+      {checkPassword(password)}
+    </View>
+  );
 }
 
 export default App;
