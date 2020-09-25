@@ -27,7 +27,7 @@ export default SignUpPassword = (props) => {
             else if (password.length >= 10 && password.length <= 14) setPasswordLength('Very Good.');
             else if (password.length >= 15) setPasswordLength('Excellent!') ;
         }).done();
-        AsyncStorage.getItem('lengthMessage').then((value) => {
+        AsyncStorage.getItem('color').then((value) => {
             if (password.length >= 1 && password.length <= 4) setPasswordColor('lightgreen');
             else if (password.length >= 5 && password.length <= 9) setPasswordColor('green');
             else if (password.length >= 10 && password.length<= 14) setPasswordColor('darkgreen');
