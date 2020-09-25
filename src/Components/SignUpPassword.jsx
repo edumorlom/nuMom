@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import PassMeter from "react-native-passmeter"
 import appStyles from './AppStyles';
 import Button from "./Button";
 import translate from "app/Components/getLocalizedText";
@@ -8,6 +9,9 @@ export default SignUpPassword = (props) => {
 
     const [password, setPassword] = useState('');
     const [repeat, setRepeat] = useState('');
+    const MIN_LEN = 6,
+             MAX_LEN = 15,
+             PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
     
     useEffect(() => {
         AsyncStorage.getItem('pass').then((value) => {
@@ -41,15 +45,23 @@ export default SignUpPassword = (props) => {
                         alignItems: 'center',
                         position: 'absolute',
                     }}>
-                        <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
+                       <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             
-                            <TextBox placeholder={translate("passwordInput")} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
-                        
-                            <TextBox placeholder={translate("repeatPasswordInput")} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
-                            
+                            <TextBox placeholder={translate("passwordInput")} maxLength={MAX_LEN} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
+
+                            <TextBox placeholder={translate("repeatPasswordInput")} maxLength={MAX_LEN} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
                         </View>
-                    </View>
+                        <Text style={appStyles.regularFontSize} >{translate("passwordStrength")}</Text>
+
+                        <PassMeter
+                            showLabels
+                            password={password}
+                            maxLength={MAX_LEN}
+                            minLength={MIN_LEN}
+                            labels={PASS_LABELS}
+                        />
+                        </View> 
                     <View style={{
                         width: '100%',
                         justifyContent: 'center',
