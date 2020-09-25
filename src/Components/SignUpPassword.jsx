@@ -6,7 +6,10 @@ import translate from "app/Components/getLocalizedText";
 import { ColorPropType } from "react-native";
 import {regularFontSize} from './AppStyles'
 
-const commonPasswords = ['123456', '123456789', 'qwerty', '1234567', 'password', '12345678', '12345', '	iloveyou', 'qwerty', 'admin', '111111', '123123', 'abc123', 'qwerty123', 'Too easy', 'Type a password', '1q2w3e4r', 'qwertyuiop', 'password1', 'dragon', 'princess'];
+const numberRegX = /\d/;
+const lowerRegX = /[a-z]/;
+const upperRegx = /[A-Z]/;
+const specialCharRegX = /[!@#$%^&*_+\-?=]/;
 
 export default SignUpPassword = (props) => {
 
@@ -14,6 +17,12 @@ export default SignUpPassword = (props) => {
     const [repeat, setRepeat] = useState('');
     const [lengthColor, setLengthColor] = useState('black');
     const [lengthMessage, setLengthMessage] = useState('Type a password');
+    const [caseColor, setCaseColor] = useState('black');
+    const [caseMessage, setCaseMessage] = useState('Uppercase and lowercase letters');
+    const [numberColor, setNumberColor] = useState('black');
+    const [numberMessage, setNumberMessage] = useState('Include a number');
+    const [specCharColor, setSpecCharColor] = useState('black');
+    const [specCharMessage, setSpecCharMessage] = useState('Special character (!@#$%^&*_+-?=)');
     const [matchColor, setMatchColor] = useState('');
     const [matchMessage, setMatchMessage] = useState('');
     
@@ -34,9 +43,15 @@ export default SignUpPassword = (props) => {
             alert(translate("fillOutAllFields"))
         } else if (password.length < 6){
             alert(translate("passwordTooShort"))
-        } else if (commonPasswords.includes(password)){
-            alert('No commonly used passwords please')
-        }else {
+        } else if (!lowerRegX.test(password)) {
+            alert('Your password must include at least one lowercase letter')
+        } else if (!upperRegx.test(password)){
+            alert('Your password must include at least one capital letter')
+        } else if (!numberRegX.test(password)){
+            alert('Your password must include a number')
+        } else if (!specialCharRegX.test(password)){
+            alert('Your password must include a special character')
+        } else {
             props.setUserInfo({password: password});
             AsyncStorage.setItem('pass', password);
             AsyncStorage.setItem('repeat', repeat);
@@ -48,7 +63,39 @@ export default SignUpPassword = (props) => {
         setPassword(password);
         setLengthColor(onChangeLengthColor(password.length));
         setLengthMessage(onChangeLengthMessage(password.length));
+        onChangeCase(password);
+        if (numberRegX.test(password)) {
+            setNumberColor('green');
+            setNumberMessage('Has a number');
+        } else {
+            setNumberColor('red');
+            setNumberMessage('Does not have a number');
+        }
+        if (specialCharRegX.test(password)) {
+            setSpecCharColor('green');
+            setSpecCharMessage('Has a special character');
+        } else {
+            setSpecCharColor('red');
+            setSpecCharMessage('No special character (!@#$%^&*_+-?=)');
+        }
     };
+
+    const onChangeCase = (password) => {
+        if (lowerRegX.test(password) && upperRegx.test(password)) {
+            setCaseColor('green');
+            setCaseMessage('Uppercase and lowercase letters');
+        } else if (lowerRegX.test(password) && !upperRegx.test(password)) {
+            setCaseColor('red');
+            setCaseMessage('No uppercase letters');
+        } else if (!lowerRegX.test(password) && upperRegx.test(password)) {
+            setCaseColor('red');
+            setCaseMessage('No lowercase letters');
+        } else {
+            setCaseColor('red');
+            setCaseMessage('No uppercase nor lowercase letters');
+        }
+        
+    }
 
     const onChangeRepeat = (repeat) => {
         setRepeat(repeat);
@@ -63,17 +110,17 @@ export default SignUpPassword = (props) => {
     };
 
     const onChangeLengthColor = (length) => {
-        if (length == 0)    return 'black';
-        else if (length >= 1 && length <= 4) return 'lightgreen' ;
-        else if (length >= 5 && length <= 9) return 'green' ;
-        else if (length >= 10 && length <= 14) return 'darkgreen' ;
+        if (length == 0)    return 'red';
+        else if (length >= 1 && length <= 5) return 'orange' ;
+        else if (length >= 6 && length <= 9) return 'lightgreen' ;
+        else if (length >= 10 && length <= 14) return 'green' ;
         else if (length >= 15)  return 'blue' ;
     };
 
     const onChangeLengthMessage = (length) => {
         if (length == 0)    return 'Type a password';
-        else if (length >= 1 && length <= 4) return 'Too easy' ;
-        else if (length >= 5 && length <= 9) return 'Good' ;
+        else if (length >= 1 && length <= 5) return 'Too short' ;
+        else if (length >= 6 && length <= 9) return 'Good' ;
         else if (length >= 10 && length <= 14) return 'Very Good' ;
         else if (length >= 15)  return 'Excellent' ;
     };
@@ -91,6 +138,9 @@ export default SignUpPassword = (props) => {
                             
                             <TextBox placeholder={translate("passwordInput")} onChangeText={onChangePassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
                             <Text style={{color: lengthColor, marginLeft: 9, fontSize: regularFontSize}}>{lengthMessage}</Text>
+                            <Text style={{color: caseColor, marginLeft: 9, fontSize: regularFontSize}}>{caseMessage}</Text>
+                            <Text style={{color: numberColor, marginLeft: 9, fontSize: regularFontSize}}>{numberMessage}</Text>
+                            <Text style={{color: specCharColor, marginLeft: 9, fontSize: regularFontSize}}>{specCharMessage}</Text>
                             <TextBox placeholder={translate("repeatPasswordInput")} onChangeText={onChangeRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
                             <Text style={{color: matchColor, marginLeft: 9, fontSize: regularFontSize}}>{matchMessage}</Text>
                             
