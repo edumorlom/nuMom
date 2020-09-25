@@ -44,7 +44,7 @@ export default SignUpPassword = (props) => {
         } else if (password.length < 6){
             alert(translate("passwordTooShort"))
         } else if (password == "password" || password == "qwerty"){
-            alert(translate("Make your password a bit more original to avoid your account from being stolen"))
+            alert("Make your password a bit more original to avoid your account from being stolen")
         } else {
             props.setUserInfo({password: password});
             AsyncStorage.setItem('pass', password);
@@ -68,7 +68,7 @@ export default SignUpPassword = (props) => {
                         <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             
-                            <TextBox placeholder={translate("passwordInput")} onChangeText={setPassword,setPasswordColor,setPasswordLength} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
+                            <TextBox placeholder={translate("passwordInput")} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
                             <Text style={{color: passwordColor,}}>{passwordLength}</Text>
                             <TextBox placeholder={translate("repeatPasswordInput")} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
                             
