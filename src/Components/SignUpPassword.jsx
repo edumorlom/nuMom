@@ -12,7 +12,7 @@ const upperRegx = /[A-Z]/;
 const specialCharRegX = /[!@#$%^&*_+\-?=]/;
 
 export default SignUpPassword = (props) => {
-
+    
     const [password, setPassword] = useState('');
     const [repeat, setRepeat] = useState('');
     const [lengthColor, setLengthColor] = useState('black');
@@ -25,6 +25,7 @@ export default SignUpPassword = (props) => {
     const [specCharMessage, setSpecCharMessage] = useState('Special character (!@#$%^&*_+-?=)');
     const [matchColor, setMatchColor] = useState('');
     const [matchMessage, setMatchMessage] = useState('');
+
     
     useEffect(() => {
         AsyncStorage.getItem('pass').then((value) => {
@@ -61,9 +62,13 @@ export default SignUpPassword = (props) => {
 
     const onChangePassword = (password) => {
         setPassword(password);
-        setLengthColor(onChangeLengthColor(password.length));
-        setLengthMessage(onChangeLengthMessage(password.length));
+        onChangeRegX(password);
+        onChangeLength(password.length);
         onChangeCase(password);
+        
+    };
+
+    const onChangeRegX = (password) => {
         if (numberRegX.test(password)) {
             setNumberColor('green');
             setNumberMessage('Has a number');
@@ -109,20 +114,23 @@ export default SignUpPassword = (props) => {
 
     };
 
-    const onChangeLengthColor = (length) => {
-        if (length == 0)    return 'red';
-        else if (length >= 1 && length <= 5) return 'orange' ;
-        else if (length >= 6 && length <= 9) return 'lightgreen' ;
-        else if (length >= 10 && length <= 14) return 'green' ;
-        else if (length >= 15)  return 'blue' ;
-    };
-
-    const onChangeLengthMessage = (length) => {
-        if (length == 0)    return 'Type a password';
-        else if (length >= 1 && length <= 5) return 'Too short' ;
-        else if (length >= 6 && length <= 9) return 'Good' ;
-        else if (length >= 10 && length <= 14) return 'Very Good' ;
-        else if (length >= 15)  return 'Excellent' ;
+    const onChangeLength = (length) => {
+        if (length == 0) {
+            setLengthColor('red');
+            setLengthMessage('Type a password');
+        } else if (length >= 1 && length <= 5) {
+            setLengthColor('orange');
+            setLengthMessage('Too short');
+        } else if (length >= 6 && length <= 9) {
+            setLengthColor('lightgreen');
+            setLengthMessage('Good');
+        } else if (length >= 10 && length <= 14) {
+            setLengthColor('green');
+            setLengthMessage('Very Good');
+        } else {
+            setLengthColor('blue');
+            setLengthMessage('Excellent');
+        }
     };
 
         return (
