@@ -6,7 +6,7 @@
     "ios": "./node_modules/.bin/expo start --ios",
     "web": "./node_modules/.bin/expo start --web",
     "eject": "./node_modules/.bin/expo eject",
-    "fix": "jslint '**/*.jsx' '**/*.js'"
+    "fix": "eslint --fix --ext .jsx,.js src/"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^3.0.2",
@@ -45,7 +45,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
-    "babel-preset-expo": "^8.3.0"
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "babel-preset-expo": "^8.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.21.2"
   },
   "private": true
 }
