@@ -22,6 +22,9 @@ module.exports = {
     "camelcase": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
-    "react/jsx-key": "off"
+    "react/jsx-key": "off",
+    "max-len": "off",
+    "require-jsdoc": "off",
+    "new-cap": "off"
   },
 };
