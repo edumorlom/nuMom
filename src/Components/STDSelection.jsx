@@ -4,7 +4,7 @@ import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import STD from "./STD";
 import STDResources from "./STDResources"
-import { STDTranslate } from "app/Components/getLocalizedText";
+import translate from "app/Components/getLocalizedText";
 
 export default function STDSelection(props) {
   let onPress = (std) => {
@@ -22,7 +22,7 @@ export default function STDSelection(props) {
         <SelectionButton
           style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
-          text={STDTranslate(std.name)}
+          text={translate(std.name)}
           onPress={() => onPress(std)}
         />
       ))}
