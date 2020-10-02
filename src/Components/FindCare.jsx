@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {ScrollView, View, StyleSheet} from "react-native";
 import SelectionButton from "./SelectionButton";
 import clinicLogo from '../../assets/clinic-logo.png';
-import {Dropdown} from "react-native-material-dropdown"
+import {Dropdown} from "react-native-material-dropdown-v2"
 import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
 import translate from "app/Components/getLocalizedText";
 
