@@ -116,7 +116,7 @@
   "Email": "Email",
   "Distance": "Distance",
   "All": "All",
-  "Abortions": "Abortions", 
+  "Abortions": "Abortions",
   "Pregnancy Tests": "Pregnancy Tests",
   "Support & Counseling": "Support & Counseling",
   "Education": "Education",
@@ -136,5 +136,5 @@
   "Yearly Exam": "Yearly Exam",
   "Emergency Testing": "Emergency Testing",
   "Miles": "Miles",
-  "passwordStrength":"Password Strength"
+  "passwordStrength": "Password Strength"
 }

@@ -1,22 +1,28 @@
-import React from "react";
-import { TouchableHighlight, Text, View, ScrollView, Linking } from "react-native";
-import appStyles from "./AppStyles";
-import SelectionButton from "./SelectionButton";
-import STD from "./STD";
-import STDResources from "./STDResources"
-import { STDTranslate } from "app/Components/getLocalizedText";
+import React from 'react';
+import {
+  TouchableHighlight,
+  Text,
+  View,
+  ScrollView,
+  Linking,
+} from 'react-native';
+import {STDTranslate} from 'app/Components/getLocalizedText';
+import appStyles from './AppStyles';
+import SelectionButton from './SelectionButton';
+import STD from './STD';
+import STDResources from './STDResources';
 
 export default function STDSelection(props) {
-  let onPress = (std) => {
-    props.setLowerPanelContent("STDInfo");
+  const onPress = (std) => {
+    props.setLowerPanelContent('STDInfo');
     props.setSTDToView(std);
   };
-  let onPress2 = (stdr) => {
-    Linking.openURL(stdr)
+  const onPress2 = (stdr) => {
+    Linking.openURL(stdr);
   };
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
       {STD().map((std, key) => (
         <SelectionButton

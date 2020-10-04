@@ -1,34 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard",
+    "standard",
+    "prettier",
+    "airbnb",
+    "eslint-config-prettier"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "classes": true,
+      "defaultParams": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "standard",
-        "prettier",
-        "airbnb"
-
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "prettier"
-    ],
-    "rules": {
-        "no-unused-vars": "off",
-        "camelcase": "off",
-        "react/prop-types": "off",
-        "react/display-name": "off",
-        "react/jsx-key": "off",
-        "prettier/prettier": ["error"
-        ]
-    }
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "eslint-plugin-prettier"],
+  "rules": {
+    "no-const-assign": 1,
+    "no-extra-semi": 0,
+    "semi": 0,
+    "no-fallthrough": 0,
+    "no-empty": 0,
+    "no-mixed-spaces-and-tabs": 1,
+    "no-redeclare": 0,
+    "no-this-before-super": 1,
+    "no-undef": 1,
+    "no-unreachable": 1,
+    "no-unused-vars": 1,
+    "no-use-before-define": 0,
+    "constructor-super": 1,
+    "curly": 0,
+    "eqeqeq": 1,
+    "func-names": 1,
+    "valid-typeof": 1,
+    "prettier/prettier": 1,
+    "react/prop-types": 1,
+    "no-console": 1
+  }
 }

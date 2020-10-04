@@ -1,73 +1,79 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, TouchableHighlight, } from "react-native";
-import appStyles from "./AppStyles";
-import Button from "./Button";
-import { TextInputMask } from "react-native-masked-text";
-import translate from "app/Components/getLocalizedText";
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  Keyboard,
+  Text,
+  TouchableOpacity,
+  View,
+  AsyncStorage,
+  TouchableHighlight,
+} from 'react-native';
+import {TextInputMask} from 'react-native-masked-text';
+import translate from 'app/Components/getLocalizedText';
+import appStyles from './AppStyles';
+import Button from './Button';
 
 export default SignUpBabyDob = (props) => {
-
   const [babyDob, setBabyDob] = useState('');
 
   const babyDOB = useRef(null);
-    
-    useEffect(() => {
-        AsyncStorage.getItem('babyDOB').then((value) => {
-            value !== null && value !== '' ? setBabyDob(value) : null;
-        }).done();
-    
-    }, [])
 
-  let setDob = (babyDOB) => {
+  useEffect(() => {
+    AsyncStorage.getItem('babyDOB')
+      .then((value) => {
+        value !== null && value !== '' ? setBabyDob(value) : null;
+      })
+      .done();
+  }, []);
+
+  const setDob = (babyDOB) => {
     setBabyDob(babyDOB);
-    AsyncStorage.setItem("babyDOB", babyDOB);
+    AsyncStorage.setItem('babyDOB', babyDOB);
   };
 
-  let onPress = () => {
+  const onPress = () => {
     if (!babyDob) {
-      alert(translate("fillOutAllFields"));
+      alert(translate('fillOutAllFields'));
     } else if (!isValidDate(babyDob)) {
-      alert(translate("invalidDate"));
+      alert(translate('invalidDate'));
     } else {
-      props.setUserInfo({ babyDOB: babyDob }); 
+      props.setUserInfo({babyDOB: babyDob});
       props.getNextScreen();
     }
   };
 
   let isValidDate = (date) => {
-    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     return regex.test(date);
   };
 
-  
-let titletext = translate("babydob");
+  const titletext = translate('babydob');
 
-    return (
-      <TouchableHighlight
-        style={appStyles.container}
-        underlayColor={"transparent"}
-        onPress={Keyboard.dismiss}
-        accessible={false}
-      >
+  return (
+    <TouchableHighlight
+      style={appStyles.container}
+      underlayColor="transparent"
+      onPress={Keyboard.dismiss}
+      accessible={false}
+    >
       <>
         <View
           style={{
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
           }}
         >
           <Text style={appStyles.titleBlue}>{titletext}</Text>
-          <View style={{ paddingTop: appStyles.win.height * 0.1 }}>
+          <View style={{paddingTop: appStyles.win.height * 0.1}}>
             <TextInputMask
-              placeholder={translate("dob")}
-              type={"datetime"}
+              placeholder={translate('dob')}
+              type="datetime"
               options={{
-                format: "MM/DD/YYYY",
-                validator: function (value, settings) {
-                  let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                format: 'MM/DD/YYYY',
+                validator(value, settings) {
+                  const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                   return regex.test(value);
-                }, //This validator function is read by isValid(), still to be used
+                }, // This validator function is read by isValid(), still to be used
               }}
               style={appStyles.TextInputMask}
               value={babyDob}
@@ -79,21 +85,20 @@ let titletext = translate("babydob");
         </View>
         <View
           style={{
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            bottom: "12%",
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: '12%',
           }}
         >
           <Button
-            style = {appStyles.button}
-            text={translate("continueButton")}
+            style={appStyles.button}
+            text={translate('continueButton')}
             onPress={onPress}
           />
         </View>
       </>
-      </TouchableHighlight>
-    );
-  
-}
+    </TouchableHighlight>
+  );
+};

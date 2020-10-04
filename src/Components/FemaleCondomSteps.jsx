@@ -1,26 +1,27 @@
-import React from "react";
-import { TouchableHighlight, Text, View, ScrollView, Button } from "react-native";
-import appStyles from "./AppStyles";
-import BetterMenu from "./BetterMenu";
-import translate from "app/Components/getLocalizedText";
-import FemaleCondomStep from "./FemaleCondomStep"
-
+import React from 'react';
+import {TouchableHighlight, Text, View, ScrollView, Button} from 'react-native';
+import translate from 'app/Components/getLocalizedText';
+import appStyles from './AppStyles';
+import BetterMenu from './BetterMenu';
+import FemaleCondomStep from './FemaleCondomStep';
 
 export default function FemaleCondomSteps(props) {
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%" }}
+      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
       <Text
         style={{
           fontSize: appStyles.regularFontSize + 1,
-          justifyContent: "center",
+          justifyContent: 'center',
           color: appStyles.blueColor,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           textAlign: 'center',
-          paddingBottom: 15
-        }}>
-        {translate("FemaleCondomHowTo")}</Text>
+          paddingBottom: 15,
+        }}
+      >
+        {translate('FemaleCondomHowTo')}
+      </Text>
 
       {FemaleCondomStep().map((fcs, key) => (
         <BetterMenu
@@ -30,7 +31,6 @@ export default function FemaleCondomSteps(props) {
           icon={fcs.icon}
         />
       ))}
-
     </ScrollView>
   );
 }

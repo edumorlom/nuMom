@@ -1,5 +1,5 @@
 [
-    {
+  {
     "resource": "Eve-Medical Clinic",
     "address": {
       "street": "8603 South Dixie Hwy.",
@@ -15,8 +15,7 @@
     "phoneNumber": "305-707-6096",
     "website": "evemedicalmiami.com/",
     "services": ["Abortions", "Pregnancy Tests"],
-    "other":
-      "website content is available in simplified Chines, French, Haitian Creole, Italian, Portuguese, Russian, and Spanish"
+    "other": "website content is available in simplified Chines, French, Haitian Creole, Italian, Portuguese, Russian, and Spanish"
   },
   {
     "resource": "Healthy Start Program ",
@@ -32,8 +31,7 @@
       "longitude": -80.3555372
     },
     "phoneNumber": "305-324-2400",
-    "website":
-      "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/healthy-start/index.html",
+    "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/healthy-start/index.html",
     "services": ["Support & Counseling", "Education"],
     "other": "Contact E-mail: miamidade@flhealth.gov "
   },
@@ -82,8 +80,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Respect Life Miami",
@@ -106,8 +103,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Respect Life Miami",
@@ -130,8 +126,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Respect Life Miami",
@@ -154,8 +149,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Respect Life Miami",
@@ -178,8 +172,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Respect Life Miami",
@@ -202,8 +195,7 @@
       "Medical Care",
       "Ultrasound"
     ],
-    "other":
-      "services are offered in Spanish, English and Creole as well as other languages"
+    "other": "services are offered in Spanish, English and Creole as well as other languages"
   },
   {
     "resource": "Heartbeat of Miami",
@@ -419,8 +411,7 @@
       "Free Materials ",
       "Support & Counseling"
     ],
-    "other":
-      "Information found online specified they meet with “immigrants and teenage girls” to provide these services as well "
+    "other": "Information found online specified they meet with “immigrants and teenage girls” to provide these services as well "
   },
   {
     "resource": "Hope Women's Centers",
@@ -497,12 +488,10 @@
       "Medicaid Assistance",
       "Food Stamps"
     ],
-    "other":
-      "Clients must fill out an intake form for an individual need assessment. services in English and Spanish"
+    "other": "Clients must fill out an intake form for an individual need assessment. services in English and Spanish"
   },
   {
-    "resource":
-      "South Miami Hospital -Center for Women and Infants -Great Expectations",
+    "resource": "South Miami Hospital -Center for Women and Infants -Great Expectations",
     "address": {
       "street": "6200 SW 73rd St.",
       "apt": "",
@@ -515,11 +504,9 @@
       "longitude": -80.2907
     },
     "phoneNumber": "(786) 662-5026",
-    "website":
-      "baptisthealth.net/en/facilities/south-miami-hospital/maternity/pages/great-expectations-at-south-miami-hospital.aspx",
+    "website": "baptisthealth.net/en/facilities/south-miami-hospital/maternity/pages/great-expectations-at-south-miami-hospital.aspx",
     "services": ["Education", "Support & Counseling"],
-    "other":
-      "English only and available to those delivering at South Miami Hospital"
+    "other": "English only and available to those delivering at South Miami Hospital"
   },
   {
     "resource": "Family Planning",
@@ -535,8 +522,7 @@
       "longitude": -80.21819
     },
     "phoneNumber": "(305) 575-3800",
-    "website":
-      "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+    "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
     "services": [
       "Yearly Exam",
       "Support & Counseling",
@@ -545,8 +531,7 @@
       "STD Tests",
       "Pregnancy Tests"
     ],
-    "other":
-      "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
+    "other": "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
   },
   {
     "resource": "Family Planning",
@@ -562,8 +547,7 @@
       "longitude": -80.19404
     },
     "phoneNumber": " (305) 225-5950",
-    "website":
-      "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+    "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
     "services": [
       "Yearly Exam",
       "STD Treatment",
@@ -572,8 +556,7 @@
       "Support & Counseling",
       "Pregnancy Tests"
     ],
-    "other":
-      "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
+    "other": "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
   },
   {
     "resource": "Family Planning",
@@ -589,8 +572,7 @@
       "longitude": -80.19072
     },
     "phoneNumber": "305-575-3800",
-    "website":
-      "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
+    "website": "miamidade.floridahealth.gov/programs-and-services/clinical-and-nutrition-services/womens-health/women_family%20planning/index.html",
     "services": [
       "Yearly Exam",
       "STD Treatment",
@@ -599,8 +581,7 @@
       "Support & Counseling",
       "Pregnancy Tests"
     ],
-    "other":
-      "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
+    "other": "services are free for adolescents, Sliding scale payments are available, On your first visit, you will be asked to bring information on your income and picture ID to determine the cost, service available in English, Spanish, and Creole "
   },
   {
     "resource": "Nurse Family Partnership",
@@ -618,8 +599,7 @@
     "phoneNumber": "305-541-0210",
     "website": "hscmd.org/programs-initiatives/nurse-family-partnership/#",
     "services": ["Support & Counseling"],
-    "other":
-      "Any woman who is pregnant with her first child, meets incomeeligibility requirements, and lives within the service area can enroll. -Women are encouraged to enroll as early as possible, but no later than 28th week gestation"
+    "other": "Any woman who is pregnant with her first child, meets incomeeligibility requirements, and lives within the service area can enroll. -Women are encouraged to enroll as early as possible, but no later than 28th week gestation"
   },
   {
     "resource": "Compassion Ministries by Florida Baptist Children’s Homes ",
