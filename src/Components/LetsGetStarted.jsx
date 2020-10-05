@@ -4,7 +4,7 @@ import heartBalloon from "../../assets/heart-balloon.png"
 import appStyles from './AppStyles'
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from "expo-haptics";
-import translate from "app/Components/getLocalizedText";
+import translate from "./getLocalizedText";
 
 export default LetsGetStarted = (props) => {
 
