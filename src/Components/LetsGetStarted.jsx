@@ -2,7 +2,7 @@ import {Image, Text, View, Animated} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from 'expo-haptics';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import heartBalloon from '../../assets/heart-balloon.png';
 

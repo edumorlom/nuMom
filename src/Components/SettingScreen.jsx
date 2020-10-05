@@ -13,7 +13,7 @@ import {
 import * as Haptics from 'expo-haptics';
 import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import BackButton from './Button';
 import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
@@ -253,7 +253,9 @@ const SettingScreen = (props) => {
           </View>
 
           <View style={{marginBottom: 15, alignItems: 'center'}}>
-            <Text style={appStyles.blueColor}>{translate('dob')}:</Text>
+            <Text style={appStyles.blueColor}>{translate('dob')}
+:
+</Text>
             <View>
               <TextInputMask
                 type="datetime"
@@ -275,7 +277,9 @@ const SettingScreen = (props) => {
             </View>
           </View>
           <View style={{marginBottom: 10, alignItems: 'center'}}>
-            <Text style={appStyles.blueColor}>{translate('fullName')}:</Text>
+            <Text style={appStyles.blueColor}>{translate('fullName')}
+:
+</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate('fullName')}

@@ -1,7 +1,7 @@
 import {Text, TouchableHighlight, View, Alert} from 'react-native';
 import React from 'react';
 import {Feather} from '@expo/vector-icons';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles, {borderRadius, shadow} from './AppStyles';
 
 export default function AppointmentMenu(props) {

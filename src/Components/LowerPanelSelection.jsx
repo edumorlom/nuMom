@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {MaterialIcons} from '@expo/vector-icons';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import babyBottle from '../../assets/baby-bottle.png';
 import clinicLogo from '../../assets/clinic-logo.png';
 import shelterLogo from '../../assets/shelter-logo.png';

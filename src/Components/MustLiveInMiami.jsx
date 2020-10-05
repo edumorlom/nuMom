@@ -1,6 +1,6 @@
 import {Image, Text, View} from 'react-native';
 import React from 'react';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import miamiImage from '../../assets/palm-tree-beach.png';
 import Button from './Button';

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import * as Calendar from 'expo-calendar';

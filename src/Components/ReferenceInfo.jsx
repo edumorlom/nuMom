@@ -10,7 +10,7 @@ import {
   Modal,
 } from 'react-native';
 import {Feather, AntDesign} from '@expo/vector-icons';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 
 import appStyles, {borderRadius, shadow} from './AppStyles';
 import Button from './Button';
@@ -78,14 +78,20 @@ function ReferenceInfo(props) {
           </TouchableHighlight>
           <View style={{marginHorizontal: 65}}>
             <Text style={styles.TextName}>
-              {translate('Name')}:{name}
+              {translate('Name')}:
+{name}
             </Text>
-            <Text style={styles.TextInfo}>{translate('Specialties')}:</Text>
+            <Text style={styles.TextInfo}>{translate('Specialties')}
+:
+</Text>
             <Text style={styles.TextInfo}>{specialties}</Text>
             <Text style={styles.TextInfo}>
-              {translate('Phone')}:{phone}
+              {translate('Phone')}:
+{phone}
             </Text>
-            <Text style={styles.TextInfo}>{translate('Email')}:</Text>
+            <Text style={styles.TextInfo}>{translate('Email')}
+:
+</Text>
             <Text style={styles.TextInfo}>{email}</Text>
           </View>
         </View>
@@ -104,7 +110,8 @@ function ReferenceInfo(props) {
             />
             <View style={{paddingTop: 50}}>
               <Text style={{...styles.TextName, ...styles.modalTextName}}>
-                {translate('Name')}:{name}
+                {translate('Name')}:
+{name}
               </Text>
               <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>
                 {translate('Specialties')}:
@@ -113,7 +120,8 @@ function ReferenceInfo(props) {
                 {specialties}
               </Text>
               <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>
-                {translate('Phone')}:{phone}
+                {translate('Phone')}:
+{phone}
               </Text>
               <Text style={{...styles.TextInfo, ...styles.modalTextInfo}}>
                 {translate('Email')}:

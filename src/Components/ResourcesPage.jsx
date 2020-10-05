@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Linking} from 'react-native';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import SelectionButton from './SelectionButton';
 import appointments from '../../assets/appointments.png';
 import document from '../../assets/document.png';

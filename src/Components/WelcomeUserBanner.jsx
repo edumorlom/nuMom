@@ -1,6 +1,6 @@
 import {Text, TouchableHighlight, View, Alert} from 'react-native';
 import React, {useState} from 'react';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import {getUid, getUserInfo} from '../Firebase';
 

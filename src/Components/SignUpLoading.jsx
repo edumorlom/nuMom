@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import dnaLoading from '../../assets/dna-loading.gif';
 

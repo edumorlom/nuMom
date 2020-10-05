@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableHighlight, Text, View, ScrollView} from 'react-native';
-import {STDTranslate} from 'app/Components/getLocalizedText';
+import {STDTranslate} from './getLocalizedText';
 import appStyles from './AppStyles';
 import Menu from './Menu';
 import STD from './STD';

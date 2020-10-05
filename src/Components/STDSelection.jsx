@@ -6,7 +6,7 @@ import {
   ScrollView,
   Linking,
 } from 'react-native';
-import {STDTranslate} from 'app/Components/getLocalizedText';
+import {STDTranslate} from './getLocalizedText';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import STD from './STD';

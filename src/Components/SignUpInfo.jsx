@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 

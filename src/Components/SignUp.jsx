@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, AsyncStorage} from 'react-native';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import SignUpInfo from './SignUpInfo';
 import LetsGetStarted from './LetsGetStarted';
 import SignUpPassword from './SignUpPassword';

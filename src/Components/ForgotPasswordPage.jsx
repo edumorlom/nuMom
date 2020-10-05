@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, TextInput as TextBox} from 'react-native';
 import * as Haptics from 'expo-haptics';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import BackButton from './Button';
@@ -65,7 +65,9 @@ const ForgotPasswordPage = (props) => {
       <View
         style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}
       >
-        <Text style={appStyles.titleBlue}>{translate('emailInput')}:</Text>
+        <Text style={appStyles.titleBlue}>{translate('emailInput')}
+:
+</Text>
         <View style={appStyles.TextInput.View}>
           <TextBox
             placeholder={translate('emailInput')}

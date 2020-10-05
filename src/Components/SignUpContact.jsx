@@ -8,7 +8,7 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 

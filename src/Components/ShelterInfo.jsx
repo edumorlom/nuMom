@@ -1,6 +1,6 @@
 import {View, Linking, Text, ScrollView} from 'react-native';
 import React from 'react';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import SelectionButton from './SelectionButton';
 import ActionButton from './Button';
 import directionsArrow from '../../assets/directions-arrow.png';

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TextInput} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 

@@ -11,7 +11,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 // import TextInput from "./TextInput";

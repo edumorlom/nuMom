@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableHighlight, Text, View, ScrollView} from 'react-native';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import butterfly from '../../assets/butterfly.png';
