@@ -6,7 +6,8 @@
     "ios": "./node_modules/.bin/expo start --ios",
     "web": "./node_modules/.bin/expo start --web",
     "eject": "./node_modules/.bin/expo eject",
-    "fix": "./node_modules/.bin/eslint --fix \"**/*.+(js|jsx)\"",
+    "fix": "npm run format && npm run esfix",
+    "esfix": "./node_modules/.bin/eslint --fix \"**/*.+(js|jsx)\"",
     "format": "./node_modules/.bin/prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "dependencies": {
