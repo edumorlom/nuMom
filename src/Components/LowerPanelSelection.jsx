@@ -50,7 +50,7 @@ export default function LowerPanelSelection(props) {
           size={45}
           color= "gray"
           style={styles.userSettingStyle}
-          onPress={() => props.setScreen("setting")}
+          onPress={() => props.setScreen("settings")}
         />
       </View>
       </GestureRecognizer>

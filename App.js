@@ -96,7 +96,7 @@ export default App = () => {
 
 
   let goBack = () => {
-    if (screen === "setting")
+    if (screen === "settings")
       setScreen("homepage")
       if (screen === "forgotPassword")
       setScreen("login")
@@ -121,7 +121,7 @@ export default App = () => {
       } catch (err) {
         setScreen("login");
       }
-    } else if (screen === "setting") {
+    } else if (screen === "settings") {
       return (
         <SettingScreen
           email={appState.email}
