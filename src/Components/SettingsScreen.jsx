@@ -21,7 +21,7 @@ import { AntDesign } from '@expo/vector-icons';
 import translate from "app/Components/getLocalizedText";
 
 
-const SettingScreen = (props) => {
+const SettingsScreen = (props) => {
 
 
 
@@ -196,7 +196,7 @@ const SettingScreen = (props) => {
               fontWeight: 'bold',
               alignSelf: 'center',
               paddingTop: 15
-            }}>{translate('welcomeSetting')}</Text>
+            }}>{translate('welcomeSettings')}</Text>
         </View>
         <View style={{ alignItems: 'center', paddingTop: 25 }}>
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
@@ -392,4 +392,4 @@ const SubmitButton = StyleSheet.create({
 
 
 
-export default SettingScreen;
+export default SettingsScreen;

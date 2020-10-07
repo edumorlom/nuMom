@@ -31,7 +31,7 @@ export default function FindCare(props) {
             style={appStyles.ClinicSelectionButton}
             key={key}
             text={getResourceName(clinic.resource)}
-            subtext={clinic.address.street + '\n' + clinic.address.city + '\n' + clinic.address.state +', '+ clinic.address.zipCode + '\n' + clinic.distance + ' miles'}
+            subtext={clinic.address.street + '\n' + clinic.address.city + '\n' + clinic.address.state + ', ' + clinic.address.zipCode + '\n' + clinic.distance + ' miles'}
             icon={clinicLogo}
             onPress={() => {
             props.setClinicToView(clinic);
@@ -102,4 +102,5 @@ const styles = StyleSheet.create({
         borderColor: greyColor,
         borderRadius: 15,
     }
-  });
+});
+
