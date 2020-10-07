@@ -10,7 +10,7 @@ import {
 } 
 from "./src/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
-import SettingScreen from "./src/Components/SettingScreen";
+import SettingScreen from "./src/Components/SettingsScreen";
 import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
 //import * as firebase from "firebase";
 
