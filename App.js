@@ -123,7 +123,7 @@ export default App = () => {
       }
     } else if (screen === "setting") {
       return (
-        <SettingScreen
+        <SettingsScreen
           email={appState.email}
           password={appState.password}
           setScreen={setScreen}
