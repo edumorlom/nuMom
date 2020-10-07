@@ -533,15 +533,5 @@ export default {
             textAlign: 'center',
         }
     },
-    PasswordChecker: {
-        height: 60,
-        width: win.width * 0.8,
-        margin: 9,
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        fontSize: regularFontSize,
-        textAlign: 'center'
-
-    },
-
+    
 };
