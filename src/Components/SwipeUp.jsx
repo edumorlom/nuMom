@@ -4,8 +4,6 @@ import React from "react";
 import * as Haptics from "expo-haptics";
 import GestureRecognizer from "react-native-swipe-gestures";
 import swipeUpGif from "../../assets/swipe-up-arrow.gif";
-import Button from "./Button";
-import translate from "app/Components/getLocalizedText";
 
 export default function SwipeUp(props){
 
