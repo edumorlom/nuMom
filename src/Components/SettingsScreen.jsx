@@ -18,7 +18,7 @@ import appStyles from "./AppStyles";
 import { Picker } from 'react-native';
 import * as firebase from 'firebase';
 import { AntDesign } from '@expo/vector-icons';
-import translate from "app/Components/getLocalizedText";
+import translate from "./getLocalizedText";
 
 
 const SettingsScreen = (props) => {

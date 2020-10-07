@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import { TouchableHighlight, Text, View, ScrollView, Image } from "react-native";
 import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
+<<<<<<< HEAD
 import translate from "app/Components/getLocalizedText";
 import BetterMenu from "./BetterMenu";
 import FemaleCondomImg from "../../assets/FemaleCondom.png"
+=======
+import translate from "./getLocalizedText";
+import FemaleCondomDoDont from "./FemaleCondomDoDonts"
+import FemaleCondomSteps from "./FemaleCondomSteps"
+import FemaleCondomMain from "./FemaleCondomMain"
+>>>>>>> 70525cfcd8c8c536072f0f2974fbfc377e57bfe5
 
 /* Serves to gather all the text for the Do's and Don'ts section
  * @return array list of condom do's and don'ts

@@ -4,7 +4,7 @@ import SelectionButton from "./SelectionButton";
 import clinicLogo from '../../assets/clinic-logo.png';
 import {Dropdown} from "react-native-material-dropdown-v2"
 import appStyles, {borderRadius, greyColor, shadow} from "./AppStyles";
-import translate from "app/Components/getLocalizedText";
+import translate from "./getLocalizedText";
 
 export default function FindCare(props) {
     const [dist, setDist] = useState(props.filters[0]);

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import LogIn from "app/Components/LogIn";  //absolute import paths
-import SignUp from "app/Components/SignUp";
-import Homepage from "app/Components/Homepage";
+import LogIn from "./src/Components/LogIn";  //absolute import paths
+import SignUp from "./src/Components/SignUp";
+import Homepage from "./src/Components/Homepage";
 import {
   logIn, 
   registerForPushNotificationsAsync, 
   storeObjectInDatabase,
   getUserInfo
 } 
-from "app/Firebase";
+from "./src/Firebase";
 import { AsyncStorage, NativeModules } from "react-native";
-import SettingsScreen from "app/Components/SettingsScreen";
-import ForgotPasswordPage from "app/Components/ForgotPasswordPage";
+import SettingScreen from "./src/Components/SettingsScreen";
+import ForgotPasswordPage from "./src/Components/ForgotPasswordPage";
 //import * as firebase from "firebase";
 
 export default App = () => {
