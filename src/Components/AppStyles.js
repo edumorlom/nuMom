@@ -533,5 +533,5 @@ export default {
             textAlign: 'center',
         }
     },
-    
+
 };
