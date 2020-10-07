@@ -1,4 +1,4 @@
-import {Image, Text, Platform, View, KeyboardAvoidingView} from "react-native";
+import {Image, Text} from "react-native";
 import appStyles from "./AppStyles";
 import React from "react";
 import * as Haptics from "expo-haptics";
