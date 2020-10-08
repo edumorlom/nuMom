@@ -200,7 +200,6 @@ const SettingsScreen = (props) => {
         </View>
         <View style={{ alignItems: 'center', paddingTop: 25 }}>
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate("phoneNumberInput")}
@@ -213,7 +212,7 @@ const SettingsScreen = (props) => {
           </View>
 
           <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{translate("dob")}:</Text>
+            
             <View>
               <TextInputMask
                 type={"datetime"}
@@ -238,7 +237,7 @@ const SettingsScreen = (props) => {
             </View>
           </View>
           <View style={{ marginBottom: 10, alignItems: 'center' }}>
-            <Text style={appStyles.blueColor}>{translate("fullName")}:</Text>
+            
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate("fullName")}
