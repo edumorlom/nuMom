@@ -45,7 +45,6 @@ export default LogIn = props => {
         return (
             <>
                 <Animated.View style={{opacity: fadeValue, height: '100%', width: '100%'}}>
-                    <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false}>
                     <>
                     <ImageBackground source={background} style={{position: 'absolute', opacity: 0.75, width: appStyles.win.width, height: appStyles.win.height}}/>
 
@@ -56,12 +55,11 @@ export default LogIn = props => {
                         <View style={{height: appStyles.win.height * 0.03}}/>
                         <Button style = {appStyles.button} onPress={() => props.login(email, password)} text={translate('signInButton')}/>
                         <Button style={forgotPassword} text= {translate("forgotPassword")} onPress={() => props.setScreen('forgotPassword')} />
+                        <SwipeUp text={translate('swipeUpToSignUp')}
+                         onSwipeUp={() => props.setScreen('signup')}/>
                     </View>
                     </>
-                    </TouchableHighlight>
                 </Animated.View>
-                <SwipeUp text={translate('swipeUpToSignUp')}
-                         onSwipeUp={() => props.setScreen('signup')}/>
             </>
 
   
