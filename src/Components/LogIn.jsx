@@ -37,7 +37,7 @@ export default LogIn = props => {
     let _start = () => {
         Animated.timing(fadeValue, {
             toValue: 1,
-            useNativeDriver: true,
+            useNativeDriver: false,
             duration: 2000
         }).start();
     };
