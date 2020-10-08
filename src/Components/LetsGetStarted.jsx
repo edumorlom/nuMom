@@ -24,7 +24,7 @@ export default LetsGetStarted = (props) => {
     let _start = () => {
         Animated.timing(fadeValue, {
             toValue: 1,
-            useNativeDriver: true,
+            useNativeDriver: false,
             duration: 1000
         }).start();
     };
