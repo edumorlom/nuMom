@@ -1,9 +1,9 @@
-import React, {Component, useState, useEffect} from 'react';
-import MapView, {Marker} from 'react-native-maps';
-import * as Location from 'expo-location';
-import {Image} from 'react-native';
-import appStyles from './AppStyles';
-import Spinner from '../../assets/loading-blue.gif';
+import React, { Component, useState, useEffect } from "react";
+import MapView, { Marker } from "react-native-maps";
+import appStyles from "./AppStyles";
+import * as Location from "expo-location";
+import { Image } from "react-native";
+import Spinner from "../../assets/loading-blue.gif";
 
 export default function Map(props) {
   const defaultRegion = {
@@ -25,11 +25,11 @@ export default function Map(props) {
     setLoading(false);
   };
 
-  // Gets the user location for the Map
+  //Gets the user location for the Map
   let getLocationAsync = async () => {
-    let {status} = await Location.requestPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMessage('Permissions not granted.');
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMessage("Permissions not granted.");
     }
     let location = await Location.getCurrentPositionAsync({});
     let loc = location.coords;
@@ -44,14 +44,14 @@ export default function Map(props) {
 
   return (
     <>
-      {loading ? ( // While loading is true, show a loading gif, until finished loading then show Map
+      {loading ? ( //While loading is true, show a loading gif, until finished loading then show Map
         <Image
           style={{
             height: 200,
             width: 200,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             top: appStyles.win.height * 0.1,
           }}
           source={Spinner}
@@ -60,25 +60,25 @@ export default function Map(props) {
         <MapView
           ref={(ref) => (mapView = ref)}
           initialRegion={region}
-          loadingEnabled
+          loadingEnabled={true}
           onPress={props.onPress}
           provider="google"
-          showsMyLocationButton
-          showsCompass
+          showsMyLocationButton={true}
+          showsCompass={true}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
             bottom: 0,
             right: 0,
             height: appStyles.win.height * 0.5,
           }}
-          // initialRegion={ region }
-          zoomEnabled
+          //initialRegion={ region }
+          zoomEnabled={true}
           onRegionChangeComplete={(region) => {
-            // setRegion(region);
+            //setRegion(region);
           }}
-          showsUserLocation
+          showsUserLocation={true}
         >
           {/* Display markers for each clinic */}
           {props.clinics.map((clinic, index) => (
@@ -87,10 +87,11 @@ export default function Map(props) {
               coordinate={clinic.coordinate}
               title={clinic.resource}
               description={clinic.phoneNumber}
+              pinColor={appStyles.blueColor}
               onPress={(e) => {
                 e.stopPropagation();
                 props.setClinicToView(clinic);
-                props.setLowerPanelContent('clinicInfo');
+                props.setLowerPanelContent("clinicInfo");
               }}
             />
           ))}
@@ -101,11 +102,11 @@ export default function Map(props) {
               coordinate={shelter.coordinate}
               title={shelter.resource}
               description={shelter.phoneNumber}
-              pinColor={appStyles.blueColor}
+              pinColor={appStyles.pinkColor}
               onPress={(e) => {
                 e.stopPropagation();
                 props.setShelterToView(shelter);
-                props.setLowerPanelContent('shelterInfo');
+                props.setLowerPanelContent("shelterInfo");
               }}
             />
           ))}
