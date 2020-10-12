@@ -151,11 +151,33 @@ const SettingsScreen = (props) => {
       userInfo.week = babyInfo[1];
     }
 
-    if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB)) {
+    // Be able to check for phone number and dob in the same statement
+    if (
+      validateDOB(Dob) === false ||
+      validatePhone(PhoneNumber) === false ||
+      validateBaby(BabyDOB) === false
+    ) {
+      if (validatePhone(PhoneNumber) === false && validateDOB(Dob) === false) {
+        if (validateBaby(babyDOB, Infant) === false) {
+          alert('Please enter a valid phone number and DOB and infant DOB');
+        } else {
+          alert('Please enter a valid phone number and DOB');
+        }
+      } else {
+        if (validatePhone(PhoneNumber) === false) {
+          alert('Please enter a valid phone number');
+        }
+        if (validateDOB(Dob) === false) {
+          alert('Please enter a valid DOB');
+        }
+        if (validateBaby(BabyDOB) === false) {
+          alert('Please enter a valid DOB for your infant');
+        }
+      }
+    } else if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB)) {
       alert(translate('fillOutAllFields'));
     } else if (Object.keys(userInfo).length === 0) {
       // All info same
-
       alert('No user information was changed');
     } else {
       firebase
@@ -167,6 +189,24 @@ const SettingsScreen = (props) => {
       window.alert(translate('savedInfo'));
     }
   };
+
+  function validatePhone(PhoneNumber) {
+    const phoneNoRegex = /^\d{10}$/;
+    return PhoneNumber.match(phoneNoRegex) !== null;
+  }
+
+  function validateDOB(Dob) {
+    const dobRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    return Dob.match(dobRegex) !== null;
+  }
+
+  function validateBaby(BabyDOB, Infant) {
+    const dobBabyRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    if (Infant) {
+      return BabyDOB.match(dobBabyRegex) !== null;
+    }
+    return true;
+  }
 
   useEffect(() => {
     fetchUserInfo();
