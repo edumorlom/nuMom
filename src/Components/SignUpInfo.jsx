@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
+  KeyboardAvoidingView
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
 import appStyles from './AppStyles';
@@ -52,20 +53,17 @@ export default function SignUpInfo(props) {
   let titleText = name ? translate('cool') : translate('greatToMeetYou');
 
   return (
+    <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={appStyles.container}
+    >
     <TouchableHighlight
       onPress={Keyboard.dismiss}
       underlayColor="transparent"
       accessible={false}
-      style={appStyles.container}
     >
       <>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-          }}
-        >
+        <View style={appStyles.container}>
           <Text style={appStyles.titleBlue}>
             {titleText}
 
@@ -96,23 +94,22 @@ export default function SignUpInfo(props) {
               // ref={(ref) => motherDOB = ref}
             />
           </View>
-        </View>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            bottom: '12%',
-          }}
-        >
-          <Button
-            style={appStyles.button}
-            text={translate('continueButton')}
-            onPress={onPress}
-          />
-        </View>
+          <View
+            style={{
+                width: '100%',
+                alignItems: 'center',
+                paddingTop: '10%'
+            }}
+            >
+            <Button
+                style={appStyles.button}
+                text={translate('continueButton')}
+                onPress={onPress}
+            />
+            </View>
+        </View>  
       </>
     </TouchableHighlight>
+    </KeyboardAvoidingView>
   );
 }
