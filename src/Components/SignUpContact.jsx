@@ -50,7 +50,7 @@ export default SignUpInfo = (props) => {
 
     return (
         <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={appStyles.container}
         >
         <TouchableHighlight onPress={Keyboard.dismiss} accessible={false} underlayColor={"transparent"}>
@@ -66,7 +66,8 @@ export default SignUpInfo = (props) => {
                     </View>
                 <View style={{
                     width: '100%',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    paddingTop: '10%'
                 }}>
                     <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
                 </View>

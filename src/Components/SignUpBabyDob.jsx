@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, TouchableHighlight, } from "react-native";
+import { Keyboard, Text, TouchableOpacity, View, AsyncStorage, TouchableHighlight, KeyboardAvoidingView } from "react-native";
 import appStyles from "./AppStyles";
 import Button from "./Button";
 import { TextInputMask } from "react-native-masked-text";
@@ -43,21 +43,20 @@ export default SignUpBabyDob = (props) => {
 let titletext = translate("babydob");
 
     return (
+      <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={appStyles.container}
+      >
       <TouchableHighlight
-        style={appStyles.container}
         underlayColor={"transparent"}
         onPress={Keyboard.dismiss}
         accessible={false}
       >
       <>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-          }}
-        >
-          <Text style={appStyles.titleBlue}>{titletext}</Text>
+        <View style={appStyles.container}>
+          <View>
+            <Text style={appStyles.titleBlue}>{titletext}</Text>
+          </View>
           <View style={{ paddingTop: appStyles.win.height * 0.1 }}>
             <TextInputMask
               placeholder={translate("dob")}
@@ -76,24 +75,23 @@ let titletext = translate("babydob");
             />
             {/* <TextInput placeholder={translate("dob")} type={'date'} onChangeText={setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
           </View>
-        </View>
-        <View
-          style={{
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            bottom: "12%",
-          }}
-        >
-          <Button
-            style = {appStyles.button}
-            text={translate("continueButton")}
-            onPress={onPress}
-          />
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              paddingTop: '10%'
+            }}
+          >
+            <Button
+              style = {appStyles.button}
+              text={translate("continueButton")}
+              onPress={onPress}
+            />
+          </View>
         </View>
       </>
       </TouchableHighlight>
+      </KeyboardAvoidingView>
     );
   
 }

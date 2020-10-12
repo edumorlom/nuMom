@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
 import appStyles from './AppStyles';
 import Button from "./Button";
 import translate from "./getLocalizedText";
@@ -34,14 +34,16 @@ export default SignUpPassword = (props) => {
         }
     };
         return (
-            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} style={appStyles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={appStyles.container}
+            >
+            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} >
             <>
-                    <View style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                    }}>
-                        <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
+                    <View style={appStyles.container}>
+                        <View>
+                            <Text style={appStyles.titleBlue}>{translate("createPassword")}</Text>
+                        </View>
                         <View style={{paddingTop: appStyles.win.height * 0.1}}>
                             
                             <TextBox placeholder={translate("passwordInput")} onChangeText={setPassword} secureTextEntry={true} value= {password} style={appStyles.TextInputMask}/>
@@ -49,16 +51,16 @@ export default SignUpPassword = (props) => {
                             <TextBox placeholder={translate("repeatPasswordInput")} onChangeText={setRepeat} secureTextEntry={true} value= {repeat} style={appStyles.TextInputMask}/>
                             
                         </View>
-                    </View>
-                    <View style={{
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: '12%',}}>
-                        <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
-                    </View>
+                        <View style={{
+                            width: '100%',
+                            alignItems: 'center',
+                            paddingTop: '10%'
+                        }}>
+                            <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
+                        </View>
+                    </View> 
             </>
             </TouchableHighlight>
+            </KeyboardAvoidingView>
         );
     }

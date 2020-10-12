@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight } from 'react-native';
+import { AsyncStorage, Keyboard, Text, TextInput as TextBox, TouchableOpacity, View, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import appStyles from './AppStyles';
 import Button from "./Button";
@@ -45,13 +45,13 @@ export default function SignUpInfo(props) {
 
 
         return (
-            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} style={appStyles.container}>
+            <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={appStyles.container}
+            >
+            <TouchableHighlight onPress={Keyboard.dismiss} underlayColor={"transparent"} accessible={false} >
             <>
-                    <View style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                    }}>
+                    <View style={appStyles.container}>
                         <Text style={appStyles.titleBlue}>
                             {titleText}
             
@@ -80,18 +80,18 @@ export default function SignUpInfo(props) {
                                 />
                             
                         </View>
+                        <View style={{
+                            width: '100%',
+                            alignItems: 'center',
+                            paddingTop: '10%'
+                        }}>
+                            <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
+                        </View>
                     </View>
-                    <View style={{
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        bottom: '12%'
-                    }}>
-                        <Button style = {appStyles.button} text={translate("continueButton")} onPress={onPress}/>
-                    </View>
+                    
             </>
             </TouchableHighlight>
+            </KeyboardAvoidingView>
         );
     }
 
