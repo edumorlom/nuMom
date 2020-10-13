@@ -153,24 +153,29 @@ const SettingsScreen = (props) => {
 
     // Be able to check for phone number and dob in the same statement
     if (
-      validateDOB(Dob) === false ||
-      validatePhone(PhoneNumber) === false ||
-      validateBaby(BabyDOB) === false
+      validateDob(dob) === false ||
+      validatePhone(phoneNumber) === false ||
+      validateBaby(babyDOB, infant) === false
     ) {
-      if (validatePhone(PhoneNumber) === false && validateDOB(Dob) === false) {
-        if (validateBaby(babyDOB, Infant) === false) {
-          alert('Please enter a valid phone number and DOB and infant DOB');
+      if (validatePhone(phoneNumber) === false && validateDob(dob) === false) {
+        if (validateBaby(babyDOB, infant) === false) {
+          alert('Please enter a valid phone number, DOB, and infant DOB');
         } else {
           alert('Please enter a valid phone number and DOB');
         }
+      } else if (
+        validateDob(dob) === false &&
+        validateBaby(babyDOB, infant) === false
+      ) {
+        alert('Please enter a valid DOB for you and your infant');
       } else {
-        if (validatePhone(PhoneNumber) === false) {
+        if (validatePhone(phoneNumber) === false) {
           alert('Please enter a valid phone number');
         }
-        if (validateDOB(Dob) === false) {
+        if (validateDob(dob) === false) {
           alert('Please enter a valid DOB');
         }
-        if (validateBaby(BabyDOB) === false) {
+        if (validateBaby(babyDOB, infant) === false) {
           alert('Please enter a valid DOB for your infant');
         }
       }
@@ -190,20 +195,20 @@ const SettingsScreen = (props) => {
     }
   };
 
-  function validatePhone(PhoneNumber) {
+  function validatePhone(phoneNumber) {
     const phoneNoRegex = /^\d{10}$/;
-    return PhoneNumber.match(phoneNoRegex) !== null;
+    return phoneNumber.match(phoneNoRegex) !== null;
   }
 
-  function validateDOB(Dob) {
+  function validateDob(dob) {
     const dobRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
-    return Dob.match(dobRegex) !== null;
+    return dob.match(dobRegex) !== null;
   }
 
-  function validateBaby(BabyDOB, Infant) {
+  function validateBaby(babyDob, infant) {
     const dobBabyRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
-    if (Infant) {
-      return BabyDOB.match(dobBabyRegex) !== null;
+    if (infant) {
+      return babyDob.match(dobBabyRegex) !== null;
     }
     return true;
   }
