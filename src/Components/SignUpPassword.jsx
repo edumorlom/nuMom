@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
+  KeyboardAvoidingView
 } from 'react-native';
 import appStyles from './AppStyles';
 import Button from './Button';
@@ -44,20 +45,17 @@ export default SignUpPassword = (props) => {
     }
   };
   return (
+    <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={appStyles.container}
+    >
     <TouchableHighlight
       onPress={Keyboard.dismiss}
       underlayColor="transparent"
       accessible={false}
-      style={appStyles.container}
     >
       <>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-          }}
-        >
+        <View style={appStyles.container}>
           <Text style={appStyles.titleBlue}>{translate('createPassword')}</Text>
           <View style={{paddingTop: appStyles.win.height * 0.1}}>
             <TextBox
@@ -76,23 +74,22 @@ export default SignUpPassword = (props) => {
               style={appStyles.TextInputMask}
             />
           </View>
-        </View>
-        <View
-          style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            bottom: '12%',
-          }}
-        >
-          <Button
-            style={appStyles.button}
-            text={translate('continueButton')}
-            onPress={onPress}
-          />
+          <View
+            style={{
+                width: '100%',
+                alignItems: 'center',
+                paddingTop: '10%'
+            }}
+            >
+            <Button
+                style={appStyles.button}
+                text={translate('continueButton')}
+                onPress={onPress}
+            />
+            </View>
         </View>
       </>
     </TouchableHighlight>
+    </KeyboardAvoidingView>
   );
 };
