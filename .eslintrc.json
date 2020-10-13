@@ -25,11 +25,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "eslint-plugin-prettier"
-  ],
+  "plugins": ["react", "prettier", "eslint-plugin-prettier"],
   "rules": {
     "no-const-assign": 1,
     "no-extra-semi": 0,
@@ -80,6 +76,7 @@
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": "off",
     "no-dupe-keys": "off",
-    "no-sequences": "off"
+    "no-sequences": "off",
+    "import/no-mutable-exports": "off"
   }
 }
