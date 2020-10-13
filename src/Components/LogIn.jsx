@@ -50,7 +50,7 @@ export default LogIn = (props) => {
           accessible={false}
         >
           <>
-            <ImageBackground
+          <ImageBackground
               source={background}
               style={{
                 position: 'absolute',
@@ -59,7 +59,6 @@ export default LogIn = (props) => {
                 height: appStyles.win.height,
               }}
             />
-
             <View
               style={{
                 paddingTop: appStyles.win.height * 0.05,
@@ -99,11 +98,17 @@ export default LogIn = (props) => {
             </View>
           </>
         </TouchableHighlight>
+        <View
+              style={{
+                paddingTop: appStyles.win.height * 0.05,
+                alignItems: 'center',
+              }}>
+              <SwipeUp
+                  text={translate('swipeUpToSignUp')}
+                  onSwipeUp={() => props.setScreen('signup')}
+              />
+         </View>
       </Animated.View>
-      <SwipeUp
-        text={translate('swipeUpToSignUp')}
-        onSwipeUp={() => props.setScreen('signup')}
-      />
     </>
   );
 };

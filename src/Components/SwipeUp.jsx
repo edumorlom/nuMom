@@ -16,10 +16,9 @@ export default function SwipeUp(props) {
       onSwipeUp={() => onSwipeUp()}
       config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
       style={{
-        position: 'absolute',
         width: appStyles.win.width,
         paddingTop: appStyles.win.height * 0.2,
-        bottom: '3%',
+        bottom: '15%',
         alignItems: 'center',
       }}
     >
