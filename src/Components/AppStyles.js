@@ -2,21 +2,21 @@
 import {RFValue} from 'react-native-responsive-fontsize';
 import {Dimensions, Platform} from 'react-native';
 
-export let win = Dimensions.get('window');
-export let pinkColor = '#DF2172';
-export let blueColor = '#0052A1';
-export let greyColor = '#A9A9A9';
-export let darkGreyColor = '#5E5E5E';
-export let backgroundColor = 'white';
-export let titleFontSize = RFValue(30);
-export let regularFontSize = RFValue(20);
-export let title = {
+export const win = Dimensions.get('window');
+export const pinkColor = '#DF2172';
+export const blueColor = '#0052A1';
+export const greyColor = '#A9A9A9';
+export const darkGreyColor = '#5E5E5E';
+export const backgroundColor = 'white';
+export const titleFontSize = RFValue(30);
+export const regularFontSize = RFValue(20);
+export const title = {
   fontSize: titleFontSize,
   fontWeight: 'bold',
   textAlign: 'center',
 };
-export let borderRadius = 20;
-export let shadow = {
+export const borderRadius = 20;
+export const shadow = {
   shadowColor: darkGreyColor,
   shadowOffset: {width: 1, height: 1},
   shadowOpacity: 0.25,
