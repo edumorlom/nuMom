@@ -4,7 +4,7 @@ import appStyles from "./AppStyles";
 import SelectionButton from "./SelectionButton";
 import butterfly from "../../assets/butterfly.png";
 import translate from "app/Components/getLocalizedText";
-import FemaleCondom from "../../assets/FC.png";
+import FemaleCondom from "../../assets/fc2.png";
 
 export default function learn(props) {
   return (
