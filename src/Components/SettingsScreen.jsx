@@ -151,11 +151,38 @@ const SettingsScreen = (props) => {
       userInfo.week = babyInfo[1];
     }
 
-    if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB)) {
+    // Be able to check for phone number and dob in the same statement
+    if (
+      validateDob(dob) === false ||
+      validatePhone(phoneNumber) === false ||
+      validateBaby(babyDOB, infant) === false
+    ) {
+      if (validatePhone(phoneNumber) === false && validateDob(dob) === false) {
+        if (validateBaby(babyDOB, infant) === false) {
+          alert('Please enter a valid phone number, DOB, and infant DOB');
+        } else {
+          alert('Please enter a valid phone number and DOB');
+        }
+      } else if (
+        validateDob(dob) === false &&
+        validateBaby(babyDOB, infant) === false
+      ) {
+        alert('Please enter a valid DOB for you and your infant');
+      } else {
+        if (validatePhone(phoneNumber) === false) {
+          alert('Please enter a valid phone number');
+        }
+        if (validateDob(dob) === false) {
+          alert('Please enter a valid DOB');
+        }
+        if (validateBaby(babyDOB, infant) === false) {
+          alert('Please enter a valid DOB for your infant');
+        }
+      }
+    } else if (!FullName || !PhoneNumber || !Dob || (Infant && !BabyDOB)) {
       alert(translate('fillOutAllFields'));
     } else if (Object.keys(userInfo).length === 0) {
       // All info same
-
       alert('No user information was changed');
     } else {
       firebase
@@ -167,6 +194,24 @@ const SettingsScreen = (props) => {
       window.alert(translate('savedInfo'));
     }
   };
+
+  function validatePhone(phoneNumber) {
+    const phoneNoRegex = /^\d{10}$/;
+    return phoneNumber.match(phoneNoRegex) !== null;
+  }
+
+  function validateDob(dob) {
+    const dobRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    return dob.match(dobRegex) !== null;
+  }
+
+  function validateBaby(babyDob, infant) {
+    const dobBabyRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    if (infant) {
+      return babyDob.match(dobBabyRegex) !== null;
+    }
+    return true;
+  }
 
   useEffect(() => {
     fetchUserInfo();
