@@ -1,16 +1,15 @@
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack'
 import React, {useState, useEffect} from 'react';
-import {AsyncStorage, NativeModules} from 'react-native';
-import LogIn from './src/Components/LogIn'; // absolute import paths
-import SignUp from './src/Components/SignUp';
-import Homepage from './src/Components/Homepage';
+import {AsyncStorage, NativeModules, Text, StyleSheet, View} from 'react-native';
 import {
   logIn,
   registerForPushNotificationsAsync,
   storeObjectInDatabase,
   getUserInfo,
 } from './src/Firebase';
-import SettingsScreen from './src/Components/SettingsScreen';
-import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
+import LogIn from './src/Components/LogIn';
 // import * as firebase from "firebase";
 
 export default App = () => {
@@ -106,40 +105,15 @@ export default App = () => {
     saveCookie('fullName', '');
   };
 
-  let goBack = () => {
-    if (screen === 'setting') setScreen('homepage');
-    if (screen === 'forgotPassword') setScreen('login');
-  };
+  const Stack = createStackNavigator();
 
-  if (screen === 'login') {
-    return <LogIn setScreen={setScreen} login={loginWithEmailPassword} />;
-  }
-  if (screen === 'signup') {
-    try {
-      return <SignUp setScreen={setScreen} login={loginWithEmailPassword} />;
-    } catch (err) {
-      setScreen('login');
-    }
-  } else if (screen === 'setting') {
     return (
-      <SettingsScreen
-        email={appState.email}
-        password={appState.password}
-        setScreen={setScreen}
-        goBack={goBack}
-        fullName={appState.fullName}
-        logout={logout}
-      />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name ="Login" component={LogIn} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      
     );
-  } else if (screen === 'forgotPassword') {
-    return <ForgotPasswordPage setScreen={setScreen} goBack={goBack} />;
-  } else {
-    return (
-      <Homepage
-        setScreen={setScreen}
-        fullName={appState.fullName}
-        logout={logout}
-      />
-    );
-  }
+  
 };

@@ -18,7 +18,7 @@ import SwipeUp from './SwipeUp';
 import background from '../../assets/background.gif';
 import loginMainImage from '../../assets/child.png';
 import translate from './getLocalizedText';
-import ForgotPasswordPage from './ForgotPasswordPage';
+//import ForgotPasswordPage from './ForgotPasswordPage';
 
 export default LogIn = (props) => {
   const [email, setEmail] = useState(null);
