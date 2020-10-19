@@ -100,7 +100,7 @@ export default LogIn = (props) => {
         </TouchableHighlight>
         <View
               style={{
-                paddingTop: appStyles.win.height * 0.05,
+                paddingTop: appStyles.win.height * 0.075,
                 alignItems: 'center',
               }}>
               <SwipeUp
