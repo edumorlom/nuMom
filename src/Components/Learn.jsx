@@ -1,10 +1,11 @@
-import React from 'react';
-import {TouchableHighlight, Text, View, ScrollView} from 'react-native';
-import appStyles from './AppStyles';
-import SelectionButton from './SelectionButton';
-import butterfly from '../../assets/butterfly.png';
-import translate from './getLocalizedText';
-import FemaleCondom from '../../assets/FC.png';
+import React from "react";
+import { TouchableHighlight, Text, View, ScrollView } from "react-native";
+import appStyles from "./AppStyles";
+import SelectionButton from "./SelectionButton";
+import STDAwareness from "../../assets/std-awareness.png";
+import translate from "./getLocalizedText";
+import FemaleCondom from "../../assets/FC.png";
+
 
 export default function learn(props) {
   return (
@@ -13,9 +14,9 @@ export default function learn(props) {
     >
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
-        text={translate('STDAwareness')}
-        subtext={translate('learnSTDs')}
-        icon={butterfly}
+        text={translate("STDAwareness")}
+        subtext={translate("learnSTDs")}
+        icon={STDAwareness}
         onPress={() => {
           props.setLowerPanelContent('STDSelection');
         }}
