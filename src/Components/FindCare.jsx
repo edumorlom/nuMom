@@ -64,19 +64,14 @@ export default function FindCare(props) {
 
   let servicesArray = [
     'All',
-    'Education',
-    'Support & Counseling',
-    'Free Materials',
-    'Referrals',
-    'STD Tests',
-    'STD Treatment',
-    'Yearly Exam',
-    'Pregnancy Tests',
-    'Ultrasound',
-    'Immunization',
     'Abortions',
-    'Medical Care',
+    'Free Materials',
+    'Immunization',
     'Lab services',
+    'Medical Care',
+    'Pregnancy Tests',
+    'Referrals',
+    'Yearly Exam',
   ];
 
   let services = servicesArray.map((service) => ({

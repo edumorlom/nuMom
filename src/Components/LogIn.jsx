@@ -205,13 +205,13 @@ export default LogIn = (props) => {
         </TouchableHighlight>
         <View
           style={{
-            paddingTop: appStyles.win.height * 0.05,
+            paddingTop: appStyles.win.height * 0.075,
             alignItems: 'center',
           }}
         >
           <SwipeUp
             text={translate('swipeUpToSignUp')}
-            onSwipeUp={() => props.navigation.navigate('LetsGetStarted')}
+            onSwipeUp={() => props.setScreen('signup')}
           />
         </View>
       </Animated.View>
