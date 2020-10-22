@@ -41,7 +41,6 @@ export default App = () => {
         <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
         <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
-        <Stack.Screen name="Login" component={LogIn} />
         <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
       </Stack.Navigator>
