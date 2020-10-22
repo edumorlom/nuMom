@@ -1,3 +1,6 @@
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {
   Animated,
   Image,
@@ -18,7 +21,7 @@ import SwipeUp from './SwipeUp';
 import background from '../../assets/background.gif';
 import loginMainImage from '../../assets/child.png';
 import translate from './getLocalizedText';
-//import ForgotPasswordPage from './ForgotPasswordPage';
+// import ForgotPasswordPage from './ForgotPasswordPage';
 
 export default LogIn = (props) => {
   const [email, setEmail] = useState(null);
@@ -50,7 +53,7 @@ export default LogIn = (props) => {
           accessible={false}
         >
           <>
-          <ImageBackground
+            <ImageBackground
               source={background}
               style={{
                 position: 'absolute',
@@ -99,15 +102,16 @@ export default LogIn = (props) => {
           </>
         </TouchableHighlight>
         <View
-              style={{
-                paddingTop: appStyles.win.height * 0.05,
-                alignItems: 'center',
-              }}>
-              <SwipeUp
-                  text={translate('swipeUpToSignUp')}
-                  onSwipeUp={() => props.setScreen('signup')}
-              />
-         </View>
+          style={{
+            paddingTop: appStyles.win.height * 0.05,
+            alignItems: 'center',
+          }}
+        >
+          <SwipeUp
+            text={translate('swipeUpToSignUp')}
+            onSwipeUp={() => props.navigation.navigate('LetsGetStarted')}
+          />
+        </View>
       </Animated.View>
     </>
   );
