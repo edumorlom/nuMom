@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {Image, Text, View, Animated} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ConfettiCannon from 'react-native-confetti-cannon';
@@ -15,7 +16,15 @@ export default LetsGetStarted = (props) => {
     _isMounted = true;
     _isMounted && confettiVibration();
     _isMounted && _start();
-    _isMounted && setTimeout(() => props.getNextScreen(), 4000);
+    _isMounted &&
+      setTimeout(
+        () =>
+          props.navigation.push('SignUpYesorNoMiami', {
+            question: translate('liveMiami'),
+            value: 'liveMiami',
+          }),
+        4000
+      );
 
     return () => (_isMounted = false);
   }, []);
