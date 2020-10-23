@@ -7,11 +7,12 @@ import {
   TouchableOpacity,
   View,
   TouchableHighlight,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import {checkEmailExist} from '../Firebase';
 
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
@@ -35,6 +36,21 @@ export default SignUpInfo = (props) => {
     return re.test(String(email).toLowerCase());
   };
 
+  let emailExistInDB = async (email) => {
+    try {
+      const signInMethods = await checkEmailExist(email);
+      if (signInMethods.length > 0) {
+        // The email already exists in the Auth database.
+        return true;
+      }
+      return false;
+    } catch (error) {
+      // Some error occurred.
+      console.log(error);
+      return false;
+    }
+  };
+
   let isValidPhoneNumber = (phoneNumber) => {
     return (
       (phoneNumber.length === 10 && !isNaN(phoneNumber)) ||
@@ -47,6 +63,9 @@ export default SignUpInfo = (props) => {
       alert(translate('fillOutAllFields'));
     } else if (!isValidEmail(email)) {
       alert(translate('invalidEmail'));
+    } else if (emailExistInDB(email)) {
+      console.log('email existed');
+      alert(translate('emailExist'));
     } else if (!isValidPhoneNumber(phone)) {
       alert(translate('invalidPhoneNumber'));
     } else {
@@ -60,16 +79,16 @@ export default SignUpInfo = (props) => {
 
   return (
     <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={appStyles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={appStyles.container}
     >
-    <TouchableHighlight
-      onPress={Keyboard.dismiss}
-      accessible={false}
-      underlayColor="transparent"
-    >
-      <>
-        <View style={appStyles.container}>
+      <TouchableHighlight
+        onPress={Keyboard.dismiss}
+        accessible={false}
+        underlayColor="transparent"
+      >
+        <>
+          <View style={appStyles.container}>
             <View>
               <Text style={appStyles.titleBlue}>
                 {translate('contactInformation')}
@@ -90,22 +109,22 @@ export default SignUpInfo = (props) => {
                 style={appStyles.TextInputMask}
               />
             </View>
-          <View
-            style={{
-              width: '100%',
-              alignItems: 'center',
-              paddingTop: '10%'
-            }}
-          >
-            <Button
-              style={appStyles.button}
-              text={translate('continueButton')}
-              onPress={onPress}
-            />
+            <View
+              style={{
+                width: '100%',
+                alignItems: 'center',
+                paddingTop: '10%',
+              }}
+            >
+              <Button
+                style={appStyles.button}
+                text={translate('continueButton')}
+                onPress={onPress}
+              />
+            </View>
           </View>
-        </View>
-      </>
-    </TouchableHighlight>
+        </>
+      </TouchableHighlight>
     </KeyboardAvoidingView>
   );
 };

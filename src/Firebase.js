@@ -57,6 +57,10 @@ export const createUserWithEmailAndPassword = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
+export const checkEmailExist = (email) => {
+  return firebase.auth().fetchSignInMethodsForEmail(email);
+};
+
 export const logIn = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
