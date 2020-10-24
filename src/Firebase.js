@@ -58,6 +58,7 @@ export const createUserWithEmailAndPassword = (email, password) => {
 };
 
 export const checkEmailExist = (email) => {
+  console.log(`This is the email passed to firebase method  ${email}`);
   return firebase.auth().fetchSignInMethodsForEmail(email);
 };
 

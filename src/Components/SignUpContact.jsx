@@ -37,12 +37,16 @@ export default SignUpInfo = (props) => {
   };
 
   let emailExistInDB = async (email) => {
+    console.log(`This is the email you get from the textfield  ${email}`);
     try {
       const signInMethods = await checkEmailExist(email);
+      console.log(signInMethods);
       if (signInMethods.length > 0) {
         // The email already exists in the Auth database.
+        console.log('Email exist in DB');
         return true;
       }
+      console.log('Email not in DB');
       return false;
     } catch (error) {
       // Some error occurred.
@@ -64,7 +68,9 @@ export default SignUpInfo = (props) => {
     } else if (!isValidEmail(email)) {
       alert(translate('invalidEmail'));
     } else if (emailExistInDB(email)) {
-      console.log('email existed');
+      console.log(
+        'email existed: from the on press button THIS MESSAGE HAS TO SHOW UP LAST'
+      );
       alert(translate('emailExist'));
     } else if (!isValidPhoneNumber(phone)) {
       alert(translate('invalidPhoneNumber'));
