@@ -32,7 +32,7 @@ function ReferenceNames(props) {
       <TouchableOpacity
         style={appStyles.viewPlusReference}
         onPress={() => {
-          props.setLowerPanelContent('AddReferenceNames');
+          props.navigation.navigate('AddReferenceNames');
         }}
       >
         <Image source={Plus} style={{height: 25, width: 25}} />

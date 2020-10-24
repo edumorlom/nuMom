@@ -17,7 +17,7 @@ export default function learn(props) {
         subtext={translate('learnSTDs')}
         icon={STDAwareness}
         onPress={() => {
-          props.setLowerPanelContent('STDSelection');
+          props.navigation.navigate('STDSelection');
         }}
       />
       <SelectionButton
@@ -26,7 +26,7 @@ export default function learn(props) {
         subtext={translate('FemaleCondomSubtext')}
         icon={FemaleCondom}
         onPress={() => {
-          props.setLowerPanelContent('FemaleCondom');
+          props.navigation.navigate('FemaleCondom');
         }}
       />
     </ScrollView>
