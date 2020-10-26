@@ -7,9 +7,9 @@ import firebaseAccount from './firebase_account.json';
 import getLocalizedText from './Components/getLocalizedText';
 
 const config = firebaseAccount;
-
-firebase.initializeApp(config);
-
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 export const signUp = (
   email,
   phoneNumber,

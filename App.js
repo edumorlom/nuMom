@@ -35,6 +35,7 @@ import NewAppointment from './src/Components/NewAppointment';
 import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
+import STDInfo from './src/Components/STDInfo';
 
 // import * as firebase from "firebase";
 
@@ -68,6 +69,7 @@ export default App = () => {
         <Stack.Screen name="Documents" component={Documents} />
         <Stack.Screen name="ReferenceNames" component={ReferenceNames} />
         <Stack.Screen name="AddReferenceNames" component={AddReferenceNames} />
+        <Stack.Screen name="STDInfo" component={STDInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
