@@ -10,6 +10,8 @@ export default SignUpYesorNo = (props) => {
     props.getNextScreen();
   };
 
+  const {question} = props.route.params;
+
   return (
     <View style={appStyles.container}>
       <View
@@ -28,7 +30,7 @@ export default SignUpYesorNo = (props) => {
             textAlign: 'center',
           }}
         >
-          {props.question}
+          {JSON.stringify(question)}
         </Text>
         <View style={appStyles.rowContainer}>
           <MultipleChoiceButton

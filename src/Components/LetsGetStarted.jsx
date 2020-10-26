@@ -17,7 +17,13 @@ export default LetsGetStarted = (props) => {
     _isMounted && confettiVibration();
     _isMounted && _start();
     _isMounted &&
-      setTimeout(() => props.navigation.push('SignUpYesorNoMiami'), 4000);
+      setTimeout(
+        () =>
+          props.navigation.push('SignUpYesorNoMiami', {
+            question: translate('liveMiami'),
+          }),
+        4000
+      );
 
     return () => (_isMounted = false);
   }, []);

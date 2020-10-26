@@ -18,7 +18,7 @@ import {
 import LogIn from './src/Components/LogIn';
 import LetsGetStarted from './src/Components/LetsGetStarted';
 import SignUpInfo from './src/Components/SignUpInfo';
-import SignUpYesorNoMiami from './src/Components/SignUpYesorNoMiami';
+import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
 import translate from './src/Components/getLocalizedText';
 import Homepage from './src/Components/Homepage';
@@ -39,10 +39,7 @@ export default App = () => {
         <Stack.Screen name="Login" component={LogIn} />
         <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
         <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
-        <Stack.Screen
-          name="SignUpYesorNoMiami"
-          component={SignUpYesorNoMiami}
-        />
+        <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
         <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
