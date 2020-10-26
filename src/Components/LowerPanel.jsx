@@ -66,6 +66,9 @@ export default LowerPanel = (props) => {
   So to call a specific component you only need to know the name of the property (component)
   and call it like: lowerPanelContent[property]  */
   let lowerPanelContent = {
+
+    facilities: 
+      <Facilities setLowerPanelContent={props.setLowerPanelContent} />,
     findCare: (
       <FindCare
         clinics={props.clinics}
@@ -85,9 +88,7 @@ export default LowerPanel = (props) => {
         setLowerPanelContent={props.setLowerPanelContent}
       />
     ),
-    facilities: (
-      <Facilities setLowerPanelContent={props.setLowerPanelContent} />
-    ),
+
     clinicInfo: (
       <ClinicInfo
         clinic={props.clinicToView}

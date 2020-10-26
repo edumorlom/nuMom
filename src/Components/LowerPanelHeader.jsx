@@ -18,7 +18,7 @@ export default function LowerPanelHeader(props) {
   useEffect( () => {
     let content = props.lowerPanelContent;
     //Check if the lowerPanelContent should have a fullscreen lower Panel
-    if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection"].includes(content)) 
+    if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection","facilities"].includes(content)) 
     {
       props.setFullScreen(true);
       props.setIsFullScreen(true);
@@ -58,6 +58,7 @@ export default function LowerPanelHeader(props) {
       case 'FemaleCondom': return translate("FemaleCondom");
       case 'ReferenceNames': return translate("NameReference");
       case 'AddReferenceNames': return translate("AddNameReference");
+      case 'facilities': return translate(content);
       default: throw new Error('That is not one of the state elements in SignUp')
     }
   };

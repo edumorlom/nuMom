@@ -88,10 +88,10 @@ export default Homepage = (props) => {
       case "selection":
         break;
       case "findCare":
-        setLowerPanelContent("selection");
+        setLowerPanelContent("facilities");
         break;
       case "shelters":
-        setLowerPanelContent("selection");
+        setLowerPanelContent("facilities");
         break;
       case "clinicInfo":
         setLowerPanelContent("findCare");
@@ -130,7 +130,7 @@ export default Homepage = (props) => {
         setLowerPanelContent("ReferenceNames");
         break;
       case "facilities":
-        setLowerPanelContent("facilities");
+        setLowerPanelContent("selection");
         break;
       default:
         throw new Error("That is not one of the state elements in Homepage");
