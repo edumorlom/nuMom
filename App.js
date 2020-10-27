@@ -50,7 +50,7 @@ export default App = () => {
           headerShown: true,
         }}
       >
-        <Stack.Screen name="Login" component={LogIn} />
+        <Stack.Screen name="LogIn" component={LogIn} />
         <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
         <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
         <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
