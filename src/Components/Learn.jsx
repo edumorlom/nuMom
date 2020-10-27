@@ -26,7 +26,7 @@ export default function learn(props) {
         subtext={translate('FemaleCondomSubtext')}
         icon={FemaleCondom}
         onPress={() => {
-          props.navigation.navigate('FemaleCondom');
+          props.navigation.navigate('FemaleCondomMainScreen');
         }}
       />
     </ScrollView>

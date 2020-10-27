@@ -27,7 +27,7 @@ import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
 import ResourcesPage from './src/Components/ResourcesPage';
 import Learn from './src/Components/Learn';
 import STDSelection from './src/Components/STDSelection';
-import FemaleCondom from './src/Components/FemaleCondom';
+import {FemaleCondomMainScreen, FemaleCondomDoDont, FemaleCondomSteps} from './src/Components/FemaleCondom';
 import WICScreen from './src/Components/WICScreen';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
@@ -61,7 +61,9 @@ export default App = () => {
         <Stack.Screen name="ResourcesPage" component={ResourcesPage} />
         <Stack.Screen name="Learn" component={Learn} />
         <Stack.Screen name="STDSelection" component={STDSelection} />
-        <Stack.Screen name="FemaleCondom" component={FemaleCondom} />
+        <Stack.Screen name="FemaleCondomMainScreen" component={FemaleCondomMainScreen} />
+        <Stack.Screen name="FemaleCondomDoDont" component={FemaleCondomDoDont} />
+        <Stack.Screen name="FemaleCondomSteps" component={FemaleCondomSteps} />
         <Stack.Screen name="WICScreen" component={WICScreen} />
         <Stack.Screen name="MedicaidScreen" component={MedicaidScreen} />
         <Stack.Screen name="Appointment" component={Appointment} />
