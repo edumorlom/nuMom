@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   TouchableHighlight,
   Text,
@@ -6,19 +6,19 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
-import babyBottle from "../../assets/baby-bottle.png";
-import clinicLogo from "../../assets/clinic-logo.png";
-import shelterLogo from "../../assets/shelter-logo.png";
-import lightBulb from "../../assets/light-bulb.png";
-import document from "../../assets/document.png";
-import WelcomeUserBanner from "./WelcomeUserBanner";
-import SelectionButton from "./SelectionButton";
-import GestureRecognizer from "react-native-swipe-gestures";
-import { MaterialIcons } from "@expo/vector-icons";
-import translate from "app/Components/getLocalizedText";
-import appStyles from "./AppStyles";
-import Button from "./Button";
+} from 'react-native';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import {MaterialIcons} from '@expo/vector-icons';
+import babyBottle from '../../assets/baby-bottle.png';
+import clinicLogo from '../../assets/clinic-logo.png';
+import shelterLogo from '../../assets/shelter-logo.png';
+import lightBulb from '../../assets/light-bulb.png';
+import document from '../../assets/document.png';
+import WelcomeUserBanner from './WelcomeUserBanner';
+import SelectionButton from './SelectionButton';
+import translate from './getLocalizedText';
+import appStyles from './AppStyles';
+import Button from './Button';
 
 export default function LowerPanelSelection(props) {
   return (
@@ -29,7 +29,7 @@ export default function LowerPanelSelection(props) {
         style={{
           width: appStyles.win.width,
           height: appStyles.win.height * 0.16,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         <Button
@@ -40,8 +40,8 @@ export default function LowerPanelSelection(props) {
             },
             Text: {},
           }}
-          text={""}
-          underlayColor={"transparent"}
+          text=""
+          underlayColor="transparent"
           onPress={() => props.setFullPanel(!props.fullPanel)}
         />
         <WelcomeUserBanner fullName={props.fullName} logout={props.logout} />
@@ -51,13 +51,13 @@ export default function LowerPanelSelection(props) {
             size={45}
             color="gray"
             style={styles.userSettingStyle}
-            onPress={() => props.setScreen("setting")}
+            onPress={() => props.setScreen('setting')}
           />
         </View>
       </GestureRecognizer>
       <ScrollView
         contentContainerStyle={{
-          alignItems: "center",
+          alignItems: 'center',
           width: appStyles.win.width,
         }}
       >
@@ -92,9 +92,9 @@ export default function LowerPanelSelection(props) {
 
 const styles = StyleSheet.create({
   userSettingStyle: {
-    position: "absolute",
+    position: 'absolute',
     left: appStyles.win.width * 0.27,
     bottom: appStyles.win.height * 0.03,
-    color: "#706e6c",
+    color: '#706e6c',
   },
 });
