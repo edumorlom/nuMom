@@ -16,22 +16,9 @@ export default function LowerPanelHeader(props) {
 
   useEffect(() => {
     let content = props.lowerPanelContent;
-<<<<<<< HEAD
     //Check if the lowerPanelContent should have a fullscreen lower Panel
     if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection","facilities"].includes(content)) 
     {
-=======
-    // Check if the lowerPanelContent should have a fullscreen lower Panel
-    if (
-      ![
-        'findCare',
-        'shelters',
-        'clinicInfo',
-        'shelterInfo',
-        'selection',
-      ].includes(content)
-    ) {
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
       props.setFullScreen(true);
       props.setIsFullScreen(true);
       setFullScreen(true);
@@ -55,7 +42,6 @@ export default function LowerPanelHeader(props) {
     let content = props.lowerPanelContent;
 
     switch (content) {
-<<<<<<< HEAD
       case 'findCare': return translate(content);
       case 'shelters': return translate(content);
       case 'clinicInfo': return translate("findCare");
@@ -72,38 +58,6 @@ export default function LowerPanelHeader(props) {
       case 'AddReferenceNames': return translate("AddNameReference");
       case 'facilities': return translate(content);
       default: throw new Error('That is not one of the state elements in SignUp')
-=======
-      case 'findCare':
-        return translate(content);
-      case 'shelters':
-        return translate(content);
-      case 'clinicInfo':
-        return translate('findCare');
-      case 'shelterInfo':
-        return translate('shelters');
-      case 'learn':
-        return translate(content);
-      case 'STDSelection':
-        return translate(content);
-      case 'resources':
-        return translate(content);
-      case 'STDInfo':
-        return translate(content);
-      case 'Appointment':
-        return translate('appointment');
-      case 'NewAppointment':
-        return translate('newAppointment');
-      case 'documents':
-        return translate(content);
-      case 'FemaleCondom':
-        return translate('FemaleCondom');
-      case 'ReferenceNames':
-        return translate('NameReference');
-      case 'AddReferenceNames':
-        return translate('AddNameReference');
-      default:
-        throw new Error('That is not one of the state elements in SignUp');
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     }
   };
 

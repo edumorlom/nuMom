@@ -1,23 +1,13 @@
-<<<<<<< HEAD
 import { View, Animated } from "react-native";
 import appStyles, { win } from "./AppStyles";
 import React, { useState, useEffect } from "react";
 import LowerPanelSelection from "./LowerPanelSelection";
 import FindCare from "./FindCare";
 import Shelters from "./Shelters";
-=======
-import {View, Animated} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import appStyles, {win} from './AppStyles';
-import LowerPanelSelection from './LowerPanelSelection';
-import FindCare from './FindCare';
-import Shelters from './Shelters';
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
 
 import ClinicInfo from './ClinicInfo';
 import ShelterInfo from './ShelterInfo';
 
-<<<<<<< HEAD
 import LowerPanelHeader from "./LowerPanelHeader";
 import Learn from "./Learn";
 import Resources from "./ResourcesPage";
@@ -30,19 +20,6 @@ import FemaleCondom from "./FemaleCondom";
 import ReferenceNames from "./ReferenceNames";
 import AddReferenceNames from "./AddReferenceNames";
 import Facilities from "./Facilities";
-=======
-import LowerPanelHeader from './LowerPanelHeader';
-import Learn from './Learn';
-import Resources from './ResourcesPage';
-import STDInfo from './STDInfo';
-import Appointment from './Appointment';
-import NewAppointment from './NewAppointment';
-import STDSelection from './STDSelection';
-import Documents from './Documents';
-import FemaleCondom from './FemaleCondom';
-import ReferenceNames from './ReferenceNames';
-import AddReferenceNames from './AddReferenceNames';
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
 
 export default LowerPanel = (props) => {
   const [filterToShow, setFilterToShow] = useState(false);
@@ -53,20 +30,12 @@ export default LowerPanel = (props) => {
   const [moveAnim] = useState(new Animated.Value(win.height * 0.3));
 
   useEffect(() => {
-<<<<<<< HEAD
     //When fullPanel changes move Panel
-=======
-    // When fullPanel changes move Panel
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     movePanel(fullPanel);
   }, [fullPanel]);
 
   useEffect(() => {
-<<<<<<< HEAD
     //When fullScreen changes make fullscreen
-=======
-    // When fullScreen changes make fullscreen
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     fullScreenPanel(fullScreen);
   }, [fullScreen]);
 
@@ -76,10 +45,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 150,
-<<<<<<< HEAD
-=======
-      useNativeDriver: false,
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     }).start();
   };
 
@@ -89,10 +54,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 0,
-<<<<<<< HEAD
-=======
-      useNativeDriver: false,
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     }).start();
   };
 
@@ -105,12 +66,9 @@ export default LowerPanel = (props) => {
   So to call a specific component you only need to know the name of the property (component)
   and call it like: lowerPanelContent[property]  */
   let lowerPanelContent = {
-<<<<<<< HEAD
 
     facilities: 
       <Facilities setLowerPanelContent={props.setLowerPanelContent} />,
-=======
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     findCare: (
       <FindCare
         clinics={props.clinics}
@@ -130,10 +88,6 @@ export default LowerPanel = (props) => {
         setLowerPanelContent={props.setLowerPanelContent}
       />
     ),
-<<<<<<< HEAD
-
-=======
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
     clinicInfo: (
       <ClinicInfo
         clinic={props.clinicToView}
@@ -193,19 +147,11 @@ export default LowerPanel = (props) => {
       style={{
         ...appStyles.lowerPanel,
         top: moveAnim,
-<<<<<<< HEAD
         overflow: "hidden",
         height: isFullScreen ? "100%" : "70%",
       }}
     >
       {props.lowerPanelContent !== "selection" && (
-=======
-        overflow: 'hidden',
-        height: isFullScreen ? '100%' : '70%',
-      }}
-    >
-      {props.lowerPanelContent !== 'selection' && (
->>>>>>> acb8192fc8d6d2edaefad2e5a63894c8e7f3a971
         <LowerPanelHeader
           onPress={onPress}
           setFilterToShow={() => setFilterToShow(!filterToShow)}
