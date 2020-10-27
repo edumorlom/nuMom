@@ -198,7 +198,7 @@ export default LogIn = (props) => {
               <Button
                 style={forgotPassword}
                 text={translate('forgotPassword')}
-                onPress={() => props.setScreen('forgotPassword')}
+                onPress={() => props.navigation.navigate('ForgotPasswordPage')}
               />
             </View>
           </>

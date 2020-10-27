@@ -19,8 +19,11 @@ import SelectionButton from './SelectionButton';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LowerPanelSelection(props) {
+  const navigation = useNavigation();
+
   return (
     <>
       <GestureRecognizer
@@ -51,7 +54,7 @@ export default function LowerPanelSelection(props) {
             size={45}
             color="gray"
             style={styles.userSettingStyle}
-            onPress={() => props.setScreen('setting')}
+            onPress={() => navigation.navigate('SettingsScreen')}
           />
         </View>
       </GestureRecognizer>
@@ -78,7 +81,7 @@ export default function LowerPanelSelection(props) {
           text={translate('learn')}
           icon={babyBottle}
           onPress={() => {
-            props.setLowerPanelContent('learn');
+            navigation.navigate('Learn');
           }}
         />
         <SelectionButton
@@ -86,7 +89,7 @@ export default function LowerPanelSelection(props) {
           text={translate('resources')}
           icon={lightBulb}
           onPress={() => {
-            props.setLowerPanelContent('resources');
+            navigation.navigate('ResourcesPage');
           }}
         />
       </ScrollView>

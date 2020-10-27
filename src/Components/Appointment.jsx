@@ -38,7 +38,7 @@ export default function Appointment(props) {
       <TouchableOpacity
         style={appStyles.viewPlus}
         onPress={() => {
-          props.setLowerPanelContent('NewAppointment');
+          props.navigation.navigate('NewAppointment');
         }}
       >
         <Image source={Plus} style={{height: 25, width: 25}} />
