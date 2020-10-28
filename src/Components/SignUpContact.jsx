@@ -4,7 +4,6 @@ import {
   Keyboard,
   Text,
   TextInput as TextBox,
-  TouchableOpacity,
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
@@ -36,25 +35,6 @@ export default SignUpInfo = (props) => {
     return re.test(String(email).toLowerCase());
   };
 
-  let emailExistInDB = async (email) => {
-    console.log(`This is the email you get from the textfield  ${email}`);
-    try {
-      const signInMethods = await checkEmailExist(email);
-      console.log(signInMethods);
-      if (signInMethods.length > 0) {
-        // The email already exists in the Auth database.
-        console.log('Email exist in DB');
-        return true;
-      }
-      console.log('Email not in DB');
-      return false;
-    } catch (error) {
-      // Some error occurred.
-      console.log(error);
-      return false;
-    }
-  };
-
   let isValidPhoneNumber = (phoneNumber) => {
     return (
       (phoneNumber.length === 10 && !isNaN(phoneNumber)) ||
@@ -62,24 +42,26 @@ export default SignUpInfo = (props) => {
     );
   };
 
-  let onPress = () => {
+  const onPress = () => {
     if (!email || !phone) {
       alert(translate('fillOutAllFields'));
     } else if (!isValidEmail(email)) {
       alert(translate('invalidEmail'));
-    } else if (emailExistInDB(email)) {
-      console.log(
-        'email existed: from the on press button THIS MESSAGE HAS TO SHOW UP LAST'
-      );
-      alert(translate('emailExist'));
     } else if (!isValidPhoneNumber(phone)) {
       alert(translate('invalidPhoneNumber'));
     } else {
-      props.setUserInfo({email});
-      props.setUserInfo({phoneNumber: phone});
-      AsyncStorage.setItem('e-mail', email);
-      AsyncStorage.setItem('phone', phone);
-      props.getNextScreen();
+      checkEmailExist(email).then((signInMethods) => {
+        const emailExists = signInMethods.length > 0;
+        if (emailExists) {
+          alert(translate('emailExists'));
+        } else {
+          props.setUserInfo({email});
+          props.setUserInfo({phoneNumber: phone});
+          AsyncStorage.setItem('e-mail', email);
+          AsyncStorage.setItem('phone', phone);
+          props.getNextScreen();
+        }
+      });
     }
   };
 
