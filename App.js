@@ -22,7 +22,21 @@ import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
 import translate from './src/Components/getLocalizedText';
 import Homepage from './src/Components/Homepage';
-import SettingScreen from './src/Components/SettingsScreen';
+import SettingsScreen from './src/Components/SettingsScreen';
+import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
+import ResourcesPage from './src/Components/ResourcesPage';
+import Learn from './src/Components/Learn';
+import STDSelection from './src/Components/STDSelection';
+import {FemaleCondomMainScreen, FemaleCondomDoDont, FemaleCondomSteps} from './src/Components/FemaleCondom';
+import WICScreen from './src/Components/WICScreen';
+import MedicaidScreen from './src/Components/MedicaidScreen';
+import Appointment from './src/Components/Appointment';
+import NewAppointment from './src/Components/NewAppointment';
+import Documents from './src/Components/Documents';
+import ReferenceNames from './src/Components/ReferenceNames';
+import AddReferenceNames from './src/Components/AddReferenceNames';
+import STDInfo from './src/Components/STDInfo';
+
 // import * as firebase from "firebase";
 
 export default App = () => {
@@ -33,7 +47,7 @@ export default App = () => {
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
         }}
       >
         <Stack.Screen name="Login" component={LogIn} />
@@ -42,7 +56,22 @@ export default App = () => {
         <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
         <Stack.Screen name="Homepage" component={Homepage} />
-        <Stack.Screen name="SettingScreen" component={SettingScreen} />
+        <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} />
+        <Stack.Screen name="ResourcesPage" component={ResourcesPage} />
+        <Stack.Screen name="Learn" component={Learn} />
+        <Stack.Screen name="STDSelection" component={STDSelection} />
+        <Stack.Screen name="FemaleCondomMainScreen" component={FemaleCondomMainScreen} />
+        <Stack.Screen name="FemaleCondomDoDont" component={FemaleCondomDoDont} />
+        <Stack.Screen name="FemaleCondomSteps" component={FemaleCondomSteps} />
+        <Stack.Screen name="WICScreen" component={WICScreen} />
+        <Stack.Screen name="MedicaidScreen" component={MedicaidScreen} />
+        <Stack.Screen name="Appointment" component={Appointment} />
+        <Stack.Screen name="NewAppointment" component={NewAppointment} />
+        <Stack.Screen name="Documents" component={Documents} />
+        <Stack.Screen name="ReferenceNames" component={ReferenceNames} />
+        <Stack.Screen name="AddReferenceNames" component={AddReferenceNames} />
+        <Stack.Screen name="STDInfo" component={STDInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
