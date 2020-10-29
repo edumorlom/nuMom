@@ -63,30 +63,26 @@ export default function LowerPanelSelection(props) {
       >
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate('findCare')}
+          text={translate("facilities")}
           icon={clinicLogo}
-          onPress={() => props.setLowerPanelContent('findCare')}
-        />
-        <SelectionButton
-          style={appStyles.PanelSelectionButton}
-          text={translate('shelters')}
-          icon={shelterLogo}
-          onPress={() => props.setLowerPanelContent('shelters')}
-        />
-        <SelectionButton
-          style={appStyles.PanelSelectionButton}
-          text={translate('learn')}
-          icon={babyBottle}
           onPress={() => {
-            props.setLowerPanelContent('learn');
+            props.setLowerPanelContent("facilities");
           }}
         />
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate('resources')}
+          text={translate("learn")}
+          icon={babyBottle}
+          onPress={() => {
+            props.setLowerPanelContent("learn");
+          }}
+        />
+        <SelectionButton
+          style={appStyles.PanelSelectionButton}
+          text={translate("resources")}
           icon={lightBulb}
           onPress={() => {
-            props.setLowerPanelContent('resources');
+            props.setLowerPanelContent("resources");
           }}
         />
       </ScrollView>

@@ -1,24 +1,25 @@
-import {View, Animated} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import appStyles, {win} from './AppStyles';
-import LowerPanelSelection from './LowerPanelSelection';
-import FindCare from './FindCare';
-import Shelters from './Shelters';
+import { View, Animated } from "react-native";
+import appStyles, { win } from "./AppStyles";
+import React, { useState, useEffect } from "react";
+import LowerPanelSelection from "./LowerPanelSelection";
+import FindCare from "./FindCare";
+import Shelters from "./Shelters";
 
 import ClinicInfo from './ClinicInfo';
 import ShelterInfo from './ShelterInfo';
 
-import LowerPanelHeader from './LowerPanelHeader';
-import Learn from './Learn';
-import Resources from './ResourcesPage';
-import STDInfo from './STDInfo';
-import Appointment from './Appointment';
-import NewAppointment from './NewAppointment';
-import STDSelection from './STDSelection';
-import Documents from './Documents';
-import FemaleCondom from './FemaleCondom';
-import ReferenceNames from './ReferenceNames';
-import AddReferenceNames from './AddReferenceNames';
+import LowerPanelHeader from "./LowerPanelHeader";
+import Learn from "./Learn";
+import Resources from "./ResourcesPage";
+import STDInfo from "./STDInfo";
+import Appointment from "./Appointment";
+import NewAppointment from "./NewAppointment";
+import STDSelection from "./STDSelection";
+import Documents from "./Documents";
+import FemaleCondom from "./FemaleCondom";
+import ReferenceNames from "./ReferenceNames";
+import AddReferenceNames from "./AddReferenceNames";
+import Facilities from "./Facilities";
 
 export default LowerPanel = (props) => {
   const [filterToShow, setFilterToShow] = useState(false);
@@ -29,12 +30,12 @@ export default LowerPanel = (props) => {
   const [moveAnim] = useState(new Animated.Value(win.height * 0.3));
 
   useEffect(() => {
-    // When fullPanel changes move Panel
+    //When fullPanel changes move Panel
     movePanel(fullPanel);
   }, [fullPanel]);
 
   useEffect(() => {
-    // When fullScreen changes make fullscreen
+    //When fullScreen changes make fullscreen
     fullScreenPanel(fullScreen);
   }, [fullScreen]);
 
@@ -44,7 +45,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 150,
-      useNativeDriver: false,
     }).start();
   };
 
@@ -54,7 +54,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 0,
-      useNativeDriver: false,
     }).start();
   };
 
@@ -67,6 +66,9 @@ export default LowerPanel = (props) => {
   So to call a specific component you only need to know the name of the property (component)
   and call it like: lowerPanelContent[property]  */
   let lowerPanelContent = {
+
+    facilities: 
+      <Facilities setLowerPanelContent={props.setLowerPanelContent} />,
     findCare: (
       <FindCare
         clinics={props.clinics}
@@ -145,11 +147,11 @@ export default LowerPanel = (props) => {
       style={{
         ...appStyles.lowerPanel,
         top: moveAnim,
-        overflow: 'hidden',
-        height: isFullScreen ? '100%' : '70%',
+        overflow: "hidden",
+        height: isFullScreen ? "100%" : "70%",
       }}
     >
-      {props.lowerPanelContent !== 'selection' && (
+      {props.lowerPanelContent !== "selection" && (
         <LowerPanelHeader
           onPress={onPress}
           setFilterToShow={() => setFilterToShow(!filterToShow)}
