@@ -98,36 +98,6 @@ export default LowerPanel = (props) => {
         setLowerPanelContent={props.setLowerPanelContent}
       />
     ),
-    learn: <Learn setLowerPanelContent={props.setLowerPanelContent} />,
-    STDSelection: (
-      <STDSelection
-        setLowerPanelContent={props.setLowerPanelContent}
-        setSTDToView={props.setSTDToView}
-      />
-    ),
-    resources: <Resources setLowerPanelContent={props.setLowerPanelContent} />,
-    STDInfo: (
-      <STDInfo
-        setLowerPanelContent={props.setLowerPanelContent}
-        STDToView={props.STDToView}
-      />
-    ),
-    Appointment: (
-      <Appointment setLowerPanelContent={props.setLowerPanelContent} />
-    ),
-    NewAppointment: (
-      <NewAppointment setLowerPanelContent={props.setLowerPanelContent} />
-    ),
-    FemaleCondom: (
-      <FemaleCondom setLowerPanelContent={props.setLowerPanelContent} />
-    ),
-    documents: <Documents setLowerPanelContent={props.setLowerPanelContent} />,
-    ReferenceNames: (
-      <ReferenceNames setLowerPanelContent={props.setLowerPanelContent} />
-    ),
-    AddReferenceNames: (
-      <AddReferenceNames setLowerPanelContent={props.setLowerPanelContent} />
-    ),
     selection: (
       <LowerPanelSelection
         fullName={props.fullName}

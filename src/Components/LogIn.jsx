@@ -38,7 +38,7 @@ export default LogIn = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
 
   // Remove async tasks on unMount using _isMounted
-
+ 
   useEffect(() => {
     _start();
   }, []);
@@ -107,9 +107,6 @@ export default LogIn = (props) => {
     if (email && password) {
       logIn(email, password).then(
         (response) => {
-          console.log('In loginemailpass');
-          console.log(email);
-          console.log(password);
           loginWithUid(response.user.uid);
           saveCookie('email', email);
           saveCookie('password', password);
@@ -136,13 +133,12 @@ export default LogIn = (props) => {
     getUserInfo(uid).on('value', (snapshot) => {
       saveCookie('fullName', snapshot.val().fullName);
       saveCookie('uid', uid);
-      // setScreen('homepage');
-      // setAppState({babyGender: snapshot.val().babyGender});
     });
+    props.navigation.navigate('Homepage');
   };
 
-  let logout = () => {
-    setScreen('login');
+    let logout = () => {
+    console.log("Got to logout from LogIn")
     saveCookie('email', '');
     saveCookie('password', '');
     saveCookie('uid', '');
@@ -191,7 +187,6 @@ export default LogIn = (props) => {
                 style={appStyles.button}
                 onPress={() => {
                   loginWithEmailPassword(email, password);
-                  props.navigation.navigate('Homepage');
                 }}
                 text={translate('signInButton')}
               />
