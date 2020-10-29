@@ -14,6 +14,8 @@ import Resources from './ResourcesPage';
 import STDInfo from './STDInfo';
 import Appointment from './Appointment';
 import NewAppointment from './NewAppointment';
+import Immunization from './Immunization';
+import NewImmunization from './NewImmunization';
 import STDSelection from './STDSelection';
 import Documents from './Documents';
 import FemaleCondom from './FemaleCondom';
@@ -117,6 +119,12 @@ export default LowerPanel = (props) => {
     ),
     NewAppointment: (
       <NewAppointment setLowerPanelContent={props.setLowerPanelContent} />
+    ),
+    Immunization: (
+      <Immunization setLowerPanelContent={props.setLowerPanelContent} />
+    ),
+    NewImmunization: (
+      <NewImmunization setLowerPanelContent={props.setLowerPanelContent} />
     ),
     FemaleCondom: (
       <FemaleCondom setLowerPanelContent={props.setLowerPanelContent} />
