@@ -6,8 +6,12 @@ import MultipleChoiceButton from './Button';
 
 export default SignUpYesorNo = (props) => {
   let onPress = (userResponse) => {
-    props.setUserInfo({[props.value]: userResponse});
-    props.getNextScreen();
+    if(userResponse){
+      props.navigation.navigate('SignUpInfo');
+    }
+    else{
+      props.navigation.navigate('MustLiveInMiami');
+    }
   };
 
   const {question} = props.route.params;
