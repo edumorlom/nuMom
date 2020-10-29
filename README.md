@@ -125,6 +125,3 @@ in order to start the application. If using default settings, the expo cli will 
 Press a for Android emulator, or i for iOS simulator.
 
 ```
-
-
-
