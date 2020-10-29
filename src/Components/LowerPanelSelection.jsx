@@ -77,11 +77,7 @@ export default function LowerPanelSelection(props) {
           text={translate("learn")}
           icon={babyBottle}
           onPress={() => {
-<<<<<<< HEAD
             navigation.navigate('Learn');
-=======
-            props.setLowerPanelContent("learn");
->>>>>>> df86d3a54805b2abdd7dcb89adcc4395aeab1ebb
           }}
         />
         <SelectionButton
@@ -89,11 +85,7 @@ export default function LowerPanelSelection(props) {
           text={translate("resources")}
           icon={lightBulb}
           onPress={() => {
-<<<<<<< HEAD
             navigation.navigate('ResourcesPage');
-=======
-            props.setLowerPanelContent("resources");
->>>>>>> df86d3a54805b2abdd7dcb89adcc4395aeab1ebb
           }}
         />
       </ScrollView>

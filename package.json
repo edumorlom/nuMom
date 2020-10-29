@@ -11,15 +11,10 @@
     "format": "./node_modules/.bin/prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
   "dependencies": {
-<<<<<<< HEAD
     "@react-native-community/datetimepicker": "^3.0.2",
     "@react-native-community/picker": "^1.8.0",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
-=======
-    "@react-native-community/datetimepicker": "3.0.0",
-    "@react-native-community/picker": "1.6.6",
->>>>>>> df86d3a54805b2abdd7dcb89adcc4395aeab1ebb
     "expo": "^39.0.3",
     "expo-calendar": "~8.5.0",
     "expo-constants": "~9.2.0",
@@ -49,16 +44,12 @@
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
     "react-native-vector-icons": "^7.1.0",
-<<<<<<< HEAD
     "twilio": "^3.47.0",
     "react-native-reanimated": "~1.13.0",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-screens": "~2.10.1",
     "react-native-safe-area-context": "3.1.4",
     "@react-native-community/masked-view": "0.1.10"
-=======
-    "twilio": "^3.50.0"
->>>>>>> df86d3a54805b2abdd7dcb89adcc4395aeab1ebb
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
