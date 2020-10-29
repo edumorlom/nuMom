@@ -136,9 +136,7 @@
   "Yearly Exam": "Yearly Exam",
   "Emergency Testing": "Emergency Testing",
   "Miles": "Miles",
-<<<<<<< HEAD
-  "facilities": "Facilities"
-=======
+  "facilities": "Facilities",
   "symptoms": "Symptoms",
   "testing": "Testing for Diagnosis",
   "treatment": "Treatment",
@@ -193,5 +191,4 @@
   "HIVAIDSConsequences": "Opportunistic infections are infections that occur more frequently and are more severe in people with weakened immune systems, including people with HIV. However, many people with HIV still develop OIs because they may not know they have HIV, they may not be on treatment, or their treatment may not be keeping their HIV levels low enough for their immune system to fight off infections. The best ways to prevent getting an opportunistic infection are to get into care and to take HIV medications as prescribed.",
   "HIVAIDSSafeSex": "HIV medicine lowers the amount of virus (viral load) in your body and taking it as prescribed can make your viral load undetectable. If your viral load stays undetectable, you have effectively no risk of transmitting HIV to an HIV-negative partner through sex. Use condoms the right way every time you have anal or vaginal sex.",
   "emailExists": "This email is already associated with another account!"
->>>>>>> c3ecd3ff7d11e2cc2db4279a1392b4260e1b4443
 }
