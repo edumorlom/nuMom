@@ -20,14 +20,17 @@ import LetsGetStarted from './src/Components/LetsGetStarted';
 import SignUpInfo from './src/Components/SignUpInfo';
 import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
-import translate from './src/Components/getLocalizedText';
 import Homepage from './src/Components/Homepage';
 import SettingsScreen from './src/Components/SettingsScreen';
 import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
 import ResourcesPage from './src/Components/ResourcesPage';
 import Learn from './src/Components/Learn';
 import STDSelection from './src/Components/STDSelection';
-import {FemaleCondomMainScreen, FemaleCondomDoDont, FemaleCondomSteps} from './src/Components/FemaleCondom';
+import {
+  FemaleCondomMainScreen,
+  FemaleCondomDoDont,
+  FemaleCondomSteps,
+} from './src/Components/FemaleCondom';
 import WICScreen from './src/Components/WICScreen';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
@@ -47,7 +50,7 @@ export default App = () => {
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
         }}
       >
         <Stack.Screen name="Login" component={LogIn} />
@@ -57,12 +60,21 @@ export default App = () => {
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
         <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-        <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} />
+        <Stack.Screen
+          name="ForgotPasswordPage"
+          component={ForgotPasswordPage}
+        />
         <Stack.Screen name="ResourcesPage" component={ResourcesPage} />
         <Stack.Screen name="Learn" component={Learn} />
         <Stack.Screen name="STDSelection" component={STDSelection} />
-        <Stack.Screen name="FemaleCondomMainScreen" component={FemaleCondomMainScreen} />
-        <Stack.Screen name="FemaleCondomDoDont" component={FemaleCondomDoDont} />
+        <Stack.Screen
+          name="FemaleCondomMainScreen"
+          component={FemaleCondomMainScreen}
+        />
+        <Stack.Screen
+          name="FemaleCondomDoDont"
+          component={FemaleCondomDoDont}
+        />
         <Stack.Screen name="FemaleCondomSteps" component={FemaleCondomSteps} />
         <Stack.Screen name="WICScreen" component={WICScreen} />
         <Stack.Screen name="MedicaidScreen" component={MedicaidScreen} />

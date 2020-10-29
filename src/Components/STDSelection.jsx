@@ -11,17 +11,16 @@ import SelectionButton from './SelectionButton';
 import STD from './STD';
 import STDResources from './STDResources';
 import translate from './getLocalizedText';
-import setSTDTOView from './Homepage';
 
 export default function STDSelection(props) {
   let onPress = (std) => {
     props.navigation.navigate('STDInfo', {
       name: std.name,
-      symptoms: std.symptoms, 
-      diagnosis: std.diagnosis, 
+      symptoms: std.symptoms,
+      diagnosis: std.diagnosis,
       treatment: std.treatment,
       consequences: std.consequences,
-      safeSex: std.safeSex, 
+      safeSex: std.safeSex,
     });
   };
   let onPress2 = (stdr) => {
