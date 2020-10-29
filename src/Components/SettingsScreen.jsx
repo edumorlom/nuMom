@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import {Picker} from 'react-native';
+import {Picker, AsyncStorage} from 'react-native';
 import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
 import BackButton from './Button';
@@ -19,6 +19,7 @@ import {getUserInfo, getUid} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
+import logout from './LogIn';
 
 const SettingsScreen = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -246,6 +247,21 @@ const SettingsScreen = (props) => {
     }
     return [nextWeek, weekNo];
   };
+  let saveCookie = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value).then();
+    } catch (e) {
+      console.log(`Error storeData: ${e}`);
+    }
+  };
+
+  let logout = () => {
+    saveCookie('email', '');
+    saveCookie('password', '');
+    saveCookie('uid', '');
+    saveCookie('fullName', '');
+    props.navigation.navigate('LogIn');
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -262,7 +278,7 @@ const SettingsScreen = (props) => {
           color={appStyles.pinkColor}
           onPress={() => {
             AsyncAlert().then((response) => {
-              response ? props.logout() : null;
+              response ? logout() : null;
             });
           }}
         />

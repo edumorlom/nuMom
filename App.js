@@ -8,7 +8,9 @@ import {
   Text,
   StyleSheet,
   View,
+  Button,
 } from 'react-native';
+import {AntDesign} from '@expo/vector-icons';
 import {
   logIn,
   registerForPushNotificationsAsync,
@@ -39,27 +41,79 @@ import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
+import appStyles from './src/Components/AppStyles';
 
 // import * as firebase from "firebase";
 
-export default App = () => {
-  const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
+AsyncAlert = () => {
+  return new Promise((resolve, reject) => {
+    Alert.alert(
+      translate('logout'),
+      translate('WantToLogout'),
+      [
+        {text: translate('Yes'), onPress: () => resolve(true)},
+        {text: translate('No'), onPress: () => resolve(false)},
+      ],
+      {cancelable: false}
+    );
+  });
+};
+
+let saveCookie = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value).then();
+  } catch (e) {
+    console.log(`Error storeData: ${e}`);
+  }
+};
+
+let logout = ({navigation}) => {
+  console.log('From settings');
+  saveCookie('email', '');
+  saveCookie('password', '');
+  saveCookie('uid', '');
+  saveCookie('fullName', '');
+  navigation.navigate('LogIn');
+};
+
+function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Login" component={LogIn} />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="LogIn"
+          component={LogIn}
+          options={{header: () => null}}
+        />
         <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
         <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
         <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
-        <Stack.Screen name="Homepage" component={Homepage} />
-        <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Stack.Screen
+          name="Homepage"
+          component={Homepage}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+          options={{
+            headerRight: () => (
+              <View style={styles.logOutButton}>
+                <AntDesign
+                  name="logout"
+                  size={28}
+                  color={appStyles.pinkColor}
+                  onPress={() => {
+                    logout();
+                  }}
+                />
+              </View>
+            ),
+          }}
+        />
         <Stack.Screen
           name="ForgotPasswordPage"
           component={ForgotPasswordPage}
@@ -87,4 +141,14 @@ export default App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
+
+export default App;
+
+const styles = StyleSheet.create({
+  logOutButton: {
+    position: 'absolute',
+    right: appStyles.win.height * 0.03,
+    top: appStyles.win.width * 0.045,
+  },
+});
