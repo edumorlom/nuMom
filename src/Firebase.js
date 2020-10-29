@@ -4,7 +4,7 @@ import {Notifications} from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as Calendar from 'expo-calendar';
 import firebaseAccount from './firebase_account.json';
-import getLocalizedText from './Components/getLocalizedText';
+import translate from './Components/getLocalizedText';
 
 const config = firebaseAccount;
 
@@ -48,7 +48,7 @@ export const signUp = (
       );
     },
     (e) => {
-      alert('ERROR: E-Mail is already associated with another account!');
+      alert('ERROR: Email is already associated with another account!');
     }
   );
 };
@@ -113,10 +113,8 @@ export const sendWelcomeSMS = async (fullName, phoneNumber) => {
   phoneNumber =
     phoneNumber.substring(0, 2) === '+1' ? phoneNumber : `+1${phoneNumber}`;
   let name = fullName.split(' ')[0];
-  let message = getLocalizedText(deviceLanguage, 'welcomeSMS').replace(
-    '{NAME}',
-    name
-  );
+  let message = translate('welcomeSMS').replace('{NAME}', name);
+
   return await fetch(
     `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
     {
