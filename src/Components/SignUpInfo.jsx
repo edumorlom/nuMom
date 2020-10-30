@@ -72,13 +72,7 @@ export default function SignUpInfo(props) {
                 width: '100%',
                 height: appStyles.win.height * 0.1,
               }}
-            >
-              <BackButton
-                style={appStyles.BackButton}
-                icon={goBackImg}
-                onPress={() => props.navigation.goBack()}
-              />
-            </View>
+            />
             <Text style={appStyles.titleBlue}>
               {titleText}
 

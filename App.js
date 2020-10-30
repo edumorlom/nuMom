@@ -103,22 +103,22 @@ function App() {
         <Stack.Screen
           name="LetsGetStarted"
           component={LetsGetStarted}
-          options={{title: ''}}
+          options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
           name="SignUpInfo"
           component={SignUpInfo}
-          options={{title: 'Info'}}
+          options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
           name="SignUpYesorNoMiami"
           component={SignUpYesorNo}
-          options={{title: ''}}
+          options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
           name="MustLiveInMiami"
           component={MustLiveInMiami}
-          options={{title: ''}}
+          options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
           name="Homepage"
