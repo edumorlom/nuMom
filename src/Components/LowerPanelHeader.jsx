@@ -24,6 +24,7 @@ export default function LowerPanelHeader(props) {
         'clinicInfo',
         'shelterInfo',
         'selection',
+        'facilities',
       ].includes(content)
     ) {
       props.setFullScreen(true);
@@ -57,6 +58,28 @@ export default function LowerPanelHeader(props) {
         return translate('findCare');
       case 'shelterInfo':
         return translate('shelters');
+      case 'learn':
+        return translate(content);
+      case 'STDSelection':
+        return translate(content);
+      case 'resources':
+        return translate(content);
+      case 'STDInfo':
+        return translate(content);
+      case 'Appointment':
+        return translate('appointment');
+      case 'NewAppointment':
+        return translate('newAppointment');
+      case 'documents':
+        return translate(content);
+      case 'FemaleCondom':
+        return translate('FemaleCondom');
+      case 'ReferenceNames':
+        return translate('NameReference');
+      case 'AddReferenceNames':
+        return translate('AddNameReference');
+      case 'facilities':
+        return translate(content);
       default:
         throw new Error('That is not one of the state elements in SignUp');
     }

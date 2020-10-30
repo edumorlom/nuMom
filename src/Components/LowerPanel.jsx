@@ -19,6 +19,7 @@ import Documents from './Documents';
 import FemaleCondom from './FemaleCondom';
 import ReferenceNames from './ReferenceNames';
 import AddReferenceNames from './AddReferenceNames';
+import Facilities from './Facilities';
 
 export default LowerPanel = (props) => {
   const [filterToShow, setFilterToShow] = useState(false);
@@ -44,7 +45,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 150,
-      useNativeDriver: false,
     }).start();
   };
 
@@ -54,7 +54,6 @@ export default LowerPanel = (props) => {
     Animated.timing(moveAnim, {
       toValue: destination,
       duration: 0,
-      useNativeDriver: false,
     }).start();
   };
 
@@ -67,6 +66,9 @@ export default LowerPanel = (props) => {
   So to call a specific component you only need to know the name of the property (component)
   and call it like: lowerPanelContent[property]  */
   let lowerPanelContent = {
+    facilities: (
+      <Facilities setLowerPanelContent={props.setLowerPanelContent} />
+    ),
     findCare: (
       <FindCare
         clinics={props.clinics}

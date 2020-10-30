@@ -66,15 +66,11 @@ export default function LowerPanelSelection(props) {
       >
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate('findCare')}
+          text={translate('facilities')}
           icon={clinicLogo}
-          onPress={() => props.setLowerPanelContent('findCare')}
-        />
-        <SelectionButton
-          style={appStyles.PanelSelectionButton}
-          text={translate('shelters')}
-          icon={shelterLogo}
-          onPress={() => props.setLowerPanelContent('shelters')}
+          onPress={() => {
+            props.setLowerPanelContent('facilities');
+          }}
         />
         <SelectionButton
           style={appStyles.PanelSelectionButton}

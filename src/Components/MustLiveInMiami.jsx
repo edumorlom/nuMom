@@ -41,7 +41,7 @@ export default function MustLiveInMiami(props) {
         <Button
           style={appStyles.button}
           text={translate('iUnderstandButton')}
-          onPress={() => props.getNextScreen()}
+          onPress={() => props.navigation.navigate('SignUpInfo')}
         />
       </View>
     </View>

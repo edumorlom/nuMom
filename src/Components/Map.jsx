@@ -47,8 +47,8 @@ export default function Map(props) {
       {loading ? ( // While loading is true, show a loading gif, until finished loading then show Map
         <Image
           style={{
-            height: 200,
-            width: 200,
+            height: 100,
+            width: 100,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
