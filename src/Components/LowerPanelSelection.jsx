@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  TouchableHighlight,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {MaterialIcons} from '@expo/vector-icons';
 import babyBottle from '../../assets/baby-bottle.png';
