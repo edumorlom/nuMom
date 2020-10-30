@@ -21,6 +21,7 @@ export default LetsGetStarted = (props) => {
         () =>
           props.navigation.push('SignUpYesorNoMiami', {
             question: translate('liveMiami'),
+            value: 'liveMiami',
           }),
         4000
       );

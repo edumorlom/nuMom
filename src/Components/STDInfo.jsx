@@ -5,7 +5,7 @@ import Menu from './Menu';
 import STD from './STD';
 import translate from './getLocalizedText';
 
-export default function STDInfo( {route} ) {
+export default function STDInfo({route}) {
   const {name} = route.params;
   const {symptoms} = route.params;
   const {diagnosis} = route.params;
@@ -18,26 +18,11 @@ export default function STDInfo( {route} ) {
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
       <Text>{translate(name)}</Text>
-      <Menu
-        title={translate('symptoms')}
-        info={translate(symptoms)}
-      />
-      <Menu
-        title={translate('testing')}
-        info={translate(diagnosis)}
-      />
-      <Menu
-        title={translate('treatment')}
-        info={translate(treatment)}
-      />
-      <Menu
-        title={translate('consequences')}
-        info={translate(consequences)}
-      />
-      <Menu
-        title={translate('safeSex')}
-        info={translate(safeSex)}
-      />
+      <Menu title={translate('symptoms')} info={translate(symptoms)} />
+      <Menu title={translate('testing')} info={translate(diagnosis)} />
+      <Menu title={translate('treatment')} info={translate(treatment)} />
+      <Menu title={translate('consequences')} info={translate(consequences)} />
+      <Menu title={translate('safeSex')} info={translate(safeSex)} />
     </ScrollView>
   );
 }

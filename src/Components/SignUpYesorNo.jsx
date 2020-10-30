@@ -10,7 +10,7 @@ export default SignUpYesorNo = (props) => {
     props.getNextScreen();
   };
 
-  const {question} = props.route.params;
+  const {question, value} = props.route.params;
 
   return (
     <View style={appStyles.container}>
