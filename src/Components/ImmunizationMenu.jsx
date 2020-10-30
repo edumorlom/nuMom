@@ -11,7 +11,7 @@ import appStyles, {borderRadius, shadow} from './AppStyles';
 import translate from './getLocalizedText';
 
 export default function ImmunizationMenu(props) {
-  const {type, date, notes, eventId} = props.immunizations?.val();
+  const {type, date, notes} = props.immunizations?.val();
 
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
@@ -86,7 +86,7 @@ export default function ImmunizationMenu(props) {
           onPress={() => {
             AsyncAlert().then((response) => {
               response
-                ? props.removeAppointment(props.appointments?.key, eventId)
+                ? props.removeImmunization(props.immunizations?.key, eventId)
                 : null;
             });
           }}

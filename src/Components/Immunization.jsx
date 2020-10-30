@@ -19,19 +19,17 @@ export default function Immunization(props) {
   const uid = getUid();
 
   getImmunization = () => {
-    // this I need to implement in firebase
     fetchImmunization(uid, setObjects, _isMounted);
   };
 
   useEffect(() => {
     getImmunization();
-
     return () => (_isMounted = false);
   }, []);
 
   removeImmunization = (id, eventId) => {
     // this I need to implement in firebase
-    deleteImmunization(id, uid, objects, setObjects, eventId);
+    deleteImmunization(id, uid, objects, setObjects);
   };
 
   return (
