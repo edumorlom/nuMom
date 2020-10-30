@@ -6,7 +6,7 @@ import MultipleChoiceButton from './Button';
 
 export default SignUpYesorNo = (props) => {
   let onPress = (userResponse) => {
-    if (userResponse) {
+    if (userResponse && value == 'liveMiami') {
       props.navigation.navigate('SignUpInfo');
     } else {
       props.navigation.navigate('MustLiveInMiami');

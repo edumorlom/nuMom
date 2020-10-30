@@ -39,11 +39,14 @@ export default function SignUpInfo(props) {
     } else if (!isValidDate(dob)) {
       alert(translate('invalidDate'));
     } else {
-      props.setUserInfo({fullName: name});
-      props.setUserInfo({dob});
-      AsyncStorage.setItem('name', name);
-      AsyncStorage.setItem('dob', dob);
-      props.getNextScreen();
+      // props.setUserInfo({fullName: name});
+      // props.setUserInfo({dob});
+      // AsyncStorage.setItem('name', name);
+      // AsyncStorage.setItem('dob', dob);
+      props.navigation.navigate('SignUpContact', {
+        name,
+        dob,
+      });
     }
   };
 

@@ -22,6 +22,8 @@ import LetsGetStarted from './src/Components/LetsGetStarted';
 import SignUpInfo from './src/Components/SignUpInfo';
 import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
+import SignUpContact from './src/Components/SignUpContact';
+import SignUpPassword from './src/Components/SignUpPassword';
 import Homepage from './src/Components/Homepage';
 import SettingsScreen from './src/Components/SettingsScreen';
 import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
@@ -88,9 +90,11 @@ function App() {
           options={{header: () => null}}
         />
         <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
-        <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
         <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
         <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
+        <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
+        <Stack.Screen name="SignUpContact" component={SignUpContact} />
+        <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
         <Stack.Screen
           name="Homepage"
           component={Homepage}

@@ -16,6 +16,8 @@ import {checkEmailExist} from '../Firebase';
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const {name} = props.route.params;
+  const {dob} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('e-mail')
@@ -55,11 +57,16 @@ export default SignUpInfo = (props) => {
         if (emailExists) {
           alert(translate('emailExists'));
         } else {
-          props.setUserInfo({email});
-          props.setUserInfo({phoneNumber: phone});
-          AsyncStorage.setItem('e-mail', email);
-          AsyncStorage.setItem('phone', phone);
-          props.getNextScreen();
+          // props.setUserInfo({email});
+          // props.setUserInfo({phoneNumber: phone});
+          // AsyncStorage.setItem('e-mail', email);
+          // AsyncStorage.setItem('phone', phone);
+          props.navigation.navigate('SignUpPassword', {
+            name,
+            dob,
+            email,
+            phone,
+          });
         }
       });
     }
