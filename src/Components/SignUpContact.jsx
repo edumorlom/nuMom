@@ -4,7 +4,6 @@ import {
   Keyboard,
   Text,
   TextInput as TextBox,
-  TouchableOpacity,
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
@@ -12,6 +11,7 @@ import {
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import {checkEmailExist} from '../Firebase';
 
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
@@ -42,7 +42,7 @@ export default SignUpInfo = (props) => {
     );
   };
 
-  let onPress = () => {
+  const onPress = () => {
     if (!email || !phone) {
       alert(translate('fillOutAllFields'));
     } else if (!isValidEmail(email)) {
@@ -50,11 +50,18 @@ export default SignUpInfo = (props) => {
     } else if (!isValidPhoneNumber(phone)) {
       alert(translate('invalidPhoneNumber'));
     } else {
-      props.setUserInfo({email});
-      props.setUserInfo({phoneNumber: phone});
-      AsyncStorage.setItem('e-mail', email);
-      AsyncStorage.setItem('phone', phone);
-      props.getNextScreen();
+      checkEmailExist(email).then((signInMethods) => {
+        const emailExists = signInMethods.length > 0;
+        if (emailExists) {
+          alert(translate('emailExists'));
+        } else {
+          props.setUserInfo({email});
+          props.setUserInfo({phoneNumber: phone});
+          AsyncStorage.setItem('e-mail', email);
+          AsyncStorage.setItem('phone', phone);
+          props.getNextScreen();
+        }
+      });
     }
   };
 

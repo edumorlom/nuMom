@@ -16,16 +16,9 @@ export default function LowerPanelHeader(props) {
 
   useEffect(() => {
     let content = props.lowerPanelContent;
-    // Check if the lowerPanelContent should have a fullscreen lower Panel
-    if (
-      ![
-        'findCare',
-        'shelters',
-        'clinicInfo',
-        'shelterInfo',
-        'selection',
-      ].includes(content)
-    ) {
+    //Check if the lowerPanelContent should have a fullscreen lower Panel
+    if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection","facilities"].includes(content)) 
+    {
       props.setFullScreen(true);
       props.setIsFullScreen(true);
       setFullScreen(true);

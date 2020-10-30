@@ -57,6 +57,11 @@ export const createUserWithEmailAndPassword = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
+export const checkEmailExist = async (email) => {
+  console.log(`This is the email passed to firebase method  ${email}`);
+  return await firebase.auth().fetchSignInMethodsForEmail(email);
+};
+
 export const logIn = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
@@ -112,7 +117,6 @@ export const sendWelcomeSMS = async (fullName, phoneNumber) => {
     '{NAME}',
     name
   );
-  console.log(message);
   return await fetch(
     `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
     {
@@ -216,8 +220,9 @@ export const grabImages = (user, documents, setDocuments) => {
         // displayImage(imageRef);
       });
     })
-    .catch(function (error) {
+    .catch((error) => {
       // Handle any errors
+      console.log(error);
     });
 };
 

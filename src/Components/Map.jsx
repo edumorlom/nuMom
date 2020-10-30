@@ -47,11 +47,11 @@ export default function Map(props) {
       {loading ? ( // While loading is true, show a loading gif, until finished loading then show Map
         <Image
           style={{
-            height: 200,
-            width: 200,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            height: 100,
+            width: 100,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             top: appStyles.win.height * 0.1,
           }}
           source={Spinner}
