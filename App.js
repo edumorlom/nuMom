@@ -8,8 +8,10 @@ import {
   Text,
   StyleSheet,
   View,
-  Button
+  Button,
+  Image,
 } from 'react-native';
+import {AntDesign} from '@expo/vector-icons';
 import {
   logIn,
   registerForPushNotificationsAsync,
@@ -28,7 +30,11 @@ import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
 import ResourcesPage from './src/Components/ResourcesPage';
 import Learn from './src/Components/Learn';
 import STDSelection from './src/Components/STDSelection';
-import {FemaleCondomMainScreen, FemaleCondomDoDont, FemaleCondomSteps} from './src/Components/FemaleCondom';
+import {
+  FemaleCondomMainScreen,
+  FemaleCondomDoDont,
+  FemaleCondomSteps,
+} from './src/Components/FemaleCondom';
 import WICScreen from './src/Components/WICScreen';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
@@ -37,92 +43,178 @@ import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
-import {AntDesign} from '@expo/vector-icons';
-import appStyles from './src/Components/AppStyles'
-
+import appStyles from './src/Components/AppStyles';
+import backArrow from './assets/go-back-arrow.png';
 // import * as firebase from "firebase";
 
-  const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
-      Alert.alert(
-        translate('logout'),
-        translate('WantToLogout'),
-        [
-          {text: translate('Yes'), onPress: () => resolve(true)},
-          {text: translate('No'), onPress: () => resolve(false)},
-        ],
-        {cancelable: false}
-      );
-    });
-  };
+AsyncAlert = () => {
+  return new Promise((resolve, reject) => {
+    Alert.alert(
+      translate('logout'),
+      translate('WantToLogout'),
+      [
+        {text: translate('Yes'), onPress: () => resolve(true)},
+        {text: translate('No'), onPress: () => resolve(false)},
+      ],
+      {cancelable: false}
+    );
+  });
+};
 
-  let saveCookie = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, value).then();
-    } catch (e) {
-      console.log(`Error storeData: ${e}`);
-    }
-  };
+let saveCookie = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value).then();
+  } catch (e) {
+    console.log(`Error storeData: ${e}`);
+  }
+};
 
-  let logout = ({navigation}) => {
-    console.log("From settings")
-    saveCookie('email', '');
-    saveCookie('password', '');
-    saveCookie('uid', '');
-    saveCookie('fullName', '');
-    navigation.navigate('LogIn');
-  };
+let logout = ({navigation}) => {
+  console.log('From settings');
+  saveCookie('email', '');
+  saveCookie('password', '');
+  saveCookie('uid', '');
+  saveCookie('fullName', '');
+  navigation.navigate('LogIn');
+};
 
-  function App(){
+let backArrowImage = () => {
+  return <Image source={backArrow} style={styles.goBackArrow} />;
+};
+
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
-
+          headerBackImage: backArrowImage,
+          headerTitleAlign: 'center',
+          headerTitleStyle: styles.headerTitle,
         }}
       >
-        <Stack.Screen name="LogIn" component={LogIn} options={{header: () => null}} />
-        <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
-        <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
-        <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
-        <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
-        <Stack.Screen name="Homepage" component={Homepage} options={{header: () => null}} />
-        <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{
-          headerRight: () => (
-            <View style={styles.logOutButton}>
-              <AntDesign
-                name="logout"
-                size={28}
-                color={appStyles.pinkColor}
-                onPress={() => {
-                  logout();
-                }}
-              />
-            </View>
-          ),
-        }}/>
-        <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} />
-        <Stack.Screen name="ResourcesPage" component={ResourcesPage} />
+        <Stack.Screen
+          name="LogIn"
+          component={LogIn}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="LetsGetStarted"
+          component={LetsGetStarted}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpInfo"
+          component={SignUpInfo}
+          options={{title: 'Info'}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoMiami"
+          component={SignUpYesorNo}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="MustLiveInMiami"
+          component={MustLiveInMiami}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="Homepage"
+          component={Homepage}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+          options={{
+            headerRight: () => (
+              <View style={styles.logOutButton}>
+                <AntDesign
+                  name="logout"
+                  size={28}
+                  color={appStyles.pinkColor}
+                  onPress={() => {
+                    logout();
+                  }}
+                />
+              </View>
+            ),
+            title: 'Settings',
+          }}
+        />
+        <Stack.Screen
+          name="ForgotPasswordPage"
+          component={ForgotPasswordPage}
+          options={{title: 'Forgot Password'}}
+        />
+        <Stack.Screen
+          name="ResourcesPage"
+          component={ResourcesPage}
+          options={{title: 'Resources'}}
+        />
         <Stack.Screen name="Learn" component={Learn} />
-        <Stack.Screen name="STDSelection" component={STDSelection} />
-        <Stack.Screen name="FemaleCondomMainScreen" component={FemaleCondomMainScreen} />
-        <Stack.Screen name="FemaleCondomDoDont" component={FemaleCondomDoDont} />
-        <Stack.Screen name="FemaleCondomSteps" component={FemaleCondomSteps} />
-        <Stack.Screen name="WICScreen" component={WICScreen} />
-        <Stack.Screen name="MedicaidScreen" component={MedicaidScreen} />
-        <Stack.Screen name="Appointment" component={Appointment} />
-        <Stack.Screen name="NewAppointment" component={NewAppointment} />
+        <Stack.Screen
+          name="STDSelection"
+          component={STDSelection}
+          options={{title: 'STDs'}}
+        />
+        <Stack.Screen
+          name="FemaleCondomMainScreen"
+          component={FemaleCondomMainScreen}
+          options={{title: 'Female Condom'}}
+        />
+        <Stack.Screen
+          name="FemaleCondomDoDont"
+          component={FemaleCondomDoDont}
+          options={{title: "Do's & Dont's"}}
+        />
+        <Stack.Screen
+          name="FemaleCondomSteps"
+          component={FemaleCondomSteps}
+          options={{title: 'Steps'}}
+        />
+        <Stack.Screen
+          name="WICScreen"
+          component={WICScreen}
+          options={{title: 'WIC'}}
+        />
+        <Stack.Screen
+          name="MedicaidScreen"
+          component={MedicaidScreen}
+          options={{title: 'Medicaid'}}
+        />
+        <Stack.Screen
+          name="Appointment"
+          component={Appointment}
+          options={{title: 'Appointments'}}
+        />
+        <Stack.Screen
+          name="NewAppointment"
+          component={NewAppointment}
+          options={{title: 'New Appointment'}}
+        />
         <Stack.Screen name="Documents" component={Documents} />
-        <Stack.Screen name="ReferenceNames" component={ReferenceNames} />
-        <Stack.Screen name="AddReferenceNames" component={AddReferenceNames} />
-        <Stack.Screen name="STDInfo" component={STDInfo} />
+        <Stack.Screen
+          name="ReferenceNames"
+          component={ReferenceNames}
+          options={{title: 'References'}}
+        />
+        <Stack.Screen
+          name="AddReferenceNames"
+          component={AddReferenceNames}
+          options={{title: 'Add Reference'}}
+        />
+        <Stack.Screen
+          name="STDInfo"
+          component={STDInfo}
+          options={({route}) => ({title: route.params.name})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default App;
 
@@ -131,5 +223,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: appStyles.win.height * 0.03,
     top: appStyles.win.width * 0.045,
+  },
+  goBackArrow: {
+    width: 25,
+    height: 25,
+  },
+  headerTitle: {
+    fontSize: 25,
+    color: appStyles.blueColor,
   },
 });

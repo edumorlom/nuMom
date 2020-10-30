@@ -46,17 +46,6 @@ export function FemaleCondomDoDont() {
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
-      <Text
-        style={{
-          fontSize: appStyles.regularFontSize + 2,
-          justifyContent: 'center',
-          color: appStyles.blueColor,
-          fontWeight: 'bold',
-        }}
-      >
-        {translate('FemaleCondomDoDont')}
-      </Text>
-
       {femaleCondomDoDontList().map((fcdd, key) => (
         <BetterMenu
           style={appStyles.FemaleCondomMenu}
@@ -116,19 +105,6 @@ export function FemaleCondomSteps() {
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
-      <Text
-        style={{
-          fontSize: appStyles.regularFontSize + 1,
-          justifyContent: 'center',
-          color: appStyles.blueColor,
-          fontWeight: 'bold',
-          textAlign: 'center',
-          paddingBottom: 15,
-        }}
-      >
-        {translate('FemaleCondomHowTo')}
-      </Text>
-
       {femaleCondomStepsList().map((fcs, key) => (
         <BetterMenu
           style={appStyles.FemaleCondomMenuImage}

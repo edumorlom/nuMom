@@ -19,7 +19,6 @@ import {getUserInfo, getUid} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
-import {logout} from './LogIn';
 
 const SettingsScreen = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -284,19 +283,6 @@ const SettingsScreen = (props) => {
         />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text
-            style={{
-              color: appStyles.blueColor,
-              fontSize: appStyles.titleFontSize,
-              fontWeight: 'bold',
-              alignSelf: 'center',
-              paddingTop: 15,
-            }}
-          >
-            {translate('welcomeSettings')}
-          </Text>
-        </View>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
