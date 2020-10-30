@@ -10,7 +10,6 @@ import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
 export default function Resources(props) {
-
   let wicButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}

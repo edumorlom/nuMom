@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {MaterialIcons} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import babyBottle from '../../assets/baby-bottle.png';
 import clinicLogo from '../../assets/clinic-logo.png';
 import shelterLogo from '../../assets/shelter-logo.png';
@@ -19,7 +20,6 @@ import SelectionButton from './SelectionButton';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
-import { useNavigation } from '@react-navigation/native';
 
 export default function LowerPanelSelection(props) {
   const navigation = useNavigation();
@@ -66,15 +66,15 @@ export default function LowerPanelSelection(props) {
       >
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate("facilities")}
+          text={translate('facilities')}
           icon={clinicLogo}
           onPress={() => {
-            props.setLowerPanelContent("facilities");
+            props.setLowerPanelContent('facilities');
           }}
         />
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate("learn")}
+          text={translate('learn')}
           icon={babyBottle}
           onPress={() => {
             navigation.navigate('Learn');
@@ -82,7 +82,7 @@ export default function LowerPanelSelection(props) {
         />
         <SelectionButton
           style={appStyles.PanelSelectionButton}
-          text={translate("resources")}
+          text={translate('resources')}
           icon={lightBulb}
           onPress={() => {
             navigation.navigate('ResourcesPage');
