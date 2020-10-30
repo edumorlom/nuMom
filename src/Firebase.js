@@ -313,6 +313,15 @@ export const addReference = async (uid, referenceInfo) => {
     .catch((err) => console.log(err));
 };
 
+// implementation in progress
+export const fetchImmunization = async (uid, setObjects, _isMounted) => {};
+
+// implementation in progress
+export const deleteImmunization = async () => {};
+
+// implementation in progress
+export const addImmunization = async () => {};
+
 export const fetchReference = async (uid, setReferences, _isMounted) => {
   _isMounted = true;
   if (uid !== null) {
