@@ -3,6 +3,7 @@ import {
   ScrollView,
   View,
   StyleSheet,
+  Linking,
   Image,
   TouchableOpacity,
 } from 'react-native';
@@ -11,13 +12,19 @@ import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
 import Email from '../../assets/emailicon.png';
 import Notification from '../../assets/bellNotification.png';
-import {deleteImmunization, fetchImmunization, getUid} from '../Firebase';
+import {
+  deleteImmunization,
+  fetchImmunization,
+  getUid,
+  getUEmail,
+} from '../Firebase';
+import NewImmunization from './NewImmunization';
 
 export default function Immunization(props) {
   let _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
-
+  const email = getUEmail();
   getImmunization = () => {
     fetchImmunization(uid, setObjects, _isMounted);
   };
@@ -27,9 +34,32 @@ export default function Immunization(props) {
     return () => (_isMounted = false);
   }, []);
 
-  removeImmunization = (id, eventId) => {
-    // this I need to implement in firebase
+  removeImmunization = (id) => {
     deleteImmunization(id, uid, objects, setObjects);
+  };
+
+  sendEmailViaEmailApp = (toMailId, subject, body) => {
+    if (typeof toMailId !== 'undefined') {
+      let link = `mailto:${toMailId}`;
+      if (typeof subject !== 'undefined') {
+        link = `${link}?subject=${subject}`;
+      }
+      if (typeof subject === 'undefined') {
+        link = `${link}?body=${body}`;
+      } else {
+        link = `${link}&body=${body}`;
+      }
+
+      Linking.canOpenURL(link)
+        .then((supported) => {
+          if (supported) {
+            Linking.openURL(link);
+          }
+        })
+        .catch((err) => console.error('An error occurred', err));
+    } else {
+      console.log('sendEmailViaEmailApp -----> mail link is undefined');
+    }
   };
 
   return (
@@ -49,7 +79,11 @@ export default function Immunization(props) {
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
-            //  props.setLowerPanelContent('NewImmunization');
+            sendEmailViaEmailApp(
+              email,
+              'NuMoms: Immunization Records',
+              objects
+            );
           }}
         >
           <Image source={Email} style={{height: 40, width: 40}} />
@@ -57,7 +91,7 @@ export default function Immunization(props) {
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
-            //   props.setLowerPanelContent('NewImmunization');
+            // need to implement
           }}
         >
           <Image source={Notification} style={{height: 40, width: 40}} />

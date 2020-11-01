@@ -248,6 +248,11 @@ export const getUid = () => {
   return firebase.auth().currentUser.uid;
 };
 
+// Gets current UEmail
+export const getUEmail = () => {
+  return firebase.auth().currentUser.email;
+};
+
 export const getAuth = () => {
   return firebase.auth();
 };

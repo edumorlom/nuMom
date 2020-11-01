@@ -86,7 +86,7 @@ export default function ImmunizationMenu(props) {
           onPress={() => {
             AsyncAlert().then((response) => {
               response
-                ? props.removeImmunization(props.immunizations?.key, eventId)
+                ? props.removeImmunization(props.immunizations?.key)
                 : null;
             });
           }}
