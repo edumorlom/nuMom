@@ -19,6 +19,7 @@ import goBackImg from '../../assets/go-back-arrow.png';
 export default function SignUpInfo(props) {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
+  const {liveMiamiResponse} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('name')
@@ -44,6 +45,7 @@ export default function SignUpInfo(props) {
       // AsyncStorage.setItem('name', name);
       // AsyncStorage.setItem('dob', dob);
       props.navigation.navigate('SignUpContact', {
+        liveMiami: liveMiamiResponse,
         name,
         dob,
       });
@@ -69,19 +71,6 @@ export default function SignUpInfo(props) {
       >
         <>
           <View style={appStyles.container}>
-            <View
-              style={{
-                flexDirection: 'row',
-                width: '100%',
-                height: appStyles.win.height * 0.1,
-              }}
-            >
-              <BackButton
-                style={appStyles.BackButton}
-                icon={goBackImg}
-                onPress={() => props.navigation.goBack()}
-              />
-            </View>
             <Text style={appStyles.titleBlue}>
               {titleText}
 

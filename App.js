@@ -24,6 +24,8 @@ import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
 import SignUpContact from './src/Components/SignUpContact';
 import SignUpPassword from './src/Components/SignUpPassword';
+import SignUpBabyDob from './src/Components/SignUpBabyDob';
+import SignUpLoading from './src/Components/SignUpLoading';
 import Homepage from './src/Components/Homepage';
 import SettingsScreen from './src/Components/SettingsScreen';
 import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
@@ -95,6 +97,10 @@ function App() {
         <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
         <Stack.Screen name="SignUpContact" component={SignUpContact} />
         <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
+        <Stack.Screen name="SignUpYesorNoPregnant" component={SignUpYesorNo} />
+        <Stack.Screen name="SignUpYesorNoInfant" component={SignUpYesorNo} />
+        <Stack.Screen name="SignUpBabyDob" component={SignUpBabyDob} />
+        <Stack.Screen name="SignUpLoading" component={SignUpLoading} />
         <Stack.Screen
           name="Homepage"
           component={Homepage}

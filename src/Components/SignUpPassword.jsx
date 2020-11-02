@@ -16,6 +16,11 @@ import translate from './getLocalizedText';
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
+  const {liveMiamiResponse} = props.route.params;
+  const {name} = props.route.params;
+  const {dob} = props.route.params;
+  const {email} = props.route.params;
+  const {phone} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -38,10 +43,19 @@ export default SignUpPassword = (props) => {
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
     } else {
-      props.setUserInfo({password});
-      AsyncStorage.setItem('pass', password);
-      AsyncStorage.setItem('repeat', repeat);
-      props.getNextScreen();
+      // props.setUserInfo({password});
+      // AsyncStorage.setItem('pass', password);
+      // AsyncStorage.setItem('repeat', repeat);
+      props.navigation.navigate('SignUpYesorNoPregnant', {
+        liveMiami: liveMiamiResponse,
+        name,
+        dob,
+        email,
+        phone,
+        password,
+        question: translate('areYouPregnant'),
+        value: 'pregnant',
+      });
     }
   };
   return (
