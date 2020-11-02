@@ -137,13 +137,6 @@ export default LogIn = (props) => {
     props.navigation.navigate('Homepage');
   };
 
-  let logout = () => {
-    console.log('Got to logout from LogIn');
-    saveCookie('email', '');
-    saveCookie('password', '');
-    saveCookie('uid', '');
-    saveCookie('fullName', '');
-  };
   return (
     <>
       <Animated.View

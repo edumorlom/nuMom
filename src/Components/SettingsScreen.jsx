@@ -35,11 +35,6 @@ const SettingsScreen = (props) => {
 
   const uid = getUid();
 
-  const goBack = () => {
-    Haptics.selectionAsync().then();
-    props.goBack();
-  };
-
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
       Alert.alert(
@@ -215,7 +210,20 @@ const SettingsScreen = (props) => {
 
   useEffect(() => {
     fetchUserInfo();
-
+    props.navigation.setOptions({headerRight: () => (
+      <View style={styles.logOutButton}>
+        <AntDesign
+          name="logout"
+          size={28}
+          color={appStyles.pinkColor}
+          onPress={() => {
+            AsyncAlert().then((response) => {
+              response ? logout() : null;
+            });
+          }}
+        />
+      </View>
+    )})
     return () => (_isMounted = false);
   }, []);
 
@@ -264,24 +272,6 @@ const SettingsScreen = (props) => {
 
   return (
     <View style={{flex: 1}}>
-      <BackButton
-        style={backButton}
-        icon={goBackImg}
-        underlayColor="transparent"
-        onPress={goBack}
-      />
-      <View style={styles.logOutButton}>
-        <AntDesign
-          name="logout"
-          size={28}
-          color={appStyles.pinkColor}
-          onPress={() => {
-            AsyncAlert().then((response) => {
-              response ? logout() : null;
-            });
-          }}
-        />
-      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>
@@ -444,7 +434,7 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.09,
+    top: appStyles.win.width * 0.040,
   },
 });
 
