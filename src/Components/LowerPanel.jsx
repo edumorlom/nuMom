@@ -1,4 +1,4 @@
-import {View, Animated} from 'react-native';
+import {Animated} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import appStyles, {win} from './AppStyles';
 import LowerPanelSelection from './LowerPanelSelection';
