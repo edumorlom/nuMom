@@ -15,7 +15,7 @@ import translate from './getLocalizedText';
 export default function STDSelection(props) {
   let onPress = (std) => {
     props.navigation.navigate('STDInfo', {
-      name: std.name,
+      name: translate(std.name),
       symptoms: std.symptoms,
       diagnosis: std.diagnosis,
       treatment: std.treatment,

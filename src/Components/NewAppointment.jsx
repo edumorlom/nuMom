@@ -52,7 +52,7 @@ export default function NewAppointment(props) {
     } else {
       await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
-      props.setLowerPanelContent('Appointment');
+      props.navigation.navigate('Appointment');
     }
   };
 

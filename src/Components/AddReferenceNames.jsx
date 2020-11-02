@@ -28,7 +28,7 @@ function AddReferenceNames(props) {
       return alert('Invalid Email: Please input Valid Email');
     } else {
       await addReference(uid, referenceInfo);
-      props.setLowerPanelContent('ReferenceNames');
+      props.navigation.navigate('ReferenceNames');
     }
   };
 

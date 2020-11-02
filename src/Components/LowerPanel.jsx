@@ -9,16 +9,6 @@ import ClinicInfo from './ClinicInfo';
 import ShelterInfo from './ShelterInfo';
 
 import LowerPanelHeader from './LowerPanelHeader';
-import Learn from './Learn';
-import Resources from './ResourcesPage';
-import STDInfo from './STDInfo';
-import Appointment from './Appointment';
-import NewAppointment from './NewAppointment';
-import STDSelection from './STDSelection';
-import Documents from './Documents';
-import FemaleCondom from './FemaleCondom';
-import ReferenceNames from './ReferenceNames';
-import AddReferenceNames from './AddReferenceNames';
 import Facilities from './Facilities';
 
 export default LowerPanel = (props) => {

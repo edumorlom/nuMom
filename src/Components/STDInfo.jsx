@@ -17,7 +17,6 @@ export default function STDInfo({route}) {
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
-      <Text>{translate(name)}</Text>
       <Menu title={translate('symptoms')} info={translate(symptoms)} />
       <Menu title={translate('testing')} info={translate(diagnosis)} />
       <Menu title={translate('treatment')} info={translate(treatment)} />

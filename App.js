@@ -9,14 +9,19 @@ import {
   StyleSheet,
   View,
   Button,
+  Image,
 } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import {
   logIn,
   registerForPushNotificationsAsync,
   storeObjectInDatabase,
   getUserInfo,
 } from './src/Firebase';
+import appStyles from './src/Components/AppStyles';
+import backArrow from './assets/go-back-arrow.png';
+
 import LogIn from './src/Components/LogIn';
 import LetsGetStarted from './src/Components/LetsGetStarted';
 import SignUpInfo from './src/Components/SignUpInfo';
@@ -45,62 +50,80 @@ import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
-import appStyles from './src/Components/AppStyles';
-
 // import * as firebase from "firebase";
 
-const Stack = createStackNavigator();
-
-AsyncAlert = () => {
-  return new Promise((resolve, reject) => {
-    Alert.alert(
-      translate('logout'),
-      translate('WantToLogout'),
-      [
-        {text: translate('Yes'), onPress: () => resolve(true)},
-        {text: translate('No'), onPress: () => resolve(false)},
-      ],
-      {cancelable: false}
-    );
-  });
-};
-
-let saveCookie = async (key, value) => {
-  try {
-    await AsyncStorage.setItem(key, value).then();
-  } catch (e) {
-    console.log(`Error storeData: ${e}`);
-  }
-};
-
-let logout = ({navigation}) => {
-  console.log('From settings');
-  saveCookie('email', '');
-  saveCookie('password', '');
-  saveCookie('uid', '');
-  saveCookie('fullName', '');
-  navigation.navigate('LogIn');
-};
-
 function App() {
+  let backArrowImage = () => {
+    return <Image source={backArrow} style={styles.goBackArrow} />;
+  };
+
+  const Stack = createStackNavigator();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerBackImage: backArrowImage,
+          headerTitleAlign: 'center',
+          headerTitleStyle: styles.headerTitle,
+        }}
+      >
         <Stack.Screen
           name="LogIn"
           component={LogIn}
           options={{header: () => null}}
         />
-        <Stack.Screen name="LetsGetStarted" component={LetsGetStarted} />
-        <Stack.Screen name="SignUpYesorNoMiami" component={SignUpYesorNo} />
-        <Stack.Screen name="MustLiveInMiami" component={MustLiveInMiami} />
-        <Stack.Screen name="SignUpInfo" component={SignUpInfo} />
-        <Stack.Screen name="SignUpContact" component={SignUpContact} />
-        <Stack.Screen name="SignUpPassword" component={SignUpPassword} />
-        <Stack.Screen name="SignUpYesorNoPregnant" component={SignUpYesorNo} />
-        <Stack.Screen name="SignUpYesorNoInfant" component={SignUpYesorNo} />
-        <Stack.Screen name="SignUpBabyDob" component={SignUpBabyDob} />
-        <Stack.Screen name="SignUpLoading" component={SignUpLoading} />
+        <Stack.Screen
+          name="LetsGetStarted"
+          component={LetsGetStarted}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoMiami"
+          component={SignUpYesorNo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="MustLiveInMiami"
+          component={MustLiveInMiami}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpInfo"
+          component={SignUpInfo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpContact"
+          component={SignUpContact}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpPassword"
+          component={SignUpPassword}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoPregnant"
+          component={SignUpYesorNo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoInfant"
+          component={SignUpYesorNo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpBabyDob"
+          component={SignUpBabyDob}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpLoading"
+          component={SignUpLoading}
+          options={{headerTransparent: true, title: ''}}
+        />
         <Stack.Screen
           name="Homepage"
           component={Homepage}
@@ -110,44 +133,76 @@ function App() {
           name="SettingsScreen"
           component={SettingsScreen}
           options={{
-            headerRight: () => (
-              <View style={styles.logOutButton}>
-                <AntDesign
-                  name="logout"
-                  size={28}
-                  color={appStyles.pinkColor}
-                  onPress={() => {
-                    logout();
-                  }}
-                />
-              </View>
-            ),
+            title: 'Settings',
           }}
         />
         <Stack.Screen
           name="ForgotPasswordPage"
           component={ForgotPasswordPage}
+          options={{title: 'Forgot Password'}}
         />
-        <Stack.Screen name="ResourcesPage" component={ResourcesPage} />
+        <Stack.Screen
+          name="ResourcesPage"
+          component={ResourcesPage}
+          options={{title: 'Resources'}}
+        />
         <Stack.Screen name="Learn" component={Learn} />
-        <Stack.Screen name="STDSelection" component={STDSelection} />
+        <Stack.Screen
+          name="STDSelection"
+          component={STDSelection}
+          options={{title: 'STDs'}}
+        />
         <Stack.Screen
           name="FemaleCondomMainScreen"
           component={FemaleCondomMainScreen}
+          options={{title: 'Female Condom'}}
         />
         <Stack.Screen
           name="FemaleCondomDoDont"
           component={FemaleCondomDoDont}
+          options={{title: "Do's & Dont's"}}
         />
-        <Stack.Screen name="FemaleCondomSteps" component={FemaleCondomSteps} />
-        <Stack.Screen name="WICScreen" component={WICScreen} />
-        <Stack.Screen name="MedicaidScreen" component={MedicaidScreen} />
-        <Stack.Screen name="Appointment" component={Appointment} />
-        <Stack.Screen name="NewAppointment" component={NewAppointment} />
+        <Stack.Screen
+          name="FemaleCondomSteps"
+          component={FemaleCondomSteps}
+          options={{title: 'Steps'}}
+        />
+        <Stack.Screen
+          name="WICScreen"
+          component={WICScreen}
+          options={{title: 'WIC'}}
+        />
+        <Stack.Screen
+          name="MedicaidScreen"
+          component={MedicaidScreen}
+          options={{title: 'Medicaid'}}
+        />
+        <Stack.Screen
+          name="Appointment"
+          component={Appointment}
+          options={{title: 'Appointments'}}
+        />
+        <Stack.Screen
+          name="NewAppointment"
+          component={NewAppointment}
+          options={{title: 'New Appointment'}}
+        />
         <Stack.Screen name="Documents" component={Documents} />
-        <Stack.Screen name="ReferenceNames" component={ReferenceNames} />
-        <Stack.Screen name="AddReferenceNames" component={AddReferenceNames} />
-        <Stack.Screen name="STDInfo" component={STDInfo} />
+        <Stack.Screen
+          name="ReferenceNames"
+          component={ReferenceNames}
+          options={{title: 'References'}}
+        />
+        <Stack.Screen
+          name="AddReferenceNames"
+          component={AddReferenceNames}
+          options={{title: 'Add Reference'}}
+        />
+        <Stack.Screen
+          name="STDInfo"
+          component={STDInfo}
+          options={({route}) => ({title: route.params.name})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -159,6 +214,14 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.045,
+    top: appStyles.win.width * 0.04,
+  },
+  goBackArrow: {
+    width: 25,
+    height: 25,
+  },
+  headerTitle: {
+    fontSize: 25,
+    color: appStyles.blueColor,
   },
 });

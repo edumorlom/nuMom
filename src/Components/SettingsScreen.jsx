@@ -19,7 +19,6 @@ import {getUserInfo, getUid} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
-import logout from './LogIn';
 
 const SettingsScreen = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -35,11 +34,6 @@ const SettingsScreen = (props) => {
   let _isMounted = false;
 
   const uid = getUid();
-
-  const goBack = () => {
-    Haptics.selectionAsync().then();
-    props.goBack();
-  };
 
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
@@ -216,7 +210,22 @@ const SettingsScreen = (props) => {
 
   useEffect(() => {
     fetchUserInfo();
-
+    props.navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.logOutButton}>
+          <AntDesign
+            name="logout"
+            size={28}
+            color={appStyles.pinkColor}
+            onPress={() => {
+              AsyncAlert().then((response) => {
+                response ? logout() : null;
+              });
+            }}
+          />
+        </View>
+      ),
+    });
     return () => (_isMounted = false);
   }, []);
 
@@ -265,38 +274,7 @@ const SettingsScreen = (props) => {
 
   return (
     <View style={{flex: 1}}>
-      <BackButton
-        style={backButton}
-        icon={goBackImg}
-        underlayColor="transparent"
-        onPress={goBack}
-      />
-      <View style={styles.logOutButton}>
-        <AntDesign
-          name="logout"
-          size={28}
-          color={appStyles.pinkColor}
-          onPress={() => {
-            AsyncAlert().then((response) => {
-              response ? logout() : null;
-            });
-          }}
-        />
-      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text
-            style={{
-              color: appStyles.blueColor,
-              fontSize: appStyles.titleFontSize,
-              fontWeight: 'bold',
-              alignSelf: 'center',
-              paddingTop: 15,
-            }}
-          >
-            {translate('welcomeSettings')}
-          </Text>
-        </View>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
@@ -458,7 +436,7 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.09,
+    top: appStyles.win.width * 0.04,
   },
 });
 
