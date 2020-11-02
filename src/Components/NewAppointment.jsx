@@ -245,7 +245,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
   textStyle: {
     ...Platform.select({
       ios: {

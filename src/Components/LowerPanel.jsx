@@ -46,6 +46,7 @@ export default LowerPanel = (props) => {
     let destination = moveUp ? win.height * 0.3 : win.height * 0.5;
     Animated.timing(moveAnim, {
       toValue: destination,
+      useNativeDriver: false,
       duration: 150,
     }).start();
   };
@@ -55,6 +56,7 @@ export default LowerPanel = (props) => {
     let destination = moveUp ? 0 : win.height * 0.3;
     Animated.timing(moveAnim, {
       toValue: destination,
+      useNativeDriver: false,
       duration: 0,
     }).start();
   };

@@ -246,6 +246,11 @@ export const getUid = () => {
   return firebase.auth().currentUser.uid;
 };
 
+// Gets current UEmail
+export const getUEmail = () => {
+  return firebase.auth().currentUser.email;
+};
+
 export const getAuth = () => {
   return firebase.auth();
 };
@@ -305,6 +310,51 @@ export const addAppointment = async (uid, appointmentInfo) => {
     .catch((err) => console.log(err));
 };
 
+export const fetchImmunization = async (uid, setObjects, _isMounted) => {
+  _isMounted = true;
+  if (uid !== null) {
+    await firebase
+      .database()
+      .ref(`users/${uid}/immunizations/`)
+      .once('value', (snapshot) => {
+        snapshot.forEach(function (childSnapshot) {
+          let childKey = childSnapshot.key;
+          let childData = childSnapshot.val();
+          if (
+            childSnapshot.val() !== null ||
+            childSnapshot.val() !== 'undefined'
+          ) {
+            if (_isMounted) {
+              setObjects((prevArray) => [...prevArray, childSnapshot]);
+            }
+          }
+        });
+      })
+      .catch((err) => console.log(err.message));
+  } else {
+    alert("Error: Couldn't get Immunization Info");
+  }
+};
+
+export const deleteImmunization = async (id, uid, objects, setObjects) => {
+  if (uid !== null) {
+    setObjects(objects.filter((item) => item.key !== id));
+    const appointments = firebase
+      .database()
+      .ref(`users/${uid}/immunizations/${id}`);
+    return appointments.remove();
+  }
+  console.log("Error: Couldn't get the User Immunization Info");
+};
+
+export const addImmunization = async (uid, immunizationInfo) => {
+  firebase
+    .database()
+    .ref(`users/${uid}/immunizations`)
+    .push(immunizationInfo)
+    .catch((err) => console.log(err));
+};
+
 export const addReference = async (uid, referenceInfo) => {
   firebase
     .database()
@@ -312,15 +362,6 @@ export const addReference = async (uid, referenceInfo) => {
     .push(referenceInfo)
     .catch((err) => console.log(err));
 };
-
-// implementation in progress
-export const fetchImmunization = async (uid, setObjects, _isMounted) => {};
-
-// implementation in progress
-export const deleteImmunization = async () => {};
-
-// implementation in progress
-export const addImmunization = async () => {};
 
 export const fetchReference = async (uid, setReferences, _isMounted) => {
   _isMounted = true;

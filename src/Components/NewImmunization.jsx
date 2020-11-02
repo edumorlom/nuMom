@@ -11,9 +11,6 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
-import * as Calendar from 'expo-calendar';
-import * as Localization from 'expo-localization';
-import * as Permissions from 'expo-permissions';
 import translate from './getLocalizedText';
 import Button from './Button';
 import appStyles from './AppStyles';
@@ -29,7 +26,6 @@ export default function NewImmunization(props) {
     )),
     ([notes, setNotes] = useState(null)),
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
-    ([eventId, setEventId] = useState(null)),
   ];
   const uid = getUid();
 
@@ -37,7 +33,6 @@ export default function NewImmunization(props) {
     type,
     date,
     notes,
-    eventId,
   };
 
   let immunizationArray = [
