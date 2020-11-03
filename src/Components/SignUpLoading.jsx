@@ -26,21 +26,6 @@ export default function SignUpLoading(props) {
     }, 2000);
   }, []);
 
-<<<<<<< HEAD
-    useEffect(() => {
-        setTimeout(() => {
-            setLoadingText(translate("allSet"))
-            setColor(appStyles.pinkColor)
-            setTimeout(() => {
-                props.signUpAndUploadData();
-            }, 1000);
-        }, 2000);
-
-        
-    }, [])
-
-
-  
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
@@ -57,23 +42,3 @@ export default function SignUpLoading(props) {
         );
   
 }
-=======
-  return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={appStyles.container}>
-        <View
-          style={{
-            marginTop: '50%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-          }}
-        >
-          <Image source={dnaLoading} style={{width: 250, height: 250}} />
-          <Text style={{...appStyles.paragraphText, color}}>{loadingText}</Text>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
-  );
-}
->>>>>>> 9af2f4667c6161ff521c535389bd2ae4c77a1891
