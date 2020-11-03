@@ -29,7 +29,7 @@ export default function SignUpLoading (props) {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={appStyles.container}>
                     <View style={{
-                        marginTop: '50%',
+                        marginTop: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
                         position: 'absolute'}}>
