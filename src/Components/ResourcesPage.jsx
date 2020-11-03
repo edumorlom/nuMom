@@ -1,21 +1,18 @@
-import React from "react";
-import { ScrollView, Linking } from "react-native";
-import SelectionButton from "./SelectionButton";
-import appointments from "../../assets/appointments.png";
-import document from "../../assets/document.png";
-import doctor from "../../assets/doctor.png";
-import ResourcesInfo from "./ResourcesInformation";
-import translate from "app/Components/getLocalizedText";
-import appStyles from "./AppStyles";
+import React from 'react';
+import {ScrollView, Linking} from 'react-native';
+import SelectionButton from './SelectionButton';
+import appointments from '../../assets/appointments.png';
+import document from '../../assets/document.png';
+import doctor from '../../assets/doctor.png';
+import babyVaccine from '../../assets/immunization.png';
+import ResourcesInfo from './ResourcesInformation';
+import translate from './getLocalizedText';
+import appStyles from './AppStyles';
 
 export default function Resources(props) {
-
   let getResourceName = (name) => {
-    return name.length > 40
-    ? name.substring(0, 40) + "..."
-    : name;
-  }
-
+    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
+  };
 
   let resourceButtons = ResourcesInfo().map((resource, key) => (
     <SelectionButton
@@ -27,14 +24,27 @@ export default function Resources(props) {
       onPress={() => Linking.openURL(resource.website)}
     />
   ));
+
+  let immunizationButton = (
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text={translate('immunization')}
+      subtext={translate('immunizationInfo')}
+      icon={babyVaccine}
+      onPress={() => {
+        props.setLowerPanelContent('Immunization');
+      }}
+    />
+  );
+
   let appointmentButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate("appointment")}
-      subtext={translate("appointmentInfo")}
+      text={translate('appointment')}
+      subtext={translate('appointmentInfo')}
       icon={appointments}
       onPress={() => {
-        props.setLowerPanelContent("Appointment");
+        props.setLowerPanelContent('Appointment');
       }}
     />
   );
@@ -42,11 +52,11 @@ export default function Resources(props) {
   let documentUploadButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate("documents")}
-      subtext={translate("documentsSubtitle")}
+      text={translate('documents')}
+      subtext={translate('documentsSubtitle')}
       icon={document}
       onPress={() => {
-        props.setLowerPanelContent("documents");
+        props.setLowerPanelContent('documents');
       }}
     />
   );
@@ -54,24 +64,23 @@ export default function Resources(props) {
   let namesReferenceButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate("NameReference")}
-      subtext={translate("ReferenceSubtitle")}
+      text={translate('NameReference')}
+      subtext={translate('ReferenceSubtitle')}
       icon={doctor}
       onPress={() => {
-        props.setLowerPanelContent("ReferenceNames");
+        props.setLowerPanelContent('ReferenceNames');
       }}
     />
   );
 
-  
-
   return (
     <ScrollView
-      contentContainerStyle={{ alignItems: "center", maxWidth: "100%"}}
+      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
       {resourceButtons}
-      {documentUploadButton}
       {appointmentButton}
+      {documentUploadButton}
+      {immunizationButton}
       {namesReferenceButton}
     </ScrollView>
   );
