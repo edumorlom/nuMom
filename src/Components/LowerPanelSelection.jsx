@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {MaterialIcons} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import babyBottle from '../../assets/baby-bottle.png';
 import clinicLogo from '../../assets/facilities.png';
 import lightBulb from '../../assets/light-bulb.png';
@@ -10,7 +11,6 @@ import SelectionButton from './SelectionButton';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
-import { useNavigation } from '@react-navigation/native';
 
 export default function LowerPanelSelection(props) {
   const navigation = useNavigation();

@@ -16,9 +16,17 @@ export default function LowerPanelHeader(props) {
 
   useEffect(() => {
     let content = props.lowerPanelContent;
-    //Check if the lowerPanelContent should have a fullscreen lower Panel
-    if (!["findCare", "shelters", "clinicInfo", "shelterInfo", "selection","facilities"].includes(content)) 
-    {
+    // Check if the lowerPanelContent should have a fullscreen lower Panel
+    if (
+      ![
+        'findCare',
+        'shelters',
+        'clinicInfo',
+        'shelterInfo',
+        'selection',
+        'facilities',
+      ].includes(content)
+    ) {
       props.setFullScreen(true);
       props.setIsFullScreen(true);
       setFullScreen(true);
@@ -60,12 +68,17 @@ export default function LowerPanelHeader(props) {
         return translate(content);
       case 'Appointment':
         return translate('appointment');
+<<<<<<< HEAD
       case 'Immunization':
         return translate('immunization');
       case 'NewAppointment':
         return translate('newAppointment');
       case 'NewImmunization':
         return translate('newImmunization');
+=======
+      case 'NewAppointment':
+        return translate('newAppointment');
+>>>>>>> 9c0feba55ffa465be0fa098ee8dcb3e09cc53260
       case 'documents':
         return translate(content);
       case 'FemaleCondom':

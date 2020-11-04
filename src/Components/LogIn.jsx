@@ -38,7 +38,7 @@ export default LogIn = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
 
   // Remove async tasks on unMount using _isMounted
- 
+
   useEffect(() => {
     _start();
   }, []);
@@ -137,13 +137,6 @@ export default LogIn = (props) => {
     props.navigation.navigate('Homepage');
   };
 
-    let logout = () => {
-    console.log("Got to logout from LogIn")
-    saveCookie('email', '');
-    saveCookie('password', '');
-    saveCookie('uid', '');
-    saveCookie('fullName', '');
-  };
   return (
     <>
       <Animated.View

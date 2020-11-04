@@ -1,4 +1,4 @@
-import {Animated} from 'react-native';
+import {View, Animated} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import appStyles, {win} from './AppStyles';
 import LowerPanelSelection from './LowerPanelSelection';
@@ -9,18 +9,6 @@ import ClinicInfo from './ClinicInfo';
 import ShelterInfo from './ShelterInfo';
 
 import LowerPanelHeader from './LowerPanelHeader';
-import Learn from './Learn';
-import Resources from './ResourcesPage';
-import STDInfo from './STDInfo';
-import Appointment from './Appointment';
-import NewAppointment from './NewAppointment';
-import Immunization from './Immunization';
-import NewImmunization from './NewImmunization';
-import STDSelection from './STDSelection';
-import Documents from './Documents';
-import FemaleCondom from './FemaleCondom';
-import ReferenceNames from './ReferenceNames';
-import AddReferenceNames from './AddReferenceNames';
 import Facilities from './Facilities';
 
 export default LowerPanel = (props) => {
