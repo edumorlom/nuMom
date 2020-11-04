@@ -148,7 +148,7 @@ export default LogIn = (props) => {
           accessible={false}
         >
           <>
-          <ImageBackground
+            <ImageBackground
               source={background}
               style={{
                 position: 'absolute',
