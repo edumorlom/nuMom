@@ -148,6 +148,15 @@ export default LogIn = (props) => {
           accessible={false}
         >
           <>
+          <ImageBackground
+              source={background}
+              style={{
+                position: 'absolute',
+                opacity: 0.75,
+                width: appStyles.win.width,
+                height: appStyles.win.height,
+              }}
+            />
             <View
               style={{
                 paddingTop: appStyles.win.height * 0.05,
@@ -167,14 +176,12 @@ export default LogIn = (props) => {
                 placeholder={translate('emailInput')}
                 onChangeText={setEmail}
               />
-              <Text>{email}</Text>
               <TextBox
                 style={appStyles.TextInputMask}
                 placeholder={translate('passwordInput')}
                 onChangeText={setPassword}
                 secureTextEntry
               />
-              <Text>{password}</Text>
               <View style={{height: appStyles.win.height * 0.03}} />
               <Button
                 style={appStyles.button}

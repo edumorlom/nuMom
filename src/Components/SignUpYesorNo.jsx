@@ -50,6 +50,7 @@ export default SignUpYesorNo = (props) => {
         password,
         pregnant,
         infant: userResponse,
+        babyDob: false,
       });
     } else {
       props.navigation.navigate('MustLiveInMiami', {

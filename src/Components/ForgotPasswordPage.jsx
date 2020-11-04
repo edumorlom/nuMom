@@ -35,7 +35,7 @@ const ForgotPasswordPage = (props) => {
       await passwordReset(email);
       alert('Password Reset email sent Successfully!!\n Check your email ');
       console.log('Password Reset email sent Successfully!');
-      props.setScreen('login');
+      props.navigation.navigate('LogIn')
     } catch (error) {
       alert('Sorry something went wrong Unsuccessful.');
       console.log(error);
@@ -44,28 +44,10 @@ const ForgotPasswordPage = (props) => {
 
   return (
     <View style={{flex: 1}}>
-      <BackButton
-        style={appStyles.BackButton}
-        icon={goBackImg}
-        onPress={goBack}
-      />
-      <View>
-        <Text
-          style={{
-            color: appStyles.pinkColor,
-            fontSize: appStyles.titleFontSize,
-            fontWeight: 'bold',
-            alignSelf: 'center',
-          }}
-        >
-          {translate('forgotPassword')}
-        </Text>
-      </View>
-
       <View
         style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}
       >
-        <Text style={appStyles.titleBlue}>{translate('emailInput')}:</Text>
+        <Text style={appStyles.titleBlue}>Please enter the email associated with your account:</Text>
         <View style={appStyles.TextInput.View}>
           <TextBox
             placeholder={translate('emailInput')}

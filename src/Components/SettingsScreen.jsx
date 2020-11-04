@@ -21,6 +21,7 @@ import appStyles from './AppStyles';
 import translate from './getLocalizedText';
 
 const SettingsScreen = (props) => {
+  
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [dob, setdob] = useState(null);
   const [fullName, setFullName] = useState(null);

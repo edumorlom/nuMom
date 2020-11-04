@@ -21,9 +21,7 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
-
-  console.log(`Password: liveMiami: ${liveMiami}`);
-
+  
   useEffect(() => {
     AsyncStorage.getItem('pass')
       .then((value) => {
