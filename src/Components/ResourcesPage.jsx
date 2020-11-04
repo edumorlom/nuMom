@@ -5,7 +5,6 @@ import appointments from '../../assets/appointments.png';
 import document from '../../assets/document.png';
 import doctor from '../../assets/doctor.png';
 import babyVaccine from '../../assets/immunization.png';
-import ResourcesInfo from './ResourcesInformation';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
