@@ -6,6 +6,7 @@ import document from '../../assets/document.png';
 import doctor from '../../assets/doctor.png';
 import breastfeeding from '../../assets/breastfeeding.png';
 import heart from '../../assets/heart.png';
+import babyVaccine from '../../assets/immunization.png';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
@@ -31,6 +32,18 @@ export default function Resources(props) {
       icon={heart}
       onPress={() => {
         props.navigation.navigate('MedicaidScreen');
+      }}
+      />
+  );
+
+  let immunizationButton = (
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text={translate('immunization')}
+      subtext={translate('immunizationInfo')}
+      icon={babyVaccine}
+      onPress={() => {
+        props.setLowerPanelContent('Immunization');
       }}
     />
   );
@@ -78,7 +91,10 @@ export default function Resources(props) {
       {wicButton}
       {medicaidButton}
       {documentUploadButton}
+      {resourceButtons}
       {appointmentButton}
+      {documentUploadButton}
+      {immunizationButton}
       {namesReferenceButton}
     </ScrollView>
   );

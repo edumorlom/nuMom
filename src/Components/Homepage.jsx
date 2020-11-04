@@ -117,6 +117,12 @@ export default Homepage = (props) => {
       case "NewAppointment":
         setLowerPanelContent("Appointment");
         break;
+      case "Immunization":
+        setLowerPanelContent("resources");
+        break;
+      case "NewImmunization":
+        setLowerPanelContent("Immunization");
+        break;
       case "documents":
         setLowerPanelContent("resources");
         break;
