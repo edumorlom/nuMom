@@ -26,21 +26,19 @@ export default function SignUpLoading(props) {
     }, 2000);
   }, []);
 
-  return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={appStyles.container}>
-        <View
-          style={{
-            marginTop: '50%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-          }}
-        >
-          <Image source={dnaLoading} style={{width: 250, height: 250}} />
-          <Text style={{...appStyles.paragraphText, color}}>{loadingText}</Text>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
-  );
+        return (
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <View style={appStyles.container}>
+                    <View style={{
+                        marginTop: '30%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute'}}>
+                        <Image source={dnaLoading} style={{width: 250, height: 250}}/>
+                        <Text style={{...appStyles.paragraphText, color: color}}>{loadingText}</Text>
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+        );
+  
 }
