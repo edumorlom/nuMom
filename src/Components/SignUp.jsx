@@ -27,130 +27,11 @@ export default function SignUp(props) {
   let _isMounted = false;
 
   useEffect(() => {
-    if (index < 0) {
-      props.setScreen('login');
-    }
-  });
-
-  useEffect(() => {
     _isMounted = true;
 
     return () => (_isMounted = false);
   }, []);
 
-  let showMiamiOnlyAlert = true;
-  let showBabyDob = false;
-
-  let getNextScreen = () => {
-    let currentIndex = index;
-
-    if (!showMiamiOnlyAlert && currentIndex === 1) {
-      currentIndex++;
-    }
-
-    if (!showBabyDob && currentIndex === 7) {
-      currentIndex++;
-    }
-
-    if (currentIndex < screens.length - 1) {
-      currentIndex++;
-    }
-
-    setIndex(currentIndex);
-  };
-
-  let goBack = () => {
-    let currentIndex = index;
-
-    if (currentIndex === 3) {
-      // Skip Miami Pnly Alert when going back (user already saw it)
-      currentIndex--;
-    }
-
-    // if (!showGenderSelection && currentIndex === 9) {
-    //     currentIndex--;
-    // }
-    currentIndex--;
-
-    setIndex(currentIndex);
-  };
-
-  let isEquivalent = (a, b) => {
-    // Create arrays of property names
-    let aProps = Object.getOwnPropertyNames(a);
-    let bProps = Object.getOwnPropertyNames(b);
-
-    // If number of properties is different,
-    // objects are not equivalent
-    if (aProps.length !== bProps.length) {
-      return false;
-    }
-
-    for (let i = 0; i < aProps.length; i++) {
-      let propName = aProps[i];
-
-      // If values of same property are not equal,
-      // objects are not equivalent
-      if (a[propName] !== b[propName]) {
-        return false;
-      }
-    }
-
-    // If we made it this far, objects
-    // are considered equivalent
-    return true;
-  };
-
-  let setUserInfo = (keyToValue) => {
-    // This function is to be used only with one property
-    // For example {infant: true}, Cannot be {fullName: "John", password: "password"}
-    if (isEquivalent(keyToValue, {liveMiami: true})) {
-      showMiamiOnlyAlert = false;
-    }
-    if (isEquivalent(keyToValue, {infant: true})) {
-      showBabyDob = true;
-    }
-
-    let property = Object.getOwnPropertyNames(keyToValue)[0];
-    let value = keyToValue[property];
-
-    // This had to happen when switching to function useState hooks
-    // To be fixed in the future with useContext() and the Context API
-    switch (property) {
-      case 'index':
-        setIndex(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'phoneNumber':
-        setPhoneNumber(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      case 'fullName':
-        setFullName(value);
-        break;
-      case 'dob':
-        setDob(value);
-        break;
-      case 'pregnant':
-        setPregnant(value);
-        break;
-      case 'infant':
-        setInfant(value);
-        break;
-      case 'liveMiami':
-        setLiveMiami(value);
-        break;
-      case 'babyDOB':
-        setBabyDOB(value);
-        break;
-      default:
-        throw new Error('That is not one of the state elements in SignUp');
-    }
-  };
 
   let signUpAndUploadData = () => {
     let info = getNextWeekAndWeekNo();
@@ -178,9 +59,11 @@ export default function SignUp(props) {
       'liveMiami',
     ];
     // AsyncStorage.multiRemove(keys, (err) => { console.log(err) });
+    /* Logs in user after creating account
     setTimeout(() => {
       props.login(email, password);
     }, 2000);
+    */
   };
 
   let getNextWeekAndWeekNo = () => {
@@ -210,48 +93,4 @@ export default function SignUp(props) {
     }
     return [nextWeek, weekNo];
   };
-
-  let screens = [
-    <LetsGetStarted setUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
-    <SignUpYesorNo
-      setUserInfo={setUserInfo}
-      question={translate('liveMiami')}
-      value="liveMiami"
-      getNextScreen={getNextScreen}
-    />,
-    <MustLiveInMiami getNextScreen={getNextScreen} />,
-    <SignUpInfo setUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
-    <SignUpContact
-      setUserInfo={setUserInfo}
-      getNextScreen={getNextScreen}
-      email={email}
-    />,
-    <SignUpPassword setUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
-    <SignUpYesorNo
-      setUserInfo={setUserInfo}
-      question={translate('areYouPregnant')}
-      value="pregnant"
-      getNextScreen={getNextScreen}
-    />,
-    <SignUpYesorNo
-      setUserInfo={setUserInfo}
-      question={translate('didYouHaveInfants')}
-      value="infant"
-      getNextScreen={getNextScreen}
-    />,
-    // <SignUpsetUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
-    <SignUpBabyDob setUserInfo={setUserInfo} getNextScreen={getNextScreen} />,
-    <SignUpLoading signUpAndUploadData={signUpAndUploadData} />,
-  ];
-
-  // let male = ? male : false;
-  // let female = ? female : false;
-
-  return (
-    <View style={{height: '100%'}}>
-      {/* <SignUpHeader goBack= {goBack} male = {male} female = {female} index = {index}/> */}
-      <SignUpHeader goBack={goBack} index={index} />
-      {screens[index]}
-    </View>
-  );
 }

@@ -19,7 +19,7 @@ import goBackImg from '../../assets/go-back-arrow.png';
 export default function SignUpInfo(props) {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('name')
@@ -45,7 +45,7 @@ export default function SignUpInfo(props) {
       // AsyncStorage.setItem('name', name);
       // AsyncStorage.setItem('dob', dob);
       props.navigation.navigate('SignUpContact', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
       });

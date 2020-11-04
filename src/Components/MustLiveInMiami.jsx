@@ -6,11 +6,11 @@ import Button from './Button';
 import translate from './getLocalizedText';
 
 export default function MustLiveInMiami(props) {
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
 
   let onPress = () => {
     props.navigation.navigate('SignUpInfo', {
-      liveMiami: liveMiamiResponse,
+      liveMiami,
     });
   };
 

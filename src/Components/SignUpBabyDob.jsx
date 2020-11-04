@@ -15,14 +15,15 @@ import translate from './getLocalizedText';
 
 export default SignUpBabyDob = (props) => {
   const [babyDob, setBabyDob] = useState('');
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
   const {password} = props.route.params;
-  const {pregnantResponse} = props.route.params;
-  const {infantResponse} = props.route.params;
+  const {repeat} = props.route.params;
+  const {pregnant} = props.route.params;
+  const {infant} = props.route.params;
 
   const babyDOB = useRef(null);
 
@@ -47,14 +48,15 @@ export default SignUpBabyDob = (props) => {
     } else {
       // props.setUserInfo({babyDOB: babyDob});
       props.navigation.navigate('SignUpLoading', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
         email,
         phone,
         password,
-        pregnant: pregnantResponse,
-        infant: infantResponse,
+        repeat,
+        pregnant,
+        infant,
         babyDob,
       });
     }

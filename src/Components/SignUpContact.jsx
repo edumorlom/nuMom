@@ -16,7 +16,7 @@ import {checkEmailExist} from '../Firebase';
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
 
@@ -63,7 +63,7 @@ export default SignUpInfo = (props) => {
           // AsyncStorage.setItem('e-mail', email);
           // AsyncStorage.setItem('phone', phone);
           props.navigation.navigate('SignUpPassword', {
-            liveMiami: liveMiamiResponse,
+            liveMiami,
             name,
             dob,
             email,

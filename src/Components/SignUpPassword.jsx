@@ -16,12 +16,14 @@ import translate from './getLocalizedText';
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
 
+  console.log("Password: liveMiami: " + liveMiami);
+  
   useEffect(() => {
     AsyncStorage.getItem('pass')
       .then((value) => {
@@ -47,7 +49,7 @@ export default SignUpPassword = (props) => {
       // AsyncStorage.setItem('pass', password);
       // AsyncStorage.setItem('repeat', repeat);
       props.navigation.navigate('SignUpYesorNoPregnant', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
         email,

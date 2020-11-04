@@ -7,13 +7,19 @@ import translate from './getLocalizedText';
 
 export default SignUpYesorNo = (props) => {
   let onPress = (userResponse) => {
+    const {liveMiami} = props.route.params;
+    const {name} = props.route.params;
+    const {dob} = props.route.params;
+    const {email} = props.route.params;
+    const {phone} = props.route.params;
+    const {password} = props.route.params;
     if (userResponse && value == 'liveMiami') {
       props.navigation.navigate('SignUpInfo', {
         liveMiami: userResponse,
       });
     } else if (value == 'pregnant') {
       props.navigation.navigate('SignUpYesorNoInfant', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
         email,
@@ -25,24 +31,24 @@ export default SignUpYesorNo = (props) => {
       });
     } else if (userResponse && value == 'infant') {
       props.navigation.navigate('SignUpBabyDob', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
         email,
         phone,
         password,
-        pregnant: pregnantResponse,
+        pregnant,
         infant: userResponse,
       });
     } else if (userResponse == false && value == 'infant') {
       props.navigation.navigate('SignUpLoading', {
-        liveMiami: liveMiamiResponse,
+        liveMiami,
         name,
         dob,
         email,
         phone,
         password,
-        pregnant: pregnantResponse,
+        pregnant,
         infant: userResponse,
       });
     } else {
@@ -53,13 +59,13 @@ export default SignUpYesorNo = (props) => {
   };
 
   const {question, value} = props.route.params;
-  const {liveMiamiResponse} = props.route.params;
+  const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
   const {password} = props.route.params;
-  const {pregnantResponse} = props.route.params;
+  const {pregnant} = props.route.params;
 
   return (
     <View style={appStyles.container}>
