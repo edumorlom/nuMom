@@ -22,8 +22,8 @@ export default SignUpPassword = (props) => {
   const {email} = props.route.params;
   const {phone} = props.route.params;
 
-  console.log("Password: liveMiami: " + liveMiami);
-  
+  console.log(`Password: liveMiami: ${liveMiami}`);
+
   useEffect(() => {
     AsyncStorage.getItem('pass')
       .then((value) => {
@@ -72,39 +72,48 @@ export default SignUpPassword = (props) => {
       >
         <>
           <View style={appStyles.container}>
-            <Text style={appStyles.titleBlue}>
-              {translate('createPassword')}
-            </Text>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextBox
-                placeholder={translate('passwordInput')}
-                onChangeText={setPassword}
-                secureTextEntry
-                value={password}
-                style={appStyles.TextInputMask}
-              />
-
-              <TextBox
-                placeholder={translate('repeatPasswordInput')}
-                onChangeText={setRepeat}
-                secureTextEntry
-                value={repeat}
-                style={appStyles.TextInputMask}
-              />
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.1,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <Text style={appStyles.titleBlue}>
+                {translate('createPassword')}
+              </Text>
+              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                <TextBox
+                  placeholder={translate('passwordInput')}
+                  onChangeText={setPassword}
+                  secureTextEntry
+                  value={password}
+                  style={appStyles.TextInputMask}
+                />
+
+                <TextBox
+                  placeholder={translate('repeatPasswordInput')}
+                  onChangeText={setRepeat}
+                  secureTextEntry
+                  value={repeat}
+                  style={appStyles.TextInputMask}
+                />
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '8%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>

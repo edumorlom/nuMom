@@ -81,40 +81,49 @@ export default SignUpBabyDob = (props) => {
       >
         <>
           <View style={appStyles.container}>
-            <View>
-              <Text style={appStyles.titleBlue}>{titletext}</Text>
-            </View>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextInputMask
-                placeholder={translate('dob')}
-                type="datetime"
-                options={{
-                  format: 'MM/DD/YYYY',
-                  validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                    return regex.test(value);
-                  }, // This validator function is read by isValid(), still to be used
-                }}
-                style={appStyles.TextInputMask}
-                value={babyDob}
-                onChangeText={setDob}
-                // ref={(ref) => (babyDOB = ref)}
-              />
-              {/* <TextInput placeholder={translate("dob")} type={'date'} onChangeText={setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.1,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <View>
+                <Text style={appStyles.titleBlue}>{titletext}</Text>
+              </View>
+              <View style={{paddingTop: appStyles.win.height * 0.1}}>
+                <TextInputMask
+                  placeholder={translate('dob')}
+                  type="datetime"
+                  options={{
+                    format: 'MM/DD/YYYY',
+                    validator(value, settings) {
+                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      return regex.test(value);
+                    }, // This validator function is read by isValid(), still to be used
+                  }}
+                  style={appStyles.TextInputMask}
+                  value={babyDob}
+                  onChangeText={setDob}
+                  // ref={(ref) => (babyDOB = ref)}
+                />
+                {/* <TextInput placeholder={translate("dob")} type={'date'} onChangeText={setDob} keyboardType={"numeric"} dob = {"baby"}/> */}
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '8%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>

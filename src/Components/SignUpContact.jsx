@@ -86,39 +86,48 @@ export default SignUpInfo = (props) => {
       >
         <>
           <View style={appStyles.container}>
-            <View>
-              <Text style={appStyles.titleBlue}>
-                {translate('contactInformation')}
-              </Text>
-            </View>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextBox
-                placeholder={translate('emailInput')}
-                onChangeText={setEmail}
-                value={email}
-                style={appStyles.TextInputMask}
-              />
-              <TextBox
-                placeholder={translate('phoneNumberInput')}
-                onChangeText={setPhone}
-                keyboardType="numeric"
-                value={phone}
-                style={appStyles.TextInputMask}
-              />
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.1,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <View>
+                <Text style={appStyles.titleBlue}>
+                  {translate('contactInformation')}
+                </Text>
+              </View>
+              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                <TextBox
+                  placeholder={translate('emailInput')}
+                  onChangeText={setEmail}
+                  value={email}
+                  style={appStyles.TextInputMask}
+                />
+                <TextBox
+                  placeholder={translate('phoneNumberInput')}
+                  onChangeText={setPhone}
+                  keyboardType="numeric"
+                  value={phone}
+                  style={appStyles.TextInputMask}
+                />
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '8%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>

@@ -13,8 +13,6 @@ import {TextInputMask} from 'react-native-masked-text';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
-import BackButton from './Button';
-import goBackImg from '../../assets/go-back-arrow.png';
 
 export default function SignUpInfo(props) {
   const [name, setName] = useState('');
@@ -71,49 +69,58 @@ export default function SignUpInfo(props) {
       >
         <>
           <View style={appStyles.container}>
-            <Text style={appStyles.titleBlue}>
-              {titleText}
-
-              <Text style={appStyles.titlePink}>
-                {name ? name.split(' ')[0] : ''}
-              </Text>
-            </Text>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextBox
-                placeholder={translate('fullName')}
-                onChangeText={(text) => setName(text)}
-                value={name}
-                style={appStyles.TextInputMask}
-              />
-              <TextInputMask
-                placeholder={translate('dob')}
-                type="datetime"
-                options={{
-                  format: 'MM/DD/YYYY',
-                  validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                    return regex.test(value);
-                  }, // validator function is read by isValid(), still to be used
-                }}
-                style={appStyles.TextInputMask}
-                value={dob}
-                onChangeText={(text) => setDob(text)}
-                // ref={(ref) => motherDOB = ref}
-              />
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.1,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <Text style={appStyles.titleBlue}>
+                {titleText}
+
+                <Text style={appStyles.titlePink}>
+                  {name ? name.split(' ')[0] : ''}
+                </Text>
+              </Text>
+              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                <TextBox
+                  placeholder={translate('fullName')}
+                  onChangeText={(text) => setName(text)}
+                  value={name}
+                  style={appStyles.TextInputMask}
+                />
+                <TextInputMask
+                  placeholder={translate('dob')}
+                  type="datetime"
+                  options={{
+                    format: 'MM/DD/YYYY',
+                    validator(value, settings) {
+                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      return regex.test(value);
+                    }, // validator function is read by isValid(), still to be used
+                  }}
+                  style={appStyles.TextInputMask}
+                  value={dob}
+                  onChangeText={(text) => setDob(text)}
+                  // ref={(ref) => motherDOB = ref}
+                />
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '8%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>
