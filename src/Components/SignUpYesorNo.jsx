@@ -69,10 +69,10 @@ export default SignUpYesorNo = (props) => {
   const {pregnant} = props.route.params;
 
   return (
-    <View style={appStyles.container}>
+    <View style={appStyles.signupContainer}>
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.2,
+          paddingTop: appStyles.win.height * 0.3,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',

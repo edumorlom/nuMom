@@ -19,7 +19,7 @@ export default LetsGetStarted = (props) => {
     _isMounted &&
       setTimeout(
         () =>
-          props.navigation.push('SignUpYesorNoMiami', {
+          props.navigation.navigate('SignUpYesorNoMiami', {
             question: translate('liveMiami'),
             value: 'liveMiami',
           }),
@@ -49,7 +49,7 @@ export default LetsGetStarted = (props) => {
   };
 
   return (
-    <Animated.View style={{opacity: fadeValue, ...appStyles.container}}>
+    <Animated.View style={{opacity: fadeValue, ...appStyles.signupContainer}}>
       <ConfettiCannon
         count={150}
         origin={{x: -10, y: 0}}
@@ -58,7 +58,7 @@ export default LetsGetStarted = (props) => {
       />
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.1,
+          paddingTop: appStyles.win.height * 0.2,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',

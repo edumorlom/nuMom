@@ -15,10 +15,10 @@ export default function MustLiveInMiami(props) {
   };
 
   return (
-    <View duration={1000} style={appStyles.container}>
+    <View duration={1000} style={appStyles.signupContainer}>
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.1,
+          paddingTop: appStyles.win.height * 0.2,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',

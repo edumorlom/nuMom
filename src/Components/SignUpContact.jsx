@@ -77,7 +77,7 @@ export default SignUpInfo = (props) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={appStyles.container}
+      style={appStyles.signupContainer}
       enabled={false}
     >
       <TouchableHighlight
@@ -89,7 +89,7 @@ export default SignUpInfo = (props) => {
           <View style={appStyles.container}>
             <View
               style={{
-                paddingTop: appStyles.win.height * 0.1,
+                paddingTop: appStyles.win.height * 0.15,
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'absolute',
@@ -121,7 +121,7 @@ export default SignUpInfo = (props) => {
             style={{
               width: '100%',
               alignItems: 'center',
-              margin: '8%',
+              margin: '15%',
             }}
           >
             <Button

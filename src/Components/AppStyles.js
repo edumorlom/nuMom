@@ -30,6 +30,11 @@ export default {
     alignItems: 'center',
     flex: 1,
   },
+  signupContainer: {
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'white',
+  },
   rowContainer: {
     flexDirection: 'row',
   },
