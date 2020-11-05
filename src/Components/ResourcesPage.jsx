@@ -4,6 +4,8 @@ import SelectionButton from './SelectionButton';
 import appointments from '../../assets/appointments.png';
 import document from '../../assets/document.png';
 import doctor from '../../assets/doctor.png';
+import breastfeeding from '../../assets/breastfeeding.png';
+import heart from '../../assets/heart.png';
 import babyVaccine from '../../assets/immunization.png';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
@@ -85,6 +87,9 @@ export default function Resources(props) {
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
     >
+      {wicButton}
+      {medicaidButton}
+      {documentUploadButton}
       {resourceButtons}
       {appointmentButton}
       {documentUploadButton}
