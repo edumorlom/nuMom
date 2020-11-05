@@ -71,7 +71,7 @@ export default function Immunization(props) {
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
-            props.setLowerPanelContent('NewImmunization');
+            props.navigation.navigate('NewImmunization');
           }}
         >
           <Image source={Plus} style={{height: 25, width: 25}} />
