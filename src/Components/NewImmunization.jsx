@@ -13,7 +13,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import translate from './getLocalizedText';
 import Button from './Button';
-import appStyles from './AppStyles';
+import appStyles, {greyColor, shadow} from './AppStyles';
 import {getUid, addImmunization} from '../Firebase';
 
 export default function NewImmunization(props) {
@@ -28,7 +28,6 @@ export default function NewImmunization(props) {
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
   ];
   const uid = getUid();
-
   immunizationInfo = {
     type,
     date,
@@ -36,13 +35,13 @@ export default function NewImmunization(props) {
   };
 
   let immunizationArray = [
+    '<<Select Immunization>>',
     'DTaP',
     'Hepatitis A',
     'Hepatitis B',
     'Hib',
     'Influenza(yearly)',
     'MMR ',
-    'Other',
     'Pneumococcal(PCV13)',
     'Pneumococcal(PCV7)',
     'Pneumococcal(PCV23)',
@@ -50,6 +49,7 @@ export default function NewImmunization(props) {
     'Polio(OPV)',
     'Rotavirus(RV)',
     'Varicella/Zoster',
+    'Other',
   ];
 
   let immunizations = immunizationArray.map((immunization) => ({
@@ -58,7 +58,7 @@ export default function NewImmunization(props) {
   }));
 
   onPress = async () => {
-    if (!type || !date) {
+    if (!type || !date || type === '<<Select Immunization>>') {
       alert(translate('fillOutAllFields'));
     } else {
       await addImmunization(uid, immunizationInfo);
@@ -90,26 +90,41 @@ export default function NewImmunization(props) {
       }}
       scrollEnabled
     >
-      <Dropdown
-        containerStyle={{...styles.Dropdown, left: '30%'}}
-        dropdownOffset={{top: 0, bottom: 0, left: 0}}
-        pickerStyle={styles.Picker}
-        inputContainerStyle={{borderBottomColor: 'transparent'}}
-        textAlign="center"
-        itemTextStyle={{alignSelf: 'center'}}
-        fontSize={12}
-        data={immunizations}
-        label={translate('immunizations')}
-        value={type}
-        useNativeDriver
-        onChangeText={(value, index, data) => setType(value)}
-      />
-      <View style={appStyles.TextInputAppointment.View}>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
+        <Dropdown
+          containerStyle={{
+            ...styles.Dropdown,
+          }}
+          pickerStyle={{
+            ...styles.Picker,
+          }}
+          inputContainerStyle={{borderBottomColor: 'transparent'}}
+          textAlign="center"
+          itemCount={8}
+          itemTextStyle={{alignSelf: 'center'}}
+          fontSize={24}
+          data={immunizations}
+          label={translate(immunizations)}
+          value={immunizations[0].value}
+          useNativeDriver
+          onChangeText={(value, index, data) => setType(value)}
+        />
+      </View>
+      <View style={appStyles.TextInputImmunization.View}>
         <TextBox
           placeholder={translate('immunizationNotes')}
           onChangeText={setNotes}
           value={notes}
-          style={appStyles.TextInputAppointment.TextInput}
+          multiline
+          numberOfLines={8}
+          style={appStyles.TextInputImmunization.TextInput}
         />
       </View>
       <View style={styles.container}>
@@ -133,7 +148,7 @@ export default function NewImmunization(props) {
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',
-          bottom: appStyles.win.height * 0.05,
+          bottom: appStyles.win.height * 0.1,
         }}
       >
         <Button
@@ -147,8 +162,24 @@ export default function NewImmunization(props) {
 }
 
 const styles = StyleSheet.create({
+  Dropdown: {
+    backgroundColor: 'white',
+    borderColor: greyColor,
+    alignSelf: 'center',
+    width: '100%',
+    paddingTop: '5%',
+    borderRadius: 5,
+  },
+  Picker: {
+    backgroundColor: 'white',
+    ...shadow,
+    // borderColor: greyColor,
+    borderRadius: 15,
+    alignSelf: 'center',
+    width: '70%',
+  },
   seperator: {
-    height: 0.2,
+    height: 0.1,
     width: '100%',
     backgroundColor: '#979797',
     alignSelf: 'center',
@@ -157,7 +188,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: appStyles.win.height * 0.005,
+    paddingTop: appStyles.win.height * 0.02,
   },
   textTitle: {
     ...Platform.select({
