@@ -61,6 +61,7 @@ export default function SignUpInfo(props) {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={appStyles.container}
+      enabled={false}
     >
       <TouchableHighlight
         onPress={Keyboard.dismiss}
@@ -113,7 +114,7 @@ export default function SignUpInfo(props) {
             style={{
               width: '100%',
               alignItems: 'center',
-              margin: '8%',
+              margin: '10%',
             }}
           >
             <Button

@@ -47,15 +47,15 @@ export default function SignUpLoading(props) {
     fullName: '' /* babyGender: "", */,
   };
 
-  console.log("SignUpLoading: liveMiami: " + liveMiami);
-  console.log("SignUpLoading: name: " + name);
-  console.log("SignUpLoading: dob: " + dob);
-  console.log("SignUpLoading: email: " + email);
-  console.log("SignUpLoading: phone: " + phone);
-  console.log("SignUpLoading: password: " + password);
-  console.log("SignUpLoading: pregnant: " + pregnant);
-  console.log("SignUpLoading: infant: " + infant);
-  console.log("SignUpLoading: babyDob: " + babyDob);
+  console.log(`SignUpLoading: liveMiami: ${liveMiami}`);
+  console.log(`SignUpLoading: name: ${name}`);
+  console.log(`SignUpLoading: dob: ${dob}`);
+  console.log(`SignUpLoading: email: ${email}`);
+  console.log(`SignUpLoading: phone: ${phone}`);
+  console.log(`SignUpLoading: password: ${password}`);
+  console.log(`SignUpLoading: pregnant: ${pregnant}`);
+  console.log(`SignUpLoading: infant: ${infant}`);
+  console.log(`SignUpLoading: babyDob: ${babyDob}`);
 
   let signUpAndUploadData = () => {
     let info = getNextWeekAndWeekNo();
@@ -84,7 +84,7 @@ export default function SignUpLoading(props) {
     ];
     // AsyncStorage.multiRemove(keys, (err) => { console.log(err) });
     setTimeout(() => {
-      loginWithEmailPassword(email, password)
+      loginWithEmailPassword(email, password);
     }, 2000);
   };
 
@@ -115,7 +115,6 @@ export default function SignUpLoading(props) {
     }
     return [nextWeek, weekNo];
   };
-
 
   useEffect(() => {
     getCookies();
@@ -195,7 +194,7 @@ export default function SignUpLoading(props) {
     });
     props.navigation.navigate('Homepage');
   };
-  
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={appStyles.container}>

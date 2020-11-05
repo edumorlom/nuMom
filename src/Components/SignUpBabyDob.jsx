@@ -73,6 +73,7 @@ export default SignUpBabyDob = (props) => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={appStyles.container}
+      enabled={false}
     >
       <TouchableHighlight
         underlayColor="transparent"

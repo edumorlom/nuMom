@@ -21,7 +21,7 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
-  
+
   useEffect(() => {
     AsyncStorage.getItem('pass')
       .then((value) => {
@@ -62,6 +62,7 @@ export default SignUpPassword = (props) => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={appStyles.container}
+      enabled={false}
     >
       <TouchableHighlight
         onPress={Keyboard.dismiss}

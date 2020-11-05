@@ -32,7 +32,6 @@ export default function SignUp(props) {
     return () => (_isMounted = false);
   }, []);
 
-
   let signUpAndUploadData = () => {
     let info = getNextWeekAndWeekNo();
     signUp(
