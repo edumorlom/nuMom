@@ -50,6 +50,8 @@ import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
+import ImmunizationMenu from './src/Components/Immunization';
+import NewImmunization from './src/Components/NewImmunization';
 // import * as firebase from "firebase";
 
 function App() {
@@ -176,6 +178,16 @@ function App() {
           name="MedicaidScreen"
           component={MedicaidScreen}
           options={{title: 'Medicaid'}}
+        />
+        <Stack.Screen
+          name="ImmunizationScreen"
+          component={ImmunizationMenu}
+          options={{title: 'Immunization'}}
+        />
+        <Stack.Screen
+          name="NewImmunization"
+          component={NewImmunization}
+          options={{title: 'New Immunization'}}
         />
         <Stack.Screen
           name="Appointment"

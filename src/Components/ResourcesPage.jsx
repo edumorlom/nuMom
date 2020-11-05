@@ -42,7 +42,7 @@ export default function Resources(props) {
       subtext={translate('immunizationInfo')}
       icon={babyVaccine}
       onPress={() => {
-        props.setLowerPanelContent('Immunization');
+        props.navigation.navigate('ImmunizationScreen');
       }}
     />
   );
@@ -90,7 +90,6 @@ export default function Resources(props) {
       {wicButton}
       {medicaidButton}
       {documentUploadButton}
-      {resourceButtons}
       {appointmentButton}
       {documentUploadButton}
       {immunizationButton}

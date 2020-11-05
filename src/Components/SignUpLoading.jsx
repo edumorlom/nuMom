@@ -130,9 +130,6 @@ export default function SignUpLoading(props) {
   let getCookies = async () => {
     let email = await getCookie('email');
     let password = await getCookie('password');
-    console.log('In getCookies');
-    console.log(email);
-    console.log(password);
     if (email && password) loginWithEmailPassword(email, password);
     let fullName = await getCookie('fullName');
     let uid = await getCookie('uid');
