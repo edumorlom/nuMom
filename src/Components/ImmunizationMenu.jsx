@@ -53,7 +53,7 @@ export default function ImmunizationMenu(props) {
           <Text
             style={{
               color: appStyles.blueColor,
-              fontSize: appStyles.regularFontSize + 7,
+              fontSize: appStyles.regularFontSize + 1,
               fontWeight: 'bold',
             }}
           >
@@ -80,7 +80,7 @@ export default function ImmunizationMenu(props) {
           style={{
             position: 'absolute',
             right: appStyles.win.width * 0.05,
-            bottom: appStyles.win.height * 0.07,
+            bottom: appStyles.win.height * 0.04,
           }}
           underlayColor="transparent"
           onPress={() => {
