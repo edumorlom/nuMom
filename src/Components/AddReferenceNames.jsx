@@ -38,63 +38,65 @@ function AddReferenceNames(props) {
   };
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={{
-        flex: 1,
-        alignItems: 'center',
-        maxWidth: '100%',
-      }}
-      scrollEnabled
-    >
-      <View style={appStyles.TextInput.View}>
-        <TextInput
-          placeholder={translate('referenceName')}
-          onChangeText={setName}
-          value={name}
-          style={appStyles.TextInput.TextInput}
-        />
-      </View>
-      <View style={appStyles.TextInput.View}>
-        <TextInput
-          placeholder={translate('MedicalSpecialties')}
-          onChangeText={setSpecialties}
-          value={specialties}
-          style={appStyles.TextInput.TextInput}
-        />
-      </View>
-      <View style={appStyles.TextInput.View}>
-        <TextInput
-          placeholder={translate('referencePhone')}
-          onChangeText={setPhone}
-          keyboardType="numeric"
-          value={phone}
-          style={appStyles.TextInput.TextInput}
-        />
-      </View>
-      <View style={appStyles.TextInput.View}>
-        <TextInput
-          placeholder={translate('referenceEmail')}
-          onChangeText={setEmail}
-          value={email}
-          style={appStyles.TextInput.TextInput}
-        />
-      </View>
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'center',
+    <View style={appStyles.contentContainer}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          flex: 1,
           alignItems: 'center',
-          position: 'absolute',
-          bottom: appStyles.win.height * 0.05,
+          maxWidth: '100%',
         }}
+        scrollEnabled
       >
-        <Button
-          style={appStyles.button}
-          text={translate('save')}
-          onPress={onPress}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+        <View style={appStyles.TextInput.View}>
+          <TextInput
+            placeholder={translate('referenceName')}
+            onChangeText={setName}
+            value={name}
+            style={appStyles.TextInput.TextInput}
+          />
+        </View>
+        <View style={appStyles.TextInput.View}>
+          <TextInput
+            placeholder={translate('MedicalSpecialties')}
+            onChangeText={setSpecialties}
+            value={specialties}
+            style={appStyles.TextInput.TextInput}
+          />
+        </View>
+        <View style={appStyles.TextInput.View}>
+          <TextInput
+            placeholder={translate('referencePhone')}
+            onChangeText={setPhone}
+            keyboardType="numeric"
+            value={phone}
+            style={appStyles.TextInput.TextInput}
+          />
+        </View>
+        <View style={appStyles.TextInput.View}>
+          <TextInput
+            placeholder={translate('referenceEmail')}
+            onChangeText={setEmail}
+            value={email}
+            style={appStyles.TextInput.TextInput}
+          />
+        </View>
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: appStyles.win.height * 0.05,
+          }}
+        >
+          <Button
+            style={appStyles.button}
+            text={translate('save')}
+            onPress={onPress}
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </View>
   );
 }
 

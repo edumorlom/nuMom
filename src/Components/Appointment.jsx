@@ -31,7 +31,7 @@ export default function Appointment(props) {
   };
 
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
+    <View style={appStyles.contentContainer}>
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}
