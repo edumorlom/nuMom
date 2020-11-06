@@ -28,7 +28,11 @@ export default function STDSelection(props) {
   };
   return (
     <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
+      contentContainerStyle={{
+        alignItems: 'center',
+        maxWidth: '100%',
+        backgroundColor: 'white',
+      }}
     >
       {STD().map((std, key) => (
         <SelectionButton

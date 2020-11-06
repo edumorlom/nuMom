@@ -14,9 +14,7 @@ export default function STDInfo({route}) {
   const {safeSex} = route.params;
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       <Menu title={translate('symptoms')} info={translate(symptoms)} />
       <Menu title={translate('testing')} info={translate(diagnosis)} />
       <Menu title={translate('treatment')} info={translate(treatment)} />

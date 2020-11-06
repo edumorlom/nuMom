@@ -10,20 +10,22 @@ const MedicaidScreen = () => {
   };
 
   return (
-    <View
-      style={{
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: '85%',
-      }}
-    >
-      <Button
-        style={appStyles.button}
-        text="Link to Medicaid"
-        onPress={onPress}
-      />
+    <View style={appStyles.contentContainer}>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          bottom: '85%',
+        }}
+      >
+        <Button
+          style={appStyles.button}
+          text="Link to Medicaid"
+          onPress={onPress}
+        />
+      </View>
     </View>
   );
 };

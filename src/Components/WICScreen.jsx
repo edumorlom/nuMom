@@ -10,16 +10,18 @@ const WICScreen = () => {
   };
 
   return (
-    <View
-      style={{
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: '85%',
-      }}
-    >
-      <Button style={appStyles.button} text="Link to WIC" onPress={onPress} />
+    <View style={appStyles.contentContainer}>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          bottom: '85%',
+        }}
+      >
+        <Button style={appStyles.button} text="Link to WIC" onPress={onPress} />
+      </View>
     </View>
   );
 };

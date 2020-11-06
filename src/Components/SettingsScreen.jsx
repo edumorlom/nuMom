@@ -273,7 +273,12 @@ const SettingsScreen = (props) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+      }}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>

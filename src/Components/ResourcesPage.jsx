@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Linking} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import SelectionButton from './SelectionButton';
 import appointments from '../../assets/appointments.png';
 import document from '../../assets/document.png';
@@ -84,16 +84,17 @@ export default function Resources(props) {
   );
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
-      {wicButton}
-      {medicaidButton}
-      {documentUploadButton}
-      {appointmentButton}
-      {documentUploadButton}
-      {immunizationButton}
-      {namesReferenceButton}
-    </ScrollView>
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
+      >
+        {wicButton}
+        {medicaidButton}
+        {documentUploadButton}
+        {appointmentButton}
+        {immunizationButton}
+        {namesReferenceButton}
+      </ScrollView>
+    </View>
   );
 }
