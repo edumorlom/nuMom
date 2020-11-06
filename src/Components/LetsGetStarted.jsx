@@ -9,23 +9,20 @@ import translate from './getLocalizedText';
 
 export default LetsGetStarted = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
-
   let _isMounted = false;
 
   useEffect(() => {
     _isMounted = true;
     _isMounted && confettiVibration();
     _isMounted && _start();
-    _isMounted &&
-      setTimeout(
-        () =>
-          props.navigation.navigate('SignUpYesorNoMiami', {
-            question: translate('liveMiami'),
-            value: 'liveMiami',
-          }),
-        4000
-      );
-
+    _isMounted && setTimeout(
+    () =>
+      props.navigation.navigate('SignUpYesorNoMiami', {
+        question: translate('liveMiami'),
+        value: 'liveMiami',
+      }),
+      4000
+    );
     return () => (_isMounted = false);
   }, []);
 
