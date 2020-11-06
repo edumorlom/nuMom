@@ -62,6 +62,8 @@ export default function Immunization(props) {
     }
   };
 
+  let emailBody = JSON.stringify(objects, null, '  ');
+
   return (
     <ScrollView
       contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
@@ -81,8 +83,8 @@ export default function Immunization(props) {
           onPress={() => {
             sendEmailViaEmailApp(
               email,
-              'NuMoms: Immunization Records',
-              objects
+              'NuMom: Immunization Records',
+              emailBody
             );
           }}
         >
