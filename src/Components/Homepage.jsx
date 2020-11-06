@@ -28,9 +28,8 @@ export default Homepage = (props) => {
     props.navigation.addListener('beforeRemove', (e) => {
       // Prevent default behavior of leaving the screen
       e.preventDefault();
-      }
-    )
-  },[]);
+    });
+  }, []);
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = async () => {

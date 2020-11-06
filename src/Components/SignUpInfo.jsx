@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { HeaderBackButton } from '@react-navigation/stack';
+import {HeaderBackButton} from '@react-navigation/stack';
 import {
   AsyncStorage,
   Keyboard,
@@ -16,7 +16,7 @@ import {TextInputMask} from 'react-native-masked-text';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
-import backArrow from './../../assets/go-back-arrow.png';
+import backArrow from '../../assets/go-back-arrow.png';
 
 export default function SignUpInfo(props) {
   const [name, setName] = useState('');
@@ -27,7 +27,7 @@ export default function SignUpInfo(props) {
   };
 
   useEffect(() => {
-    //Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
+    // Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
     props.navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
@@ -35,11 +35,11 @@ export default function SignUpInfo(props) {
             props.navigation.navigate('SignUpYesorNoMiami', {
               question: translate('liveMiami'),
               value: 'liveMiami',
-            })
+            });
           }}
           backImage={backArrowImage}
         />
-      )
+      ),
     });
     AsyncStorage.getItem('name')
       .then((value) => {

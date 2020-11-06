@@ -15,14 +15,15 @@ export default LetsGetStarted = (props) => {
     _isMounted = true;
     _isMounted && confettiVibration();
     _isMounted && _start();
-    _isMounted && setTimeout(
-    () =>
-      props.navigation.navigate('SignUpYesorNoMiami', {
-        question: translate('liveMiami'),
-        value: 'liveMiami',
-      }),
-      4000
-    );
+    _isMounted &&
+      setTimeout(
+        () =>
+          props.navigation.navigate('SignUpYesorNoMiami', {
+            question: translate('liveMiami'),
+            value: 'liveMiami',
+          }),
+        4000
+      );
     return () => (_isMounted = false);
   }, []);
 

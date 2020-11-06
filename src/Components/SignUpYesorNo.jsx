@@ -1,11 +1,11 @@
 import {Text, View, StyleSheet, Image} from 'react-native';
 import React, {useEffect} from 'react';
 import {RFValue} from 'react-native-responsive-fontsize';
+import {HeaderBackButton} from '@react-navigation/stack';
 import appStyles, {blueColor, pinkColor, shadow} from './AppStyles';
 import MultipleChoiceButton from './Button';
 import translate from './getLocalizedText';
-import { HeaderBackButton } from '@react-navigation/stack';
-import backArrow from './../../assets/go-back-arrow.png';
+import backArrow from '../../assets/go-back-arrow.png';
 
 export default SignUpYesorNo = (props) => {
   let onPress = (userResponse) => {
@@ -75,17 +75,17 @@ export default SignUpYesorNo = (props) => {
   };
 
   useEffect(() => {
-    //Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
-    if(value == 'liveMiami'){
+    // Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
+    if (value == 'liveMiami') {
       props.navigation.setOptions({
         headerLeft: () => (
           <HeaderBackButton
             onPress={() => {
-            props.navigation.navigate('LogIn');
+              props.navigation.navigate('LogIn');
             }}
             backImage={backArrowImage}
           />
-        )
+        ),
       });
     }
   }, []);
