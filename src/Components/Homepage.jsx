@@ -24,6 +24,14 @@ export default Homepage = (props) => {
     fetchResources(); // Can only call one function inside useEffect when dealing with asyncs
   }, []);
 
+  useEffect(() => {
+    props.navigation.addListener('beforeRemove', (e) => {
+      // Prevent default behavior of leaving the screen
+      e.preventDefault();
+      }
+    )
+  },[]);
+
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = async () => {
     sortClinics(await fetchClinics()); // Sorts the fetched clinics

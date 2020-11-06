@@ -1,9 +1,11 @@
-import {Text, View, StyleSheet} from 'react-native';
-import React from 'react';
+import {Text, View, StyleSheet, Image} from 'react-native';
+import React, {useEffect} from 'react';
 import {RFValue} from 'react-native-responsive-fontsize';
 import appStyles, {blueColor, pinkColor, shadow} from './AppStyles';
 import MultipleChoiceButton from './Button';
 import translate from './getLocalizedText';
+import { HeaderBackButton } from '@react-navigation/stack';
+import backArrow from './../../assets/go-back-arrow.png';
 
 export default SignUpYesorNo = (props) => {
   let onPress = (userResponse) => {
@@ -68,6 +70,25 @@ export default SignUpYesorNo = (props) => {
   const {password} = props.route.params;
   const {pregnant} = props.route.params;
 
+  let backArrowImage = () => {
+    return <Image source={backArrow} style={styles.goBackArrow} />;
+  };
+
+  useEffect(() => {
+    //Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
+    if(value == 'liveMiami'){
+      props.navigation.setOptions({
+        headerLeft: () => (
+          <HeaderBackButton
+            onPress={() => {
+            props.navigation.navigate('LogIn');
+            }}
+            backImage={backArrowImage}
+          />
+        )
+      });
+    }
+  }, []);
   return (
     <View style={appStyles.signupContainer}>
       <View
@@ -131,5 +152,21 @@ const Pink = StyleSheet.create({
   Text: {
     color: pinkColor,
     fontSize: RFValue(45),
+  },
+});
+
+const styles = StyleSheet.create({
+  logOutButton: {
+    position: 'absolute',
+    right: appStyles.win.height * 0.03,
+    top: appStyles.win.width * 0.04,
+  },
+  goBackArrow: {
+    width: 25,
+    height: 25,
+  },
+  headerTitle: {
+    fontSize: 25,
+    color: appStyles.blueColor,
   },
 });

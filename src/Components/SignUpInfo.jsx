@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { HeaderBackButton } from '@react-navigation/stack';
 import {
   AsyncStorage,
   Keyboard,
@@ -8,18 +9,38 @@ import {
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
+  StyleSheet,
+  Image,
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import backArrow from './../../assets/go-back-arrow.png';
 
 export default function SignUpInfo(props) {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const {liveMiami} = props.route.params;
+  let backArrowImage = () => {
+    return <Image source={backArrow} style={styles.goBackArrow} />;
+  };
 
   useEffect(() => {
+    //Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
+    props.navigation.setOptions({
+      headerLeft: () => (
+        <HeaderBackButton
+          onPress={() => {
+            props.navigation.navigate('SignUpYesorNoMiami', {
+              question: translate('liveMiami'),
+              value: 'liveMiami',
+            })
+          }}
+          backImage={backArrowImage}
+        />
+      )
+    });
     AsyncStorage.getItem('name')
       .then((value) => {
         value !== null && value !== '' ? setName(value) : null;
@@ -128,3 +149,19 @@ export default function SignUpInfo(props) {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  logOutButton: {
+    position: 'absolute',
+    right: appStyles.win.height * 0.03,
+    top: appStyles.win.width * 0.04,
+  },
+  goBackArrow: {
+    width: 25,
+    height: 25,
+  },
+  headerTitle: {
+    fontSize: 25,
+    color: appStyles.blueColor,
+  },
+});

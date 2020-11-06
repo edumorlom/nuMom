@@ -89,7 +89,10 @@ function App() {
         <Stack.Screen
           name="MustLiveInMiami"
           component={MustLiveInMiami}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true, 
+            title: '',
+            }}
         />
         <Stack.Screen
           name="SignUpInfo"
