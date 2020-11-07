@@ -62,6 +62,8 @@ export default function Immunization(props) {
     }
   };
 
+  let emailBody = JSON.stringify(objects, null, '  ');
+
   return (
     <View style={appStyles.contentContainer}>
       <ScrollView

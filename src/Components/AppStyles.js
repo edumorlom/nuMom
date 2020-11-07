@@ -520,4 +520,21 @@ export default {
       textAlign: 'center',
     },
   },
+  TextInputImmunization: {
+    View: {
+      ...shadow,
+      height: win.height * 0.2,
+      width: win.width * 0.8,
+      margin: 9,
+      borderColor: 'white',
+      borderWidth: 0.5,
+      borderRadius,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+    },
+    TextInput: {
+      fontSize: regularFontSize,
+      textAlign: 'center',
+    },
+  },
 };
