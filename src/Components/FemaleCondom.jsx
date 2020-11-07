@@ -43,9 +43,7 @@ function femaleCondomDoDontList() {
  */
 export function FemaleCondomDoDont() {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       {femaleCondomDoDontList().map((fcdd, key) => (
         <BetterMenu
           style={appStyles.FemaleCondomMenu}
@@ -102,9 +100,7 @@ function femaleCondomStepsList() {
  */
 export function FemaleCondomSteps() {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       {femaleCondomStepsList().map((fcs, key) => (
         <BetterMenu
           style={appStyles.FemaleCondomMenuImage}
@@ -122,9 +118,7 @@ export function FemaleCondomSteps() {
  */
 export function FemaleCondomMainScreen(props) {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       <Image
         style={{justifyContent: 'center', width: 300, height: 140}}
         source={FemaleCondomImg}

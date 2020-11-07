@@ -8,9 +8,7 @@ import FemaleCondom from '../../assets/FC.png';
 
 export default function learn(props) {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
         text={translate('STDAwareness')}

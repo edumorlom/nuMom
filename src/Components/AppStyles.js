@@ -30,6 +30,17 @@ export default {
     alignItems: 'center',
     flex: 1,
   },
+  signupContainer: {
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  contentContainer: {
+    alignItems: 'center',
+    maxWidth: '100%',
+    backgroundColor: 'white',
+    flex: 1,
+  },
   rowContainer: {
     flexDirection: 'row',
   },
@@ -496,6 +507,23 @@ export default {
     View: {
       ...shadow,
       height: win.height * 0.09,
+      width: win.width * 0.8,
+      margin: 9,
+      borderColor: 'white',
+      borderWidth: 0.5,
+      borderRadius,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+    },
+    TextInput: {
+      fontSize: regularFontSize,
+      textAlign: 'center',
+    },
+  },
+  TextInputImmunization: {
+    View: {
+      ...shadow,
+      height: win.height * 0.2,
       width: win.width * 0.8,
       margin: 9,
       borderColor: 'white',

@@ -6,11 +6,19 @@ import Button from './Button';
 import translate from './getLocalizedText';
 
 export default function MustLiveInMiami(props) {
+  const {liveMiami} = props.route.params;
+
+  let onPress = () => {
+    props.navigation.navigate('SignUpInfo', {
+      liveMiami,
+    });
+  };
+
   return (
-    <View duration={1000} style={appStyles.container}>
+    <View duration={1000} style={appStyles.signupContainer}>
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.1,
+          paddingTop: appStyles.win.height * 0.2,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',
@@ -41,7 +49,7 @@ export default function MustLiveInMiami(props) {
         <Button
           style={appStyles.button}
           text={translate('iUnderstandButton')}
-          onPress={() => props.navigation.navigate('SignUpInfo')}
+          onPress={onPress}
         />
       </View>
     </View>

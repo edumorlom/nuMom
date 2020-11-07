@@ -11,7 +11,6 @@ import SelectionButton from './SelectionButton';
 import STD from './STD';
 import STDResources from './STDResources';
 import translate from './getLocalizedText';
-import setSTDTOView from './Homepage';
 
 export default function STDSelection(props) {
   let onPress = (std) => {
@@ -29,7 +28,11 @@ export default function STDSelection(props) {
   };
   return (
     <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
+      contentContainerStyle={{
+        alignItems: 'center',
+        maxWidth: '100%',
+        backgroundColor: 'white',
+      }}
     >
       {STD().map((std, key) => (
         <SelectionButton

@@ -210,20 +210,22 @@ const SettingsScreen = (props) => {
 
   useEffect(() => {
     fetchUserInfo();
-    props.navigation.setOptions({headerRight: () => (
-      <View style={styles.logOutButton}>
-        <AntDesign
-          name="logout"
-          size={28}
-          color={appStyles.pinkColor}
-          onPress={() => {
-            AsyncAlert().then((response) => {
-              response ? logout() : null;
-            });
-          }}
-        />
-      </View>
-    )})
+    props.navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.logOutButton}>
+          <AntDesign
+            name="logout"
+            size={28}
+            color={appStyles.pinkColor}
+            onPress={() => {
+              AsyncAlert().then((response) => {
+                response ? logout() : null;
+              });
+            }}
+          />
+        </View>
+      ),
+    });
     return () => (_isMounted = false);
   }, []);
 
@@ -271,7 +273,12 @@ const SettingsScreen = (props) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+      }}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>
@@ -434,7 +441,7 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.040,
+    top: appStyles.win.width * 0.04,
   },
 });
 

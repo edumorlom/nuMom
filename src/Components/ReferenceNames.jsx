@@ -25,30 +25,32 @@ function ReferenceNames(props) {
   }, []);
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
-      showsVerticalScrollIndicator={false}
-    >
-      <TouchableOpacity
-        style={appStyles.viewPlusReference}
-        onPress={() => {
-          props.navigation.navigate('AddReferenceNames');
-        }}
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
+        showsVerticalScrollIndicator={false}
       >
-        <Image source={Plus} style={{height: 25, width: 25}} />
-      </TouchableOpacity>
-      <View>
-        {references.map((references, index) => {
-          return (
-            <ReferenceInfo
-              key={index}
-              references={references}
-              removeReference={removeReference}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
+        <TouchableOpacity
+          style={{...appStyles.viewPlus, marginVertical: 10}}
+          onPress={() => {
+            props.navigation.navigate('AddReferenceNames');
+          }}
+        >
+          <Image source={Plus} style={{height: 25, width: 25}} />
+        </TouchableOpacity>
+        <View>
+          {references.map((references, index) => {
+            return (
+              <ReferenceInfo
+                key={index}
+                references={references}
+                removeReference={removeReference}
+              />
+            );
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 

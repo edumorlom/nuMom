@@ -9,7 +9,6 @@ import translate from './getLocalizedText';
 
 export default LetsGetStarted = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
-
   let _isMounted = false;
 
   useEffect(() => {
@@ -19,12 +18,12 @@ export default LetsGetStarted = (props) => {
     _isMounted &&
       setTimeout(
         () =>
-          props.navigation.push('SignUpYesorNoMiami', {
+          props.navigation.navigate('SignUpYesorNoMiami', {
             question: translate('liveMiami'),
+            value: 'liveMiami',
           }),
         4000
       );
-
     return () => (_isMounted = false);
   }, []);
 
@@ -48,7 +47,7 @@ export default LetsGetStarted = (props) => {
   };
 
   return (
-    <Animated.View style={{opacity: fadeValue, ...appStyles.container}}>
+    <Animated.View style={{opacity: fadeValue, ...appStyles.signupContainer}}>
       <ConfettiCannon
         count={150}
         origin={{x: -10, y: 0}}
@@ -57,7 +56,7 @@ export default LetsGetStarted = (props) => {
       />
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.1,
+          paddingTop: appStyles.win.height * 0.2,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',

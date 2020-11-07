@@ -12,6 +12,7 @@ import {
   Image,
 } from 'react-native';
 import {AntDesign} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import {
   logIn,
   registerForPushNotificationsAsync,
@@ -26,7 +27,10 @@ import LetsGetStarted from './src/Components/LetsGetStarted';
 import SignUpInfo from './src/Components/SignUpInfo';
 import SignUpYesorNo from './src/Components/SignUpYesorNo';
 import MustLiveInMiami from './src/Components/MustLiveInMiami';
-import translate from './src/Components/getLocalizedText';
+import SignUpContact from './src/Components/SignUpContact';
+import SignUpPassword from './src/Components/SignUpPassword';
+import SignUpBabyDob from './src/Components/SignUpBabyDob';
+import SignUpLoading from './src/Components/SignUpLoading';
 import Homepage from './src/Components/Homepage';
 import SettingsScreen from './src/Components/SettingsScreen';
 import ForgotPasswordPage from './src/Components/ForgotPasswordPage';
@@ -46,15 +50,15 @@ import Documents from './src/Components/Documents';
 import ReferenceNames from './src/Components/ReferenceNames';
 import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
-import {useNavigation} from '@react-navigation/native';
+import ImmunizationMenu from './src/Components/Immunization';
+import NewImmunization from './src/Components/NewImmunization';
 // import * as firebase from "firebase";
 
- 
 function App() {
   let backArrowImage = () => {
     return <Image source={backArrow} style={styles.goBackArrow} />;
   };
-  
+
   const Stack = createStackNavigator();
 
   return (
@@ -78,11 +82,6 @@ function App() {
           options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
-          name="SignUpInfo"
-          component={SignUpInfo}
-          options={{headerTransparent: true, title: ''}}
-        />
-        <Stack.Screen
           name="SignUpYesorNoMiami"
           component={SignUpYesorNo}
           options={{headerTransparent: true, title: ''}}
@@ -90,6 +89,44 @@ function App() {
         <Stack.Screen
           name="MustLiveInMiami"
           component={MustLiveInMiami}
+          options={{
+            headerTransparent: true,
+            title: '',
+          }}
+        />
+        <Stack.Screen
+          name="SignUpInfo"
+          component={SignUpInfo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpContact"
+          component={SignUpContact}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpPassword"
+          component={SignUpPassword}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoPregnant"
+          component={SignUpYesorNo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpYesorNoInfant"
+          component={SignUpYesorNo}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpBabyDob"
+          component={SignUpBabyDob}
+          options={{headerTransparent: true, title: ''}}
+        />
+        <Stack.Screen
+          name="SignUpLoading"
+          component={SignUpLoading}
           options={{headerTransparent: true, title: ''}}
         />
         <Stack.Screen
@@ -146,6 +183,16 @@ function App() {
           options={{title: 'Medicaid'}}
         />
         <Stack.Screen
+          name="ImmunizationScreen"
+          component={ImmunizationMenu}
+          options={{title: 'Immunization'}}
+        />
+        <Stack.Screen
+          name="NewImmunization"
+          component={NewImmunization}
+          options={{title: 'New Immunization'}}
+        />
+        <Stack.Screen
           name="Appointment"
           component={Appointment}
           options={{title: 'Appointments'}}
@@ -182,7 +229,7 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.040,
+    top: appStyles.win.width * 0.04,
   },
   goBackArrow: {
     width: 25,

@@ -137,84 +137,86 @@ export default function NewAppointment(props) {
   };
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={{
-        flex: 1,
-        alignItems: 'center',
-        maxWidth: '100%',
-      }}
-      scrollEnabled
-    >
-      <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
-          placeholder={translate('appointmentName')}
-          onChangeText={setName}
-          value={name}
-          style={appStyles.TextInputAppointment.TextInput}
-        />
-      </View>
-      <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
-          placeholder={translate('appointmentAddress')}
-          onChangeText={setAddress}
-          value={address}
-          style={appStyles.TextInputAppointment.TextInput}
-        />
-      </View>
-      <View style={appStyles.TextInputAppointment.View}>
-        <TextBox
-          placeholder={translate('appointmentExtra')}
-          onChangeText={setExtra}
-          value={extra}
-          style={appStyles.TextInputAppointment.TextInput}
-        />
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.textTitle}>{translate('Date')}</Text>
-        <TouchableOpacity onPress={showDatePicker}>
-          <Text style={styles.textStyle}>{date}</Text>
-        </TouchableOpacity>
-        <DateTimePickerModal
-          isVisible={isDatePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-          is24Hour
-          headerTextIOS="Pick a date"
-        />
-      </View>
-      <View style={styles.seperator} />
-      <View style={styles.container}>
-        <Text style={styles.textTitle}>{translate('Time')}</Text>
-        <TouchableOpacity onPress={showTimePicker}>
-          <Text style={styles.textStyle}>{time}</Text>
-        </TouchableOpacity>
-        <DateTimePickerModal
-          isVisible={isTimePickerVisible}
-          mode="time"
-          onConfirm={handleConfirmTime}
-          onCancel={hideTimePicker}
-          is24Hour
-          headerTextIOS="Pick a time"
-        />
-      </View>
-      <View style={styles.seperator} />
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'center',
+    <View style={appStyles.contentContainer}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          flex: 1,
           alignItems: 'center',
-          position: 'absolute',
-          bottom: appStyles.win.height * 0.05,
+          maxWidth: '100%',
         }}
+        scrollEnabled
       >
-        <Button
-          style={appStyles.button}
-          text={translate('save')}
-          onPress={onPress}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+        <View style={appStyles.TextInputAppointment.View}>
+          <TextBox
+            placeholder={translate('appointmentName')}
+            onChangeText={setName}
+            value={name}
+            style={appStyles.TextInputAppointment.TextInput}
+          />
+        </View>
+        <View style={appStyles.TextInputAppointment.View}>
+          <TextBox
+            placeholder={translate('appointmentAddress')}
+            onChangeText={setAddress}
+            value={address}
+            style={appStyles.TextInputAppointment.TextInput}
+          />
+        </View>
+        <View style={appStyles.TextInputAppointment.View}>
+          <TextBox
+            placeholder={translate('appointmentExtra')}
+            onChangeText={setExtra}
+            value={extra}
+            style={appStyles.TextInputAppointment.TextInput}
+          />
+        </View>
+        <View style={styles.container}>
+          <Text style={styles.textTitle}>{translate('Date')}</Text>
+          <TouchableOpacity onPress={showDatePicker}>
+            <Text style={styles.textStyle}>{date}</Text>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+            is24Hour
+            headerTextIOS="Pick a date"
+          />
+        </View>
+        <View style={styles.seperator} />
+        <View style={styles.container}>
+          <Text style={styles.textTitle}>{translate('Time')}</Text>
+          <TouchableOpacity onPress={showTimePicker}>
+            <Text style={styles.textStyle}>{time}</Text>
+          </TouchableOpacity>
+          <DateTimePickerModal
+            isVisible={isTimePickerVisible}
+            mode="time"
+            onConfirm={handleConfirmTime}
+            onCancel={hideTimePicker}
+            is24Hour
+            headerTextIOS="Pick a time"
+          />
+        </View>
+        <View style={styles.seperator} />
+        <View
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: appStyles.win.height * 0.05,
+          }}
+        >
+          <Button
+            style={appStyles.button}
+            text={translate('save')}
+            onPress={onPress}
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </View>
   );
 }
 
