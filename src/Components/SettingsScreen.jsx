@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import {Picker} from 'react-native';
+import {Picker, AsyncStorage} from 'react-native';
 import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
 import BackButton from './Button';
@@ -34,11 +34,6 @@ const SettingsScreen = (props) => {
   let _isMounted = false;
 
   const uid = getUid();
-
-  const goBack = () => {
-    Haptics.selectionAsync().then();
-    props.goBack();
-  };
 
   AsyncAlert = () => {
     return new Promise((resolve, reject) => {
@@ -215,7 +210,22 @@ const SettingsScreen = (props) => {
 
   useEffect(() => {
     fetchUserInfo();
-
+    props.navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.logOutButton}>
+          <AntDesign
+            name="logout"
+            size={28}
+            color={appStyles.pinkColor}
+            onPress={() => {
+              AsyncAlert().then((response) => {
+                response ? logout() : null;
+              });
+            }}
+          />
+        </View>
+      ),
+    });
     return () => (_isMounted = false);
   }, []);
 
@@ -246,41 +256,30 @@ const SettingsScreen = (props) => {
     }
     return [nextWeek, weekNo];
   };
+  let saveCookie = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value).then();
+    } catch (e) {
+      console.log(`Error storeData: ${e}`);
+    }
+  };
+
+  let logout = () => {
+    saveCookie('email', '');
+    saveCookie('password', '');
+    saveCookie('uid', '');
+    saveCookie('fullName', '');
+    props.navigation.navigate('LogIn');
+  };
 
   return (
-    <View style={{flex: 1}}>
-      <BackButton
-        style={backButton}
-        icon={goBackImg}
-        underlayColor="transparent"
-        onPress={goBack}
-      />
-      <View style={styles.logOutButton}>
-        <AntDesign
-          name="logout"
-          size={28}
-          color={appStyles.pinkColor}
-          onPress={() => {
-            AsyncAlert().then((response) => {
-              response ? props.logout() : null;
-            });
-          }}
-        />
-      </View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+      }}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <Text
-            style={{
-              color: appStyles.blueColor,
-              fontSize: appStyles.titleFontSize,
-              fontWeight: 'bold',
-              alignSelf: 'center',
-              paddingTop: 15,
-            }}
-          >
-            {translate('welcomeSettings')}
-          </Text>
-        </View>
         <View style={{alignItems: 'center', paddingTop: 25}}>
           <View style={{marginBottom: 15, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
@@ -442,7 +441,7 @@ const styles = StyleSheet.create({
   logOutButton: {
     position: 'absolute',
     right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.09,
+    top: appStyles.win.width * 0.04,
   },
 });
 

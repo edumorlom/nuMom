@@ -65,51 +65,53 @@ export default function Immunization(props) {
   let emailBody = JSON.stringify(objects, null, '  ');
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          style={appStyles.viewPlus}
-          onPress={() => {
-            props.setLowerPanelContent('NewImmunization');
-          }}
-        >
-          <Image source={Plus} style={{height: 25, width: 25}} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={appStyles.viewPlus}
-          onPress={() => {
-            sendEmailViaEmailApp(
-              email,
-              'NuMom: Immunization Records',
-              emailBody
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            style={{...appStyles.viewPlus, marginVertical: 10}}
+            onPress={() => {
+              props.navigation.navigate('NewImmunization');
+            }}
+          >
+            <Image source={Plus} style={{height: 25, width: 25}} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{...appStyles.viewPlus, marginVertical: 10}}
+            onPress={() => {
+              sendEmailViaEmailApp(
+                email,
+                'NuMoms: Immunization Records',
+                objects
+              );
+            }}
+          >
+            <Image source={Email} style={{height: 40, width: 40}} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{...appStyles.viewPlus, marginVertical: 10}}
+            onPress={() => {
+              // need to implement
+            }}
+          >
+            <Image source={Notification} style={{height: 40, width: 40}} />
+          </TouchableOpacity>
+        </View>
+        <View>
+          {objects.map((immunizations, index) => {
+            return (
+              <ImmunizationMenu
+                key={index}
+                immunizations={immunizations}
+                removeImmunization={removeImmunization}
+              />
             );
-          }}
-        >
-          <Image source={Email} style={{height: 40, width: 40}} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={appStyles.viewPlus}
-          onPress={() => {
-            // need to implement
-          }}
-        >
-          <Image source={Notification} style={{height: 40, width: 40}} />
-        </TouchableOpacity>
-      </View>
-      <View>
-        {objects.map((immunizations, index) => {
-          return (
-            <ImmunizationMenu
-              key={index}
-              immunizations={immunizations}
-              removeImmunization={removeImmunization}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 }

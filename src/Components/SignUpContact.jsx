@@ -16,6 +16,9 @@ import {checkEmailExist} from '../Firebase';
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const {liveMiami} = props.route.params;
+  const {name} = props.route.params;
+  const {dob} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('e-mail')
@@ -55,11 +58,17 @@ export default SignUpInfo = (props) => {
         if (emailExists) {
           alert(translate('emailExists'));
         } else {
-          props.setUserInfo({email});
-          props.setUserInfo({phoneNumber: phone});
-          AsyncStorage.setItem('e-mail', email);
-          AsyncStorage.setItem('phone', phone);
-          props.getNextScreen();
+          // props.setUserInfo({email});
+          // props.setUserInfo({phoneNumber: phone});
+          // AsyncStorage.setItem('e-mail', email);
+          // AsyncStorage.setItem('phone', phone);
+          props.navigation.navigate('SignUpPassword', {
+            liveMiami,
+            name,
+            dob,
+            email,
+            phone,
+          });
         }
       });
     }
@@ -68,7 +77,8 @@ export default SignUpInfo = (props) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={appStyles.container}
+      style={appStyles.signupContainer}
+      enabled={false}
     >
       <TouchableHighlight
         onPress={Keyboard.dismiss}
@@ -77,39 +87,48 @@ export default SignUpInfo = (props) => {
       >
         <>
           <View style={appStyles.container}>
-            <View>
-              <Text style={appStyles.titleBlue}>
-                {translate('contactInformation')}
-              </Text>
-            </View>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextBox
-                placeholder={translate('emailInput')}
-                onChangeText={setEmail}
-                value={email}
-                style={appStyles.TextInputMask}
-              />
-              <TextBox
-                placeholder={translate('phoneNumberInput')}
-                onChangeText={setPhone}
-                keyboardType="numeric"
-                value={phone}
-                style={appStyles.TextInputMask}
-              />
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.15,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <View>
+                <Text style={appStyles.titleBlue}>
+                  {translate('contactInformation')}
+                </Text>
+              </View>
+              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                <TextBox
+                  placeholder={translate('emailInput')}
+                  onChangeText={setEmail}
+                  value={email}
+                  style={appStyles.TextInputMask}
+                />
+                <TextBox
+                  placeholder={translate('phoneNumberInput')}
+                  onChangeText={setPhone}
+                  keyboardType="numeric"
+                  value={phone}
+                  style={appStyles.TextInputMask}
+                />
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '15%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>

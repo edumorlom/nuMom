@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {MaterialIcons} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import babyBottle from '../../assets/baby-bottle.png';
 import clinicLogo from '../../assets/facilities.png';
 import lightBulb from '../../assets/light-bulb.png';
@@ -12,6 +13,8 @@ import appStyles from './AppStyles';
 import Button from './Button';
 
 export default function LowerPanelSelection(props) {
+  const navigation = useNavigation();
+
   return (
     <>
       <GestureRecognizer
@@ -42,7 +45,7 @@ export default function LowerPanelSelection(props) {
             size={45}
             color="gray"
             style={styles.userSettingStyle}
-            onPress={() => props.setScreen('setting')}
+            onPress={() => navigation.navigate('SettingsScreen')}
           />
         </View>
       </GestureRecognizer>
@@ -65,7 +68,7 @@ export default function LowerPanelSelection(props) {
           text={translate('learn')}
           icon={babyBottle}
           onPress={() => {
-            props.setLowerPanelContent('learn');
+            navigation.navigate('Learn');
           }}
         />
         <SelectionButton
@@ -73,7 +76,7 @@ export default function LowerPanelSelection(props) {
           text={translate('resources')}
           icon={lightBulb}
           onPress={() => {
-            props.setLowerPanelContent('resources');
+            navigation.navigate('ResourcesPage');
           }}
         />
       </ScrollView>

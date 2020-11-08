@@ -16,6 +16,11 @@ import translate from './getLocalizedText';
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
+  const {liveMiami} = props.route.params;
+  const {name} = props.route.params;
+  const {dob} = props.route.params;
+  const {email} = props.route.params;
+  const {phone} = props.route.params;
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -38,16 +43,26 @@ export default SignUpPassword = (props) => {
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
     } else {
-      props.setUserInfo({password});
-      AsyncStorage.setItem('pass', password);
-      AsyncStorage.setItem('repeat', repeat);
-      props.getNextScreen();
+      // props.setUserInfo({password});
+      // AsyncStorage.setItem('pass', password);
+      // AsyncStorage.setItem('repeat', repeat);
+      props.navigation.navigate('SignUpYesorNoPregnant', {
+        liveMiami,
+        name,
+        dob,
+        email,
+        phone,
+        password,
+        question: translate('areYouPregnant'),
+        value: 'pregnant',
+      });
     }
   };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={appStyles.container}
+      style={appStyles.signupContainer}
+      enabled={false}
     >
       <TouchableHighlight
         onPress={Keyboard.dismiss}
@@ -56,39 +71,48 @@ export default SignUpPassword = (props) => {
       >
         <>
           <View style={appStyles.container}>
-            <Text style={appStyles.titleBlue}>
-              {translate('createPassword')}
-            </Text>
-            <View style={{paddingTop: appStyles.win.height * 0.1}}>
-              <TextBox
-                placeholder={translate('passwordInput')}
-                onChangeText={setPassword}
-                secureTextEntry
-                value={password}
-                style={appStyles.TextInputMask}
-              />
-
-              <TextBox
-                placeholder={translate('repeatPasswordInput')}
-                onChangeText={setRepeat}
-                secureTextEntry
-                value={repeat}
-                style={appStyles.TextInputMask}
-              />
-            </View>
             <View
               style={{
-                width: '100%',
+                paddingTop: appStyles.win.height * 0.15,
+                justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: '10%',
+                position: 'absolute',
               }}
             >
-              <Button
-                style={appStyles.button}
-                text={translate('continueButton')}
-                onPress={onPress}
-              />
+              <Text style={appStyles.titleBlue}>
+                {translate('createPassword')}
+              </Text>
+              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+                <TextBox
+                  placeholder={translate('passwordInput')}
+                  onChangeText={setPassword}
+                  secureTextEntry
+                  value={password}
+                  style={appStyles.TextInputMask}
+                />
+
+                <TextBox
+                  placeholder={translate('repeatPasswordInput')}
+                  onChangeText={setRepeat}
+                  secureTextEntry
+                  value={repeat}
+                  style={appStyles.TextInputMask}
+                />
+              </View>
             </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '15%',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={onPress}
+            />
           </View>
         </>
       </TouchableHighlight>

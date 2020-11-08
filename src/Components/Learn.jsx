@@ -8,16 +8,14 @@ import FemaleCondom from '../../assets/FC.png';
 
 export default function learn(props) {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
         text={translate('STDAwareness')}
         subtext={translate('learnSTDs')}
         icon={STDAwareness}
         onPress={() => {
-          props.setLowerPanelContent('STDSelection');
+          props.navigation.navigate('STDSelection');
         }}
       />
       <SelectionButton
@@ -26,7 +24,7 @@ export default function learn(props) {
         subtext={translate('FemaleCondomSubtext')}
         icon={FemaleCondom}
         onPress={() => {
-          props.setLowerPanelContent('FemaleCondom');
+          props.navigation.navigate('FemaleCondomMainScreen');
         }}
       />
     </ScrollView>

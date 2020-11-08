@@ -1,29 +1,39 @@
 import React from 'react';
-import {ScrollView, Linking} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import SelectionButton from './SelectionButton';
 import appointments from '../../assets/appointments.png';
 import document from '../../assets/document.png';
 import doctor from '../../assets/doctor.png';
+import breastfeeding from '../../assets/breastfeeding.png';
+import heart from '../../assets/heart.png';
 import babyVaccine from '../../assets/immunization.png';
-import ResourcesInfo from './ResourcesInformation';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
 export default function Resources(props) {
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
-
-  let resourceButtons = ResourcesInfo().map((resource, key) => (
+  let wicButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      key={key}
-      icon={resource.icon}
-      text={getResourceName(resource.resource)}
-      subtext={resource.subtitle}
-      onPress={() => Linking.openURL(resource.website)}
+      text="Apply to WiC"
+      subtext="Application link and tips for applying to WIC"
+      icon={breastfeeding}
+      onPress={() => {
+        props.navigation.navigate('WICScreen');
+      }}
     />
-  ));
+  );
+
+  let medicaidButton = (
+    <SelectionButton
+      style={appStyles.ImageOnRightSelectionButton}
+      text="Apply to Medicaid"
+      subtext="Application link and tips for applying to Medicaid"
+      icon={heart}
+      onPress={() => {
+        props.navigation.navigate('MedicaidScreen');
+      }}
+    />
+  );
 
   let immunizationButton = (
     <SelectionButton
@@ -32,7 +42,7 @@ export default function Resources(props) {
       subtext={translate('immunizationInfo')}
       icon={babyVaccine}
       onPress={() => {
-        props.setLowerPanelContent('Immunization');
+        props.navigation.navigate('ImmunizationScreen');
       }}
     />
   );
@@ -44,7 +54,7 @@ export default function Resources(props) {
       subtext={translate('appointmentInfo')}
       icon={appointments}
       onPress={() => {
-        props.setLowerPanelContent('Appointment');
+        props.navigation.navigate('Appointment');
       }}
     />
   );
@@ -56,7 +66,7 @@ export default function Resources(props) {
       subtext={translate('documentsSubtitle')}
       icon={document}
       onPress={() => {
-        props.setLowerPanelContent('documents');
+        props.navigation.navigate('Documents');
       }}
     />
   );
@@ -68,20 +78,23 @@ export default function Resources(props) {
       subtext={translate('ReferenceSubtitle')}
       icon={doctor}
       onPress={() => {
-        props.setLowerPanelContent('ReferenceNames');
+        props.navigation.navigate('ReferenceNames');
       }}
     />
   );
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
-      {resourceButtons}
-      {appointmentButton}
-      {documentUploadButton}
-      {immunizationButton}
-      {namesReferenceButton}
-    </ScrollView>
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
+      >
+        {wicButton}
+        {medicaidButton}
+        {documentUploadButton}
+        {appointmentButton}
+        {immunizationButton}
+        {namesReferenceButton}
+      </ScrollView>
+    </View>
   );
 }

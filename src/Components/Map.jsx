@@ -49,9 +49,9 @@ export default function Map(props) {
           style={{
             height: 100,
             width: 100,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             top: appStyles.win.height * 0.1,
           }}
           source={Spinner}
