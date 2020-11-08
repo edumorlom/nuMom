@@ -69,6 +69,7 @@ function App() {
           headerBackImage: backArrowImage,
           headerTitleAlign: 'center',
           headerTitleStyle: styles.headerTitle,
+          headerBackTitle: false,
         }}
       >
         <Stack.Screen

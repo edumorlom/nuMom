@@ -107,7 +107,7 @@ export default SignUpYesorNo = (props) => {
             textAlign: 'center',
           }}
         >
-          {JSON.stringify(question)}
+          {question}
         </Text>
         <View style={appStyles.rowContainer}>
           <MultipleChoiceButton

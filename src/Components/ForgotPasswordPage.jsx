@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput as TextBox} from 'react-native';
+import {
+  Text,
+  View,
+  TextInput as TextBox,
+  TouchableHighlight,
+  KeyboardAvoidingView,
+  Keyboard,
+} from 'react-native';
 import * as Haptics from 'expo-haptics';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
@@ -43,29 +50,46 @@ const ForgotPasswordPage = (props) => {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <View
-        style={{marginTop: appStyles.win.height * 0.1, alignItems: 'center'}}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={appStyles.signupContainer}
+      enabled={false}
+    >
+      <TouchableHighlight
+        onPress={Keyboard.dismiss}
+        accessible={false}
+        underlayColor="transparent"
       >
-        <Text style={appStyles.titleBlue}>
-          Please enter the email associated with your account:
-        </Text>
-        <View style={appStyles.TextInput.View}>
-          <TextBox
-            placeholder={translate('emailInput')}
-            style={appStyles.TextInput.TextInput}
-            value={email}
-            onChangeText={(e) => onChangeText(e)}
-          />
+        <View style={appStyles.container}>
+          <View
+            style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+          >
+            <View style={appStyles.TextInput.View}>
+              <TextBox
+                placeholder={translate('emailInput')}
+                style={appStyles.TextInput.TextInput}
+                value={email}
+                onChangeText={(e) => onChangeText(e)}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              margin: '15%',
+              justifyContent: 'center',
+            }}
+          >
+            <Button
+              style={appStyles.button}
+              text="Reset Password"
+              onPress={() => PasswordReset(email)}
+            />
+          </View>
         </View>
-
-        <Button
-          style={appStyles.button}
-          text={translate('send')}
-          onPress={() => PasswordReset(email)}
-        />
-      </View>
-    </View>
+      </TouchableHighlight>
+    </KeyboardAvoidingView>
   );
 };
 
