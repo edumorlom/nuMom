@@ -42,7 +42,11 @@ import {
   FemaleCondomDoDont,
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
-import WICScreen from './src/Components/WICScreen';
+import {
+  wicHome,
+  wicChecklist,
+  wicLocations,
+ } from './src/Components/WICScreen';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
 import NewAppointment from './src/Components/NewAppointment';
@@ -175,8 +179,18 @@ function App() {
         />
         <Stack.Screen
           name="WICScreen"
-          component={WICScreen}
+          component={wicHome}
           options={{title: 'WIC'}}
+        />
+        <Stack.Screen
+          name="WICChecklist"
+          component={wicChecklist}
+          options={{title: 'Checklist'}}
+        />
+        <Stack.Screen
+          name="WICLocations"
+          component={wicLocations}
+          options={{title: 'Locations'}}
         />
         <Stack.Screen
           name="MedicaidScreen"

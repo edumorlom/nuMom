@@ -144,7 +144,7 @@ export default LogIn = (props) => {
           underlayColor="transparent"
           accessible={false}
         >
-          <>
+          <>{/*}
             <ImageBackground
               source={background}
               style={{
@@ -154,6 +154,7 @@ export default LogIn = (props) => {
                 height: appStyles.win.height,
               }}
             />
+            */}
             <View
               style={{
                 paddingTop: appStyles.win.height * 0.05,
