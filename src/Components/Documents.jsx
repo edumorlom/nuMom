@@ -74,7 +74,7 @@ export default function Documents() {
           onPress={() => {
             onPress();
           }}
-          style={{...appStyles.viewPlus, marginVertical: 10}}
+          style={appStyles.viewPlus}
         >
           <Image source={Plus} style={{height: 25, width: 25}} />
         </TouchableOpacity>

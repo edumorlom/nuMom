@@ -72,7 +72,7 @@ export default function Immunization(props) {
       >
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
-            style={{...appStyles.viewPlus, marginVertical: 10}}
+            style={appStyles.viewPlus}
             onPress={() => {
               props.navigation.navigate('NewImmunization');
             }}
@@ -80,7 +80,7 @@ export default function Immunization(props) {
             <Image source={Plus} style={{height: 25, width: 25}} />
           </TouchableOpacity>
           <TouchableOpacity
-            style={{...appStyles.viewPlus, marginVertical: 10}}
+            style={appStyles.viewPlus}
             onPress={() => {
               sendEmailViaEmailApp(
                 email,
@@ -92,7 +92,7 @@ export default function Immunization(props) {
             <Image source={Email} style={{height: 40, width: 40}} />
           </TouchableOpacity>
           <TouchableOpacity
-            style={{...appStyles.viewPlus, marginVertical: 10}}
+            style={appStyles.viewPlus}
             onPress={() => {
               // need to implement
             }}
