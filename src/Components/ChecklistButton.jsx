@@ -1,20 +1,58 @@
-import {Image, Text, TouchableHighlight, View, AsyncStorage} from 'react-native';
-import React, {useState} from 'react';
+import {Image, Text, TouchableHighlight, View} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import * as Haptics from 'expo-haptics';
+import AsyncStorage from '@react-native-community/async-storage';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 import redX from '../../assets/redX.jpg';
 import checkmark from '../../assets/checkmark.jpg';
 // Very similar to Button.jsx but it has a specific functionality, it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function ChecklistButton(props) {
-    const [check, setCheck] = useState(redX);  
-  let onPress = async () => {
+  const STORAGE_KEY = '@save_check';
+  const [check, setCheck] = useState('');
+
+  useEffect(() => {
+    readData();
+  }, []);
+
+  function getImage() {
+    if (check == '1') {
+      return checkmark;
+    }
+    return '';
+  }
+
+  function currentCheck() {
+    if (check == '1') {
+      setCheck('0');
+    } else {
+      setCheck('1');
+    }
+  }
+
+  let onPress = () => {
+    currentCheck();
+    saveData(check);
+  };
+
+  const saveData = async () => {
     try {
-        await AsyncStorage.setItem(
-          setCheck(checkmark)
-        );
-      } catch (error) {
-        // Error saving data
+      await AsyncStorage.setItem(STORAGE_KEY, check);
+      alert('Data successfully saved');
+    } catch (e) {
+      alert('Failed to save the data to the storage');
+    }
+  };
+
+  const readData = async () => {
+    try {
+      const check = await AsyncStorage.getItem(STORAGE_KEY);
+
+      if (check !== null) {
+        setCheck(check);
       }
+    } catch (e) {
+      alert('Failed to fetch the data from storage');
+    }
   };
 
   let showText = () => {
@@ -28,23 +66,18 @@ export default function ChecklistButton(props) {
     );
   };
 
-  let currentState;
-  getState = async () => {
-    currentState = await AsyncStorage.getItem(check)
-  }
-
   let showImage = () => {
-    return <Image style={props.style.Image} source={currentState} />;
+    return <Image style={props.style.Image} source={getImage()} />;
   };
 
   let showImageInView = () => {
-    return <Image style={props.style.ImageInView} source={currentState} />;
+    return <Image style={props.style.ImageInView} source={getImage()} />;
   };
 
   return (
     <TouchableHighlight
       underlayColor={appStyles.underlayColor}
-      onPress={onPress}
+      onPress={() => onPress()}
       style={props.style.Touchable}
     >
       <>
