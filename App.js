@@ -42,11 +42,7 @@ import {
   FemaleCondomDoDont,
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
-import {
-  wicHome,
-  wicChecklist,
-  wicLocations,
- } from './src/Components/WICScreen';
+import {wicHome, wicChecklist, wicLocations} from './src/Components/WICScreen';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
 import NewAppointment from './src/Components/NewAppointment';

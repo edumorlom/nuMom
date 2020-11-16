@@ -14,7 +14,7 @@ export default function Resources(props) {
   let wicButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Apply to WiC"
+      text="Apply to WIC"
       subtext="Application link and tips for applying to WIC"
       icon={breastfeeding}
       onPress={() => {

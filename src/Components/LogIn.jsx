@@ -144,7 +144,8 @@ export default LogIn = (props) => {
           underlayColor="transparent"
           accessible={false}
         >
-          <>{/*}
+          <>
+            {/* }
             <ImageBackground
               source={background}
               style={{

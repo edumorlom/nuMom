@@ -17,7 +17,7 @@ export const wicHome = (props) => {
   let websiteButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Website" 
+      text="Website"
       subtext="Eligibility requirements and more"
       icon={breastfeeding}
       onPress={() => toWebsite()}
@@ -27,20 +27,20 @@ export const wicHome = (props) => {
   let checklistButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Checklist" 
+      text="Checklist"
       subtext="Don't forget to bring these things to your WIC appointment!"
       icon={checklist}
-      onPress={() => props.navigation.navigate("WICChecklist")}
+      onPress={() => props.navigation.navigate('WICChecklist')}
     />
   );
 
   let locationsButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Locations" 
+      text="Locations"
       subtext="Find a WIC office near you."
       icon={facilities}
-      onPress={() => props.navigation.navigate("WICLocations")}
+      onPress={() => props.navigation.navigate('WICLocations')}
     />
   );
 
@@ -56,22 +56,75 @@ export const wicHome = (props) => {
     </View>
   );
 };
-
-export const wicChecklist = () => {
+/*
+{objects.map((appointments, index) => {
   return (
-    <ChecklistButton
-      style={appStyles.ImageOnRightSelectionButton}
-      text="Government issued ID" 
-      subtext="Its important!"
-      onPress={() => props.navigation.navigate("WICLocations")}
+    <AppointmentMenu
+      key={index}
+      appointments={appointments}
+      removeAppointment={removeAppointment}
+    />
+  );
+})}
+*/
+export const wicChecklist = () => {
+  let checklist = [
+    {
+      text: 'Family members',
+      subtext: 'Each member who is applying to receive WIC must be present.',
+    },
+    {
+      text: 'Proof of Income of all family members',
+      subtext:
+        'Salaries, child support, alimony, foster care payments, interest withdrawn, unemployment, compensation, or military earnings.',
+    },
+    {
+      text: 'Proof of Current Address',
+      subtext:
+        "Utility bill, bank/insurance statement, voter registration card, or driver's license.",
+    },
+    {
+      text: 'Proof of Identification for you AND for any infant or child',
+      subtext:
+        "Birth certificate, driver's license, crib card, military ID, photo ID, Social Security Card, voter registration, or hospital record.",
+    },
+    {
+      text: 'Measurements for EACH woman, infant, and child.',
+      subtext:
+        'Height/Weight (no older than 60 days), and hemoglobin or hematocrit blood test results (not required for infants under 9 months).',
+    },
+    {
+      text: 'Social Security Number (SSN)',
+      subtext:
+        'You must have the SSN for each person applying for WIC, if available.',
+    },
+    {
+      text: 'Immunization (shot) record for each child',
+      subtext:
+        'You must have the Immunization (shot) record for each child applying for WIC.',
+    },
+  ];
+
+  return (
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
       >
-    </ChecklistButton>
-  )
-}
+        {checklist.map((checklist, key) => {
+          return (
+            <ChecklistButton
+              style={appStyles.ImageOnRightSelectionButton}
+              text={checklist.text}
+              subtext={checklist.subtext}
+              key={key}
+            />
+          );
+        })}
+      </ScrollView>
+    </View>
+  );
+};
 
 export const wicLocations = () => {
-  return (
-    <Text>Locations</Text>
-  )
-}
-
+  return <Text>Locations</Text>;
+};

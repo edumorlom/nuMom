@@ -17,7 +17,7 @@ const MedicaidScreen = () => {
   let toWebsiteButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Link to Medicaid site" 
+      text="Link to Medicaid site"
       subtext="Eligibility requirements and more."
       icon={heart}
       onPress={() => toWebsite()}
@@ -27,20 +27,20 @@ const MedicaidScreen = () => {
   let thingsToBringButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Checklist" 
+      text="Checklist"
       subtext="Don't forget to bring these things to your Medicaid appointment!"
       icon={checklist}
-      onPress={() => alert("Functionality to be implemented one day!")}
+      onPress={() => alert('Functionality to be implemented one day!')}
     />
   );
 
   let locationsButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Locations" 
+      text="Locations"
       subtext="Find a Medicaid office near you."
       icon={facilities}
-      onPress={() => alert("Functionality to be implemented one day!")}
+      onPress={() => alert('Functionality to be implemented one day!')}
     />
   );
   return (
