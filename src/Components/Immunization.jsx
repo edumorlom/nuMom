@@ -61,8 +61,10 @@ export default function Immunization(props) {
       console.log('sendEmailViaEmailApp -----> mail link is undefined');
     }
   };
-
-  let emailBody = JSON.stringify(objects, null, '  ');
+  let emailBody = JSON.stringify(objects, null, ' ').replace(
+    /[\{\[\]\"\}\,]+/g,
+    ''
+  );
 
   return (
     <View style={appStyles.contentContainer}>
@@ -83,9 +85,9 @@ export default function Immunization(props) {
             style={appStyles.viewPlus}
             onPress={() => {
               sendEmailViaEmailApp(
-                email,
-                'NuMoms: Immunization Records',
-                objects
+              email,
+              'NuMom: Immunization Records',
+              emailBody
               );
             }}
           >
