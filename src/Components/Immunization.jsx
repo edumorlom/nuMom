@@ -85,9 +85,9 @@ export default function Immunization(props) {
             style={appStyles.viewPlus}
             onPress={() => {
               sendEmailViaEmailApp(
-              email,
-              'NuMom: Immunization Records',
-              emailBody
+                email,
+                'NuMom: Immunization Records',
+                emailBody
               );
             }}
           >
