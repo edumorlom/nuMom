@@ -20,7 +20,11 @@ const WICScreen = () => {
           bottom: '85%',
         }}
       >
-        <Button style={appStyles.button} text="Link to WIC" onPress={onPress} />
+        <Button
+          style={appStyles.button}
+          text={translate('linkToWIC')}
+          onPress={onPress}
+        />
       </View>
     </View>
   );

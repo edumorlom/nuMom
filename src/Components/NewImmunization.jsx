@@ -34,7 +34,7 @@ export default function NewImmunization(props) {
   };
 
   let immunizationArray = [
-    '<<Select Immunization>>',
+    translate('selectImmunization'),
     'DTaP',
     'Hepatitis A',
     'Hepatitis B',

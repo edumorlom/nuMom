@@ -10,6 +10,7 @@ import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import Plus from '../../assets/plus.png';
 import documentIcon from '../../assets/document.png';
+import translate from './getLocalizedText';
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -90,7 +91,7 @@ export default function Documents() {
         {buttonClickedStatus && (
           <DialogInput
             isDialogVisible={isDialogVisible}
-            title="Name Your File"
+            title={translate('nameFile')}
             submitInput={(value) => {
               onChangeText(value),
                 setIsDialogVisible(false),
