@@ -43,6 +43,7 @@ import {
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
 import {wicHome, wicChecklist, wicLocations} from './src/Components/WICScreen';
+import WICInfo from './src/Components/WICInfo';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
 import NewAppointment from './src/Components/NewAppointment';
@@ -52,6 +53,7 @@ import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
 import ImmunizationMenu from './src/Components/Immunization';
 import NewImmunization from './src/Components/NewImmunization';
+
 // import * as firebase from "firebase";
 
 function App() {
@@ -60,9 +62,10 @@ function App() {
   };
 
   const Stack = createStackNavigator();
+  const navigationRef = React.createRef();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
@@ -70,6 +73,18 @@ function App() {
           headerTitleAlign: 'center',
           headerTitleStyle: styles.headerTitle,
           headerBackTitle: false,
+          headerRight: () => (
+            <View style={styles.logOutButton}>
+              <AntDesign
+                name="home"
+                size={28}
+                color={appStyles.pinkColor}
+                onPress={() => {
+                  navigationRef.current?.navigate('Homepage');
+                }}
+              />
+            </View>
+          ),
         }}
       >
         <Stack.Screen
@@ -187,6 +202,11 @@ function App() {
           name="WICLocations"
           component={wicLocations}
           options={{title: 'Locations'}}
+        />
+        <Stack.Screen
+          name="WICInfo"
+          component={WICInfo}
+          options={{title: 'Info'}}
         />
         <Stack.Screen
           name="MedicaidScreen"
