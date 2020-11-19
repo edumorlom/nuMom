@@ -15,7 +15,7 @@ import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
 import BackButton from './Button';
 import Button from './Button';
-import {getUserInfo, getUid} from '../Firebase';
+import {getUserInfo, getUid, sendPushNotification} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
@@ -99,7 +99,7 @@ const SettingsScreen = (props) => {
     }
   };
 
-  onSubmit = () => {
+  onSubmit = async () => {
     Haptics.selectionAsync().then();
     /* This function returns an array with nextWeek and week number */
     let babyInfo = getNextWeekAndWeekNo();
@@ -192,6 +192,9 @@ const SettingsScreen = (props) => {
         .catch((err) => console.log(err));
 
       window.alert(translate('savedInfo'));
+      const title = ' UserInfo change!';
+      const body = `Please note that you've change your userInfo !`;
+      await sendPushNotification(title, body);
     }
   };
 
@@ -281,9 +284,9 @@ const SettingsScreen = (props) => {
             {translate('welcomeSettings')}
           </Text>
         </View>
-        <View style={{ alignItems: 'center', paddingTop: 25 }}>
-          <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            {/*<Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text>*/}
+        <View style={{alignItems: 'center', paddingTop: 25}}>
+          <View style={{marginBottom: 15, alignItems: 'center'}}>
+            {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate('phoneNumberInput')}
@@ -295,8 +298,8 @@ const SettingsScreen = (props) => {
             </View>
           </View>
 
-          <View style={{ marginBottom: 15, alignItems: 'center' }}>
-            {/*<Text style={appStyles.blueColor}>{translate("dob")}:</Text>*/}
+          <View style={{marginBottom: 15, alignItems: 'center'}}>
+            {/* <Text style={appStyles.blueColor}>{translate("dob")}:</Text> */}
             <View>
               <TextInputMask
                 type="datetime"
@@ -317,8 +320,8 @@ const SettingsScreen = (props) => {
               />
             </View>
           </View>
-          <View style={{ marginBottom: 10, alignItems: 'center' }}>
-            {/*<Text style={appStyles.blueColor}>{translate("fullName")}:</Text>*/}
+          <View style={{marginBottom: 10, alignItems: 'center'}}>
+            {/* <Text style={appStyles.blueColor}>{translate("fullName")}:</Text> */}
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate('fullName')}

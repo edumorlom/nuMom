@@ -16,7 +16,7 @@ import * as Permissions from 'expo-permissions';
 import translate from './getLocalizedText';
 import Button from './Button';
 import appStyles from './AppStyles';
-import {getUid, addAppointment} from '../Firebase';
+import {getUid, addAppointment, sendPushNotification} from '../Firebase';
 
 export default function NewAppointment(props) {
   appointment = [
@@ -50,6 +50,9 @@ export default function NewAppointment(props) {
     if (!name || !address) {
       alert(translate('fillOutAllFields'));
     } else {
+      const title = "You've created a new appointment!";
+      const body = `You have a appointment ${name} at ${date} ${time} ,Don't forget to ${address}`;
+      await sendPushNotification(title, body);
       await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
       props.setLowerPanelContent('Appointment');

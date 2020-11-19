@@ -42,7 +42,8 @@
     "react-native-responsive-fontsize": "^0.4.3",
     "react-native-swipe-gestures": "^1.0.5",
     "react-native-vector-icons": "^7.1.0",
-    "twilio": "^3.50.0"
+    "twilio": "^3.50.0",
+    "expo-notifications": "~0.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
