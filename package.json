@@ -36,6 +36,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
     "react-native-confetti-cannon": "^1.5.1",
     "react-native-dialog-input": "^1.0.8",
+    "react-native-dropdown-picker": "^3.7.1",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-haptic-feedback": "^1.11.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",

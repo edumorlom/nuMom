@@ -42,7 +42,12 @@ import {
   FemaleCondomDoDont,
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
-import {wicHome, wicChecklist, wicLocations} from './src/Components/WICScreen';
+import {
+  wicHome,
+  wicChecklist,
+  wicLocations,
+  wicFeeding,
+} from './src/Components/WICScreen';
 import WICInfo from './src/Components/WICInfo';
 import MedicaidScreen from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
@@ -202,6 +207,11 @@ function App() {
           name="WICLocations"
           component={wicLocations}
           options={{title: 'Locations'}}
+        />
+        <Stack.Screen
+          name="WICFeeding"
+          component={wicFeeding}
+          options={{title: 'Feeding'}}
         />
         <Stack.Screen
           name="WICInfo"
