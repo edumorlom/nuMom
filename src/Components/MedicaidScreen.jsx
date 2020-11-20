@@ -22,7 +22,7 @@ const MedicaidScreen = () => {
       >
         <Button
           style={appStyles.button}
-          text="Link to Medicaid"
+          text={translate('linkToMedicaid')}
           onPress={onPress}
         />
       </View>

@@ -189,5 +189,16 @@
   "Yearly Exam": "Yearly Exam",
   "Emergency Testing": "Emergency Testing",
   "Miles": "Miles",
-  "facilities": "Fasilite yo"
+  "facilities": "Fasilite yo",
+  "nameFile": "test",
+  "dosAndDonts": "Do's & Dont's",
+  "steps": "Steps",
+  "applyWIC": "Apply to WiC",
+  "WICSubtext": "Application link and tips for applying to WIC",
+  "applyMedicaid": "Apply to Medicaid",
+  "medicaidSubtext": "Application link and tips for applying to Medicaid",
+  "linkToWIC": "Link to WIC",
+  "linkToMedicaid": "Link to Medicaid",
+  "selectImmunization": "<<Select Immunization>>",
+  "resetPassword": "Reset Password"
 }
