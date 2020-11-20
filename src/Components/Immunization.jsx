@@ -11,14 +11,13 @@ import ImmunizationMenu from './ImmunizationMenu';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
 import Email from '../../assets/emailicon.png';
-import Notification from '../../assets/bellNotification.png';
+import Schedule from '../../assets/schedule.png';
 import {
   deleteImmunization,
   fetchImmunization,
   getUid,
   getUEmail,
 } from '../Firebase';
-import NewImmunization from './NewImmunization';
 
 export default function Immunization(props) {
   let _isMounted = false;
@@ -85,9 +84,9 @@ export default function Immunization(props) {
             style={appStyles.viewPlus}
             onPress={() => {
               sendEmailViaEmailApp(
-              email,
-              'NuMom: Immunization Records',
-              emailBody
+                email,
+                'NuMom: Immunization Records',
+                emailBody
               );
             }}
           >
@@ -96,10 +95,10 @@ export default function Immunization(props) {
           <TouchableOpacity
             style={appStyles.viewPlus}
             onPress={() => {
-              // need to implement
+              props.navigation.navigate('ImmunizationSchedule');
             }}
           >
-            <Image source={Notification} style={{height: 40, width: 40}} />
+            <Image source={Schedule} style={{height: 40, width: 40}} />
           </TouchableOpacity>
         </View>
         <View>
