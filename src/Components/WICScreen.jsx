@@ -20,7 +20,7 @@ import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
 import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
-import WICMap from './WICMap';
+import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
 /*  Main home screen for WIC. Any additional tabs go here, and are defined in separate exported functions afterwards.
  *
@@ -93,7 +93,7 @@ export const wicChecklist = () => {
     {
       text: 'Proof of Income of all family members',
       subtext:
-        'Salaries, child support, alimony, foster care payments, interest withdrawn, unemployment, compensation, or military earnings.',
+        'Salaries, child support, alimony, foster care payments, interest withdrawn, unemployment.',
     },
     {
       text: 'Proof of Current Address',
@@ -103,12 +103,11 @@ export const wicChecklist = () => {
     {
       text: 'Proof of Identification for you AND for any infant or child',
       subtext:
-        "Birth certificate, driver's license, crib card, military ID, photo ID, Social Security Card, voter registration, or hospital record.",
+        "Birth certificate, driver's license, crib card, military ID, photo ID, Social Security Card.",
     },
     {
       text: 'Measurements for EACH woman, infant, and child.',
-      subtext:
-        'Height/Weight (no older than 60 days), and hemoglobin or hematocrit blood test results (not required for infants under 9 months).',
+      subtext: 'Height/Weight, hemoglobin or hematocrit blood test results.',
     },
     {
       text: 'Social Security Number (SSN)',
@@ -215,8 +214,8 @@ export const wicLocations = (props) => {
       subtext={`${wic.address.street}\n${wic.address.city}\n${wic.address.state}, ${wic.address.zipCode}\n${wic.distance} miles`}
       icon={breastfeeding}
       onPress={() => {
-        props.navigation.navigate('WICInfo', {
-          wic,
+        props.navigation.navigate('LocationsInfo', {
+          location: wic,
         });
       }}
     />
@@ -230,13 +229,13 @@ export const wicLocations = (props) => {
       }}
     >
       <View style={appStyles.container}>
-        <WICMap
+        <LocationsMap
           onPress={() => setFullPanel(false)} // This does not work, explanation at the bottom **
           setFullPanel={setFullPanel}
           wicToView={wicToView}
           setWICToView={setWICToView}
           setLowerPanelContent={setLowerPanelContent}
-          wics={wics}
+          locations={wics}
           style={{}}
           navigation={props.navigation}
         />

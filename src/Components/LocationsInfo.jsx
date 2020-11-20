@@ -7,24 +7,23 @@ import appStyles from './AppStyles';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
-import WICMap from './WICMap';
+import LocationsMap from './LocationsMap';
 
-export default function WICInfo({route}) {
-  const {wic} = route.params;
+export default function LocationsInfo({route}) {
+  const {location} = route.params;
   const [fullPanel, setFullPanel] = useState(true);
-  const [wics, setWICS] = useState([]);
-  const [sortedWICS, setSortedWICS] = useState(null);
+  const [locations, setLocations] = useState([]);
   const [filters, setFilters] = useState([10000, 'All']);
-  const [wicToView, setWICToView] = useState(null);
+  const [locationToView, setLocationToView] = useState(null);
   const [shelterToView, setShelterToView] = useState(null);
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState('selection');
 
-  let wicList = [wic];
+  let locationList = [location];
 
   let getDirections = () => {
     const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
-    const latLng = `${wic.coordinate.latitude},${wic.coordinate.longitude}`;
+    const latLng = `${location.coordinate.latitude},${location.coordinate.longitude}`;
     const label = 'Custom Label';
     const url = Platform.select({
       ios: `${scheme}${label}@${latLng}`,
@@ -34,18 +33,18 @@ export default function WICInfo({route}) {
   };
 
   let call = () => {
-    Linking.openURL(`tel:${wic.phoneNumber}`);
+    Linking.openURL(`tel:${location.phoneNumber}`);
   };
 
   let visitSite = () => {
-    Linking.openURL(`http://${wic.website}`);
+    Linking.openURL(`http://${location.website}`);
   };
 
   let getResourceName = (name) => {
     return name.length > 40 ? `${name.substring(0, 40)}...` : name;
   };
 
-  let clinicInfo = `${wic.address.street}\n${wic.address.city}\n${wic.address.state}, ${wic.address.zipCode}\n${wic.distance} miles`;
+  let locationInfo = `${location.address.street}\n${location.address.city}\n${location.address.state}, ${location.address.zipCode}\n${location.distance} miles`;
 
   return (
     <View
@@ -56,13 +55,13 @@ export default function WICInfo({route}) {
       }}
     >
       <View style={appStyles.container}>
-        <WICMap
+        <LocationsMap
           onPress={() => setFullPanel(false)} // This does not work, explanation at the bottom **
           setFullPanel={setFullPanel}
-          wicToView={wicToView}
-          setWICToView={setWICToView}
+          locationToView={locationToView}
+          setLocationToView={setLocationToView}
           setLowerPanelContent={setLowerPanelContent}
-          wics={wicList}
+          locations={locationList}
           style={{}}
         />
       </View>
@@ -70,23 +69,23 @@ export default function WICInfo({route}) {
         <ScrollView>
           <SelectionButton
             style={appStyles.ClinicSelectionButton}
-            text={getResourceName(wic.resource)}
-            subtext={`${clinicInfo}`}
+            text={getResourceName(location.resource)}
+            subtext={`${locationInfo}`}
             icon={directionsArrow}
             onPress={getDirections}
           />
-          {console.log(wic.website)}
+          {console.log(location.website)}
           <ActionButton
             style={appStyles.ActionButton}
             text={translate('visitSite')}
-            subtext={wic.website.split('/', 3)}
+            subtext={location.website.split('/', 3)}
             onPress={visitSite}
             icon={visitSiteIcon}
           />
           <ActionButton
             style={appStyles.ActionButton}
             text={translate('callClinic')}
-            subtext={wic.phoneNumber}
+            subtext={location.phoneNumber}
             onPress={call}
             icon={callIcon}
           />

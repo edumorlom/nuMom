@@ -48,8 +48,12 @@ import {
   wicLocations,
   wicFeeding,
 } from './src/Components/WICScreen';
-import WICInfo from './src/Components/WICInfo';
-import MedicaidScreen from './src/Components/MedicaidScreen';
+import LocationsInfo from './src/Components/LocationsInfo';
+import {
+  medicaidHome,
+  medicaidChecklist,
+  medicaidLocations,
+} from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
 import NewAppointment from './src/Components/NewAppointment';
 import Documents from './src/Components/Documents';
@@ -214,14 +218,24 @@ function App() {
           options={{title: 'Feeding'}}
         />
         <Stack.Screen
-          name="WICInfo"
-          component={WICInfo}
+          name="LocationsInfo"
+          component={LocationsInfo}
           options={{title: 'Info'}}
         />
         <Stack.Screen
           name="MedicaidScreen"
-          component={MedicaidScreen}
+          component={medicaidHome}
           options={{title: 'Medicaid'}}
+        />
+        <Stack.Screen
+          name="MedicaidChecklist"
+          component={medicaidChecklist}
+          options={{title: 'Checklist'}}
+        />
+        <Stack.Screen
+          name="MedicaidLocations"
+          component={medicaidLocations}
+          options={{title: 'Locations'}}
         />
         <Stack.Screen
           name="ImmunizationScreen"

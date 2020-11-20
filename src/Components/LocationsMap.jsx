@@ -5,7 +5,7 @@ import {Image} from 'react-native';
 import appStyles from './AppStyles';
 import Spinner from '../../assets/loading-blue.gif';
 
-export default function WICMap(props) {
+export default function LocationsMap(props) {
   const defaultRegion = {
     latitude: 25.782220701733717,
     longitude: -80.26424665653634,
@@ -81,16 +81,16 @@ export default function WICMap(props) {
           showsUserLocation
         >
           {/* Display markers for each clinic */}
-          {props.wics.map((wic, index) => (
+          {props.locations.map((location, index) => (
             <Marker
               key={index}
-              coordinate={wic.coordinate}
-              title={wic.resource}
-              description={wic.phoneNumber}
+              coordinate={location.coordinate}
+              title={location.resource}
+              description={location.phoneNumber}
               pinColor={appStyles.blueColor}
               onPress={(e) => {
-                props.navigation.navigate('WICInfo', {
-                  wic,
+                props.navigation.navigate('LocationsInfo', {
+                  location,
                 });
               }}
             />

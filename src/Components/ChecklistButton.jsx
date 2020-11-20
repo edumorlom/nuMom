@@ -20,6 +20,12 @@ export default function ChecklistButton(props) {
   }, []);
 
   const onPress = () => {
+    /* So the onPress wasn't working as intended so I removed it for now. 
+       If you press an item, check it, move back, and come back to checklist, there's a weird bug
+       where all items are checked even though only one is checked. Until it is fixed, it just displays
+       stuff
+
+
     // Convert check to opposite string.
     // If true, then ''. If '', then true.
     const newCheck = check ? '' : 'true';
@@ -27,6 +33,10 @@ export default function ChecklistButton(props) {
     setCheck(newCheck);
     // save the new cookie
     saveCookie(STORAGE_KEY, newCheck);
+    */
+    alert(
+      "Supposed to remember the users' checked item, but currently isn't working"
+    );
   };
 
   let showText = () => {
