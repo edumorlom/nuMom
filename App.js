@@ -52,6 +52,7 @@ import AddReferenceNames from './src/Components/AddReferenceNames';
 import STDInfo from './src/Components/STDInfo';
 import ImmunizationMenu from './src/Components/Immunization';
 import NewImmunization from './src/Components/NewImmunization';
+import ImmunizationSchedule from './src/Components/ImmunizationSchedule';
 import translate from './src/Components/getLocalizedText';
 // import * as firebase from "firebase";
 
@@ -191,12 +192,17 @@ function App() {
         <Stack.Screen
           name="ImmunizationScreen"
           component={ImmunizationMenu}
-          options={{title: translate('immunization')}}
+          options={{title: 'Immunization Register'}}
         />
         <Stack.Screen
           name="NewImmunization"
           component={NewImmunization}
           options={{title: translate('newImmunization')}}
+        />
+        <Stack.Screen
+          name="ImmunizationSchedule"
+          component={ImmunizationSchedule}
+          options={{title: 'Immunization Schedule'}}
         />
         <Stack.Screen
           name="Appointment"

@@ -34,21 +34,37 @@ export default function NewImmunization(props) {
   };
 
   let immunizationArray = [
-    translate('selectImmunization'),
-    'DTaP',
-    'Hepatitis A',
-    'Hepatitis B',
-    'Hib',
-    'Influenza(yearly)',
-    'MMR ',
-    'Pneumococcal(PCV13)',
-    'Pneumococcal(PCV7)',
-    'Pneumococcal(PCV23)',
-    'Polio(IPV)',
-    'Polio(OPV)',
-    'Rotavirus(RV)',
-    'Varicella/Zoster',
-    'Other',
+    '<<Select Immunization>>',
+    'First dose Hepatitis B',
+    'First dose diphtheria, tetanus, and pertussis (Dtap)',
+    'First dose polio (IPV)',
+    'First dose haemophilus influenzae Type B (Hib)',
+    'First dose pneumococcal vaccine (PCV)',
+    'First dose rotavirus',
+    'Second dose Hepatitis B',
+    'Third dose Hepatitis B',
+    'Second dose diphtheria, tetanus, and pertussis (Dtap)',
+    'Second dose polio (IPV)',
+    'Second dose haemophilus influenzae Type B (Hib)',
+    'Second dose pneumococcal vaccine (PCV)',
+    'Second dose rotavirus',
+    'Third dose diphtheria, tetanus, and pertussis (Dtap)',
+    'Third dose polio (IPV)',
+    'Third dose haemophilus influenzae Type B (Hib)',
+    'Third dose pneumococcal vaccine (PCV)',
+    'Third dose rotavirus',
+    'Flu vaccine',
+    'Fourth dose Hepatitis B',
+    'First dose Hepatitis A',
+    'First dose Measles, mumps, and rubella (MMR)',
+    'First dose Chickenpox (Varicella)',
+    'Fourth dose haemophilus influenzae Type B (Hib)',
+    'Fourth dose pneumococcal vaccine (PCV)',
+    'Second dose Hepatitis A',
+    'Fourth dose diphtheria, tetanus, and pertussis (Dtap)',
+    'Fourth dose polio (IPV)',
+    'Second dose Measles, mumps, and rubella (MMR)',
+    'Second dose Chickenpox (Varicella)',
   ];
 
   let immunizations = immunizationArray.map((immunization) => ({
@@ -89,13 +105,7 @@ export default function NewImmunization(props) {
       }}
       scrollEnabled
     >
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <View style={styles.container}>
         <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
         <Dropdown
           containerStyle={{
@@ -107,8 +117,8 @@ export default function NewImmunization(props) {
           inputContainerStyle={{borderBottomColor: 'transparent'}}
           textAlign="center"
           itemCount={8}
-          itemTextStyle={{alignSelf: 'center'}}
-          fontSize={24}
+          itemTextStyle={{alignSelf: 'left'}}
+          fontSize={26}
           data={immunizations}
           label={translate(immunizations)}
           value={immunizations[0].value}
@@ -172,22 +182,23 @@ const styles = StyleSheet.create({
   Picker: {
     backgroundColor: 'white',
     ...shadow,
-    // borderColor: greyColor,
+    borderColor: greyColor,
     borderRadius: 15,
     alignSelf: 'center',
-    width: '70%',
+    width: '90%',
   },
   seperator: {
     height: 0.1,
-    width: '100%',
+    width: '80%',
     backgroundColor: '#979797',
     alignSelf: 'center',
-    marginVertical: 8,
+    marginVertical: 6,
   },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: appStyles.win.height * 0.02,
+    paddingTop: appStyles.win.height * 0.03,
+    width: '80%',
   },
   textTitle: {
     ...Platform.select({
