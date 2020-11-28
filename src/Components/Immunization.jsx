@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-  Linking,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {ScrollView, View, Linking, Image, TouchableOpacity} from 'react-native';
 import ImmunizationMenu from './ImmunizationMenu';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';

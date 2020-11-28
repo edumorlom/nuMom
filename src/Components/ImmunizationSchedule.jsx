@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   TouchableHighlight,
   View,
   ScrollView,
   StyleSheet,
+  Image,
 } from 'react-native';
-import {ListItem, CheckBox, Image} from 'react-native-elements';
+import {ListItem} from 'react-native-elements';
 import appStyles, {borderRadius, shadow} from './AppStyles';
-import unchecked from '../../assets/unchecked.png';
-import checked from '../../assets/checked.png';
+import {fetchImmunization, getUid} from '../Firebase';
 
 export default function ImmunizationSchedule() {
+  let _isMounted = false;
+  const [objects, setObjects] = useState([]);
+  const uid = getUid();
+
+  getImmunization = () => {
+    fetchImmunization(uid, setObjects, _isMounted);
+  };
+
+  useEffect(() => {
+    getImmunization();
+    return () => (_isMounted = false);
+  }, []);
+
   let scheduleData = [
     {
       age: 'Birth',
@@ -175,6 +188,18 @@ export default function ImmunizationSchedule() {
     },
   ];
 
+  displayCheckBox = (immunizations, scheduleData) => {
+    let types = immunizations.map((item) => {
+      const {type} = item?.val();
+      if (type === scheduleData) return type;
+      return undefined;
+    });
+    if (types.includes(scheduleData)) {
+      return <Image source={require('../../assets/checked.png')} />;
+    }
+    return <Image source={require('../../assets/unchecked.png')} />;
+  };
+
   return (
     <View style={appStyles.contentContainer}>
       <ScrollView
@@ -215,15 +240,16 @@ export default function ImmunizationSchedule() {
                     >
                       {value.age}
                     </Text>
-                    {value.immunizations.map((item) => (
+                    {value.immunizations.map((item, index) => (
                       <ListItem
-                        key={item.id}
+                        key={index}
                         bottomDivider
                         style={{
                           margin: 15,
                           width: appStyles.win.width * 0.7,
                         }}
                       >
+                        {displayCheckBox(objects, item.name)}
                         <ListItem.Content>
                           <ListItem.Title
                             style={{
@@ -258,6 +284,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderBottomWidth: 0,
   },
+  checkBoxImage: {
+    height: 40,
+    width: 40,
+  },
   textTitle: {
     ...Platform.select({
       ios: {
@@ -272,7 +302,6 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
   textStyle: {
     ...Platform.select({
       ios: {

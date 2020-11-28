@@ -192,7 +192,7 @@ function App() {
         <Stack.Screen
           name="ImmunizationScreen"
           component={ImmunizationMenu}
-          options={{title: 'Immunization Register'}}
+          options={{title: translate('ImmunizationRegister')}}
         />
         <Stack.Screen
           name="NewImmunization"
@@ -202,7 +202,7 @@ function App() {
         <Stack.Screen
           name="ImmunizationSchedule"
           component={ImmunizationSchedule}
-          options={{title: 'Immunization Schedule'}}
+          options={{title: translate('ImmunizationSchedule')}}
         />
         <Stack.Screen
           name="Appointment"

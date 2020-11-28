@@ -92,7 +92,6 @@ export default function NewImmunization(props) {
   handleConfirm = (date) => {
     const newDate = moment(date).format('MM/DD/YYYY');
     setDate(newDate);
-    console.log('A date has been picked: ', newDate);
     hideDatePicker();
   };
 
@@ -174,7 +173,6 @@ const styles = StyleSheet.create({
   Dropdown: {
     backgroundColor: 'white',
     borderColor: greyColor,
-    alignSelf: 'center',
     width: '100%',
     paddingTop: '5%',
     borderRadius: 5,
