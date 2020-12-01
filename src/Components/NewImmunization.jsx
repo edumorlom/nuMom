@@ -77,7 +77,7 @@ export default function NewImmunization(props) {
       alert(translate('fillOutAllFields'));
     } else {
       await addImmunization(uid, immunizationInfo);
-      props.navigation.navigate('NewImmunization');
+      props.navigation.navigate('ImmunizationScreen');
     }
   };
 
