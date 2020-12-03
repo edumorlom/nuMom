@@ -116,7 +116,7 @@ export default function NewImmunization(props) {
           inputContainerStyle={{borderBottomColor: 'transparent'}}
           textAlign="center"
           itemCount={8}
-          itemTextStyle={{alignSelf: 'left'}}
+          itemTextStyle={{alignSelf: 'center'}}
           fontSize={26}
           data={immunizations}
           label={translate(immunizations)}
