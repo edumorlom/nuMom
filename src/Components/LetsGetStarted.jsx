@@ -1,22 +1,29 @@
+import 'react-native-gesture-handler';
 import {Image, Text, View, Animated} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from 'expo-haptics';
-import heartBalloon from '../../assets/heart-balloon.png';
+import heartBalloon from '../../assets/birthday-candle.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
 
 export default LetsGetStarted = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
-
   let _isMounted = false;
 
   useEffect(() => {
     _isMounted = true;
     _isMounted && confettiVibration();
     _isMounted && _start();
-    _isMounted && setTimeout(() => props.getNextScreen(), 4000);
-
+    _isMounted &&
+      setTimeout(
+        () =>
+          props.navigation.navigate('SignUpYesorNoMiami', {
+            question: translate('liveMiami'),
+            value: 'liveMiami',
+          }),
+        4000
+      );
     return () => (_isMounted = false);
   }, []);
 
@@ -40,7 +47,7 @@ export default LetsGetStarted = (props) => {
   };
 
   return (
-    <Animated.View style={{opacity: fadeValue, ...appStyles.container}}>
+    <Animated.View style={{opacity: fadeValue, ...appStyles.signupContainer}}>
       <ConfettiCannon
         count={150}
         origin={{x: -10, y: 0}}
@@ -49,7 +56,7 @@ export default LetsGetStarted = (props) => {
       />
       <View
         style={{
-          paddingTop: appStyles.win.height * 0.1,
+          paddingTop: appStyles.win.height * 0.2,
           justifyContent: 'center',
           alignItems: 'center',
           position: 'absolute',

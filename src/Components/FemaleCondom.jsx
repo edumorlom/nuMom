@@ -41,30 +41,19 @@ function femaleCondomDoDontList() {
 /* Displays the taken list from femaleCondomDoDontList
  * @return formatted View of content from list
  */
-function FemaleCondomDoDont() {
+export function FemaleCondomDoDont() {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
-      <Text
-        style={{
-          fontSize: appStyles.regularFontSize + 2,
-          justifyContent: 'center',
-          color: appStyles.blueColor,
-          fontWeight: 'bold',
-        }}
-      >
-        {translate('FemaleCondomDoDont')}
-      </Text>
-
-      {femaleCondomDoDontList().map((fcdd, key) => (
-        <BetterMenu
-          style={appStyles.FemaleCondomMenu}
-          key={key}
-          text={translate(fcdd.dodont)}
-        />
-      ))}
-    </ScrollView>
+    <View style={appStyles.contentContainer}>
+      <ScrollView>
+        {femaleCondomDoDontList().map((fcdd, key) => (
+          <BetterMenu
+            style={appStyles.FemaleCondomMenu}
+            key={key}
+            text={translate(fcdd.dodont)}
+          />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
@@ -111,44 +100,29 @@ function femaleCondomStepsList() {
 /* Serves to display all the steps in order and their respective images
  * @return formatted view of content from femaleCondomStepsList
  */
-function FemaleCondomSteps() {
+export function FemaleCondomSteps() {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
-      <Text
-        style={{
-          fontSize: appStyles.regularFontSize + 1,
-          justifyContent: 'center',
-          color: appStyles.blueColor,
-          fontWeight: 'bold',
-          textAlign: 'center',
-          paddingBottom: 15,
-        }}
-      >
-        {translate('FemaleCondomHowTo')}
-      </Text>
-
-      {femaleCondomStepsList().map((fcs, key) => (
-        <BetterMenu
-          style={appStyles.FemaleCondomMenuImage}
-          key={key}
-          text={translate(fcs.step)}
-          icon={fcs.icon}
-        />
-      ))}
-    </ScrollView>
+    <View style={appStyles.contentContainer}>
+      <ScrollView>
+        {femaleCondomStepsList().map((fcs, key) => (
+          <BetterMenu
+            style={appStyles.FemaleCondomMenuImage}
+            key={key}
+            text={translate(fcs.step)}
+            icon={fcs.icon}
+          />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
 /* Main Screen selection for Female Condom, which shows the options for Do's and Dont's, and Insertion and removal etc.
  * @return formatted view of the FemaleCondomSteps and FemaleCondomDoDont
  */
-function FemaleCondomMainScreen(props) {
+export function FemaleCondomMainScreen(props) {
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
-    >
+    <ScrollView contentContainerStyle={appStyles.contentContainer}>
       <Image
         style={{justifyContent: 'center', width: 300, height: 140}}
         source={FemaleCondomImg}
@@ -169,41 +143,16 @@ function FemaleCondomMainScreen(props) {
         style={appStyles.STDFemaleCondomSelectionButton}
         text={translate('FemaleCondomDoDont')}
         onPress={() => {
-          props.getNextScreen(1);
+          props.navigation.navigate('FemaleCondomDoDont');
         }}
       />
       <SelectionButton
         style={appStyles.STDFemaleCondomSelectionButton}
         text={translate('FemaleCondomHowTo')}
         onPress={() => {
-          props.getNextScreen(2);
+          props.navigation.navigate('FemaleCondomSteps');
         }}
       />
     </ScrollView>
   );
-}
-
-/* Controls which content is viewed and when
- * @return the appropriate screen to view, whether from a backPress or buttonPress
- */
-export default function FemaleCondom(props) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (index < 0) {
-      props.setLowerPanelContent('FemaleCondomMain');
-    }
-  });
-
-  let getNextScreen = (value) => {
-    setIndex(value);
-  };
-
-  let screens = [
-    <FemaleCondomMainScreen getNextScreen={getNextScreen} />,
-
-    <FemaleCondomDoDont getNextScreen={getNextScreen} />,
-    <FemaleCondomSteps getNextScreen={getNextScreen} />,
-  ];
-  return <ScrollView style={{height: '100%'}}>{screens[index]}</ScrollView>;
 }

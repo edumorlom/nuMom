@@ -10,6 +10,7 @@ import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import Plus from '../../assets/plus.png';
 import documentIcon from '../../assets/document.png';
+import translate from './getLocalizedText';
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -66,42 +67,44 @@ export default function Documents() {
   }, []);
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
-    >
-      <TouchableOpacity
-        onPress={() => {
-          onPress();
-        }}
-        style={{...appStyles.viewPlus, marginVertical: 10}}
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
       >
-        <Image source={Plus} style={{height: 25, width: 25}} />
-      </TouchableOpacity>
-      {documents.map((document, key) => (
-        <SelectionButton
-          style={appStyles.ImageOnRightSelectionButton}
-          key={key}
-          icon={documentIcon}
-          text={document.name}
-          onPress={() => Linking.openURL(document.url)}
-        />
-      ))}
-      {buttonClickedStatus && (
-        <DialogInput
-          isDialogVisible={isDialogVisible}
-          title="Name Your File"
-          submitInput={(value) => {
-            onChangeText(value),
-              setIsDialogVisible(false),
-              setTextChanged(true),
-              setButtonClickedStatus(false);
+        <TouchableOpacity
+          onPress={() => {
+            onPress();
           }}
-          closeDialog={() => {
-            setIsDialogVisible(false);
-          }}
-        />
-      )}
-      {textChanged && upload()}
-    </ScrollView>
+          style={appStyles.viewPlus}
+        >
+          <Image source={Plus} style={{height: 25, width: 25}} />
+        </TouchableOpacity>
+        {documents.map((document, key) => (
+          <SelectionButton
+            style={appStyles.ImageOnRightSelectionButton}
+            key={key}
+            icon={documentIcon}
+            text={document.name}
+            onPress={() => Linking.openURL(document.url)}
+          />
+        ))}
+        {buttonClickedStatus && (
+          <DialogInput
+            isDialogVisible={isDialogVisible}
+            title={translate('nameFile')}
+            submitInput={(value) => {
+              onChangeText(value),
+                setIsDialogVisible(false),
+                setTextChanged(true),
+                setButtonClickedStatus(false);
+            }}
+            closeDialog={() => {
+              setIsDialogVisible(false);
+            }}
+          />
+        )}
+        {textChanged && upload()}
+      </ScrollView>
+    </View>
   );
 }

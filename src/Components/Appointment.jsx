@@ -31,29 +31,31 @@ export default function Appointment(props) {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
-      showsVerticalScrollIndicator={false}
-    >
-      <TouchableOpacity
-        style={appStyles.viewPlus}
-        onPress={() => {
-          props.setLowerPanelContent('NewAppointment');
-        }}
+    <View style={appStyles.contentContainer}>
+      <ScrollView
+        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
+        showsVerticalScrollIndicator={false}
       >
-        <Image source={Plus} style={{height: 25, width: 25}} />
-      </TouchableOpacity>
-      <View>
-        {objects.map((appointments, index) => {
-          return (
-            <AppointmentMenu
-              key={index}
-              appointments={appointments}
-              removeAppointment={removeAppointment}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
+        <TouchableOpacity
+          style={appStyles.viewPlus}
+          onPress={() => {
+            props.navigation.navigate('NewAppointment');
+          }}
+        >
+          <Image source={Plus} style={{height: 25, width: 25}} />
+        </TouchableOpacity>
+        <View>
+          {objects.map((appointments, index) => {
+            return (
+              <AppointmentMenu
+                key={index}
+                appointments={appointments}
+                removeAppointment={removeAppointment}
+              />
+            );
+          })}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
