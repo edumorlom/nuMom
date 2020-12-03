@@ -42,8 +42,18 @@ import {
   FemaleCondomDoDont,
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
-import WICScreen from './src/Components/WICScreen';
-import MedicaidScreen from './src/Components/MedicaidScreen';
+import {
+  wicHome,
+  wicChecklist,
+  wicLocations,
+  wicFeeding,
+} from './src/Components/WICScreen';
+import LocationsInfo from './src/Components/LocationsInfo';
+import {
+  medicaidHome,
+  medicaidChecklist,
+  medicaidLocations,
+} from './src/Components/MedicaidScreen';
 import Appointment from './src/Components/Appointment';
 import NewAppointment from './src/Components/NewAppointment';
 import Documents from './src/Components/Documents';
@@ -62,9 +72,10 @@ function App() {
   };
 
   const Stack = createStackNavigator();
+  const navigationRef = React.createRef();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
@@ -72,6 +83,18 @@ function App() {
           headerTitleAlign: 'center',
           headerTitleStyle: styles.headerTitle,
           headerBackTitle: false,
+          headerRight: () => (
+            <View style={styles.logOutButton}>
+              <AntDesign
+                name="home"
+                size={28}
+                color={appStyles.pinkColor}
+                onPress={() => {
+                  navigationRef.current?.navigate('Homepage');
+                }}
+              />
+            </View>
+          ),
         }}
       >
         <Stack.Screen
@@ -181,13 +204,43 @@ function App() {
         />
         <Stack.Screen
           name="WICScreen"
-          component={WICScreen}
+          component={wicHome}
           options={{title: 'WIC'}}
         />
         <Stack.Screen
+          name="WICChecklist"
+          component={wicChecklist}
+          options={{title: 'Checklist'}}
+        />
+        <Stack.Screen
+          name="WICLocations"
+          component={wicLocations}
+          options={{title: 'Locations'}}
+        />
+        <Stack.Screen
+          name="WICFeeding"
+          component={wicFeeding}
+          options={{title: 'Feeding'}}
+        />
+        <Stack.Screen
+          name="LocationsInfo"
+          component={LocationsInfo}
+          options={{title: 'Info'}}
+        />
+        <Stack.Screen
           name="MedicaidScreen"
-          component={MedicaidScreen}
+          component={medicaidHome}
           options={{title: 'Medicaid'}}
+        />
+        <Stack.Screen
+          name="MedicaidChecklist"
+          component={medicaidChecklist}
+          options={{title: 'Checklist'}}
+        />
+        <Stack.Screen
+          name="MedicaidLocations"
+          component={medicaidLocations}
+          options={{title: 'Locations'}}
         />
         <Stack.Screen
           name="ImmunizationScreen"
