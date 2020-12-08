@@ -82,7 +82,7 @@ function App() {
           headerBackImage: backArrowImage,
           headerTitleAlign: 'center',
           headerTitleStyle: styles.headerTitle,
-          headerBackTitle: false,
+          headerBackTitle: true,
           headerRight: () => (
             <View style={styles.logOutButton}>
               <AntDesign
