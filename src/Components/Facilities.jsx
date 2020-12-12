@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import clinicLogo from '../../assets/clinic-logo.png';
 import shelterLogo from '../../assets/shelter-logo.png';
 import SelectionButton from './SelectionButton';
