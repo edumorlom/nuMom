@@ -10,12 +10,12 @@ import {
   Alert,
 } from 'react-native';
 import React, {useState} from 'react';
-import translate from 'app/Components/getLocalizedText';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import * as Calendar from 'expo-calendar';
 import * as Localization from 'expo-localization';
 import * as Permissions from 'expo-permissions';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 import {getUid, addAppointment} from '../Firebase';
