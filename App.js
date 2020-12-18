@@ -105,12 +105,20 @@ function App() {
         <Stack.Screen
           name="LetsGetStarted"
           component={LetsGetStarted}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpYesorNoMiami"
           component={SignUpYesorNo}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="MustLiveInMiami"
@@ -118,42 +126,71 @@ function App() {
           options={{
             headerTransparent: true,
             title: '',
+            headerRight: () => null,
           }}
         />
         <Stack.Screen
           name="SignUpInfo"
           component={SignUpInfo}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpContact"
           component={SignUpContact}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpPassword"
           component={SignUpPassword}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpYesorNoPregnant"
           component={SignUpYesorNo}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpYesorNoInfant"
           component={SignUpYesorNo}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpBabyDob"
           component={SignUpBabyDob}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="SignUpLoading"
           component={SignUpLoading}
-          options={{headerTransparent: true, title: ''}}
+          options={{
+            headerTransparent: true,
+            title: '',
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="Homepage"
@@ -170,7 +207,10 @@ function App() {
         <Stack.Screen
           name="ForgotPasswordPage"
           component={ForgotPasswordPage}
-          options={{title: translate('forgotPassword')}}
+          options={{
+            title: translate('forgotPassword'),
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="ResourcesPage"

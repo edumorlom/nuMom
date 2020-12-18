@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import AppointmentMenu from './AppointmentMenu';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
@@ -20,15 +21,19 @@ export default function Appointment(props) {
     fetchAppointment(uid, setObjects, _isMounted);
   };
 
-  useEffect(() => {
-    getAppointment();
-
-    return () => (_isMounted = false);
-  }, []);
-
   removeAppointment = (id, eventId) => {
     deleteAppointment(id, uid, objects, setObjects, eventId);
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getAppointment();
+
+      return () => {
+        setObjects([]);
+      };
+    }, [])
+  );
 
   return (
     <View style={appStyles.contentContainer}>
