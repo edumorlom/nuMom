@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableHighlight, Text, View, ScrollView, Image} from 'react-native';
-import translate from 'app/Components/getLocalizedText';
+import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import BetterMenu from './BetterMenu';

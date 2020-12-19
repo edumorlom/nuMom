@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
 import ReferenceInfo from './ReferenceInfo';
@@ -18,12 +19,16 @@ function ReferenceNames(props) {
     deleteReference(id, uid, references, setReferences);
   };
 
-  useEffect(() => {
-    getReferences();
+  // Grabs references when looking at screen. When adding, clears the list, and regrabs the list with the new item when user is back at main menu.
+  useFocusEffect(
+    React.useCallback(() => {
+      getReferences();
 
-    return () => (_isMounted = false);
-  }, []);
-
+      return () => {
+        setReferences([]);
+      };
+    }, [])
+  );
   return (
     <View style={appStyles.contentContainer}>
       <ScrollView
@@ -53,5 +58,4 @@ function ReferenceNames(props) {
     </View>
   );
 }
-
 export default ReferenceNames;

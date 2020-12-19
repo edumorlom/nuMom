@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Linking, Image, TouchableOpacity} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import ImmunizationMenu from './ImmunizationMenu';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
@@ -17,18 +18,23 @@ export default function Immunization(props) {
   const [objects, setObjects] = useState([]);
   const uid = getUid();
   const email = getUEmail();
+
   getImmunization = () => {
     fetchImmunization(uid, setObjects, _isMounted);
   };
 
-  useEffect(() => {
-    getImmunization();
-    return () => (_isMounted = false);
-  }, []);
-
   removeImmunization = (id) => {
     deleteImmunization(id, uid, objects, setObjects);
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getImmunization();
+      return () => {
+        setObjects([]);
+      };
+    }, [])
+  );
 
   sendEmailViaEmailApp = (toMailId, subject, body) => {
     if (typeof toMailId !== 'undefined') {

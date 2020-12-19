@@ -1,10 +1,10 @@
-# Keeping Moms and Infants Healthy (nuMom) -- Mobile Application <version 3.0>
+# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <version 4.0>
 
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez
+Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman.
 
 Product Owner: Jean Hannan
 
-This is the second version of the keeping Moms and Infants Healthy application that was built for Florida International University's CIS 4911 - Senior Project Course. A smartphone-based maternal/infant healthcare application (app), that provide support in 3 different languages (English, Spanish & Creole), designed for low-income minority mothers. The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
+This is the fourth version of the NuMom (Keeping Moms and Infants Healthy application that was built for Florida International University's CIS 4911 - Senior Project Course. A smartphone-based maternal/infant healthcare application (app), that provide support in 3 different languages (English, Spanish & Creole), designed for low-income minority mothers. The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
 ---
 
