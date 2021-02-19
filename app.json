@@ -25,6 +25,7 @@
     },
     "android": {
       "package": "edu.fiu.momsInfantsHealthy",
+      "versionCode": 3,
       "config": {
         "googleMaps": {"apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"}
       },
