@@ -35,8 +35,8 @@ const SettingsScreen = (props) => {
 
   const uid = getUid();
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
+  AsyncAlert = () =>
+    new Promise((resolve, reject) => {
       Alert.alert(
         translate('logout'),
         translate('WantToLogout'),
@@ -47,7 +47,6 @@ const SettingsScreen = (props) => {
         {cancelable: false}
       );
     });
-  };
 
   fetchUserInfo = () => {
     _isMounted = true;
@@ -302,7 +301,8 @@ const SettingsScreen = (props) => {
                 options={{
                   format: 'MM/DD/YYYY',
                   validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                    let regex =
+                      /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                     return regex.test(value);
                   }, // This validator function is read by isValid()
                   // Still need to implement a check for isValid
@@ -382,7 +382,8 @@ const SettingsScreen = (props) => {
                 options={{
                   format: 'MM/DD/YYYY',
                   validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                    let regex =
+                      /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                     return regex.test(value);
                   },
                 }}

@@ -88,8 +88,7 @@ export const medicaidChecklist = () => {
         'Rent receipts/Lease or Mortgage statement. Utility bills, most current for all paid monthly/quarterly.',
     },
     {
-      text:
-        'Social Security receipt for newborns only and footprints for newborn.',
+      text: 'Social Security receipt for newborns only and footprints for newborn.',
       subtext: ' ',
     },
   ];
@@ -99,16 +98,14 @@ export const medicaidChecklist = () => {
       <ScrollView
         contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
       >
-        {checklist.map((checklist, key) => {
-          return (
-            <ChecklistButton
-              style={appStyles.ImageOnRightSelectionButton}
-              text={checklist.text}
-              subtext={checklist.subtext}
-              key={key}
-            />
-          );
-        })}
+        {checklist.map((checklist, key) => (
+          <ChecklistButton
+            style={appStyles.ImageOnRightSelectionButton}
+            text={checklist.text}
+            subtext={checklist.subtext}
+            key={key}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -133,14 +130,13 @@ export const medicaidLocations = (props) => {
     sortMedicaid(await fetchMedicaid()); // Sorts the fetched Medicaid locations
   };
 
-  let fetchMedicaid = async () => {
-    return new Promise((resolve, reject) => {
+  let fetchMedicaid = async () =>
+    new Promise((resolve, reject) => {
       let medicaidRef = getRef('Medicaid');
       medicaidRef.once('value', (snapshot) => {
         resolve(snapshot.val());
       });
     });
-  };
 
   let sortMedicaid = async (medicaidLocations) => {
     try {
@@ -157,9 +153,7 @@ export const medicaidLocations = (props) => {
         let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
         medicaid.distance = distanceInMiles; // store the distance as a property of clinic
       });
-      MedicaidLocations.sort((a, b) => {
-        return a.distance - b.distance;
-      }); // Sort by lowest distance
+      MedicaidLocations.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
       setMedicaid(MedicaidLocations);
       setSortedMedicaid(MedicaidLocations);
       // SortedClinics is never changed, where as clinics does get changed
@@ -169,15 +163,13 @@ export const medicaidLocations = (props) => {
   };
 
   // Gets the current user position
-  let getPosition = (options) => {
-    return new Promise((resolve, reject) => {
+  let getPosition = (options) =>
+    new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
-  };
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let medicaidButtons = medicaid.map((medicaid, key) => (
     <SelectionButton

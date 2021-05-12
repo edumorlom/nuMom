@@ -34,8 +34,7 @@ exports.sendPushNotification = functions.database
         messages.push({
           to: expoToken,
           sound: 'default',
-          body:
-            'Congratulations on the new baby, we wish your baby a happy and healthy life',
+          body: 'Congratulations on the new baby, we wish your baby a happy and healthy life',
           _displayInForeground: true,
         });
         fetch('https://exp.host/--/api/v2/push/send', {
@@ -57,9 +56,7 @@ a weekly message, if so, it sends the correct weekly message to the user(s) */
 exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
   let ref = admin.database().ref('users');
   let today = new Date();
-  let date = `${(today.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}/${today
+  let date = `${(today.getMonth() + 1).toString().padStart(2, '0')}/${today
     .getDate()
     .toString()
     .padStart(2, '0')}/${today.getFullYear()}`; // Parse todays date to a string
