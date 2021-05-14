@@ -4,18 +4,13 @@ import {
   View,
   Linking,
   ScrollView,
-  Image,
   StyleSheet,
   Picker,
 } from 'react-native';
 import {getPreciseDistance} from 'geolib';
-import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
-import Button from './Button';
-import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
 import checklist from '../../assets/check5list2.jpg';
@@ -126,16 +121,14 @@ export const wicChecklist = () => {
       <ScrollView
         contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
       >
-        {checklist.map((checklist, key) => {
-          return (
-            <ChecklistButton
-              style={appStyles.ImageOnRightSelectionButton}
-              text={checklist.text}
-              subtext={checklist.subtext}
-              key={key}
-            />
-          );
-        })}
+        {checklist.map((checklist, key) => (
+          <ChecklistButton
+            style={appStyles.ImageOnRightSelectionButton}
+            text={checklist.text}
+            subtext={checklist.subtext}
+            key={key}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -160,14 +153,13 @@ export const wicLocations = (props) => {
     sortWIC(await fetchWIC()); // Sorts the fetched WIC
   };
 
-  let fetchWIC = async () => {
-    return new Promise((resolve, reject) => {
+  let fetchWIC = async () =>
+    new Promise((resolve, reject) => {
       let wicRef = getRef('WIC');
       wicRef.once('value', (snapshot) => {
         resolve(snapshot.val());
       });
     });
-  };
 
   let sortWIC = async (wicLocations) => {
     try {
@@ -184,9 +176,7 @@ export const wicLocations = (props) => {
         let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
         wic.distance = distanceInMiles; // store the distance as a property of clinic
       });
-      WICLocations.sort((a, b) => {
-        return a.distance - b.distance;
-      }); // Sort by lowest distance
+      WICLocations.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
       setWICS(WICLocations);
       setSortedWICS(WICLocations);
       // SortedClinics is never changed, where as clinics does get changed
@@ -196,15 +186,13 @@ export const wicLocations = (props) => {
   };
 
   // Gets the current user position
-  let getPosition = (options) => {
-    return new Promise((resolve, reject) => {
+  let getPosition = (options) =>
+    new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
-  };
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let wicButtons = wics.map((wic, key) => (
     <SelectionButton
