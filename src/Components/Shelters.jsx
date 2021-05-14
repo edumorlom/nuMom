@@ -6,9 +6,8 @@ import shelterLogo from '../../assets/shelter-logo.png';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 
 export default function Shelters(props) {
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let window = appStyles.win;
 

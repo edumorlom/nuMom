@@ -28,9 +28,8 @@ export default function ClinicInfo(props) {
     Linking.openURL(`http://${props.clinic.website}`);
   };
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let services = props.clinic.services.map((service, key) => (
     <Text key={key} style={{...appStyles.regularFontSize}}>

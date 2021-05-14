@@ -40,9 +40,8 @@ export default function LocationsInfo({route}) {
     Linking.openURL(`http://${location.website}`);
   };
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let locationInfo = `${location.address.street}\n${location.address.city}\n${location.address.state}, ${location.address.zipCode}\n${location.distance} miles`;
 

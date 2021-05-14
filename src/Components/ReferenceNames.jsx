@@ -44,15 +44,13 @@ function ReferenceNames(props) {
           <Image source={Plus} style={{height: 25, width: 25}} />
         </TouchableOpacity>
         <View>
-          {references.map((references, index) => {
-            return (
-              <ReferenceInfo
-                key={index}
-                references={references}
-                removeReference={removeReference}
-              />
-            );
-          })}
+          {references.map((references, index) => (
+            <ReferenceInfo
+              key={index}
+              references={references}
+              removeReference={removeReference}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

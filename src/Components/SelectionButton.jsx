@@ -10,24 +10,20 @@ export default function SelectionButton(props) {
     props.onPress();
   };
 
-  let showText = () => {
-    return (
-      <View>
-        <Text style={props.style.Text}>{props.text}</Text>
-        {props.style.Subtext && ( // If it has subtext, display it
-          <Text style={props.style.Subtext}>{props.subtext}</Text>
-        )}
-      </View>
-    );
-  };
+  let showText = () => (
+    <View>
+      <Text style={props.style.Text}>{props.text}</Text>
+      {props.style.Subtext && ( // If it has subtext, display it
+        <Text style={props.style.Subtext}>{props.subtext}</Text>
+      )}
+    </View>
+  );
 
-  let showImage = () => {
-    return <Image style={props.style.Image} source={props.icon} />;
-  };
+  let showImage = () => <Image style={props.style.Image} source={props.icon} />;
 
-  let showImageInView = () => {
-    return <Image style={props.style.ImageInView} source={props.icon} />;
-  };
+  let showImageInView = () => (
+    <Image style={props.style.ImageInView} source={props.icon} />
+  );
 
   return (
     <TouchableHighlight

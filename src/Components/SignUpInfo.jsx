@@ -22,9 +22,9 @@ export default function SignUpInfo(props) {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const {liveMiami} = props.route.params;
-  let backArrowImage = () => {
-    return <Image source={backArrow} style={styles.goBackArrow} />;
-  };
+  let backArrowImage = () => (
+    <Image source={backArrow} style={styles.goBackArrow} />
+  );
 
   useEffect(() => {
     // Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami

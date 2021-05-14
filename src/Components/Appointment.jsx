@@ -50,15 +50,13 @@ export default function Appointment(props) {
           <Image source={Plus} style={{height: 25, width: 25}} />
         </TouchableOpacity>
         <View>
-          {objects.map((appointments, index) => {
-            return (
-              <AppointmentMenu
-                key={index}
-                appointments={appointments}
-                removeAppointment={removeAppointment}
-              />
-            );
-          })}
+          {objects.map((appointments, index) => (
+            <AppointmentMenu
+              key={index}
+              appointments={appointments}
+              removeAppointment={removeAppointment}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

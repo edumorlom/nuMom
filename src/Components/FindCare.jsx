@@ -18,9 +18,8 @@ export default function FindCare(props) {
 
   // props.filterToShow
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   let window = appStyles.win;
 
@@ -45,10 +44,11 @@ export default function FindCare(props) {
   let filterClinics = (distance, service) => {
     if (distance !== 10000 && clinics) {
       // if distance filter is not default value
-      clinics = clinics.filter(function (clinic) {
-        // filter by distance
-        return clinic.distance <= distance;
-      });
+      clinics = clinics.filter(
+        (clinic) =>
+          // filter by distance
+          clinic.distance <= distance
+      );
     }
 
     if (service !== 'All' && clinics) {

@@ -101,15 +101,13 @@ export default function Immunization(props) {
           </TouchableOpacity>
         </View>
         <View>
-          {objects.map((immunizations, index) => {
-            return (
-              <ImmunizationMenu
-                key={index}
-                immunizations={immunizations}
-                removeImmunization={removeImmunization}
-              />
-            );
-          })}
+          {objects.map((immunizations, index) => (
+            <ImmunizationMenu
+              key={index}
+              immunizations={immunizations}
+              removeImmunization={removeImmunization}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

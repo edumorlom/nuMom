@@ -28,9 +28,8 @@ export default function ShelterInfo(props) {
     Linking.openURL(props.shelter.website);
   };
 
-  let getResourceName = (name) => {
-    return name.length > 40 ? `${name.substring(0, 40)}...` : name;
-  };
+  let getResourceName = (name) =>
+    name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   console.log(props.shelter.website);
 

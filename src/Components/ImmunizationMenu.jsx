@@ -13,8 +13,8 @@ import translate from './getLocalizedText';
 export default function ImmunizationMenu(props) {
   const {type, date, notes} = props.immunizations?.val();
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
+  AsyncAlert = () =>
+    new Promise((resolve, reject) => {
       Alert.alert(
         translate('RemoveImmunization'),
         translate('WantToRemoveImmunization'),
@@ -25,7 +25,6 @@ export default function ImmunizationMenu(props) {
         {cancelable: false}
       );
     });
-  };
 
   return (
     <TouchableHighlight

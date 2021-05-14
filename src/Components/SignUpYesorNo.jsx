@@ -70,9 +70,9 @@ export default SignUpYesorNo = (props) => {
   const {password} = props.route.params;
   const {pregnant} = props.route.params;
 
-  let backArrowImage = () => {
-    return <Image source={backArrow} style={styles.goBackArrow} />;
-  };
+  let backArrowImage = () => (
+    <Image source={backArrow} style={styles.goBackArrow} />
+  );
 
   useEffect(() => {
     // Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami

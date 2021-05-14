@@ -20,8 +20,8 @@ function ReferenceInfo(props) {
   const {name, phone, email, specialties} = props.references?.val();
   const [modalOpen, setModalOpen] = useState(false);
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
+  AsyncAlert = () =>
+    new Promise((resolve, reject) => {
       Alert.alert(
         translate('RemoveReference'),
         translate('WantToRemoveReference'),
@@ -32,7 +32,6 @@ function ReferenceInfo(props) {
         {cancelable: false}
       );
     });
-  };
 
   let call = () => {
     Linking.openURL(`tel:${phone}`);

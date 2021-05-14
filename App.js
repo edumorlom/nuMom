@@ -67,9 +67,9 @@ import translate from './src/Components/getLocalizedText';
 // import * as firebase from "firebase";
 
 function App() {
-  let backArrowImage = () => {
-    return <Image source={backArrow} style={styles.goBackArrow} />;
-  };
+  let backArrowImage = () => (
+    <Image source={backArrow} style={styles.goBackArrow} />
+  );
 
   const Stack = createStackNavigator();
   const navigationRef = React.createRef();

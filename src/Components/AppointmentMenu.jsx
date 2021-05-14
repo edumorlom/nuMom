@@ -7,8 +7,8 @@ import translate from './getLocalizedText';
 export default function AppointmentMenu(props) {
   const {name, date, time, address, extra, eventId} = props.appointments?.val();
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
+  AsyncAlert = () =>
+    new Promise((resolve, reject) => {
       Alert.alert(
         translate('RemoveAppointment'),
         translate('WantToRemoveAppointment'),
@@ -19,7 +19,6 @@ export default function AppointmentMenu(props) {
         {cancelable: false}
       );
     });
-  };
 
   return (
     <TouchableHighlight

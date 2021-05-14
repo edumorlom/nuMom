@@ -53,9 +53,8 @@ export const signUp = (
   );
 };
 
-export const createUserWithEmailAndPassword = (email, password) => {
-  return firebase.auth().createUserWithEmailAndPassword(email, password);
-};
+export const createUserWithEmailAndPassword = (email, password) =>
+  firebase.auth().createUserWithEmailAndPassword(email, password);
 
 export const checkEmailExist = async (email) => {
   console.log(`This is the email passed to firebase method  ${email}`);
@@ -148,9 +147,8 @@ export const getUserData = async (property) => {
 // Gets a ref, any ref
 export const getRef = (address) => firebase.database().ref(address);
 
-export const passwordReset = (email) => {
-  return firebase.auth().sendPasswordResetEmail(email);
-};
+export const passwordReset = (email) =>
+  firebase.auth().sendPasswordResetEmail(email);
 
 // Asks for notifications permission
 export const registerForPushNotificationsAsync = async (currentUser) => {
@@ -247,10 +245,10 @@ export const grabImages = (user, documents, setDocuments) => {
   // Now we get the references of these images
   storageRef
     .listAll()
-    .then(function (result) {
-      result.items.forEach(function (imageRef) {
+    .then((result) => {
+      result.items.forEach((imageRef) => {
         // Push to list of objects representing documents by url and name
-        imageRef.getDownloadURL().then(function (url) {
+        imageRef.getDownloadURL().then((url) => {
           makeDocumentsList(url, imageRef.name, documents, setDocuments);
         });
         // displayImage(imageRef);
@@ -280,18 +278,12 @@ const makeDocumentsList = (url, name, documents, setDocuments) => {
 };
 
 // Gets current Uid
-export const getUid = () => {
-  return firebase.auth().currentUser.uid;
-};
+export const getUid = () => firebase.auth().currentUser.uid;
 
 // Gets current UEmail
-export const getUEmail = () => {
-  return firebase.auth().currentUser.email;
-};
+export const getUEmail = () => firebase.auth().currentUser.email;
 
-export const getAuth = () => {
-  return firebase.auth();
-};
+export const getAuth = () => firebase.auth();
 
 export const deleteAppointment = async (
   id,
@@ -320,7 +312,7 @@ export const fetchAppointment = async (uid, setObjects, _isMounted) => {
       .database()
       .ref(`users/${uid}/appointments/`)
       .once('value', (snapshot) => {
-        snapshot.forEach(function (childSnapshot) {
+        snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
           console.log(childKey);
@@ -355,7 +347,7 @@ export const fetchImmunization = async (uid, setObjects, _isMounted) => {
       .database()
       .ref(`users/${uid}/immunizations/`)
       .once('value', (snapshot) => {
-        snapshot.forEach(function (childSnapshot) {
+        snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
           if (
@@ -408,7 +400,7 @@ export const fetchReference = async (uid, setReferences, _isMounted) => {
       .database()
       .ref(`users/${uid}/references/`)
       .once('value', (snapshot) => {
-        snapshot.forEach(function (childSnapshot) {
+        snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
           console.log(childKey);

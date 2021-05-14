@@ -38,12 +38,9 @@ export default SignUpInfo = (props) => {
     return re.test(String(email).toLowerCase());
   };
 
-  let isValidPhoneNumber = (phoneNumber) => {
-    return (
-      (phoneNumber.length === 10 && !isNaN(phoneNumber)) ||
-      (phoneNumber.length === 12 && !isNaN(phoneNumber.substring(1, 12)))
-    );
-  };
+  let isValidPhoneNumber = (phoneNumber) =>
+    (phoneNumber.length === 10 && !isNaN(phoneNumber)) ||
+    (phoneNumber.length === 12 && !isNaN(phoneNumber.substring(1, 12)));
 
   const onPress = () => {
     if (!email || !phone) {

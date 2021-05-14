@@ -14,39 +14,33 @@ export default function Button(props) {
   // This function runs if there is a View property engulfing text or image
   // Note that if you have View you can't also have Image
   // You would need to have ImageInView (for consistency)
-  let withView = () => {
-    return (
-      <View style={props.style.View}>
-        {props.style.Image && (
-          <Image style={props.style.Image} source={props.icon} />
-        )}
-        {props.style.TextView && (
-          <View style={props.style.TextView}>
-            {props.style.TextInView && (
-              <Text style={props.style.TextInView}>{props.text}</Text>
-            )}
-            {props.style.SubtextInView && (
-              <Text style={props.style.SubtextInView}>{props.subtext}</Text>
-            )}
-          </View>
-        )}
-      </View>
-    );
-  };
+  let withView = () => (
+    <View style={props.style.View}>
+      {props.style.Image && (
+        <Image style={props.style.Image} source={props.icon} />
+      )}
+      {props.style.TextView && (
+        <View style={props.style.TextView}>
+          {props.style.TextInView && (
+            <Text style={props.style.TextInView}>{props.text}</Text>
+          )}
+          {props.style.SubtextInView && (
+            <Text style={props.style.SubtextInView}>{props.subtext}</Text>
+          )}
+        </View>
+      )}
+    </View>
+  );
   // If Text property exists
-  let showText = () => {
-    return <Text style={props.style.Text}>{props.text}</Text>;
-  };
+  let showText = () => <Text style={props.style.Text}>{props.text}</Text>;
 
   // If Subtext property exists
-  let showSubtext = () => {
-    return <Text style={props.style.Subtext}>{props.subtext}</Text>;
-  };
+  let showSubtext = () => (
+    <Text style={props.style.Subtext}>{props.subtext}</Text>
+  );
 
   // If Image property exists
-  let showImage = () => {
-    return <Image style={props.style.Image} source={props.icon} />;
-  };
+  let showImage = () => <Image style={props.style.Image} source={props.icon} />;
 
   let underlayColor = props.underlayColor
     ? props.underlayColor

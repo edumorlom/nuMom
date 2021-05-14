@@ -35,8 +35,8 @@ const SettingsScreen = (props) => {
 
   const uid = getUid();
 
-  AsyncAlert = () => {
-    return new Promise((resolve, reject) => {
+  AsyncAlert = () =>
+    new Promise((resolve, reject) => {
       Alert.alert(
         translate('logout'),
         translate('WantToLogout'),
@@ -47,7 +47,6 @@ const SettingsScreen = (props) => {
         {cancelable: false}
       );
     });
-  };
 
   fetchUserInfo = () => {
     _isMounted = true;

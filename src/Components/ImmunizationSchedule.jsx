@@ -207,66 +207,64 @@ export default function ImmunizationSchedule() {
         showsVerticalScrollIndicator={false}
       >
         <View>
-          {scheduleData.map((value) => {
-            return (
-              <TouchableHighlight
+          {scheduleData.map((value) => (
+            <TouchableHighlight
+              style={{
+                margin: 15,
+                paddingLeft: 10,
+                justifyContent: 'center',
+                backgroundColor: 'white',
+                ...shadow,
+                width: appStyles.win.width * 0.95,
+                borderRadius,
+              }}
+              underlayColor={appStyles.underlayColor}
+            >
+              <View
                 style={{
-                  margin: 15,
-                  paddingLeft: 10,
-                  justifyContent: 'center',
-                  backgroundColor: 'white',
-                  ...shadow,
-                  width: appStyles.win.width * 0.95,
-                  borderRadius,
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingVertical: 10,
+                  paddingHorizontal: 15,
                 }}
-                underlayColor={appStyles.underlayColor}
               >
-                <View
-                  style={{
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingVertical: 10,
-                    paddingHorizontal: 15,
-                  }}
-                >
-                  <View>
-                    <Text
+                <View>
+                  <Text
+                    style={{
+                      color: appStyles.blueColor,
+                      fontSize: appStyles.regularFontSize + 1,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {value.age}
+                  </Text>
+                  {value.immunizations.map((item, index) => (
+                    <ListItem
+                      key={index}
+                      bottomDivider
                       style={{
-                        color: appStyles.blueColor,
-                        fontSize: appStyles.regularFontSize + 1,
-                        fontWeight: 'bold',
+                        margin: 15,
+                        width: appStyles.win.width * 0.7,
                       }}
                     >
-                      {value.age}
-                    </Text>
-                    {value.immunizations.map((item, index) => (
-                      <ListItem
-                        key={index}
-                        bottomDivider
-                        style={{
-                          margin: 15,
-                          width: appStyles.win.width * 0.7,
-                        }}
-                      >
-                        {displayCheckBox(objects, item.name)}
-                        <ListItem.Content>
-                          <ListItem.Title
-                            style={{
-                              color: appStyles.greyColor,
-                              fontSize: appStyles.regularFontSize - 3,
-                            }}
-                          >
-                            {item.name}
-                          </ListItem.Title>
-                        </ListItem.Content>
-                      </ListItem>
-                    ))}
-                  </View>
+                      {displayCheckBox(objects, item.name)}
+                      <ListItem.Content>
+                        <ListItem.Title
+                          style={{
+                            color: appStyles.greyColor,
+                            fontSize: appStyles.regularFontSize - 3,
+                          }}
+                        >
+                          {item.name}
+                        </ListItem.Title>
+                      </ListItem.Content>
+                    </ListItem>
+                  ))}
                 </View>
-              </TouchableHighlight>
-            );
-          })}
+              </View>
+            </TouchableHighlight>
+          ))}
         </View>
       </ScrollView>
     </View>
