@@ -28,6 +28,7 @@
       "config": {
         "googleMaps": {"apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"}
       },
+      "versionCode": 4,
       "useNextNotificationsApi": true
     },
     "description": "",
