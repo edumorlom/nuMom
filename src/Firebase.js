@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import {NativeModules} from 'react-native';
 import {Notifications} from 'expo';
 import * as Permissions from 'expo-permissions';
 import * as Calendar from 'expo-calendar';
@@ -104,18 +103,13 @@ export const saveUserInfo = (
 
 // Calls the sendCustomSMS cloud function
 export const sendWelcomeSMS = async (fullName, phoneNumber) => {
-  let deviceLanguage =
-    Platform.OS === 'ios'
-      ? NativeModules.SettingsManager.settings.AppleLocale ||
-        NativeModules.SettingsManager.settings.AppleLanguages[0]
-      : NativeModules.I18nManager.localeIdentifier;
-  phoneNumber =
+  const areaCodePhoneNumber =
     phoneNumber.substring(0, 2) === '+1' ? phoneNumber : `+1${phoneNumber}`;
-  let name = fullName.split(' ')[0];
-  let message = translate('welcomeSMS').replace('{NAME}', name);
+  const name = fullName.split(' ')[0];
+  const message = translate('welcomeSMS').replace('{NAME}', name);
 
   return await fetch(
-    `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${phoneNumber}`,
+    `https://us-central1-numom-57642.cloudfunctions.net/sendCustomSMS?phoneNumber=${areaCodePhoneNumber}`,
     {
       method: 'POST',
       headers: {
