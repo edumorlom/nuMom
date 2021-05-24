@@ -1,6 +1,6 @@
 # NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <version 4.0>
 
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman.
+Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Estephany Sanchez Criado.
 
 Product Owner: Jean Hannan
 
