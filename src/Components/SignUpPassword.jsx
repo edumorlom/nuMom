@@ -55,14 +55,11 @@ export default SignUpPassword = (props) => {
     if (conditionsMet == 3) {
       setPasswordStrength('Medium');
     }
-    if (pword.length <= 4) {
-      setPasswordStrength('Poor');
-    }
 
     let arrayOfPasswords = passwordList.split('\n');
 
     // case-sensitive so PASSWORD(in the file) is not the same as PaSSworD
-    if (arrayOfPasswords.includes(pword)) {
+    if (arrayOfPasswords.includes(pword) || pword.length <= 4) {
       setPasswordStrength('Poor');
     }
 
