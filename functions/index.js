@@ -116,7 +116,7 @@ exports.sendWeeklySMS = functions.https.onRequest((req, res) => {
 });
 
 /* This function checks if tomorrow matches any of the appointment dates, and if so it sends a reminder to that user
-that "tomorrow you've got an appointment" via SMS 
+that "tomorrow you've got an appointment" via SMS
 The function triggers every day on its own */
 exports.sendAppointmentReminder = functions.https.onRequest((req, res) => {
   let ref = admin.database().ref('users');
