@@ -28,7 +28,6 @@ export default SignUpPassword = (props) => {
     if (passwordStrength === 0) {
       return (
         <Text style={{color: appStyles.pinkColor}}>
-          {' '}
           Password Strength: Poor
         </Text>
       );
@@ -36,7 +35,6 @@ export default SignUpPassword = (props) => {
     if (passwordStrength === 1) {
       return (
         <Text style={{color: appStyles.blueColor}}>
-          {' '}
           Password Strength: Medium
         </Text>
       );
@@ -57,7 +55,7 @@ export default SignUpPassword = (props) => {
     if (/([!@#$%^&*])/i.test(password)) {
       counter++;
     }
-    if (/([A-Z])/.test(password)) {
+    if (/([a-z])/.test(password)) {
       counter++;
     }
     return counter;
@@ -112,6 +110,12 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  const checkAndSetPassword = (password) => {
+    checkPasswordStrength();
+    setPassword(password);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -139,8 +143,7 @@ export default SignUpPassword = (props) => {
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
-                  onKeyPress={checkPasswordStrength}
+                  onChangeText={checkAndSetPassword}
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
