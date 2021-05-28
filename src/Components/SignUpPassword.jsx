@@ -22,9 +22,9 @@ export default SignUpPassword = (props) => {
   const {email} = props.route.params;
   const {phone} = props.route.params;
 
-  const [passwordStrength, setPasswordStrength] = useState();
+  const strengthDisplay = (passwordStrength) => {
+    console.log(passwordStrength);
 
-  const strengthDisplay = () => {
     if (passwordStrength === 0) {
       return (
         <Text style={{color: appStyles.pinkColor}}>
@@ -61,14 +61,18 @@ export default SignUpPassword = (props) => {
     return counter;
   };
 
-  const checkPasswordStrength = () => {
-    if (password.length <= 4) {
-      setPasswordStrength(0);
-    } else if (password.length >= 5 && passwordTypes() === 3) {
-      setPasswordStrength(1);
-    } else if (password.length >= 5 && passwordTypes() === 4) {
-      setPasswordStrength(2);
+  const checkPasswordStrength = (pwd) => {
+    if (pwd.length <= 4) {
+      return 0;
     }
+    if (pwd.length >= 5 && passwordTypes() === 3) {
+      return 1;
+    }
+    if (pwd.length >= 5 && passwordTypes() === 4) {
+      return 2;
+    }
+
+    return 0;
   };
 
   useEffect(() => {
@@ -84,7 +88,7 @@ export default SignUpPassword = (props) => {
       .done();
   }, []);
 
-  let onPress = () => {
+  let onPress = (passwordStrength) => {
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
@@ -111,10 +115,9 @@ export default SignUpPassword = (props) => {
     }
   };
 
-  const checkAndSetPassword = (password) => {
-    checkPasswordStrength();
-    setPassword(password);
-  };
+  const pwdStrength = checkPasswordStrength(password);
+  console.log(pwdStrength);
+  console.log(password);
 
   return (
     <KeyboardAvoidingView
@@ -143,12 +146,12 @@ export default SignUpPassword = (props) => {
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={checkAndSetPassword}
+                  onChangeText={setPassword}
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
                 />
-                {strengthDisplay()}
+                {strengthDisplay(pwdStrength)}
                 <TextBox
                   placeholder={translate('repeatPasswordInput')}
                   onChangeText={setRepeat}
@@ -169,7 +172,9 @@ export default SignUpPassword = (props) => {
             <Button
               style={appStyles.button}
               text={translate('continueButton')}
-              onPress={onPress}
+              onPress={() => {
+                onPress(pwdStrength);
+              }}
             />
           </View>
         </>
