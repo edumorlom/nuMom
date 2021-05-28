@@ -12,6 +12,7 @@ import {
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import BadPasswords from './BadPasswords';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -21,6 +22,8 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
+  const [warningMessage, setWarningMessage] = useState('Poor');
+  const [warningStyle, setWarningStyle] = useState(appStyles.pinkColor);
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -42,6 +45,8 @@ export default SignUpPassword = (props) => {
       alert(translate('fillOutAllFields'));
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
+    } else if (warningMessage == 'Poor') {
+      alert(translate('passwordTooWeak'));
     } else {
       // props.setUserInfo({password});
       // AsyncStorage.setItem('pass', password);
@@ -58,6 +63,26 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  let checkPassword = (currPass) => {
+    setPassword(currPass);
+    if (currPass.length <= 4 || BadPasswords.includes(currPass)) {
+      setWarningMessage('Poor');
+      setWarningStyle(appStyles.pinkColor);
+    } else if (
+      /[A-Z]/.test(currPass) &&
+      /[a-z]/.test(currPass) &&
+      /[0-9]/.test(currPass) &&
+      /[./<>?;:"'`!@#$%^&*()\[\]{}_+=|\\-]/.test(currPass)
+    ) {
+      setWarningMessage('High');
+      setWarningStyle('#298000');
+    } else {
+      setWarningMessage('Medium');
+      setWarningStyle(appStyles.blueColor);
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -85,7 +110,7 @@ export default SignUpPassword = (props) => {
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
+                  onChangeText={(password) => checkPassword(password)}
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
@@ -98,6 +123,8 @@ export default SignUpPassword = (props) => {
                   value={repeat}
                   style={appStyles.TextInputMask}
                 />
+
+                <Text style={warningStyle}>{warningMessage}</Text>
               </View>
             </View>
           </View>
