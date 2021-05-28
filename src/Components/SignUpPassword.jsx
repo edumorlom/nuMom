@@ -28,7 +28,6 @@ export default SignUpPassword = (props) => {
     if (passwordStrength === 0) {
       return (
         <Text style={{color: appStyles.pinkColor}}>
-          {' '}
           Password Strength: Poor
         </Text>
       );
@@ -36,7 +35,6 @@ export default SignUpPassword = (props) => {
     if (passwordStrength === 1) {
       return (
         <Text style={{color: appStyles.blueColor}}>
-          {' '}
           Password Strength: Medium
         </Text>
       );
@@ -71,6 +69,11 @@ export default SignUpPassword = (props) => {
     } else if (password.length >= 5 && passwordTypes() === 4) {
       setPasswordStrength(2);
     }
+  };
+
+  const checkPasswordAndSetPassword = (password) => {
+    setPassword(password);
+    checkPasswordStrength();
   };
 
   useEffect(() => {
@@ -139,13 +142,13 @@ export default SignUpPassword = (props) => {
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
-                  onKeyPress={checkPasswordStrength}
+                  onChangeText={checkPasswordAndSetPassword}
+                  // onKeyPress={checkPasswordStrength}
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
                 />
-                {strengthDisplay()}
+                {strengthDisplay(passwordStrength)}
                 <TextBox
                   placeholder={translate('repeatPasswordInput')}
                   onChangeText={setRepeat}
