@@ -49,12 +49,8 @@ export default SignUpPassword = (props) => {
       conditionsMet++;
     }
 
-    if (conditionsMet == 4) {
-      setPasswordStrength('High');
-    }
-    if (conditionsMet == 3) {
-      setPasswordStrength('Medium');
-    }
+    if (conditionsMet == 4) {setPasswordStrength('High')}
+    if (conditionsMet == 3) {setPasswordStrength('Medium')}
 
     let arrayOfPasswords = passwordList.split('\n');
 
@@ -67,9 +63,17 @@ export default SignUpPassword = (props) => {
   }
 
   function getViewStyle(pwordStrength) {
-    if (pwordStrength == 'High') {
+    let bgColor = '{pinkColor}'
+    if(pwordStrength == 'High'){
+      bgColor = greyColor.valueOf()
+    } else if(pwordStrength == 'Medium'){
+      bgColor = blueColor.valueOf()
+    } else{
+      bgColor = pinkColor.valueOf()
+    }
+    console.log("bgColor is " + bgColor)
       return {
-        backgroundColor: greyColor,
+        backgroundColor: bgColor,
         height: '25%',
         width: '100%',
         borderRadius: '75',
@@ -81,33 +85,7 @@ export default SignUpPassword = (props) => {
         top: '20%',
       };
     }
-    if (pwordStrength == 'Medium') {
-      return {
-        backgroundColor: blueColor,
-        height: '25%',
-        width: '100%',
-        borderRadius: '75',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingLeft: 30,
-        paddingRight: 30,
-        left: '30%',
-        top: '20%',
-      };
-    }
-    return {
-      backgroundColor: pinkColor,
-      height: '25%',
-      width: '100%',
-      borderRadius: '75',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingLeft: 30,
-      paddingRight: 30,
-      left: '30%',
-      top: '20%',
-    };
-  }
+  
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
