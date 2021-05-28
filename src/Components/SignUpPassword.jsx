@@ -23,7 +23,7 @@ export default SignUpPassword = (props) => {
   const {email} = props.route.params;
   const {phone} = props.route.params;
   const [warningMessage, setWarningMessage] = useState('Poor');
-  const [warningStyle, setWarningStyle] = useState(appStyles.pinkColor);
+  const [warningStyle, setWarningStyle] = useState('#DF2172');
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -68,7 +68,7 @@ export default SignUpPassword = (props) => {
     setPassword(currPass);
     if (currPass.length <= 4 || BadPasswords.includes(currPass)) {
       setWarningMessage('Poor');
-      setWarningStyle(appStyles.pinkColor);
+      setWarningStyle('#DF2172');
     } else if (
       /[A-Z]/.test(currPass) &&
       /[a-z]/.test(currPass) &&
@@ -79,7 +79,7 @@ export default SignUpPassword = (props) => {
       setWarningStyle('#298000');
     } else {
       setWarningMessage('Medium');
-      setWarningStyle(appStyles.blueColor);
+      setWarningStyle('#0052A1');
     }
   };
 
