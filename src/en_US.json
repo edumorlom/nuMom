@@ -209,5 +209,12 @@
   "linkToWIC": "Link to WIC",
   "linkToMedicaid": "Link to Medicaid",
   "selectImmunization": "<<Select Immunization>>",
-  "resetPassword": "Reset Password"
+  "resetPassword": "Reset Password",
+  "erroneousEmail": "Please Enter a Valid Email Address",
+  "passwordReq": "Must include at least two of the following types: Letters, Numbers or Symbols",
+  "passTooShort": "Strength: Poor (Too Short)",
+  "passUnsafe": "Strength: Poor (Unsafe)",
+  "passNoMatch": "Passwords do not match",
+  "passMedium": "Strength: Medium",
+  "passHigh": "Strength: High"
 }

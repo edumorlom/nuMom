@@ -1,6 +1,7 @@
 // This file provides the styles for the whole App
 import {RFValue} from 'react-native-responsive-fontsize';
 import {Dimensions, Platform} from 'react-native';
+import {Touchable} from 'react-native';
 
 export const win = Dimensions.get('window');
 export const pinkColor = '#DF2172';
@@ -82,23 +83,42 @@ export default {
   },
   underlayColor: 'grey',
   button: {
-    Touchable: {
-      ...shadow,
-      margin: win.height * 0.01,
-      alignItems: 'center',
-      backgroundColor: pinkColor,
-      paddingTop: 10,
-      paddingBottom: 10,
-      paddingLeft: 30,
-      paddingRight: 30,
-      borderRadius,
-    },
     Text: {
       color: 'white',
       fontSize: regularFontSize,
       fontWeight: 'normal',
     },
     underlayColor: blueColor,
+    Touchable: {
+      ...shadow,
+      margin: win.height * 0.01,
+      alignItems: 'center',
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      borderRadius,
+      backgroundColor: pinkColor,
+    },
+  },
+  buttonInactive: {
+    Text: {
+      color: 'white',
+      fontSize: regularFontSize,
+      fontWeight: 'normal',
+    },
+    underlayColor: blueColor,
+    Touchable: {
+      ...shadow,
+      margin: win.height * 0.01,
+      alignItems: 'center',
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      borderRadius,
+      backgroundColor: greyColor,
+    },
   },
   TextInput: {
     View: {

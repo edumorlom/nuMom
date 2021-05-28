@@ -12,6 +12,7 @@ import {
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import badPasswords from './BadPasswords';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -35,17 +36,86 @@ export default SignUpPassword = (props) => {
       .done();
   }, []);
 
+  const passwordCheck = {
+    strengthColor: appStyles.pinkColor, //color initialized to prevent error in style
+    strengthMessage: '',
+    buttonType: {...appStyles.buttonInactive}, //button BG color
+    includesCapitalLetter: false,
+    includessymbol: false,
+    includesNum: false,
+    includesLowerCase: false,
+    allowContinue: false,
+  };
+
+  //checking for Uppercase, numbers and symbols
+  for (let character of password.split('')) {
+    if (character.charCodeAt(0) >= 65 && character.charCodeAt(0) <= 90) {
+      passwordCheck.includesCapitalLetter = true;
+    } else if (character.charCodeAt(0) >= 48 && character.charCodeAt(0) <= 57) {
+      passwordCheck.includesNum = true;
+    } else if (
+      (character.charCodeAt(0) >= 32 && character.charCodeAt(0) <= 47) ||
+      (character.charCodeAt(0) >= 58 && character.charCodeAt(0) <= 64) ||
+      (character.charCodeAt(0) >= 91 && character.charCodeAt(0) <= 96) ||
+      (character.charCodeAt(0) >= 123 && character.charCodeAt(0) <= 126)
+    ) {
+      passwordCheck.includessymbol = true;
+    } else if (
+      character.charCodeAt(0) >= 97 &&
+      character.charCodeAt(0) <= 122
+    ) {
+      passwordCheck.includesLowerCase = true;
+    }
+  }
+
+  if (password.length < 5 && repeat.length > 0) {
+    passwordCheck.strengthMessage = translate('passTooShort');
+  } else if (badPasswords.split(',').includes(password)) {
+    passwordCheck.strengthMessage = translate('passUnsafe');
+  } else if (!(password === repeat) && repeat.length > 1) {
+    passwordCheck.strengthMessage = translate('passNoMatch');
+  } else if (
+    (passwordCheck.includesNum &&
+      !passwordCheck.includessymbol &&
+      !passwordCheck.includesLowerCase &&
+      !passwordCheck.includesCapitalLetter) ||
+    (!passwordCheck.includesNum &&
+      !passwordCheck.includessymbol &&
+      passwordCheck.includesLowerCase &&
+      !passwordCheck.includesCapitalLetter) ||
+    (!passwordCheck.includesNum &&
+      passwordCheck.includessymbol &&
+      !passwordCheck.includesLowerCase &&
+      !passwordCheck.includesCapitalLetter) ||
+    (!passwordCheck.includesNum &&
+      !passwordCheck.includessymbol &&
+      !passwordCheck.includesLowerCase &&
+      passwordCheck.includesCapitalLetter)
+  ) {
+    passwordCheck.strengthMessage = translate('passwordReq');
+  } else if (
+    password.length >= 5 &&
+    repeat === password &&
+    !badPasswords.split(',').includes(password)
+  ) {
+    passwordCheck.buttonType = {...appStyles.button};
+    passwordCheck.allowContinue = true;
+    passwordCheck.strengthColor = appStyles.blueColor;
+    passwordCheck.strengthMessage = translate('passMedium');
+
+    if (
+      passwordCheck.includesNum &&
+      passwordCheck.includessymbol &&
+      passwordCheck.includesCapitalLetter &&
+      passwordCheck.includesLowerCase
+    ) {
+      passwordCheck.strengthColor = '#298000';
+      passwordCheck.strengthMessage = translate('passHigh');
+    }
+  }
+
   let onPress = () => {
-    if (password !== repeat) {
-      alert(translate('passwordMismatch'));
-    } else if (!password || !repeat) {
-      alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
-      alert(translate('passwordTooShort'));
-    } else {
-      // props.setUserInfo({password});
-      // AsyncStorage.setItem('pass', password);
-      // AsyncStorage.setItem('repeat', repeat);
+    if (passwordCheck.allowContinue) {
       props.navigation.navigate('SignUpYesorNoPregnant', {
         liveMiami,
         name,
@@ -56,7 +126,7 @@ export default SignUpPassword = (props) => {
         question: translate('areYouPregnant'),
         value: 'pregnant',
       });
-    }
+    } else return;
   };
   return (
     <KeyboardAvoidingView
@@ -98,6 +168,22 @@ export default SignUpPassword = (props) => {
                   value={repeat}
                   style={appStyles.TextInputMask}
                 />
+
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: passwordCheck.strengthColor,
+                      display: 'flex',
+                    }}
+                  >
+                    {passwordCheck.strengthMessage}
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -109,7 +195,7 @@ export default SignUpPassword = (props) => {
             }}
           >
             <Button
-              style={appStyles.button}
+              style={passwordCheck.buttonType}
               text={translate('continueButton')}
               onPress={onPress}
             />

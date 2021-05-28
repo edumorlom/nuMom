@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import appStyles from './AppStyles';
+
 import Button from './Button';
 // import TextInput from "./TextInput";
 import SwipeUp from './SwipeUp';
@@ -33,8 +34,8 @@ import {
 // import ForgotPasswordPage from './ForgotPasswordPage';
 
 export default LogIn = (props) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
 
   // Remove async tasks on unMount using _isMounted
@@ -100,6 +101,22 @@ export default LogIn = (props) => {
     }
   };
 
+  //enabling sign in after date is inputted
+  let buttonType = {...appStyles.buttonInactive};
+  let ValidEmailDisplay = 'none'; //prevents bad email error message on startup
+  if (
+    email.length >= 5 &&
+    email.includes('@') &&
+    email.includes('.') &&
+    password.length >= 5
+  ) {
+    buttonType = {...appStyles.button};
+  } else if (
+    (!email.length >= 5 || !email.includes('@') || !email.includes('.')) &&
+    password.length > 0
+  )
+    ValidEmailDisplay = 'flex';
+
   let loginWithEmailPassword = (email, password) => {
     if (email && password) {
       logIn(email, password).then(
@@ -114,7 +131,8 @@ export default LogIn = (props) => {
         }
       );
     } else {
-      alert('Please enter your E-Mail and Password!');
+      return;
+      // alert('Please enter your E-Mail and Password!');
     }
   };
 
@@ -173,15 +191,28 @@ export default LogIn = (props) => {
                 placeholder={translate('emailInput')}
                 onChangeText={setEmail}
               />
+
               <TextBox
                 style={appStyles.TextInputMask}
                 placeholder={translate('passwordInput')}
                 onChangeText={setPassword}
                 secureTextEntry
               />
+
+              <View>
+                <Text
+                  style={{
+                    color: appStyles.pinkColor,
+                    display: ValidEmailDisplay,
+                  }}
+                >
+                  {translate('erroneousEmail')}
+                </Text>
+              </View>
+
               <View style={{height: appStyles.win.height * 0.03}} />
               <Button
-                style={appStyles.button}
+                style={buttonType}
                 onPress={() => {
                   loginWithEmailPassword(email, password);
                 }}
