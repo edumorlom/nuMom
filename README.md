@@ -1,9 +1,6 @@
 # NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Summer 2021>
 
-<<<<<<< HEAD
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Estephany Sanchez Criado.
-=======
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Nathaly Siguenza, Eric Vilella, Elton Lucien, Anthony Burgin, Jose Jimenez, David Ricardo.
+Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Nathaly Siguenza, Eric Vilella, Elton Lucien, Anthony Burgin, Jose Jimenez, David Ricardo, Estephany Sanchez Criado.
 
 > > > > > > > fdae76b747b2d67b9277e33607606a71d43548da
 
