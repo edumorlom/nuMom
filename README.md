@@ -2,8 +2,6 @@
 
 Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Nathaly Siguenza, Eric Vilella, Elton Lucien, Anthony Burgin, Jose Jimenez, David Ricardo, Estephany Sanchez Criado.
 
-> > > > > > > fdae76b747b2d67b9277e33607606a71d43548da
-
 Product Owner: Jean Hannan
 
 This is the fourth version of the NuMom (Keeping Moms and Infants Healthy application that was built for Florida International University's CIS 4911 - Senior Project Course. A smartphone-based maternal/infant healthcare application (app), that provide support in 3 different languages (English, Spanish & Creole), designed for low-income minority mothers. The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
