@@ -190,6 +190,7 @@
   "Emergency Testing": "Emergency Testing",
   "Miles": "Miles",
   "facilities": "Fasilite yo",
+  "emailExists": "This email is already associated with another account!",
   "nameFile": "Mete Non Dosye Ou",
   "dosAndDonts": "Sa Pou Fè ak Sa Pou-w Pa Fè",
   "steps": "Etaps",
@@ -200,5 +201,9 @@
   "linkToWIC": "Link a WIC",
   "linkToMedicaid": "Link a Medicaid",
   "selectImmunization": "<<Chwazi Vaksin>>",
-  "resetPassword": "Chanjè Modpas Lan"
+  "resetPassword": "Chanjè Modpas Lan",
+  "noUserInfo": "Couldn't save user information!",
+  "noAppointmentInfo": "Couldn't get the Appointment Info",
+  "noImmunizationInfo": "Couldn't get Immunization Info",
+  "noReferenceInfo": "Couldn't get Reference Info"
 }

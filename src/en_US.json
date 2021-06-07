@@ -209,5 +209,9 @@
   "linkToWIC": "Link to WIC",
   "linkToMedicaid": "Link to Medicaid",
   "selectImmunization": "<<Select Immunization>>",
-  "resetPassword": "Reset Password"
+  "resetPassword": "Reset Password",
+  "noUserInfo": "Couldn't save user information!",
+  "noAppointmentInfo": "Couldn't get the Appointment Info",
+  "noImmunizationInfo": "Couldn't get Immunization Info",
+  "noReferenceInfo": "Couldn't get Reference Info"
 }
