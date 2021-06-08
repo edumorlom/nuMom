@@ -202,8 +202,8 @@
   "linkToMedicaid": "Link a Medicaid",
   "selectImmunization": "<<Chwazi Vaksin>>",
   "resetPassword": "Chanjè Modpas Lan",
-  "noUserInfo": "Couldn't save user information!",
-  "noAppointmentInfo": "Couldn't get the Appointment Info",
-  "noImmunizationInfo": "Couldn't get Immunization Info",
-  "noReferenceInfo": "Couldn't get Reference Info"
+  "noUserInfo": "Enfomasyon itilizatè a pa sovgade",
+  "noAppointmentInfo": "Pa reyisi jwenn enfomasyon randevou a",
+  "noImmunizationInfo": "Pa reyisi jwenn enfomasyon vaksen an",
+  "noReferenceInfo": "Pa reyisi jwenn enfomasyon referans la"
 }
