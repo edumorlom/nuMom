@@ -124,7 +124,7 @@ export default SignUpPassword = (props) => {
                   style={appStyles.TextInputMask}
                 />
 
-                <Text style={warningStyle}>{warningMessage}</Text>
+                <Text style={{color: warningStyle}}>{warningMessage}</Text>
               </View>
             </View>
           </View>
