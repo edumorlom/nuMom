@@ -23,7 +23,8 @@ export default function Documents() {
   useEffect(() => {
     (async () => {
       if (Constants.platform.ios | Constants.platform.android) {
-        const {status} = await ImagePicker.requestCameraRollPermissionsAsync();
+        const {status} = await ImagePicker.requestCameraPermissionsAsync();
+        // ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
           alert('Permission Needed to Access Files!');
         }

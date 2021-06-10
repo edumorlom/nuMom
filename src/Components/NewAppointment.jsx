@@ -118,10 +118,12 @@ export default function NewAppointment(props) {
   };
 
   SynchronizeCalendar = async () => {
-    const {status} = await Permissions.askAsync(Permissions.CALENDAR);
+    const {status} = await Calendar.requestCalendarPermissionsAsync();
+    // Permissions.askAsync(Permissions.CALENDAR);
 
     if (status === 'granted') {
-      const calendars = await Calendar.getCalendarsAsync();
+      const calendars = await Calendar.requestCalendarPermissionsAsync();
+      // Calendar.getCalendarsAsync();
       const defaultCalendars = calendars.filter(
         (item) => item.allowsModifications === true
       );

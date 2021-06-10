@@ -146,12 +146,12 @@ export const passwordReset = (email) =>
 
 // Asks for notifications permission
 export const registerForPushNotificationsAsync = async (currentUser) => {
-  const {existingStatus} = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
+  const {existingStatus} = await Notification.requestPermissionsAsync();
+  // Permissions.getAsync(Permissions.NOTIFICATIONS);
   let finalStatus = existingStatus;
   if (existingStatus !== 'granted') {
-    const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    const {status} = await Notification.requestPermissionsAsync();
+    // Permissions.askAsync(Permissions.NOTIFICATIONS);
     finalStatus = status;
   }
   // Stop here if the user did not grant permissions
