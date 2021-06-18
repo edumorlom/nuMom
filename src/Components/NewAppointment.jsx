@@ -9,18 +9,59 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import * as Calendar from 'expo-calendar';
 import * as Localization from 'expo-localization';
 import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
 import {getUid, addAppointment} from '../Firebase';
 
+// push notification snippets from https://docs.expo.io/versions/latest/sdk/notifications/
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 export default function NewAppointment(props) {
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token)
+    );
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        setNotification(notification);
+      }
+    );
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        // console.log(response);
+      }
+    );
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
   appointment = [
     ([name, setName] = useState(null)),
     ([address, setAddress] = useState(null)),
@@ -52,8 +93,10 @@ export default function NewAppointment(props) {
     if (!name || !address) {
       alert(translate('fillOutAllFields'));
     } else {
+      await SynchronizeReminders(); // i couldn't create an appointment without getting reminder perms
       await SynchronizeCalendar();
       await addAppointment(uid, appointmentInfo);
+      await schedulePushNotification();
       props.navigation.navigate('Appointment');
     }
   };
@@ -69,7 +112,7 @@ export default function NewAppointment(props) {
   handleConfirm = (date) => {
     const newDate = moment(date).format('MM/DD/YYYY');
     setDate(newDate);
-    console.log('A date has been picked: ', newDate);
+    // console.log('A date has been picked: ', newDate);
     hideDatePicker();
   };
 
@@ -84,7 +127,7 @@ export default function NewAppointment(props) {
   handleConfirmTime = (time) => {
     const newTime = moment(time).format('h:mm a');
     setTime(newTime);
-    console.log('A date has been picked: ', newTime);
+    // console.log('A date has been picked: ', newTime);
     hideTimePicker();
   };
 
@@ -130,12 +173,17 @@ export default function NewAppointment(props) {
         const createEventAsyncRes = await addEventsToCalendar(
           defaultCalendars[0].id
         );
-        console.log(createEventAsyncRes);
-        setEventId(createEventAsyncRes.toString());
+        // console.log(createEventAsyncRes);
+        // setEventId(createEventAsyncRes.toString());
       } catch (err) {
         Alert.alert(err.message);
       }
     }
+  };
+
+  SynchronizeReminders = async () => {
+    const {status} = await Permissions.askAsync(Permissions.REMINDERS);
+    // need to handle perms not being granted, since it cannot create an appointment without reminders
   };
 
   return (
@@ -261,3 +309,68 @@ const styles = StyleSheet.create({
     }),
   },
 });
+
+function getTriggerTime() {
+  let today = new Date();
+  let apptDate = new Date(date);
+
+  let timeDifference = apptDate.getTime() - today.getTime();
+  let daysDifference = timeDifference / (1000 * 3600 * 24);
+  console.log(
+    `difference in days from current date and appt set date: ${daysDifference}`
+  );
+  let timeTillNoti = 60;
+  if (daysDifference >= 2) {
+    timeTillNoti = daysDifference * 86400 - 86400;
+  } else {
+    if (daysDifference < 0) {
+      daysDifference *= -1;
+    }
+    console.log(`days difference is ${daysDifference}`);
+    timeTillNoti = (daysDifference / 2) * 60;
+  }
+  console.log(`appt noti will trigger in ${timeTillNoti} seconds`);
+  return timeTillNoti;
+}
+
+async function schedulePushNotification() {
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: 'nuMom Appointment Reminder',
+      body: `Your appointment is tomorrow, ${date}`, // could be today instead of tomorrow if appt was created on same day
+      data: {data: '-'},
+    },
+    trigger: {seconds: getTriggerTime()},
+  });
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Constants.isDevice) {
+    const {status: existingStatus} = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const {status} = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
