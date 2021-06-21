@@ -9,7 +9,7 @@ import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
 
 export default function ClinicInfo(props) {
-  let getDirections = () => {
+  const getDirections = () => {
     const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
     const latLng = `${props.clinic.coordinate.latitude},${props.clinic.coordinate.longitude}`;
     const label = 'Custom Label';
@@ -20,24 +20,24 @@ export default function ClinicInfo(props) {
     Linking.openURL(url);
   };
 
-  let call = () => {
+  const call = () => {
     Linking.openURL(`tel:${props.clinic.phoneNumber}`);
   };
 
-  let visitSite = () => {
+  const visitSite = () => {
     Linking.openURL(`http://${props.clinic.website}`);
   };
 
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
-  let services = props.clinic.services.map((service, key) => (
+  const services = props.clinic.services.map((service, key) => (
     <Text key={key} style={{...appStyles.regularFontSize}}>
       {translate(service)}
     </Text>
   ));
 
-  let clinicInfo = `${props.clinic.address.street}\n${props.clinic.address.city}\n${props.clinic.address.state}, ${props.clinic.address.zipCode}\n${props.clinic.distance} miles`;
+  const clinicInfo = `${props.clinic.address.street}\n${props.clinic.address.city}\n${props.clinic.address.state}, ${props.clinic.address.zipCode}\n${props.clinic.distance} miles`;
 
   return (
     <ScrollView

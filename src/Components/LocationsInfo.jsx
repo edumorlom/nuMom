@@ -19,9 +19,9 @@ export default function LocationsInfo({route}) {
   const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState('selection');
 
-  let locationList = [location];
+  const locationList = [location];
 
-  let getDirections = () => {
+  const getDirections = () => {
     const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
     const latLng = `${location.coordinate.latitude},${location.coordinate.longitude}`;
     const label = 'Custom Label';
@@ -32,18 +32,18 @@ export default function LocationsInfo({route}) {
     Linking.openURL(url);
   };
 
-  let call = () => {
+  const call = () => {
     Linking.openURL(`tel:${location.phoneNumber}`);
   };
 
-  let visitSite = () => {
+  const visitSite = () => {
     Linking.openURL(`http://${location.website}`);
   };
 
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
-  let locationInfo = `${location.address.street}\n${location.address.city}\n${location.address.state}, ${location.address.zipCode}\n${location.distance} miles`;
+  const locationInfo = `${location.address.street}\n${location.address.city}\n${location.address.state}, ${location.address.zipCode}\n${location.distance} miles`;
 
   return (
     <View

@@ -18,12 +18,12 @@ export default function FindCare(props) {
 
   // props.filterToShow
 
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
-  let window = appStyles.win;
+  const window = appStyles.win;
 
-  let clinicsButtons = props.clinics.map((clinic, key) => (
+  const clinicsButtons = props.clinics.map((clinic, key) => (
     <SelectionButton
       style={appStyles.ClinicSelectionButton}
       key={key}
@@ -41,7 +41,7 @@ export default function FindCare(props) {
   let clinics = props.sortedClinics;
 
   // Filters clinics based on the two filters passed
-  let filterClinics = (distance, service) => {
+  const filterClinics = (distance, service) => {
     if (distance !== 10000 && clinics) {
       // if distance filter is not default value
       clinics = clinics.filter(
@@ -62,7 +62,7 @@ export default function FindCare(props) {
     setService(service);
   };
 
-  let servicesArray = [
+  const servicesArray = [
     'All',
     'Abortions',
     'Free Materials',
@@ -74,12 +74,12 @@ export default function FindCare(props) {
     'Yearly Exam',
   ];
 
-  let services = servicesArray.map((service) => ({
+  const services = servicesArray.map((service) => ({
     label: translate(service),
     value: service,
   })); // Creates an array of dropdown data
 
-  let distances = [
+  const distances = [
     {label: translate('All'), value: 10000},
     {label: `5 ${translate('Miles')}`, value: 5.5},
     {label: `10 ${translate('Miles')}`, value: 10.5},

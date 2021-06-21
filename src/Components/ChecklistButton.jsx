@@ -39,7 +39,7 @@ export default function ChecklistButton(props) {
     );
   };
 
-  let showText = () => (
+  const showText = () => (
     <View>
       <Text style={props.style.Text}>{props.text}</Text>
       {props.style.Subtext && ( // If it has subtext, display it
@@ -48,11 +48,11 @@ export default function ChecklistButton(props) {
     </View>
   );
 
-  let showImage = () => (
+  const showImage = () => (
     <Image style={props.style.Image} source={check && checkmark} />
   );
 
-  let showImageInView = () => (
+  const showImageInView = () => (
     <Image style={props.style.ImageInView} source={check && checkmark} />
   );
 

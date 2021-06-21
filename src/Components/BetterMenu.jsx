@@ -3,7 +3,7 @@ import React from 'react';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 
 export default function BetterMenu(props) {
-  let showText = () => (
+  const showText = () => (
     <View>
       <Text style={props.style.Text}>{props.text}</Text>
       {props.style.Subtext && ( // If it has subtext, display it
@@ -12,9 +12,9 @@ export default function BetterMenu(props) {
     </View>
   );
 
-  let showImage = () => <Image style={props.style.Image} source={props.icon} />;
+  const showImage = () => <Image style={props.style.Image} source={props.icon} />;
 
-  let showImageInView = () => (
+  const showImageInView = () => (
     <Image style={props.style.ImageInView} source={props.icon} />
   );
 
