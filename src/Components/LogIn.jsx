@@ -204,6 +204,7 @@ export default LogIn = (props) => {
           <SwipeUp
             text={translate('swipeUpToSignUp')}
             onSwipeUp={() => props.navigation.navigate('LetsGetStarted')}
+            onPress={() => props.navigation.navigate('LetsGetStarted')}
           />
         </View>
       </Animated.View>
