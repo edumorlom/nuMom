@@ -9,7 +9,7 @@ import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
 
 export default function ShelterInfo(props) {
-  let getDirections = () => {
+  const getDirections = () => {
     const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
     const latLng = `${props.shelter.coordinate.latitude},${props.shelter.coordinate.longitude}`;
     const label = 'Custom Label';
@@ -20,20 +20,20 @@ export default function ShelterInfo(props) {
     Linking.openURL(url);
   };
 
-  let call = () => {
+  const call = () => {
     Linking.openURL(`tel:${props.shelter.phoneNumber}`);
   };
 
-  let visitSite = () => {
+  const visitSite = () => {
     Linking.openURL(props.shelter.website);
   };
 
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
   console.log(props.shelter.website);
 
-  let shelterInfo = `${props.shelter.address.street}\n${props.shelter.address.city}\n${props.shelter.address.state}, ${props.shelter.address.zipCode}`;
+  const shelterInfo = `${props.shelter.address.street}\n${props.shelter.address.city}\n${props.shelter.address.state}, ${props.shelter.address.zipCode}`;
 
   return (
     <ScrollView

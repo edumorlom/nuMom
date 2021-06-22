@@ -58,9 +58,9 @@ const SettingsScreen = (props) => {
       console.log(`User id >>>>>>>>>: ${uid}`);
       getUserInfo(uid).on('value', (snapshot) => {
         if (_isMounted) {
-          let SnapShot = snapshot.val();
+          const SnapShot = snapshot.val();
           /*  Info currently from the database */
-          let databaseInfo = [
+          const databaseInfo = [
             SnapShot?.fullName,
             SnapShot?.phoneNumber,
             SnapShot?.dob,
@@ -70,7 +70,7 @@ const SettingsScreen = (props) => {
             SnapShot?.babyDOB,
           ];
 
-          let [
+          const [
             fullName,
             phoneNumber,
             dob,
@@ -112,7 +112,7 @@ const SettingsScreen = (props) => {
     ];
 
     /* Original user info from the database */
-    let [
+    const [
       _fullName,
       _phoneNumber,
       _dob,
@@ -232,12 +232,12 @@ const SettingsScreen = (props) => {
   }, []);
 
   getNextWeekAndWeekNo = () => {
-    let newbabyDOB = new Date(babyDOB);
-    let today = new Date();
-    let daysDifference =
+    const newbabyDOB = new Date(babyDOB);
+    const today = new Date();
+    const daysDifference =
       ((today.getTime() - newbabyDOB.getTime()) / (1000 * 3600 * 24)) | 0; // The | 0 is just a way to cast to int
-    let daysTillNextWeek = (7 - (daysDifference % 7)) % 7;
-    let nextweek = new Date(
+    const daysTillNextWeek = (7 - (daysDifference % 7)) % 7;
+    const nextweek = new Date(
       today.getFullYear(),
       today.getMonth(),
       today.getDate() + daysTillNextWeek
@@ -258,7 +258,7 @@ const SettingsScreen = (props) => {
     }
     return [nextWeek, weekNo];
   };
-  let saveCookie = async (key, value) => {
+  const saveCookie = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value).then();
     } catch (e) {
@@ -266,7 +266,7 @@ const SettingsScreen = (props) => {
     }
   };
 
-  let logout = () => {
+  const logout = () => {
     saveCookie('email', '');
     saveCookie('password', '');
     saveCookie('uid', '');

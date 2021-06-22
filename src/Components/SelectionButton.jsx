@@ -5,12 +5,12 @@ import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 
 // Very similar to Button.jsx but it has a specific functionality, it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function SelectionButton(props) {
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };
 
-  let showText = () => (
+  const showText = () => (
     <View>
       <Text style={props.style.Text}>{props.text}</Text>
       {props.style.Subtext && ( // If it has subtext, display it
@@ -21,7 +21,7 @@ export default function SelectionButton(props) {
 
   let showImage = () => <Image style={props.style.Image} source={props.icon} />;
 
-  let showImageInView = () => (
+  const showImageInView = () => (
     <Image style={props.style.ImageInView} source={props.icon} />
   );
 
