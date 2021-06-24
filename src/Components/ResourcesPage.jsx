@@ -11,7 +11,7 @@ import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
 export default function Resources(props) {
-  let wicButton = (
+  const wicButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('applyWIC')}
@@ -23,7 +23,7 @@ export default function Resources(props) {
     />
   );
 
-  let medicaidButton = (
+  const medicaidButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('applyMedicaid')}
@@ -35,7 +35,7 @@ export default function Resources(props) {
     />
   );
 
-  let immunizationButton = (
+  const immunizationButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('immunization')}
@@ -47,7 +47,7 @@ export default function Resources(props) {
     />
   );
 
-  let appointmentButton = (
+  const appointmentButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('appointment')}
@@ -59,7 +59,7 @@ export default function Resources(props) {
     />
   );
 
-  let documentUploadButton = (
+  const documentUploadButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('documents')}
@@ -71,7 +71,7 @@ export default function Resources(props) {
     />
   );
 
-  let namesReferenceButton = (
+  const namesReferenceButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('NameReference')}

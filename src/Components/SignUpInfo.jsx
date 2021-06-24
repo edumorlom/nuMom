@@ -22,7 +22,7 @@ export default function SignUpInfo(props) {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const {liveMiami} = props.route.params;
-  let backArrowImage = () => (
+  const backArrowImage = () => (
     <Image source={backArrow} style={styles.goBackArrow} />
   );
 
@@ -53,7 +53,7 @@ export default function SignUpInfo(props) {
       .done();
   }, []);
 
-  let onPress = () => {
+  const onPress = () => {
     if (!name || !dob) {
       alert(translate('fillOutAllFields'));
     } else if (!isValidDate(dob)) {
@@ -71,12 +71,12 @@ export default function SignUpInfo(props) {
     }
   };
 
-  let isValidDate = (date) => {
-    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+  const isValidDate = (date) => {
+    const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     return regex.test(date);
   };
 
-  let titleText = name ? translate('cool') : translate('greatToMeetYou');
+  const titleText = name ? translate('cool') : translate('greatToMeetYou');
 
   return (
     <KeyboardAvoidingView

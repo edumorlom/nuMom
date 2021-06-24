@@ -13,7 +13,7 @@ import STDResources from './STDResources';
 import translate from './getLocalizedText';
 
 export default function STDSelection(props) {
-  let onPress = (std) => {
+  const onPress = (std) => {
     props.navigation.navigate('STDInfo', {
       name: translate(std.name),
       symptoms: std.symptoms,
@@ -23,7 +23,7 @@ export default function STDSelection(props) {
       safeSex: std.safeSex,
     });
   };
-  let onPress2 = (stdr) => {
+  const onPress2 = (stdr) => {
     Linking.openURL(stdr);
   };
   return (

@@ -32,8 +32,8 @@ export default function SignUp(props) {
     return () => (_isMounted = false);
   }, []);
 
-  let signUpAndUploadData = () => {
-    let info = getNextWeekAndWeekNo();
+  const signUpAndUploadData = () => {
+    const info = getNextWeekAndWeekNo();
     signUp(
       email,
       phoneNumber,
@@ -47,7 +47,7 @@ export default function SignUp(props) {
       ...info
     );
     // Unbinds Async Storage keys used in sign up after successful sign up
-    let keys = [
+    const keys = [
       'name',
       'dob',
       'e-mail',
@@ -65,13 +65,13 @@ export default function SignUp(props) {
     */
   };
 
-  let getNextWeekAndWeekNo = () => {
-    let babyDob = new Date(babyDOB);
-    let today = new Date();
-    let daysDifference =
+  const getNextWeekAndWeekNo = () => {
+    const babyDob = new Date(babyDOB);
+    const today = new Date();
+    const daysDifference =
       ((today.getTime() - babyDob.getTime()) / (1000 * 3600 * 24)) | 0; // Milliseconds to days
-    let daysTillNextWeek = (7 - (daysDifference % 7)) % 7;
-    let nextweek = new Date(
+    const daysTillNextWeek = (7 - (daysDifference % 7)) % 7;
+    const nextweek = new Date(
       today.getFullYear(),
       today.getMonth(),
       today.getDate() + daysTillNextWeek

@@ -6,7 +6,7 @@ import appStyles from './AppStyles';
 import swipeUpGif from '../../assets/swipe-up-arrow.gif';
 
 export default function SwipeUp(props) {
-  let onSwipeUp = () => {
+  const onSwipeUp = () => {
     Haptics.selectionAsync().then();
     props.onSwipeUp();
   };
