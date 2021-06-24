@@ -5,7 +5,7 @@ import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 import document from '../../assets/document.png';
 
 export default function DocumentSelectionButton(props) {
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };

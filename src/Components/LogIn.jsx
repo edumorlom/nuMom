@@ -70,11 +70,11 @@ export default LogIn = (props) => {
   }, []);
 
   let getCookies = async () => {
-    let email = await getCookie('email');
-    let password = await getCookie('password');
+    const email = await getCookie('email');
+    const password = await getCookie('password');
     if (email && password) loginWithEmailPassword(email, password);
-    let fullName = await getCookie('fullName');
-    let uid = await getCookie('uid');
+    const fullName = await getCookie('fullName');
+    const uid = await getCookie('uid');
 
     setAppState({
       email,
@@ -84,7 +84,7 @@ export default LogIn = (props) => {
     });
   };
 
-  let saveCookie = async (key, value) => {
+  const saveCookie = async (key, value) => {
     try {
       await AsyncStorage.setItem(key, value).then();
     } catch (e) {
@@ -119,8 +119,8 @@ export default LogIn = (props) => {
   };
 
   let loginWithUid = (uid) => {
-    let today = new Date();
-    let date = `${today.getFullYear()}-${
+    const today = new Date();
+    const date = `${today.getFullYear()}-${
       today.getMonth() + 1
     }-${today.getDate()}@${today.getHours()}:${today.getMinutes()}`;
     storeObjectInDatabase(uid, {
