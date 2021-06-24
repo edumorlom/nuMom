@@ -32,7 +32,7 @@ export default Homepage = (props) => {
 
   let fetchClinics = async () =>
     new Promise((resolve, reject) => {
-      let clinicsRef = getRef('Clinics');
+      const clinicsRef = getRef('Clinics');
       clinicsRef.once('value', (snapshot) => {
         resolve(snapshot.val());
       });
@@ -40,7 +40,7 @@ export default Homepage = (props) => {
 
   let fetchShelters = async () =>
     new Promise((resolve, reject) => {
-      let sheltersRef = getRef('Shelters');
+      const sheltersRef = getRef('Shelters');
       sheltersRef.once('value', (snapshot) => {
         resolve(snapshot.val());
       });
@@ -48,17 +48,17 @@ export default Homepage = (props) => {
 
   let sortClinics = async (clinics) => {
     try {
-      let position = await getPosition();
-      let Clinics = clinics; // For mutation, cant mutate param
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
+      const position = await getPosition();
+      const Clinics = clinics; // For mutation, cant mutate param
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
       Clinics.forEach((clinic) => {
         // Returns a precise distance between the two coordinates given (Clinic & User)
-        let dist = getPreciseDistance(clinic.coordinate, {
+        const dist = getPreciseDistance(clinic.coordinate, {
           latitude,
           longitude,
         });
-        let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
+        const distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
         clinic.distance = distanceInMiles; // store the distance as a property of clinic
       });
       Clinics.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
@@ -76,8 +76,8 @@ export default Homepage = (props) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
 
-  let goBack = () => {
-    let content = lowerPanelContent;
+  const goBack = () => {
+    const content = lowerPanelContent;
 
     switch (content) {
       case 'selection':

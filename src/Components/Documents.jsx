@@ -31,14 +31,14 @@ export default function Documents() {
     })();
   });
 
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
 
     pickImage();
   };
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
@@ -51,14 +51,14 @@ export default function Documents() {
     }
   };
 
-  let upload = () => {
-    let user = firebase.auth().currentUser;
+  const upload = () => {
+    const user = firebase.auth().currentUser;
     FB.uploadImage(image, user, value, documents, setDocuments);
     setTextChanged(false);
   };
 
   function grabDocuments() {
-    let user = firebase.auth().currentUser;
+    const user = firebase.auth().currentUser;
     FB.grabImages(user, documents, setDocuments);
   }
 

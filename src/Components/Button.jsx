@@ -6,7 +6,7 @@ import appStyles from './AppStyles';
 /* Depending on the props.style passed to this component, it will output a completely different button
 so by manipulating the props.style you can design the button you want without having to create a new Component */
 export default function Button(props) {
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };
@@ -14,7 +14,7 @@ export default function Button(props) {
   // This function runs if there is a View property engulfing text or image
   // Note that if you have View you can't also have Image
   // You would need to have ImageInView (for consistency)
-  let withView = () => (
+  const withView = () => (
     <View style={props.style.View}>
       {props.style.Image && (
         <Image style={props.style.Image} source={props.icon} />
@@ -32,17 +32,17 @@ export default function Button(props) {
     </View>
   );
   // If Text property exists
-  let showText = () => <Text style={props.style.Text}>{props.text}</Text>;
+  const showText = () => <Text style={props.style.Text}>{props.text}</Text>;
 
   // If Subtext property exists
-  let showSubtext = () => (
+  const showSubtext = () => (
     <Text style={props.style.Subtext}>{props.subtext}</Text>
   );
 
   // If Image property exists
-  let showImage = () => <Image style={props.style.Image} source={props.icon} />;
+  const showImage = () => <Image style={props.style.Image} source={props.icon} />;
 
-  let underlayColor = props.underlayColor
+  const underlayColor = props.underlayColor
     ? props.underlayColor
     : appStyles.underlayColor;
 

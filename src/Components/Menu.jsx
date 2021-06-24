@@ -9,7 +9,7 @@ import appStyles, {
 } from './AppStyles';
 
 export default function Menu(props) {
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };

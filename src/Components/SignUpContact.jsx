@@ -33,12 +33,12 @@ export default SignUpInfo = (props) => {
       .done();
   }, []);
 
-  let isValidEmail = (email) => {
+  const isValidEmail = (email) => {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
 
-  let isValidPhoneNumber = (phoneNumber) =>
+  const isValidPhoneNumber = (phoneNumber) =>
     (phoneNumber.length === 10 && !isNaN(phoneNumber)) ||
     (phoneNumber.length === 12 && !isNaN(phoneNumber.substring(1, 12)));
 

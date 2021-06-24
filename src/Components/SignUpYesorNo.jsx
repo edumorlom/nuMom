@@ -8,7 +8,7 @@ import translate from './getLocalizedText';
 import backArrow from '../../assets/go-back-arrow.png';
 
 export default SignUpYesorNo = (props) => {
-  let onPress = (userResponse) => {
+  const onPress = (userResponse) => {
     const {liveMiami} = props.route.params;
     const {name} = props.route.params;
     const {dob} = props.route.params;
@@ -70,7 +70,7 @@ export default SignUpYesorNo = (props) => {
   const {password} = props.route.params;
   const {pregnant} = props.route.params;
 
-  let backArrowImage = () => (
+  const backArrowImage = () => (
     <Image source={backArrow} style={styles.goBackArrow} />
   );
 

@@ -14,11 +14,11 @@ import LocationsMap from './LocationsMap';
 import {getRef} from '../Firebase';
 
 export const medicaidHome = (props) => {
-  let toWebsite = () => {
+  const toWebsite = () => {
     Linking.openURL('https://www.healthcare.gov/medicaid-chip/');
   };
 
-  let websiteButton = (
+  const websiteButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text="Website"
@@ -28,7 +28,7 @@ export const medicaidHome = (props) => {
     />
   );
 
-  let checklistButton = (
+  const checklistButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text="Checklist"
@@ -38,7 +38,7 @@ export const medicaidHome = (props) => {
     />
   );
 
-  let locationsButton = (
+  const locationsButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
       text="Locations"
@@ -61,7 +61,7 @@ export const medicaidHome = (props) => {
 };
 
 export const medicaidChecklist = () => {
-  let checklist = [
+  const checklist = [
     {
       text: 'Picture ID',
       subtext:
@@ -127,11 +127,11 @@ export const medicaidLocations = (props) => {
   }, []);
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
-  let fetchResources = async () => {
+  const fetchResources = async () => {
     sortMedicaid(await fetchMedicaid()); // Sorts the fetched Medicaid locations
   };
 
-  let fetchMedicaid = async () =>
+  const fetchMedicaid = async () =>
     new Promise((resolve, reject) => {
       let medicaidRef = getRef('Medicaid');
       medicaidRef.once('value', (snapshot) => {
@@ -139,19 +139,19 @@ export const medicaidLocations = (props) => {
       });
     });
 
-  let sortMedicaid = async (medicaidLocations) => {
+  const sortMedicaid = async (medicaidLocations) => {
     try {
-      let position = await getPosition();
-      let MedicaidLocations = medicaidLocations; // For mutation, cant mutate param
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
+      const position = await getPosition();
+      const MedicaidLocations = medicaidLocations; // For mutation, cant mutate param
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
       MedicaidLocations.forEach((medicaid) => {
         // Returns a precise distance between the two coordinates given (Clinic & User)
-        let dist = getPreciseDistance(medicaid.coordinate, {
+        const dist = getPreciseDistance(medicaid.coordinate, {
           latitude,
           longitude,
         });
-        let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
+        const distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
         medicaid.distance = distanceInMiles; // store the distance as a property of clinic
       });
       MedicaidLocations.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
@@ -164,15 +164,15 @@ export const medicaidLocations = (props) => {
   };
 
   // Gets the current user position
-  let getPosition = (options) =>
+  const getPosition = (options) =>
     new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
 
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
-  let medicaidButtons = medicaid.map((medicaid, key) => (
+  const medicaidButtons = medicaid.map((medicaid, key) => (
     <SelectionButton
       style={appStyles.ClinicSelectionButton}
       key={key}

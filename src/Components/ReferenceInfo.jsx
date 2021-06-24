@@ -33,11 +33,11 @@ function ReferenceInfo(props) {
       );
     });
 
-  let call = () => {
+  const call = () => {
     Linking.openURL(`tel:${phone}`);
   };
 
-  let sendEmail = () => {
+  const sendEmail = () => {
     Linking.openURL(`mailto:${email}`);
   };
 

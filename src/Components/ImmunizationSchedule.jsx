@@ -25,7 +25,7 @@ export default function ImmunizationSchedule() {
     return () => (_isMounted = false);
   }, []);
 
-  let scheduleData = [
+  const scheduleData = [
     {
       age: 'Birth',
       immunizations: [
@@ -189,7 +189,7 @@ export default function ImmunizationSchedule() {
   ];
 
   displayCheckBox = (immunizations, scheduleData) => {
-    let types = immunizations.map((item) => {
+    const types = immunizations.map((item) => {
       const {type} = item?.val();
       if (type === scheduleData) return type;
       return undefined;

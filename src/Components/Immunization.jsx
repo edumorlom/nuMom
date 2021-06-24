@@ -14,7 +14,7 @@ import {
 } from '../Firebase';
 
 export default function Immunization(props) {
-  let _isMounted = false;
+  const isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
   const email = getUEmail();
@@ -59,7 +59,7 @@ export default function Immunization(props) {
       console.log('sendEmailViaEmailApp -----> mail link is undefined');
     }
   };
-  let emailBody = JSON.stringify(objects, null, ' ').replace(
+  const emailBody = JSON.stringify(objects, null, ' ').replace(
     /[\{\[\]\"\}\,]+/g,
     ''
   );

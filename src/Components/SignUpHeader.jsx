@@ -6,12 +6,12 @@ import goBackImg from '../../assets/go-back-arrow.png';
 import BackButton from './Button';
 
 export default function SignUpHeader(props) {
-  let goBack = () => {
+  const goBack = () => {
     Haptics.selectionAsync().then();
     props.goBack();
   };
 
-  let backgroundColor = 'white';
+  const backgroundColor = 'white';
 
   /* if (props.index === 8) {   //Only on baby gender page
         if (props.male && props.female) {
