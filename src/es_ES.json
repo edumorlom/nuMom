@@ -206,5 +206,6 @@
   "linkToWIC": "Link to WIC",
   "linkToMedicaid": "Link to Medicaid",
   "selectImmunization": "<<Select Immunization>>",
-  "resetPassword": "Reset Password"
+  "resetPassword": "Reset Password",
+  "noAccount": "No hay ninguna cuenta asociada a este email"
 }

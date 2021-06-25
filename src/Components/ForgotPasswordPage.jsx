@@ -11,7 +11,7 @@ import * as Haptics from 'expo-haptics';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import BackButton from './Button';
-import {passwordReset} from '../Firebase';
+import {passwordReset, checkEmailExist} from '../Firebase';
 import translate from './getLocalizedText';
 import Button from './Button';
 
@@ -44,7 +44,7 @@ const ForgotPasswordPage = (props) => {
       console.log('Password Reset email sent Successfully!');
       props.navigation.navigate('LogIn');
     } catch (error) {
-      alert('Sorry something went wrong Unsuccessful.');
+      alert(translate('noAccount'));
       console.log(error);
     }
   };

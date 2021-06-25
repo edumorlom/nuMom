@@ -200,5 +200,6 @@
   "linkToWIC": "Link a WIC",
   "linkToMedicaid": "Link a Medicaid",
   "selectImmunization": "<<Chwazi Vaksin>>",
-  "resetPassword": "Chanjè Modpas Lan"
+  "resetPassword": "Chanjè Modpas Lan",
+  "noAccount": "Pa gen okenn kont ki koresponn avek adres elektronik sa a."
 }
