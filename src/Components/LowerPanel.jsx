@@ -31,7 +31,7 @@ export default LowerPanel = (props) => {
 
   // This function makes an Anination for moving the lowerPanel up and down
   let movePanel = (moveUp) => {
-    let destination = moveUp ? win.height * 0.3 : win.height * 0.5;
+    const destination = moveUp ? win.height * 0.3 : win.height * 0.5;
     Animated.timing(moveAnim, {
       toValue: destination,
       useNativeDriver: false,
@@ -41,7 +41,7 @@ export default LowerPanel = (props) => {
 
   // This function makes an Anination for making the lowerPanel fullScreen
   let fullScreenPanel = (moveUp) => {
-    let destination = moveUp ? 0 : win.height * 0.3;
+    const destination = moveUp ? 0 : win.height * 0.3;
     Animated.timing(moveAnim, {
       toValue: destination,
       useNativeDriver: false,
@@ -49,7 +49,7 @@ export default LowerPanel = (props) => {
     }).start();
   };
 
-  let onPress = () => {
+  const onPress = () => {
     isFullScreen ? setFullScreen(!fullScreen) : setFullPanel(!fullPanel);
   };
 
@@ -57,7 +57,7 @@ export default LowerPanel = (props) => {
   This is an object that has components as properties
   So to call a specific component you only need to know the name of the property (component)
   and call it like: lowerPanelContent[property]  */
-  let lowerPanelContent = {
+  const lowerPanelContent = {
     facilities: (
       <Facilities setLowerPanelContent={props.setLowerPanelContent} />
     ),

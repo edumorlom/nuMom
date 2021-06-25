@@ -8,7 +8,7 @@ import translate from './getLocalizedText';
 export default function MustLiveInMiami(props) {
   const {liveMiami} = props.route.params;
 
-  let onPress = () => {
+  const onPress = () => {
     props.navigation.navigate('SignUpInfo', {
       liveMiami,
     });

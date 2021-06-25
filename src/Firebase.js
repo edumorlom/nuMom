@@ -42,12 +42,12 @@ export const signUp = (
           );
         },
         (e) => {
-          alert("ERROR: Couldn't save user information!");
+          alert(translate('noUserInfo'));
         }
       );
     },
     (e) => {
-      alert('ERROR: Email is already associated with another account!');
+      alert(translate('emailExists'));
     }
   );
 };
@@ -322,7 +322,7 @@ export const fetchAppointment = async (uid, setObjects, _isMounted) => {
         });
       });
   } else {
-    alert("Error: Couldn't get the Appointment Info");
+    alert(translate('noAppointmentInfo'));
   }
 };
 
@@ -356,7 +356,7 @@ export const fetchImmunization = async (uid, setObjects, _isMounted) => {
       })
       .catch((err) => console.log(err.message));
   } else {
-    alert("Error: Couldn't get Immunization Info");
+    alert(translate('noImmunizationInfo'));
   }
 };
 
@@ -411,7 +411,7 @@ export const fetchReference = async (uid, setReferences, _isMounted) => {
       })
       .catch((err) => console.log(err.message));
   } else {
-    alert("Error: Couldn't get Reference Info");
+    alert(translate('noReferenceInfo'));
   }
 };
 

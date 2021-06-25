@@ -15,7 +15,7 @@ export default function LowerPanelHeader(props) {
   const [fullScreen, setFullScreen] = useState(false);
 
   useEffect(() => {
-    let content = props.lowerPanelContent;
+    const content = props.lowerPanelContent;
     // Check if the lowerPanelContent should have a fullscreen lower Panel
     if (
       ![
@@ -37,17 +37,17 @@ export default function LowerPanelHeader(props) {
     };
   }, []);
 
-  let onPress = () => {
+  const onPress = () => {
     Haptics.selectionAsync().then();
     props.onPress();
   };
-  let goBack = () => {
+  const goBack = () => {
     Haptics.selectionAsync().then();
     props.goBack();
   };
 
-  let getCurrentHeaderTitle = () => {
-    let content = props.lowerPanelContent;
+  const getCurrentHeaderTitle = () => {
+    const content = props.lowerPanelContent;
 
     switch (content) {
       case 'findCare':

@@ -33,7 +33,7 @@ export default function NewImmunization(props) {
     notes,
   };
 
-  let immunizationArray = [
+  const immunizationArray = [
     '<<Select Immunization>>',
     'First dose Hepatitis B',
     'First dose diphtheria, tetanus, and pertussis (Dtap)',
@@ -67,7 +67,7 @@ export default function NewImmunization(props) {
     'Second dose Chickenpox (Varicella)',
   ];
 
-  let immunizations = immunizationArray.map((immunization) => ({
+  const immunizations = immunizationArray.map((immunization) => ({
     label: translate(immunization),
     value: immunization,
   }));

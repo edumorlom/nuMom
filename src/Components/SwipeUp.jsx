@@ -1,12 +1,13 @@
-import {Image, Text} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import * as Haptics from 'expo-haptics';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import appStyles from './AppStyles';
 import swipeUpGif from '../../assets/swipe-up-arrow.gif';
+import Button from './Button';
 
 export default function SwipeUp(props) {
-  let onSwipeUp = () => {
+  const onSwipeUp = () => {
     Haptics.selectionAsync().then();
     props.onSwipeUp();
   };
@@ -14,15 +15,20 @@ export default function SwipeUp(props) {
   return (
     <GestureRecognizer
       onSwipeUp={() => onSwipeUp()}
-      config={{velocityThreshold: 0.4, directionalOffsetThreshold: 100}}
+      config={{velocityThreshold: 0.05, directionalOffsetThreshold: 100}}
       style={{
         width: appStyles.win.width,
-        paddingTop: appStyles.win.height * 0.2,
+        paddingTop: appStyles.win.height * 0.18,
         bottom: '15%',
         alignItems: 'center',
       }}
     >
-      <Image style={{width: 30, height: 30, margin: 8}} source={swipeUpGif} />
+      <Button
+        style={swipeUpButton}
+        icon={swipeUpGif}
+        underlayColor="transparent"
+        onPress={props.onPress}
+      />
       <Text
         style={{
           ...appStyles.paragraphText,
@@ -35,3 +41,14 @@ export default function SwipeUp(props) {
     </GestureRecognizer>
   );
 }
+
+const swipeUpButton = StyleSheet.create({
+  Touchable: {
+    width: appStyles.win.width * 0.08,
+    height: appStyles.win.height * 0.08,
+  },
+  Image: {
+    height: appStyles.win.width * 0.08,
+    width: appStyles.win.width * 0.08,
+  },
+});

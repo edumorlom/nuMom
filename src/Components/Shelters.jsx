@@ -6,12 +6,12 @@ import shelterLogo from '../../assets/shelter-logo.png';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 
 export default function Shelters(props) {
-  let getResourceName = (name) =>
+  const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
 
-  let window = appStyles.win;
+  const window = appStyles.win;
 
-  let shelterButtons = props.shelters.map((shelter, key) => (
+  const shelterButtons = props.shelters.map((shelter, key) => (
     <SelectionButton
       style={appStyles.ClinicSelectionButton}
       key={key}
