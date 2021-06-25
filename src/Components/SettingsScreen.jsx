@@ -8,6 +8,9 @@ import {
   ScrollView,
   Alert,
   Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  KeyboardAvoidingView,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import {Picker, AsyncStorage} from 'react-native';
@@ -279,58 +282,63 @@ const SettingsScreen = (props) => {
         backgroundColor: 'white',
       }}
     >
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{marginBottom: 10, alignItems: 'center'}}>
-          {/* <Text style={appStyles.blueColor}>{translate("fullName")}:</Text> */}
-          <View style={appStyles.TextInput.View}>
-            <TextBox
-              placeholder={translate('fullName')}
-              style={appStyles.TextInput.TextInput}
-              value={fullName}
-              onChangeText={(text) => setFullName(text)}
-            />
-          </View>
-        </View>
-
-        <View style={{marginBottom: 15, alignItems: 'center'}}>
-          {/* <Text style={appStyles.blueColor}>{translate("dob")}:</Text> */}
-          <View>
-            <TextInputMask
-              type="datetime"
-              options={{
-                format: 'MM/DD/YYYY',
-                validator(value, settings) {
-                  let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                  return regex.test(value);
-                }, // This validator function is read by isValid()
-                // Still need to implement a check for isValid
-              }}
-              style={appStyles.TextInputMask}
-              value={dob}
-              placeholder={translate('dob')}
-              onChangeText={(text) => setdob(text)}
-              // Ref for use of isValid(), like this.datetimeField.isValid()
-              ref={(ref) => (datetimeField.current = ref)}
-            />
-          </View>
-        </View>
-
-        <View style={{alignItems: 'center', paddingTop: 25}}>
-          <View style={{marginBottom: 15, alignItems: 'center'}}>
-            {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
-
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{marginBottom: 10, alignItems: 'center'}}>
+            {/* <Text style={appStyles.blueColor}>{translate("fullName")}:</Text> */}
             <View style={appStyles.TextInput.View}>
               <TextBox
-                placeholder={translate('phoneNumberInput')}
+                placeholder={translate('fullName')}
                 style={appStyles.TextInput.TextInput}
-                value={phoneNumber}
-                keyboardType="numeric"
-                onChangeText={(text) => setPhoneNumber(text)}
+                value={fullName}
+                onChangeText={(text) => setFullName(text)}
               />
             </View>
           </View>
 
-          {/* <View style={styles.containerDropDown}>
+          <View style={{marginBottom: 15, alignItems: 'center'}}>
+            {/* <Text style={appStyles.blueColor}>{translate("dob")}:</Text> */}
+            <View>
+              <TextInputMask
+                type="datetime"
+                options={{
+                  format: 'MM/DD/YYYY',
+                  validator(value, settings) {
+                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                    return regex.test(value);
+                  }, // This validator function is read by isValid()
+                  // Still need to implement a check for isValid
+                }}
+                style={appStyles.TextInputMask}
+                value={dob}
+                placeholder={translate('dob')}
+                onChangeText={(text) => setdob(text)}
+                // Ref for use of isValid(), like this.datetimeField.isValid()
+                ref={(ref) => (datetimeField.current = ref)}
+              />
+            </View>
+          </View>
+
+          <View style={{alignItems: 'center', paddingTop: 25}}>
+            <View style={{marginBottom: 15, alignItems: 'center'}}>
+              {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
+
+              <View style={appStyles.TextInput.View}>
+                <TextBox
+                  placeholder={translate('phoneNumberInput')}
+                  style={appStyles.TextInput.TextInput}
+                  value={phoneNumber}
+                  keyboardType="numeric"
+                  onChangeText={(text) => setPhoneNumber(text)}
+                />
+              </View>
+            </View>
+
+            {/* <View style={styles.containerDropDown}>
             <Text>{translate('liveMiami')}</Text>
             <Picker
               selectedValue={liveMiami}
@@ -341,29 +349,29 @@ const SettingsScreen = (props) => {
               <Picker.Item label={translate('No')} value={false} />
             </Picker>
           </View> */}
-          <View style={styles.containerDropDown}>
-            <Text>{translate('areYouPregnant')}</Text>
-            <Picker
-              selectedValue={pregnant}
-              style={styles.questionsDropDown}
-              onValueChange={(itemValue, itemIndex) => setPregnant(itemValue)}
-            >
-              <Picker.Item label={translate('Yes')} value />
-              <Picker.Item label={translate('No')} value={false} />
-            </Picker>
-          </View>
-          <View style={styles.containerDropDown}>
-            <Text>{translate('didYouHaveInfants')}</Text>
-            <Picker
-              selectedValue={infant}
-              style={styles.questionsDropDown}
-              onValueChange={(itemValue, itemIndex) => setInfant(itemValue)}
-            >
-              <Picker.Item label={translate('Yes')} value />
-              <Picker.Item label={translate('No')} value={false} />
-            </Picker>
-          </View>
-          {/* {infant === true ? 
+            <View style={styles.containerDropDown}>
+              <Text>{translate('areYouPregnant')}</Text>
+              <Picker
+                selectedValue={pregnant}
+                style={styles.questionsDropDown}
+                onValueChange={(itemValue, itemIndex) => setPregnant(itemValue)}
+              >
+                <Picker.Item label={translate('Yes')} value />
+                <Picker.Item label={translate('No')} value={false} />
+              </Picker>
+            </View>
+            <View style={styles.containerDropDown}>
+              <Text>{translate('didYouHaveInfants')}</Text>
+              <Picker
+                selectedValue={infant}
+                style={styles.questionsDropDown}
+                onValueChange={(itemValue, itemIndex) => setInfant(itemValue)}
+              >
+                <Picker.Item label={translate('Yes')} value />
+                <Picker.Item label={translate('No')} value={false} />
+              </Picker>
+            </View>
+            {/* {infant === true ? 
             <View style={styles.containerDropDown}>
                   <Text >{translate("selectGenders")}</Text>
                  <Picker
@@ -377,39 +385,46 @@ const SettingsScreen = (props) => {
                  </Picker> 
             </View>
               : null} */}
-          {infant === true ? (
-            <View>
-              <Text style={{alignSelf: 'center'}}>{translate('babydob')}</Text>
-              <TextInputMask
-                type="datetime"
-                options={{
-                  format: 'MM/DD/YYYY',
-                  validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                    return regex.test(value);
-                  },
-                }}
-                style={appStyles.TextInputMask}
-                value={babyDOB}
-                placeholder={translate('dob')}
-                onChangeText={(text) => setBabyDOB(text)}
-                // Ref for use of isValid(), like this.dateBaby.isValid()
-                ref={(ref) => (dateBaby = ref)}
-              />
-            </View>
-          ) : null}
-        </View>
-        <View
-          style={{justifyContent: 'center', flexDirection: 'row', padding: 90}}
-        >
-          <Button
-            style={SubmitButton}
-            underlayColor={appStyles.blueColor}
-            text={translate('save')}
-            onPress={() => onSubmit()}
-          />
-        </View>
-      </ScrollView>
+            {infant === true ? (
+              <View>
+                <Text style={{alignSelf: 'center'}}>
+                  {translate('babydob')}
+                </Text>
+                <TextInputMask
+                  type="datetime"
+                  options={{
+                    format: 'MM/DD/YYYY',
+                    validator(value, settings) {
+                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      return regex.test(value);
+                    },
+                  }}
+                  style={appStyles.TextInputMask}
+                  value={babyDOB}
+                  placeholder={translate('dob')}
+                  onChangeText={(text) => setBabyDOB(text)}
+                  // Ref for use of isValid(), like this.dateBaby.isValid()
+                  ref={(ref) => (dateBaby = ref)}
+                />
+              </View>
+            ) : null}
+          </View>
+          <View
+            style={{
+              justifyContent: 'center',
+              flexDirection: 'row',
+              padding: 90,
+            }}
+          >
+            <Button
+              style={SubmitButton}
+              underlayColor={appStyles.blueColor}
+              text={translate('save')}
+              onPress={() => onSubmit()}
+            />
+          </View>
+        </ScrollView>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
