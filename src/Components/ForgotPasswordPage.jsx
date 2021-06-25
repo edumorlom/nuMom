@@ -11,7 +11,7 @@ import * as Haptics from 'expo-haptics';
 import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
 import BackButton from './Button';
-import {passwordReset, checkEmailExist} from '../Firebase';
+import {passwordReset} from '../Firebase';
 import translate from './getLocalizedText';
 import Button from './Button';
 
