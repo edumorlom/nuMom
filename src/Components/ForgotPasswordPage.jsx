@@ -44,7 +44,7 @@ const ForgotPasswordPage = (props) => {
       console.log('Password Reset email sent Successfully!');
       props.navigation.navigate('LogIn');
     } catch (error) {
-      alert('Sorry something went wrong Unsuccessful.');
+      alert(translate('noAccount'));
       console.log(error);
     }
   };
