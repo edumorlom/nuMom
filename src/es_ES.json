@@ -210,5 +210,11 @@
   "noUserInfo": "No se pudo guardar la información!",
   "noAppointmentInfo": "No se pudo conseguir información de tu cita.",
   "noImmunizationInfo": "No se pudo conseguir información de inmunizacion.",
-  "noReferenceInfo": "No se pudo conseguir información de referencia."
+  "noReferenceInfo": "No se pudo conseguir información de referencia.",
+  "dateHeader": "Elige una fecha",
+  "timeHeader": "Elige el tiempo",
+  "appointmentReminder": "nuMom Recordatorio de Cita",
+  "appointmentBody": "Su cita es mañana,",
+  "failedToken": "¡No se pudo obtener el token para la notificación push!",
+  "failedDevice": "Debe usar el dispositivo físico para las notificaciones push"
 }
