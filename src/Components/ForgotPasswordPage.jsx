@@ -37,7 +37,7 @@ const ForgotPasswordPage = (props) => {
 
     try {
       if (!isValidEmail(email)) {
-        return alert('Invalid Email: Please input Valid Email');
+        return alert(translate('invalidEmail'));
       }
       await passwordReset(email);
       alert('Password Reset email sent Successfully!!\n Check your email ');
