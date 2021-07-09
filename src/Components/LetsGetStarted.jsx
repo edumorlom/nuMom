@@ -1,29 +1,51 @@
 import 'react-native-gesture-handler';
-import {Image, Text, View, Animated} from 'react-native';
+import {Image, Text, View, Animated, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import * as Haptics from 'expo-haptics';
+import {HeaderBackButton} from '@react-navigation/stack';
 import heartBalloon from '../../assets/birthday-candle.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
+import backArrow from '../../assets/go-back-arrow.png';
 
 export default LetsGetStarted = (props) => {
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
   let _isMounted = false;
 
+  let timerID;
+
+  let timer = () => {
+    timerID = setTimeout(
+      () =>
+        props.navigation.navigate('SignUpYesorNoMiami', {
+          question: translate('liveMiami'),
+          value: 'liveMiami',
+        }),
+      4000
+    );
+  };
+
+  const backArrowImage = () => (
+    <Image source={backArrow} style={styles.goBackArrow} />
+  );
+
   useEffect(() => {
     _isMounted = true;
     _isMounted && confettiVibration();
     _isMounted && _start();
-    _isMounted &&
-      setTimeout(
-        () =>
-          props.navigation.navigate('SignUpYesorNoMiami', {
-            question: translate('liveMiami'),
-            value: 'liveMiami',
-          }),
-        4000
-      );
+    _isMounted && timer();
+    props.navigation.setOptions({
+      headerLeft: () => (
+        <HeaderBackButton
+          onPress={() => {
+            clearTimeout(timerID);
+            props.navigation.navigate('LogIn');
+          }}
+          backImage={backArrowImage}
+        />
+      ),
+    });
     return () => (_isMounted = false);
   }, []);
 
@@ -88,3 +110,10 @@ export default LetsGetStarted = (props) => {
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  goBackArrow: {
+    width: 25,
+    height: 25,
+  },
+});

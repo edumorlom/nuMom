@@ -210,8 +210,15 @@
   "linkToMedicaid": "Link to Medicaid",
   "selectImmunization": "<<Select Immunization>>",
   "resetPassword": "Reset Password",
+  "noAccount": "There is no account associated with this email.",
   "noUserInfo": "Couldn't save user information!",
   "noAppointmentInfo": "Couldn't get the Appointment Info",
   "noImmunizationInfo": "Couldn't get Immunization Info",
-  "noReferenceInfo": "Couldn't get Reference Info"
+  "noReferenceInfo": "Couldn't get Reference Info",
+  "dateHeader": "Pick a date",
+  "timeHeader": "Pick a time",
+  "appointmentReminder": "nuMom Appointment Reminder",
+  "appointmentBody": "Your appointment is tomorrow,",
+  "failedToken": "Failed to get push token for push notification!",
+  "failedDevice": "Must use physical device for Push Notifications"
 }

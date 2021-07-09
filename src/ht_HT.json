@@ -202,8 +202,15 @@
   "linkToMedicaid": "Link a Medicaid",
   "selectImmunization": "<<Chwazi Vaksin>>",
   "resetPassword": "Chanjè Modpas Lan",
+  "noAccount": "Pa gen okenn kont ki koresponn avek adres elektronik sa a.",
   "noUserInfo": "Enfomasyon itilizatè a pa sovgade",
   "noAppointmentInfo": "Pa reyisi jwenn enfomasyon randevou a",
   "noImmunizationInfo": "Pa reyisi jwenn enfomasyon vaksen an",
-  "noReferenceInfo": "Pa reyisi jwenn enfomasyon referans la"
+  "noReferenceInfo": "Pa reyisi jwenn enfomasyon referans la",
+  "dateHeader": "Chwazi yon dat",
+  "timeHeader": "Chwazi yon lè",
+  "appointmentReminder": "Rapèl Randevou pou nuMom",
+  "appointmentBody": "Randevou ou a se demen,",
+  "failedToken": "Atanta pou jwenn yon \"push token\" pou notifikasyon an pa reyisi!",
+  "failedDevice": "Pou \"push\" notifikasyon yo, yon aparèy fizik nésesè"
 }
