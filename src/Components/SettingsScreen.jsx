@@ -20,6 +20,7 @@ import BackButton from './Button';
 import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
+import logOutImg from '../../assets/logOutIcon.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
 
@@ -215,10 +216,10 @@ const SettingsScreen = (props) => {
     props.navigation.setOptions({
       headerRight: () => (
         <View style={styles.logOutButton}>
-          <AntDesign
-            name="logout"
-            size={28}
-            color={appStyles.pinkColor}
+          <Button
+            style={logButton}
+            icon={logOutImg}
+            underlayColor="transparent"
             onPress={() => {
               AsyncAlert().then((response) => {
                 response ? logout() : null;
@@ -457,8 +458,6 @@ const styles = StyleSheet.create({
   },
   logOutButton: {
     position: 'absolute',
-    right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.04,
   },
 });
 
@@ -478,6 +477,14 @@ const backButton = StyleSheet.create({
 const SubmitButton = StyleSheet.create({
   Touchable: appStyles.button.Touchable,
   Text: appStyles.button.Text,
+});
+
+const logButton = StyleSheet.create({
+  Touchable: appStyles.logbutton.Touchable,
+  Image: {
+    height: appStyles.win.width * 0.09,
+    width: appStyles.win.width * 0.09,
+  },
 });
 
 export default SettingsScreen;

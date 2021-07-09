@@ -100,6 +100,19 @@ export default {
     },
     underlayColor: blueColor,
   },
+  logbutton: {
+    Touchable: {
+      margin: win.height * 0.01,
+      alignItems: 'center',
+      backgroundColor: 'transparent',
+      paddingTop: 5,
+      paddingBottom: 5,
+      paddingLeft: 15,
+      paddingRight: 10,
+      borderRadius,
+    },
+    underlayColor: 'transparent',
+  },
   TextInput: {
     View: {
       ...shadow,
