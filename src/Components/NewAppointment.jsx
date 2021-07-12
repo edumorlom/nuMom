@@ -226,7 +226,7 @@ export default function NewAppointment(props) {
             onConfirm={handleConfirm}
             onCancel={hideDatePicker}
             is24Hour
-            headerTextIOS="Pick a date"
+            headerTextIOS={translate('dateHeader')}
           />
         </View>
         <View style={styles.seperator} />
@@ -241,7 +241,7 @@ export default function NewAppointment(props) {
             onConfirm={handleConfirmTime}
             onCancel={hideTimePicker}
             is24Hour
-            headerTextIOS="Pick a time"
+            headerTextIOS={translate('timeHeader')}
           />
         </View>
         <View style={styles.seperator} />
@@ -334,8 +334,8 @@ function getTriggerTime() {
 async function schedulePushNotification() {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: 'nuMom Appointment Reminder',
-      body: `Your appointment is tomorrow, ${date}`, // could be today instead of tomorrow if appt was created on same day
+      title: translate('appointmentReminder'),
+      body: `${translate('appointmentBody')} ${date}`, // could be today instead of tomorrow if appt was created on same day
       data: {data: '-'},
     },
     trigger: {seconds: getTriggerTime()},
@@ -352,13 +352,13 @@ async function registerForPushNotificationsAsync() {
       finalStatus = status;
     }
     if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
+      alert(translate('failedToken'));
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
   } else {
-    alert('Must use physical device for Push Notifications');
+    alert(translate('failedDevice'));
   }
 
   if (Platform.OS === 'android') {
