@@ -1,6 +1,6 @@
 # NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Summer 2021>
 
-Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Nathaly Siguenza, Eric Vilella, Elton Lucien, Anthony Burgin, Jose Jimenez, David Ricardo, Estephany Sanchez Criado.
+Authors: Eduardo Morales, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Hongru Chu, Rolando Hernandez, Lawrence Chik, Leonel Diaz, Nicholas Gomez, Meleik Hyman, Nathaly Siguenza, Eric Vilella, Elton Lucien, Anthony Burgin, Jose Jimenez, Juan Pablo Arenas Grayeb, David Ricardo, Estephany Sanchez Criado.
 
 Product Owner: Jean Hannan
 
@@ -54,29 +54,23 @@ The root of the `React-Native-App/src` directory is where all the source code fo
 
 Within the root of the `React-Native-App` directory is a file called `package.json`, which defines the scripts that allows to run the application and contains meta-data about the project, in addition to defining the project dependencies.
 
-Inside the root of the `React-Native-App/src/functions` directory is another `package.json` which defines the scripts to run the google cloud functions as well as the definitions of the dependencies used. To deploy new functions, you must be inside this directory and run `firebase deploy --project moms-and-infants-healthy`, before this make sure to install firebase and firebase tools in this same directory, you can do so by running `npm install --save firebase firebase-tools`
+### Installation & Running steps
 
-### Installation
+To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/). After they are installed, run these commands in your machine’s command line to install the necessary dependencies:
 
-**Note**: You must have npm as your dependency manager so that your environment runs similar to how the current development team runs their environment. Additionally, the `expo cli` package is used to be able to run the application on yur personal device. Use the following command in your terminal or shell emulator to install both:
-
-```
-
-npm install -g npm
-
-npm install -g expo-cli
-
-npm install expo
-
-expo install
 
 ```
 
-Clone the repository onto your machine using:
+npm install --global expo-cli
+npm install && expo install
 
 ```
 
-git clone <the link to the project>
+After the dependencies are setup, you will need to clone the GitHub repository onto your local machine: 
+
+```
+
+git clone https://github.com/edumorlom/moms-infants-healthy.git
 
 ```
 
@@ -86,20 +80,39 @@ iOS: https://apps.apple.com/app/apple-store/id982107779
 
 Android: https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www
 
-For more help visit the expo website: https://expo.io/learn
+Finally, you will need to setup the Firebase API key to open the app locally. After this, the application should be ready to start using the command `expo start` in your command line. This will open a window where Expo will create a QR code on your computer that you can scan with the mobile Expo app to open the application on your smartphone. You may have to wait a minute while your project bundles and loads for the first time. If using a simulator to run the app on your computer, using `npm start` instead will show instructions on how to run it on the simulator.
 
-Ensure that you installed all the necessary dependencies for the project by running `npm install` in both the root of the `React-Native-App` and the `React-Native-App/src/functions` directories and the expo client on your personal device. Afterwards, you can run the command
+### API KEYS
 
-```
+Both the Firebase and Twilio API keys are provided by Eduardo, so contact him if you need them. For the Firebase API key, it should be a file called firebase_account.json. To set it up properly, move it into the /src/ folder of your local repository. The application will not start up properly without this API key in the correct place.
 
-npm start or expo start
+To gain access to the Twilio API for messaging users, you will need to navigate to the /functions/ folder and locate twilio_account.js. In that file you will need to edit the strings for accountSid and authToken to the account’s credentials and you will have access to the Twilio API.
 
-```
+### ACCESSING FIREBASE 
 
-in order to start the application. If using default settings, the expo cli will create a QR code that you can scan with the Expo Client (Android) or the Camera (iOS) of your mobile device, expo will open the project on your personal device.You may have to wait a minute while your project bundles and loads for the first time. You can also run de the app on the emulator or simulator on your computer, for that you need to have the simulator installed and after you do `npm start` you will see instructions on how to run it on the simulator, but this is what you need to do
+To access Firebase, you will first have to install Firebase and its tools onto your machine. This can be done by running npm install --save firebase firebase-tools in your command line in the directory in which you would like to access firebase. Then, in the same directory you can deploy new functions using firebase deploy --project moms-and-infants-healthy.
 
-```
+### DEPLOYING TO ANDROID 
 
-Press a for Android emulator, or i for iOS simulator.
+1. Login to the developer expo account by typing "expo login" in the terminal. You'll have to contact Eduardo to get his login credentials.
 
-```
+2. Increment the versionCode in app.json by 1.
+
+3. Save app.json and close it.
+
+4. Navigate to your project directory 'moms-infants-healthy' and build the apk in the terminal by entering: "expo build:android" 
+
+5. Choose “apk” and hit enter to build the app as an .apk file, the standard installation package for Android apps..
+	You might encounter the error: “Connecting to metro bundler failed.” That's fine to ignore, just keep trying the build command until it starts the metro bundler. It may take a few attempts.
+
+6. It will take a bit to build the apk but once it finishes, you'll be placed in a queue for your apk to build. You can go to the expo link in the terminal to monitor the build status while it finishes. 
+
+7. Download the apk once it finishes building and then login to the google play console. Again, you will need to contact Eduardo for the credentials.
+
+8. Click on nuMom, then open testing. Once there, click on "Create new release"
+
+9. Upload the apk file you just built to add it to the release. Click “save” and then “review release” to finish creating the new release.
+
+You should also commit the version code change you did in the app.json to development on GitHub.
+
+### Deploying to IOS
