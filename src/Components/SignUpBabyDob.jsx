@@ -100,8 +100,7 @@ export default SignUpBabyDob = (props) => {
                   options={{
                     format: 'MM/DD/YYYY',
                     validator(value, settings) {
-                      let regex =
-                        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                       return regex.test(value);
                     }, // This validator function is read by isValid(), still to be used
                   }}
