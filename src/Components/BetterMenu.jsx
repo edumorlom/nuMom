@@ -12,7 +12,9 @@ export default function BetterMenu(props) {
     </View>
   );
 
-  const showImage = () => <Image style={props.style.Image} source={props.icon} />;
+  const showImage = () => (
+    <Image style={props.style.Image} source={props.icon} />
+  );
 
   const showImageInView = () => (
     <Image style={props.style.ImageInView} source={props.icon} />

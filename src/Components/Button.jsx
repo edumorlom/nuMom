@@ -40,7 +40,9 @@ export default function Button(props) {
   );
 
   // If Image property exists
-  const showImage = () => <Image style={props.style.Image} source={props.icon} />;
+  const showImage = () => (
+    <Image style={props.style.Image} source={props.icon} />
+  );
 
   const underlayColor = props.underlayColor
     ? props.underlayColor
