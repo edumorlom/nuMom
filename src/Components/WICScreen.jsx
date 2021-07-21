@@ -70,10 +70,10 @@ export const wicHome = (props) => {
       <ScrollView
         contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
       >
-        {websiteButton}
         {checklistButton}
         {locationsButton}
         {feedingButton}
+        {websiteButton}
       </ScrollView>
     </View>
   );
