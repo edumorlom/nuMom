@@ -27,7 +27,7 @@ export default function Map(props) {
 
   // Gets the user location for the Map
   let getLocationAsync = async () => {
-    const {status} = await Location.requestPermissionsAsync();
+    const {status} = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
       setErrorMessage('Permissions not granted.');
     }
