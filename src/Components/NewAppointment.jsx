@@ -42,15 +42,17 @@ export default function NewAppointment(props) {
       setExpoPushToken(token)
     );
 
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
         setNotification(notification);
-      });
+      }
+    );
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
         // console.log(response);
-      });
+      }
+    );
 
     return () => {
       Notifications.removeNotificationSubscription(
