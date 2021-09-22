@@ -20,7 +20,7 @@ export default function Immunization(props) {
   const email = getUEmail();
 
   getImmunization = () => {
-    fetchImmunization(uid, setObjects, _isMounted);
+    fetchImmunization(uid, setObjects, isMounted);
   };
 
   removeImmunization = (id) => {
