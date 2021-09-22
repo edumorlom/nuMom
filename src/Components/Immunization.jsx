@@ -14,7 +14,7 @@ import {
 } from '../Firebase';
 
 export default function Immunization(props) {
-  const isMounted = false;
+  const _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
   const email = getUEmail();
