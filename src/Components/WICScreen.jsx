@@ -241,9 +241,6 @@ export const wicLocations = (props) => {
 export const wicFeeding = () => {
   const [age, setAge] = useState(0);
 
-  const unclickableButton = () => {
-  }
-
   const showFeedingByAge = () => {
     if (age == 0) {
       return (
@@ -253,7 +250,6 @@ export const wicFeeding = () => {
             text="Human Milk"
             subtext="Only human milk (or formula) is needed for the first 6 months"
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
         </View>
       );
@@ -266,7 +262,6 @@ export const wicFeeding = () => {
             text="Human Milk"
             subtext="Continue to breastfeed on demand."
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
@@ -275,7 +270,6 @@ export const wicFeeding = () => {
               '24-32 ounces\nOr based on individual nutritional assessment'
             }
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
@@ -284,21 +278,18 @@ export const wicFeeding = () => {
               '1-2 ounces\nIron-fortified infant cereals, bread, small pieces of cracker'
             }
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'2-4 ounces\nCooked, plain strained/pureed/mashed'}
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'2-4 ounces\nPlain strained/pureed/mashed'}
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
@@ -307,7 +298,6 @@ export const wicFeeding = () => {
               '1-2 ounces\nPlain strained/pureed/mashed meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
             }
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
         </View>
       );
@@ -320,14 +310,12 @@ export const wicFeeding = () => {
             text="Human Milk"
             subtext="Provide guidance and encouragement to breastfeeding mothers and continue to support those mothers who choose to breastfeed beyond 12 months"
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
             text="Infant Formula"
             subtext={'24 ounces\nOr based on individual nutritional assessment'}
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
@@ -336,21 +324,18 @@ export const wicFeeding = () => {
               '2-4 ounces\nIron-fortified infant cereals, baby crackers, bread, noodles, corn grits, soft tortilla pieces'
             }
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'4-6 ounces\nCooked, finely chopped/diced'}
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'4-6 ounces\nFinely chopped/diced'}
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}
@@ -359,7 +344,6 @@ export const wicFeeding = () => {
               '2-4 ounces\nGround/finely chopped/diced meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
             }
             icon={breastfeeding}
-            onPress={() => unclickableButton()}
           />
         </View>
       );
