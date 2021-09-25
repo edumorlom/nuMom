@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -17,6 +17,7 @@ import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
 import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
+
 /*  Main home screen for WIC. Any additional tabs go here, and are defined in separate exported functions afterwards.
  *
  */
@@ -163,7 +164,7 @@ export const wicLocations = (props) => {
 
   const sortWIC = async (wicLocations) => {
     try {
-      let position = await getPosition();
+      let position = await Location.getCurrentPositionAsync({});
       let WICLocations = wicLocations; // For mutation, cant mutate param
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
@@ -184,12 +185,6 @@ export const wicLocations = (props) => {
       console.error(err);
     }
   };
-
-  // Gets the current user position
-  const getPosition = (options) =>
-    new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
 
   const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;

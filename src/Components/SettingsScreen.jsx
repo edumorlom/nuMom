@@ -13,7 +13,8 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import {Picker, AsyncStorage} from 'react-native';
+import {Picker} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
 import BackButton from './Button';
@@ -308,7 +309,8 @@ const SettingsScreen = (props) => {
                 options={{
                   format: 'MM/DD/YYYY',
                   validator(value, settings) {
-                    let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                    let regex =
+                      /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                     return regex.test(value);
                   }, // This validator function is read by isValid()
                   // Still need to implement a check for isValid
@@ -395,7 +397,8 @@ const SettingsScreen = (props) => {
                   options={{
                     format: 'MM/DD/YYYY',
                     validator(value, settings) {
-                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      let regex =
+                        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                       return regex.test(value);
                     },
                   }}

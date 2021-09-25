@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage} from 'react-native';
+import {View} from 'react-native';
 import {getPreciseDistance} from 'geolib';
+import * as Location from 'expo-location';
 import Map from './Map';
 import LowerPanel from './LowerPanel';
-// import SOSButton from "./SOSButton";
 import appStyles from './AppStyles';
 import CancelFilterButton from './Button';
 import {getRef} from '../Firebase';
@@ -48,7 +48,7 @@ export default Homepage = (props) => {
 
   let sortClinics = async (clinics) => {
     try {
-      const position = await getPosition();
+      const position = await Location.getCurrentPositionAsync({});
       const Clinics = clinics; // For mutation, cant mutate param
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -69,12 +69,6 @@ export default Homepage = (props) => {
       console.error(err);
     }
   };
-
-  // Gets the current user position
-  let getPosition = (options) =>
-    new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
 
   const goBack = () => {
     const content = lowerPanelContent;

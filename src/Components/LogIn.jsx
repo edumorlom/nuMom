@@ -1,20 +1,16 @@
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {
   Animated,
   Image,
   ImageBackground,
   View,
-  TouchableOpacity,
   TouchableHighlight,
   Keyboard,
   TextInput as TextBox,
-  Text,
   StyleSheet,
-  AsyncStorage,
   NativeModules,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import appStyles from './AppStyles';
 import Button from './Button';

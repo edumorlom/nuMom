@@ -2,13 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Keyboard,
   Text,
-  TouchableOpacity,
   View,
-  AsyncStorage,
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
@@ -100,7 +99,8 @@ export default SignUpBabyDob = (props) => {
                   options={{
                     format: 'MM/DD/YYYY',
                     validator(value, settings) {
-                      let regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+                      let regex =
+                        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
                       return regex.test(value);
                     }, // This validator function is read by isValid(), still to be used
                   }}
