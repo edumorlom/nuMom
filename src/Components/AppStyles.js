@@ -217,6 +217,28 @@ export default {
       fontWeight: 'bold',
     },
   },
+  Notes: {
+    Touchable: {
+      margin: 5,
+      padding: 10,
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.95,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    View: {
+      width: '100%',
+      height: '100%',
+    },
+    Text: {
+      color: greyColor,
+      fontSize: regularFontSize,
+      textAlign: 'justify',
+    },
+  },
   ImageOnRightSelectionButton: {
     Touchable: {
       margin: 5,
@@ -224,7 +246,7 @@ export default {
       backgroundColor: 'white',
       ...shadow,
       minHeight: win.height * 0.2,
-      maxHeight: win.height * 0.3,
+      maxHeight: win.height * 0.4,
       width: win.width * 0.95,
       borderColor: greyColor,
       borderRadius,
