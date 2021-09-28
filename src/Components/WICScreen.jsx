@@ -245,7 +245,7 @@ export const wicFeeding = () => {
     if (age == 0) {
       return (
         <View>
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Human Milk"
             subtext="Only human milk (or formula) is needed for the first 6 months"
@@ -257,13 +257,13 @@ export const wicFeeding = () => {
     if (age == 6) {
       return (
         <View>
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Human Milk"
             subtext="Continue to breastfeed on demand."
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Infant Formula"
             subtext={
@@ -271,7 +271,7 @@ export const wicFeeding = () => {
             }
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Grain Products"
             subtext={
@@ -279,19 +279,19 @@ export const wicFeeding = () => {
             }
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'2-4 ounces\nCooked, plain strained/pureed/mashed'}
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'2-4 ounces\nPlain strained/pureed/mashed'}
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Protein-rich Foods"
             subtext={
@@ -305,19 +305,19 @@ export const wicFeeding = () => {
     if (age == 8) {
       return (
         <View>
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Human Milk"
             subtext="Provide guidance and encouragement to breastfeeding mothers and continue to support those mothers who choose to breastfeed beyond 12 months"
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Infant Formula"
             subtext={'24 ounces\nOr based on individual nutritional assessment'}
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Grain Products"
             subtext={
@@ -325,19 +325,19 @@ export const wicFeeding = () => {
             }
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'4-6 ounces\nCooked, finely chopped/diced'}
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'4-6 ounces\nFinely chopped/diced'}
             icon={breastfeeding}
           />
-          <SelectionButton
+          <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Protein-rich Foods"
             subtext={
@@ -352,24 +352,27 @@ export const wicFeeding = () => {
       return (
         <ScrollView contentContainerStyle={appStyles.contentContainer}>
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
-            text="Soda, gelatin, coffee, tea, or fruit punches and -ade drinks"
+            style={appStyles.Notes}
+            text="Soda, gelatin, coffee, tea, fruit punches and -ade drinks"
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Cow milk until 12 months"
           />
-          <BetterMenu style={appStyles.FemaleCondomMenu} text="Added Salt" />
+          <BetterMenu 
+            style={appStyles.Notes} 
+            text="Added Salt"
+          />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Added oil, butter, other fats, seasoning"
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Added sugar, syrups, other sweetners"
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Fried foods, gravies, sauces, processed meats"
           />
         </ScrollView>
@@ -379,27 +382,27 @@ export const wicFeeding = () => {
       return (
         <View>
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
-            text="Infants under 12 months of age should not consume juice unless clinically indicated. After 12 months, encourage fruit over fruit juice; any juice consumed should be aspart of a meal or snack and from an open cup (i.e., not bottles or easily transportable covered cups)."
+            style={appStyles.Notes}
+            text="Infants under 12 months of age should not consume juice unless clinically indicated. After 12 months, encourage fruit over fruit juice; any juice consumed should be as part of a meal or snack and from an open cup (i.e., not bottles or easily transportable covered cups)."
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Babies weaned from human milk before 12 months should receive iron-fortified formula."
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Wean entirely off the bottle and onto a cup at 12 to 14 months."
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Keep bottles out of bedtime and nap routines to avoid exposing infants’ teeth to sugars and reduce the risk for ear infections and choking."
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Check carefully for bones in commercially or home-prepared meals containing meat, fish, or poultry."
           />
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.Notes}
             text="Remove seeds, skin, and pits from fruits. For additional choking prevention information, refer to the Infant Feeding: Tips for Food Safety job aid."
           />
         </View>
@@ -424,7 +427,7 @@ export const wicFeeding = () => {
           <Picker.Item label="6-8 Months" value={6} />
           <Picker.Item label="8-12 Months" value={8} />
           <Picker.Item label="Foods to Avoid" value={-1} />
-          <Picker.Item label="Important Notes to Remember" value={-2} />
+          <Picker.Item label="Important Notes" value={-2} />
         </Picker>
       </View>
 
@@ -435,7 +438,7 @@ export const wicFeeding = () => {
       {label: '6-8 Months', value: 6,},
       {label: '8-12 Months', value: 8, },
       {label: 'Foods to Avoid', value: -1, },
-      {label: 'Important Notes to Remember', value: -2, },
+      {label: 'Important Notes', value: -2, },
   ]}
     defaultValue={age}
     containerStyle={{height: 40}}
@@ -478,7 +481,7 @@ const styles = StyleSheet.create({
   questionsDropDown: {
     ...Platform.select({
       ios: {
-        width: 100,
+        width: 250,
         bottom: 50,
       },
       android: {
