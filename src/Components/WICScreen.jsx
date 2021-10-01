@@ -5,9 +5,9 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
-  Picker,
 } from 'react-native';
 import {getPreciseDistance} from 'geolib';
+import {Picker} from '@react-native-picker/picker'
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
@@ -420,8 +420,8 @@ export const wicFeeding = () => {
     <View style={appStyles.contentContainer}>
       <View style={styles.containerDropDown}>
         <Text>
-          Select Age of Infant or Relevant Information concering Foods for
-          Infants
+            Select Age of Infant or Relevant Information concerning Foods for
+            Infants{'\n'}
         </Text>
         <Picker
           selectedValue={age}
