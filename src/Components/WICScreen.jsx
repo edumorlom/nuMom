@@ -5,9 +5,9 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
+  Picker,
 } from 'react-native';
 import {getPreciseDistance} from 'geolib';
-import {Picker} from '@react-native-picker/picker'
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
@@ -17,7 +17,6 @@ import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
 import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
-
 
 /*  Main home screen for WIC. Any additional tabs go here, and are defined in separate exported functions afterwards.
  *
@@ -421,8 +420,8 @@ export const wicFeeding = () => {
     <View style={appStyles.contentContainer}>
       <View style={styles.containerDropDown}>
         <Text>
-          Select Age of Infant or Relevant Information concerning Foods for
-          Infants{'\n'}
+          Select Age of Infant or Relevant Information concering Foods for
+          Infants
         </Text>
         <Picker
           selectedValue={age}
