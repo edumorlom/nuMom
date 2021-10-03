@@ -2,13 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Keyboard,
   Text,
-  TouchableOpacity,
   View,
-  AsyncStorage,
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';

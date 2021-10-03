@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {
-  AsyncStorage,
   Keyboard,
   Text,
   TextInput as TextBox,
@@ -8,6 +7,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';

@@ -1,16 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage} from 'react-native';
-import SignUpInfo from './SignUpInfo';
-import LetsGetStarted from './LetsGetStarted';
-import SignUpPassword from './SignUpPassword';
-import SignUpBabyDob from './SignUpBabyDob';
+import {useState, useEffect} from 'react';
 import {signUp} from '../Firebase';
-import SignUpContact from './SignUpContact';
-import SignUpLoading from './SignUpLoading';
-import SignUpYesorNo from './SignUpYesorNo';
-import MustLiveInMiami from './MustLiveInMiami';
-import SignUpHeader from './SignUpHeader';
-import translate from './getLocalizedText';
 
 export default function SignUp(props) {
   const [index, setIndex] = useState(0);
