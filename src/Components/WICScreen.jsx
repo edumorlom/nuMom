@@ -15,6 +15,7 @@ import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
 import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
+import * as Location from 'expo-location';
 import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
 
