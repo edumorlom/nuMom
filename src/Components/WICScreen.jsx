@@ -8,6 +8,7 @@ import {
   Picker,
 } from 'react-native';
 import {getPreciseDistance} from 'geolib';
+import * as Location from 'expo-location';
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
@@ -164,17 +165,17 @@ export const wicLocations = (props) => {
 
   const sortWIC = async (wicLocations) => {
     try {
-      let position = await Location.getCurrentPositionAsync({});
-      let WICLocations = wicLocations; // For mutation, cant mutate param
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
+      const position = await Location.getCurrentPositionAsync({});
+      const WICLocations = wicLocations; // For mutation, cant mutate param
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
       WICLocations.forEach((wic) => {
         // Returns a precise distance between the two coordinates given (Clinic & User)
-        let dist = getPreciseDistance(wic.coordinate, {
+        const dist = getPreciseDistance(wic.coordinate, {
           latitude,
           longitude,
         });
-        let distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
+        const distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
         wic.distance = distanceInMiles; // store the distance as a property of clinic
       });
       WICLocations.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
