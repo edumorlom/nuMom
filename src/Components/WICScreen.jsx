@@ -1,13 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  Linking,
-  ScrollView,
-  StyleSheet,
-  Picker,
-} from 'react-native';
+import {Text, View, Linking, ScrollView, StyleSheet} from 'react-native';
 import {getPreciseDistance} from 'geolib';
+import {Picker} from '@react-native-picker/picker';
 import * as Location from 'expo-location';
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
