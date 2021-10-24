@@ -7,7 +7,7 @@ import appStyles from './AppStyles';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
-import LocationsMap from './LocationsInfoMap';
+import LocationsMap from './LocationsMap';
 
 export default function LocationsInfo({route}) {
   const {location} = route.params;
@@ -62,6 +62,7 @@ export default function LocationsInfo({route}) {
           setLowerPanelContent={setLowerPanelContent}
           locations={locationList}
           style={{}}
+          from="locationsInfo"
         />
       </View>
       <View style={{height: 400}}>

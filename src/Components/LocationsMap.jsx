@@ -88,7 +88,7 @@ export default function LocationsMap(props) {
               title={location.resource}
               description={location.phoneNumber}
               pinColor={appStyles.blueColor}
-              onPress={(e) => {
+              onPress={(e) => {(props.from=="locationsInfo") ? "" :
                 props.navigation.navigate('LocationsInfo', {
                   location,
                 });
