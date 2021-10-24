@@ -88,6 +88,7 @@ export default function LocationsMap(props) {
               title={location.resource}
               description={location.phoneNumber}
               pinColor={appStyles.blueColor}
+              //If a Marker is pressed from the LocationsInfo page, do nothing, Otherwise, send the user to the LocationsInfo page for the pressed Marker
               onPress={(e) => {(props.from=="locationsInfo") ? "" :
                 props.navigation.navigate('LocationsInfo', {
                   location,
