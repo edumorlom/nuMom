@@ -7,7 +7,7 @@ import appStyles from './AppStyles';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
-import LocationsMap from './LocationsMap';
+import LocationsMap from './LocationsInfoMap';
 
 export default function LocationsInfo({route}) {
   const {location} = route.params;
