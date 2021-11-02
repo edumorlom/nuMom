@@ -129,6 +129,7 @@ export const wicChecklist = () => {
             text={checklist.text}
             subtext={checklist.subtext}
             key={key}
+            keyIdentifier = {"WIC" + key}
           />
         ))}
       </ScrollView>

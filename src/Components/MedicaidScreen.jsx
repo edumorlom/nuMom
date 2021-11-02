@@ -103,6 +103,7 @@ export const medicaidChecklist = () => {
             text={checklist.text}
             subtext={checklist.subtext}
             key={key}
+            keyIdentifier = {"Medicaid" + key}
           />
         ))}
       </ScrollView>
