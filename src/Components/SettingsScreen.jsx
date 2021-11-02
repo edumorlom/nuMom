@@ -24,6 +24,7 @@ import goBackImg from '../../assets/go-back-arrow.png';
 import logOutImg from '../../assets/logOutIcon.png';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';
+import {saveCookie} from './Cookies';
 
 const SettingsScreen = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(null);
@@ -259,13 +260,6 @@ const SettingsScreen = (props) => {
       weekNo = null;
     }
     return [nextWeek, weekNo];
-  };
-  const saveCookie = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, value).then();
-    } catch (e) {
-      console.log(`Error storeData: ${e}`);
-    }
   };
 
   const logout = () => {
