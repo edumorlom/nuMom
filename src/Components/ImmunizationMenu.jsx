@@ -11,7 +11,7 @@ import appStyles, {borderRadius, shadow} from './AppStyles';
 import translate from './getLocalizedText';
 
 export default function ImmunizationMenu(props) {
-  const {type, date, notes} = props.immunizations?.val();
+  const {type, dosage, date, notes} = props.immunizations?.val();
 
   AsyncAlert = () =>
     new Promise((resolve, reject) => {
@@ -56,7 +56,7 @@ export default function ImmunizationMenu(props) {
               fontWeight: 'bold',
             }}
           >
-            {type}
+            {type} - {dosage}
           </Text>
           <Text
             style={{
