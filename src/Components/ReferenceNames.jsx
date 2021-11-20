@@ -31,18 +31,19 @@ function ReferenceNames(props) {
   );
   return (
     <View style={appStyles.contentContainer}>
+      <TouchableOpacity
+        style={appStyles.viewPlus}
+        onPress={() => {
+          props.navigation.navigate('AddReferenceNames');
+        }}
+      >
+        <Image source={Plus} style={{height: 25, width: 25}} />
+      </TouchableOpacity>
+
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}
       >
-        <TouchableOpacity
-          style={appStyles.viewPlus}
-          onPress={() => {
-            props.navigation.navigate('AddReferenceNames');
-          }}
-        >
-          <Image source={Plus} style={{height: 25, width: 25}} />
-        </TouchableOpacity>
         <View>
           {references.map((references, index) => (
             <ReferenceInfo
