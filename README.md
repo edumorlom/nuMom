@@ -116,3 +116,20 @@ To access Firebase, you will first have to install Firebase and its tools onto y
 You should also commit the version code change you did in the app.json to development on GitHub.
 
 ### Deploying to IOS
+
+1. Login to the developer expo account by typing "expo login" in the terminal. You'll have to contact Eduardo to get his login credentials.
+
+2. Increment the version in app.json by 1.
+
+3. Save app.json and close it.
+
+4. Navigate to your project directory 'moms-infants-healthy' and build the apk in the terminal by entering: "expo build:ios" 
+
+5. Choose “apk” and hit enter to build the app as an .apk file, the standard installation package for Android apps..
+	You might encounter the error: “Connecting to metro bundler failed.” That's fine to ignore, just keep trying the build command until it starts the metro bundler. It may take a few attempts.
+
+6. It will take a bit to build the apk but once it finishes, you'll be placed in a queue for your apk to build. You can go to the expo link in the terminal to monitor the build status while it finishes. 
+
+7. Download the apk once it finishes building open transporter app and upload the zip file.
+
+You should also commit the version code change you did in the app.json to development on GitHub.
