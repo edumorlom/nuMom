@@ -18,6 +18,7 @@ import {getUid, addImmunization} from '../Firebase';
 export default function NewImmunization(props) {
   immunization = [
     ([type, setType] = useState(null)),
+    ([dosage, setDosage] = useState(null)),
     ([date, setDate] = useState(
       `${moment().format('MM')}/${moment().format('DD')}/${moment().format(
         'YYYY'
@@ -30,41 +31,30 @@ export default function NewImmunization(props) {
   immunizationInfo = {
     type,
     date,
+    dosage,
     notes,
   };
 
   const immunizationArray = [
-    '<<Select Immunization>>',
-    'First dose Hepatitis B',
-    'First dose diphtheria, tetanus, and pertussis (Dtap)',
-    'First dose polio (IPV)',
-    'First dose haemophilus influenzae Type B (Hib)',
-    'First dose pneumococcal vaccine (PCV)',
-    'First dose rotavirus',
-    'Second dose Hepatitis B',
-    'Third dose Hepatitis B',
-    'Second dose diphtheria, tetanus, and pertussis (Dtap)',
-    'Second dose polio (IPV)',
-    'Second dose haemophilus influenzae Type B (Hib)',
-    'Second dose pneumococcal vaccine (PCV)',
-    'Second dose rotavirus',
-    'Third dose diphtheria, tetanus, and pertussis (Dtap)',
-    'Third dose polio (IPV)',
-    'Third dose haemophilus influenzae Type B (Hib)',
-    'Third dose pneumococcal vaccine (PCV)',
-    'Third dose rotavirus',
-    'Flu vaccine',
-    'Fourth dose Hepatitis B',
-    'First dose Hepatitis A',
-    'First dose Measles, mumps, and rubella (MMR)',
-    'First dose Chickenpox (Varicella)',
-    'Fourth dose haemophilus influenzae Type B (Hib)',
-    'Fourth dose pneumococcal vaccine (PCV)',
-    'Second dose Hepatitis A',
-    'Fourth dose diphtheria, tetanus, and pertussis (Dtap)',
-    'Fourth dose polio (IPV)',
-    'Second dose Measles, mumps, and rubella (MMR)',
-    'Second dose Chickenpox (Varicella)',
+    'Select Vaccine Type',
+    'Hepatitis B',
+    'Diphtheria, Tetanus, and Pertussis (Dtap)',
+    'Polio (IPV)',
+    'Jaemophilus Influenzae Type B (Hib)',
+    'Pneumococcal Vaccine (PCV)',
+    'Rotavirus',
+    'Flu Vaccine',
+    'Hepatitis A',
+    'Measles, Mumps, and Rubella (MMR)',
+    'Chickenpox (Varicella)',
+  ];
+
+  const dosageArray = [
+    'Select Dosage',
+    'First Shot',
+    'Second Shot',
+    'Third Shot',
+    'Fourth Shot',
   ];
 
   const immunizations = immunizationArray.map((immunization) => ({
@@ -72,8 +62,13 @@ export default function NewImmunization(props) {
     value: immunization,
   }));
 
+  const dosages = dosageArray.map((dosage) => ({
+    label: translate(dosage),
+    value: dosage,
+  }));
+
   onPress = async () => {
-    if (!type || !date || type === '<<Select Immunization>>') {
+    if (!type || !date || type === 'Select Vaccine Type'|| dosage === 'Select Dosage' || !dosage) {
       alert(translate('fillOutAllFields'));
     } else {
       await addImmunization(uid, immunizationInfo);
@@ -125,6 +120,27 @@ export default function NewImmunization(props) {
           onChangeText={(value, index, data) => setType(value)}
         />
       </View>
+      <View style={styles.container}>
+        <Text style={styles.textTitle}>{translate('ImmunizationDose')}</Text>
+        <Dropdown
+          containerStyle={{
+            ...styles.Dropdown,
+          }}
+          pickerStyle={{
+            ...styles.Picker,
+          }}
+          inputContainerStyle={{borderBottomColor: 'transparent'}}
+          textAlign="center"
+          itemCount={8}
+          itemTextStyle={{alignSelf: 'center'}}
+          fontSize={26}
+          data={dosages}
+          label={translate(dosages)}
+          value={dosages[0].value}
+          useNativeDriver
+          onChangeText={(value, index, data) => setDosage(value)}
+        />
+      </View>
       <View style={appStyles.TextInputImmunization.View}>
         <TextBox
           placeholder={translate('immunizationNotes')}
@@ -136,7 +152,7 @@ export default function NewImmunization(props) {
         />
       </View>
       <View style={styles.container}>
-        <Text style={styles.textTitle}>{translate('Date')}</Text>
+        <Text style={styles.textTitle}>{translate('Date')}:</Text>
         <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.textStyle}>{date}</Text>
         </TouchableOpacity>

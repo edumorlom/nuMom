@@ -1,10 +1,9 @@
-import React, {Component, useState, useEffect} from 'react';
-import {Text, View, Linking, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Linking, ScrollView} from 'react-native';
 import {getPreciseDistance} from 'geolib';
+import * as Location from 'expo-location';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
-import Button from './Button';
-import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
 import checklist from '../../assets/check5list2.jpg';
@@ -140,7 +139,7 @@ export const medicaidLocations = (props) => {
 
   const sortMedicaid = async (medicaidLocations) => {
     try {
-      const position = await getPosition();
+      const position = await Location.getCurrentPositionAsync({});
       const MedicaidLocations = medicaidLocations; // For mutation, cant mutate param
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -161,12 +160,6 @@ export const medicaidLocations = (props) => {
       console.error(err);
     }
   };
-
-  // Gets the current user position
-  const getPosition = (options) =>
-    new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
 
   const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
