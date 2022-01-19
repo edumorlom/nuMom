@@ -1,13 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  Linking,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import {Text, View, Linking, ScrollView, StyleSheet} from 'react-native';
 import {getPreciseDistance} from 'geolib';
-import {Picker} from '@react-native-picker/picker'
+import {Picker} from '@react-native-picker/picker';
+import * as Location from 'expo-location';
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
@@ -15,7 +10,6 @@ import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
 import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
-import * as Location from 'expo-location';
 import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
 
@@ -351,14 +345,8 @@ export const wicFeeding = () => {
             style={appStyles.Notes}
             text="Soda, gelatin, coffee, tea, fruit punches and -ade drinks"
           />
-          <BetterMenu
-            style={appStyles.Notes}
-            text="Cow milk until 12 months"
-          />
-          <BetterMenu 
-            style={appStyles.Notes} 
-            text="Added Salt"
-          />
+          <BetterMenu style={appStyles.Notes} text="Cow milk until 12 months" />
+          <BetterMenu style={appStyles.Notes} text="Added Salt" />
           <BetterMenu
             style={appStyles.Notes}
             text="Added oil, butter, other fats, seasoning"
@@ -411,8 +399,8 @@ export const wicFeeding = () => {
     <View style={appStyles.contentContainer}>
       <View style={styles.containerDropDown}>
         <Text>
-            Select Age of Infant or Relevant Information concerning Foods for
-            Infants{'\n'}
+          Select Age of Infant or Relevant Information concerning Foods for
+          Infants{'\n'}
         </Text>
         <Picker
           selectedValue={age}

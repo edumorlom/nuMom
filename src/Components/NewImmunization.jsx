@@ -68,7 +68,13 @@ export default function NewImmunization(props) {
   }));
 
   onPress = async () => {
-    if (!type || !date || type === 'Select Vaccine Type'|| dosage === 'Select Dosage' || !dosage) {
+    if (
+      !type ||
+      !date ||
+      type === 'Select Vaccine Type' ||
+      dosage === 'Select Dosage' ||
+      !dosage
+    ) {
       alert(translate('fillOutAllFields'));
     } else {
       await addImmunization(uid, immunizationInfo);

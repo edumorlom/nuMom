@@ -352,7 +352,10 @@ const SettingsScreen = (props) => {
             </Picker>
           </View> */}
             <View style={styles.containerDropDown}>
-              <Text>{translate('areYouPregnant')}{'\n'}</Text>
+              <Text>
+                {translate('areYouPregnant')}
+                {'\n'}
+              </Text>
               <Picker
                 selectedValue={pregnant}
                 style={styles.questionsDropDown}
@@ -363,7 +366,10 @@ const SettingsScreen = (props) => {
               </Picker>
             </View>
             <View style={styles.containerDropDown}>
-              <Text>{translate('didYouHaveInfants')}{'\n'}</Text>
+              <Text>
+                {translate('didYouHaveInfants')}
+                {'\n'}
+              </Text>
               <Picker
                 selectedValue={infant}
                 style={styles.questionsDropDown}

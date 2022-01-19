@@ -62,7 +62,7 @@ export default function LocationsInfo({route}) {
           setLowerPanelContent={setLowerPanelContent}
           locations={locationList}
           style={{}}
-          from="locationsInfo"  //send a prop to tell LocationsMap that it is being called from the Locations Info page, to not allow pins to be clicked within this page.
+          from="locationsInfo" // send a prop to tell LocationsMap that it is being called from the Locations Info page, to not allow pins to be clicked within this page.
         />
       </View>
       <View style={{height: 400}}>
