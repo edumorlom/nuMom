@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
-import appStyles from './AppStyles';
+import appStyles, {regularFontSize} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
 
@@ -58,6 +58,7 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -82,6 +83,10 @@ export default SignUpPassword = (props) => {
               <Text style={appStyles.titleBlue}>
                 {translate('createPassword')}
               </Text>
+              <Text style={{fontSize: regularFontSize}}>
+                {`Password Strength: ${password.length < 4 ? 'Low' : 'High'}`}
+              </Text>
+
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
