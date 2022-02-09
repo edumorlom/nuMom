@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
-import {Notifications} from 'expo';
-import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
 import * as Calendar from 'expo-calendar';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
@@ -146,12 +145,26 @@ export const passwordReset = (email) =>
 
 // Asks for notifications permission
 export const registerForPushNotificationsAsync = async (currentUser) => {
-  const {existingStatus} = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
+  const {existingStatus} = await Notifications.requestPermissionsAsync({
+    ios: {
+      allowAlert: true,
+      allowBadge: true,
+      allowSound: true,
+      allowAnnouncements: true,
+    },
+  });
+
   let finalStatus = existingStatus;
   if (existingStatus !== 'granted') {
-    const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    const {status} = await Notifications.requestPermissionsAsync({
+      ios: {
+        allowAlert: true,
+        allowBadge: true,
+        allowSound: true,
+        allowAnnouncements: true,
+      },
+    });
+
     finalStatus = status;
   }
   // Stop here if the user did not grant permissions

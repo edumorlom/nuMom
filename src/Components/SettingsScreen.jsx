@@ -13,7 +13,8 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import {Picker, AsyncStorage} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as firebase from 'firebase';
 import {AntDesign} from '@expo/vector-icons';
 import BackButton from './Button';
@@ -351,7 +352,10 @@ const SettingsScreen = (props) => {
             </Picker>
           </View> */}
             <View style={styles.containerDropDown}>
-              <Text>{translate('areYouPregnant')}</Text>
+              <Text>
+                {translate('areYouPregnant')}
+                {'\n'}
+              </Text>
               <Picker
                 selectedValue={pregnant}
                 style={styles.questionsDropDown}
@@ -362,7 +366,10 @@ const SettingsScreen = (props) => {
               </Picker>
             </View>
             <View style={styles.containerDropDown}>
-              <Text>{translate('didYouHaveInfants')}</Text>
+              <Text>
+                {translate('didYouHaveInfants')}
+                {'\n'}
+              </Text>
               <Picker
                 selectedValue={infant}
                 style={styles.questionsDropDown}
