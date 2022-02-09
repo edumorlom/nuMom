@@ -25,7 +25,6 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
-  
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -38,9 +37,14 @@ export default SignUpPassword = (props) => {
         value !== null && value !== '' ? setRepeat(value) : null;
       })
       .done();
-  }, []);
 
-  let onChangePassword = () => {
+      passwordStyle();
+
+    }, []);
+
+    
+
+  let checkPassword = () => {
     if(badPasswords.includes(password))
     {
       setPasswordStrength(0);
@@ -48,28 +52,28 @@ export default SignUpPassword = (props) => {
     }
 
     let charCount = 0;
-    for(i = 0; i < password.length; i++)
+    for(let i = 0; i < password.length; i++)
       if(/[A-Z]/.test(password))
       {
         charCount += 1000;
         setTypeCount(charCount);
         break;
       }
-    for(i = 0; i < password.length; i++)
+    for(let i = 0; i < password.length; i++)
       if(/[a-z]/.test(password))
       {
         charCount += 100;
         setTypeCount(charCount);
         break;
       }
-    for(i = 0; i < password.length; i++)
+    for(let i = 0; i < password.length; i++)
       if(/[0-9]/.test(password))
       {
         charCount += 10;
         setTypeCount(charCount);
         break;
       }
-    for(i = 0; i < password.length; i++)
+    for(let i = 0; i < password.length; i++)
       if(/[^A-Za-z0-9 ]/.test(password))
       {
         charCount += 1;
@@ -79,12 +83,17 @@ export default SignUpPassword = (props) => {
     
     if(charCount == 1111)
       setPasswordStrength(2)
-    else if(charCount == 1110 || charCount == 1101 || charCount == 1011 || charCount == 0111)
+    else if(charCount == 1110 || charCount == 1101 || charCount == 1011 || charCount == 111)
       setPasswordStrength(1)
     else
       setPasswordStrength(0)
 
-      setPassword(password)
+      
+  }
+
+  const onChangePassword = async (password) => {
+    setPassword(password);
+    checkPassword(password);
   }
 
   let passwordStyle = (passwordStrength) => {
@@ -105,7 +114,7 @@ export default SignUpPassword = (props) => {
         message += " (Password is missing a number)"
       if(typeCount == 1011)
         message += " (Password is missing a lower-case letter)"
-      if(typeCount == 0111)
+      if(typeCount == 111)
         message += " (Password is missing a capital letter)"
     }
     if(passwordStrength == 2)
@@ -141,6 +150,8 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -172,9 +183,9 @@ export default SignUpPassword = (props) => {
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
-                />
+                /> 
 
-                {passwordViewStyle(passwordStrength)}
+                {passwordStyle(passwordStrength)}
                 <TextBox
                   placeholder={translate('repeatPasswordInput')}
                   onChangeText={setRepeat}
