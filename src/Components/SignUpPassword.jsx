@@ -26,6 +26,7 @@ export default SignUpPassword = (props) => {
   const [isNum, setIsNum] = useState(false);
   const [isSymbol, setIsSymbol] = useState(false);
 
+  const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
   const {email} = props.route.params;
@@ -42,39 +43,45 @@ export default SignUpPassword = (props) => {
         value !== null && value !== '' ? setRepeat(value) : null;
       })
       .done();
-    }, []);
+  }, []);
+
+    let onChangePassword = (password) => {    // when the user changes the input field of the password...
+      setPassword(password);
+      checkPassword(password);
+    }
     
-  let checkPassword = (password) => {
+  let checkPassword = (password) => { // check if the password meets requirements...
     
+    // initializing variables for characters found in the password as false
     setIsLowercase(false);
     setIsUppercase(false);
     setIsNum(false);
     setIsSymbol(false);
 
-    let charCount = 0;
+    let charCount = 0;  // local variable for determining the number of unique character groups (lowercase, uppercase, number, symbol)
 
-    for(let i = 0; i < password.length; i++)  // check to see if password has a lowercase letter
+    for(let i = 0; i < password.length; i++)  // If password has a lowercase letter, increment charCount and set isLowercase to true
       if(/[a-z]/.test(password))
       {
         charCount++;
         setIsLowercase(true);
         break;
       }
-    for(let i = 0; i < password.length; i++)  // check to see if password has a uppercase letter
+    for(let i = 0; i < password.length; i++)  // check to see if password has a uppercase letter, increment charCount and set isUppercase to true
       if(/[A-Z]/.test(password))
       {
         charCount++;
         setIsUppercase(true);
         break;
       }
-    for(let i = 0; i <= password.length; i++)  // check to see if password has a number
+    for(let i = 0; i <= password.length; i++)  // check to see if password has a number, increment charCount and set isNum to true
       if(/[0-9]/.test(password))
       {
         charCount++;
         setIsNum(true);
         break;
       }
-    for(let i = 0; i <= password.length; i++)  // check to see if password has a symbol
+    for(let i = 0; i <= password.length; i++)  // check to see if password has a symbol, increment charCount and set isSymbol to true
       if(/[^A-Za-z0-9 ]/.test(password))
       {
         charCount++;
@@ -82,11 +89,11 @@ export default SignUpPassword = (props) => {
         break;
       }
     
-    setCharCount(charCount);
+    setCharCount(charCount);  // set the global variable charCount to the value of the local variable.
 
-      if(badPasswords.includes(password)) // if the password is found in the list of bad passwords, set the passwordStrength to 0 ('poor')
+      if(badPasswords.includes(password)) // if the password is found in the list of bad passwords, set the passwordStrength to -1 ('poor' + bad password list)
       {
-        setPasswordStrength(0);
+        setPasswordStrength(-1);
         return;
       }
     
@@ -96,16 +103,11 @@ export default SignUpPassword = (props) => {
       setPasswordStrength(1)
     else                        // otherwise... set the passwordStrength to 0 ('poor')
       setPasswordStrength(0)
-
-      
   }
 
-  let onChangePassword = (password) => {
-    setPassword(password);
-    checkPassword(password);
-  }
-
-  let passwordStyle = (passwordStrength) => {
+  let passwordStyle = (passwordStrength) => {     // changing how messages are shown to the user to help understand if their password is good or not and why.
+    
+    // declaring variables for messages and their colors
     let _color;
     let message;
     let message2 = "";
@@ -115,48 +117,44 @@ export default SignUpPassword = (props) => {
     let messageNum = " \t- number"
     let messageSymbol = " \t- symbol"
 
-    let colorLower = pinkColor, colorUpper = pinkColor, colorNum = pinkColor, colorSymbol = pinkColor;
+    let colorLower = pinkColor, 
+        colorUpper = pinkColor, 
+        colorNum = pinkColor, 
+        colorSymbol = pinkColor;
     
-    if(passwordStrength == 0)
+    if(passwordStrength < 1)  // if the password does not meet valid requirements, warn the user
     {
       _color = pinkColor;
       message = "Password Strength: Poor"
-      if(password.length <= 4)
-        message2 += " \n* Password must be at least 5 characters"
-      
-        if(!isLowercase && !isUppercase && !isNum && !isSymbol)  // if there are NONE of the character types (uppercase, lowercase, number, symbol)
-        {
-          message2 += "\n* The password should contain atleast 3 of the following:"
-        }
-        else if( charCount == 1 )  // if there is ONE of the character types (uppercase, lowercase, number, symbol)
-        {
-          message2 += "\n* The password should contain atleast 2 more of the following:"
-        }
-        else  // if there are TWO of the character types (uppercase, lowercase, number, symbol)
-        {
-          message2 += "\n* The password should contain atleast 1 more of the following: "
-        }
-      
-      
     }
-    if(passwordStrength == 1)
+    if(passwordStrength == -1) // if the password was found in the badPasswords list, warn the user
+    {
+      message2 += " \n* Password was found on our list of bad passwords"
+    }
+    if(passwordStrength == 1) // if the password meets requirements for 'medium' password strength...
     {
       _color = blueColor;
       message = "Password Strength: Medium"
     }
-    if(passwordStrength == 2)
+    if(passwordStrength == 2) // if the password meets requirements for 'high' password strength...
     {
       _color = "#298000";
       message = "Password Strength: High"
     }
 
-    if(isLowercase)
+    if(password.length <= 4)  // if the password is not long enough (5 characters), warn the user
+      message2 += " \n* Password must be at least 5 characters"
+    
+    if(charCount < 3)  // if there are NONE of the character types (lowercase, uppercase, number, symbol)
+        message2 += "\n* The password should contain atleast 3 of the following:"
+
+    if(isLowercase)             // if there is a lowercase letter, turn the color for the 'lowercase letter' message green
       colorLower = "#298000";
-    if(isUppercase)
+    if(isUppercase)             // if there is an uppercase letter, turn the color for the 'uppercase letter' message green
       colorUpper = "#298000";
-    if(isNum)
+    if(isNum)                   // if there is a number, turn the color for the 'number' message green
       colorNum = "#298000";
-    if(isSymbol)
+    if(isSymbol)                // if there is a symbol, turn the color for the 'symbol' message green
       colorSymbol = "#298000";
 
     return (
@@ -185,6 +183,7 @@ export default SignUpPassword = (props) => {
       // AsyncStorage.setItem('pass', password);
       // AsyncStorage.setItem('repeat', repeat);
       props.navigation.navigate('SignUpYesorNoPregnant', {
+        liveMiami,
         name,
         dob,
         email,
@@ -195,7 +194,6 @@ export default SignUpPassword = (props) => {
       });
     }
   };
-
 
   return (
     <KeyboardAvoidingView
@@ -228,7 +226,7 @@ export default SignUpPassword = (props) => {
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
-                /> 
+                />
 
                 {passwordStyle(passwordStrength)}
                 <TextBox
