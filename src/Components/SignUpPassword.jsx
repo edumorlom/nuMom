@@ -1,3 +1,4 @@
+import {Color} from 'paper/dist/paper-core';
 import React, {useEffect, useState} from 'react';
 import {
   AsyncStorage,
@@ -9,9 +10,15 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
-import appStyles, {blueColor, pinkColor, regularFontSize} from './AppStyles';
+import appStyles, {
+  blueColor,
+  pinkColor,
+  greyColor,
+  regularFontSize,
+} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import lowStrengthPasswords from './lowStrengthPassword';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -78,14 +85,14 @@ export default SignUpPassword = (props) => {
     let hasNumber = false;
 
     for (let i = 0; i < password.length; i++) {
-      if (password.charAt(i) == password.charAt(i).toUpperCase()) {
-        hasUpperCase = false;
-      } else if (password.charAt(i) == password.charAt(i).toLowerCase()) {
-        hasLowerCase = false;
-      } else if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
-        hasNumber = false;
-      } else {
+      if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
+        hasNumber = true;
+      } else if (symbols.includes(password.charAt(i))) {
         hasSymbol = true;
+      } else if (password.charAt(i) == password.charAt(i).toLowerCase()) {
+        hasLowerCase = true;
+      } else if (password.charAt(i) == password.charAt(i).toUpperCase()) {
+        hasUpperCase = true;
       }
     }
     setCheck(
@@ -96,21 +103,39 @@ export default SignUpPassword = (props) => {
     );
 
     if (password.length >= 5 && check == 3) {
-      setPasswordLevel('Medium');
+      setPasswordLevel(1);
     } else if (password.length >= 5 && check == 4) {
-      setPasswordLevel('High');
+      setPasswordLevel(2);
     } else {
-      setPasswordLevel('Low');
+      setPasswordLevel(0);
     }
   }
-  function PasswordStatus(props) {
+  let passwordStatus = (currentPasswordLevel) => {
+    let textComponentColor;
+    let textComponentMessage;
+    isPasswordInBadList = lowStrengthPasswords.includes(password);
+    if (isPasswordInBadList) {
+      textComponentColor = greyColor;
+      textComponentMessage = 'Password Strength: Low';
+      return;
+    }
+    if (currentPasswordLevel == 1 && password.length >= 5) {
+      textComponentColor = blueColor;
+      textComponentMessage = 'Password Strength: Medium';
+    } else if (currentPasswordLevel == 2 && password.length >= 5) {
+      textComponentColor = pinkColor;
+      textComponentMessage = 'Password Strength: High';
+    } else {
+      textComponentColor = greyColor;
+      textComponentMessage = 'Password Strength: Low';
+    }
+
     return (
-      <Text style={{fontSize: regularFontSize}}>
-        {' '}
-        {`Password Strength: ${check}`}{' '}
+      <Text style={{fontSize: regularFontSize, color: textComponentColor}}>
+        {textComponentMessage}
       </Text>
     );
-  }
+  };
   let passwordProtection = (password) => {
     PasswordChecker(password);
     setPassword(password);
@@ -164,7 +189,7 @@ export default SignUpPassword = (props) => {
                 {translate('createPassword')}
               </Text>
 
-              <PasswordStatus />
+              {passwordStatus(passwordLevel)}
 
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox

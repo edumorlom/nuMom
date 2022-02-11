@@ -122,13 +122,13 @@ You should also commit the version code change you did in the app.json to develo
 
 3. Save app.json and close it.
 
-4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios" 
+4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios"
 
 5. When prompted "Choose the build type you would like," choose archive
 
 6. Login with your apple credentials
 
-7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes. 
+7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes.
 
 8. Download the ipa once it finishes building
 
