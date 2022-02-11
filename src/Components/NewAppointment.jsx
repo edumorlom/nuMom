@@ -227,7 +227,6 @@ export default function NewAppointment(props) {
             onCancel={hideDatePicker}
             is24Hour
             headerTextIOS={translate('dateHeader')}
-            textColor = 'black'
           />
         </View>
         <View style={styles.seperator} />
@@ -243,7 +242,6 @@ export default function NewAppointment(props) {
             onCancel={hideTimePicker}
             is24Hour
             headerTextIOS={translate('timeHeader')}
-            textColor = 'black'
           />
         </View>
         <View style={styles.seperator} />
