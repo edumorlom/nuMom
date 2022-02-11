@@ -21,10 +21,10 @@ export default SignUpPassword = (props) => {
   const [passwordStrength, setPasswordStrength] = useState('');
   const [charCount, setCharCount] = useState('');
 
-  const [isLowercase, setIsLowercase] = useState(false);
-  const [isUppercase, setIsUppercase] = useState(false);
-  const [isNum, setIsNum] = useState(false);
-  const [isSymbol, setIsSymbol] = useState(false);
+  const [hasLowercase, setHasLowercase] = useState(false);
+  const [hasUppercase, setHasUppercase] = useState(false);
+  const [hasNum, setHasNum] = useState(false);
+  const [hasSymbol, setHasSymbol] = useState(false);
 
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
@@ -53,49 +53,46 @@ export default SignUpPassword = (props) => {
   let checkPassword = (password) => { // check if the password meets requirements...
     
     // initializing variables for characters found in the password as false
-    setIsLowercase(false);
-    setIsUppercase(false);
-    setIsNum(false);
-    setIsSymbol(false);
+    setHasLowercase(false);
+    setHasUppercase(false);
+    setHasNum(false);
+    setHasSymbol(false);
 
     let charCount = 0;  // local variable for determining the number of unique character groups (lowercase, uppercase, number, symbol)
 
-    for(let i = 0; i < password.length; i++)  // If password has a lowercase letter, increment charCount and set isLowercase to true
-      if(/[a-z]/.test(password))
-      {
-        charCount++;
-        setIsLowercase(true);
-        break;
-      }
-    for(let i = 0; i < password.length; i++)  // check to see if password has a uppercase letter, increment charCount and set isUppercase to true
-      if(/[A-Z]/.test(password))
-      {
-        charCount++;
-        setIsUppercase(true);
-        break;
-      }
-    for(let i = 0; i <= password.length; i++)  // check to see if password has a number, increment charCount and set isNum to true
-      if(/[0-9]/.test(password))
-      {
-        charCount++;
-        setIsNum(true);
-        break;
-      }
-    for(let i = 0; i <= password.length; i++)  // check to see if password has a symbol, increment charCount and set isSymbol to true
-      if(/[^A-Za-z0-9 ]/.test(password))
-      {
-        charCount++;
-        setIsSymbol(true);
-        break;
-      }
+    // If password has a lowercase letter, increment charCount and set hasLowercase to true
+    if(/[a-z]/.test(password))
+    {
+      charCount++;
+      sethasLowercase(true);
+    }
+    // check to see if password has a uppercase letter, increment charCount and set hasUppercase to true
+    if(/[A-Z]/.test(password))
+    {
+      charCount++;
+      sethasUppercase(true);
+    }
+    // check to see if password has a number, increment charCount and set hasNum to true
+    if(/[0-9]/.test(password))
+    {
+      charCount++;
+      sethasNum(true);
+    }
+    // check to see if password has a symbol, increment charCount and set hasSymbol to true
+    if(/[^A-Za-z0-9 ]/.test(password))
+    {
+      charCount++;
+      sethasSymbol(true);
+    }
     
     setCharCount(charCount);  // set the global variable charCount to the value of the local variable.
 
-      if(badPasswords.includes(password)) // if the password is found in the list of bad passwords, set the passwordStrength to -1 ('poor' + bad password list)
-      {
-        setPasswordStrength(-1);
-        return;
-      }
+    // if the password is found in the list of bad passwords, set the passwordStrength to -1 ('poor' + bad password list)
+    if(badPasswords.includes(password))
+    {
+      setPasswordStrength(-1);
+      return;
+    }
     
     if(charCount == 4 && password.length >= 5) // if the criteria for 'high' password strength is met, set passwordStrength to 2
       setPasswordStrength(2)
@@ -138,7 +135,7 @@ export default SignUpPassword = (props) => {
     }
     if(passwordStrength == 2) // if the password meets requirements for 'high' password strength...
     {
-      _color = "#298000";
+      _color = greenColor;
       message = "Password Strength: High"
     }
 
@@ -148,14 +145,14 @@ export default SignUpPassword = (props) => {
     if(charCount < 3)  // if there are NONE of the character types (lowercase, uppercase, number, symbol)
         message2 += "\n* The password should contain atleast 3 of the following:"
 
-    if(isLowercase)             // if there is a lowercase letter, turn the color for the 'lowercase letter' message green
-      colorLower = "#298000";
-    if(isUppercase)             // if there is an uppercase letter, turn the color for the 'uppercase letter' message green
-      colorUpper = "#298000";
-    if(isNum)                   // if there is a number, turn the color for the 'number' message green
-      colorNum = "#298000";
-    if(isSymbol)                // if there is a symbol, turn the color for the 'symbol' message green
-      colorSymbol = "#298000";
+    if(hasLowercase)             // if there is a lowercase letter, turn the color for the 'lowercase letter' message green
+      colorLower = greenColor;
+    if(hasUppercase)             // if there is an uppercase letter, turn the color for the 'uppercase letter' message green
+      colorUpper = greenColor;
+    if(hasNum)                   // if there is a number, turn the color for the 'number' message green
+      colorNum = greenColor;
+    if(hasSymbol)                // if there is a symbol, turn the color for the 'symbol' message green
+      colorSymbol = greenColor;
 
     return (
       <View >
