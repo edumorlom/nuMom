@@ -1,4 +1,3 @@
-import {Color} from 'paper/dist/paper-core';
 import React, {useEffect, useState} from 'react';
 import {
   AsyncStorage,
@@ -18,7 +17,6 @@ import appStyles, {
 } from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
-import lowStrengthPasswords from './lowStrengthPassword';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -103,39 +101,39 @@ export default SignUpPassword = (props) => {
     );
 
     if (password.length >= 5 && check == 3) {
-      setPasswordLevel(1);
+      setPasswordLevel('Medium');
     } else if (password.length >= 5 && check == 4) {
-      setPasswordLevel(2);
+      setPasswordLevel('High');
     } else {
-      setPasswordLevel(0);
+      setPasswordLevel('Low');
     }
   }
-  let passwordStatus = (currentPasswordLevel) => {
+  function PasswordStatus(props) {
     let textComponentColor;
     let textComponentMessage;
-    isPasswordInBadList = lowStrengthPasswords.includes(password);
+    let isPasswordInBadList = false;
     if (isPasswordInBadList) {
       textComponentColor = greyColor;
       textComponentMessage = 'Password Strength: Low';
       return;
     }
-    if (currentPasswordLevel == 1 && password.length >= 5) {
+    if (props.currentPasswordLevel == 1 && password.length >= 5) {
       textComponentColor = blueColor;
       textComponentMessage = 'Password Strength: Medium';
-    } else if (currentPasswordLevel == 2 && password.length >= 5) {
+    } else if (props.currentPasswordLevel == 2 && password.length >= 5) {
       textComponentColor = pinkColor;
       textComponentMessage = 'Password Strength: High';
     } else {
       textComponentColor = greyColor;
       textComponentMessage = 'Password Strength: Low';
     }
-
     return (
       <Text style={{fontSize: regularFontSize, color: textComponentColor}}>
-        {textComponentMessage}
+        {' '}
+        {` Password Strength: ${passwordLevel}`}{' '}
       </Text>
     );
-  };
+  }
   let passwordProtection = (password) => {
     PasswordChecker(password);
     setPassword(password);
@@ -189,7 +187,7 @@ export default SignUpPassword = (props) => {
                 {translate('createPassword')}
               </Text>
 
-              {passwordStatus(passwordLevel)}
+              <PasswordStatus currentPasswordLevel={passwordLevel} />
 
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
