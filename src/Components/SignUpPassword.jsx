@@ -9,13 +9,15 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
 } from 'react-native';
-import appStyles, {regularFontSize} from './AppStyles';
+import appStyles, {blueColor, pinkColor, regularFontSize} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
+  const [passwordLevel, setPasswordLevel] = useState('');
+  const [check, setCheck] = useState('');
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
@@ -35,12 +37,90 @@ export default SignUpPassword = (props) => {
       .done();
   }, []);
 
+  function PasswordChecker(password) {
+    let status;
+
+    const symbols = [
+      ' ',
+      '!',
+      '"',
+      '#',
+      '$',
+      '%',
+      '^',
+      '&',
+      '(',
+      ')',
+      '*',
+      '+',
+      ',',
+      '.',
+      '-',
+      '/',
+      ':',
+      ';',
+      '<',
+      '>',
+      '?',
+      '@',
+      '[',
+      ']',
+      '{',
+      '}',
+      '_',
+      '~',
+      '|',
+    ];
+
+    let hasUpperCase = false;
+    let hasLowerCase = false;
+    let hasSymbol = false;
+    let hasNumber = false;
+
+    for (let i = 0; i < password.length; i++) {
+      if (password.charAt(i) == password.charAt(i).toUpperCase()) {
+        hasUpperCase = false;
+      } else if (password.charAt(i) == password.charAt(i).toLowerCase()) {
+        hasLowerCase = false;
+      } else if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
+        hasNumber = false;
+      } else {
+        hasSymbol = true;
+      }
+    }
+    setCheck(
+      (hasUpperCase ? 1 : 0) +
+        (hasLowerCase ? 1 : 0) +
+        (hasSymbol ? 1 : 0) +
+        (hasNumber ? 1 : 0)
+    );
+
+    if (password.length >= 5 && check == 3) {
+      setPasswordLevel('Medium');
+    } else if (password.length >= 5 && check == 4) {
+      setPasswordLevel('High');
+    } else {
+      setPasswordLevel('Low');
+    }
+  }
+  function PasswordStatus(props) {
+    return (
+      <Text style={{fontSize: regularFontSize}}>
+        {' '}
+        {`Password Strength: ${check}`}{' '}
+      </Text>
+    );
+  }
+  let passwordProtection = (password) => {
+    PasswordChecker(password);
+    setPassword(password);
+  };
   let onPress = () => {
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
+    } else if (password.length <= 4) {
       alert(translate('passwordTooShort'));
     } else {
       // props.setUserInfo({password});
@@ -83,15 +163,13 @@ export default SignUpPassword = (props) => {
               <Text style={appStyles.titleBlue}>
                 {translate('createPassword')}
               </Text>
-              <Text style={{fontSize: regularFontSize}}>
-                {`Password Strength: ${password.length < 4 ? 'Low' : 'High'}`}
-              </Text>
+
+              <PasswordStatus />
 
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
-                  secureTextEntry
+                  onChangeText={passwordProtection}
                   value={password}
                   style={appStyles.TextInputMask}
                 />
