@@ -44,8 +44,6 @@ export default SignUpPassword = (props) => {
   }, []);
 
   function PasswordChecker(password) {
-    let status;
-
     const symbols = [
       ' ',
       '!',
@@ -100,7 +98,11 @@ export default SignUpPassword = (props) => {
         (hasSymbol ? 1 : 0) +
         (hasNumber ? 1 : 0)
     );
-
+    let isPasswordInBadList = lowStrengthPasswords.includes(password);
+    if (isPasswordInBadList) {
+      setPasswordLevel(0);
+      return;
+    }
     if (password.length >= 5 && check == 3) {
       setPasswordLevel(1);
     } else if (password.length >= 5 && check == 4) {
@@ -112,11 +114,6 @@ export default SignUpPassword = (props) => {
   let passwordStatusComponent = (currentPasswordLevel) => {
     let textComponentColor;
     let textComponentMessage;
-    let isPasswordInBadList = lowStrengthPasswords.includes(password);
-    if (isPasswordInBadList) {
-      textComponentMessage = 'Password Strength: Low';
-      return;
-    }
 
     if (currentPasswordLevel == 1 && password.length >= 5) {
       textComponentColor = blueColor;
