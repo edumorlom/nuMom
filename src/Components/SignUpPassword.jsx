@@ -17,6 +17,7 @@ import appStyles, {
 } from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import lowStrengthPasswords from './LowStrengthPassword';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -101,26 +102,26 @@ export default SignUpPassword = (props) => {
     );
 
     if (password.length >= 5 && check == 3) {
-      setPasswordLevel('Medium');
+      setPasswordLevel(1);
     } else if (password.length >= 5 && check == 4) {
-      setPasswordLevel('High');
+      setPasswordLevel(2);
     } else {
-      setPasswordLevel('Low');
+      setPasswordLevel(0);
     }
   }
-  function PasswordStatus(props) {
+  let passwordStatusComponent = (currentPasswordLevel) => {
     let textComponentColor;
     let textComponentMessage;
-    let isPasswordInBadList = false;
+    let isPasswordInBadList = lowStrengthPasswords.includes(password);
     if (isPasswordInBadList) {
-      textComponentColor = greyColor;
       textComponentMessage = 'Password Strength: Low';
       return;
     }
-    if (props.currentPasswordLevel == 1 && password.length >= 5) {
+
+    if (currentPasswordLevel == 1 && password.length >= 5) {
       textComponentColor = blueColor;
       textComponentMessage = 'Password Strength: Medium';
-    } else if (props.currentPasswordLevel == 2 && password.length >= 5) {
+    } else if (currentPasswordLevel == 2 && password.length >= 5) {
       textComponentColor = pinkColor;
       textComponentMessage = 'Password Strength: High';
     } else {
@@ -129,11 +130,10 @@ export default SignUpPassword = (props) => {
     }
     return (
       <Text style={{fontSize: regularFontSize, color: textComponentColor}}>
-        {' '}
-        {` Password Strength: ${passwordLevel}`}{' '}
+        {textComponentMessage}
       </Text>
     );
-  }
+  };
   let passwordProtection = (password) => {
     PasswordChecker(password);
     setPassword(password);
@@ -187,12 +187,13 @@ export default SignUpPassword = (props) => {
                 {translate('createPassword')}
               </Text>
 
-              <PasswordStatus currentPasswordLevel={passwordLevel} />
+              {passwordStatusComponent(passwordLevel)}
 
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
                   onChangeText={passwordProtection}
+                  secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
                 />
