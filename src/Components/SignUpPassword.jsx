@@ -42,7 +42,10 @@ export default SignUpPassword = (props) => {
       })
       .done();
   }, []);
-
+  let passwordProtection = (password) => {
+    PasswordChecker(password);
+    setPassword(password);
+  };
   function PasswordChecker(password) {
     const symbols = [
       ' ',
@@ -131,10 +134,7 @@ export default SignUpPassword = (props) => {
       </Text>
     );
   };
-  let passwordProtection = (password) => {
-    PasswordChecker(password);
-    setPassword(password);
-  };
+
   let onPress = () => {
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
