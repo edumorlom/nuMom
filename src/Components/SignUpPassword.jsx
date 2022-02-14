@@ -105,9 +105,10 @@ export default SignUpPassword = (props) => {
       colors = appStyles.pinkColor;
       message = 'Password Strength: Poor...';
       warning =
-        'Password must contain more than 5 characters: including at least 3 of the following: ';
+        'Password must contain more than 5 characters including at least 3 of the following: ';
       warning += '\n\tA number, symbol, an uppercase, or lowercase letter.';
-    } else if (passwordStrength == 1) {
+    }
+    if (passwordStrength == 1) {
       colors = appStyles.blueColor;
       message = 'Password Strength: Medium...';
     } else {
