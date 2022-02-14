@@ -1,3 +1,5 @@
+export default `
+
 123456
 password
 12345678
@@ -998,3 +1000,5 @@ brazil
 wildcat
 polina
 freepass
+
+`;
