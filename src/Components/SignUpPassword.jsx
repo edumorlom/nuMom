@@ -96,7 +96,7 @@ export default SignUpPassword = (props) => {
     }
   };
 
-  let psswordStyle = (passwordStrength) => {
+  let passwordStyle = (passwordStrength) => {
     let colors;
     let message = '';
     let warning = '';
@@ -107,8 +107,7 @@ export default SignUpPassword = (props) => {
       warning =
         'Password must contain more than 5 characters: including at least 3 of the following: ';
       warning += '\n\tA number, symbol, an uppercase, or lowercase letter.';
-    }
-    if (passWordStrength == 1) {
+    } else if (passwordStrength == 1) {
       colors = appStyles.blueColor;
       message = 'Password Strength: Medium...';
     } else {
@@ -178,7 +177,7 @@ export default SignUpPassword = (props) => {
                   value={password}
                   style={appStyles.TextInputMask}
                 />
-                passwordStyle(passwordStrength);
+                {passwordStyle(passwordStrength)}
                 <TextBox
                   placeholder={translate('repeatPasswordInput')}
                   onChangeText={setRepeat}
