@@ -128,7 +128,7 @@ export default SignUpPassword = (props) => {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
+    } else if (password.length < 5) {
       alert(translate('passwordTooShort'));
     } else {
       // props.setUserInfo({password});
@@ -173,12 +173,12 @@ export default SignUpPassword = (props) => {
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <TextBox
                   placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
+                  onChangeText={userPassword}
                   secureTextEntry
                   value={password}
                   style={appStyles.TextInputMask}
                 />
-
+                passwordStyle(passwordStrength);
                 <TextBox
                   placeholder={translate('repeatPasswordInput')}
                   onChangeText={setRepeat}
