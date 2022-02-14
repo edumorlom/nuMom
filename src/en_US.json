@@ -25,6 +25,7 @@
   "repeatPasswordInput": "Repeat Password",
   "passwordMismatch": "Your passwords don't match!",
   "passwordTooShort": "Your password must have at least 6 characters!",
+  "passwordWeak": "Your password is too weak",
   "createPassword": "Create Password",
   "areYouPregnant": "Are You Pregnant?",
   "didYouHaveInfants": "Did You Have Any Infants?",

@@ -19,6 +19,7 @@
     "@react-native-picker/picker": "2.2.1",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
+    "babel-preset-react": "^6.24.1",
     "expo": "^44.0.0",
     "expo-calendar": "~10.1.0",
     "expo-cli": "^3.28.5",
