@@ -6,6 +6,7 @@ export const win = Dimensions.get('window');
 export const pinkColor = '#DF2172';
 export const blueColor = '#0052A1';
 export const greyColor = '#A9A9A9';
+export const greenColor = '#298000';
 export const darkGreyColor = '#5E5E5E';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
@@ -51,6 +52,7 @@ export default {
   pinkColor,
   blueColor,
   greyColor,
+  greenColor,
   darkGreyColor,
   titleFontSize,
   regularFontSize,
