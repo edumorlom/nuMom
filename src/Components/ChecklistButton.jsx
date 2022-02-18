@@ -9,7 +9,9 @@ import checkmark from '../../assets/checkmark.jpg';
 // Very similar to Button.jsx but it has a specific functionality
 // it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function ChecklistButton(props) {
-  const STORAGE_KEY = '@save_check';
+  /* this key is where a state of the check variable will be saved as a cookie for each checklist item. 
+  The keyIdentifier prop is used to differentiate between different checklists and checklist items. */
+  const STORAGE_KEY = '@save_check' + props.keyIdentifier;
   const [check, setCheck] = useState('');
 
   useEffect(() => {
@@ -20,12 +22,6 @@ export default function ChecklistButton(props) {
   }, []);
 
   const onPress = () => {
-    /* So the onPress wasn't working as intended so I removed it for now. 
-       If you press an item, check it, move back, and come back to checklist, there's a weird bug
-       where all items are checked even though only one is checked. Until it is fixed, it just displays
-       stuff
-
-
     // Convert check to opposite string.
     // If true, then ''. If '', then true.
     const newCheck = check ? '' : 'true';
@@ -33,10 +29,6 @@ export default function ChecklistButton(props) {
     setCheck(newCheck);
     // save the new cookie
     saveCookie(STORAGE_KEY, newCheck);
-    */
-    alert(
-      "Supposed to remember the users' checked item, but currently isn't working"
-    );
   };
 
   const showText = () => (

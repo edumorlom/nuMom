@@ -18,6 +18,7 @@ import {
   storeObjectInDatabase,
   getUserInfo,
 } from '../Firebase';
+import {getCookie, saveCookie} from './Cookies';
 
 export default function SignUpLoading(props) {
   const [loadingText, setLoadingText] = useState(
@@ -140,22 +141,6 @@ export default function SignUpLoading(props) {
       fullName,
       uid,
     });
-  };
-
-  let saveCookie = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, value).then();
-    } catch (e) {
-      console.log(`Error storeData: ${e}`);
-    }
-  };
-
-  let getCookie = async (key) => {
-    try {
-      return await AsyncStorage.getItem(key);
-    } catch (e) {
-      console.log(`Error getData: ${e}`);
-    }
   };
 
   let loginWithEmailPassword = (email, password) => {

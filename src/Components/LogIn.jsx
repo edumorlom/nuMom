@@ -20,6 +20,7 @@ import background from '../../assets/background.gif';
 import loginMainImage from '../../assets/child.png';
 import translate from './getLocalizedText';
 import {} from 'react-native';
+import {getCookie, saveCookie} from './Cookies';
 import {
   logIn,
   registerForPushNotificationsAsync,
@@ -78,22 +79,6 @@ export default LogIn = (props) => {
       fullName,
       uid,
     });
-  };
-
-  const saveCookie = async (key, value) => {
-    try {
-      await AsyncStorage.setItem(key, value).then();
-    } catch (e) {
-      console.log(`Error storeData: ${e}`);
-    }
-  };
-
-  let getCookie = async (key) => {
-    try {
-      return await AsyncStorage.getItem(key);
-    } catch (e) {
-      console.log(`Error getData: ${e}`);
-    }
   };
 
   let loginWithEmailPassword = (email, password) => {
