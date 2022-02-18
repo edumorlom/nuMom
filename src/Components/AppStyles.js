@@ -40,6 +40,7 @@ export default {
     maxWidth: '100%',
     backgroundColor: 'white',
     flex: 1,
+    paddingLeft: 25,
   },
   rowContainer: {
     flexDirection: 'row',

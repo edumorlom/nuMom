@@ -68,17 +68,18 @@ export default function Documents() {
 
   return (
     <View style={appStyles.contentContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          onPress();
+        }}
+        style={appStyles.viewPlus}
+      >
+        <Image source={Plus} style={{height: 25, width: 25}} />
+      </TouchableOpacity>
+
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
       >
-        <TouchableOpacity
-          onPress={() => {
-            onPress();
-          }}
-          style={appStyles.viewPlus}
-        >
-          <Image source={Plus} style={{height: 25, width: 25}} />
-        </TouchableOpacity>
         {documents.map((document, key) => (
           <SelectionButton
             style={appStyles.ImageOnRightSelectionButton}

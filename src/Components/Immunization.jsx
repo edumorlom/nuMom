@@ -66,40 +66,41 @@ export default function Immunization(props) {
 
   return (
     <View style={appStyles.contentContainer}>
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity
+          style={appStyles.viewPlus}
+          onPress={() => {
+            props.navigation.navigate('NewImmunization');
+          }}
+        >
+          <Image source={Plus} style={{height: 25, width: 25}} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={appStyles.viewPlus}
+          onPress={() => {
+            sendEmailViaEmailApp(
+              email,
+              'NuMom: Immunization Records',
+              emailBody
+            );
+          }}
+        >
+          <Image source={Email} style={{height: 40, width: 40}} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={appStyles.viewPlus}
+          onPress={() => {
+            props.navigation.navigate('ImmunizationSchedule');
+          }}
+        >
+          <Image source={Schedule} style={{height: 40, width: 40}} />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}
       >
-        <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity
-            style={appStyles.viewPlus}
-            onPress={() => {
-              props.navigation.navigate('NewImmunization');
-            }}
-          >
-            <Image source={Plus} style={{height: 25, width: 25}} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={appStyles.viewPlus}
-            onPress={() => {
-              sendEmailViaEmailApp(
-                email,
-                'NuMom: Immunization Records',
-                emailBody
-              );
-            }}
-          >
-            <Image source={Email} style={{height: 40, width: 40}} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={appStyles.viewPlus}
-            onPress={() => {
-              props.navigation.navigate('ImmunizationSchedule');
-            }}
-          >
-            <Image source={Schedule} style={{height: 40, width: 40}} />
-          </TouchableOpacity>
-        </View>
         <View>
           {objects.map((immunizations, index) => (
             <ImmunizationMenu
