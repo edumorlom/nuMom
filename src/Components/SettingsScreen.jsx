@@ -22,7 +22,11 @@ import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
 import goBackImg from '../../assets/go-back-arrow.png';
 import logOutImg from '../../assets/logOutIcon.png';
-import appStyles from './AppStyles';
+import appStyles, {
+  blueColor,
+  regularFontSize,
+  settingsPageLabelsFontSize,
+} from './AppStyles';
 import translate from './getLocalizedText';
 import {saveCookie} from './Cookies';
 
@@ -285,6 +289,11 @@ const SettingsScreen = (props) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{marginBottom: 10, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("fullName")}:</Text> */}
+            <View style={{marginEnd: 250, marginTop: 20}}>
+              <Text style={styles.settingPageTextInputLabels}>
+                {`${translate('Name')}:`}
+              </Text>
+            </View>
             <View style={appStyles.TextInput.View}>
               <TextBox
                 placeholder={translate('fullName')}
@@ -298,6 +307,11 @@ const SettingsScreen = (props) => {
           <View style={{marginBottom: 15, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("dob")}:</Text> */}
             <View>
+              <View style={{marginEnd: 230, marginTop: 10}}>
+                <Text style={styles.settingPageTextInputLabels}>
+                  {`${translate('Date')}:`}
+                </Text>
+              </View>
               <TextInputMask
                 type="datetime"
                 options={{
@@ -322,7 +336,11 @@ const SettingsScreen = (props) => {
           <View style={{alignItems: 'center', paddingTop: 25}}>
             <View style={{marginBottom: 15, alignItems: 'center'}}>
               {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
-
+              <View style={{marginEnd: 230, marginTop: 10}}>
+                <Text style={styles.settingPageTextInputLabels}>
+                  {`${translate('phoneNumberInput')}:`}
+                </Text>
+              </View>
               <View style={appStyles.TextInput.View}>
                 <TextBox
                   placeholder={translate('phoneNumberInput')}
@@ -346,9 +364,8 @@ const SettingsScreen = (props) => {
             </Picker>
           </View> */}
             <View style={styles.containerDropDown}>
-              <Text>
+              <Text style={styles.settingPageTextLabels}>
                 {translate('areYouPregnant')}
-                {'\n'}
               </Text>
               <Picker
                 selectedValue={pregnant}
@@ -360,9 +377,8 @@ const SettingsScreen = (props) => {
               </Picker>
             </View>
             <View style={styles.containerDropDown}>
-              <Text>
+              <Text style={styles.settingPageTextLabels}>
                 {translate('didYouHaveInfants')}
-                {'\n'}
               </Text>
               <Picker
                 selectedValue={infant}
@@ -461,6 +477,17 @@ const styles = StyleSheet.create({
   },
   logOutButton: {
     position: 'absolute',
+  },
+  settingPageTextLabels: {
+    fontSize: settingsPageLabelsFontSize,
+    color: blueColor,
+    fontWeight: 'bold',
+  },
+  settingPageTextInputLabels: {
+    fontSize: settingsPageLabelsFontSize,
+    color: blueColor,
+    fontWeight: 'bold',
+    textAlign: 'left',
   },
 });
 

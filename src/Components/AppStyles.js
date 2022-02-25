@@ -10,6 +10,7 @@ export const darkGreyColor = '#5E5E5E';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
+export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
   fontSize: titleFontSize,
   fontWeight: 'bold',
