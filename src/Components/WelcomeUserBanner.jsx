@@ -11,7 +11,7 @@ export default WelcomeUserBanner = (props) => {
     fullName += '!';
   }); // Get fullName from DB
   const initialText = `${translate('welcomeUserBanner')} ${
-    fullName ? fullName.split(' ')[0] : 'fullName'
+    fullName ? fullName.split(' ')[0] : fullName
   }`;
   const [text, setText] = useState(initialText);
 
