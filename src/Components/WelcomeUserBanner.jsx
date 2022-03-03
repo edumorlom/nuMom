@@ -9,9 +9,7 @@ export default WelcomeUserBanner = (props) => {
   getUserInfo(getUid()).once('value', (snapshot) => {
     fullName = snapshot.val()?.fullName;
   }); // Get fullName from DB
-  const initialText = `${translate('welcomeUserBanner')} ${
-    fullName ? `, ${fullName.split(' ')[0]}!` : ''
-  }`;
+  const initialText = `${translate('welcomeUserBanner')}${fullName ?`, ${fullName.split(' ')[0]}!` : ''}`;
   const [text, setText] = useState(initialText);
 
   return (
