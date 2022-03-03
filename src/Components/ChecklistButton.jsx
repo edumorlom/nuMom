@@ -4,7 +4,7 @@ import * as Haptics from 'expo-haptics';
 import {getCookie, saveCookie} from './Cookies';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 import redX from '../../assets/redX.jpg';
-import checkmark from '../../assets/checkmark.jpg';
+import checkmark from '../../assets/checkmark.png';
 
 // Very similar to Button.jsx but it has a specific functionality
 // it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
