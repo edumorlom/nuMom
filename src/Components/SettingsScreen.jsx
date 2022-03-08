@@ -289,7 +289,7 @@ const SettingsScreen = (props) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{marginBottom: 10, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("fullName")}:</Text> */}
-            <View style={{marginEnd: 250, marginTop: 20}}>
+            <View style={{marginEnd: 290, marginTop: 20}}>
               <Text style={styles.settingPageTextInputLabels}>
                 {`${translate('Name')}:`}
               </Text>
@@ -307,7 +307,7 @@ const SettingsScreen = (props) => {
           <View style={{marginBottom: 15, alignItems: 'center'}}>
             {/* <Text style={appStyles.blueColor}>{translate("dob")}:</Text> */}
             <View>
-              <View style={{marginEnd: 230, marginTop: 10}}>
+              <View style={{marginEnd: 200, marginTop: 10}}>
                 <Text style={styles.settingPageTextInputLabels}>
                   {`${translate('Date')}:`}
                 </Text>
@@ -336,7 +336,7 @@ const SettingsScreen = (props) => {
           <View style={{alignItems: 'center', paddingTop: 25}}>
             <View style={{marginBottom: 15, alignItems: 'center'}}>
               {/* <Text style={appStyles.blueColor}>{translate("phoneNumberInput")}:</Text> */}
-              <View style={{marginEnd: 230, marginTop: 10}}>
+              <View style={{marginEnd: 200, marginTop: 10}}>
                 <Text style={styles.settingPageTextInputLabels}>
                   {`${translate('phoneNumberInput')}:`}
                 </Text>
@@ -432,7 +432,6 @@ const SettingsScreen = (props) => {
             style={{
               justifyContent: 'center',
               flexDirection: 'row',
-              padding: 90,
             }}
           >
             <Button
