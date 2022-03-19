@@ -30,6 +30,7 @@ export default function SignUpInfo(props) {
     props.navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
+          labelVisible={false}
           onPress={() => {
             props.navigation.navigate('SignUpYesorNoMiami', {
               question: translate('liveMiami'),
