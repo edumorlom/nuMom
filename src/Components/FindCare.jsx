@@ -91,9 +91,9 @@ export default function FindCare(props) {
     // The <> tag is shorthand for React.Fragment <= look it up
     <>
       {props.filterToShow && ( // If filter set to show, display the filter dropdown
-        <View style={{flexDirection: 'row', height: window.height * 0.03}}>
+        <View style={{flexDirection: 'row', height: window.height * 0.085}}>
           <Dropdown
-            containerStyle={{...styles.Dropdown, right: '30%'}}
+            containerStyle={{...styles.Dropdown, right: '10%'}}
             dropdownOffset={{top: 0, bottom: 0, left: 0}}
             pickerStyle={styles.Picker}
             inputContainerStyle={{borderBottomColor: 'transparent'}}
@@ -108,7 +108,7 @@ export default function FindCare(props) {
           />
 
           <Dropdown
-            containerStyle={{...styles.Dropdown, left: '30%'}}
+            containerStyle={{...styles.Dropdown, left: '10%'}}
             dropdownOffset={{top: 0, bottom: 0, left: 0}}
             pickerStyle={styles.Picker}
             inputContainerStyle={{borderBottomColor: 'transparent'}}
