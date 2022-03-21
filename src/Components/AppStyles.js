@@ -43,6 +43,12 @@ export default {
     flex: 1,
     paddingLeft: 25,
   },
+  learnAndResourceTabContentContainer: {
+    alignItems: 'center',
+    maxWidth: '100%',
+    backgroundColor: 'white',
+    flex: 1,
+  },
   rowContainer: {
     flexDirection: 'row',
   },

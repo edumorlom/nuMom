@@ -84,7 +84,7 @@ export default function Resources(props) {
   );
 
   return (
-    <View style={appStyles.contentContainer}>
+    <View style={appStyles.learnAndResourceTabContentContainer}>
       <ScrollView
         contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
       >
