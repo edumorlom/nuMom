@@ -23,7 +23,7 @@ export default function ChecklistButton(props) {
 
   const onPress = () => {
     // Convert check to opposite string.
-    // If true, then ''. If '', then true.
+    // If check = 'true', then set check to '' (false). If check = '' (false), then set check to 'true'.
     const newCheck = check ? '' : 'true';
     // set the state
     setCheck(newCheck);
@@ -41,11 +41,11 @@ export default function ChecklistButton(props) {
   );
 
   const showImage = () => (
-    <Image style={props.style.Image} source={check && checkmark} />
+    <Image style={props.style.Image} source={checkmark} />
   );
 
   const showImageInView = () => (
-    <Image style={props.style.ImageInView} source={check && checkmark} />
+    <Image style={props.style.ImageInView} source={checkmark} />
   );
 
   return (
@@ -59,9 +59,9 @@ export default function ChecklistButton(props) {
           {props.style.Image && showImage()}
           {props.style.Text && showText()}
         </View>
-        {props.style.ImageView && (
-          <View style={props.style.ImageView}>{showImageInView()}</View>
-        )}
+        {check ? 
+          <View style={props.style.ImageInView}>{showImageInView()}</View> : <View/>
+        }
       </>
     </TouchableHighlight>
   );
