@@ -10,6 +10,7 @@ import {
 import {ListItem} from 'react-native-elements';
 import appStyles, {borderRadius, shadow} from './AppStyles';
 import {fetchImmunization, getUid} from '../Firebase';
+import ImmunizationChecklist from './ImmunizationChecklist';
 
 export default function ImmunizationSchedule() {
   let _isMounted = false;
@@ -201,69 +202,30 @@ export default function ImmunizationSchedule() {
   };
 
   return (
-    <View style={appStyles.contentContainer}>
+    <View>
       <ScrollView
-        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
+        contentContainerStyle={{alignItems: 'flex-end'}}
         showsVerticalScrollIndicator={false}
       >
         <View>
           {scheduleData.map((value) => (
-            <TouchableHighlight
-              style={{
-                margin: 15,
-                paddingLeft: 10,
-                justifyContent: 'center',
-                backgroundColor: 'white',
-                ...shadow,
-                width: appStyles.win.width * 0.95,
-                borderRadius,
-              }}
-              underlayColor={appStyles.underlayColor}
-            >
-              <View
-                style={{
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingVertical: 10,
-                  paddingHorizontal: 15,
-                }}
-              >
-                <View>
-                  <Text
-                    style={{
-                      color: appStyles.blueColor,
-                      fontSize: appStyles.regularFontSize + 1,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {value.age}
-                  </Text>
-                  {value.immunizations.map((item, index) => (
-                    <ListItem
-                      key={index}
-                      bottomDivider
-                      style={{
-                        margin: 15,
-                        width: appStyles.win.width * 0.7,
-                      }}
-                    >
-                      {displayCheckBox(objects, item.name)}
-                      <ListItem.Content>
-                        <ListItem.Title
-                          style={{
-                            color: appStyles.greyColor,
-                            fontSize: appStyles.regularFontSize - 3,
-                          }}
-                        >
-                          {item.name}
-                        </ListItem.Title>
-                      </ListItem.Content>
-                    </ListItem>
-                  ))}
-                </View>
-              </View>
-            </TouchableHighlight>
+            <View>
+
+            <Text style={appStyles.ImageOnRightSelectionButton.Text}>{value.age}</Text>
+            {value.immunizations.map((item, index) => (
+            <View>
+            {/*<Text>     {index}</Text>*/}
+            <ImmunizationChecklist
+            style={appStyles.ImageOnRightSelectionButton}
+            //text={value.age}
+            subtext={item.name}
+            key={index}
+            keyIdentifier = {"ImmunizationChecklist" + value.age + index}
+            bottomDivider
+          />
+          </View>
+          ))}
+          </View>
           ))}
         </View>
       </ScrollView>
