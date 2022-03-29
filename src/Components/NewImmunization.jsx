@@ -40,7 +40,7 @@ export default function NewImmunization(props) {
     'Hepatitis B',
     'Diphtheria, Tetanus, and Pertussis (Dtap)',
     'Polio (IPV)',
-    'Jaemophilus Influenzae Type B (Hib)',
+    'Haemophilus Influenzae Type B (Hib)',
     'Pneumococcal Vaccine (PCV)',
     'Rotavirus',
     'Flu Vaccine',

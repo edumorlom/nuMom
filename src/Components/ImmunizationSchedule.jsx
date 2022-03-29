@@ -32,7 +32,7 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1HEPB',
-          name: 'First dose Hepatitis B',
+          name: 'Hepatitis B - First Shot',
         },
       ],
     },
@@ -41,27 +41,27 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1DTAP',
-          name: 'First dose diphtheria, tetanus, and pertussis (Dtap)',
+          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Frist Shot',
         },
         {
           id: '1IPV',
-          name: 'First dose polio (IPV)',
+          name: 'Polio (IPV) - First Shot',
         },
         {
           id: '1HIB',
-          name: 'First dose haemophilus influenzae Type B (Hib)',
+          name: 'Haemophilus Influenzae Type B (Hib) - First Shot',
         },
         {
           id: '1PCV',
-          name: 'First dose pneumococcal vaccine (PCV)',
+          name: 'Pneumococcal Vaccine (PCV) - First Shot',
         },
         {
           id: '1RV',
-          name: 'First dose rotavirus',
+          name: 'Rotavirus - First Shot',
         },
         {
           id: '2HEPB',
-          name: 'Second dose Hepatitis B',
+          name: 'Hepatitis B - Second Shot',
         },
       ],
     },
@@ -69,28 +69,28 @@ export default function ImmunizationSchedule() {
       age: '4 Months',
       immunizations: [
         {
-          id: '3HEPB',
-          name: 'Third dose Hepatitis B',
-        },
-        {
           id: '2DTAP',
-          name: 'Second dose diphtheria, tetanus, and pertussis (Dtap)',
+          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Second Shot',
         },
         {
           id: '2IPV',
-          name: 'Second dose polio (IPV)',
+          name: 'Polio (IPV) - Second Shot',
         },
         {
           id: '2HIB',
-          name: 'Second dose haemophilus influenzae Type B (Hib)',
+          name: 'Haemophilus Influenzae Type B (Hib) - Second Shot',
         },
         {
           id: '2PCV',
-          name: 'Second dose pneumococcal vaccine (PCV)',
+          name: 'Pneumococcal Vaccine (PCV) - Second Shot',
         },
         {
           id: '2RV',
-          name: 'Second dose rotavirus',
+          name: 'Rotavirus - Second Shot',
+        },
+        {
+          id: '3HEPB',
+          name: 'Hepatitis B - Third Shot',
         },
       ],
     },
@@ -99,31 +99,31 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '3DTAP',
-          name: 'Third dose diphtheria, tetanus, and pertussis (Dtap)',
+          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Third Shot',
         },
         {
           id: '3IPV',
-          name: 'Third dose polio (IPV)',
+          name: 'Polio (IPV) - Third Shot',
         },
         {
           id: '3HIB',
-          name: 'Third dose haemophilus influenzae Type B (Hib)',
+          name: 'Haemophilus Influenzae Type B (Hib) - Third Shot',
         },
         {
           id: '3PCV',
-          name: 'Third dose pneumococcal vaccine (PCV)',
+          name: 'Pneumococcal Vaccine (PCV) - Third Shot',
         },
         {
           id: '3RV',
-          name: 'Third dose rotavirus',
+          name: 'Rotavirus - Third Shot',
         },
         {
           id: 'FLU',
-          name: 'Flu vaccine',
+          name: 'Flu Vaccine - First Shot',
         },
         {
           id: '4HEPB',
-          name: 'Fourth dose Hepatitis B',
+          name: 'Hepatitis B - Fourth Shot',
         },
       ],
     },
@@ -132,15 +132,15 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1HEPA',
-          name: 'First dose Hepatitis A',
+          name: 'Hepatitis A - First Shot',
         },
         {
           id: '1MMR',
-          name: 'First dose Measles, mumps, and rubella (MMR)',
+          name: 'Measles, Mumps, and Rubella (MMR) - First Shot',
         },
         {
           id: '1CHKPOX',
-          name: 'First dose Chickenpox (Varicella)',
+          name: 'Chickenpox (Varicella) - First Shot',
         },
       ],
     },
@@ -149,11 +149,11 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '4HIB',
-          name: 'Fourth dose haemophilus influenzae Type B (Hib)',
+          name: 'Haemophilus Influenzae Type B (Hib) - Fourth Shot',
         },
         {
           id: '4PCV',
-          name: 'Fourth dose pneumococcal vaccine (PCV)',
+          name: 'Pneumococcal Vaccine (PCV) - Fourth Shot',
         },
       ],
     },
@@ -162,7 +162,7 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '2HEPA',
-          name: 'Second dose Hepatitis A',
+          name: 'Hepatitis A - Second Shot',
         },
       ],
     },
@@ -171,19 +171,19 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '4DTAP',
-          name: 'Fourth dose diphtheria, tetanus, and pertussis (Dtap)',
+          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Fourth Shot',
         },
         {
           id: '4IPV',
-          name: 'Fourth dose polio (IPV)',
+          name: 'Polio (IPV) - Fourth Shot',
         },
         {
           id: '2MMR',
-          name: 'Second dose Measles, mumps, and rubella (MMR)',
+          name: 'Measles, Mumps, and Rubella (MMR) - Second Shot',
         },
         {
           id: '2CHCKPOX',
-          name: 'Second dose Chickenpox (Varicella)',
+          name: 'Chickenpox (Varicella) - Second Shot',
         },
       ],
     },
@@ -191,8 +191,9 @@ export default function ImmunizationSchedule() {
 
   displayCheckBox = (immunizations, scheduleData) => {
     const types = immunizations.map((item) => {
-      const {type} = item?.val();
-      if (type === scheduleData) return type;
+      const {type, dosage} = item?.val();
+      
+      if (`${type} - ${dosage}` === scheduleData) return `${type} - ${dosage}`;
       return undefined;
     });
     if (types.includes(scheduleData)) {
@@ -200,32 +201,71 @@ export default function ImmunizationSchedule() {
     }
     return <Image source={require('../../assets/unchecked.png')} />;
   };
-
+  
   return (
-    <View>
+    <View style={appStyles.contentContainer}>
       <ScrollView
-        contentContainerStyle={{alignItems: 'flex-end'}}
+        contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}
       >
         <View>
           {scheduleData.map((value) => (
-            <View>
-
-            <Text style={appStyles.ImageOnRightSelectionButton.Text}>{value.age}</Text>
-            {value.immunizations.map((item, index) => (
-            <View>
-            {/*<Text>     {index}</Text>*/}
-            <ImmunizationChecklist
-            style={appStyles.ImageOnRightSelectionButton}
-            //text={value.age}
-            subtext={item.name}
-            key={index}
-            keyIdentifier = {"ImmunizationChecklist" + value.age + index}
-            bottomDivider
-          />
-          </View>
-          ))}
-          </View>
+            <TouchableHighlight
+              style={{
+                margin: 15,
+                paddingLeft: 10,
+                justifyContent: 'center',
+                backgroundColor: 'white',
+                ...shadow,
+                width: appStyles.win.width * 0.95,
+                borderRadius,
+              }}
+              underlayColor={appStyles.underlayColor}
+            >
+              <View
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingVertical: 10,
+                  paddingHorizontal: 15,
+                }}
+              >
+                <View>
+                  <Text
+                    style={{
+                      color: appStyles.blueColor,
+                      fontSize: appStyles.regularFontSize + 1,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {value.age}
+                  </Text>
+                  {value.immunizations.map((item, index) => (
+                    <ListItem
+                      key={index}
+                      bottomDivider
+                      style={{
+                        margin: 15,
+                        width: appStyles.win.width * 0.7,
+                      }}
+                    >
+                      {displayCheckBox(objects, item.name)}
+                      <ListItem.Content>
+                        <ListItem.Title
+                          style={{
+                            color: appStyles.greyColor,
+                            fontSize: appStyles.regularFontSize - 3,
+                          }}
+                        >
+                          {item.name}
+                        </ListItem.Title>
+                      </ListItem.Content>
+                    </ListItem>
+                  ))}
+                </View>
+              </View>
+            </TouchableHighlight>
           ))}
         </View>
       </ScrollView>
