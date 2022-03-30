@@ -80,6 +80,7 @@ export default SignUpYesorNo = (props) => {
       props.navigation.setOptions({
         headerLeft: () => (
           <HeaderBackButton
+            labelVisible={false}
             onPress={() => {
               props.navigation.navigate('LogIn');
             }}
