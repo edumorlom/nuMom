@@ -9,9 +9,13 @@ import {
   TextInput as TextBox,
   StyleSheet,
   NativeModules,
+  TouchableOpacity,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
+import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
+import {Input} from 'react-native-elements';
+import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 // import TextInput from "./TextInput";
@@ -33,6 +37,9 @@ export default LogIn = (props) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [fadeValue, setFadeValue] = useState(new Animated.Value(0));
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+  const [show, setShow] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
 
   // Remove async tasks on unMount using _isMounted
 
@@ -154,12 +161,28 @@ export default LogIn = (props) => {
                 placeholder={translate('emailInput')}
                 onChangeText={setEmail}
               />
-              <TextBox
-                style={appStyles.TextInputMask}
-                placeholder={translate('passwordInput')}
-                onChangeText={setPassword}
-                secureTextEntry
-              />
+              <View>
+                <TextBox
+                  style={appStyles.TextInputMask}
+                  secureTextEntry={visible}
+                  placeholder={translate('passwordInput')}
+                  onChangeText={setPassword}
+                />
+                <TouchableOpacity
+                  style={styles.eyeShowPassword}
+                  onPress={() => {
+                    setVisible(!visible);
+                    setShow(!show);
+                  }}
+                >
+                  <Icon
+                    name={show === false ? 'eye-outline' : 'eye-off-outline'}
+                    size={26}
+                    color={appStyles.pinkColor}
+                  />
+                </TouchableOpacity>
+              </View>
+
               <View style={{height: appStyles.win.height * 0.03}} />
               <Button
                 style={appStyles.button}
@@ -198,5 +221,13 @@ const forgotPassword = StyleSheet.create({
     paddingTop: 20,
     color: 'white',
     fontWeight: '500',
+  },
+});
+
+const styles = StyleSheet.create({
+  eyeShowPassword: {
+    position: 'absolute',
+    right: 30,
+    top: 25,
   },
 });
