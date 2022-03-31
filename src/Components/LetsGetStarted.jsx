@@ -38,6 +38,7 @@ export default LetsGetStarted = (props) => {
     props.navigation.setOptions({
       headerLeft: () => (
         <HeaderBackButton
+          labelVisible={false}
           onPress={() => {
             clearTimeout(timerID);
             props.navigation.navigate('LogIn');

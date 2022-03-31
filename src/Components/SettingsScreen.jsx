@@ -378,7 +378,7 @@ const SettingsScreen = (props) => {
             </View>
             <View style={styles.containerDropDown}>
               <Text style={styles.settingPageTextLabels}>
-                {translate('didYouHaveInfants')}
+                {translate('doYouHaveInfants')}
               </Text>
               <Picker
                 selectedValue={infant}
