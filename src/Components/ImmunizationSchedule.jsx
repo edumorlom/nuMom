@@ -10,9 +10,8 @@ import {
 import {ListItem} from 'react-native-elements';
 import appStyles, {borderRadius, shadow} from './AppStyles';
 import {fetchImmunization, getUid} from '../Firebase';
-import ImmunizationChecklist from './ImmunizationChecklist';
 
-export default function ImmunizationSchedule() {
+export default function ImmunizationSchedule(props) {
   let _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
@@ -32,7 +31,8 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1HEPB',
-          name: 'Hepatitis B - First Shot',
+          type: 'Hepatitis B',
+          dose: 'First Shot'
         },
       ],
     },
@@ -41,27 +41,33 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1DTAP',
-          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Frist Shot',
+          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
+          dose: 'First Shot'
         },
         {
           id: '1IPV',
-          name: 'Polio (IPV) - First Shot',
+          type: 'Polio (IPV)',
+          dose: 'First Shot'
         },
         {
           id: '1HIB',
-          name: 'Haemophilus Influenzae Type B (Hib) - First Shot',
+          type: 'Haemophilus Influenzae Type B (Hib)',
+          dose: 'First Shot'
         },
         {
           id: '1PCV',
-          name: 'Pneumococcal Vaccine (PCV) - First Shot',
+          type: 'Pneumococcal Vaccine (PCV)',
+          dose: 'First Shot'
         },
         {
           id: '1RV',
-          name: 'Rotavirus - First Shot',
+          type: 'Rotavirus',
+          dose: 'First Shot'
         },
         {
           id: '2HEPB',
-          name: 'Hepatitis B - Second Shot',
+          type: 'Hepatitis B',
+          dose: 'Second Shot'
         },
       ],
     },
@@ -70,27 +76,33 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '2DTAP',
-          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Second Shot',
+          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
+          dose: 'Second Shot'
         },
         {
           id: '2IPV',
-          name: 'Polio (IPV) - Second Shot',
+          type: 'Polio (IPV)',
+          dose: 'Second Shot'
         },
         {
           id: '2HIB',
-          name: 'Haemophilus Influenzae Type B (Hib) - Second Shot',
+          type: 'Haemophilus Influenzae Type B (Hib)',
+          dose: 'Second Shot'
         },
         {
           id: '2PCV',
-          name: 'Pneumococcal Vaccine (PCV) - Second Shot',
+          type: 'Pneumococcal Vaccine (PCV)',
+          dose: 'Second Shot'
         },
         {
           id: '2RV',
-          name: 'Rotavirus - Second Shot',
+          type: 'Rotavirus',
+          dose: 'Second Shot'
         },
         {
           id: '3HEPB',
-          name: 'Hepatitis B - Third Shot',
+          type: 'Hepatitis B',
+          dose: 'Third Shot'
         },
       ],
     },
@@ -99,31 +111,38 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '3DTAP',
-          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Third Shot',
+          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
+          dose: 'Third Shot'
         },
         {
           id: '3IPV',
-          name: 'Polio (IPV) - Third Shot',
+          type: 'Polio (IPV)',
+          dose: 'Third Shot'
         },
         {
           id: '3HIB',
-          name: 'Haemophilus Influenzae Type B (Hib) - Third Shot',
+          type: 'Haemophilus Influenzae Type B (Hib)',
+          dose: 'Third Shot'
         },
         {
           id: '3PCV',
-          name: 'Pneumococcal Vaccine (PCV) - Third Shot',
+          type: 'Pneumococcal Vaccine (PCV)',
+          dose: 'Third Shot'
         },
         {
           id: '3RV',
-          name: 'Rotavirus - Third Shot',
+          type: 'Rotavirus',
+          dose: 'Third Shot'
         },
         {
           id: 'FLU',
-          name: 'Flu Vaccine - First Shot',
+          type: 'Flu Vaccine',
+          dose: 'n/a'
         },
         {
           id: '4HEPB',
-          name: 'Hepatitis B - Fourth Shot',
+          type: 'Hepatitis B',
+          dose: 'Fourth Shot'
         },
       ],
     },
@@ -132,15 +151,18 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '1HEPA',
-          name: 'Hepatitis A - First Shot',
+          type: 'Hepatitis A',
+          dose: 'First Shot'
         },
         {
           id: '1MMR',
-          name: 'Measles, Mumps, and Rubella (MMR) - First Shot',
+          type: 'Measles, Mumps, and Rubella (MMR)',
+          dose: 'First Shot'
         },
         {
           id: '1CHKPOX',
-          name: 'Chickenpox (Varicella) - First Shot',
+          type: 'Chickenpox (Varicella)',
+          dose: 'First Shot'
         },
       ],
     },
@@ -149,11 +171,13 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '4HIB',
-          name: 'Haemophilus Influenzae Type B (Hib) - Fourth Shot',
+          type: 'Haemophilus Influenzae Type B (Hib)',
+          dose: 'Fourth Shot'
         },
         {
           id: '4PCV',
-          name: 'Pneumococcal Vaccine (PCV) - Fourth Shot',
+          type: 'Pneumococcal Vaccine (PCV)',
+          dose: 'Fourth Shot'
         },
       ],
     },
@@ -162,7 +186,8 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '2HEPA',
-          name: 'Hepatitis A - Second Shot',
+          type: 'Hepatitis A',
+          dose: 'Second Shot'
         },
       ],
     },
@@ -171,30 +196,34 @@ export default function ImmunizationSchedule() {
       immunizations: [
         {
           id: '4DTAP',
-          name: 'Diphtheria, Tetanus, and Pertussis (Dtap) - Fourth Shot',
+          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
+          dose: 'Fourth Shot'
         },
         {
           id: '4IPV',
-          name: 'Polio (IPV) - Fourth Shot',
+          type: 'Polio (IPV)',
+          dose: 'Fourth Shot'
         },
         {
           id: '2MMR',
-          name: 'Measles, Mumps, and Rubella (MMR) - Second Shot',
+          type: 'Measles, Mumps, and Rubella (MMR)',
+          dose: 'Second Shot'
         },
         {
           id: '2CHCKPOX',
-          name: 'Chickenpox (Varicella) - Second Shot',
+          type: 'Chickenpox (Varicella)',
+          dose: 'Second Shot'
         },
       ],
     },
   ];
 
   displayCheckBox = (immunizations, scheduleData) => {
-    const types = immunizations.map((item) => {
-      const {type, dosage} = item?.val();
-      
-      if (`${type} - ${dosage}` === scheduleData) return `${type} - ${dosage}`;
-      return undefined;
+    let types = ""
+
+    types = immunizations.map((item) => {
+      const {id} = item?.val();
+      return `${id}`;
     });
     if (types.includes(scheduleData)) {
       return <Image source={require('../../assets/checked.png')} />;
@@ -250,7 +279,7 @@ export default function ImmunizationSchedule() {
                         width: appStyles.win.width * 0.7,
                       }}
                     >
-                      {displayCheckBox(objects, item.name)}
+                      {displayCheckBox(objects, `${item.id}`)}
                       <ListItem.Content>
                         <ListItem.Title
                           style={{
@@ -258,7 +287,7 @@ export default function ImmunizationSchedule() {
                             fontSize: appStyles.regularFontSize - 3,
                           }}
                         >
-                          {item.name}
+                          {`${item.type} - ${item.dose}`}
                         </ListItem.Title>
                       </ListItem.Content>
                     </ListItem>
