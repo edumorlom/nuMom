@@ -9,31 +9,35 @@ import FemaleCondomImg from '../../assets/FemaleCondom.png';
 /* Serves to gather all the text for the Do's and Don'ts section
  * @return array list of condom do's and don'ts
  */
-function femaleCondomDoDontList() {
+function femaleCondomDoList() {
   return [
     {
-      dodont: 'FemaleCondomDo1',
+      do: 'FemaleCondomDo1',
     },
     {
-      dodont: 'FemaleCondomDo2',
+      do: 'FemaleCondomDo2',
     },
     {
-      dodont: 'FemaleCondomDo3',
+      do: 'FemaleCondomDo3',
     },
     {
-      dodont: 'FemaleCondomDo4',
+      do: 'FemaleCondomDo4',
     },
     {
-      dodont: 'FemaleCondomDo5',
+      do: 'FemaleCondomDo5',
+    },
+  ];
+
+}function femaleCondomDontList() {
+  return [
+    {
+      dont: 'FemaleCondomDont1',
     },
     {
-      dodont: 'FemaleCondomDont1',
+      dont: 'FemaleCondomDont2',
     },
     {
-      dodont: 'FemaleCondomDont2',
-    },
-    {
-      dodont: 'FemaleCondomDont3',
+      dont: 'FemaleCondomDont3',
     },
   ];
 }
@@ -45,11 +49,18 @@ export function FemaleCondomDoDont() {
   return (
     <View style={appStyles.contentContainer}>
       <ScrollView>
-        {femaleCondomDoDontList().map((fcdd, key) => (
+        {femaleCondomDoList().map((fcdd, key) => (
           <BetterMenu
-            style={appStyles.FemaleCondomMenu}
+            style={appStyles.FemaleCondomDoMenu}
             key={key}
-            text={translate(fcdd.dodont)}
+            text={translate(fcdd.do)}
+          />
+        ))}
+        {femaleCondomDontList().map((fcdd, key) => (
+          <BetterMenu
+            style={appStyles.FemaleCondomDontMenu}
+            key={key}
+            text={translate(fcdd.dont)}
           />
         ))}
       </ScrollView>
