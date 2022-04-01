@@ -10,6 +10,7 @@ import {
 import {ListItem} from 'react-native-elements';
 import appStyles, {borderRadius, shadow} from './AppStyles';
 import {fetchImmunization, getUid} from '../Firebase';
+import translate from './getLocalizedText';
 
 export default function ImmunizationSchedule(props) {
   let _isMounted = false;
@@ -31,8 +32,8 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '1HEPB',
-          type: 'Hepatitis B',
-          dose: 'First Shot'
+          type: translate('HEPB'),      // Hepatitis B
+          dose: translate('dose1'),  // First Shot
         },
       ],
     },
@@ -41,33 +42,33 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '1DTAP',
-          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
-          dose: 'First Shot'
+          type: translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1IPV',
-          type: 'Polio (IPV)',
-          dose: 'First Shot'
+          type: translate('IPV'),       // Polio (IPV)
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1HIB',
-          type: 'Haemophilus Influenzae Type B (Hib)',
-          dose: 'First Shot'
+          type: translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1PCV',
-          type: 'Pneumococcal Vaccine (PCV)',
-          dose: 'First Shot'
+          type: translate('PCV'),       // Pneumococcal Vaccine (PCV)
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1RV',
-          type: 'Rotavirus',
-          dose: 'First Shot'
+          type: translate('RV'),        // Rotavirus
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '2HEPB',
-          type: 'Hepatitis B',
-          dose: 'Second Shot'
+          type: translate('HEPB'),      // Hepatitis B
+          dose: translate('dose2'),  // Second Shot
         },
       ],
     },
@@ -76,33 +77,33 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '2DTAP',
-          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
-          dose: 'Second Shot'
+          type: translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '2IPV',
-          type: 'Polio (IPV)',
-          dose: 'Second Shot'
+          type: translate('IPV'),       // Polio (IPV)
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '2HIB',
-          type: 'Haemophilus Influenzae Type B (Hib)',
-          dose: 'Second Shot'
+          type: translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '2PCV',
-          type: 'Pneumococcal Vaccine (PCV)',
-          dose: 'Second Shot'
+          type: translate('PCV'),       // Pneumococcal Vaccine (PCV)
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '2RV',
-          type: 'Rotavirus',
-          dose: 'Second Shot'
+          type: translate('RV'),        // Rotavirus
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '3HEPB',
-          type: 'Hepatitis B',
-          dose: 'Third Shot'
+          type: translate('HEPB'),      // Hepatitis B
+          dose: translate('dose3'),  // Third Shot
         },
       ],
     },
@@ -111,38 +112,38 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '3DTAP',
-          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
-          dose: 'Third Shot'
+          type: translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
+          dose: translate('dose3'),  // Third Shot
         },
         {
           id: '3IPV',
-          type: 'Polio (IPV)',
-          dose: 'Third Shot'
+          type: translate('IPV'),       // Polio (IPV)
+          dose: translate('dose3'),  // Third Shot
         },
         {
           id: '3HIB',
-          type: 'Haemophilus Influenzae Type B (Hib)',
-          dose: 'Third Shot'
+          type: translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
+          dose: translate('dose3'),  // Third Shot
         },
         {
           id: '3PCV',
-          type: 'Pneumococcal Vaccine (PCV)',
-          dose: 'Third Shot'
+          type: translate('PCV'),       // Pneumococcal Vaccine (PCV)
+          dose: translate('dose3'),  // Third Shot
         },
         {
           id: '3RV',
-          type: 'Rotavirus',
-          dose: 'Third Shot'
+          type: translate('RV'),        // Rotavirus
+          dose: translate('dose3'),  // Third Shot
         },
         {
           id: 'FLU',
-          type: 'Flu Vaccine',
+          type: translate('FLU'),       // Flu Vaccine
           dose: 'n/a'
         },
         {
           id: '4HEPB',
-          type: 'Hepatitis B',
-          dose: 'Fourth Shot'
+          type: translate('HEPB'),      // Hepatitis B
+          dose: translate('dose4'),  // Fourth Shot
         },
       ],
     },
@@ -151,18 +152,18 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '1HEPA',
-          type: 'Hepatitis A',
-          dose: 'First Shot'
+          type: translate('HEPA'),      // Hepatitis A
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1MMR',
-          type: 'Measles, Mumps, and Rubella (MMR)',
-          dose: 'First Shot'
+          type: translate('MMR'),       // Measles, Mumps, and Rubella (MMR)
+          dose: translate('dose1'),  // First Shot
         },
         {
           id: '1CHKPOX',
-          type: 'Chickenpox (Varicella)',
-          dose: 'First Shot'
+          type: translate('CHKPOX'),    // Chickenpox (Varicella)
+          dose: translate('dose1'),  // First Shot
         },
       ],
     },
@@ -171,13 +172,13 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '4HIB',
-          type: 'Haemophilus Influenzae Type B (Hib)',
-          dose: 'Fourth Shot'
+          type: translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
+          dose: translate('dose4'),  // Fourth Shot
         },
         {
           id: '4PCV',
-          type: 'Pneumococcal Vaccine (PCV)',
-          dose: 'Fourth Shot'
+          type: translate('PCV'),       // Pneumococcal Vaccine (PCV)
+          dose: translate('dose4'),  // Fourth Shot
         },
       ],
     },
@@ -186,8 +187,8 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '2HEPA',
-          type: 'Hepatitis A',
-          dose: 'Second Shot'
+          type: translate('HEPA'),      // Hepatitis A
+          dose: translate('dose2'),  // Second Shot
         },
       ],
     },
@@ -196,23 +197,23 @@ export default function ImmunizationSchedule(props) {
       immunizations: [
         {
           id: '4DTAP',
-          type: 'Diphtheria, Tetanus, and Pertussis (Dtap)',
-          dose: 'Fourth Shot'
+          type: translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
+          dose: translate('dose4'),  // Fourth Shot
         },
         {
           id: '4IPV',
-          type: 'Polio (IPV)',
-          dose: 'Fourth Shot'
+          type: translate('IPV'),       // Polio (IPV)
+          dose: translate('dose4'),  // Fourth Shot
         },
         {
           id: '2MMR',
-          type: 'Measles, Mumps, and Rubella (MMR)',
-          dose: 'Second Shot'
+          type: translate('MMR'),       // Measles, Mumps, and Rubella (MMR)
+          dose: translate('dose2'),  // Second Shot
         },
         {
           id: '2CHCKPOX',
-          type: 'Chickenpox (Varicella)',
-          dose: 'Second Shot'
+          type: translate('CHKPOX'),    // Chickenpox (Varicella)
+          dose: translate('dose2'),  // Second Shot
         },
       ],
     },
@@ -287,7 +288,8 @@ export default function ImmunizationSchedule(props) {
                             fontSize: appStyles.regularFontSize - 3,
                           }}
                         >
-                          {`${item.type} - ${item.dose}`}
+                          {/* Show the vaccine type and dose # (if vaccine is FLU, dose # is not shown)*/}
+                          {item.id === "FLU" ? `${item.type}` : `${item.type} - ${item.dose}`}
                         </ListItem.Title>
                       </ListItem.Content>
                     </ListItem>
