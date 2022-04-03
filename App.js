@@ -215,12 +215,17 @@ function App() {
         <Stack.Screen
           name="ResourcesPage"
           component={ResourcesPage}
-          options={{title: translate('resources')}}
+          options={{title: translate('resources'),
+          headerRight: () => null,
+        }}
         />
         <Stack.Screen
           name="Learn"
           component={Learn}
-          options={{title: translate('learn')}}
+          options={{
+            title: translate('learn'),
+            headerRight: () => null,
+          }}
         />
         <Stack.Screen
           name="STDSelection"
