@@ -37,19 +37,18 @@ export default function Appointment(props) {
 
   return (
     <View style={appStyles.contentContainer}>
-      <TouchableOpacity
-        style={appStyles.viewPlus}
-        onPress={() => {
-          props.navigation.navigate('NewAppointment');
-        }}
-      >
-        <Image source={Plus} style={{height: 25, width: 25}} />
-      </TouchableOpacity>
-      
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}
       >
+        <TouchableOpacity
+          style={appStyles.viewPlus}
+          onPress={() => {
+            props.navigation.navigate('NewAppointment');
+          }}
+        >
+          <Image source={Plus} style={{height: 26, width: 29}} />
+        </TouchableOpacity>
         <View>
           {objects.map((appointments, index) => (
             <AppointmentMenu
