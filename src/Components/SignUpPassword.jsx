@@ -27,7 +27,9 @@ export default SignUpPassword = (props) => {
   const {phone} = props.route.params;
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [show, setShow] = React.useState(false);
+  const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
+  const [visibleRepeat, setVisibleRepeat] = React.useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -112,13 +114,30 @@ export default SignUpPassword = (props) => {
                   </TouchableOpacity>
                 </View>
 
-                <TextBox
-                  placeholder={translate('repeatPasswordInput')}
-                  onChangeText={setRepeat}
-                  secureTextEntry
-                  value={repeat}
-                  style={appStyles.TextInputMask}
-                />
+                <View>
+                  <TextBox
+                    placeholder={translate('repeatPasswordInput')}
+                    onChangeText={setRepeat}
+                    secureTextEntry={visibleRepeat}
+                    value={repeat}
+                    style={appStyles.TextInputMask}
+                  />
+                  <TouchableOpacity
+                    style={styles.eyeShowPassword}
+                    onPress={() => {
+                      setVisibleRepeat(!visibleRepeat);
+                      setShowRepeat(!showRepeat);
+                    }}
+                  >
+                    <Icon
+                      name={
+                        showRepeat === false ? 'eye-outline' : 'eye-off-outline'
+                      }
+                      size={26}
+                      color={appStyles.pinkColor}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
