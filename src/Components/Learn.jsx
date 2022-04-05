@@ -8,7 +8,9 @@ import FemaleCondom from '../../assets/FC.png';
 
 export default function learn(props) {
   return (
-    <ScrollView contentContainerStyle={appStyles.contentContainer}>
+    <ScrollView
+      contentContainerStyle={appStyles.learnAndResourceTabContentContainer}
+    >
       <SelectionButton
         style={appStyles.ImageOnRightSelectionButton}
         text={translate('STDAwareness')}
