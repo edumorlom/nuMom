@@ -26,36 +26,79 @@ export default function NewImmunization(props) {
     )),
     ([notes, setNotes] = useState(null)),
     ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
+    ([id, setID] = useState()),
   ];
   const uid = getUid();
+
   immunizationInfo = {
     type,
     date,
     dosage,
     notes,
+    id,
   };
 
   const immunizationArray = [
-    'Select Vaccine Type',
-    'Hepatitis B',
-    'Diphtheria, Tetanus, and Pertussis (Dtap)',
-    'Polio (IPV)',
-    'Jaemophilus Influenzae Type B (Hib)',
-    'Pneumococcal Vaccine (PCV)',
-    'Rotavirus',
-    'Flu Vaccine',
-    'Hepatitis A',
-    'Measles, Mumps, and Rubella (MMR)',
-    'Chickenpox (Varicella)',
+    translate('selectImmunization'),  // <<Select Vaccine Type>>
+    translate('HEPB'),      // Hepatitis B
+    translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
+    translate('IPV'),       // Polio (IPV)
+    translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
+    translate('PCV'),       // Pneumococcal Vaccine (PCV)
+    translate('RV'),        // Rotavirus
+    translate('FLU'),       // Flu Vaccine
+    translate('HEPA'),      // Hepatitis A
+    translate('MMR'),       // Measles, Mumps, and Rubella (MMR)
+    translate('CHKPOX'),    // Chickenpox (Varicella)
   ];
 
   const dosageArray = [
-    'Select Dosage',
-    'First Shot',
-    'Second Shot',
-    'Third Shot',
-    'Fourth Shot',
+    translate('selectDosage'),  // <<Select Dosage>>
+    translate('dose1'),  // First Shot
+    translate('dose2'),  // Second Shot
+    translate('dose3'),  // Third Shot
+    translate('dose4'),  // Fourth Shot
   ];
+
+  // this method will set the id of immunizationInfo
+  doSetID = () => {
+    let id = "";
+
+    for(let i = 0; i < dosageArray.length; i++)
+    {
+
+      // start id with a number corresponding to the chosen dose #
+      if(dosage === dosageArray[i])
+      {
+          id += i.toString();
+          break;
+      }
+    }
+
+    // finish id by adding on the letters corresponding to the chosen vaccine type
+    if(type === immunizationArray[1])
+      id += "HEPB"
+    else if(type === immunizationArray[2])
+      id += "DTAP"
+    else if(type === immunizationArray[3])
+      id += "IPV"
+    else if(type === immunizationArray[4])
+      id += "HIB"
+    else if(type === immunizationArray[5])
+      id += "PCV"
+    else if(type === immunizationArray[6])
+      id += "RV"
+    else if(type === immunizationArray[7])
+      id = "FLU"                                // in the case of the FLU shot, where dose # doesn't matter, remove the dose #
+    else if(type === immunizationArray[8])
+      id += "HEPA"
+    else if(type === immunizationArray[9])
+      id += "MMR"
+    else if(type === immunizationArray[10])
+      id += "1CHKPOX"
+
+    setID(id);
+  };
 
   const immunizations = immunizationArray.map((immunization) => ({
     label: translate(immunization),
@@ -68,15 +111,13 @@ export default function NewImmunization(props) {
   }));
 
   onPress = async () => {
-    if (
-      !type ||
-      !date ||
-      type === 'Select Vaccine Type' ||
-      dosage === 'Select Dosage' ||
-      !dosage
-    ) {
+    if (!type || !date || type === translate('selectImmunization') || dosage === translate('selectDosage') || !dosage) 
+    {
       alert(translate('fillOutAllFields'));
-    } else {
+    }
+    else
+    {
+      doSetID();
       await addImmunization(uid, immunizationInfo);
       props.navigation.navigate('ImmunizationScreen');
     }
@@ -105,6 +146,7 @@ export default function NewImmunization(props) {
       }}
       scrollEnabled
     >
+      {/* Dropdown to select Immunization Type*/}
       <View style={styles.container}>
         <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
         <Dropdown
@@ -126,6 +168,7 @@ export default function NewImmunization(props) {
           onChangeText={(value, index, data) => setType(value)}
         />
       </View>
+      {/* Dropdown to select Immunization Dose #*/}
       <View style={styles.container}>
         <Text style={styles.textTitle}>{translate('ImmunizationDose')}</Text>
         <Dropdown
@@ -147,6 +190,7 @@ export default function NewImmunization(props) {
           onChangeText={(value, index, data) => setDosage(value)}
         />
       </View>
+      {/* Notes Textbox*/}
       <View style={appStyles.TextInputImmunization.View}>
         <TextBox
           placeholder={translate('immunizationNotes')}
