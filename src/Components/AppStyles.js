@@ -7,6 +7,7 @@ export const pinkColor = '#DF2172';
 export const blueColor = '#0052A1';
 export const greyColor = '#A9A9A9';
 export const darkGreyColor = '#5E5E5E';
+export const greenColor = '#298000'
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
@@ -304,7 +305,7 @@ export default {
       textAlign: 'center',
     },
   },
-  FemaleCondomMenu: {
+  FemaleCondomDoMenu: {
     Touchable: {
       margin: 5,
       padding: 10,
@@ -315,7 +316,23 @@ export default {
       borderRadius,
     },
     Text: {
-      color: greyColor,
+      color: greenColor,
+      fontSize: RFValue(16),
+      textAlign: 'justify',
+    },
+  },
+  FemaleCondomDontMenu: {
+    Touchable: {
+      margin: 5,
+      padding: 10,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.95,
+      borderRadius,
+    },
+    Text: {
+      color: pinkColor,
       fontSize: RFValue(16),
       textAlign: 'justify',
     },
