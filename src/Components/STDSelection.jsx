@@ -9,7 +9,6 @@ import {
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import STD from './STD';
-import STDResources from './STDResources';
 import translate from './getLocalizedText';
 
 export default function STDSelection(props) {
@@ -22,9 +21,6 @@ export default function STDSelection(props) {
       consequences: std.consequences,
       safeSex: std.safeSex,
     });
-  };
-  const onPress2 = (stdr) => {
-    Linking.openURL(stdr);
   };
   return (
     <ScrollView
@@ -40,14 +36,6 @@ export default function STDSelection(props) {
           key={key}
           text={translate(std.name)}
           onPress={() => onPress(std)}
-        />
-      ))}
-      {STDResources().map((stdr, key) => (
-        <SelectionButton
-          style={appStyles.STDFemaleCondomSelectionButton}
-          key={key}
-          text={stdr.name}
-          onPress={() => onPress2(stdr.website)}
         />
       ))}
     </ScrollView>
