@@ -8,7 +8,11 @@ import {
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
+  StyleSheet,
 } from 'react-native';
+import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
+import {Input} from 'react-native-elements';
+import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
@@ -21,6 +25,11 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+  const [show, setShow] = React.useState(false);
+  const [showRepeat, setShowRepeat] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  const [visibleRepeat, setVisibleRepeat] = React.useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -83,21 +92,52 @@ export default SignUpPassword = (props) => {
                 {translate('createPassword')}
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                <TextBox
-                  placeholder={translate('passwordInput')}
-                  onChangeText={setPassword}
-                  secureTextEntry
-                  value={password}
-                  style={appStyles.TextInputMask}
-                />
+                <View>
+                  <TextBox
+                    style={appStyles.TextInputMask}
+                    secureTextEntry={visible}
+                    placeholder={translate('passwordInput')}
+                    onChangeText={setPassword}
+                  />
+                  <TouchableOpacity
+                    style={styles.eyeShowPassword}
+                    onPress={() => {
+                      setVisible(!visible);
+                      setShow(!show);
+                    }}
+                  >
+                    <Icon
+                      name={show === false ? 'eye-outline' : 'eye-off-outline'}
+                      size={26}
+                      color={appStyles.pinkColor}
+                    />
+                  </TouchableOpacity>
+                </View>
 
-                <TextBox
-                  placeholder={translate('repeatPasswordInput')}
-                  onChangeText={setRepeat}
-                  secureTextEntry
-                  value={repeat}
-                  style={appStyles.TextInputMask}
-                />
+                <View>
+                  <TextBox
+                    placeholder={translate('repeatPasswordInput')}
+                    onChangeText={setRepeat}
+                    secureTextEntry={visibleRepeat}
+                    value={repeat}
+                    style={appStyles.TextInputMask}
+                  />
+                  <TouchableOpacity
+                    style={styles.eyeShowPassword}
+                    onPress={() => {
+                      setVisibleRepeat(!visibleRepeat);
+                      setShowRepeat(!showRepeat);
+                    }}
+                  >
+                    <Icon
+                      name={
+                        showRepeat === false ? 'eye-outline' : 'eye-off-outline'
+                      }
+                      size={26}
+                      color={appStyles.pinkColor}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -119,3 +159,11 @@ export default SignUpPassword = (props) => {
     </KeyboardAvoidingView>
   );
 };
+
+const styles = StyleSheet.create({
+  eyeShowPassword: {
+    position: 'absolute',
+    right: 30,
+    top: 25,
+  },
+});
