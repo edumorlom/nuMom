@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Dropdown} from 'react-native-material-dropdown-v2';
+import {Dropdown} from 'react-native-material-dropdown-v2-fixed';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import translate from './getLocalizedText';

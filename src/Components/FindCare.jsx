@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
-import {Dropdown} from 'react-native-material-dropdown-v2';
+import {Dropdown} from 'react-native-material-dropdown-v2-fixed';
 import SelectionButton from './SelectionButton';
 import clinicLogo from '../../assets/clinic-logo.png';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
