@@ -64,5 +64,23 @@ export default function STDS() {
       consequences: 'HIVAIDSConsequences',
       safeSex: 'HIVAIDSSafeSex',
     },
+    {
+    name: 'zika',
+      symptoms: 'zikaSymptoms',
+      diagnosis: 'zikaDiagnosis',
+      treatment: 'zikaTreatment',
+      consequences: 'zikaConsequences',
+      safeSex: 'zikaSafeSex',
+      website: 'http://www.cdc.gov/zika/index.html'
+    },
+    {
+    name: 'hepatitisB',
+      symptoms: 'hepatitisBSymptoms',
+      diagnosis: 'hepatitisBDiagnosis',
+      treatment: 'hepatitisBTreatment',
+      consequences: 'hepatitisBConsequences',
+      safeSex: 'hepatitisBSafeSex',
+      website: 'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html'
+    },
   ];
 }
