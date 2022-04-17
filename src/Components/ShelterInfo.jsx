@@ -70,7 +70,7 @@ export default function ShelterInfo(props) {
             color: 'black',
           }}
         >
-          {props.shelter.open}
+          {props.shelters.open}
         </Text>
       </View>
       <View
