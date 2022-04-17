@@ -11,7 +11,7 @@ export const greenColor = '#298000';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
-export const smallFontSize = RFValue(16);
+export const smallFontSize = RFValue(13);
 export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
   fontSize: titleFontSize,
@@ -88,6 +88,11 @@ export default {
   paragraphText: {
     color: greyColor,
     fontSize: regularFontSize,
+    fontWeight: 'bold',
+  },
+  descriptionText: {
+    color: greyColor,
+    fontSize: smallFontSize,
     fontWeight: 'bold',
   },
   underlayColor: 'grey',
