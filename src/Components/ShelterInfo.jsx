@@ -75,7 +75,6 @@ export default function ShelterInfo(props) {
       <View
         style={{
           alightItems: 'center',
-          marginTop: '5%',
           marginBottom: 11,
           margin: 10,
         }}
