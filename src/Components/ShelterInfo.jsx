@@ -69,8 +69,19 @@ export default function ShelterInfo(props) {
             color: 'black',
           }}
         >
+          {props.shelter.opened}
           {props.shelter.open}
-          {props.shelter.open}
+        </Text>
+      </View>
+      <View style={{alightItems: 'center', marginTop: '5%', marginBottom: 11}}>
+        <Text
+          style={{
+            ...appStyles.paragraphText,
+            justifyContent: 'center',
+            color: 'grey',
+            fontSize: 'smallFontSize',
+          }}
+        >
           {props.shelter.others}
           {props.shelter.other}
         </Text>
