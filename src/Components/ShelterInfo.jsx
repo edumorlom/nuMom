@@ -70,6 +70,7 @@ export default function ShelterInfo(props) {
           }}
         >
           {props.shelter.opened}
+          {props.shelter.other}
         </Text>
       </View>
     </ScrollView>
