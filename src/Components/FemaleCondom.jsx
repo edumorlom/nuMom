@@ -27,8 +27,8 @@ function femaleCondomDoList() {
       do: 'FemaleCondomDo5',
     },
   ];
-
-}function femaleCondomDontList() {
+}
+function femaleCondomDontList() {
   return [
     {
       dont: 'FemaleCondomDont1',

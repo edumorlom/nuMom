@@ -61,7 +61,7 @@ export default function ShelterInfo(props) {
         onPress={call}
         icon={callIcon}
       />
-      <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 11}}>
+      <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 6}}>
         <Text
           style={{
             ...appStyles.paragraphText,
@@ -69,11 +69,17 @@ export default function ShelterInfo(props) {
             color: 'black',
           }}
         >
-          {props.shelter.opened}
           {props.shelter.open}
         </Text>
       </View>
-      <View style={{alightItems: 'center', marginTop: '5%', marginBottom: 11}}>
+      <View
+        style={{
+          alightItems: 'center',
+          marginTop: '5%',
+          marginBottom: 11,
+          margin: 10,
+        }}
+      >
         <Text
           style={{
             ...appStyles.paragraphText,
@@ -82,7 +88,6 @@ export default function ShelterInfo(props) {
             fontSize: 'smallFontSize',
           }}
         >
-          {props.shelter.others}
           {props.shelter.other}
         </Text>
       </View>

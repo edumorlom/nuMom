@@ -7,10 +7,11 @@ export const pinkColor = '#DF2172';
 export const blueColor = '#0052A1';
 export const greyColor = '#A9A9A9';
 export const darkGreyColor = '#5E5E5E';
-export const greenColor = '#298000'
+export const greenColor = '#298000';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
+export const smallFontSize = RFValue(15);
 export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
   fontSize: titleFontSize,
