@@ -4,7 +4,6 @@ import SelectionButton from './SelectionButton';
 import ActionButton from './Button';
 import directionsArrow from '../../assets/directions-arrow.png';
 import appStyles from './AppStyles';
-import shelters from './Shelters';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 import callIcon from '../../assets/call-icon.png';
 import translate from './getLocalizedText';
@@ -70,7 +69,7 @@ export default function ShelterInfo(props) {
             color: 'black',
           }}
         >
-          {props.shelters.open}
+          {props.shelter.open}
         </Text>
       </View>
       <View
