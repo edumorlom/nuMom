@@ -84,7 +84,7 @@ export default function ShelterInfo(props) {
             ...appStyles.paragraphText,
             justifyContent: 'center',
             color: 'grey',
-            fontSize: 'settingsPageLabelsFontSize',
+            fontSize: '16',
           }}
         >
           {props.shelter.other}
