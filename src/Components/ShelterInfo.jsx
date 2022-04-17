@@ -81,10 +81,8 @@ export default function ShelterInfo(props) {
       >
         <Text
           style={{
-            ...appStyles.paragraphText,
+            ...appStyles.descriptionText,
             justifyContent: 'center',
-            color: 'grey',
-            fontSize: '16',
           }}
         >
           {props.shelter.other}
