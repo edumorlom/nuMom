@@ -11,7 +11,7 @@ export const greenColor = '#298000';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
-export const smallFontSize = RFValue(15);
+export const smallFontSize = RFValue(16);
 export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
   fontSize: titleFontSize,
