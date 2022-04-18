@@ -123,7 +123,7 @@ export const wicChecklist = () => {
             text={checklist.text}
             subtext={checklist.subtext}
             key={key}
-            keyIdentifier = {"WIC" + key} //send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
+            keyIdentifier={`WIC${key}`} // send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
           />
         ))}
       </ScrollView>
@@ -219,7 +219,7 @@ export const wicLocations = (props) => {
           navigation={props.navigation}
         />
       </View>
-      <View style={{height: 400}}>
+      <View style={{height: appStyles.win.height * 0.6}}>
         <ScrollView>{wicButtons}</ScrollView>
       </View>
     </View>
