@@ -67,7 +67,7 @@ export default function Immunization(props) {
   return (
     <View style={appStyles.contentContainer}>
       <View style={{flexDirection: 'row'}}>
-        {/* New Immunization Button */}
+        {/* New Immunization Button*/}
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
@@ -76,8 +76,8 @@ export default function Immunization(props) {
         >
           <Image source={Plus} style={{height: 25, width: 25}} />
         </TouchableOpacity>
-
-        {/* Send Immunization Records Email Button */}
+        
+        {/* Send Immunization Records Email Button*/}
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
@@ -90,8 +90,8 @@ export default function Immunization(props) {
         >
           <Image source={Email} style={{height: 40, width: 40}} />
         </TouchableOpacity>
-
-        {/* Open Immunization Schedule Button */}
+        
+        {/* Open Immunization Schedule Button*/}
         <TouchableOpacity
           style={appStyles.viewPlus}
           onPress={() => {
@@ -102,7 +102,7 @@ export default function Immunization(props) {
         </TouchableOpacity>
       </View>
 
-      {/* Map the Saved Immunizations */}
+      {/* Map the Saved Immunizations*/}
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}

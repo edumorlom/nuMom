@@ -103,7 +103,7 @@ export const medicaidChecklist = () => {
             text={checklist.text}
             subtext={checklist.subtext}
             key={key}
-            keyIdentifier={`Medicaid${key}`} // send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
+            keyIdentifier = {"Medicaid" + key} //send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
           />
         ))}
       </ScrollView>
