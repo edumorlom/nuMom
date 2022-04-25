@@ -73,10 +73,10 @@ export default function ShelterInfo(props) {
         </Text>
       </View>
 
-      <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 9}}>
+      <View style={{alignItems: 'center', marginTop: '5%', marginBottom: 2}}>
         <Text
           style={{
-            ...appStyles.paragraphText,
+            ...appStyles.descriptionText,
             justifyContent: 'center',
             color: 'black',
           }}
