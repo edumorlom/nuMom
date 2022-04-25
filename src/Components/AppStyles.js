@@ -91,7 +91,7 @@ export default {
     fontWeight: 'bold',
   },
   descriptionText: {
-    color: greyColor,
+    color: blueColor,
     fontSize: smallFontSize,
     fontWeight: 'bold',
   },
