@@ -204,6 +204,7 @@ export default function NewImmunization(props) {
           onCancel={hideDatePicker}
           is24Hour
           headerTextIOS="Pick a date"
+          textColor = 'black'
         />
       </View>
       <View style={styles.seperator} />
