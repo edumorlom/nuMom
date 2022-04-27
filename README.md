@@ -4,7 +4,7 @@ Product Owner: Jean Hannan
 
 Veteran Author & Lead Mentor: Eduardo Morales
 
-Authors: Arelys Alvarez, Andy Herrera, Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia, Oscar Sanchez, Anael Ais, Gabriel Gomez, Jennifer Hierro, Eric Campillo, John Sehuwerert, Kimberly Mete.
+Authors: Arelys Alvarez, Andy Herrera, Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia, Anael Ais, Oscar Sanchez, Gabriel Gomez, Jennifer Hierro, Eric Campillo, John Sehuwerert, Kimberly Mete.
 
 This is the seventh version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
@@ -12,7 +12,7 @@ The application provides the following features to its users:
 - Important information about safe sex practices, STDs.
 - Timelines of childhood development milestones for feeding and immunizations.
 - Locations, contact information, and a description of services for important facilities, such as clinics and shelters.
-- Information information and resources to aid in applying for WIC and Medicaid
+- Important information and resources to help apply for WIC and Medicaid
 - The ability to record documents, appointments, immunizations, and references for doctors
 - Reminders for recorded appointments
 
@@ -26,7 +26,7 @@ The following tree structure will be useful to visualize how the project is stru
 
 ├── Code
 
-│   └── React-Native-App
+│   └── moms-infants-healthy
 
 │       ├── assets
 
@@ -58,28 +58,30 @@ The following tree structure will be useful to visualize how the project is stru
 
 ```
 
-All the functionality lies in the `Code/React-Native-App` directory. The rest of the directories that are in the root are solely for documentation purposes.
+All the functionality lies in the `Code/moms-infants-healthy` directory. The rest of the directories that are in the root are solely for documentation purposes.
 
-The root of the `React-Native-App/src` directory is where all the source code for the application lies. The main entrypoint of the application is through `App.js`, which is where the application is created. To add new screens you must reference them in the `App.js` file and create a new navigation reference inside the navigators in this file.
+The root of the `moms-infants-healthy/src` directory is where all the source code for the application lies. The main entrypoint of the application is through `App.js`, which is where the application is created. To add new screens you must reference them in the `App.js` file and create a new navigation reference inside the navigators in this file.
 
-Within the root of the `React-Native-App` directory is a file called `package.json`, which defines the scripts that allows to run the application and contains meta-data about the project, in addition to defining the project dependencies.
+Within the root of the `moms-infants-healthy` directory is a file called `package.json`, which defines the scripts that allows to run the application and contains meta-data about the project, in addition to defining the project dependencies.
 
 ### Installation & Running steps
 
-To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/). After they are installed, run these commands in your machine’s command line to install the necessary dependencies:
+To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/). 
+
+You must then clone the Github repository onto your local machine. You may do this in any file on your computer by doing `cd {file path}` command in your terminal before running the following clone command in your terminal as well.
+
+```
+
+git clone https://github.com/edumorlom/moms-infants-healthy.git
+
+```
+
+After the repository is cloned, you must go into it by doing `cd moms-infants-healthy` in your terminal. Then run these commands in your terminal to install the necessary dependencies:
 
 ```
 
 npm install --global expo-cli
 npm install && expo install
-
-```
-
-After the dependencies are setup, you will need to clone the GitHub repository onto your local machine:
-
-```
-
-git clone https://github.com/edumorlom/moms-infants-healthy.git
 
 ```
 
