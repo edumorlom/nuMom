@@ -199,7 +199,7 @@ export const medicaidLocations = (props) => {
           navigation={props.navigation}
         />
       </View>
-      <View style={{height: 400}}>
+      <View style={{height: appStyles.win.height * 0.6}}>
         <ScrollView>{medicaidButtons}</ScrollView>
       </View>
     </View>
