@@ -123,7 +123,7 @@ export const wicChecklist = () => {
             text={checklist.text}
             subtext={checklist.subtext}
             key={key}
-            keyIdentifier = {"WIC" + key} //send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
+            keyIdentifier={`WIC${key}`} // send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
           />
         ))}
       </ScrollView>
