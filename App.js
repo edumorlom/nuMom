@@ -346,8 +346,9 @@ const styles = StyleSheet.create({
     top: appStyles.win.width * 0.04,
   },
   goBackArrow: {
+    margin: 10,
     width: 25,
-    height: 25,
+    height: 30,
   },
   headerTitle: {
     fontSize: 25,
