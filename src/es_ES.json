@@ -235,7 +235,6 @@
   "failedToken": "¡No se pudo obtener el token para la notificación push!",
   "failedDevice": "Debe usar el dispositivo físico para las notificaciones push",
 
-  "selectImmunization": "<<Seleccione Inmunización>>",
   "HEPB": "Vacuna contra la Hepatitis B",
   "DTAP": "Vacuna DTaP (Difteria, Tétanos, tos Ferina)",
   "IPV": "Vacuna de la Poliomielitis",
@@ -247,7 +246,6 @@
   "MMR": "Vacuna MMR (Sarampión, Paperas y Rubéola)",
   "CHKPOX": "Vacuna contra la Varicela",
 
-  "selectDosage": "<<Seleccione la dosis>>",
   "dose1": "primer inyección",
   "dose2": "segundo inyección",
   "dose3": "tercera inyección",

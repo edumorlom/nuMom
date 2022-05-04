@@ -577,7 +577,6 @@ export default {
     },
   },
   TextInputImmunization: {
-    View: {
       ...shadow,
       height: win.height * 0.2,
       width: win.width * 0.8,
@@ -587,10 +586,7 @@ export default {
       borderRadius,
       justifyContent: 'center',
       backgroundColor: 'white',
-    },
-    TextInput: {
       fontSize: regularFontSize,
       textAlign: 'center',
-    },
   },
 };

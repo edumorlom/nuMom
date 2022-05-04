@@ -235,7 +235,6 @@
   "failedToken": "Failed to get push token for push notification!",
   "failedDevice": "Must use physical device for Push Notifications",
 
-  "selectImmunization": "<<Select Immunization>>",
   "HEPB": "Hepatitis B Vaccine",
   "DTAP": "Diphtheria, Tetanus, and Pertussis (Dtap) Vaccine",
   "IPV": "Polio (IPV) Vaccine",
@@ -247,7 +246,6 @@
   "MMR": "Measles, Mumps, and Rubella (MMR) Vaccine",
   "CHKPOX": "Chickenpox (Varicella) Vaccine",
 
-  "selectDosage": "<<Select Dosage>>",
   "dose1": "First Shot",
   "dose2": "Second Shot",
   "dose3": "Third Shot",
