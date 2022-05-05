@@ -13,17 +13,11 @@ import {fetchImmunization, getUid} from '../Firebase';
 import translate from './getLocalizedText';
 
 export default function ImmunizationSchedule(props) {
-  let _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
 
-  getImmunization = () => {
-    fetchImmunization(uid, setObjects, _isMounted);
-  };
-
   useEffect(() => {
-    getImmunization();
-    return () => (_isMounted = false);
+    fetchImmunization(uid, setObjects);
   }, []);
 
   const scheduleData = [

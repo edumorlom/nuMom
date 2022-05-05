@@ -14,14 +14,9 @@ import {
 } from '../Firebase';
 
 export default function Immunization(props) {
-  const _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
   const email = getUEmail();
-
-  getImmunization = () => {
-    fetchImmunization(uid, setObjects, _isMounted);
-  };
 
   removeImmunization = (id) => {
     deleteImmunization(id, uid, objects, setObjects);
@@ -29,7 +24,7 @@ export default function Immunization(props) {
 
   useFocusEffect(
     React.useCallback(() => {
-      getImmunization();
+      fetchImmunization(uid, setObjects);
       return () => {
         setObjects([]);
       };

@@ -7,12 +7,11 @@ import ReferenceInfo from './ReferenceInfo';
 import {deleteReference, fetchReference, getUid} from '../Firebase';
 
 function ReferenceNames(props) {
-  let _isMounted = false;
   const [references, setReferences] = useState([]);
   const uid = getUid();
 
   getReferences = () => {
-    fetchReference(uid, setReferences, _isMounted);
+    fetchReference(uid, setReferences);
   };
 
   removeReference = (id) => {
