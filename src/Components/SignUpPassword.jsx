@@ -13,13 +13,19 @@ import {
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+import appStyles, {blueColor, pinkColor, greenColor, regularFontSize} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import badPasswordList from './BadPasswordList';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
+  const [passwordStrCheck, setStrCheck] = useState('');
+  const validSymbols = ['~', '`', '!', '@', '#', '$', '%', '^',
+  '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', 
+  '|', ':', ';', '"', '<', ',', '>', '.', '?', '/', '\\'];
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
@@ -44,12 +50,79 @@ export default SignUpPassword = (props) => {
       .done();
   }, []);
 
+  let onChangePassword = (password) => {
+    checkStrength(password);
+    setPassword(password);
+  };
+
+  function checkStrength(password) {
+
+    let hasLower = false;
+    let hasUpper = false;
+    let hasNumber = false;
+    let hasSymbol = false;
+    let strCount = 0;
+
+    for (let i = 0; i < password.length; i++) {
+      if (password.charAt(i) >= '0' && password.charAt(i) <= '9') {
+        hasNumber = true;
+      } else if (validSymbols.includes(password.charAt(i))) {
+        hasSymbol = true;
+      } else if (password.charAt(i) == password.charAt(i).toLowerCase()) {
+        hasLower = true;
+      } else if (password.charAt(i) == password.charAt(i).toUpperCase()) {
+        hasUpper = true;
+      }
+    }
+
+    setStrCheck(
+        (hasUpper ? 1 : 0) +
+        (hasLower ? 1 : 0) +
+        (hasSymbol ? 1 : 0) +
+        (hasNumber ? 1 : 0)
+    );
+
+    if (badPasswordList.includes(password)) {
+      setPasswordStrength(0);
+      return;
+    }
+
+    if (password.length >= 5 && passwordStrCheck == 3) {
+      setPasswordStrength(1); // If length + 3 requirements met, MEDIUM
+    } else if (password.length >= 5 && passwordStrCheck == 4) {
+      setPasswordStrength(2); // If length + all requirements met, HIGH
+    } else {
+      setPasswordStrength(0); // Else, POOR
+    }
+  }
+
+  let displayComponent = (currentPasswordStrength) => {
+    let dispColor;
+    let dispMessage;
+
+    if (currentPasswordStrength == 1 && password.length >= 5) {
+      dispColor = blueColor;
+      dispMessage = 'Password Strength: MEDIUM';
+    } else if (currentPasswordStrength == 2 && password.length >= 5) {
+      dispColor = greenColor;
+      dispMessage = 'Password Strength: HIGH';
+    } else {
+      dispColor = pinkColor;
+      dispMessage = 'Password Strength: POOR';
+    }
+    return (
+      <Text style={{fontSize: regularFontSize, color: dispColor}}>
+        {dispMessage}
+      </Text>
+    );
+  };
+
   let onPress = () => {
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
+    } else if (password.length <= 4) {
       alert(translate('passwordTooShort'));
     } else {
       // props.setUserInfo({password});
@@ -91,13 +164,16 @@ export default SignUpPassword = (props) => {
               <Text style={appStyles.titleBlue}>
                 {translate('createPassword')}
               </Text>
+
+              {displayComponent(passwordStrength)}
+
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <View>
                   <TextBox
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={onChangePassword}
                   />
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
