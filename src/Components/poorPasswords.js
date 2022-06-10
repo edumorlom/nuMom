@@ -1,4 +1,4 @@
-123456
+module.exports=`123456
 password
 12345678
 qwerty
