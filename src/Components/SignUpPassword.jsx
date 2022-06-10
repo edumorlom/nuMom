@@ -16,6 +16,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+let listPoorPasswords=require("./poorPasswords.js")
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
@@ -30,7 +31,47 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  const [isPassWordValid,setIsPassWordValid]=React.useState(false);
+  const [labelColor,setLabelColor]=React.useState("white")
 
+  //1 Function to test if the password weak  (if weak) => WEAK
+  function isWeak(password){
+    if(password.length<=4)return true;
+    if(listPoorPasswords.includes(password)){
+      return true;
+    }
+    return false;
+  }
+  //2 Function to test if the password Medium  (if medium) => medium
+  function isMedium(password){
+    if(password.length<5)return true;
+    let typesCounter=0
+    //lowercase letter
+    if(/[a-z]/.test(password))typesCounter++
+    //number
+    if(/[0-9]/.test(password))typesCounter++
+    //symbol
+    if(/^[^a-zA-Z0-9]*$/.test(password))typesCounter++
+    //capital letter.
+    if(/[A-Z]/.test(password))typesCounter++
+
+    if(typesCounter<3)return true;
+    return false;
+  }
+  //3 Function to test if the password Strong  (if strong) => strong
+  function isHight(password){
+    if(password.length<5)return true;
+    //lowercase letter
+    if(/[a-z]/.test(password))return true
+    //number
+    if(/[0-9]/.test(password))return true
+    //symbol
+    if(/^[^a-zA-Z0-9]*$/.test(password))return true
+    //capital letter.
+    if(/[A-Z]/.test(password))return true
+
+    return false;
+  }
   useEffect(() => {
     AsyncStorage.getItem('pass')
       .then((value) => {
@@ -97,7 +138,25 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                     onChangeText={(password)=>{
+                      setPassword(password)
+                      if(isWeak(password)){
+                        //{Poor: "nuMom-pink"}
+                        setLabelColor("pink")
+                        setIsPassWordValid(false)
+                        return
+                      }else if(isMedium(password)){
+                        //{Medium: "nuMom-blue"}
+                        setLabelColor("blue")
+                        setIsPassWordValid(true)
+                        return
+                      }else if(isHight(password)){
+                        //{High: "#298000"}
+                        setLabelColor("#298000")
+                        setIsPassWordValid(true)
+                        return
+                      }
+                    }}
                   />
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
