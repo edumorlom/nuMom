@@ -3,16 +3,14 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {Dimensions, Platform} from 'react-native';
 
 export const win = Dimensions.get('window');
-export const pinkColor = '#DF2172';
-export const blueColor = '#0052A1';
-export const greyColor = '#A9A9A9';
-export const darkGreyColor = '#5E5E5E';
-export const greenColor = '#298000';
+export const pinkColor = '#f23588';
+export const blueColor = '#2326cf';
+export const greenColor = '#0ee848';
+export const greyColor = '#9baba0';
+export const darkGreyColor = '#454a46';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
-export const smallFontSize = RFValue(13);
-export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
   fontSize: titleFontSize,
   fontWeight: 'bold',
@@ -39,13 +37,6 @@ export default {
     backgroundColor: 'white',
   },
   contentContainer: {
-    alignItems: 'center',
-    maxWidth: '100%',
-    backgroundColor: 'white',
-    flex: 1,
-    paddingLeft: 25,
-  },
-  learnAndResourceTabContentContainer: {
     alignItems: 'center',
     maxWidth: '100%',
     backgroundColor: 'white',
@@ -88,11 +79,6 @@ export default {
   paragraphText: {
     color: greyColor,
     fontSize: regularFontSize,
-    fontWeight: 'bold',
-  },
-  descriptionText: {
-    color: blueColor,
-    fontSize: smallFontSize,
     fontWeight: 'bold',
   },
   underlayColor: 'grey',
@@ -311,7 +297,7 @@ export default {
       textAlign: 'center',
     },
   },
-  FemaleCondomDoMenu: {
+  FemaleCondomMenu: {
     Touchable: {
       margin: 5,
       padding: 10,
@@ -322,23 +308,7 @@ export default {
       borderRadius,
     },
     Text: {
-      color: greenColor,
-      fontSize: RFValue(16),
-      textAlign: 'justify',
-    },
-  },
-  FemaleCondomDontMenu: {
-    Touchable: {
-      margin: 5,
-      padding: 10,
-      justifyContent: 'center',
-      backgroundColor: 'white',
-      ...shadow,
-      width: win.width * 0.95,
-      borderRadius,
-    },
-    Text: {
-      color: pinkColor,
+      color: greyColor,
       fontSize: RFValue(16),
       textAlign: 'justify',
     },
