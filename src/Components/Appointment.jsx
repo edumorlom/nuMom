@@ -13,12 +13,11 @@ import Plus from '../../assets/plus.png';
 import {deleteAppointment, fetchAppointment, getUid} from '../Firebase';
 
 export default function Appointment(props) {
-  const _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
 
   getAppointment = () => {
-    fetchAppointment(uid, setObjects, _isMounted);
+    fetchAppointment(uid, setObjects);
   };
 
   removeAppointment = (id, eventId) => {
