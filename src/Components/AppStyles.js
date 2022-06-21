@@ -10,7 +10,7 @@ export const darkGreyColor = '#5E5E5E';
 export const greenColor = '#298000';
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
-export const regularFontSize = RFValue(20);
+export const regularFontSize = RFValue(13);// change from 20 to 13
 export const smallFontSize = RFValue(13);
 export const settingsPageLabelsFontSize = RFValue(16);
 export const title = {
@@ -260,8 +260,8 @@ export default {
       padding: 20,
       backgroundColor: 'white',
       ...shadow,
-      minHeight: win.height * 0.2,
-      maxHeight: win.height * 0.4,
+      minHeight: win.height * 0.09,// change from *0.2 to *0.09
+      maxHeight: win.height * 0.2, // Change from *0.4 to *0.2
       width: win.width * 0.95,
       borderColor: greyColor,
       borderRadius,
@@ -269,18 +269,18 @@ export default {
       flexDirection: 'row',
     },
     View: {
-      height: '100%',
-      width: '70%',
+      height: '80%',// change from 100% to 80%
+      width: '40%', //Change from 70% to 40
       marginRight: 20,
     },
     ImageView: {
-      height: '100%',
+      height: '60%',  // Change from 100% to 60%
       width: '7%',
       justifyContent: 'center',
     },
     ImageInView: {
-      width: 65,
-      height: 65,
+      width: 60, // Change from 65 to 60
+      height: 60,
     },
     Text: {
       color: blueColor,
