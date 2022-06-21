@@ -235,7 +235,6 @@
   "failedToken": "Atanta pou jwenn yon \"push token\" pou notifikasyon an pa reyisi!",
   "failedDevice": "Pou \"push\" notifikasyon yo, yon aparèy fizik nésesè",
 
-  "selectImmunization": "<<Chwazi Vaksin>>",
   "HEPB": "Vaksen kont Epatit B",
   "DTAP": "Vaksen DTaP (Difteri, Tetanòs, Koklich)",
   "IPV": "Vaksen kont Polyo",
@@ -247,7 +246,6 @@
   "MMR": "Vaksen MMR (Lawoujòl, Malmouton ak Ribeyòl)",
   "CHKPOX": "Vaksen kont Varisèl (Saranpyon)",
 
-  "selectDosage": "<<Chwazi dòz la>>",
   "dose1": "premye piki",
   "dose2": "dezyèm piki",
   "dose3": "twazyèm piki",
