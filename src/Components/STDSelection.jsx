@@ -13,6 +13,7 @@ import translate from './getLocalizedText';
 
 export default function STDSelection(props) {
   const onPress = (std) => {
+    STD().sort();
     props.navigation.navigate('STDInfo', {
       name: translate(std.name),
       symptoms: std.symptoms,
@@ -30,7 +31,7 @@ export default function STDSelection(props) {
         backgroundColor: 'white',
       }}
     >
-      {STD().sort.map((std, key) => (
+      {STD().map((std, key) => (
         <SelectionButton
           style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
