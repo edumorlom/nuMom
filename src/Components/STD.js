@@ -1,4 +1,5 @@
 export default function STDS() {
+  STDS.sort();
   return [
     {
       name: 'gonorrhea',
@@ -86,3 +87,5 @@ export default function STDS() {
   ];
   STDS.sort();
 }
+
+STDS.sort();
