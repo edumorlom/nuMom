@@ -14,7 +14,7 @@ import translate from './getLocalizedText';
 export default function STDSelection(props) {
   const onPress = (std) => {
     props.navigation.navigate('STDInfo', {
-      name: translate(std.name.sort()),
+      name: translate(std.name),
       symptoms: std.symptoms,
       diagnosis: std.diagnosis,
       treatment: std.treatment,
@@ -34,7 +34,7 @@ export default function STDSelection(props) {
         <SelectionButton
           style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
-          text={translate(std.name)}
+          text={translate(std.name.sort())}
           onPress={() => onPress(std)}
         />
       ))}
