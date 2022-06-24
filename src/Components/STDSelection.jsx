@@ -11,7 +11,7 @@ import SelectionButton from './SelectionButton';
 import STD from './STD';
 import translate from './getLocalizedText';
 
-STD().sort();
+STD.sort();
 export default function STDSelection(props) {
   const onPress = (std) => {
     std.name.sort();
@@ -24,7 +24,10 @@ export default function STDSelection(props) {
       safeSex: std.safeSex,
     });
     std.name.sort();
+    std.sort();
   };
+  std.name.sort();
+  STD.sort();
   return (
     <ScrollView
       contentContainerStyle={{
