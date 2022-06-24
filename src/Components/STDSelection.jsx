@@ -11,9 +11,10 @@ import SelectionButton from './SelectionButton';
 import STD from './STD';
 import translate from './getLocalizedText';
 
+STD().sort();
 export default function STDSelection(props) {
   const onPress = (std) => {
-    STD().sort();
+    std.name.sort();
     props.navigation.navigate('STDInfo', {
       name: translate(std.name),
       symptoms: std.symptoms,
@@ -22,6 +23,7 @@ export default function STDSelection(props) {
       consequences: std.consequences,
       safeSex: std.safeSex,
     });
+    std.name.sort();
   };
   return (
     <ScrollView
