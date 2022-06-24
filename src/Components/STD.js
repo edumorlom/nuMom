@@ -1,4 +1,5 @@
 export default function STDS() {
+  STDS.sort();
   return [
     {
       name: 'gonorrhea',
@@ -84,7 +85,4 @@ export default function STDS() {
         'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html',
     },
   ];
-  STDS.sort();
 }
-
-STDS.sort();
