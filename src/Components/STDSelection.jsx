@@ -30,11 +30,11 @@ export default function STDSelection(props) {
         backgroundColor: 'white',
       }}
     >
-      {STD().map((std, key) => (
+      {STD().sort.map((std, key) => (
         <SelectionButton
           style={appStyles.STDFemaleCondomSelectionButton}
           key={key}
-          text={translate(std.name.sort())}
+          text={translate(std.name)}
           onPress={() => onPress(std)}
         />
       ))}
