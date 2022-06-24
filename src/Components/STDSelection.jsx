@@ -13,9 +13,8 @@ import translate from './getLocalizedText';
 
 export default function STDSelection(props) {
   const onPress = (std) => {
-    std.sort();
     props.navigation.navigate('STDInfo', {
-      name: translate(std.name),
+      name: translate(std.name.sort()),
       symptoms: std.symptoms,
       diagnosis: std.diagnosis,
       treatment: std.treatment,
