@@ -12,8 +12,8 @@ import STD from './STD';
 import translate from './getLocalizedText';
 
 export default function STDSelection(props) {
-  const [data, setData] = useState([]);
-  const [sort, setSort] = useState('name');
+  const [data, setData] = useState('');
+  const [sort, setSort] = useState('');
   const onPress = (std) => {
     props.navigation.navigate('STDInfo', {
       name: translate(std.name),
@@ -25,12 +25,8 @@ export default function STDSelection(props) {
     });
 
     useEffect(() => {
-      const sortList = (type) => {
-        const types = {
-          name: translate(std.name),
-        };
-        const stortName = types[type];
-        const sorts = std.sort((a, b) => b[sortName] - a[sortName]);
+      const sortList = () => {
+        const sorts = std.sort((a, b) => a - b);
         setData[sorts];
       };
       sortList(sort);
