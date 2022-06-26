@@ -11,10 +11,10 @@ import SelectionButton from './SelectionButton';
 import STD from './STD';
 import translate from './getLocalizedText';
 
-STD.sort();
 export default function STDSelection(props) {
+  const [data, setData] = useState([]);
+  const [sort, setSort] = useState('name');
   const onPress = (std) => {
-    std.name.sort();
     props.navigation.navigate('STDInfo', {
       name: translate(std.name),
       symptoms: std.symptoms,
@@ -23,27 +23,37 @@ export default function STDSelection(props) {
       consequences: std.consequences,
       safeSex: std.safeSex,
     });
-    std.name.sort();
-    std.sort();
+
+    useEffect(() => {
+      const sortList = (type) => {
+        const types = {
+          name: translate(std.name),
+        };
+        const stortName = types[type];
+        const sorts = [...std].sort((a, b) => b[sortName] - a[sortName]);
+        setData[sorts];
+      };
+      sortList(sort);
+    }, [sort]);
+
+    return (
+      <ScrollView
+        onChnage={setSort}
+        contentContainerStyle={{
+          alignItems: 'center',
+          maxWidth: '100%',
+          backgroundColor: 'white',
+        }}
+      >
+        {STD().map((std, key) => (
+          <SelectionButton
+            style={appStyles.STDFemaleCondomSelectionButton}
+            key={key}
+            text={translate(std.name)}
+            onPress={() => onPress(std)}
+          />
+        ))}
+      </ScrollView>
+    );
   };
-  std.name.sort();
-  STD.sort();
-  return (
-    <ScrollView
-      contentContainerStyle={{
-        alignItems: 'center',
-        maxWidth: '100%',
-        backgroundColor: 'white',
-      }}
-    >
-      {STD().map((std, key) => (
-        <SelectionButton
-          style={appStyles.STDFemaleCondomSelectionButton}
-          key={key}
-          text={translate(std.name)}
-          onPress={() => onPress(std)}
-        />
-      ))}
-    </ScrollView>
-  );
 }
