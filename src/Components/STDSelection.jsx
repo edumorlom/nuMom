@@ -30,7 +30,7 @@ export default function STDSelection(props) {
           name: translate(std.name),
         };
         const stortName = types[type];
-        const sorts = [...std].sort((a, b) => b[sortName] - a[sortName]);
+        const sorts = std.sort((a, b) => b[sortName] - a[sortName]);
         setData[sorts];
       };
       sortList(sort);
