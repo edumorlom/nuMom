@@ -51,6 +51,7 @@ export default function ClinicInfo(props) {
         onPress={getDirections}
         /* clinic={props.clinic}  */
       />
+
       <ActionButton
         style={appStyles.ActionButton}
         text={translate('visitSite')}
@@ -76,6 +77,22 @@ export default function ClinicInfo(props) {
           {translate('services')}
         </Text>
         {services}
+      </View>
+      <View
+        style={{
+          alightItems: 'center',
+          marginTop: '5%',
+          marginBottom: 11,
+        }}
+      >
+        <Text
+          style={{
+            ...appStyles.paragraphText,
+            color: 'black',
+          }}
+        >
+          {clinicInfo}
+        </Text>
       </View>
     </ScrollView>
   );
