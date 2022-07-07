@@ -59,6 +59,16 @@ export default function ClinicInfo(props) {
         onPress={visitSite}
         icon={visitSiteIcon}
       />
+      <View style={{alignItems: 'center', maxWidth: '100%'}}>
+        <Text
+          style={{
+            // ...appStyles.paragraphText,
+            color: 'black',
+          }}
+        >
+          {clinicInfo}
+        </Text>
+      </View>
       <ActionButton
         style={appStyles.ActionButton}
         text={translate('callClinic')}
