@@ -47,7 +47,7 @@ export default function ClinicInfo(props) {
         style={appStyles.ClinicSelectionButton}
         text={getResourceName(props.clinic.resource)}
         subtext={`${clinicInfo}`}
-        subtextregular={{clinicMiles}}
+        subtextregular={clinicMiles}
         icon={directionsArrow}
         onPress={getDirections}
         /* clinic={props.clinic}  */
