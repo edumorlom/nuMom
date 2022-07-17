@@ -14,7 +14,7 @@ export default function Resources(props) {
   const wicButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('applyWIC')}
+      text={translate('resourcesWIC')}
       subtext={translate('WICSubtext')}
       icon={breastfeeding}
       onPress={() => {
@@ -26,7 +26,7 @@ export default function Resources(props) {
   const medicaidButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('applyMedicaid')}
+      text={translate('resourcesMedicaid')}
       subtext={translate('medicaidSubtext')}
       icon={heart}
       onPress={() => {
@@ -38,8 +38,8 @@ export default function Resources(props) {
   const immunizationButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('immunization')}
-      subtext={translate('immunizationInfo')}
+      text={translate('resourcesImmunizations')}
+      subtext={translate('immunizationsSubtext')}
       icon={babyVaccine}
       onPress={() => {
         props.navigation.navigate('ImmunizationScreen');
@@ -50,8 +50,8 @@ export default function Resources(props) {
   const appointmentButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('appointment')}
-      subtext={translate('appointmentInfo')}
+      text={translate('resourcesAppointments')}
+      subtext={translate('appointmentsSubtext')}
       icon={appointments}
       onPress={() => {
         props.navigation.navigate('Appointment');
@@ -62,8 +62,8 @@ export default function Resources(props) {
   const documentUploadButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('documents')}
-      subtext={translate('documentsSubtitle')}
+      text={translate('resourcesDocuments')}
+      subtext={translate('documentsSubtext')}
       icon={document}
       onPress={() => {
         props.navigation.navigate('Documents');
@@ -74,8 +74,8 @@ export default function Resources(props) {
   const namesReferenceButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text={translate('NameReference')}
-      subtext={translate('ReferenceSubtitle')}
+      text={translate('resourcesReferences')}
+      subtext={translate('referencesSubtext')}
       icon={doctor}
       onPress={() => {
         props.navigation.navigate('ReferenceNames');
@@ -90,8 +90,8 @@ export default function Resources(props) {
       >
         {wicButton}
         {medicaidButton}
-        {documentUploadButton}
         {appointmentButton}
+        {documentUploadButton}
         {immunizationButton}
         {namesReferenceButton}
       </ScrollView>

@@ -1,12 +1,12 @@
 export default function STDS() {
   return [
     {
-      name: 'gonorrhea',
-      symptoms: 'gonorrheaSymptoms',
-      diagnosis: 'gonorrheaDiagnosis',
-      treatment: 'gonorrheaTreatment',
-      consequences: 'gonorrheaConsequences',
-      safeSex: 'gonorrheaSafeSex',
+      name: 'bacterialVaginosis',
+      symptoms: 'bacterialVaginosisSymptoms',
+      diagnosis: 'bacterialVaginosisDiagnosis',
+      treatment: 'bacterialVaginosisTreatment',
+      consequences: 'bacterialVaginosisConsequences',
+      safeSex: 'bacterialVaginosisSafeSex',
     },
     {
       name: 'chlamydia',
@@ -17,14 +17,6 @@ export default function STDS() {
       safeSex: 'chlamydiaSafeSex',
     },
     {
-      name: 'HPV',
-      symptoms: 'HPVSymptoms',
-      diagnosis: 'HPVDiagnosis',
-      treatment: 'HPVTreatment',
-      consequences: 'HPVConsequences',
-      safeSex: 'HPVSafeSex',
-    },
-    {
       name: 'genitalHerpes',
       symptoms: 'genitalHerpesSymptoms',
       diagnosis: 'genitalHerpesDiagnosis',
@@ -33,28 +25,21 @@ export default function STDS() {
       safeSex: 'genitalHerpesSafeSex',
     },
     {
-      name: 'syphilis',
-      symptoms: 'syphilisSymptoms',
-      diagnosis: 'syphilisDiagnosis',
-      treatment: 'syphilisTreatment',
-      consequences: 'syphilisConsequences',
-      safeSex: 'syphilisSafeSex',
+      name: 'gonorrhea',
+      symptoms: 'gonorrheaSymptoms',
+      diagnosis: 'gonorrheaDiagnosis',
+      treatment: 'gonorrheaTreatment',
+      consequences: 'gonorrheaConsequences',
+      safeSex: 'gonorrheaSafeSex',
     },
     {
-      name: 'bacterialVaginosis',
-      symptoms: 'bacterialVaginosisSymptoms',
-      diagnosis: 'bacterialVaginosisDiagnosis',
-      treatment: 'bacterialVaginosisTreatment',
-      consequences: 'bacterialVaginosisConsequences',
-      safeSex: 'bacterialVaginosisSafeSex',
-    },
-    {
-      name: 'trichomoniasis',
-      symptoms: 'trichomoniasisSymptoms',
-      diagnosis: 'trichomoniasisDiagnosis',
-      treatment: 'trichomoniasisTreatment',
-      consequences: 'trichomoniasisConsequences',
-      safeSex: 'trichomoniasisSafeSex',
+      name: 'hepatitisB',
+      symptoms: 'hepatitisBSymptoms',
+      diagnosis: 'hepatitisBDiagnosis',
+      treatment: 'hepatitisBTreatment',
+      consequences: 'hepatitisBConsequences',
+      safeSex: 'hepatitisBSafeSex',
+      website: 'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html'
     },
     {
       name: 'HIVAIDS',
@@ -65,6 +50,30 @@ export default function STDS() {
       safeSex: 'HIVAIDSSafeSex',
     },
     {
+      name: 'HPV',
+      symptoms: 'HPVSymptoms',
+      diagnosis: 'HPVDiagnosis',
+      treatment: 'HPVTreatment',
+      consequences: 'HPVConsequences',
+      safeSex: 'HPVSafeSex',
+    },
+    {
+      name: 'syphilis',
+      symptoms: 'syphilisSymptoms',
+      diagnosis: 'syphilisDiagnosis',
+      treatment: 'syphilisTreatment',
+      consequences: 'syphilisConsequences',
+      safeSex: 'syphilisSafeSex',
+    },
+    {
+      name: 'trichomoniasis',
+      symptoms: 'trichomoniasisSymptoms',
+      diagnosis: 'trichomoniasisDiagnosis',
+      treatment: 'trichomoniasisTreatment',
+      consequences: 'trichomoniasisConsequences',
+      safeSex: 'trichomoniasisSafeSex',
+    },
+    {
     name: 'zika',
       symptoms: 'zikaSymptoms',
       diagnosis: 'zikaDiagnosis',
@@ -73,14 +82,6 @@ export default function STDS() {
       safeSex: 'zikaSafeSex',
       website: 'http://www.cdc.gov/zika/index.html'
     },
-    {
-    name: 'hepatitisB',
-      symptoms: 'hepatitisBSymptoms',
-      diagnosis: 'hepatitisBDiagnosis',
-      treatment: 'hepatitisBTreatment',
-      consequences: 'hepatitisBConsequences',
-      safeSex: 'hepatitisBSafeSex',
-      website: 'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html'
-    },
   ];
 }
+
