@@ -1,6 +1,6 @@
 # NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Spring 2022>
 
-Product Owner: Jean Hannan
+Product Owner: Jean Hannan & Eduardo Morales
 
 Veteran Author & Lead Mentor: Eduardo Morales
 
