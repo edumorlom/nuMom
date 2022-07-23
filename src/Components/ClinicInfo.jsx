@@ -37,8 +37,8 @@ export default function ClinicInfo(props) {
     </Text>
   ));
 
-  const clinicInfo = `${props.clinic.address.street}\n${props.clinic.address.city}\n${props.clinic.address.state}, ${props.clinic.address.zipCode}\n${props.clinic.distance} miles`;
-
+  const clinicInfo = `${props.clinic.address.street}\n${props.clinic.address.city}\n${props.clinic.address.state}, ${props.clinic.address.zipCode}\n`;
+  const clinicMiles = '{props.clinic.distance} miles';
   return (
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
@@ -47,10 +47,12 @@ export default function ClinicInfo(props) {
         style={appStyles.ClinicSelectionButton}
         text={getResourceName(props.clinic.resource)}
         subtext={`${clinicInfo}`}
+        subtextregular={clinicMiles}
         icon={directionsArrow}
         onPress={getDirections}
         /* clinic={props.clinic}  */
       />
+
       <ActionButton
         style={appStyles.ActionButton}
         text={translate('visitSite')}
@@ -58,6 +60,7 @@ export default function ClinicInfo(props) {
         onPress={visitSite}
         icon={visitSiteIcon}
       />
+
       <ActionButton
         style={appStyles.ActionButton}
         text={translate('callClinic')}
