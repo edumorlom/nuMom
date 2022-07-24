@@ -11,15 +11,22 @@ import {
   StyleSheet,
 } from 'react-native';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
-import {Input} from 'react-native-elements';
+import {colors, Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+//import poorPasswords from './poorPasswords';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
+  const [passwordStrength, setPassStrength] = useState('');
+  const [charCount, setCount] = useState('');
+  const [carryLowerCase, setCarryLower] = useState(false);
+  const [carryUpperCase, setCarryUpper] = useState(false);
+  const [number, setNum] = useState(false);
+  const [carrySymbol, setCarrySymbol] = useState(false);
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
@@ -43,6 +50,82 @@ export default SignUpPassword = (props) => {
       })
       .done();
   }, []);
+  //when user make change to password, check password
+  let changePassword = (password) => {
+    setPassword(password);
+    checkPassStrength(password);
+  };
+  //check user password
+  let checkPassStrength = (password) => {
+    //initi variable
+    setCarryLower(false);
+    setCarryUpper(false);
+    setCarrySymbol(false);
+    setNum(false);
+    //count the num characters in each
+    let charCount = 0;
+    //see if the password contain lowercase then count
+    if(/[a-z]/.test(password)){
+      charCount++;
+      setCarryLower(true);
+    }
+    //see if the password contain uppercase
+    if(/[A-Z]/.test(password)){
+      charCount++;
+      setCarryUpper(true);
+    }
+    //see if the password contain symbol
+    if(/[^A-Za-z0-9]/.test(password)){
+      charCount++;
+      setCarrySymbol(true);
+    }
+    //see if the password contain numbers
+    if(/[0-9]/.test(password)){
+      charCount++;
+      setNum(true);
+    }
+
+    setCount(charCount);
+
+    //len(password) <= 4
+    if(password.length <= 4 && poorPasswords.includes(password)){
+      setPassStrength(0);
+    }
+    //len(password) >= 5
+    else if(password.length >= 5 && charCount == 3){
+      setPassStrength(1);
+    }
+    //len(password) >= 5
+    else if(password.length >= 5 && charCount == 4){
+      setPassStrength(2);
+    }
+    else{
+      setPassStrength(0);//any other password
+    }
+  };
+
+  let passwordStyle = (passwordStrength) => {
+    let color;
+    let message = '';
+
+    if(passwordStrength == 0){
+      color = appStyles.pinkColor;
+      message = 'Password Strength: Poor';
+    }
+    else if(passwordStrength == 1){
+      color = appStyles.blueColor;
+      message = 'Password Strength: Medium';
+    }
+    else{
+      color = '#298000';
+      message = 'Password Strength: High';
+    }
+    return(
+      <View>
+        <Text style={{color:colors, textAlign:'center'}}>{message}</Text>
+      </View>
+    );
+  };
 
   let onPress = () => {
     if (password !== repeat) {
@@ -50,7 +133,10 @@ export default SignUpPassword = (props) => {
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
     } else if (password.length < 6) {
+    } else if(password.length <= 4){
       alert(translate('passwordTooShort'));
+    } else if(passwordStrength == 0){
+      alert(translate('passwordWeak'))
     } else {
       // props.setUserInfo({password});
       // AsyncStorage.setItem('pass', password);
