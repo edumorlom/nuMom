@@ -27,7 +27,7 @@ export default SignUpYesorNo = (props) => {
         email,
         phone,
         password,
-        question: translate('didYouHaveInfants'),
+        question: translate('doYouHaveInfants'),
         value: 'infant',
         pregnant: userResponse,
       });
@@ -100,16 +100,6 @@ export default SignUpYesorNo = (props) => {
           position: 'absolute',
         }}
       >
-        <Text
-          style={{
-            color: 'black',
-            fontSize: appStyles.titleFontSize,
-            fontWeight: 'bold',
-            textAlign: 'center',
-          }}
-        >
-          {question}
-        </Text>
         <Text
           style={{
             color: 'black',
