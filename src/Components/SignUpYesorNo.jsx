@@ -110,6 +110,16 @@ export default SignUpYesorNo = (props) => {
         >
           {question}
         </Text>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: appStyles.titleFontSize,
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}
+        >
+          {question}
+        </Text>
         <View style={appStyles.rowContainer}>
           <MultipleChoiceButton
             style={Blue}
