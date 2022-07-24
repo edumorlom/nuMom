@@ -88,7 +88,7 @@ export const medicaidChecklist = () => {
     },
     {
       text: 'Newborn Items',
-      subtext: 'The social security receipt and footprints of the newborn..',
+      subtext: 'The social security receipt and footprints of the newborn.',
     },
   ];
 
