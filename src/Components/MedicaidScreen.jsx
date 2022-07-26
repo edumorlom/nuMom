@@ -87,8 +87,8 @@ export const medicaidChecklist = () => {
         'Rent receipts/Lease or Mortgage statement. Utility bills, most current for all paid monthly/quarterly.',
     },
     {
-      text: 'Social Security receipt for newborns only and footprints for newborn.',
-      subtext: ' ',
+      text: 'Newborn Items',
+      subtext: 'The social security receipt and footprints of the newborn.',
     },
   ];
 
