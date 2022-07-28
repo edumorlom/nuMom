@@ -323,7 +323,10 @@ export const fetchAppointment = async (uid, setObjects) => {
           let childData = childSnapshot.val();
           console.log(childKey);
           console.log(childData);
-          if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (
+            childSnapshot.val() !== null ||
+            childSnapshot.val() !== 'undefined'
+          ) {
             setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
@@ -350,7 +353,10 @@ export const fetchImmunization = async (uid, setObjects) => {
         snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
-          if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (
+            childSnapshot.val() !== null ||
+            childSnapshot.val() !== 'undefined'
+          ) {
             setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
@@ -399,7 +405,10 @@ export const fetchReference = async (uid, setReferences) => {
           let childData = childSnapshot.val();
           console.log(childKey);
           console.log(childData);
-          if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
+          if (
+            childSnapshot.val() !== null ||
+            childSnapshot.val() !== 'undefined'
+          ) {
             setReferences((prevArray) => [...prevArray, childSnapshot]);
           }
         });

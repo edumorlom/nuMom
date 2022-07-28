@@ -39,62 +39,50 @@ export default function NewImmunization(props) {
   };
 
   const immunizationArray = [
-    translate('HEPB'),      // Hepatitis B
-    translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
-    translate('IPV'),       // Polio (IPV)
-    translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
-    translate('PCV'),       // Pneumococcal Vaccine (PCV)
-    translate('RV'),        // Rotavirus
-    translate('FLU'),       // Flu Vaccine
-    translate('HEPA'),      // Hepatitis A
-    translate('MMR'),       // Measles, Mumps, and Rubella (MMR)
-    translate('CHKPOX'),    // Chickenpox (Varicella)
+    translate('HEPB'), // Hepatitis B
+    translate('DTAP'), // Diphtheria, Tetanus, and Pertussis (Dtap)
+    translate('IPV'), // Polio (IPV)
+    translate('HIB'), // Haemophilus Influenzae Type B (Hib)
+    translate('PCV'), // Pneumococcal Vaccine (PCV)
+    translate('RV'), // Rotavirus
+    translate('FLU'), // Flu Vaccine
+    translate('HEPA'), // Hepatitis A
+    translate('MMR'), // Measles, Mumps, and Rubella (MMR)
+    translate('CHKPOX'), // Chickenpox (Varicella)
   ];
 
   const dosageArray = [
-    translate('dose1'),  // First Shot
-    translate('dose2'),  // Second Shot
-    translate('dose3'),  // Third Shot
-    translate('dose4'),  // Fourth Shot
+    translate('dose1'), // First Shot
+    translate('dose2'), // Second Shot
+    translate('dose3'), // Third Shot
+    translate('dose4'), // Fourth Shot
   ];
 
   // this method will set the id of immunizationInfo
   doSetID = () => {
-    let id = "";
+    let id = '';
 
-    for(let i = 0; i < dosageArray.length; i++)
-    {
-
+    for (let i = 0; i < dosageArray.length; i++) {
       // start id with a number corresponding to the chosen dose #
-      if(dosage === dosageArray[i])
-      {
-          i += 1
-          id += i.toString();
-          break;
+      if (dosage === dosageArray[i]) {
+        i += 1;
+        id += i.toString();
+        break;
       }
     }
 
     // finish id by adding on the letters corresponding to the chosen vaccine type
-    if(type === immunizationArray[0])
-      id += "HEPB"
-    else if(type === immunizationArray[1])
-      id += "DTAP"
-    else if(type === immunizationArray[2])
-      id += "IPV"
-    else if(type === immunizationArray[3])
-      id += "HIB"
-    else if(type === immunizationArray[4])
-      id += "PCV"
-    else if(type === immunizationArray[5])
-      id += "RV"
-    else if(type === immunizationArray[6])
-      id = "FLU"                                // in the case of the FLU shot, where dose # doesn't matter, remove the dose #
-    else if(type === immunizationArray[7])
-      id += "HEPA"
-    else if(type === immunizationArray[8])
-      id += "MMR"
-    else if(type === immunizationArray[9])
-      id += "CHKPOX"
+    if (type === immunizationArray[0]) id += 'HEPB';
+    else if (type === immunizationArray[1]) id += 'DTAP';
+    else if (type === immunizationArray[2]) id += 'IPV';
+    else if (type === immunizationArray[3]) id += 'HIB';
+    else if (type === immunizationArray[4]) id += 'PCV';
+    else if (type === immunizationArray[5]) id += 'RV';
+    else if (type === immunizationArray[6]) id = 'FLU';
+    // in the case of the FLU shot, where dose # doesn't matter, remove the dose #
+    else if (type === immunizationArray[7]) id += 'HEPA';
+    else if (type === immunizationArray[8]) id += 'MMR';
+    else if (type === immunizationArray[9]) id += 'CHKPOX';
 
     setID(id);
   };
@@ -110,12 +98,9 @@ export default function NewImmunization(props) {
   }));
 
   onPress = async () => {
-    if (!type || !date || !dosage) 
-    {
+    if (!type || !date || !dosage) {
       alert(translate('fillOutAllFields'));
-    }
-    else
-    {
+    } else {
       doSetID();
       await addImmunization(uid, immunizationInfo);
       props.navigation.navigate('ImmunizationScreen');
@@ -124,8 +109,7 @@ export default function NewImmunization(props) {
 
   useEffect(() => {
     // This runs on every re-render
-    if (type && dosage) 
-      onPress();
+    if (type && dosage) onPress();
   }, [id]);
 
   showDatePicker = () => {
@@ -143,10 +127,10 @@ export default function NewImmunization(props) {
   };
 
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [immunizationItem, setImmunizationItem] = useState(immunizations);
   const [dosageItem, setDosageItem] = useState(dosages);
-  
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{
@@ -156,8 +140,7 @@ export default function NewImmunization(props) {
       scrollEnabled
     >
       <View style={styles.container}>
-
-        {/* Dropdown to select Immunization Type*/}
+        {/* Dropdown to select Immunization Type */}
         <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
         <DropDownPicker
           containerStyle={{
@@ -175,8 +158,8 @@ export default function NewImmunization(props) {
           zIndex={3000}
           zIndexInverse={1000}
         />
-        
-        {/* Dropdown to select Dose Number*/}
+
+        {/* Dropdown to select Dose Number */}
         <Text style={styles.textTitle}>{translate('ImmunizationDose')}</Text>
         <DropDownPicker
           containerStyle={{
@@ -215,7 +198,7 @@ export default function NewImmunization(props) {
           onCancel={hideDatePicker}
           is24Hour
           headerTextIOS="Pick a date"
-          textColor = 'black'
+          textColor="black"
         />
       </View>
       <View style={styles.seperator} />

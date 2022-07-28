@@ -39,7 +39,8 @@ export default function STDS() {
       treatment: 'hepatitisBTreatment',
       consequences: 'hepatitisBConsequences',
       safeSex: 'hepatitisBSafeSex',
-      website: 'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html'
+      website:
+        'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html',
     },
     {
       name: 'HIVAIDS',
@@ -74,14 +75,13 @@ export default function STDS() {
       safeSex: 'trichomoniasisSafeSex',
     },
     {
-    name: 'zika',
+      name: 'zika',
       symptoms: 'zikaSymptoms',
       diagnosis: 'zikaDiagnosis',
       treatment: 'zikaTreatment',
       consequences: 'zikaConsequences',
       safeSex: 'zikaSafeSex',
-      website: 'http://www.cdc.gov/zika/index.html'
+      website: 'http://www.cdc.gov/zika/index.html',
     },
   ];
 }
-

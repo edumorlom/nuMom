@@ -11,7 +11,7 @@ import checkmark from '../../assets/checkmark.png';
 export default function ChecklistButton(props) {
   /* this key is where a state of the check variable will be saved as a cookie for each checklist item. 
   The keyIdentifier prop is used to differentiate between different checklists and checklist items. */
-  const STORAGE_KEY = '@save_check' + props.keyIdentifier;
+  const STORAGE_KEY = `@save_check${props.keyIdentifier}`;
   const [check, setCheck] = useState('');
 
   useEffect(() => {
@@ -59,9 +59,11 @@ export default function ChecklistButton(props) {
           {props.style.Image && showImage()}
           {props.style.Text && showText()}
         </View>
-        {check ? 
-          <View style={props.style.ImageInView}>{showImageInView()}</View> : <View/>
-        }
+        {check ? (
+          <View style={props.style.ImageInView}>{showImageInView()}</View>
+        ) : (
+          <View />
+        )}
       </>
     </TouchableHighlight>
   );

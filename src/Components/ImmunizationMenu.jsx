@@ -49,8 +49,7 @@ export default function ImmunizationMenu(props) {
         }}
       >
         <View style={{marginRight: 50}}>
-          
-          {/* Show the vaccine type and dose # (if vaccine is FLU, dose # is not shown)*/}
+          {/* Show the vaccine type and dose # (if vaccine is FLU, dose # is not shown) */}
           <Text
             style={{
               color: appStyles.blueColor,
@@ -58,11 +57,15 @@ export default function ImmunizationMenu(props) {
               fontWeight: 'bold',
             }}
           >
-            {id === "FLU" ? translate(id) : translate(id.toString().substring(1))}
-            {id === "FLU" ? '' : ` - ${translate(`dose${id.toString().substring(0, 1)}`)}`}
+            {id === 'FLU'
+              ? translate(id)
+              : translate(id.toString().substring(1))}
+            {id === 'FLU'
+              ? ''
+              : ` - ${translate(`dose${id.toString().substring(0, 1)}`)}`}
           </Text>
 
-          {/* Show the date of the immunization*/}
+          {/* Show the date of the immunization */}
           <Text
             style={{
               color: appStyles.greyColor,
@@ -72,7 +75,7 @@ export default function ImmunizationMenu(props) {
             {date}
           </Text>
 
-          {/* Show the notes added by the user, if any*/}
+          {/* Show the notes added by the user, if any */}
           <Text
             style={{
               color: appStyles.greyColor,
@@ -83,7 +86,7 @@ export default function ImmunizationMenu(props) {
           </Text>
         </View>
 
-        {/* Remove Immunization Button*/}
+        {/* Remove Immunization Button */}
         <TouchableHighlight
           style={{
             position: 'absolute',

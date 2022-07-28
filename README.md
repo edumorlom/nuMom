@@ -9,6 +9,7 @@ Authors: Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe
 This is the seventh version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 by Eduardo Morales for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
 The application provides the following features to its users:
+
 - Important information about safe sex practices, STDs.
 - Timelines of childhood development milestones for feeding and immunizations.
 - Locations, contact information, and a description of services for important facilities, such as clinics and shelters.
@@ -66,7 +67,7 @@ Within the root of the `moms-infants-healthy` directory is a file called `packag
 
 ### Installation & Running steps
 
-To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/). 
+To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/).
 
 You must then clone the Github repository onto your local machine. You may do this in any file on your computer by doing `cd {file path}` command in your terminal before running the following clone command in your terminal as well.
 
@@ -134,13 +135,13 @@ You should also commit the version code change you did in the app.json to develo
 
 3. Save app.json and close it.
 
-4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios" 
+4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios"
 
 5. When prompted "Choose the build type you would like," choose archive
 
 6. Login with your apple credentials
 
-7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes. 
+7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes.
 
 8. Download the ipa once it finishes building
 
