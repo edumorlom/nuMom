@@ -1,12 +1,12 @@
-# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Spring 2022>
+# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Summer 2022>
 
 Product Owners: Jean Hannan & Eduardo Morales
 
 Veteran Author & Lead Mentor: Eduardo Morales
 
-Authors: Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia Fernandez, Anael Ais, Oscar Sanchez, Gabriel Gomez, Jenniffer Hierro, Eric Campillo, John Sehuwerert, Kimberly Metelus.
+Authors: Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia Fernandez, Anael Ais, Oscar Sanchez, Gabriel Gomez, Jenniffer Hierro, Eric Campillo, John Sehuwerert, Kimberly Metelus, Clara Llamozas, Nisreen Shuman, Valrie Jules, Hanane Mbarki, Jocelyn Rodriguez, Aqib Shah.
 
-This is the seventh version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 by Eduardo Morales for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
+This is the eighth version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 by Eduardo Morales for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
 The application provides the following features to its users:
 
