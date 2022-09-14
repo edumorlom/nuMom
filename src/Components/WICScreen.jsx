@@ -8,6 +8,11 @@ import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
 import appStyles from './AppStyles';
 import breastfeeding from '../../assets/breastfeeding.png';
+import fruits from '../../assets/fruits.png';
+import vegetables from '../../assets/vegetables.png';
+import grains from '../../assets/grains.png';
+import proteins from '../../assets/proteins.png';
+import formula from '../../assets/formula.png';
 import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
 import LocationsMap from './LocationsMap';
@@ -260,7 +265,7 @@ export const wicFeeding = () => {
             subtext={
               '24-32 ounces\nOr based on individual nutritional assessment'
             }
-            icon={breastfeeding}
+            icon={formula}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
@@ -268,19 +273,19 @@ export const wicFeeding = () => {
             subtext={
               '1-2 ounces\nIron-fortified infant cereals, bread, small pieces of cracker'
             }
-            icon={breastfeeding}
+            icon={grains}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'2-4 ounces\nCooked, plain strained/pureed/mashed'}
-            icon={breastfeeding}
+            icon={vegetables}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'2-4 ounces\nPlain strained/pureed/mashed'}
-            icon={breastfeeding}
+            icon={fruits}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
@@ -288,7 +293,7 @@ export const wicFeeding = () => {
             subtext={
               '1-2 ounces\nPlain strained/pureed/mashed meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
             }
-            icon={breastfeeding}
+            icon={proteins}
           />
         </View>
       );
@@ -306,7 +311,7 @@ export const wicFeeding = () => {
             style={appStyles.ImageOnRightSelectionButton}
             text="Infant Formula"
             subtext={'24 ounces\nOr based on individual nutritional assessment'}
-            icon={breastfeeding}
+            icon={formula}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
@@ -314,19 +319,19 @@ export const wicFeeding = () => {
             subtext={
               '2-4 ounces\nIron-fortified infant cereals, baby crackers, bread, noodles, corn grits, soft tortilla pieces'
             }
-            icon={breastfeeding}
+            icon={grains}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Vegetables"
             subtext={'4-6 ounces\nCooked, finely chopped/diced'}
-            icon={breastfeeding}
+            icon={vegetables}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
             text="Fruits"
             subtext={'4-6 ounces\nFinely chopped/diced'}
-            icon={breastfeeding}
+            icon={fruits}
           />
           <BetterMenu
             style={appStyles.ImageOnRightSelectionButton}
@@ -334,7 +339,7 @@ export const wicFeeding = () => {
             subtext={
               '2-4 ounces\nGround/finely chopped/diced meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
             }
-            icon={breastfeeding}
+            icon={proteins}
           />
         </View>
       );
