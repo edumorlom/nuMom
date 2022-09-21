@@ -159,7 +159,6 @@ export default SignUpPassword = (props) => {
     </KeyboardAvoidingView>
   );
 };
-
 const styles = StyleSheet.create({
   eyeShowPassword: {
     position: 'absolute',
@@ -167,3 +166,4 @@ const styles = StyleSheet.create({
     top: 25,
   },
 });
+
