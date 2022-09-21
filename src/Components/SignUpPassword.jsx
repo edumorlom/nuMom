@@ -222,4 +222,4 @@ const styles = StyleSheet.create({
     right: 30,
     top: 25,
   },
-});
+}); 
