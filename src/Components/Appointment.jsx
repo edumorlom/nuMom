@@ -13,12 +13,11 @@ import Plus from '../../assets/plus.png';
 import {deleteAppointment, fetchAppointment, getUid} from '../Firebase';
 
 export default function Appointment(props) {
-  const _isMounted = false;
   const [objects, setObjects] = useState([]);
   const uid = getUid();
 
   getAppointment = () => {
-    fetchAppointment(uid, setObjects, _isMounted);
+    fetchAppointment(uid, setObjects);
   };
 
   removeAppointment = (id, eventId) => {
@@ -45,7 +44,7 @@ export default function Appointment(props) {
       >
         <Image source={Plus} style={{height: 25, width: 25}} />
       </TouchableOpacity>
-      
+
       <ScrollView
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
         showsVerticalScrollIndicator={false}

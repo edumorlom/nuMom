@@ -1,14 +1,15 @@
-# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Spring 2022>
+# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Summer 2022>
 
-Product Owner: Jean Hannan
+Product Owners: Jean Hannan & Eduardo Morales
 
 Veteran Author & Lead Mentor: Eduardo Morales
 
-Authors: Arelys Alvarez, Andy Herrera, Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia Fernandez, Anael Ais, Oscar Sanchez, Gabriel Gomez, Jenniffer Hierro, Eric Campillo, John Sehuwerert, Kimberly Metelus.
+Authors: Eduardo Morales, Moises Bentolila, Gabriel Alfonso, Michael Llanes, Noe Velasquez, Amin Sheikhnias, Leonel Diaz, Lawrence Chik, Rolando Hernandez, Jessica Gonzalez, Yonal Hernandez, David Antunez, David Acosta, Nicholas Gomez, Hongru Chu, Meleik Hyman, Eric Vilella, Elton Lucien, Anthony Burgin, David Ricardo, Estephany Sanchez Criado, Juan Pablo Arenas Grayeb, Nathaly Siguenza, Jose Jimenez, Julian Lopez, Lisabeth Roche, Fernando Perez, Amy Garcia Fernandez, Anael Ais, Oscar Sanchez, Gabriel Gomez, Jenniffer Hierro, Eric Campillo, John Sehuwerert, Kimberly Metelus, Clara Llamozas, Nisreen Shuman, Valrie Jules, Hanane Mbarki, Jocelyn Rodriguez, Aqib Shah.
 
-This is the seventh version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
+This is the eighth version of the NuMom (Keeping Moms and Infants Healthy) application. It was originally built in Fall of 2019 by Eduardo Morales for Florida International University's CIS 4911 - Senior Project Course, and has been handed over to new student developers semester after semester. NuMom is a smartphone-based maternal/infant healthcare application designed for low-income minority mothers that provides support in 3 different languages (English, Spanish & Haitian Creole). The main purpose of the application in its current state is to provide early and continued access to health care for prenatal and postnatal mothers.
 
 The application provides the following features to its users:
+
 - Important information about safe sex practices, STDs.
 - Timelines of childhood development milestones for feeding and immunizations.
 - Locations, contact information, and a description of services for important facilities, such as clinics and shelters.
@@ -66,7 +67,7 @@ Within the root of the `moms-infants-healthy` directory is a file called `packag
 
 ### Installation & Running steps
 
-To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/). 
+To install NuMom, you will need to install Node.js and npm as your dependency manager first, available here: -- (https://nodejs.org/en/).
 
 You must then clone the Github repository onto your local machine. You may do this in any file on your computer by doing `cd {file path}` command in your terminal before running the following clone command in your terminal as well.
 
@@ -93,17 +94,17 @@ Android: https://play.google.com/store/apps/details?id=host.exp.exponent&referre
 
 Finally, you will need to setup the Firebase API key to open the app locally. After this, the application should be ready to start using the command `expo start` in your command line. This will open a window where Expo will create a QR code on your computer that you can scan with the mobile Expo app to open the application on your smartphone. You may have to wait a minute while your project bundles and loads for the first time. If using a simulator to run the app on your computer, using `npm start` instead will show instructions on how to run it on the simulator.
 
-### API KEYS
+### API Keys
 
 Both the Firebase and Twilio API keys are provided by Eduardo, so contact him if you need them. For the Firebase API key, it should be a file called firebase_account.json. To set it up properly, move it into the /src/ folder of your local repository. The application will not start up properly without this API key in the correct place.
 
 To gain access to the Twilio API for messaging users, you will need to navigate to the /functions/ folder and locate twilio_account.js. In that file you will need to edit the strings for accountSid and authToken to the account’s credentials and you will have access to the Twilio API.
 
-### ACCESSING FIREBASE
+### Accessing Firebase
 
 To access Firebase, you will first have to install Firebase and its tools onto your machine. This can be done by running npm install --save firebase firebase-tools in your command line in the directory in which you would like to access firebase. Then, in the same directory you can deploy new functions using firebase deploy --project moms-and-infants-healthy.
 
-### DEPLOYING TO ANDROID
+### Deploying to Android
 
 1. Login to the developer expo account by typing "expo login" in the terminal. You'll have to contact Eduardo to get his login credentials.
 
@@ -126,7 +127,7 @@ To access Firebase, you will first have to install Firebase and its tools onto y
 
 You should also commit the version code change you did in the app.json to development on GitHub.
 
-### Deploying to IOS
+### Deploying to iOS
 
 1. Login to the developer expo account by typing "expo login" in the terminal. You'll have to contact Eduardo to get his login credentials.
 
@@ -134,13 +135,13 @@ You should also commit the version code change you did in the app.json to develo
 
 3. Save app.json and close it.
 
-4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios" 
+4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "expo build:ios"
 
 5. When prompted "Choose the build type you would like," choose archive
 
 6. Login with your apple credentials
 
-7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes. 
+7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes.
 
 8. Download the ipa once it finishes building
 

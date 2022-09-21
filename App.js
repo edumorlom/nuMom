@@ -215,9 +215,7 @@ function App() {
         <Stack.Screen
           name="ResourcesPage"
           component={ResourcesPage}
-          options={{title: translate('resources'),
-          headerRight: () => null,
-        }}
+          options={{title: translate('resources'), headerRight: () => null}}
         />
         <Stack.Screen
           name="Learn"

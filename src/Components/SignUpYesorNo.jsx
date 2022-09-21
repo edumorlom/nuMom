@@ -27,7 +27,7 @@ export default SignUpYesorNo = (props) => {
         email,
         phone,
         password,
-        question: translate('didYouHaveInfants'),
+        question: translate('doYouHaveInfants'),
         value: 'infant',
         pregnant: userResponse,
       });

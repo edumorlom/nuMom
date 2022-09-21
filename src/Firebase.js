@@ -312,8 +312,7 @@ export const deleteAppointment = async (
   console.log("Error: Couldn't get the User appointment Info");
 };
 
-export const fetchAppointment = async (uid, setObjects, _isMounted) => {
-  _isMounted = true;
+export const fetchAppointment = async (uid, setObjects) => {
   if (uid !== null) {
     await firebase
       .database()
@@ -328,9 +327,7 @@ export const fetchAppointment = async (uid, setObjects, _isMounted) => {
             childSnapshot.val() !== null ||
             childSnapshot.val() !== 'undefined'
           ) {
-            if (_isMounted) {
-              setObjects((prevArray) => [...prevArray, childSnapshot]);
-            }
+            setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
       });
@@ -347,8 +344,7 @@ export const addAppointment = async (uid, appointmentInfo) => {
     .catch((err) => console.log(err));
 };
 
-export const fetchImmunization = async (uid, setObjects, _isMounted) => {
-  _isMounted = true;
+export const fetchImmunization = async (uid, setObjects) => {
   if (uid !== null) {
     await firebase
       .database()
@@ -361,9 +357,7 @@ export const fetchImmunization = async (uid, setObjects, _isMounted) => {
             childSnapshot.val() !== null ||
             childSnapshot.val() !== 'undefined'
           ) {
-            if (_isMounted) {
-              setObjects((prevArray) => [...prevArray, childSnapshot]);
-            }
+            setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
       })
@@ -400,8 +394,7 @@ export const addReference = async (uid, referenceInfo) => {
     .catch((err) => console.log(err));
 };
 
-export const fetchReference = async (uid, setReferences, _isMounted) => {
-  _isMounted = true;
+export const fetchReference = async (uid, setReferences) => {
   if (uid !== null) {
     await firebase
       .database()
@@ -416,9 +409,7 @@ export const fetchReference = async (uid, setReferences, _isMounted) => {
             childSnapshot.val() !== null ||
             childSnapshot.val() !== 'undefined'
           ) {
-            if (_isMounted) {
-              setReferences((prevArray) => [...prevArray, childSnapshot]);
-            }
+            setReferences((prevArray) => [...prevArray, childSnapshot]);
           }
         });
       })

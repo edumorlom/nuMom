@@ -4,7 +4,7 @@
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
-    "version": "0.5.0",
+    "version": "0.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
       "config": {
         "googleMaps": {"apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"}
       },
-      "versionCode": 6,
+      "versionCode": 7,
       "useNextNotificationsApi": true
     },
     "description": "",

@@ -5,9 +5,9 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Dropdown} from 'react-native-material-dropdown-v2';
+import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import translate from './getLocalizedText';
@@ -39,89 +39,78 @@ export default function NewImmunization(props) {
   };
 
   const immunizationArray = [
-    translate('selectImmunization'),  // <<Select Vaccine Type>>
-    translate('HEPB'),      // Hepatitis B
-    translate('DTAP'),      // Diphtheria, Tetanus, and Pertussis (Dtap)
-    translate('IPV'),       // Polio (IPV)
-    translate('HIB'),       // Haemophilus Influenzae Type B (Hib)
-    translate('PCV'),       // Pneumococcal Vaccine (PCV)
-    translate('RV'),        // Rotavirus
-    translate('FLU'),       // Flu Vaccine
-    translate('HEPA'),      // Hepatitis A
-    translate('MMR'),       // Measles, Mumps, and Rubella (MMR)
-    translate('CHKPOX'),    // Chickenpox (Varicella)
+    translate('HEPB'), // Hepatitis B
+    translate('DTAP'), // Diphtheria, Tetanus, and Pertussis (Dtap)
+    translate('IPV'), // Polio (IPV)
+    translate('HIB'), // Haemophilus Influenzae Type B (Hib)
+    translate('PCV'), // Pneumococcal Vaccine (PCV)
+    translate('RV'), // Rotavirus
+    translate('FLU'), // Flu Vaccine
+    translate('HEPA'), // Hepatitis A
+    translate('MMR'), // Measles, Mumps, and Rubella (MMR)
+    translate('CHKPOX'), // Chickenpox (Varicella)
   ];
 
   const dosageArray = [
-    translate('selectDosage'),  // <<Select Dosage>>
-    translate('dose1'),  // First Shot
-    translate('dose2'),  // Second Shot
-    translate('dose3'),  // Third Shot
-    translate('dose4'),  // Fourth Shot
+    translate('dose1'), // First Shot
+    translate('dose2'), // Second Shot
+    translate('dose3'), // Third Shot
+    translate('dose4'), // Fourth Shot
   ];
 
   // this method will set the id of immunizationInfo
   doSetID = () => {
-    let id = "";
+    let id = '';
 
-    for(let i = 0; i < dosageArray.length; i++)
-    {
-
+    for (let i = 0; i < dosageArray.length; i++) {
       // start id with a number corresponding to the chosen dose #
-      if(dosage === dosageArray[i])
-      {
-          id += i.toString();
-          break;
+      if (dosage === dosageArray[i]) {
+        i += 1;
+        id += i.toString();
+        break;
       }
     }
 
     // finish id by adding on the letters corresponding to the chosen vaccine type
-    if(type === immunizationArray[1])
-      id += "HEPB"
-    else if(type === immunizationArray[2])
-      id += "DTAP"
-    else if(type === immunizationArray[3])
-      id += "IPV"
-    else if(type === immunizationArray[4])
-      id += "HIB"
-    else if(type === immunizationArray[5])
-      id += "PCV"
-    else if(type === immunizationArray[6])
-      id += "RV"
-    else if(type === immunizationArray[7])
-      id = "FLU"                                // in the case of the FLU shot, where dose # doesn't matter, remove the dose #
-    else if(type === immunizationArray[8])
-      id += "HEPA"
-    else if(type === immunizationArray[9])
-      id += "MMR"
-    else if(type === immunizationArray[10])
-      id += "1CHKPOX"
+    if (type === immunizationArray[0]) id += 'HEPB';
+    else if (type === immunizationArray[1]) id += 'DTAP';
+    else if (type === immunizationArray[2]) id += 'IPV';
+    else if (type === immunizationArray[3]) id += 'HIB';
+    else if (type === immunizationArray[4]) id += 'PCV';
+    else if (type === immunizationArray[5]) id += 'RV';
+    else if (type === immunizationArray[6]) id = 'FLU';
+    // in the case of the FLU shot, where dose # doesn't matter, remove the dose #
+    else if (type === immunizationArray[7]) id += 'HEPA';
+    else if (type === immunizationArray[8]) id += 'MMR';
+    else if (type === immunizationArray[9]) id += 'CHKPOX';
 
     setID(id);
   };
 
   const immunizations = immunizationArray.map((immunization) => ({
-    label: translate(immunization),
+    label: immunization,
     value: immunization,
   }));
 
   const dosages = dosageArray.map((dosage) => ({
-    label: translate(dosage),
+    label: dosage,
     value: dosage,
   }));
 
   onPress = async () => {
-    if (!type || !date || type === translate('selectImmunization') || dosage === translate('selectDosage') || !dosage) 
-    {
+    if (!type || !date || !dosage) {
       alert(translate('fillOutAllFields'));
-    }
-    else
-    {
+    } else {
       doSetID();
       await addImmunization(uid, immunizationInfo);
       props.navigation.navigate('ImmunizationScreen');
     }
   };
+
+  useEffect(() => {
+    // This runs on every re-render
+    if (type && dosage) onPress();
+  }, [id]);
 
   showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -137,68 +126,64 @@ export default function NewImmunization(props) {
     hideDatePicker();
   };
 
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const [immunizationItem, setImmunizationItem] = useState(immunizations);
+  const [dosageItem, setDosageItem] = useState(dosages);
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{
-        flex: 1,
         alignItems: 'center',
         maxWidth: '100%',
       }}
       scrollEnabled
     >
-      {/* Dropdown to select Immunization Type*/}
       <View style={styles.container}>
+        {/* Dropdown to select Immunization Type */}
         <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
-        <Dropdown
+        <DropDownPicker
           containerStyle={{
             ...styles.Dropdown,
           }}
           pickerStyle={{
             ...styles.Picker,
           }}
-          inputContainerStyle={{borderBottomColor: 'transparent'}}
-          textAlign="center"
-          itemCount={8}
-          itemTextStyle={{alignSelf: 'center'}}
-          fontSize={26}
-          data={immunizations}
-          label={translate(immunizations)}
-          value={immunizations[0].value}
-          useNativeDriver
-          onChangeText={(value, index, data) => setType(value)}
+          value={value}
+          items={immunizationItem}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setImmunizationItem}
+          onChangeItem={(value) => setType(value.label)}
+          zIndex={3000}
+          zIndexInverse={1000}
         />
-      </View>
-      {/* Dropdown to select Immunization Dose #*/}
-      <View style={styles.container}>
+
+        {/* Dropdown to select Dose Number */}
         <Text style={styles.textTitle}>{translate('ImmunizationDose')}</Text>
-        <Dropdown
+        <DropDownPicker
           containerStyle={{
             ...styles.Dropdown,
           }}
           pickerStyle={{
             ...styles.Picker,
           }}
-          inputContainerStyle={{borderBottomColor: 'transparent'}}
-          textAlign="center"
-          itemCount={8}
-          itemTextStyle={{alignSelf: 'center'}}
-          fontSize={26}
-          data={dosages}
-          label={translate(dosages)}
-          value={dosages[0].value}
-          useNativeDriver
-          onChangeText={(value, index, data) => setDosage(value)}
+          value={value}
+          items={dosageItem}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setDosageItem}
+          onChangeItem={(value) => setDosage(value.label)}
+          zIndex={2000}
+          zIndexInverse={2000}
         />
-      </View>
-      {/* Notes Textbox*/}
-      <View style={appStyles.TextInputImmunization.View}>
         <TextBox
           placeholder={translate('immunizationNotes')}
           onChangeText={setNotes}
           value={notes}
           multiline
           numberOfLines={8}
-          style={appStyles.TextInputImmunization.TextInput}
+          style={appStyles.TextInputImmunization}
         />
       </View>
       <View style={styles.container}>
@@ -213,7 +198,7 @@ export default function NewImmunization(props) {
           onCancel={hideDatePicker}
           is24Hour
           headerTextIOS="Pick a date"
-          textColor = 'black'
+          textColor="black"
         />
       </View>
       <View style={styles.seperator} />
@@ -222,8 +207,6 @@ export default function NewImmunization(props) {
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          position: 'absolute',
-          bottom: appStyles.win.height * 0.1,
         }}
       >
         <Button
