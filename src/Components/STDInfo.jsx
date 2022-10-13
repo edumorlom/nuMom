@@ -1,8 +1,7 @@
 import React from 'react';
-import {TouchableHighlight, Text, View, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import appStyles from './AppStyles';
 import Menu from './Menu';
-import STD from './STD';
 import translate from './getLocalizedText';
 
 export default function STDInfo({route}) {

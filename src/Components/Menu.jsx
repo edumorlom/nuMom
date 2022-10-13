@@ -3,8 +3,6 @@ import React from 'react';
 import * as Haptics from 'expo-haptics';
 import appStyles, {
   borderRadius,
-  greyColor,
-  pinkColor,
   shadow,
 } from './AppStyles';
 

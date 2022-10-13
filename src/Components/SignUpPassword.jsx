@@ -11,8 +11,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
-import {Input} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
@@ -25,7 +23,6 @@ export default SignUpPassword = (props) => {
   const {dob} = props.route.params;
   const {email} = props.route.params;
   const {phone} = props.route.params;
-  const [isSecureEntry, setIsSecureEntry] = useState(true);
   const [show, setShow] = React.useState(false);
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);

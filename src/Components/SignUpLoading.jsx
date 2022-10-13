@@ -5,7 +5,6 @@ import {
   TouchableWithoutFeedback,
   View,
   NativeModules,
-  AsyncStorage,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import appStyles from './AppStyles';

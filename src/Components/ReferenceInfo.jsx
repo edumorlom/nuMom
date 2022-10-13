@@ -21,7 +21,7 @@ function ReferenceInfo(props) {
   const [modalOpen, setModalOpen] = useState(false);
 
   AsyncAlert = () =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve, _) => {
       Alert.alert(
         translate('RemoveReference'),
         translate('WantToRemoveReference'),

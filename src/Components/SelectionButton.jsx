@@ -1,7 +1,7 @@
 import {Image, Text, TouchableHighlight, View} from 'react-native';
 import React from 'react';
 import * as Haptics from 'expo-haptics';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 
 // Very similar to Button.jsx but it has a specific functionality, it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function SelectionButton(props) {
@@ -14,7 +14,7 @@ export default function SelectionButton(props) {
 
   const showText = () => (
     <View>
-      <Text style={props.style.Text}>{props.text}</Text>
+      <Text style={{...props.style.Text, ...{'color': props.color}}>{props.text}</Text>
       {props.style.Subtext && ( // If it has subtext, display it
         <Text style={props.style.Subtext}>{props.subtext}</Text>
       )}

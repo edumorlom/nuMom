@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Keyboard,
   Text,
@@ -23,8 +23,6 @@ export default SignUpBabyDob = (props) => {
   const {repeat} = props.route.params;
   const {pregnant} = props.route.params;
   const {infant} = props.route.params;
-
-  const babyDOB = useRef(null);
 
   useEffect(() => {
     AsyncStorage.getItem('babyDOB')

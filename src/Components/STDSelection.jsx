@@ -1,10 +1,6 @@
 import React from 'react';
 import {
-  TouchableHighlight,
-  Text,
-  View,
   ScrollView,
-  Linking,
 } from 'react-native';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';

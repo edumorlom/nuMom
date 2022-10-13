@@ -1,9 +1,7 @@
 import {Image, Text, TouchableHighlight, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import * as Haptics from 'expo-haptics';
 import {getCookie, saveCookie} from './Cookies';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
-import redX from '../../assets/redX.jpg';
+import appStyles from './AppStyles';
 import checkmark from '../../assets/checkmark.png';
 
 // Very similar to Button.jsx but it has a specific functionality

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableHighlight, Text, View, ScrollView, Image} from 'react-native';
+import React from 'react';
+import {Text, View, ScrollView, Image} from 'react-native';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';

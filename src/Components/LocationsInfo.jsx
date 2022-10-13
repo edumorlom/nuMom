@@ -1,5 +1,5 @@
-import {View, Linking, Text, ScrollView} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {View, Linking, ScrollView} from 'react-native';
+import React, {useState} from 'react';
 import SelectionButton from './SelectionButton';
 import ActionButton from './Button';
 import directionsArrow from '../../assets/directions-arrow.png';
@@ -12,12 +12,7 @@ import LocationsMap from './LocationsMap';
 export default function LocationsInfo({route}) {
   const {location} = route.params;
   const [fullPanel, setFullPanel] = useState(true);
-  const [locations, setLocations] = useState([]);
-  const [filters, setFilters] = useState([10000, 'All']);
   const [locationToView, setLocationToView] = useState(null);
-  const [shelterToView, setShelterToView] = useState(null);
-  const [STDToView, setSTDToView] = useState(null);
-  const [lowerPanelContent, setLowerPanelContent] = useState('selection');
 
   const locationList = [location];
 
@@ -55,7 +50,7 @@ export default function LocationsInfo({route}) {
     >
       <View style={appStyles.container}>
         <LocationsMap
-          onPress={() => setFullPanel(false)} // This does not work, explanation at the bottom **
+          onPress={() => {}}
           setFullPanel={setFullPanel}
           locationToView={locationToView}
           setLocationToView={setLocationToView}

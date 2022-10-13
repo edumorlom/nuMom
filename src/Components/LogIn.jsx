@@ -11,11 +11,8 @@ import {
   NativeModules,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
-import {Input} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 // import TextInput from "./TextInput";
@@ -23,7 +20,6 @@ import SwipeUp from './SwipeUp';
 import background from '../../assets/background.gif';
 import loginMainImage from '../../assets/child.png';
 import translate from './getLocalizedText';
-import {} from 'react-native';
 import {getCookie, saveCookie} from './Cookies';
 import {
   logIn,

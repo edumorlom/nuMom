@@ -3,7 +3,6 @@ import {
   TouchableHighlight,
   View,
   Alert,
-  DatePickerAndroid,
 } from 'react-native';
 import React from 'react';
 import {Feather} from '@expo/vector-icons';
@@ -11,7 +10,7 @@ import appStyles, {borderRadius, shadow} from './AppStyles';
 import translate from './getLocalizedText';
 
 export default function ImmunizationMenu(props) {
-  const {type, dosage, date, notes, id} = props.immunizations?.val();
+  const {date, notes, id} = props.immunizations?.val();
 
   AsyncAlert = () =>
     new Promise((resolve, reject) => {

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Text,
   View,
   TextInput as TextBox,
   TouchableHighlight,
@@ -8,9 +7,7 @@ import {
   Keyboard,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import goBackImg from '../../assets/go-back-arrow.png';
 import appStyles from './AppStyles';
-import BackButton from './Button';
 import {passwordReset} from '../Firebase';
 import translate from './getLocalizedText';
 import Button from './Button';

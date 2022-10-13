@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, TouchableOpacity, ScrollView, Linking, View} from 'react-native';
 import DialogInput from 'react-native-dialog-input';
 import * as ImagePicker from 'expo-image-picker';

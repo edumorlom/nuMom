@@ -2,16 +2,6 @@ import {useState, useEffect} from 'react';
 import {signUp} from '../Firebase';
 
 export default function SignUp(props) {
-  const [index, setIndex] = useState(0);
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [dob, setDob] = useState('');
-  const [pregnant, setPregnant] = useState(null);
-  const [infant, setInfant] = useState(null);
-  const [liveMiami, setLiveMiami] = useState(null);
-  const [babyDOB, setBabyDOB] = useState('');
 
   let _isMounted = false;
 

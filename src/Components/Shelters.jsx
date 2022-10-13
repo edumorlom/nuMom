@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
-import {Dropdown} from 'react-native-material-dropdown-v2';
+import React from 'react';
+import {ScrollView} from 'react-native';
 import SelectionButton from './SelectionButton';
 import shelterLogo from '../../assets/shelter-logo.png';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 
 export default function Shelters(props) {
   const getResourceName = (name) =>

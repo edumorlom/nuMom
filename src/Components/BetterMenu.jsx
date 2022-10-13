@@ -1,6 +1,6 @@
 import {Image, Text, TouchableHighlight, View} from 'react-native';
 import React from 'react';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 
 export default function BetterMenu(props) {
   const showText = () => (
