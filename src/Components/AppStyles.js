@@ -8,6 +8,7 @@ export const blueColor = '#0052A1';
 export const greyColor = '#A9A9A9';
 export const darkGreyColor = '#5E5E5E';
 export const greenColor = '#298000';
+export const blackColor = '#000000'; //export black color
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
@@ -20,9 +21,9 @@ export const title = {
 };
 export const borderRadius = 20;
 export const shadow = {
-  shadowColor: darkGreyColor,
+  shadowColor: blackColor,     // change darkgrey color to black color for shadow
   shadowOffset: {width: 1, height: 1},
-  shadowOpacity: 0.25,
+  shadowOpacity: 0.3, // increase the opacity of shadow color from 0.25 to 0.3
   shadowRadius: 5,
   elevation: 1,
 };
@@ -59,6 +60,7 @@ export default {
   shadow,
   pinkColor,
   blueColor,
+  blackColor,//add black color
   greyColor,
   darkGreyColor,
   titleFontSize,
@@ -141,6 +143,7 @@ export default {
     },
     TextInput: {
       fontSize: regularFontSize,
+      fontWeight: 'bold',  // add new line fontweight for text input for login and signup to make text more visible
       textAlign: 'center',
     },
   },
@@ -155,6 +158,7 @@ export default {
     justifyContent: 'center',
     backgroundColor: 'white',
     fontSize: regularFontSize,
+    fontWeight: 'bold',  // add new line fontweight for text input mask class for login and signup to make text more visible
     textAlign: 'center',
   },
   ClickableText: {
@@ -576,6 +580,7 @@ export default {
     },
     TextInput: {
       fontSize: regularFontSize,
+      fontWeight: 'bold',  // add new line text input font weight to make text more visible and darker
       textAlign: 'center',
     },
   },
