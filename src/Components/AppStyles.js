@@ -43,7 +43,6 @@ export default {
     maxWidth: '100%',
     backgroundColor: 'white',
     flex: 1,
-    paddingLeft: 25,
   },
   learnAndResourceTabContentContainer: {
     alignItems: 'center',
@@ -502,7 +501,6 @@ export default {
     alignItems: 'center',
     elevation: 5,
     zIndex: 999,
-    marginRight: 25,
     marginVertical: 10,
   },
 
