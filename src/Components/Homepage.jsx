@@ -14,6 +14,7 @@ export default Homepage = (props) => {
   const [clinics, setClinics] = useState([]);
   const [sortedClinics, setSortedClinics] = useState(null);
   const [shelters, setShelters] = useState([]);
+  const [sortedShelters, setSortedShelters] = useState(null);
   const [filters, setFilters] = useState([10000, 'All']);
   const [clinicToView, setClinicToView] = useState(null);
   const [shelterToView, setShelterToView] = useState(null);
@@ -26,8 +27,12 @@ export default Homepage = (props) => {
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = async () => {
-    sortClinics(await fetchClinics()); // Sorts the fetched clinics
-    setShelters(await fetchShelters()); // Stores the fetched shelters, you could sort them by copying the logic from sortClinics
+    const clinics = await sortLocations(await fetchClinics());
+    const shelters = await sortLocations(await fetchShelters());
+    setClinics(clinics); // Stores the fetched clinics
+    setSortedClinics(clinics); // Sorts the fetched clinics
+    setShelters(shelters); // Stores the fetched shelters
+    setSortedShelters(shelters); // Sorts the fetched clinics
   };
 
   let fetchClinics = async () =>
@@ -46,25 +51,23 @@ export default Homepage = (props) => {
       });
     });
 
-  let sortClinics = async (clinics) => {
+  let sortLocations = async (locations) => {
     try {
       const position = await Location.getCurrentPositionAsync({});
-      const Clinics = clinics; // For mutation, cant mutate param
+      const Locations = locations; // For mutation, cant mutate param
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      Clinics.forEach((clinic) => {
-        // Returns a precise distance between the two coordinates given (Clinic & User)
-        const dist = getPreciseDistance(clinic.coordinate, {
+      Locations.forEach((location) => {
+        // Returns a precise distance between the two coordinates given (Clinic/Shelter & User)
+        const dist = getPreciseDistance(location.coordinate, {
           latitude,
           longitude,
         });
         const distanceInMiles = Number(((dist / 1000) * 0.621371).toFixed(2)); // Convert meters to miles with 2 decimal places
-        clinic.distance = distanceInMiles; // store the distance as a property of clinic
+        location.distance = distanceInMiles; // store the distance as a property of clinic/shelter
       });
-      Clinics.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
-      setClinics(Clinics);
-      setSortedClinics(Clinics);
-      // SortedClinics is never changed, where as clinics does get changed
+      Locations.sort((a, b) => a.distance - b.distance); // Sort by lowest distance
+      return Locations;
     } catch (err) {
       console.error(err);
     }
@@ -152,6 +155,7 @@ export default Homepage = (props) => {
           icon={filterImage}
           onPress={() => {
             setClinics(sortedClinics);
+            setShelters(sortedShelters);
             setFilters([10000, 'All']);
           }}
         />
@@ -165,6 +169,7 @@ export default Homepage = (props) => {
         clinics={clinics}
         sortedClinics={sortedClinics}
         shelters={shelters}
+        sortedShelters={sortedShelters}
         clinicToView={clinicToView}
         shelterToView={shelterToView}
         STDToView={STDToView}
@@ -172,6 +177,7 @@ export default Homepage = (props) => {
         setClinicToView={setClinicToView}
         setShelterToView={setShelterToView}
         setClinics={setClinics}
+        setShelters={setShelters}
         filters={filters}
         setFilters={setFilters}
         lowerPanelContent={lowerPanelContent}
