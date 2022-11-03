@@ -7,6 +7,7 @@ export default function STDS() {
       treatment: 'bacterialVaginosisTreatment',
       consequences: 'bacterialVaginosisConsequences',
       safeSex: 'bacterialVaginosisSafeSex',
+      website: 'www.cdc.gov/std/bv/stdfact-bacterial-vaginosis.htm',
     },
     {
       name: 'chlamydia',
@@ -15,6 +16,7 @@ export default function STDS() {
       treatment: 'chlamydiaTreatment',
       consequences: 'chlamydiaConsequences',
       safeSex: 'chlamydiaSafeSex',
+      website: 'www.cdc.gov/std/chlamydia/stdfact-chlamydia.htm',
     },
     {
       name: 'genitalHerpes',
@@ -23,6 +25,7 @@ export default function STDS() {
       treatment: 'genitalHerpesTreatment',
       consequences: 'genitalHerpesConsequences',
       safeSex: 'genitalHerpesSafeSex',
+      website: 'www.cdc.gov/std/herpes/stdfact-herpes.htm',
     },
     {
       name: 'gonorrhea',
@@ -31,6 +34,7 @@ export default function STDS() {
       treatment: 'gonorrheaTreatment',
       consequences: 'gonorrheaConsequences',
       safeSex: 'gonorrheaSafeSex',
+      website: 'www.cdc.gov/std/gonorrhea/default.htm',
     },
     {
       name: 'hepatitisB',
@@ -40,7 +44,7 @@ export default function STDS() {
       consequences: 'hepatitisBConsequences',
       safeSex: 'hepatitisBSafeSex',
       website:
-        'http://www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html',
+        'www.floridahealth.gov/diseases-and-conditions/perinatal-hepatitis-b/index.html',
     },
     {
       name: 'HIVAIDS',
@@ -49,6 +53,7 @@ export default function STDS() {
       treatment: 'HIVAIDSTreatment',
       consequences: 'HIVAIDSConsequences',
       safeSex: 'HIVAIDSSafeSex',
+      website: 'www.cdc.gov/std/hiv/default.htm',
     },
     {
       name: 'HPV',
@@ -57,6 +62,7 @@ export default function STDS() {
       treatment: 'HPVTreatment',
       consequences: 'HPVConsequences',
       safeSex: 'HPVSafeSex',
+      website: 'www.cdc.gov/zika/index.html',
     },
     {
       name: 'syphilis',
@@ -65,6 +71,7 @@ export default function STDS() {
       treatment: 'syphilisTreatment',
       consequences: 'syphilisConsequences',
       safeSex: 'syphilisSafeSex',
+      website: 'www.cdc.gov/std/hpv/default.htm',
     },
     {
       name: 'trichomoniasis',
@@ -73,6 +80,7 @@ export default function STDS() {
       treatment: 'trichomoniasisTreatment',
       consequences: 'trichomoniasisConsequences',
       safeSex: 'trichomoniasisSafeSex',
+      website: 'www.cdc.gov/std/trichomonas/default.htm',
     },
     {
       name: 'zika',
@@ -81,7 +89,7 @@ export default function STDS() {
       treatment: 'zikaTreatment',
       consequences: 'zikaConsequences',
       safeSex: 'zikaSafeSex',
-      website: 'http://www.cdc.gov/zika/index.html',
+      website: 'www.cdc.gov/zika/index.html',
     },
   ];
 }
