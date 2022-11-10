@@ -74,7 +74,6 @@ export default function LocationsInfo({route}) {
             icon={directionsArrow}
             onPress={getDirections}
           />
-          {console.log(location.website)}
           <ActionButton
             style={appStyles.ActionButton}
             text={translate('visitSite')}
