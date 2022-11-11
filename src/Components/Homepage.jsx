@@ -54,7 +54,7 @@ export default Homepage = (props) => {
   let sortLocations = async (locations) => {
     try {
       const position = await Location.getCurrentPositionAsync({});
-      const Locations = locations; // For mutation, cant mutate param
+      const Locations = locations || []; // For mutation, cant mutate param
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       Locations.forEach((location) => {
@@ -145,8 +145,8 @@ export default Homepage = (props) => {
         setClinicToView={setClinicToView}
         setShelterToView={setShelterToView}
         setLowerPanelContent={setLowerPanelContent}
-        clinics={clinics}
-        shelters={shelters}
+        clinics={clinics || []}
+        shelters={shelters || []}
       />
       {/* Compare current filters with default filters, if different show reset filter button */}
       {JSON.stringify(filters) !== JSON.stringify([10000, 'All']) && (
