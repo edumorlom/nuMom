@@ -1,6 +1,6 @@
 // This file provides the styles for the whole App
 import {RFValue} from 'react-native-responsive-fontsize';
-import {Dimensions, Platform} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 
 export const win = Dimensions.get('window');
 export const pinkColor = '#DF2172';
@@ -8,7 +8,7 @@ export const blueColor = '#0052A1';
 export const greyColor = '#A9A9A9';
 export const darkGreyColor = '#5E5E5E';
 export const greenColor = '#298000';
-export const blackColor = '#000000'; //export black color
+export const blackColor = '#000000'; // export black color
 export const backgroundColor = 'white';
 export const titleFontSize = RFValue(30);
 export const regularFontSize = RFValue(20);
@@ -21,7 +21,7 @@ export const title = {
 };
 export const borderRadius = 20;
 export const shadow = {
-  shadowColor: blackColor,     // change darkgrey color to black color for shadow
+  shadowColor: blackColor, // change darkgrey color to black color for shadow
   shadowOffset: {width: 1, height: 1},
   shadowOpacity: 0.3, // increase the opacity of shadow color from 0.25 to 0.3
   shadowRadius: 5,
@@ -60,7 +60,7 @@ export default {
   shadow,
   pinkColor,
   blueColor,
-  blackColor,//add black color
+  blackColor, // add black color
   greyColor,
   darkGreyColor,
   titleFontSize,
@@ -143,7 +143,7 @@ export default {
     },
     TextInput: {
       fontSize: regularFontSize,
-      fontWeight: 'bold',  // add new line fontweight for text input for login and signup to make text more visible
+      fontWeight: 'bold', // add new line fontweight for text input for login and signup to make text more visible
       textAlign: 'center',
     },
   },
@@ -158,7 +158,7 @@ export default {
     justifyContent: 'center',
     backgroundColor: 'white',
     fontSize: regularFontSize,
-    fontWeight: 'bold',  // add new line fontweight for text input mask class for login and signup to make text more visible
+    fontWeight: 'bold', // add new line fontweight for text input mask class for login and signup to make text more visible
     textAlign: 'center',
   },
   ClickableText: {
@@ -422,6 +422,17 @@ export default {
       fontSize: regularFontSize,
     },
   },
+  FilterButton: {
+    Touchable: {
+      width: win.width * 0.15,
+      height: win.width * 0.08,
+    },
+    Image: {
+      left: win.width * 0.008,
+      height: win.width * 0.085,
+      width: win.width * 0.085,
+    },
+  },
   CancelFilterButton: {
     Touchable: {
       position: 'absolute',
@@ -441,7 +452,6 @@ export default {
       height: 40,
       width: 40,
     },
-
     Image: {
       width: 30,
       height: 30,
@@ -580,7 +590,7 @@ export default {
     },
     TextInput: {
       fontSize: regularFontSize,
-      fontWeight: 'bold',  // add new line text input font weight to make text more visible and darker
+      fontWeight: 'bold', // add new line text input font weight to make text more visible and darker
       textAlign: 'center',
     },
   },
@@ -596,5 +606,19 @@ export default {
     backgroundColor: 'white',
     fontSize: regularFontSize,
     textAlign: 'center',
+  },
+  Dropdown: {
+    backgroundColor: 'white',
+    ...shadow,
+    borderColor: greyColor,
+    borderRadius: 5,
+    width: '42%',
+    bottom: 5,
+  },
+  Picker: {
+    backgroundColor: 'white',
+    ...shadow,
+    borderColor: greyColor,
+    borderRadius: 15,
   },
 };

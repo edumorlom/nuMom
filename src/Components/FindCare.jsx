@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import SelectionButton from './SelectionButton';
-import clinicLogo from '../../assets/clinic-logo.png';
 import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
 import translate from './getLocalizedText';
 
@@ -93,9 +92,9 @@ export default function FindCare(props) {
       {props.filterToShow && ( // If filter set to show, display the filter dropdown
         <View style={{flexDirection: 'row', height: window.height * 0.085}}>
           <Dropdown
-            containerStyle={{...styles.Dropdown, right: '10%'}}
+            containerStyle={{...appStyles.Dropdown, right: '10%'}}
             dropdownOffset={{top: 0, bottom: 0, left: 0}}
-            pickerStyle={styles.Picker}
+            pickerStyle={appStyles.Picker}
             inputContainerStyle={{borderBottomColor: 'transparent'}}
             textAlign="center"
             itemTextStyle={{alignSelf: 'center'}}
@@ -108,9 +107,9 @@ export default function FindCare(props) {
           />
 
           <Dropdown
-            containerStyle={{...styles.Dropdown, left: '10%'}}
+            containerStyle={{...appStyles.Dropdown, left: '10%'}}
             dropdownOffset={{top: 0, bottom: 0, left: 0}}
-            pickerStyle={styles.Picker}
+            pickerStyle={appStyles.Picker}
             inputContainerStyle={{borderBottomColor: 'transparent'}}
             textAlign="center"
             itemTextStyle={{alignSelf: 'center'}}
@@ -131,20 +130,3 @@ export default function FindCare(props) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  Dropdown: {
-    backgroundColor: 'white',
-    ...shadow,
-    borderColor: greyColor,
-    borderRadius: 5,
-    width: '42%',
-    bottom: 5,
-  },
-  Picker: {
-    backgroundColor: 'white',
-    ...shadow,
-    borderColor: greyColor,
-    borderRadius: 15,
-  },
-});

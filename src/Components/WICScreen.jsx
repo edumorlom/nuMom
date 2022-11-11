@@ -3,6 +3,9 @@ import {Text, View, Linking, ScrollView, StyleSheet} from 'react-native';
 import {getPreciseDistance} from 'geolib';
 import {Picker} from '@react-native-picker/picker';
 import * as Location from 'expo-location';
+import {Dropdown} from 'react-native-material-dropdown-v2';
+import Button from './Button';
+import translate from './getLocalizedText';
 import {getRef} from '../Firebase';
 import SelectionButton from './SelectionButton';
 import ChecklistButton from './ChecklistButton';
@@ -17,6 +20,7 @@ import checklist from '../../assets/check5list2.jpg';
 import facilities from '../../assets/facilities.png';
 import LocationsMap from './LocationsMap';
 import BetterMenu from './BetterMenu';
+import filterButton from '../../assets/Filter.png';
 
 /*  Main home screen for WIC. Any additional tabs go here, and are defined in separate exported functions afterwards.
  *
@@ -142,13 +146,14 @@ export const wicLocations = (props) => {
   const [sortedWICS, setSortedWICS] = useState(null);
   const [filters, setFilters] = useState([10000, 'All']);
   const [wicToView, setWICToView] = useState(null);
-  const [shelterToView, setShelterToView] = useState(null);
-  const [STDToView, setSTDToView] = useState(null);
   const [lowerPanelContent, setLowerPanelContent] = useState('selection');
+  const [dist, setDist] = useState(filters[0]);
+  const [filterToShow, setFilterToShow] = useState(false);
 
   useEffect(() => {
     fetchResources(); // Can only call one function inside useEffect when dealing with asyncs
-  }, []);
+    setDist(filters[0]);
+  });
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
   let fetchResources = async () => {
@@ -187,8 +192,34 @@ export const wicLocations = (props) => {
     }
   };
 
+  let locations = sortedWICS;
+
+  // Filters shelters based on dist passed
+  const filterWIC = (distance) => {
+    if (distance !== 10000 && wics) {
+      // if distance filter is not default value
+      locations = locations.filter(
+        (location) =>
+          // filter by distance
+          location.distance <= distance
+      );
+    }
+    // Update the states with the new info
+    setWICS(locations);
+    setFilters([distance]);
+    setDist(distance);
+  };
+
   const getResourceName = (name) =>
     name.length > 40 ? `${name.substring(0, 40)}...` : name;
+
+  const distances = [
+    {label: translate('All'), value: 10000},
+    {label: `5 ${translate('Miles')}`, value: 5.5},
+    {label: `10 ${translate('Miles')}`, value: 10.5},
+    {label: `15 ${translate('Miles')}`, value: 15.5},
+    {label: `20 ${translate('Miles')}`, value: 20.5},
+  ];
 
   const wicButtons = wics.map((wic, key) => (
     <SelectionButton
@@ -205,29 +236,63 @@ export const wicLocations = (props) => {
     />
   ));
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <View style={appStyles.container}>
-        <LocationsMap
-          onPress={() => setFullPanel(false)} // This does not work, explanation at the bottom **
-          setFullPanel={setFullPanel}
-          wicToView={wicToView}
-          setWICToView={setWICToView}
-          setLowerPanelContent={setLowerPanelContent}
-          locations={wics}
-          style={{}}
-          navigation={props.navigation}
-        />
+    <>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
+        <View style={appStyles.container}>
+          <LocationsMap
+            onPress={() => setFullPanel(false)} // This does not work, explanation at the bottom **
+            setFullPanel={setFullPanel}
+            medicaidToView={wicToView}
+            setMedicaidToView={setWICToView}
+            setLowerPanelContent={setLowerPanelContent}
+            locations={wics}
+            style={{}}
+            navigation={props.navigation}
+          />
+        </View>
+        <View style={{height: appStyles.win.height * 0.6}}>
+          <View
+            style={{
+              flexDirection: 'row-reverse',
+              height: appStyles.win.height * 0.085,
+            }}
+          >
+            <Button
+              style={appStyles.FilterButton}
+              icon={filterButton}
+              underlayColor="transparent"
+              onPress={() => setFilterToShow(!filterToShow)}
+            />
+            <Text style={{width: appStyles.win.width * 0.15}}>
+              {/* This Text component is used to fill space */}
+            </Text>
+            {filterToShow && ( // If filter set to show, display the filter dropdown
+              <Dropdown
+                containerStyle={{...appStyles.Dropdown, right: '10%'}}
+                dropdownOffset={{top: 0, bottom: 0, left: 0}}
+                pickerStyle={appStyles.Picker}
+                inputContainerStyle={{borderBottomColor: 'transparent'}}
+                textAlign="center"
+                itemTextStyle={{alignSelf: 'center'}}
+                fontSize={12}
+                data={distances}
+                label={translate('Distance')}
+                value={dist}
+                useNativeDriver
+                onChangeText={(value, index, data) => filterWIC(value)}
+              />
+            )}
+          </View>
+          <ScrollView>{wicButtons}</ScrollView>
+        </View>
       </View>
-      <View style={{height: appStyles.win.height * 0.6}}>
-        <ScrollView>{wicButtons}</ScrollView>
-      </View>
-    </View>
+    </>
   );
 };
 

@@ -76,7 +76,12 @@ export default LowerPanel = (props) => {
     shelters: (
       <Shelters
         shelters={props.shelters}
+        sortedShelters={props.sortedShelters}
+        setFilters={props.setFilters}
+        setShelters={props.setShelters}
+        filters={props.filters}
         setShelterToView={props.setShelterToView}
+        filterToShow={filterToShow}
         setLowerPanelContent={props.setLowerPanelContent}
       />
     ),

@@ -119,7 +119,8 @@ export default function LowerPanelHeader(props) {
             underlayColor="transparent"
             onPress={onPress}
           />
-          {props.lowerPanelContent === 'findCare' ? (
+          {props.lowerPanelContent === 'findCare' ||
+          props.lowerPanelContent === 'shelters' ? (
             <Button
               style={FilterButton}
               icon={filterButton}
