@@ -23,7 +23,7 @@ export default function STDInfo({route}) {
   const {website} = route.params;
 
   const visitSite = () => {
-    Linking.openURL(website);
+    Linking.openURL(`http://${website}`);
   };
 
   return (
@@ -32,7 +32,7 @@ export default function STDInfo({route}) {
         <ActionButton
           style={appStyles.ActionButton}
           text={translate('visitSite')}
-          subtext={website.split('/')[2]}
+          subtext={website.split('/', 3)[0]}
           onPress={visitSite}
           icon={visitSiteIcon}
         />
