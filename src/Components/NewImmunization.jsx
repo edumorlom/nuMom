@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState, useCallback} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import translate from './getLocalizedText';
@@ -16,21 +16,19 @@ import appStyles, {greyColor, shadow} from './AppStyles';
 import {getUid, addImmunization} from '../Firebase';
 
 export default function NewImmunization(props) {
-  immunization = [
-    ([type, setType] = useState(null)),
-    ([dosage, setDosage] = useState(null)),
-    ([date, setDate] = useState(
-      `${moment().format('MM')}/${moment().format('DD')}/${moment().format(
-        'YYYY'
-      )}`
-    )),
-    ([notes, setNotes] = useState(null)),
-    ([isDatePickerVisible, setDatePickerVisibility] = useState(false)),
-    ([id, setID] = useState()),
-  ];
+  const [type, setType] = useState(null);
+  const [dosage, setDosage] = useState(null);
+  const [date, setDate] = useState(
+    `${moment().format('MM')}/${moment().format('DD')}/${moment().format(
+      'YYYY'
+    )}`
+  );
+  const [notes, setNotes] = useState(null);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [id, setID] = useState();
   const uid = getUid();
 
-  immunizationInfo = {
+  const immunizationInfo = {
     type,
     date,
     dosage,
@@ -59,7 +57,7 @@ export default function NewImmunization(props) {
   ];
 
   // this method will set the id of immunizationInfo
-  doSetID = () => {
+  const doSetID = () => {
     let id = '';
 
     for (let i = 0; i < dosageArray.length; i++) {
@@ -97,7 +95,7 @@ export default function NewImmunization(props) {
     value: dosage,
   }));
 
-  onPress = async () => {
+  const onPress = async () => {
     if (!type || !date || !dosage) {
       alert(translate('fillOutAllFields'));
     } else {
@@ -112,15 +110,15 @@ export default function NewImmunization(props) {
     if (type && dosage) onPress();
   }, [id]);
 
-  showDatePicker = () => {
+  const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
 
-  hideDatePicker = () => {
+  const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
 
-  handleConfirm = (date) => {
+  const handleConfirm = (date) => {
     const newDate = moment(date).format('MM/DD/YYYY');
     setDate(newDate);
     hideDatePicker();
@@ -142,40 +140,38 @@ export default function NewImmunization(props) {
       <View style={styles.container}>
         {/* Dropdown to select Immunization Type */}
         <Text style={styles.textTitle}>{translate('ImmunizationType')}</Text>
-        <DropDownPicker
-          containerStyle={{
-            ...styles.Dropdown,
-          }}
-          pickerStyle={{
-            ...styles.Picker,
-          }}
-          value={value}
-          items={immunizationItem}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setImmunizationItem}
-          onChangeItem={(value) => setType(value.label)}
-          zIndex={3000}
-          zIndexInverse={1000}
+        <View style={styles.separator} />
+        <Dropdown
+          containerStyle={{...appStyles.Dropdown, width: '100%'}}
+          dropdownOffset={{top: 0, bottom: 0, left: 0}}
+          pickerStyle={appStyles.Picker}
+          inputContainerStyle={{borderBottomColor: 'transparent'}}
+          textAlign="center"
+          itemTextStyle={{alignSelf: 'center'}}
+          fontSize={12}
+          data={immunizationItem}
+          label={translate('immunization')}
+          value={type}
+          useNativeDriver
+          onChangeText={(value, index, data) => setType(value)}
         />
 
         {/* Dropdown to select Dose Number */}
         <Text style={styles.textTitle}>{translate('ImmunizationDose')}</Text>
-        <DropDownPicker
-          containerStyle={{
-            ...styles.Dropdown,
-          }}
-          pickerStyle={{
-            ...styles.Picker,
-          }}
-          value={value}
-          items={dosageItem}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setDosageItem}
-          onChangeItem={(value) => setDosage(value.label)}
-          zIndex={2000}
-          zIndexInverse={2000}
+        <View style={styles.separator} />
+        <Dropdown
+          containerStyle={{...appStyles.Dropdown, width: '100%'}}
+          dropdownOffset={{top: 0, bottom: 0, left: 0}}
+          pickerStyle={appStyles.Picker}
+          inputContainerStyle={{borderBottomColor: 'transparent'}}
+          textAlign="center"
+          itemTextStyle={{alignSelf: 'center'}}
+          fontSize={12}
+          data={dosageItem}
+          label={translate('dosage')}
+          value={dosage}
+          useNativeDriver
+          onChangeText={(value, index, data) => setDosage(value)}
         />
         <TextBox
           placeholder={translate('immunizationNotes')}
@@ -201,7 +197,7 @@ export default function NewImmunization(props) {
           textColor="black"
         />
       </View>
-      <View style={styles.seperator} />
+      <View style={styles.separator} />
       <View
         style={{
           width: '100%',
@@ -220,22 +216,7 @@ export default function NewImmunization(props) {
 }
 
 const styles = StyleSheet.create({
-  Dropdown: {
-    backgroundColor: 'white',
-    borderColor: greyColor,
-    width: '100%',
-    paddingTop: '5%',
-    borderRadius: 5,
-  },
-  Picker: {
-    backgroundColor: 'white',
-    ...shadow,
-    borderColor: greyColor,
-    borderRadius: 15,
-    alignSelf: 'center',
-    width: '90%',
-  },
-  seperator: {
+  separator: {
     height: 0.1,
     width: '80%',
     backgroundColor: '#979797',
