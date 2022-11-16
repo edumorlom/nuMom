@@ -149,6 +149,7 @@ export default function NewImmunization(props) {
           textAlign="center"
           itemTextStyle={{alignSelf: 'center'}}
           fontSize={12}
+          dropdownPosition={-5}
           data={immunizationItem}
           label={translate('immunization')}
           value={type}
@@ -167,6 +168,7 @@ export default function NewImmunization(props) {
           textAlign="center"
           itemTextStyle={{alignSelf: 'center'}}
           fontSize={12}
+          dropdownPosition={-5}
           data={dosageItem}
           label={translate('dosage')}
           value={dosage}
