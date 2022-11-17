@@ -20,6 +20,7 @@ export default function STDSelection(props) {
       treatment: std.treatment,
       consequences: std.consequences,
       safeSex: std.safeSex,
+      website: std.website,
     });
   };
   return (
