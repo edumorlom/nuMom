@@ -47,7 +47,9 @@ export default {
   },
   learnAndResourceTabContentContainer: {
     alignItems: 'center',
+    maxHeight: '30%',
     maxWidth: '100%',
+    paddingTop: 30,
     backgroundColor: 'white',
     flex: 1,
   },
