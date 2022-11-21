@@ -14,6 +14,15 @@ function BirthControlOral() {
     {
       do: 'BirthControlInfo2',
     },
+    {
+      do: 'BirthControlInfo2a',
+    },
+    {
+      do: 'BirthControlInfo2b',
+    },
+    {
+      do: 'BirthControlInfo2c',
+    },
   ];
 }
 
@@ -24,6 +33,22 @@ function BirthControlIUDInfo() {
     },
     {
       do: 'BirthControlInfo4',
+    },
+    {
+      do: 'BirthControlInfo5',
+    },
+  ];
+}
+function BirthControlSteralizationInfo() {
+  return [
+    {
+      do: 'BirthControlInfo6',
+    },
+    {
+      do: 'BirthControlInfo7',
+    },
+    {
+      do: 'BirthControlInfo8',
     },
   ];
 }
@@ -53,6 +78,22 @@ export function BirthControlIUD() {
             style={appStyles.BirthControlInfo}
             key={key}
             text={translate(iud.do)}
+          />
+        ))}
+      </ScrollView>
+    </View>
+  );
+}
+
+export function BirthControlSteralize() {
+  return (
+    <View style={appStyles.contentContainer}>
+      <ScrollView>
+        {BirthControlSteralizationInfo().map((bcs, key) => (
+          <BetterMenu
+            style={appStyles.BirthControlInfo}
+            key={key}
+            text={translate(bcs.do)}
           />
         ))}
       </ScrollView>
@@ -91,6 +132,13 @@ export function BirthControlMainScreen(props) {
         text={translate('BirthControlIUD')}
         onPress={() => {
           props.navigation.navigate('BirthControlIUD');
+        }}
+      />
+      <SelectionButton
+        style={appStyles.BirthControlSelectionButton}
+        text={translate('BirthControlSteralize')}
+        onPress={() => {
+          props.navigation.navigate('BirthControlSteralize');
         }}
       />
     </ScrollView>

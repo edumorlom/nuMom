@@ -46,6 +46,7 @@ import {
   BirthControlMainScreen,
   BirthControlPill,
   BirthControlIUD,
+  BirthControlSteralize,
 } from './src/Components/BirthControl';
 import {
   wicHome,
@@ -265,6 +266,11 @@ function App() {
           name="BirthControlIUD"
           component={BirthControlIUD}
           options={{title: translate('BirthControlIUD')}}
+        />
+        <Stack.Screen
+          name="BirthControlSteralize"
+          component={BirthControlSteralize}
+          options={{title: translate('BirthControlTubeLigation')}}
         />
         <Stack.Screen
           name="WICScreen"
