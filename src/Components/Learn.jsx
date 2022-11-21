@@ -5,6 +5,7 @@ import SelectionButton from './SelectionButton';
 import STDAwareness from '../../assets/std-awareness.png';
 import translate from './getLocalizedText';
 import FemaleCondom from '../../assets/FC.png';
+import BirthControl from '../../assets/BirthControl.png';
 
 export default function learn(props) {
   return (
@@ -27,6 +28,15 @@ export default function learn(props) {
         icon={FemaleCondom}
         onPress={() => {
           props.navigation.navigate('FemaleCondomMainScreen');
+        }}
+      />
+      <SelectionButton
+        style={appStyles.ImageOnRightSelectionButton}
+        text={translate('BirthControl')}
+        subtext={translate('BirthControlSubtext')}
+        icon={BirthControl}
+        onPress={() => {
+          props.navigation.navigate('BirthControlMainScreen');
         }}
       />
     </ScrollView>

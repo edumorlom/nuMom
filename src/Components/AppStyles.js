@@ -342,8 +342,60 @@ export default {
       width: win.width * 0.95,
       borderRadius,
     },
+
     Text: {
       color: pinkColor,
+      fontSize: RFValue(16),
+      textAlign: 'justify',
+    },
+  },
+  BirthControlSelectionButton: {
+    Touchable: {
+      margin: 5,
+      padding: 20,
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.8,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'column',
+    },
+    Text: {
+      color: blueColor,
+      fontSize: RFValue(19),
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+  },
+  BirthControlInfo: {
+    Touchable: {
+      margin: 5,
+      padding: 10,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.95,
+      borderRadius,
+    },
+    Text: {
+      color: blackColor,
+      fontSize: RFValue(16),
+      textAlign: 'justify',
+    },
+  },
+  fPill: {
+    Touchable: {
+      margin: 5,
+      padding: 10,
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.95,
+      borderRadius,
+    },
+    Text: {
+      color: greenColor,
       fontSize: RFValue(16),
       textAlign: 'justify',
     },

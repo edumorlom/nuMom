@@ -43,6 +43,11 @@ import {
   FemaleCondomSteps,
 } from './src/Components/FemaleCondom';
 import {
+  BirthControlMainScreen,
+  BirthControlPill,
+  BirthControlIUD,
+} from './src/Components/BirthControl';
+import {
   wicHome,
   wicChecklist,
   wicLocations,
@@ -235,6 +240,7 @@ function App() {
           component={FemaleCondomMainScreen}
           options={{title: translate('FemaleCondom')}}
         />
+
         <Stack.Screen
           name="FemaleCondomDoDont"
           component={FemaleCondomDoDont}
@@ -244,6 +250,21 @@ function App() {
           name="FemaleCondomSteps"
           component={FemaleCondomSteps}
           options={{title: translate('steps')}}
+        />
+        <Stack.Screen
+          name="BirthControlMainScreen"
+          component={BirthControlMainScreen}
+          options={{title: translate('BirthControl')}}
+        />
+        <Stack.Screen
+          name="BirthControlPill"
+          component={BirthControlPill}
+          options={{title: translate('BirthControlPill')}}
+        />
+        <Stack.Screen
+          name="BirthControlIUD"
+          component={BirthControlIUD}
+          options={{title: translate('BirthControlIUD')}}
         />
         <Stack.Screen
           name="WICScreen"
