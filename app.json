@@ -4,7 +4,7 @@
     "slug": "moms-infants-healthy-redesign",
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
-    "version": "0.7.0",
+    "version": "0.8.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -26,12 +26,19 @@
     "android": {
       "package": "edu.fiu.momsInfantsHealthy",
       "config": {
-        "googleMaps": {"apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"}
+        "googleMaps": {
+          "apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"
+        }
       },
-      "versionCode": 7,
+      "versionCode": 8,
       "useNextNotificationsApi": true
     },
     "description": "",
-    "githubUrl": "https://github.com/edumorlom/moms-infants-healthy"
+    "githubUrl": "https://github.com/edumorlom/moms-infants-healthy",
+    "extra": {
+      "eas": {
+        "projectId": "681cf8eb-86c6-4eb0-8072-ff2a4f552fa8"
+      }
+    }
   }
 }
