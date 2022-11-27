@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import SelectionButton from './SelectionButton';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 import translate from './getLocalizedText';
 
 export default function FindCare(props) {
@@ -33,7 +33,6 @@ export default function FindCare(props) {
         props.setClinicToView(clinic);
         props.setLowerPanelContent('clinicInfo');
       }}
-      /* clinic={clinic} */
     />
   ));
 

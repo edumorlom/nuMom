@@ -63,7 +63,7 @@ export default LowerPanel = (props) => {
     ),
     findCare: (
       <FindCare
-        clinics={props.clinics}
+        clinics={props.clinics || []}
         sortedClinics={props.sortedClinics}
         setClinicToView={props.setClinicToView}
         setClinics={props.setClinics}
@@ -75,7 +75,7 @@ export default LowerPanel = (props) => {
     ),
     shelters: (
       <Shelters
-        shelters={props.shelters}
+        shelters={props.shelters || []}
         sortedShelters={props.sortedShelters}
         setFilters={props.setFilters}
         setShelters={props.setShelters}
