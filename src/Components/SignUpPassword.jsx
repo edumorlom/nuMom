@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import poorPasswords from './PoorPassword';
 import {
   AsyncStorage,
   Keyboard,
@@ -13,11 +14,12 @@ import {
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
 
 export default SignUpPassword = (props) => {
+  const [passwordStrength, setPasswordStrength] = useState(0);
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
@@ -67,6 +69,71 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  //checkPasswordStrength here
+  function checkPasswordStrength(password)
+  {
+    let counter = 0;
+    setPasswordStrength(password);
+    if (/[A-Z]/.test(password)) 
+    {
+      counter++;
+    }
+    if (/[a-z]/.test(password)) 
+    {
+    counter++;
+    }
+    if (/[0-9]/.test(password)) 
+    {
+    counter++;
+    }
+    if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password))
+    {
+      counter++;
+    }
+    //High strength password
+    if (password.length >= 5 && counter == 4 && !poorPasswords.includes(password) )
+    {
+      setPasswordStrength(2);
+    }
+    //Medium strength password 
+    else if (password.length >= 5 && counter == 3 && !poorPasswords.includes(password))
+    {
+      setPasswordStrength(1);
+    }
+    //Weak strength password
+    else
+    {
+      setPasswordStrength(0);
+
+    }
+
+  }
+
+  //show user how strong password is
+  function displayPasswordStrength()
+  {
+    let message;
+    let color;
+    if (passwordStrength == 2)
+    {
+      color = "#298000";
+      message = "Password strength is strong.";
+    }
+    else if (passwordStrength == 1)
+    {
+      color = blueColor;
+      message = "Password strength is medium.";
+    }
+    else
+    {
+      color = pinkColor;
+      message = "Password strength is too weak.";
+    }
+    return (<Text style={{color:color,textAlign:"center"}}>{message}</Text>)
+  }
+
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -97,8 +164,9 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={checkPasswordStrength}
                   />
+                  {displayPasswordStrength()}
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
