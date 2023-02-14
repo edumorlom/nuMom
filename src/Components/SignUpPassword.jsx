@@ -75,33 +75,38 @@ export default SignUpPassword = (props) => {
   {
     let counter = 0;
     setPasswordStrength(password);
-    if (/[A-Z]/.test(password)) 
+    let isUpperCase = checkUpperCase(password)
+    let isLowerCase = checkLowerCase(password)
+    let isNum = checkNum(password)
+    let ischecksymbols = checksymbols(password)
+    if (isUpperCase) 
     {
-      counter++;
+      counter++; 
     }
-    if (/[a-z]/.test(password)) 
+    if (isLowerCase) 
     {
     counter++;
     }
-    if (/[0-9]/.test(password)) 
+    if (isNum) 
     {
     counter++;
     }
-    if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password))
+    if (ischecksymbols)
     {
       counter++;
     }
-    //High strength password
+
+   //To check Password lengths
     if (password.length >= 5 && counter == 4 && !poorPasswords.includes(password) )
     {
       setPasswordStrength(2);
     }
-    //Medium strength password 
+    //To check Password lengths
     else if (password.length >= 5 && counter == 3 && !poorPasswords.includes(password))
     {
       setPasswordStrength(1);
     }
-    //Weak strength password
+    
     else
     {
       setPasswordStrength(0);
@@ -109,28 +114,47 @@ export default SignUpPassword = (props) => {
     }
 
   }
+  //function to check for UpperCase letter 
+  function checkUpperCase(str) {
+    return /[A-Z]/.test(str);
+  }
+   //function to check for LowerCase letter
+  function checkLowerCase(str) {
+    return /[a-z]/.test(str);
+  }
+  //Function to check for Numbers
+  function checkNum(str) {
+    return /[0-9]/.test(str)
+  }
+  //Function to check for Symbols
+  function checksymbols(str) {
+    return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(str)
+  }
 
-  //show user how strong password is
-  function displayPasswordStrength()
+ 
+  function showPasswordStrength()
   {
-    let message;
-    let color;
-    if (passwordStrength == 2)
+    let warningmessage;
+    let colour;
+    if (passwordStrength == 0)
     {
-      color = "#298000";
-      message = "Password strength is strong.";
-    }
+     //Shows pink colour and warning message if password strength is weak 
+     colour = pinkColor;
+     warningmessage = "Password strength is too weak.";
+   }
     else if (passwordStrength == 1)
     {
-      color = blueColor;
-      message = "Password strength is medium.";
+      //Shows blue colour and warning message if password strength is medium 
+      colour = blueColor;
+      warningmessage = "Password strength is medium.";
     }
-    else
+    else if (passwordStrength == 2)
     {
-      color = pinkColor;
-      message = "Password strength is too weak.";
+      //Shows green colour and warning message if password strength is strong
+      colour = "#298000";
+      warningmessage = "Password strength is strong.";
     }
-    return (<Text style={{color:color,textAlign:"center"}}>{message}</Text>)
+    return (<Text style={{color: colour, textAlign: "center"}}>{warningmessage}</Text>)
   }
 
 
@@ -166,7 +190,7 @@ export default SignUpPassword = (props) => {
                     placeholder={translate('passwordInput')}
                     onChangeText={checkPasswordStrength}
                   />
-                  {displayPasswordStrength()}
+                 
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
@@ -190,6 +214,7 @@ export default SignUpPassword = (props) => {
                     value={repeat}
                     style={appStyles.TextInputMask}
                   />
+                 {showPasswordStrength()}
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
