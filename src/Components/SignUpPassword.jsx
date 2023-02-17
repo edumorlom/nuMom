@@ -13,11 +13,15 @@ import {
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+import appStyles, { blueColor, pinkColor } from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import nuMom from './AppStyles';
+import badpasswordlist from './badpasswordlist';
+
 
 export default SignUpPassword = (props) => {
+  const [passwordStrength, setPasswordStrength] = useState(0);
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
@@ -30,6 +34,10 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  //var textAppear = ''
+  //var textMessage = ''
+  const [textAppear, settextAppear] = useState('');
+  const [textMessage, settextMessage] = useState('');
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -43,6 +51,67 @@ export default SignUpPassword = (props) => {
       })
       .done();
   }, []);
+
+  function checkPasswordStrength(password){
+    if (badpasswordlist.includes(password))
+    {
+      setPasswordStrength(0);
+      return
+    }
+  setPassword(password);
+  let passwordTypechecks=0;
+
+    if (/[0-9]/.test(password)) {
+      passwordTypechecks++;
+    }
+
+    if (/[ '@!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password)) {
+      passwordTypechecks++;
+    }
+   
+    if (/[a-z]/.test(password)) {
+      passwordTypechecks++;
+    }
+
+    if (/[A-Z]/.test(password)) {
+      passwordTypechecks++;
+    } 
+
+    if (password.length >= 5 && passwordTypechecks==4){
+      setPasswordStrength(2)
+    }
+
+    else if (password.length >= 5 && passwordTypechecks==3){
+      setPasswordStrength(1)
+    }
+
+    else if (password.length <= 4 ){
+      setPasswordStrength(0)        
+    }
+
+  console.log(password)
+    if (passwordStrength==0){
+      settextMessage("Poor Strength Password")
+      settextAppear(pinkColor)
+     }
+
+    else if (passwordStrength==1){
+      settextMessage("Medium Strength Password")
+      settextAppear(blueColor)
+     }
+
+    else if (passwordStrength==2){
+      settextMessage("High Strength Password") 
+      settextAppear('#298000')
+     }
+  }
+
+
+
+    
+
+  
+
 
   let onPress = () => {
     if (password !== repeat) {
@@ -97,9 +166,12 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={checkPasswordStrength}
                   />
+
+                  
                   <TouchableOpacity
+
                     style={styles.eyeShowPassword}
                     onPress={() => {
                       setVisible(!visible);
@@ -122,6 +194,21 @@ export default SignUpPassword = (props) => {
                     value={repeat}
                     style={appStyles.TextInputMask}
                   />
+                  
+
+
+
+
+                  <Text style={{color:textAppear}}>
+                    {textMessage}
+                  </Text>
+
+
+
+
+
+
+
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
@@ -129,6 +216,10 @@ export default SignUpPassword = (props) => {
                       setShowRepeat(!showRepeat);
                     }}
                   >
+                    
+                  
+
+                  
                     <Icon
                       name={
                         showRepeat === false ? 'eye-outline' : 'eye-off-outline'
@@ -166,4 +257,11 @@ const styles = StyleSheet.create({
     right: 30,
     top: 25,
   },
+
+  textStyles: {
+    Poor: "pinkColor", 
+    Medium: "blueColor", 
+    High: "#298000",
+  },
+
 });
