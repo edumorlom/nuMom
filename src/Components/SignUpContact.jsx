@@ -16,6 +16,7 @@ import {checkEmailExist} from '../Firebase';
 export default SignUpInfo = (props) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [formattedPhone, setFormattedPhone] = useState('');
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
   const {dob} = props.route.params;
@@ -72,6 +73,35 @@ export default SignUpInfo = (props) => {
     }
   };
 
+  const formatPhoneNumber = (phoneNumber) => {
+    let formattedNumber = '';
+
+    let cleaned = `${phoneNumber}`.replace(/\D/g, '');
+
+    for (let i = 0; i < cleaned.length; i++) {
+      if (i === 0) {
+        formattedNumber = '(';
+      } else if (i == 3) {
+        formattedNumber += ') ';
+      } else if (i == 6) {
+        formattedNumber += '-';
+      }
+
+      formattedNumber += cleaned[i];
+    }
+
+    setFormattedPhone(formattedNumber);
+
+    // unformat the formatted number
+    phoneNumber = formattedNumber
+      .replace(/[()]/g, '')
+      .replace(' ', '')
+      .replace(/-/, '');
+
+    // set phone as unformatted phone number since phone is used for the Firebase
+    setPhone(phoneNumber);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -107,10 +137,11 @@ export default SignUpInfo = (props) => {
                 />
                 <TextBox
                   placeholder={translate('phoneNumberInput')}
-                  onChangeText={setPhone}
-                  keyboardType="numeric"
-                  value={phone}
+                  onChangeText={(number) => formatPhoneNumber(number)}
+                  value={formattedPhone}
                   style={appStyles.TextInputMask}
+                  maxLength={14}
+                  keyboardType="numeric"
                 />
               </View>
             </View>
