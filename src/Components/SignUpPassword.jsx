@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import poorPasswords from './PoorPassword'; //Cache the content of PoorPassword.js for later comparisons.
+
 import {
   AsyncStorage,
   Keyboard,
@@ -13,11 +15,13 @@ import {
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import ProgressBar from  'react-native-paper'
 
 export default SignUpPassword = (props) => {
+  const [passwordStrength, setPasswordStrength] = useState(0); //pass in functions as arguments to check and display password
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
@@ -30,6 +34,7 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -45,13 +50,13 @@ export default SignUpPassword = (props) => {
   }, []);
 
   let onPress = () => {
-    if (password !== repeat) {
-      alert(translate('passwordMismatch'));
-    } else if (!password || !repeat) {
-      alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
-      alert(translate('passwordTooShort'));
-    } else {
+     if (password !== repeat) alert(translate('passwordMismatch'));
+      
+     else if (!password || !repeat) alert(translate('fillOutAllFields'));
+      
+     else if (password.length < 6) alert(translate('passwordTooShort'));
+      
+     else {
       // props.setUserInfo({password});
       // AsyncStorage.setItem('pass', password);
       // AsyncStorage.setItem('repeat', repeat);
@@ -67,6 +72,70 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  //checkPasswordStrength here
+  function checkPasswordStrength(password)
+  {
+    let counter = 0;
+    
+
+    setPassword(password);
+    if (poorPasswords.includes(password))
+    {
+      setPasswordStrength(0);
+      return 
+    }
+    //If a password meets criteria 1 capital, 1 lower case, 1 unique char, add a point
+    //if counter has 3 or 4 points and is at LEAST 5 chars long, password is valid.
+    
+    if (/[A-Z]/.test(password)) counter++; //capital letter present, add to counter
+    if (/[a-z]/.test(password)) counter++; //lowercase letter, add 
+    if (/[0-9]/.test(password)) counter++; //unique letter, add
+    if (/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password)) counter++; 
+    if (password.length >= 5 && counter == 4 ) setPasswordStrength(2); //High strength password 
+    else if (password.length >= 5 && counter == 3 ) setPasswordStrength(1); //Medium strength password
+    else setPasswordStrength(0); //Weak strength password. User may not proceed.
+
+  }
+
+  //show user how strong password is with a pop-up message 
+  function displayPasswordStrengthMessage()
+  {
+    let message, color;
+    
+    
+    if (passwordStrength == 2)
+    {
+      color = "#298000"; //green
+      message = "Password strength is strong.";
+     
+    }
+    else if (passwordStrength == 1)
+    {
+      color = blueColor;
+      message = "Password strength is medium.";
+    }
+    
+    else if (passwordStrength == 0)
+    {
+      
+      color = pinkColor;
+      message = "Your password is too weak. Your password must have at least one capital letter, one lowercase letter, one unique character, and be at least five characters long.";
+    }
+    return (<Text style={{color:color,textAlign:"center"}}>{message}</Text>)
+  }
+  function displayPasswordProgressBar() //Show progress bar to visually display password strengyh
+  {
+    let color;
+    if (passwordStrength == 2)
+    {
+      
+      color = "298000"
+      return <ProgressBar now={60}  />;
+    }
+     
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -97,8 +166,9 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={checkPasswordStrength}
                   />
+                  {displayPasswordStrengthMessage()}
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
