@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import poorPasswords from './PoorPassword'; //Cache the content of PoorPassword.js for later comparisons.
 
+
+
 import {
   AsyncStorage,
   Keyboard,
@@ -16,6 +18,7 @@ import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
 import appStyles, {pinkColor,blueColor} from './AppStyles';
+
 import Button from './Button';
 import translate from './getLocalizedText';
 //import ProgressBar from  'react-native-paper'//show password strength progress
