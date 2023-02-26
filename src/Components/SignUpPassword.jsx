@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import poorPasswords from './PoorPassword'; //Cache the content of PoorPassword.js for later comparisons.
+
 import {
   AsyncStorage,
   Keyboard,
@@ -17,7 +18,9 @@ import {TextInput} from 'react-native-gesture-handler';
 import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
-
+//import ProgressBar from  'react-native-paper'//show password strength progress
+import  { ProgressBar }  from 'react-native-paper'
+//import message from 'functions/message';
 export default SignUpPassword = (props) => {
   const [passwordStrength, setPasswordStrength] = useState(0); //pass in functions as arguments to check and display password
   const [password, setPassword] = useState('');
@@ -32,6 +35,8 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+   
+  
 
   useEffect(() => {
     AsyncStorage.getItem('pass')
@@ -80,7 +85,7 @@ export default SignUpPassword = (props) => {
     if (poorPasswords.includes(password))
     {
       setPasswordStrength(0);
-      return 
+      
     }
     //If a password meets criteria 1 capital, 1 lower case, 1 unique char, add a point
     //if counter has 3 or 4 points and is at LEAST 5 chars long, password is valid.
@@ -95,32 +100,51 @@ export default SignUpPassword = (props) => {
 
   }
 
-  //show user how strong password is with a pop-up message
+  function passwordStrengthMessage() //message above password strength bar
+  {
+    let message;
+
+    if (password.length == 0) return;
+    else if (passwordStrength == 2) message = "Password strength: Great" 
+    else if (passwordStrength == 1) message = "Password strength: Good"
+    else if (passwordStrength == 0) message = "Password strength: Weak"
+    
+    return message;
+  }
+
+  //show user how strong password is with a progress bar
   function displayPasswordStrength()
   {
-    let message, color;
+    let color;
     
     
     if (passwordStrength == 2)
     {
       color = "#298000"; //green
-      message = "Password strength is strong.";
+      
+      return (<ProgressBar now={0} progress ={1}  style = {{height: 6}} color = {color} />)
+      
+     
     }
     else if (passwordStrength == 1)
     {
       color = blueColor;
-      message = "Password strength is medium.";
+      message = "Good password";
+      
+      return (<ProgressBar now={0} progress ={0.7} style={{ height: 7, length: 0.7}} color = {color} />)
     }
     
     else if (passwordStrength == 0)
     {
       
       color = pinkColor;
-      message = "Your password is too weak. Your password must have at least one capital letter, one lowercase letter, one unique character, and be at least five characters long.";
+      message = "Weak password"
+      if (password.length != 0) return (<ProgressBar now={0} progress ={0.35} style = {{height: 6 }} color = {color} />)
+      else return //no progress shown if no input is given
     }
-    return (<Text style={{color:color,textAlign:"center"}}>{message}</Text>)
+    
   }
-
+  
 
   return (
     <KeyboardAvoidingView
@@ -154,7 +178,8 @@ export default SignUpPassword = (props) => {
                     placeholder={translate('passwordInput')}
                     onChangeText={checkPasswordStrength}
                   />
-                  {displayPasswordStrength()}
+                  <Text>{passwordStrengthMessage()}</Text>{displayPasswordStrength()}
+                  
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
@@ -162,6 +187,7 @@ export default SignUpPassword = (props) => {
                       setShow(!show);
                     }}
                   >
+                    
                     <Icon
                       name={show === false ? 'eye-outline' : 'eye-off-outline'}
                       size={26}
@@ -169,7 +195,7 @@ export default SignUpPassword = (props) => {
                     />
                   </TouchableOpacity>
                 </View>
-
+                        
                 <View>
                   <TextBox
                     placeholder={translate('repeatPasswordInput')}
