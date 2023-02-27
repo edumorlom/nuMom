@@ -413,21 +413,24 @@ export const wicFeeding = () => {
       return (
         <ScrollView contentContainerStyle={appStyles.contentContainer}>
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Soda, gelatin, coffee, tea, fruit punches and -ade drinks"
           />
-          <BetterMenu style={appStyles.Notes} text="Cow milk until 12 months" />
-          <BetterMenu style={appStyles.Notes} text="Added Salt" />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
+            text="Cow milk until 12 months"
+          />
+          <BetterMenu style={appStyles.FeedingNotes} text="Added Salt" />
+          <BetterMenu
+            style={appStyles.FeedingNotes}
             text="Added oil, butter, other fats, seasoning"
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Added sugar, syrups, other sweetners"
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Fried foods, gravies, sauces, processed meats"
           />
         </ScrollView>
