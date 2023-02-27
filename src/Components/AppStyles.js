@@ -257,6 +257,29 @@ export default {
       textAlign: 'justify',
     },
   },
+  FeedingNotes: {
+    Touchable: {
+      margin: 5,
+      padding: 10,
+      backgroundColor: 'white',
+      ...shadow,
+      width: win.width * 0.95,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    View: {
+      width: '100%',
+      height: '100%',
+    },
+    Text: {
+      color: darkGreyColor,
+      fontSize: regularFontSize,
+      textAlign: 'justify',
+    },
+  },
+
   ImageOnRightSelectionButton: {
     Touchable: {
       margin: 5,
