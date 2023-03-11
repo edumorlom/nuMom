@@ -1,5 +1,4 @@
-node_modules/**/*
-.expo/*
+node_modules*
 npm-debug.*
 *.jks
 *.p8
@@ -10,7 +9,7 @@ npm-debug.*
 web-build/
 web-report/
 src/firebase_account.json
-src/firebase_account_amin.json
 .idea/
-# macOS
 .DS_Store
+*.expo/
+package-lock.json
