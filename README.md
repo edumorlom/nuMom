@@ -129,23 +129,19 @@ You should also commit the version code change you did in the app.json to develo
 
 ### Deploying to iOS
 
-1. Login to the developer expo account by typing "expo login" in the terminal. You'll have to contact Eduardo to get his login credentials.
+1. Install `eas-cli` globally: `npm install -g eas-cli`.
 
-2. Increment the version in app.json by 1 (ex. 0.5.0 -> 0.5.1).
+2. Increment the app version in app.json by 1 (ex. 0.5.0 -> 0.5.1).
 
-3. Save app.json and close it.
-
-3. Ensure you `src/firebase_account.json` is commented out from .gitignore file.
+3. Ensure you `src/firebase_account.json` is commented out from .gitignore file. Re-comment it back once you're done.
 
 4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "npx eas build --platform ios"
 
-5. When prompted "Choose the build type you would like," choose archive
-
-6. Login with your apple credentials
+6. Login with the account's apple credentials.
 
 7. It will take a bit to build the ipa but once it finishes, you'll be placed in a queue for your ipa to build. You can go to the expo link in the terminal to monitor the build status while it finishes.
 
-8. Download the ipa once it finishes building
+8. Download the ipa once it finishes building.
 
 9. Open Apple 'Transporter' app (you can download it on th apple app store) and upload the ipa file.
 
