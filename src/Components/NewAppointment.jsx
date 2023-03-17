@@ -16,7 +16,9 @@ import * as Calendar from 'expo-calendar';
 import * as Localization from 'expo-localization';
 import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications';
+import {Appearance} from 'react-native';
 import Constants from 'expo-constants';
+import {colors} from 'react-native-elements';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';
@@ -34,6 +36,7 @@ Notifications.setNotificationHandler({
 export default function NewAppointment(props) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
+  const [mode, setMode] = useState();
   const notificationListener = useRef();
   const responseListener = useRef();
 
@@ -184,6 +187,13 @@ export default function NewAppointment(props) {
     // need to handle perms not being granted, since it cannot create an appointment without reminders
   };
 
+  function checkMode() {
+    // check if user's device/machine is in dark/light mode to choose a contrasting color
+    const matchResult = Appearance.getColorScheme();
+    if (matchResult == 'dark') return 'white';
+    return 'black';
+  }
+
   return (
     <Pressable style={appStyles.contentContainer} onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
@@ -220,6 +230,7 @@ export default function NewAppointment(props) {
           <TouchableOpacity onPress={showDatePicker}>
             <Text style={styles.textStyle}>{date}</Text>
           </TouchableOpacity>
+
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
@@ -227,7 +238,7 @@ export default function NewAppointment(props) {
             onCancel={hideDatePicker}
             is24Hour
             headerTextIOS={translate('dateHeader')}
-            textColor="black"
+            textColor={checkMode()}
           />
         </View>
         <View style={styles.seperator} />
@@ -243,7 +254,7 @@ export default function NewAppointment(props) {
             onCancel={hideTimePicker}
             is24Hour
             headerTextIOS={translate('timeHeader')}
-            textColor="black"
+            textColor={checkMode()}
           />
         </View>
         <View style={styles.seperator} />
