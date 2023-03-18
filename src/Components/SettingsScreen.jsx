@@ -32,6 +32,7 @@ import {saveCookie} from './Cookies';
 
 const SettingsScreen = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(null);
+  const [formattedPhone, setFormattedPhone] = useState(null);
   const [dob, setdob] = useState(null);
   const [fullName, setFullName] = useState(null);
   const [liveMiami, setLiveMiami] = useState(null);
@@ -88,7 +89,7 @@ const SettingsScreen = (props) => {
           ] = databaseInfo;
 
           setFullName(fullName);
-          setPhoneNumber(phoneNumber);
+          formatPhoneNumber(phoneNumber);
           setPregnant(pregnant);
           setInfant(infant);
           setdob(dob);
@@ -274,6 +275,36 @@ const SettingsScreen = (props) => {
     props.navigation.navigate('LogIn');
   };
 
+  // Formats phone number
+  const formatPhoneNumber = (phoneNumber) => {
+    let formattedNumber = '';
+
+    let cleaned = `${phoneNumber}`.replace(/\D/g, '');
+
+    for (let i = 0; i < cleaned.length; i++) {
+      if (i === 0) {
+        formattedNumber = '(';
+      } else if (i == 3) {
+        formattedNumber += ') ';
+      } else if (i == 6) {
+        formattedNumber += '-';
+      }
+
+      formattedNumber += cleaned[i];
+    }
+
+    setFormattedPhone(formattedNumber);
+
+    // unformat the formatted number
+    phoneNumber = formattedNumber
+      .replace(/[()]/g, '')
+      .replace(' ', '')
+      .replace(/-/, '');
+
+    // set phone as unformatted phone number since phone is used for the Firebase
+    setPhoneNumber(phoneNumber);
+  };
+
   return (
     <View
       style={{
@@ -345,9 +376,10 @@ const SettingsScreen = (props) => {
                 <TextBox
                   placeholder={translate('phoneNumberInput')}
                   style={appStyles.TextInput.TextInput}
-                  value={phoneNumber}
+                  value={formattedPhone}
                   keyboardType="numeric"
-                  onChangeText={(text) => setPhoneNumber(text)}
+                  maxLength={14}
+                  onChangeText={(text) => formatPhoneNumber(text)}
                 />
               </View>
             </View>
