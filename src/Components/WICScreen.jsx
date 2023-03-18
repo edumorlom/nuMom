@@ -307,7 +307,7 @@ export const wicFeeding = () => {
       return (
         <View>
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Human Milk"
             subtext="Only human milk (or formula) is needed for the first 6 months"
             icon={breastfeeding}
@@ -319,13 +319,13 @@ export const wicFeeding = () => {
       return (
         <View>
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Human Milk"
             subtext="Continue to breastfeed on demand."
             icon={breastfeeding}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Infant Formula"
             subtext={
               '24-32 ounces\nOr based on individual nutritional assessment'
@@ -333,7 +333,7 @@ export const wicFeeding = () => {
             icon={formula}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Grain Products"
             subtext={
               '1-2 ounces\nIron-fortified infant cereals, bread, small pieces of cracker'
@@ -341,19 +341,19 @@ export const wicFeeding = () => {
             icon={grains}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Vegetables"
             subtext={'2-4 ounces\nCooked, plain strained/pureed/mashed'}
             icon={vegetables}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Fruits"
             subtext={'2-4 ounces\nPlain strained/pureed/mashed'}
             icon={fruits}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Protein-rich Foods"
             subtext={
               '1-2 ounces\nPlain strained/pureed/mashed meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
@@ -367,19 +367,19 @@ export const wicFeeding = () => {
       return (
         <View>
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Human Milk"
             subtext="Provide guidance and encouragement to breastfeeding mothers and continue to support those mothers who choose to breastfeed beyond 12 months"
             icon={breastfeeding}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Infant Formula"
             subtext={'24 ounces\nOr based on individual nutritional assessment'}
             icon={formula}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Grain Products"
             subtext={
               '2-4 ounces\nIron-fortified infant cereals, baby crackers, bread, noodles, corn grits, soft tortilla pieces'
@@ -387,19 +387,19 @@ export const wicFeeding = () => {
             icon={grains}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Vegetables"
             subtext={'4-6 ounces\nCooked, finely chopped/diced'}
             icon={vegetables}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Fruits"
             subtext={'4-6 ounces\nFinely chopped/diced'}
             icon={fruits}
           />
           <BetterMenu
-            style={appStyles.ImageOnRightSelectionButton}
+            style={appStyles.ImageDarkOnSelectionButton}
             text="Protein-rich Foods"
             subtext={
               '2-4 ounces\nGround/finely chopped/diced meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
@@ -440,27 +440,27 @@ export const wicFeeding = () => {
       return (
         <View>
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Infants under 12 months of age should not consume juice unless clinically indicated. After 12 months, encourage fruit over fruit juice; any juice consumed should be as part of a meal or snack and from an open cup (i.e., not bottles or easily transportable covered cups)."
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Babies weaned from human milk before 12 months should receive iron-fortified formula."
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Wean entirely off the bottle and onto a cup at 12 to 14 months."
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Keep bottles out of bedtime and nap routines to avoid exposing infants’ teeth to sugars and reduce the risk for ear infections and choking."
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Check carefully for bones in commercially or home-prepared meals containing meat, fish, or poultry."
           />
           <BetterMenu
-            style={appStyles.Notes}
+            style={appStyles.FeedingNotes}
             text="Remove seeds, skin, and pits from fruits. For additional choking prevention information, refer to the Infant Feeding: Tips for Food Safety job aid."
           />
         </View>
