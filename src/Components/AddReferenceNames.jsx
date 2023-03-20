@@ -6,7 +6,6 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useState} from 'react';
 import appStyles from './AppStyles';
 import translate from './getLocalizedText';

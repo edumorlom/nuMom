@@ -1,6 +1,6 @@
 // This file provides the styles for the whole App
 import {RFValue} from 'react-native-responsive-fontsize';
-import {Dimensions, Platform, StyleSheet} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 export const win = Dimensions.get('window');
 export const pinkColor = '#DF2172';

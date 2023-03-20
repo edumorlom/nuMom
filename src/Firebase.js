@@ -1,12 +1,14 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import {getDatabase, ref, set} from 'firebase/database';
 import * as Notifications from 'expo-notifications';
 import * as Calendar from 'expo-calendar';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
 
-const config = firebaseAccount;
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseAccount);
 }
 export const signUp = (
   email,
@@ -64,9 +66,11 @@ export const logIn = (email, password) =>
 
 export const storeObjectInDatabase = (uid, object) => {
   if (!uid) return;
-  getUserInfo(uid).on('value', (snapshot) => {
-    firebase.database().ref(`users/${uid}`).update(object);
-  });
+  getUserInfo(uid)
+    .on('value', (snapshot) => {
+      firebase.database().ref(`users/${uid}`).update(object);
+    })
+    .catch((err) => console.log(err));
 };
 
 export const saveUserInfo = (

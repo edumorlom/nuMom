@@ -10,23 +10,16 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import {Picker} from '@react-native-picker/picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as firebase from 'firebase';
-import {AntDesign} from '@expo/vector-icons';
-import BackButton from './Button';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
-import goBackImg from '../../assets/go-back-arrow.png';
 import logOutImg from '../../assets/logOutIcon.png';
-import appStyles, {
-  blueColor,
-  regularFontSize,
-  settingsPageLabelsFontSize,
-} from './AppStyles';
+import appStyles, {blueColor, settingsPageLabelsFontSize} from './AppStyles';
 import translate from './getLocalizedText';
 import {saveCookie} from './Cookies';
 
