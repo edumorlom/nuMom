@@ -317,6 +317,45 @@ export default {
       fontSize: regularFontSize,
     },
   },
+  ImageDarkOnSelectionButton: {
+    Touchable: {
+      margin: 5,
+      padding: 20,
+      backgroundColor: 'white',
+      ...shadow,
+      minHeight: win.height * 0.2,
+      maxHeight: win.height * 0.4,
+      width: win.width * 0.95,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    View: {
+      height: '100%',
+      width: '70%',
+      marginRight: 20,
+    },
+    ImageView: {
+      height: '100%',
+      width: '7%',
+      justifyContent: 'center',
+    },
+    ImageInView: {
+      width: 65,
+      height: 65,
+    },
+    Text: {
+      color: blueColor,
+      fontSize: regularFontSize,
+      fontWeight: 'bold',
+    },
+    Subtext: {
+      color: darkGreyColor,
+      fontSize: regularFontSize,
+    },
+  },
+
   STDFemaleCondomSelectionButton: {
     Touchable: {
       margin: 5,
@@ -397,7 +436,7 @@ export default {
       height: 80,
     },
     Text: {
-      color: greyColor,
+      color: darkGreyColor,
       fontSize: RFValue(16),
     },
   },
