@@ -22,16 +22,12 @@ export default SignUpInfo = (props) => {
   const {dob} = props.route.params;
 
   useEffect(() => {
-    AsyncStorage.getItem('e-mail')
-      .then((value) => {
-        value !== null && value !== '' ? setEmail(value) : null;
-      })
-      .done();
-    AsyncStorage.getItem('phone')
-      .then((value) => {
-        value !== null && value !== '' ? setPhone(value) : null;
-      })
-      .done();
+    AsyncStorage.getItem('e-mail').then((value) => {
+      value !== null && value !== '' ? setEmail(value) : null;
+    });
+    AsyncStorage.getItem('phone').then((value) => {
+      value !== null && value !== '' ? setPhone(value) : null;
+    });
   }, []);
 
   const isValidEmail = (email) => {

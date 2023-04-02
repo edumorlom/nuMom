@@ -16,6 +16,7 @@ import {Picker} from '@react-native-picker/picker';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import {getDatabase, ref, set, onValue, update} from 'firebase/database';
 import Button from './Button';
 import {getUserInfo, getUid} from '../Firebase';
 import logOutImg from '../../assets/logOutIcon.png';
@@ -57,7 +58,8 @@ const SettingsScreen = (props) => {
 
     if (uid !== null) {
       console.log(`User id >>>>>>>>>: ${uid}`);
-      getUserInfo(uid).on('value', (snapshot) => {
+
+      onValue(getUserInfo(uid), (snapshot) => {
         if (_isMounted) {
           const SnapShot = snapshot.val();
           /*  Info currently from the database */
@@ -183,11 +185,9 @@ const SettingsScreen = (props) => {
       // All info same
       alert('No user information was changed');
     } else {
-      firebase
-        .database()
-        .ref(`users/${uid}`)
-        .update(userInfo)
-        .catch((err) => console.log(err));
+      update(ref(getDatabase(), `users/${uid}`), userInfo).catch((err) =>
+        console.log(err)
+      );
 
       window.alert(translate('savedInfo'));
     }

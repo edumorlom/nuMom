@@ -8,6 +8,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {onValue} from 'firebase/database';
 import appStyles from './AppStyles';
 import dnaLoading from '../../assets/dna-loading.gif';
 import translate from './getLocalizedText';
@@ -170,7 +171,7 @@ export default function SignUpLoading(props) {
       lastInteraction: date,
       deviceLanguage,
     });
-    getUserInfo(uid).on('value', (snapshot) => {
+    onValue(getUserInfo(uid), (snapshot) => {
       saveCookie('fullName', snapshot.val().fullName);
       saveCookie('uid', uid);
     });

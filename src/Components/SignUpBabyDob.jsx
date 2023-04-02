@@ -27,11 +27,9 @@ export default SignUpBabyDob = (props) => {
   const babyDOB = useRef(null);
 
   useEffect(() => {
-    AsyncStorage.getItem('babyDOB')
-      .then((value) => {
-        value !== null && value !== '' ? setBabyDob(value) : null;
-      })
-      .done();
+    AsyncStorage.getItem('babyDOB').then((value) => {
+      value !== null && value !== '' ? setBabyDob(value) : null;
+    });
   }, []);
 
   const setDob = (babyDOB) => {

@@ -4,6 +4,7 @@ import {getPreciseDistance} from 'geolib';
 import {Picker} from '@react-native-picker/picker';
 import * as Location from 'expo-location';
 import {Dropdown} from 'react-native-material-dropdown-v2';
+import {onValue} from 'firebase/database';
 import Button from './Button';
 import translate from './getLocalizedText';
 import {getRef} from '../Firebase';
@@ -163,9 +164,16 @@ export const wicLocations = (props) => {
   let fetchWIC = async () =>
     new Promise((resolve, reject) => {
       let wicRef = getRef('WIC');
-      wicRef.once('value', (snapshot) => {
-        resolve(snapshot.val());
-      });
+
+      onValue(
+        wicRef,
+        (snapshot) => {
+          resolve(snapshot.val());
+        },
+        {
+          onlyOnce: true,
+        }
+      );
     });
 
   const sortWIC = async (wicLocations) => {
