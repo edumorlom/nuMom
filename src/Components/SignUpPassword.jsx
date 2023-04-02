@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-  AsyncStorage,
   Keyboard,
   Text,
   TextInput as TextBox,
@@ -10,6 +9,7 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
@@ -32,16 +32,12 @@ export default SignUpPassword = (props) => {
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('pass')
-      .then((value) => {
-        value !== null && value !== '' ? setPassword(value) : null;
-      })
-      .done();
-    AsyncStorage.getItem('repeat')
-      .then((value) => {
-        value !== null && value !== '' ? setRepeat(value) : null;
-      })
-      .done();
+    AsyncStorage.getItem('pass').then((value) => {
+      value !== null && value !== '' ? setPassword(value) : null;
+    });
+    AsyncStorage.getItem('repeat').then((value) => {
+      value !== null && value !== '' ? setRepeat(value) : null;
+    });
   }, []);
 
   let onPress = () => {

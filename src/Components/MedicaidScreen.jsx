@@ -3,6 +3,7 @@ import {View, Linking, ScrollView, Text} from 'react-native';
 import {getPreciseDistance} from 'geolib';
 import * as Location from 'expo-location';
 import {Dropdown} from 'react-native-material-dropdown-v2';
+import {onValue} from 'firebase/database';
 import Button from './Button';
 import translate from './getLocalizedText';
 import SelectionButton from './SelectionButton';
@@ -138,9 +139,16 @@ export const medicaidLocations = (props) => {
   const fetchMedicaid = async () =>
     new Promise((resolve, reject) => {
       let medicaidRef = getRef('Medicaid');
-      medicaidRef.once('value', (snapshot) => {
-        resolve(snapshot.val());
-      });
+
+      onValue(
+        medicaidRef,
+        (snapshot) => {
+          resolve(snapshot.val());
+        },
+        {
+          onlyOnce: true,
+        }
+      );
     });
 
   const sortMedicaid = async (medicaidLocations) => {

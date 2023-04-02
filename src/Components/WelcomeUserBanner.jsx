@@ -1,5 +1,6 @@
 import {Text, TouchableHighlight, View, Alert} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import {onValue} from 'firebase/database';
 import appStyles from './AppStyles';
 import {getUid, getUserInfo} from '../Firebase';
 import translate from './getLocalizedText';
@@ -8,9 +9,15 @@ export default WelcomeUserBanner = (props) => {
   const [text, setText] = useState();
 
   let fullName = null;
-  getUserInfo(getUid()).once('value', (snapshot) => {
-    fullName = snapshot.val()?.fullName;
-  }); // Get fullName from DB
+  onValue(
+    getUserInfo(getUid()),
+    (snapshot) => {
+      fullName = snapshot.val()?.fullName;
+    },
+    {
+      onlyOnce: true,
+    }
+  );
   const getText = () => {
     setText(
       `${translate('welcomeUserBanner')}${

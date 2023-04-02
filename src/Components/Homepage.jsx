@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import {getPreciseDistance} from 'geolib';
 import * as Location from 'expo-location';
+import {onValue} from 'firebase/database';
 import Map from './Map';
 import LowerPanel from './LowerPanel';
 import appStyles from './AppStyles';
@@ -38,17 +39,31 @@ export default Homepage = (props) => {
   let fetchClinics = async () =>
     new Promise((resolve, reject) => {
       const clinicsRef = getRef('Clinics');
-      clinicsRef.once('value', (snapshot) => {
-        resolve(snapshot.val());
-      });
+
+      onValue(
+        clinicsRef,
+        (snapshot) => {
+          resolve(snapshot.val());
+        },
+        {
+          onlyOnce: true,
+        }
+      );
     });
 
   let fetchShelters = async () =>
     new Promise((resolve, reject) => {
       const sheltersRef = getRef('Shelters');
-      sheltersRef.once('value', (snapshot) => {
-        resolve(snapshot.val());
-      });
+
+      onValue(
+        sheltersRef,
+        (snapshot) => {
+          resolve(snapshot.val());
+        },
+        {
+          onlyOnce: true,
+        }
+      );
     });
 
   let sortLocations = async (locations) => {

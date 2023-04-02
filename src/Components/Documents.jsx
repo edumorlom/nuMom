@@ -25,7 +25,9 @@ export default function Documents() {
   useEffect(() => {
     (async () => {
       if (Constants.platform.ios | Constants.platform.android) {
-        const {status} = await ImagePicker.requestCameraRollPermissionsAsync();
+        const {status} =
+          await ImagePicker.requestMediaLibraryPermissionsAsync();
+
         if (status !== 'granted') {
           alert('Permission Needed to Access Files!');
         }
@@ -48,19 +50,20 @@ export default function Documents() {
     setIsDialogVisible(true);
     setButtonClickedStatus(true);
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
 
   const upload = () => {
-    const user = firebase.auth().currentUser;
+    const user = FB.getAuths().currentUser;
     FB.uploadImage(image, user, value, documents, setDocuments);
     setTextChanged(false);
   };
 
   function grabDocuments() {
-    const user = firebase.auth().currentUser;
+    const user = FB.getAuths().currentUser;
+
     FB.grabImages(user, documents, setDocuments);
   }
 
