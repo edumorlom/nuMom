@@ -135,7 +135,7 @@ You should also commit the version code change you did in the app.json to develo
 
 3. Ensure you `src/firebase_account.json` is commented out from .gitignore file. Re-comment it back once you're done.
 
-4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: "npx eas build --platform ios"
+4. Navigate to your project directory 'moms-infants-healthy' and build the ipa in the terminal by entering: `npx eas build --platform ios`.
 
 6. Login with the account's apple credentials.
 
