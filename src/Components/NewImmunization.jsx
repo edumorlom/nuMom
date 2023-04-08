@@ -5,14 +5,14 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import translate from './getLocalizedText';
 import Button from './Button';
-import appStyles, {greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 import {getUid, addImmunization} from '../Firebase';
 
 export default function NewImmunization(props) {

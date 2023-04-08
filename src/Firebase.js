@@ -1,12 +1,38 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  update,
+  push,
+  remove,
+  child,
+} from 'firebase/database';
 import * as Notifications from 'expo-notifications';
 import * as Calendar from 'expo-calendar';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+import {
+  ref as ref_storage,
+  getDownloadURL,
+  getStorage,
+  listAll,
+  uploadBytes,
+  uploadBytesResumable,
+} from 'firebase/storage';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
 
-const config = firebaseAccount;
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseAccount);
 }
 export const signUp = (
   email,
@@ -21,7 +47,7 @@ export const signUp = (
   nextWeek,
   week
 ) => {
-  createUserWithEmailAndPassword(email, password).then(
+  createUserWithEmailAndPass(email, password).then(
     (response) => {
       saveUserInfo(
         response.user.uid,
@@ -51,22 +77,22 @@ export const signUp = (
   );
 };
 
-export const createUserWithEmailAndPassword = (email, password) =>
-  firebase.auth().createUserWithEmailAndPassword(email, password);
+export const createUserWithEmailAndPass = (email, password) =>
+  createUserWithEmailAndPassword(getAuth(), email, password);
 
 export const checkEmailExist = async (email) => {
   console.log(`This is the email passed to firebase method  ${email}`);
-  return await firebase.auth().fetchSignInMethodsForEmail(email);
+  return await fetchSignInMethodsForEmail(getAuth(), email);
 };
 
 export const logIn = (email, password) =>
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  signInWithEmailAndPassword(getAuth(), email, password);
 
 export const storeObjectInDatabase = (uid, object) => {
   if (!uid) return;
-  getUserInfo(uid).on('value', (snapshot) => {
-    firebase.database().ref(`users/${uid}`).update(object);
-  });
+
+  const userInfoRef = ref(getDatabase(), `users/${uid}`);
+  update(userInfoRef, object).catch((err) => console.log(err));
 };
 
 export const saveUserInfo = (
@@ -82,22 +108,18 @@ export const saveUserInfo = (
   week
 ) => {
   if (!uid) return;
-  return firebase
-    .database()
-    .ref(`users/${uid}`)
-    .set({
-      phoneNumber,
-      fullName,
-      dob,
-      pregnant,
-      infant,
-      babyDOB,
-      liveMiami,
-      nextWeek,
-      week,
-      appointments: null,
-    })
-    .catch((err) => console.log(err));
+  return set(ref(getDatabase(), `users/${uid}`), {
+    phoneNumber,
+    fullName,
+    dob,
+    pregnant,
+    infant,
+    babyDOB,
+    liveMiami,
+    nextWeek,
+    week,
+    appointments: null,
+  }).catch((err) => console.log(err));
 };
 
 // Calls the sendCustomSMS cloud function
@@ -121,27 +143,32 @@ export const sendWelcomeSMS = async (fullName, phoneNumber) => {
 };
 
 // Gets a reference of a specific user
-export const getUserInfo = (uid) => firebase.database().ref(`users/${uid}`);
+export const getUserInfo = (uid) => ref(getDatabase(), `users/${uid}`);
 
 // fetches a given property from the current user
 export const getUserData = async (property) => {
-  let uid = firebase.auth().currentUser.uid;
+  let uid = getAuth().currentUser.uid;
   let address = `users/${uid}/${property}`;
   let value = '';
-  await firebase
-    .database()
-    .ref(address)
-    .once('value', (snapshot) => {
+
+  await onValue(
+    ref(getDatabase(), address),
+    (snapshot) => {
       value = snapshot.val();
-    });
+    },
+    {
+      onlyOnce: true,
+    }
+  );
+
   return value;
 };
 
 // Gets a ref, any ref
-export const getRef = (address) => firebase.database().ref(address);
+export const getRef = (address) => ref(getDatabase(), address);
 
 export const passwordReset = (email) =>
-  firebase.auth().sendPasswordResetEmail(email);
+  sendPasswordResetEmail(getAuth(), email);
 
 // Asks for notifications permission
 export const registerForPushNotificationsAsync = async (currentUser) => {
@@ -176,15 +203,15 @@ export const registerForPushNotificationsAsync = async (currentUser) => {
   // POST the token to our backend so we can use it to send pushes from there
   let updates = {};
   updates['/expoToken'] = token;
-  await firebase.database().ref(`users/${currentUser.uid}`).update(updates);
+  await update(ref(getDatabase(), `users/${currentUser.uid}`), updates);
   // call the push notification
 };
 
 // get all users token to sendPushNotification
 export const sendPushNotification = async (title, body, data) => {
-  const usersRef = await firebase.database().ref('users');
+  const usersRef = ref(getDatabase(), 'users');
 
-  usersRef.on('value', (users) => {
+  onValue(usersRef, (snapshot) => {
     let userList = users.val();
 
     let expoTokenList = [];
@@ -227,10 +254,13 @@ export const uploadImage = async (
 ) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  const uploadDocument = firebase
-    .storage()
-    .ref(`${user.uid}/${fileName}`)
-    .put(blob);
+
+  const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+  const uploadDocument = uploadBytesResumable(storageRef, blob).then(
+    (snapshot) => {
+      console.log('Uploaded blob');
+    }
+  );
 
   uploadDocument.on(
     'state_changed',
@@ -243,19 +273,20 @@ export const uploadImage = async (
     () => {
       // successfull uploading and updating the documents state array
       grabImages(user, documents, setDocuments);
+      console.log('Test here');
     }
   );
 };
 
 export const grabImages = (user, documents, setDocuments) => {
-  let storageRef = firebase.storage().ref(user.uid);
+  let storageRef = ref_storage(getStorage(), user.uid);
+
   // Now we get the references of these images
-  storageRef
-    .listAll()
+  listAll(storageRef)
     .then((result) => {
       result.items.forEach((imageRef) => {
         // Push to list of objects representing documents by url and name
-        imageRef.getDownloadURL().then((url) => {
+        getDownloadURL(ref_storage(getStorage(), imageRef)).then((url) => {
           makeDocumentsList(url, imageRef.name, documents, setDocuments);
         });
         // displayImage(imageRef);
@@ -285,12 +316,12 @@ const makeDocumentsList = (url, name, documents, setDocuments) => {
 };
 
 // Gets current Uid
-export const getUid = () => firebase.auth().currentUser.uid;
+export const getUid = () => getAuth().currentUser.uid;
 
 // Gets current UEmail
-export const getUEmail = () => firebase.auth().currentUser.email;
+export const getUEmail = () => getAuth().currentUser.email;
 
-export const getAuth = () => firebase.auth();
+export const getAuths = () => getAuth();
 
 export const deleteAppointment = async (
   id,
@@ -304,20 +335,18 @@ export const deleteAppointment = async (
     Calendar.deleteEventAsync(eventId).catch((err) => err.message);
     setObjects(objects.filter((item) => item.key !== id));
 
-    const appointments = firebase
-      .database()
-      .ref(`users/${uid}/appointments/${id}`);
-    return appointments.remove();
+    const appointments = ref(getDatabase(), `users/${uid}/appointments/${id}`);
+
+    return remove(appointments);
   }
   console.log("Error: Couldn't get the User appointment Info");
 };
 
 export const fetchAppointment = async (uid, setObjects) => {
   if (uid !== null) {
-    await firebase
-      .database()
-      .ref(`users/${uid}/appointments/`)
-      .once('value', (snapshot) => {
+    await onValue(
+      ref(getDatabase(), `users/${uid}/appointments/`),
+      (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
@@ -330,29 +359,32 @@ export const fetchAppointment = async (uid, setObjects) => {
             setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
-      });
+      },
+      {
+        onlyOnce: true,
+      }
+    );
   } else {
     alert(translate('noAppointmentInfo'));
   }
 };
 
 export const addAppointment = async (uid, appointmentInfo) => {
-  firebase
-    .database()
-    .ref(`users/${uid}/appointments`)
-    .push(appointmentInfo)
-    .catch((err) => console.log(err));
+  push(ref(getDatabase(), `users/${uid}/appointments`), appointmentInfo).catch(
+    (err) => console.log(err)
+  );
 };
 
 export const fetchImmunization = async (uid, setObjects) => {
   if (uid !== null) {
-    await firebase
-      .database()
-      .ref(`users/${uid}/immunizations/`)
-      .once('value', (snapshot) => {
+    await onValue(
+      ref(getDatabase(), `users/${uid}/immunizations/`),
+      (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
+          console.log(childKey);
+          console.log(childData);
           if (
             childSnapshot.val() !== null ||
             childSnapshot.val() !== 'undefined'
@@ -360,8 +392,11 @@ export const fetchImmunization = async (uid, setObjects) => {
             setObjects((prevArray) => [...prevArray, childSnapshot]);
           }
         });
-      })
-      .catch((err) => console.log(err.message));
+      },
+      {
+        onlyOnce: true,
+      }
+    );
   } else {
     alert(translate('noImmunizationInfo'));
   }
@@ -370,36 +405,31 @@ export const fetchImmunization = async (uid, setObjects) => {
 export const deleteImmunization = async (id, uid, objects, setObjects) => {
   if (uid !== null) {
     setObjects(objects.filter((item) => item.key !== id));
-    const appointments = firebase
-      .database()
-      .ref(`users/${uid}/immunizations/${id}`);
-    return appointments.remove();
+    const appointments = ref(getDatabase(), `users/${uid}/immunizations/${id}`);
+
+    return remove(appointments);
   }
   console.log("Error: Couldn't get the User Immunization Info");
 };
 
 export const addImmunization = async (uid, immunizationInfo) => {
-  firebase
-    .database()
-    .ref(`users/${uid}/immunizations`)
-    .push(immunizationInfo)
-    .catch((err) => console.log(err));
+  push(
+    ref(getDatabase(), `users/${uid}/immunizations`),
+    immunizationInfo
+  ).catch((err) => console.log(err));
 };
 
 export const addReference = async (uid, referenceInfo) => {
-  firebase
-    .database()
-    .ref(`users/${uid}/references`)
-    .push(referenceInfo)
-    .catch((err) => console.log(err));
+  push(ref(getDatabase(), `users/${uid}/references`), referenceInfo).catch(
+    (err) => console.log(err)
+  );
 };
 
 export const fetchReference = async (uid, setReferences) => {
   if (uid !== null) {
-    await firebase
-      .database()
-      .ref(`users/${uid}/references/`)
-      .once('value', (snapshot) => {
+    await onValue(
+      ref(getDatabase(), `users/${uid}/references/`),
+      (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
@@ -412,8 +442,11 @@ export const fetchReference = async (uid, setReferences) => {
             setReferences((prevArray) => [...prevArray, childSnapshot]);
           }
         });
-      })
-      .catch((err) => console.log(err.message));
+      },
+      {
+        onlyOnce: true,
+      }
+    ).catch((err) => console.log(err.message));
   } else {
     alert(translate('noReferenceInfo'));
   }
@@ -422,8 +455,8 @@ export const fetchReference = async (uid, setReferences) => {
 export const deleteReference = async (id, uid, references, setReferences) => {
   if (uid !== null) {
     setReferences(references.filter((item) => item.key !== id));
-    const reference = firebase.database().ref(`users/${uid}/references/${id}`);
-    return reference.remove().catch((err) => console.log(err.message));
+    const reference = ref(getDatabase(), `users/${uid}/references/${id}`);
+    return remove(reference).catch((err) => console.log(err.message));
   }
   console.log("Error: Couldn't get the Reference Info");
 };

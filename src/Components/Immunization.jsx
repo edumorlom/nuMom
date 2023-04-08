@@ -35,12 +35,12 @@ export default function Immunization(props) {
     if (typeof toMailId !== 'undefined') {
       let link = `mailto:${toMailId}`;
       if (typeof subject !== 'undefined') {
-        link = `${link}?subject=${subject}`;
+        link = `${link}?subject=${encodeURIComponent(subject)}`;
       }
       if (typeof subject === 'undefined') {
         link = `${link}?body=${body}`;
       } else {
-        link = `${link}&body=${body}`;
+        link = `${link}&body=${encodeURIComponent(body)}`;
       }
 
       Linking.canOpenURL(link)

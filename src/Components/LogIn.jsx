@@ -16,6 +16,7 @@ import React, {useState, useEffect} from 'react';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
+import {onValue} from 'firebase/database';
 import appStyles from './AppStyles';
 import Button from './Button';
 // import TextInput from "./TextInput";
@@ -115,7 +116,7 @@ export default LogIn = (props) => {
       lastInteraction: date,
       deviceLanguage,
     });
-    getUserInfo(uid).on('value', (snapshot) => {
+    onValue(getUserInfo(uid), (snapshot) => {
       saveCookie('fullName', snapshot.val().fullName);
       saveCookie('uid', uid);
     });

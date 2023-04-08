@@ -41,16 +41,12 @@ export default function SignUpInfo(props) {
         />
       ),
     });
-    AsyncStorage.getItem('name')
-      .then((value) => {
-        value !== null && value !== '' ? setName(value) : null;
-      })
-      .done();
-    AsyncStorage.getItem('dob')
-      .then((value) => {
-        value !== null && value !== '' ? setDob(value) : null;
-      })
-      .done();
+    AsyncStorage.getItem('name').then((value) => {
+      value !== null && value !== '' ? setName(value) : null;
+    });
+    AsyncStorage.getItem('dob').then((value) => {
+      value !== null && value !== '' ? setDob(value) : null;
+    });
   }, []);
 
   const onPress = () => {
