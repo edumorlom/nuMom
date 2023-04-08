@@ -26,6 +26,7 @@ import {
   getStorage,
   listAll,
   uploadBytes,
+  uploadBytesResumable,
 } from 'firebase/storage';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
@@ -253,16 +254,13 @@ export const uploadImage = async (
 ) => {
   const response = await fetch(uri);
   const blob = await response.blob();
-  /* const uploadDocument = firebase
-    .storage()
-    .ref(`${user.uid}/${fileName}`)
-    .put(blob); */
-  // const uploadDocument = ref_storage(getStorage(), `${user.uid}/${fileName}`).put(blob);
+
   const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
-  const uploadDocument = uploadBytes(storageRef, blob).then((snapshot) => {
-    console.log('Uploaded blob');
-  });
-  /* const uploadDocument = put(ref_storage(getStorage(), `${user.uid}/${fileName}`), blob) */
+  const uploadDocument = uploadBytesResumable(storageRef, blob).then(
+    (snapshot) => {
+      console.log('Uploaded blob');
+    }
+  );
 
   uploadDocument.on(
     'state_changed',
@@ -275,6 +273,7 @@ export const uploadImage = async (
     () => {
       // successfull uploading and updating the documents state array
       grabImages(user, documents, setDocuments);
+      console.log('Test here');
     }
   );
 };
