@@ -1,4 +1,4 @@
-# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Summer 2022>
+# NuMom (Keeping Moms and Infants Healthy) -- Mobile Application <Updated Fall 2023>
 
 Product Owners: Jean Hannan & Eduardo Morales
 
