@@ -22,7 +22,10 @@ export default function LocationsInfo({route}) {
   const locationList = [location];
 
   const getDirections = () => {
-    const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
+    const scheme = Platform.select({
+      ios: 'maps://0,0?q=',
+      android: 'geo:0,0?q=',
+    });
     const latLng = `${location.coordinate.latitude},${location.coordinate.longitude}`;
     const label = 'Custom Label';
     const url = Platform.select({

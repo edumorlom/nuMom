@@ -10,7 +10,10 @@ import translate from './getLocalizedText';
 
 export default function ShelterInfo(props) {
   const getDirections = () => {
-    const scheme = Platform.select({ios: 'maps:0,0?q=', android: 'geo:0,0?q='});
+    const scheme = Platform.select({
+      ios: 'maps://0,0?q=',
+      android: 'geo:0,0?q=',
+    });
     const latLng = `${props.shelter.coordinate.latitude},${props.shelter.coordinate.longitude}`;
     const label = 'Custom Label';
     const url = Platform.select({
