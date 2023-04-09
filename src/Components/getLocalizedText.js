@@ -11,6 +11,7 @@ let deviceLanguage =
 
 // Translates general text in the app
 export default function getLocalizedText(key) {
+  if (!key) return '';
   if (!deviceLanguage) return en_US[key];
   if (deviceLanguage.includes('es')) return es_ES[key];
   if (deviceLanguage.includes('ca')) return es_ES[key];
