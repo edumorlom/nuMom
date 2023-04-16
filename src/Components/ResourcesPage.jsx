@@ -7,6 +7,7 @@ import doctor from '../../assets/doctor.png';
 import breastfeeding from '../../assets/breastfeeding.png';
 import heart from '../../assets/heart.png';
 import babyVaccine from '../../assets/immunization.png';
+import vaccineMedicine from '../../assets/vaccination.png';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 
@@ -40,7 +41,7 @@ export default function Resources(props) {
       style={appStyles.ImageOnRightSelectionButton}
       text={translate('resourcesImmunizations')}
       subtext={translate('immunizationsSubtext')}
-      icon={babyVaccine}
+      icon={vaccineMedicine}
       onPress={() => {
         props.navigation.navigate('ImmunizationScreen');
       }}
