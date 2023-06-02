@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+// import the list of forbidden
+import forbiddenPasswords from './forbiddenPasswords';
 import {
   Keyboard,
   Text,
@@ -13,11 +15,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+//Imported required colors for Task#2
+import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
 
 export default SignUpPassword = (props) => {
+
+// Need the following constant to scan the password and assign strenght.
+  const [passwordStrength, passPasswordStrength] = useState(0); 
+
+
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
@@ -32,7 +40,7 @@ export default SignUpPassword = (props) => {
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('pass').then((value) => {
+     AsyncStorage.getItem('pass').then((value) => {
       value !== null && value !== '' ? setPassword(value) : null;
     });
     AsyncStorage.getItem('repeat').then((value) => {
@@ -63,6 +71,84 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  //Tip function to check password
+  // Function to check password strength
+function checkPasswordStrength(password) {
+  let points = 0;
+  setPassword(password);
+
+  if (forbiddenPasswords.includes(password)) {
+    passPasswordStrength(0);
+    return;
+  }
+
+  // Check if password meets criteria:
+  // At least one capital letter, one lowercase letter, one unique character
+  if (/[A-Z]/.test(password)) {
+     points++; 
+  // Add a point for capital letter
+  }
+  
+  if (/[a-z]/.test(password)) {
+    points++; 
+  // Add a point for lowercase letter
+  }
+
+  if (/[0-9]/.test(password)) {
+     points++; 
+  // Add a point for unique character
+  }
+
+  const specialChars = "~!@#$%^&*()-_=+[]{};:'\",.<>/?`|"; // Special characters string
+
+  if (containsSpecialCharacter(password, specialChars)) {
+    points++; // Add a point if the password contains at least one special character
+  }
+
+  // Check if password is valid based on points and length
+  if (password.length >= 5 && points == 4) {
+    passPasswordStrength(2); // High strength password
+  } else if (password.length >= 5 && points == 3) {
+    passPasswordStrength(1); // Medium strength password
+  } else {
+    passPasswordStrength(0); // Weak strength password. User may not proceed.
+  }
+}
+
+// Function to check if password contains at least one special character
+function containsSpecialCharacter(password, specialChars) {
+  for (let i = 0; i < specialChars.length; i++) {
+    if (password.includes(specialChars[i])) {
+      return true; // Return true if a special character is found
+    }
+  }
+  return false; // Return false if no special character is found
+}
+
+// Display password strength to the user
+function displayPasswordStrength() {
+  let message, color;
+
+  if (passwordStrength == 2) {
+    // Return Green Color
+    color = "#298000"; 
+    message = "Your password strength is strong!! (Recommended)";
+  } else if (passwordStrength == 1) {
+    color = blueColor;
+    message = "Your password strength is medium.";
+  } else if (passwordStrength == 0) {
+    //Not show the message unless the user starts typyng
+    if (password.length != 0) {
+    color = pinkColor;
+    message = "Your password does not meet the required strength. It should contain at least one uppercase letter, one lowercase letter, one special character, and be a minimum of five characters long.";
+    }
+  }
+
+  return <Text style={{ color: color, textAlign: "center" }}>{message}</Text>;
+}
+
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -93,7 +179,7 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={checkPasswordStrength}
                   />
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
@@ -118,6 +204,7 @@ export default SignUpPassword = (props) => {
                     value={repeat}
                     style={appStyles.TextInputMask}
                   />
+                  {displayPasswordStrength()}
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
