@@ -33,12 +33,50 @@ export default {
   container: {
     alignItems: 'center',
     flex: 1,
-  },
+    },
+    passwordHintText: {
+        height: 60,
+        width: win.width * 0.8,
+        backgroundColor: "white",
+        fontWeight: 'bold',
+        textAlign: 'center',
+        justifyContent: 'center',
+    },
   signupContainer: {
     alignItems: 'center',
     flex: 1,
     backgroundColor: 'white',
-  },
+    },
+    passwordStrengthModalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    passwordStrengthModalContent: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 8,
+    },
+    passwordStrengthModalText: {
+        fontSize: 18,
+        marginBottom: 10,
+    },
+    passwordStrengthModalButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    passwordStrengthModalButton: {
+        backgroundColor: '#DDDDDD',
+        padding: 10,
+        borderRadius: 4,
+        minWidth: 100,
+        alignItems: 'center',
+    },
+    passwordStrengthModalButtonText: {
+        fontWeight: 'bold',
+    },
   contentContainer: {
     alignItems: 'center',
     maxWidth: '100%',
