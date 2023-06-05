@@ -19,6 +19,8 @@
   "continueButton": "Continue",
   "contactInformation": "Contact Information",
   "fillOutAllFields": "Please fill out all of the fields!",
+  "poorPassword": "Your password is too poor. Please choose a stronger password.",
+  "mediumPassword": "Your password is too medium. Please choose a stronger password.",
   "invalidDate": "The date you entered is not valid!",
   "invalidEmail": "The email you entered is not valid!",
   "invalidPhoneNumber": "The phone number you entered is not valid!",
