@@ -15,6 +15,7 @@ import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { Input } from "react-native-elements";
 import { TextInput } from "react-native-gesture-handler";
 import appStyles from "./AppStyles";
+import forbiddenPasswords from "./forbiddenPasswords";
 import Button from "./Button";
 import translate from "./getLocalizedText";
 
@@ -22,12 +23,14 @@ const passwordHintColorMap = {
     0: appStyles.pinkColor,
     1: appStyles.blueColor,
     2: "#298000",
+    3: appStyles.pinkColor,
 };
 
 const passwordHintStrengthMap = {
     0: "Poor",
     1: "Medium",
     2: "Strong",
+    3: "Forbidden Password",
 };
 
 export default SignUpPassword = (props) => {
@@ -90,6 +93,11 @@ export default SignUpPassword = (props) => {
     };
 
     function getPasswordState() {
+        if (forbiddenPasswords.indexOf(password) != -1)
+        {
+            return 3;
+        }
+
         if (password.length <= 4) {
             return 0;
         } else if (password.length >= 5) {
@@ -125,6 +133,8 @@ export default SignUpPassword = (props) => {
             alert(translate("fillOutAllFields"));
         } else if (getPasswordState() == 0) {
             alert(translate("passwordTooShort"));
+        } else if (getPasswordState() == 3) {
+            alert(translate("passwordTooCommon"));
         } else if (getPasswordState() == 1) {
             openPopup();
         } else {
