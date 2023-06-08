@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import forbiddenPasswords from './forbiddenPasswords';
 import {
   Keyboard,
   Text,
@@ -13,11 +14,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import {Input} from 'react-native-elements';
 import {TextInput} from 'react-native-gesture-handler';
-import appStyles from './AppStyles';
+//mimport appStyles from './AppStyles';
+import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
 
 export default SignUpPassword = (props) => {
+  const [passwordStrength, setPasswordStrength] = useState('');
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
@@ -30,6 +33,63 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+
+  //function for password strength checker
+  function checkPasswordStrength(password) {
+    setPassword(password);
+    // Regular expressions to check for different criteria
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /[0-9]/;
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    const passFoundinFile = forbiddenPasswords.indexOf(password) !== -1;
+  
+
+    // Check for lowercase, uppercase, numbers, and special characters
+    let strengthLevel = 0;
+    if (lowercaseRegex.test(password)) {
+      strengthLevel += 1;
+    }
+    if (uppercaseRegex.test(password)) {
+      strengthLevel += 1;
+    }
+    if (numberRegex.test(password)) {
+      strengthLevel += 1;
+    }
+    if (specialCharRegex.test(password)) {
+      strengthLevel += 1;
+    }
+
+    if (password.length <= 4 || passFoundinFile) {
+      setPasswordStrength(0);
+      return;
+     }
+  if (strengthLevel === 4 && password.length >=5) {
+       setPasswordStrength(2);
+     } else if (strengthLevel === 3 && password.length >=5) {
+       setPasswordStrength(1);
+     } else {
+       setPasswordStrength(0);
+     } 
+     return
+  }
+
+
+  const getStrengthColor = () => {
+    switch (strength) {
+      case 0:
+        return 'pink';
+      case 1:
+        return 'blue';
+      case 2:
+        return 'green';
+      default:
+        return 'black';
+    }
+  };
+
+
+
 
   useEffect(() => {
     AsyncStorage.getItem('pass').then((value) => {
@@ -87,14 +147,16 @@ export default SignUpPassword = (props) => {
               <Text style={appStyles.titleBlue}>
                 {translate('createPassword')}
               </Text>
+              
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <View>
                   <TextBox
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={checkPasswordStrength}
                   />
+                  
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
@@ -109,7 +171,7 @@ export default SignUpPassword = (props) => {
                     />
                   </TouchableOpacity>
                 </View>
-
+                
                 <View>
                   <TextBox
                     placeholder={translate('repeatPasswordInput')}
@@ -118,6 +180,18 @@ export default SignUpPassword = (props) => {
                     value={repeat}
                     style={appStyles.TextInputMask}
                   />
+
+                    <View style={[appStyles.strengthContainer, { justifyContent: 'center', alignItems: 'center' }]}>
+                    {passwordStrength === 0 && (
+                      <Text style={{ color: pinkColor, fontWeight: 'bold', textAlign: 'center' }}>Poor Strength: Cannot proceed without creating a stronger password</Text>
+                    )}
+                    {passwordStrength === 1 && (
+                      <Text style={{ color: blueColor, fontWeight: 'bold', textAlign: 'center' }}>Medium: Adequate level of stength, but higher strength is preffered</Text>
+                    )}
+                    {passwordStrength === 2 && (
+                      <Text style={{ color: '#298000', fontWeight: 'bold', textAlign: 'center' }}>High: Great password!</Text>
+                    )}
+                  </View>
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
                     onPress={() => {
@@ -145,6 +219,7 @@ export default SignUpPassword = (props) => {
             }}
           >
             <Button
+              Buttondisabled={passwordStrength === 0}
               style={appStyles.button}
               text={translate('continueButton')}
               onPress={onPress}
