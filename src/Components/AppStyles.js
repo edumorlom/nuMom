@@ -115,6 +115,24 @@ export default {
       fontWeight: 'normal',
     },
     underlayColor: blueColor,
+  },button2: {
+    Touchable: {
+      ...shadow,
+      margin: win.height * 0.01,
+      alignItems: 'center',
+      backgroundColor: greenColor,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      borderRadius,
+    },
+    Text: {
+      color: 'white',
+      fontSize: regularFontSize,
+      fontWeight: 'normal',
+    },
+    underlayColor: blueColor,
   },
   logbutton: {
     Touchable: {

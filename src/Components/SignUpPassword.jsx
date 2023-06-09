@@ -18,6 +18,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import appStyles, {pinkColor,blueColor} from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import Popup from './Popup';
 
 export default SignUpPassword = (props) => {
   const [passwordStrength, setPasswordStrength] = useState('');
@@ -33,6 +34,7 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   //function for password strength checker
   function checkPasswordStrength(password) {
@@ -107,6 +109,12 @@ export default SignUpPassword = (props) => {
       alert(translate('fillOutAllFields'));
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
+    } else if (passwordStrength === 0) {
+      alert(translate('Cannot Proceed with a weak password'));
+    } else if (passwordStrength === 1) {
+      setShowPopup(true);
+  
+     
     } else {
       // props.setUserInfo({password});
       // AsyncStorage.setItem('pass', password);
@@ -123,6 +131,31 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+  let onPress2 = () => {
+    if (password !== repeat) {
+      alert(translate('passwordMismatch'));
+    } else if (!password || !repeat) {
+      alert(translate('fillOutAllFields'));
+    } else if (password.length < 6) {
+      alert(translate('passwordTooShort'));
+    } else {
+      // props.setUserInfo({password});
+      // AsyncStorage.setItem('pass', password);
+      // AsyncStorage.setItem('repeat', repeat);
+      props.navigation.navigate('SignUpYesorNoPregnant', {
+        liveMiami,
+        name,
+        dob,
+        email,
+        phone,
+        password,
+        question: translate('areYouPregnant'),
+        value: 'pregnant',
+      });
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -181,7 +214,7 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                   />
 
-                    <View style={[appStyles.strengthContainer, { justifyContent: 'center', alignItems: 'center' }]}>
+                    <View style={[appStyles.strengthContainer, { justifyContent: 'center', alignItems: 'center', zIndex: 500 }]}>
                     {passwordStrength === 0 && (
                       <Text style={{ color: pinkColor, fontWeight: 'bold', textAlign: 'center' }}>Poor Strength: Cannot proceed without creating a stronger password</Text>
                     )}
@@ -216,14 +249,51 @@ export default SignUpPassword = (props) => {
               width: '100%',
               alignItems: 'center',
               margin: '15%',
+              zIndex: 500,
             }}
           >
             <Button
-              Buttondisabled={passwordStrength === 0}
               style={appStyles.button}
               text={translate('continueButton')}
               onPress={onPress}
             />
+            {showPopup && (
+        <View
+          style={{
+            position: 'abosulute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '50%',
+            backgroundColor: 'white',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: '#fff',
+              padding: 20,
+              borderRadius: 5,
+            }}
+          >
+            <Text>Would you like to edit your password or continue?</Text>
+            <Button
+              style={appStyles.button}
+              text={translate('continueButton')}
+              onPress={() => setShowPopup(false)}
+            />
+            <Button
+              style={appStyles.button2}
+              text={translate('button')}
+              onPress={onPress2}
+            />
+            
+          </View>
+        </View>
+      )}
+
           </View>
         </>
       </TouchableHighlight>
