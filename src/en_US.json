@@ -243,6 +243,9 @@
   "appointmentBody": "Your appointment is tomorrow,",
   "failedToken": "Failed to get push token for push notification!",
   "failedDevice": "Must use physical device for Push Notifications",
+  "edit": "Edit password?",
+  "weakPassword": "Cannot Proceed with a weak password!",
+
 
   "HEPB": "Hepatitis B Vaccine",
   "DTAP": "Diphtheria, Tetanus, and Pertussis (Dtap) Vaccine",

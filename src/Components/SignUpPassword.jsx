@@ -35,6 +35,7 @@ export default SignUpPassword = (props) => {
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const [continueButton, setContinueButton] = useState(true);
 
   //function for password strength checker
   function checkPasswordStrength(password) {
@@ -110,8 +111,9 @@ export default SignUpPassword = (props) => {
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
     } else if (passwordStrength === 0) {
-      alert(translate('Cannot Proceed with a weak password'));
+      alert(translate('weakPassoword'));
     } else if (passwordStrength === 1) {
+      setContinueButton(false);
       setShowPopup(true);
   
      
@@ -155,6 +157,13 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
+
+  let onPress3 = () => {
+    setShowPopup(false);
+    setContinueButton(true);
+  };
+
 
   return (
     <KeyboardAvoidingView
@@ -252,11 +261,13 @@ export default SignUpPassword = (props) => {
               zIndex: 500,
             }}
           >
+            {continueButton && (
             <Button
               style={appStyles.button}
               text={translate('continueButton')}
               onPress={onPress}
             />
+            )}
             {showPopup && (
         <View
           style={{
@@ -281,12 +292,12 @@ export default SignUpPassword = (props) => {
             <Text>Would you like to edit your password or continue?</Text>
             <Button
               style={appStyles.button}
-              text={translate('continueButton')}
-              onPress={() => setShowPopup(false)}
+              text={translate('edit')}
+              onPress={onPress3}
             />
             <Button
               style={appStyles.button2}
-              text={translate('button')}
+              text={translate('continueButton')}
               onPress={onPress2}
             />
             
