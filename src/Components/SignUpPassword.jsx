@@ -296,7 +296,7 @@ export default SignUpPassword = (props) => {
               onPress={onPress3}
             />
             <Button
-              style={appStyles.button2}
+              style={appStyles.button}
               text={translate('continueButton')}
               onPress={onPress2}
             />
