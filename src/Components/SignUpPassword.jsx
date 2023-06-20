@@ -89,7 +89,8 @@ export default SignUpPassword = (props) => {
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
                 <View>
-                  <TextBox
+                <TextBox
+                    placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
@@ -111,7 +112,8 @@ export default SignUpPassword = (props) => {
                 </View>
 
                 <View>
-                  <TextBox
+                <TextBox
+                    placeholderTextColor = {appStyles.DefaultPlaceholderTextColor}
                     placeholder={translate('repeatPasswordInput')}
                     onChangeText={setRepeat}
                     secureTextEntry={visibleRepeat}

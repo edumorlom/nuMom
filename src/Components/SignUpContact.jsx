@@ -125,13 +125,15 @@ export default SignUpInfo = (props) => {
                 </Text>
               </View>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                <TextBox
+              <TextBox
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('emailInput')}
                   onChangeText={setEmail}
                   value={email}
                   style={appStyles.TextInputMask}
                 />
                 <TextBox
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('phoneNumberInput')}
                   onChangeText={(number) => formatPhoneNumber(number)}
                   value={formattedPhone}

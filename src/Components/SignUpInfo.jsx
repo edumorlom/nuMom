@@ -103,13 +103,15 @@ export default function SignUpInfo(props) {
                 </Text>
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                <TextBox
+              <TextBox
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('fullName')}
                   onChangeText={(text) => setName(text)}
                   value={name}
                   style={appStyles.TextInputMask}
                 />
                 <TextInputMask
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('dob')}
                   type="datetime"
                   options={{
