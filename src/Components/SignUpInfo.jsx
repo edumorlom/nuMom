@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {HeaderBackButton} from '@react-navigation/stack';
+import moment from 'moment';
 import {
   Keyboard,
   Text,
@@ -53,6 +54,8 @@ export default function SignUpInfo(props) {
     if (!name || !dob) {
       alert(translate('fillOutAllFields'));
     } else if (!isValidDate(dob)) {
+      alert(translate('invalidDate'));
+    } else if (moment(dob, 'MM/DD/YYYY').isAfter(moment())) {
       alert(translate('invalidDate'));
     } else {
       // props.setUserInfo({fullName: name});
