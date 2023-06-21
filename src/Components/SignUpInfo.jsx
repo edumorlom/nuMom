@@ -1,79 +1,68 @@
-import React, {useState, useEffect} from 'react';
-import {HeaderBackButton} from '@react-navigation/stack';
+import React, {useEffect, useState} from 'react';
 import {
   Keyboard,
   Text,
   TextInput as TextBox,
+  TouchableOpacity,
   View,
   TouchableHighlight,
   KeyboardAvoidingView,
   StyleSheet,
-  Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {TextInputMask} from 'react-native-masked-text';
+import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
+import {Input} from 'react-native-elements';
+import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
-import backArrow from '../../assets/go-back-arrow.png';
 
-export default function SignUpInfo(props) {
-  const [name, setName] = useState('');
-  const [dob, setDob] = useState('');
+export default SignUpPassword = (props) => {
+  const [password, setPassword] = useState('');
+  const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
-  const backArrowImage = () => (
-    <Image source={backArrow} style={styles.goBackArrow} />
-  );
+  const {name} = props.route.params;
+  const {dob} = props.route.params;
+  const {email} = props.route.params;
+  const {phone} = props.route.params;
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+  const [show, setShow] = React.useState(false);
+  const [showRepeat, setShowRepeat] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  const [visibleRepeat, setVisibleRepeat] = React.useState(true);
 
   useEffect(() => {
-    // Custom back functionality. SignUpInfo -> SignUpYesorNoMiami instead of SignUpInfo -> LiveInMiami -> SignUpYesorNoMiami
-    props.navigation.setOptions({
-      headerLeft: () => (
-        <HeaderBackButton
-          labelVisible={false}
-          onPress={() => {
-            props.navigation.navigate('SignUpYesorNoMiami', {
-              question: translate('liveMiami'),
-              value: 'liveMiami',
-            });
-          }}
-          backImage={backArrowImage}
-        />
-      ),
+    AsyncStorage.getItem('pass').then((value) => {
+      value !== null && value !== '' ? setPassword(value) : null;
     });
-    AsyncStorage.getItem('name').then((value) => {
-      value !== null && value !== '' ? setName(value) : null;
-    });
-    AsyncStorage.getItem('dob').then((value) => {
-      value !== null && value !== '' ? setDob(value) : null;
+    AsyncStorage.getItem('repeat').then((value) => {
+      value !== null && value !== '' ? setRepeat(value) : null;
     });
   }, []);
 
-  const onPress = () => {
-    if (!name || !dob) {
+  let onPress = () => {
+    if (password !== repeat) {
+      alert(translate('passwordMismatch'));
+    } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
-    } else if (!isValidDate(dob)) {
-      alert(translate('invalidDate'));
+    } else if (password.length < 6) {
+      alert(translate('passwordTooShort'));
     } else {
-      // props.setUserInfo({fullName: name});
-      // props.setUserInfo({dob});
-      // AsyncStorage.setItem('name', name);
-      // AsyncStorage.setItem('dob', dob);
-      props.navigation.navigate('SignUpContact', {
+      // props.setUserInfo({password});
+      // AsyncStorage.setItem('pass', password);
+      // AsyncStorage.setItem('repeat', repeat);
+      props.navigation.navigate('SignUpYesorNoPregnant', {
         liveMiami,
         name,
         dob,
+        email,
+        phone,
+        password,
+        question: translate('areYouPregnant'),
+        value: 'pregnant',
       });
     }
   };
-
-  const isValidDate = (date) => {
-    const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-    return regex.test(date);
-  };
-
-  const titleText = name ? translate('cool') : translate('greatToMeetYou');
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -96,35 +85,55 @@ export default function SignUpInfo(props) {
               }}
             >
               <Text style={appStyles.titleBlue}>
-                {titleText}
-
-                <Text style={appStyles.titlePink}>
-                  {name ? name.split(' ')[0] : ''}
-                </Text>
+                {translate('createPassword')}
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                <TextBox
-                  placeholder={translate('fullName')}
-                  onChangeText={(text) => setName(text)}
-                  value={name}
-                  style={appStyles.TextInputMask}
-                />
-                <TextInputMask
-                  placeholder={translate('dob')}
-                  type="datetime"
-                  options={{
-                    format: 'MM/DD/YYYY',
-                    validator(value, settings) {
-                      let regex =
-                        /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-                      return regex.test(value);
-                    }, // validator function is read by isValid(), still to be used
-                  }}
-                  style={appStyles.TextInputMask}
-                  value={dob}
-                  onChangeText={(text) => setDob(text)}
-                  // ref={(ref) => motherDOB = ref}
-                />
+                <View>
+                  <TextBox
+                    style={appStyles.TextInputMask}
+                    secureTextEntry={visible}
+                    placeholder={translate('passwordInput')}
+                    onChangeText={setPassword}
+                  />
+                  <TouchableOpacity
+                    style={styles.eyeShowPassword}
+                    onPress={() => {
+                      setVisible(!visible);
+                      setShow(!show);
+                    }}
+                  >
+                    <Icon
+                      name={show === false ? 'eye-outline' : 'eye-off-outline'}
+                      size={26}
+                      color={appStyles.pinkColor}
+                    />
+                  </TouchableOpacity>
+                </View>
+
+                <View>
+                  <TextBox
+                    placeholder={translate('repeatPasswordInput')}
+                    onChangeText={setRepeat}
+                    secureTextEntry={visibleRepeat}
+                    value={repeat}
+                    style={appStyles.TextInputMask}
+                  />
+                  <TouchableOpacity
+                    style={styles.eyeShowPassword}
+                    onPress={() => {
+                      setVisibleRepeat(!visibleRepeat);
+                      setShowRepeat(!showRepeat);
+                    }}
+                  >
+                    <Icon
+                      name={
+                        showRepeat === false ? 'eye-outline' : 'eye-off-outline'
+                      }
+                      size={26}
+                      color={appStyles.pinkColor}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -145,20 +154,12 @@ export default function SignUpInfo(props) {
       </TouchableHighlight>
     </KeyboardAvoidingView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  logOutButton: {
+  eyeShowPassword: {
     position: 'absolute',
-    right: appStyles.win.height * 0.03,
-    top: appStyles.win.width * 0.04,
-  },
-  goBackArrow: {
-    width: 25,
-    height: 25,
-  },
-  headerTitle: {
-    fontSize: 25,
-    color: appStyles.blueColor,
+    right: 30,
+    top: 25,
   },
 });
