@@ -91,7 +91,8 @@ export default SignUpBabyDob = (props) => {
                 <Text style={appStyles.titleBlue}>{titletext}</Text>
               </View>
               <View style={{paddingTop: appStyles.win.height * 0.1}}>
-                <TextInputMask
+              <TextInputMask
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('dob')}
                   type="datetime"
                   options={{

@@ -319,7 +319,8 @@ const SettingsScreen = (props) => {
               </Text>
             </View>
             <View style={appStyles.TextInput.View}>
-              <TextBox
+
+
                 placeholder={translate('fullName')}
                 style={appStyles.TextInput.TextInput}
                 value={fullName}
@@ -337,6 +338,7 @@ const SettingsScreen = (props) => {
                 </Text>
               </View>
               <TextInputMask
+                placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                 type="datetime"
                 options={{
                   format: 'MM/DD/YYYY',
@@ -366,7 +368,8 @@ const SettingsScreen = (props) => {
                 </Text>
               </View>
               <View style={appStyles.TextInput.View}>
-                <TextBox
+              <TextBox
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('phoneNumberInput')}
                   style={appStyles.TextInput.TextInput}
                   value={formattedPhone}
@@ -434,6 +437,7 @@ const SettingsScreen = (props) => {
                   {translate('babydob')}
                 </Text>
                 <TextInputMask
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   type="datetime"
                   options={{
                     format: 'MM/DD/YYYY',

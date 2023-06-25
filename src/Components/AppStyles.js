@@ -147,6 +147,7 @@ export default {
       textAlign: 'center',
     },
   },
+    DefaultPlaceholderTextColor: "#adb5bd",
   TextInputMask: {
     ...shadow,
     height: 60,

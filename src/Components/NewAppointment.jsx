@@ -202,7 +202,8 @@ export default function NewAppointment(props) {
         enabled={false}
       >
         <View style={appStyles.TextInputAppointment.View}>
-          <TextBox
+        <TextBox
+            placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentName')}
             onChangeText={setName}
             value={name}
@@ -210,7 +211,8 @@ export default function NewAppointment(props) {
           />
         </View>
         <View style={appStyles.TextInputAppointment.View}>
-          <TextBox
+        <TextBox
+            placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentAddress')}
             onChangeText={setAddress}
             value={address}
@@ -218,7 +220,8 @@ export default function NewAppointment(props) {
           />
         </View>
         <View style={appStyles.TextInputAppointment.View}>
-          <TextBox
+        <TextBox
+            placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
             placeholder={translate('appointmentExtra')}
             onChangeText={setExtra}
             value={extra}

@@ -176,6 +176,7 @@ export default function NewImmunization(props) {
           onChangeText={(value, index, data) => setDosage(value)}
         />
         <TextBox
+          placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
           placeholder={translate('immunizationNotes')}
           onChangeText={setNotes}
           value={notes}
