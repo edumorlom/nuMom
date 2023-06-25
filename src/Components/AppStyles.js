@@ -261,7 +261,7 @@ export default {
   FeedingNotes: {
     Touchable: {
       margin: 5,
-      padding: 10,
+      padding: 20,
       backgroundColor: 'white',
       ...shadow,
       width: win.width * 0.95,
@@ -277,7 +277,7 @@ export default {
     Text: {
       color: darkGreyColor,
       fontSize: regularFontSize,
-      textAlign: 'justify',
+      letterSpacing: .25,
     },
   },
   ImageOnRightSelectionButton: {
