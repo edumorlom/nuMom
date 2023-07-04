@@ -9,7 +9,7 @@ import appStyles from './AppStyles';
 import CancelFilterButton from './Button';
 import {getRef} from '../Firebase';
 import filterImage from '../../assets/delete-filter.png';
-
+import { BackHandler } from 'react-native';
 export default Homepage = (props) => {
   const [fullPanel, setFullPanel] = useState(true);
   const [clinics, setClinics] = useState([]);
@@ -23,7 +23,18 @@ export default Homepage = (props) => {
   const [lowerPanelContent, setLowerPanelContent] = useState('selection');
 
   useEffect(() => {
-    fetchResources(); // Can only call one function inside useEffect when dealing with asyncs
+    fetchResources();
+    const backAction = () => {
+      props.navigation.navigate('Homepage');
+      return true; // Return true to prevent the default back button behavior
+    };
+  
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction
+    );
+  
+    return () => backHandler.remove(); 
   }, []);
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
