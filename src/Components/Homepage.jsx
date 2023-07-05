@@ -9,6 +9,7 @@ import appStyles from './AppStyles';
 import CancelFilterButton from './Button';
 import {getRef} from '../Firebase';
 import filterImage from '../../assets/delete-filter.png';
+import setMapToggle from './LowerPanel';
 
 export default Homepage = (props) => {
   const [fullPanel, setFullPanel] = useState(true);
@@ -90,6 +91,7 @@ export default Homepage = (props) => {
 
   const goBack = () => {
     const content = lowerPanelContent;
+
 
     switch (content) {
       case 'selection':
@@ -178,6 +180,7 @@ export default Homepage = (props) => {
       {/* <SOSButton /> */}
       <LowerPanel
         setFullPanel={() => setFullPanel(!fullPanel)}
+        setMapToggle={() => setMapToggle(false)}
         fullPanel={fullPanel}
         fullName={props.fullName}
         logout={props.logout}

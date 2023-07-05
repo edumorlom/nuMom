@@ -1,4 +1,4 @@
-import {View, Animated} from 'react-native';
+import {View, Animated, ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import appStyles, {win} from './AppStyles';
 import LowerPanelSelection from './LowerPanelSelection';
@@ -16,6 +16,10 @@ export default LowerPanel = (props) => {
   const [fullPanel, setFullPanel] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [mapToggle, setMapToggle] = useState(false);
+
+
+  
 
   const [moveAnim] = useState(new Animated.Value(win.height * 0.3));
 
@@ -59,7 +63,10 @@ export default LowerPanel = (props) => {
   and call it like: lowerPanelContent[property]  */
   const lowerPanelContent = {
     facilities: (
-      <Facilities setLowerPanelContent={props.setLowerPanelContent} />
+      <Facilities 
+      setLowerPanelContent={props.setLowerPanelContent} 
+      setMapToggle={() => setMapToggle(true)}
+      />
     ),
     findCare: (
       <FindCare
@@ -113,9 +120,9 @@ export default LowerPanel = (props) => {
     <Animated.View
       style={{
         ...appStyles.lowerPanel,
-        top: moveAnim,
+        ...(mapToggle && moveAnim ? { top: moveAnim } : {}),
         overflow: 'hidden',
-        height: isFullScreen ? '100%' : '70%',
+        height: isFullScreen ? '100%' : '100%',
       }}
     >
       {props.lowerPanelContent !== 'selection' && (
