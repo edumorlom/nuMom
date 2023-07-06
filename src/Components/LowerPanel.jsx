@@ -65,7 +65,7 @@ export default LowerPanel = (props) => {
     facilities: (
       <Facilities 
       setLowerPanelContent={props.setLowerPanelContent} 
-      setMapToggle={() => setMapToggle(true)}
+      setMapToggle={() => setMapToggle((prevMapToggle) => !prevMapToggle)}
       />
     ),
     findCare: (
