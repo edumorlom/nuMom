@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {HeaderBackButton} from '@react-navigation/stack';
+import moment from 'moment';
 import {
   Keyboard,
   Text,
@@ -54,6 +55,8 @@ export default function SignUpInfo(props) {
       alert(translate('fillOutAllFields'));
     } else if (!isValidDate(dob)) {
       alert(translate('invalidDate'));
+    } else if (moment(dob, 'MM/DD/YYYY').isAfter(moment())) {
+      alert(translate('invalidDate'));
     } else {
       // props.setUserInfo({fullName: name});
       // props.setUserInfo({dob});
@@ -103,13 +106,15 @@ export default function SignUpInfo(props) {
                 </Text>
               </Text>
               <View style={{paddingTop: appStyles.win.height * 0.05}}>
-                <TextBox
+              <TextBox
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('fullName')}
                   onChangeText={(text) => setName(text)}
                   value={name}
                   style={appStyles.TextInputMask}
                 />
                 <TextInputMask
+                  placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                   placeholder={translate('dob')}
                   type="datetime"
                   options={{
