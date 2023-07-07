@@ -30,8 +30,7 @@
           "apiKey": "AIzaSyDZIfZXvGNacdzn-cBHdrzYakwHmh4DXok"
         }
       },
-      "versionCode": 9,
-      "useNextNotificationsApi": true
+      "versionCode": 9
     },
     "description": "",
     "githubUrl": "https://github.com/edumorlom/moms-infants-healthy",
@@ -40,5 +39,5 @@
         "projectId": "681cf8eb-86c6-4eb0-8072-ff2a4f552fa8"
       }
     }
-  }
+  } 
 }
