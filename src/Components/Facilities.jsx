@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useState} from 'react';
 import {
   TouchableHighlight,
   Text,
@@ -11,12 +11,18 @@ import {
 import translate from './getLocalizedText';
 import clinicLogo from '../../assets/clinic-logo.png';
 import shelterLogo from '../../assets/shelter-logo.png';
+import nature from '../../assets/nature.png';
 import SelectionButton from './SelectionButton';
 import appStyles from './AppStyles';
+import setMapToggle from './LowerPanel';
 
 export default function Facilities(props) {
+  const handleMapToggle = () => {
+    props.setMapToggle(); // Call the setMapToggle callback function to toggle MapToggle between true and false
+  };
   return (
     <ScrollView
+    //setMapToggle={() => setMapToggle(true)}
       contentContainerStyle={{
         alignItems: 'center',
         width: appStyles.win.width,
@@ -33,6 +39,12 @@ export default function Facilities(props) {
         text={translate('shelters')}
         icon={shelterLogo}
         onPress={() => props.setLowerPanelContent('shelters')}
+      />
+      <SelectionButton
+        style={appStyles.PanelSelectionButton}
+        text={translate('mapDisplay')}
+        icon={nature}
+        onPress={handleMapToggle}
       />
     </ScrollView>
   );
