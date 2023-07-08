@@ -319,13 +319,12 @@ const SettingsScreen = (props) => {
               </Text>
             </View>
             <View style={appStyles.TextInput.View}>
-
-
-                placeholder={translate('fullName')}
-                style={appStyles.TextInput.TextInput}
-                value={fullName}
-                onChangeText={(text) => setFullName(text)}
-              />
+                <TextBox
+                  placeholder={translate('fullName')}
+                  style={appStyles.TextInput.TextInput}
+                  value={fullName}
+                  onChangeText={(text) => setFullName(text)}
+                />
             </View>
           </View>
 

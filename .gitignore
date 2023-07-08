@@ -13,3 +13,5 @@ src/firebase_account.json
 .DS_Store
 *.expo/
 package-lock.json
+
+/.vs
