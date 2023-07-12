@@ -539,7 +539,7 @@ const styles = StyleSheet.create({
       android: {
         marginTop: 30,
         alignItems: 'center',
-        height: 80,
+        height: 100,
         width: 300,
       },
     }),
@@ -551,8 +551,8 @@ const styles = StyleSheet.create({
         bottom: 50,
       },
       android: {
-        width: 100,
-        bottom: 10,
+        width: 250,
+        bottom: 30,
       },
     }),
   },
