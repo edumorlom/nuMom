@@ -32,6 +32,7 @@ export default {
   win,
   container: {
     alignItems: 'center',
+    backgroundColor: 'white',
     flex: 1,
   },
   signupContainer: {
