@@ -28,18 +28,21 @@ export default function Map(props) {
   // Gets the user location for the Map
   let getLocationAsync = async () => {
     const {status} = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMessage('Permissions not granted.');
-    }
-    const location = await Location.getCurrentPositionAsync({});
-    const loc = location.coords;
+      if (status !== 'granted') {
+          setErrorMessage('Permissions not granted.');
+          setRegion(defaultRegion);
+      }
+      else {
+          const location = await Location.getCurrentPositionAsync({});
+          const loc = location.coords;
 
-    setRegion({
-      latitude: loc.latitude,
-      longitude: loc.longitude,
-      latitudeDelta: 0.2,
-      longitudeDelta: 0.3,
-    });
+          setRegion({
+              latitude: loc.latitude,
+              longitude: loc.longitude,
+              latitudeDelta: 0.2,
+              longitudeDelta: 0.3,
+          });
+      }
   };
 
   return (
