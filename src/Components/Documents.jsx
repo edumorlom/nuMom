@@ -8,11 +8,13 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import * as FB from '../Firebase';
+import { deleteDocument } from '../Firebase';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import Plus from '../../assets/plus.png';
 import documentIcon from '../../assets/document.png';
 import translate from './getLocalizedText';
+import pinkX from '../../assets/pinkX.png';
 
 export default function Documents() {
   const [image, setImage] = useState(null);
@@ -67,6 +69,18 @@ export default function Documents() {
     FB.grabImages(user, documents, setDocuments);
   }
 
+  const handleDeleteDocument = async (document) => {
+    const user = FB.getAuths().currentUser;
+    try {
+      await deleteDocument(document.name, user);
+      const updatedDocuments = documents.filter((doc) => doc.name !== document.name);
+      setDocuments(updatedDocuments);
+    } catch (error) {
+      console.error('Error deleting document:', error);
+      // Handle error and display error message to the user
+    }
+  };
+
   useEffect(() => {
     grabDocuments();
   }, []);
@@ -86,13 +100,22 @@ export default function Documents() {
         contentContainerStyle={{alignItems: 'flex-end', maxWidth: '100%'}}
       >
         {documents.map((document, key) => (
-          <SelectionButton
-            style={appStyles.ImageOnRightSelectionButton}
-            key={key}
-            icon={documentIcon}
-            text={document.name}
-            onPress={() => Linking.openURL(document.url)}
-          />
+         <React.Fragment key={key}>
+         <View style={{ flexDirection: 'row' }}>
+           <SelectionButton
+             style={appStyles.openDocumentButton}
+             icon={documentIcon}
+             text={document.name}
+             onPress={() => Linking.openURL(document.url)}
+           />
+           <SelectionButton
+             style={appStyles.deleteButton}
+             icon={pinkX}
+             onPress={() => handleDeleteDocument(document)}
+           />
+         </View>
+       </React.Fragment>
+      
         ))}
         {buttonClickedStatus && (
           <DialogInput
