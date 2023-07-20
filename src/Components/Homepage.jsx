@@ -69,7 +69,22 @@ export default Homepage = (props) => {
 
   let sortLocations = async (locations) => {
     try {
-      const position = await Location.getCurrentPositionAsync({});
+      const { status } = await Location.getForegroundPermissionsAsync();
+        const defaultRegion = {
+            coords: {
+                latitude: 25.782220701733717,
+                longitude: -80.26424665653634,
+                latitudeDelta: 0.65,
+                longitudeDelta: 0.3,
+            }
+      };
+      const position = defaultRegion;
+
+      if (status == 'granted')
+      {
+        position = await Location.getCurrentPositionAsync({});
+      }
+      // You can now use the location services
       const Locations = locations || []; // For mutation, cant mutate param
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
