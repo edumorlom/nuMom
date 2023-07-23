@@ -16,7 +16,7 @@ export default function DocumentSelectionButton(props) {
       onPress={onPress}
       style={{
         margin: 5,
-        padding: 20,
+        padding: 40,
         backgroundColor: 'white',
         ...shadow,
         minHeight: appStyles.win.height * 0.2,

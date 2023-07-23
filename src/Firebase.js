@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+//import 'firebase/compat/storage';
 import {
   getDatabase,
   ref,
@@ -27,6 +28,7 @@ import {
   listAll,
   uploadBytes,
   uploadBytesResumable,
+  deleteObject,
 } from 'firebase/storage';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
@@ -296,6 +298,34 @@ export const grabImages = (user, documents, setDocuments) => {
       // Handle any errors
       console.log(error);
     });
+};
+
+export const deleteDocument = async (fileName, user) => {
+  // Check if the user is authenticated
+  if (!user) {
+    throw new Error('User is not authenticated.');
+  }
+
+  try {
+    // Delete the image file from Firebase Storage
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    await deleteObject(storageRef);
+
+    // Remove the document entry from the database
+    const firestore = firebase.firestore();
+    const documentRef = firestore.collection('documents').doc(fileName);
+    await documentRef.delete();
+
+    // Return the updated list of documents
+    const documents = grabImages(user, documents, setDocuments);
+    return documents;
+  } catch (error) {
+    console.error('Error deleting document:', error);
+
+    //console.log(fileName); Used to verify file path
+
+    
+  }
 };
 
 const makeDocumentsList = (url, name, documents, setDocuments) => {

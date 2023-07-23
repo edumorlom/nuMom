@@ -318,6 +318,81 @@ export default {
       fontSize: regularFontSize,
     },
   },
+  openDocumentButton: {
+    Touchable: {
+      margin: 5,
+      padding: 20,
+      backgroundColor: 'white',
+      ...shadow,
+      minHeight: win.height * 0.2,
+      maxHeight: win.height * 0.4,
+      width: win.width * 0.4,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    View: {
+      height: '100%',
+      width: '70%',
+      marginRight: 20,
+    },
+    ImageView: {
+      height: '100%',
+      width: '7%',
+      justifyContent: 'center',
+    },
+    ImageInView: {
+      width: 65,
+      height: 65,
+    },
+    Text: {
+      color: blueColor,
+      fontSize: regularFontSize,
+      fontWeight: 'bold',
+    },
+    Subtext: {
+      color: greyColor,
+      fontSize: regularFontSize,
+    },
+  },
+  deleteButton: {
+    Touchable: {
+      margin: 5,
+      //padding: 20,
+      backgroundColor: 'white',
+      ...shadow,
+      minHeight: win.height * 0.2,
+      maxHeight: win.height * 0.4,
+      width: win.width * 0.4,
+      borderColor: greyColor,
+      borderRadius,
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    View: {
+      height: '100%',
+      width: '30%',
+    },
+    ImageView: {
+      height: '100%',
+      width: '7%',
+      justifyContent: 'center',
+    },
+    ImageInView: {
+      width: 65,
+      height: 65,
+    },
+    Text: {
+      color: blueColor,
+      fontSize: regularFontSize,
+      fontWeight: 'bold',
+    },
+    Subtext: {
+      color: greyColor,
+      fontSize: regularFontSize,
+    },
+  },
   ImageDarkOnSelectionButton: {
     Touchable: {
       margin: 5,
