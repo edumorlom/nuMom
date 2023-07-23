@@ -253,37 +253,64 @@ export const uploadImage = async (
   fileName,
   documents,
   setDocuments
-) => {
-  const response = await fetch(uri);
-  const blob = await response.blob();
+  ) => {
+  try {
+    const response = await fetch(uri);
+    const blob = await response.blob();
 
-  const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
-  const uploadDocument = uploadBytesResumable(storageRef, blob).then(
-    (snapshot) => {
-      console.log('Uploaded blob');
-    }
-  );
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, blob);
 
-  uploadDocument.on(
-    'state_changed',
-    (snapshot) => {
-      // process loading
-    },
-    (error) => {
-      console.log(error.message);
-    },
-    () => {
-      // successfull uploading and updating the documents state array
-      grabImages(user, documents, setDocuments);
-      console.log('Test here');
-    }
-  );
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      async () => {
+        // Successful uploading and updating the documents state array
+        await grabImages(user, documents, setDocuments);
+        console.log('Test here');
+      }
+    );
+  } catch (error) {
+    console.error('Error uploading image:', error);
+  }
 };
+
+export const uploadDocument = async (uri, user, fileName, setDocuments) => {
+  try {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    console.log('Document Storage Reference:', storageRef.fullPath);
+
+    const uploadTask = uploadBytesResumable(storageRef, blob);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+      },
+      (error) => {
+        console.log('Error uploading document:', error);
+      },
+      async () => {
+        // Successful uploading and updating the documents state array
+        await grabImages(user, documents, setDocuments);
+        console.log('Document uploaded successfully');
+      }
+    );
+  } catch (error) {
+    console.error('Error uploading document:', error);
+  }
+};
+
 
 export const grabImages = (user, documents, setDocuments) => {
   let storageRef = ref_storage(getStorage(), user.uid);
 
-  // Now we get the references of these images
   listAll(storageRef)
     .then((result) => {
       result.items.forEach((imageRef) => {
