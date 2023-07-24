@@ -34,8 +34,8 @@ export const wicHome = (props) => {
   const websiteButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Website"
-      subtext="Eligibility requirements and more"
+      text={translate('WSwebsite')}
+      subtext={translate('WSwebsiteSubtext')}
       icon={breastfeeding}
       onPress={() => toWebsite()}
     />
@@ -44,8 +44,8 @@ export const wicHome = (props) => {
   const checklistButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Checklist"
-      subtext="Don't forget to bring these things to your WIC appointment!"
+      text={translate('WSchecklist')}
+      subtext={translate('WSchecklistSubtext')}
       icon={checklist}
       onPress={() => props.navigation.navigate('WICChecklist')}
     />
@@ -54,8 +54,8 @@ export const wicHome = (props) => {
   const locationsButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Locations"
-      subtext="Find a WIC office near you."
+      text={translate('WSlocations')}
+      subtext={translate('WSlocationsSubtext')}
       icon={facilities}
       onPress={() => props.navigation.navigate('WICLocations')}
     />
@@ -64,8 +64,8 @@ export const wicHome = (props) => {
   const feedingButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Feeding"
-      subtext="Guidelines for Feeding Healthy Infants"
+      text={translate('WSfeeding')}
+      subtext={translate('WSfeedingSubtext')}
       icon={breastfeeding}
       onPress={() => props.navigation.navigate('WICFeeding')}
     />
@@ -88,37 +88,32 @@ export const wicHome = (props) => {
 export const wicChecklist = () => {
   const checklist = [
     {
-      text: 'Family members',
-      subtext: 'Each member who is applying to receive WIC must be present.',
+      text: translate('WSCfamily'),
+      subtext: translate('WSCfamilySubtext'),
     },
     {
-      text: 'Proof of Income of all family members',
-      subtext:
-        'Salaries, child support, alimony, foster care payments, interest withdrawn, unemployment.',
+      text: translate('WSCincome'),
+      subtext: translate('WSCincomeSubtext'),
     },
     {
-      text: 'Proof of Current Address',
-      subtext:
-        "Utility bill, bank/insurance statement, voter registration card, or driver's license.",
+      text: translate('WSCaddress'),
+      subtext: translate('WSCaddressSubtext'),
     },
     {
-      text: 'Proof of Identification for you AND for any infant or child',
-      subtext:
-        "Birth certificate, driver's license, crib card, military ID, photo ID, Social Security Card.",
+      text: translate('WSCid'),
+      subtext: translate('WSCidSubtext'),
     },
     {
-      text: 'Measurements for EACH woman, infant, and child.',
-      subtext: 'Height/Weight, hemoglobin or hematocrit blood test results.',
+      text: translate('WSCmeasurement'),
+      subtext: translate('WSCmeasurementSubtext'),
     },
     {
-      text: 'Social Security Number (SSN)',
-      subtext:
-        'You must have the SSN for each person applying for WIC, if available.',
+      text: translate('WSCssn'),
+      subtext: translate('WSCssnSubtext'),
     },
     {
-      text: 'Immunization (shot) record for each child',
-      subtext:
-        'You must have the Immunization (shot) record for each child applying for WIC.',
+      text: translate('WSCimmunization'),
+      subtext: translate('WSCimunizationSubtext'),
     },
   ];
 
@@ -234,6 +229,7 @@ export const wicLocations = (props) => {
       style={appStyles.ClinicSelectionButton}
       key={key}
       text={getResourceName(wic.resource)}
+      //translation needed
       subtext={`${wic.address.street}\n${wic.address.city}\n${wic.address.state}, ${wic.address.zipCode}\n${wic.distance} miles`}
       icon={breastfeeding}
       onPress={() => {
@@ -316,8 +312,8 @@ export const wicFeeding = () => {
         <View>
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Human Milk"
-            subtext="Only human milk (or formula) is needed for the first 6 months"
+            text= {translate('WSFmilk')}
+            subtext={translate('WSFmilkAge0Subtext')}
             icon={breastfeeding}
           />
         </View>
@@ -328,44 +324,38 @@ export const wicFeeding = () => {
         <View>
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Human Milk"
-            subtext="Continue to breastfeed on demand."
+            text={translate('WSFmilk')}
+            subtext={translate('WSFbreastfeedSubtext')}
             icon={breastfeeding}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Infant Formula"
-            subtext={
-              '24-32 ounces\nOr based on individual nutritional assessment'
-            }
+            text={translate('WSFformula')}
+            subtext={translate('WSFformulaSubtext')}
             icon={formula}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Grain Products"
-            subtext={
-              '1-2 ounces\nIron-fortified infant cereals, bread, small pieces of cracker'
-            }
+            text={translate('WSFgrain')}
+            subtext={translate('WSFgrainSubtext')}
             icon={grains}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Vegetables"
-            subtext={'2-4 ounces\nCooked, plain strained/pureed/mashed'}
+            text={translate('WSFvegetables')}
+            subtext={translate('WSFvegetablesSubtext')}
             icon={vegetables}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Fruits"
-            subtext={'2-4 ounces\nPlain strained/pureed/mashed'}
+            text={translate('WSFfruits')}
+            subtext={translate('WSFfruitsSubtext')}
             icon={fruits}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Protein-rich Foods"
-            subtext={
-              '1-2 ounces\nPlain strained/pureed/mashed meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
-            }
+            text={translate('WSFprotein')}
+            subtext={translate('WSFproteinSubtext')}
             icon={proteins}
           />
         </View>
@@ -376,42 +366,38 @@ export const wicFeeding = () => {
         <View>
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Human Milk"
-            subtext="Provide guidance and encouragement to breastfeeding mothers and continue to support those mothers who choose to breastfeed beyond 12 months"
+            text={translate('WSFmilk')}
+            subtext={translate('WSFmilkAge8')}
             icon={breastfeeding}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Infant Formula"
-            subtext={'24 ounces\nOr based on individual nutritional assessment'}
+            text={translate('WSFformula')}
+            subtext={translate('WSFformulaAge8')}
             icon={formula}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Grain Products"
-            subtext={
-              '2-4 ounces\nIron-fortified infant cereals, baby crackers, bread, noodles, corn grits, soft tortilla pieces'
-            }
+            text={translate('WSFgrain')}
+            subtext={translate('WSFgrainAge8')}
             icon={grains}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Vegetables"
-            subtext={'4-6 ounces\nCooked, finely chopped/diced'}
+            text={translate('WSFvegetables')}
+            subtext={translate('WSFvegetablesAge8')}
             icon={vegetables}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Fruits"
-            subtext={'4-6 ounces\nFinely chopped/diced'}
+            text={translate('WSFfruits')}
+            subtext={translate('WSFfruitsAge8')}
             icon={fruits}
           />
           <BetterMenu
             style={appStyles.ImageDarkOnSelectionButton}
-            text="Protein-rich Foods"
-            subtext={
-              '2-4 ounces\nGround/finely chopped/diced meat, poultry, fish, eggs, cheese, yogurt, or mashed legumes'
-            }
+            text={translate('WSFprotein')}
+            subtext={translate('WSFproteinAge8')}
             icon={proteins}
           />
         </View>
@@ -422,24 +408,24 @@ export const wicFeeding = () => {
         <ScrollView contentContainerStyle={appStyles.contentContainer}>
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Soda, gelatin, coffee, tea, fruit punches and -ade drinks"
+            text={translate('WSFAge-1subtext1')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Cow milk until 12 months"
+            text={translate('WSFAge-1subtext2')}
           />
-          <BetterMenu style={appStyles.FeedingNotes} text="Added Salt" />
+          <BetterMenu style={appStyles.FeedingNotes} text={translate('WSFAge-1subtext3')} />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Added oil, butter, other fats, seasoning"
-          />
-          <BetterMenu
-            style={appStyles.FeedingNotes}
-            text="Added sugar, syrups, other sweetners"
+            text={translate('WSFAge-1subtext4')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Fried foods, gravies, sauces, processed meats"
+            text={translate('WSFAge-1subtext5')}
+          />
+          <BetterMenu
+            style={appStyles.FeedingNotes}
+            text={translate('WSFAge-1subtext6')}
           />
         </ScrollView>
       );
@@ -449,51 +435,50 @@ export const wicFeeding = () => {
         <View>
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Infants under 12 months of age should not consume juice unless clinically indicated. After 12 months, encourage fruit over fruit juice; any juice consumed should be as part of a meal or snack and from an open cup (i.e., not bottles or easily transportable covered cups)."
+            text={translate('WSFAge-2subtext1')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Babies weaned from human milk before 12 months should receive iron-fortified formula."
+            text={translate('WSFAge-2subtext2')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Wean entirely off the bottle and onto a cup at 12 to 14 months."
+            text={translate('WSFAge-2subtext3')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Keep bottles out of bedtime and nap routines to avoid exposing infants’ teeth to sugars and reduce the risk for ear infections and choking."
+            text={translate('WSFAge-2subtext4')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Check carefully for bones in commercially or home-prepared meals containing meat, fish, or poultry."
+            text={translate('WSFAge-2subtext5')}
           />
           <BetterMenu
             style={appStyles.FeedingNotes}
-            text="Remove seeds, skin, and pits from fruits. For additional choking prevention information, refer to the Infant Feeding: Tips for Food Safety job aid."
+            text={translate('WSFAge-2subtext6')}
           />
         </View>
       );
     }
     return <View />;
   };
-
+//translate('WSDropdownTitle')
   return (
     <View style={appStyles.contentContainer}>
       <View style={styles.containerDropDown}>
         <Text>
-          Select Age of Infant or Relevant Information concerning Foods for
-          Infants{'\n'}
+        {translate('WSDropdownTitle')}{'\n'}
         </Text>
         <Picker
           selectedValue={age}
           style={styles.questionsDropDown}
           onValueChange={(itemValue, itemIndex) => setAge(itemValue)}
         >
-          <Picker.Item label="0-6 Months" value={0} />
-          <Picker.Item label="6-8 Months" value={6} />
-          <Picker.Item label="8-12 Months" value={8} />
-          <Picker.Item label="Foods to Avoid" value={-1} />
-          <Picker.Item label="Important Notes" value={-2} />
+          <Picker.Item label={translate('WSDropdownSelection1')} value={0} />
+          <Picker.Item label={translate('WSDropdownSelection2')} value={6} />
+          <Picker.Item label={translate('WSDropdownSelection3')} value={8} />
+          <Picker.Item label={translate('WSDropdownSelection4')} value={-1} />
+          <Picker.Item label={translate('WSDropdownSelection5')} value={-2} />
         </Picker>
       </View>
 
