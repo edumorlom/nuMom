@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+//import 'firebase/compat/storage';
 import {
   getDatabase,
   ref,
@@ -27,6 +28,7 @@ import {
   listAll,
   uploadBytes,
   uploadBytesResumable,
+  deleteObject,
 } from 'firebase/storage';
 import firebaseAccount from './firebase_account.json';
 import translate from './Components/getLocalizedText';
@@ -251,37 +253,64 @@ export const uploadImage = async (
   fileName,
   documents,
   setDocuments
-) => {
-  const response = await fetch(uri);
-  const blob = await response.blob();
+  ) => {
+  try {
+    const response = await fetch(uri);
+    const blob = await response.blob();
 
-  const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
-  const uploadDocument = uploadBytesResumable(storageRef, blob).then(
-    (snapshot) => {
-      console.log('Uploaded blob');
-    }
-  );
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, blob);
 
-  uploadDocument.on(
-    'state_changed',
-    (snapshot) => {
-      // process loading
-    },
-    (error) => {
-      console.log(error.message);
-    },
-    () => {
-      // successfull uploading and updating the documents state array
-      grabImages(user, documents, setDocuments);
-      console.log('Test here');
-    }
-  );
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      async () => {
+        // Successful uploading and updating the documents state array
+        await grabImages(user, documents, setDocuments);
+        console.log('Test here');
+      }
+    );
+  } catch (error) {
+    console.error('Error uploading image:', error);
+  }
 };
+
+export const uploadDocument = async (uri, user, fileName, setDocuments) => {
+  try {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    console.log('Document Storage Reference:', storageRef.fullPath);
+
+    const uploadTask = uploadBytesResumable(storageRef, blob);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+      },
+      (error) => {
+        console.log('Error uploading document:', error);
+      },
+      async () => {
+        // Successful uploading and updating the documents state array
+        await grabImages(user, documents, setDocuments);
+        console.log('Document uploaded successfully');
+      }
+    );
+  } catch (error) {
+    console.error('Error uploading document:', error);
+  }
+};
+
 
 export const grabImages = (user, documents, setDocuments) => {
   let storageRef = ref_storage(getStorage(), user.uid);
 
-  // Now we get the references of these images
   listAll(storageRef)
     .then((result) => {
       result.items.forEach((imageRef) => {
@@ -296,6 +325,34 @@ export const grabImages = (user, documents, setDocuments) => {
       // Handle any errors
       console.log(error);
     });
+};
+
+export const deleteDocument = async (fileName, user) => {
+  // Check if the user is authenticated
+  if (!user) {
+    throw new Error('User is not authenticated.');
+  }
+
+  try {
+    // Delete the image file from Firebase Storage
+    const storageRef = ref_storage(getStorage(), `${user.uid}/${fileName}`);
+    await deleteObject(storageRef);
+
+    // Remove the document entry from the database
+    const firestore = firebase.firestore();
+    const documentRef = firestore.collection('documents').doc(fileName);
+    await documentRef.delete();
+
+    // Return the updated list of documents
+    const documents = grabImages(user, documents, setDocuments);
+    return documents;
+  } catch (error) {
+    console.error('Error deleting document:', error);
+
+    //console.log(fileName); Used to verify file path
+
+    
+  }
 };
 
 const makeDocumentsList = (url, name, documents, setDocuments) => {
