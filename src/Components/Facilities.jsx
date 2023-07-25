@@ -14,11 +14,15 @@ import shelterLogo from '../../assets/shelter-logo.png';
 import nature from '../../assets/nature.png';
 import SelectionButton from './SelectionButton';
 import appStyles from './AppStyles';
-import setMapToggle from './LowerPanel';
+//import setMapToggle from './LowerPanel';
+import { useMapToggle } from './SharedFuncs';
 
 export default function Facilities(props) {
+
+  const [mapToggle, setMapToggle] = useMapToggle();
+
   const handleMapToggle = () => {
-    props.setMapToggle(); // Call the setMapToggle callback function to toggle MapToggle between true and false
+    props.setMapToggle(); // Call the setMapToggle function passed from LowerPanel.jsx
   };
   return (
     <ScrollView
