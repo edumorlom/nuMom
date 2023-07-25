@@ -7,17 +7,17 @@ import Shelters from './Shelters';
 
 import ClinicInfo from './ClinicInfo';
 import ShelterInfo from './ShelterInfo';
-
 import LowerPanelHeader from './LowerPanelHeader';
 import Facilities from './Facilities';
+import { useMapToggle } from './SharedFuncs';
 
 export default LowerPanel = (props) => {
   const [filterToShow, setFilterToShow] = useState(false);
   const [fullPanel, setFullPanel] = useState(true);
   const [fullScreen, setFullScreen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [mapToggle, setMapToggle] = useState(false);
-
+  //const [mapToggle, setMapToggle] = useState(false);
+  const [mapToggle, setMapToggle] = useMapToggle();
 
   
 
@@ -65,7 +65,7 @@ export default LowerPanel = (props) => {
     facilities: (
       <Facilities 
       setLowerPanelContent={props.setLowerPanelContent} 
-      setMapToggle={() => setMapToggle((prevMapToggle) => !prevMapToggle)}
+      setMapToggle={setMapToggle}
       />
     ),
     findCare: (
