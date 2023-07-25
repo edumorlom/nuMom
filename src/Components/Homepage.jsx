@@ -90,7 +90,7 @@ export default Homepage = (props) => {
                 longitudeDelta: 0.3,
             }
       };
-      const position = defaultRegion;
+      let position = defaultRegion;
 
       if (status == 'granted')
       {
