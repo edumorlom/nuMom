@@ -21,7 +21,7 @@ export default function SelectionButton(props) {
     </View>
   );
 
-  let showImage = () => <Image style={props.style.Image} source={props.icon} />;
+  let showImage = () => <Image style={{...props.style.Image, marginLeft: -10}} source={props.icon} />;
 
   const showImageInView = () => (
     <Image style={props.style.ImageInView} source={props.icon} />
