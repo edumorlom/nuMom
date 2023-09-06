@@ -497,7 +497,7 @@ const styles = StyleSheet.create({
         bottom: 50,
       },
       android: {
-        width: 100,
+        width: 110,
         bottom: 10,
       },
     }),
