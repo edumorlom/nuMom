@@ -454,8 +454,8 @@ export default {
   },
   FemaleCondomDoMenu: {
     Touchable: {
-      margin: 5,
-      padding: 10,
+      margin: 5.3,
+      padding: 15,
       justifyContent: 'center',
       backgroundColor: 'white',
       ...shadow,
@@ -464,14 +464,14 @@ export default {
     },
     Text: {
       color: greenColor,
-      fontSize: RFValue(16),
-      textAlign: 'justify',
+      fontSize: RFValue(15),
+      textAlign: 'left',
     },
   },
   FemaleCondomDontMenu: {
     Touchable: {
-      margin: 5,
-      padding: 10,
+      margin: 5.3,
+      padding: 15,
       justifyContent: 'center',
       backgroundColor: 'white',
       ...shadow,
@@ -480,8 +480,8 @@ export default {
     },
     Text: {
       color: pinkColor,
-      fontSize: RFValue(16),
-      textAlign: 'justify',
+      fontSize: RFValue(15),
+      textAlign: 'left',
     },
   },
   FemaleCondomMenuImage: {
