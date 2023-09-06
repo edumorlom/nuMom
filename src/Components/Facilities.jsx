@@ -29,7 +29,8 @@ export default function Facilities(props) {
     //setMapToggle={() => setMapToggle(true)}
       contentContainerStyle={{
         alignItems: 'center',
-        width: appStyles.win.width,
+        justifyContent: 'center',
+        width: appStyles.win.width
       }}
     >
       <SelectionButton
