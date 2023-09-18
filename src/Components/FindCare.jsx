@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import {ScrollView, View} from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown-v2';
 import SelectionButton from './SelectionButton';
@@ -22,19 +22,21 @@ export default function FindCare(props) {
 
   const window = appStyles.win;
 
-  const clinicsButtons = props.clinics.map((clinic, key) => (
-    <SelectionButton
-      style={appStyles.ClinicSelectionButton}
-      key={key}
-      text={getResourceName(clinic.resource)}
-      subtext={`${clinic.address.street}\n${clinic.address.city}\n${clinic.address.state}, ${clinic.address.zipCode}\n${clinic.distance} miles`}
-      icon={{uri: clinic.logoImage}}
-      onPress={() => {
-        props.setClinicToView(clinic);
-        props.setLowerPanelContent('clinicInfo');
-      }}
-    />
-  ));
+  const clinicsButtons = useMemo (() => {
+      return props.clinics.map((clinic, key) => (
+      <SelectionButton
+        style={appStyles.ClinicSelectionButton}
+        key={key}
+        text={getResourceName(clinic.resource)}
+        subtext={`${clinic.address.street}\n${clinic.address.city}\n${clinic.address.state}, ${clinic.address.zipCode}\n${clinic.distance} miles`}
+        icon={{uri: clinic.logoImage}}
+        onPress={() => {
+          props.setClinicToView(clinic);
+          props.setLowerPanelContent('clinicInfo');
+        }}
+      />
+    ));
+  }, [props.clinics]);
 
   let clinics = props.sortedClinics;
 
