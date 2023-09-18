@@ -25,7 +25,7 @@
   "repeatPasswordInput": "Repita la contraseña",
   "passwordMismatch": "¡Las contraseñas no son iguales!",
   "passwordTooShort": "¡Su contraseña debe tener al menos 6 carácteres!",
-  "passwordWeak": "Your password is too weak",
+  "passwordWeak": "Su contraseña es débil. Agregue un carácter especial (!,#,$,*,%)",
   "createPassword": "Cree su Contraseña",
   "areYouPregnant": "¿Está embarazada?",
   "doYouHaveInfants": "¿Tiene hijos?",
