@@ -1,10 +1,5 @@
-import {React,useState} from 'react';
+import {React} from 'react';
 import {
-  TouchableHighlight,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
 

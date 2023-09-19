@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableHighlight, Text, View, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import appStyles from './AppStyles';
 import SelectionButton from './SelectionButton';
 import STDAwareness from '../../assets/std-awareness.png';

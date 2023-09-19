@@ -18,7 +18,6 @@ import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications';
 import {Appearance} from 'react-native';
 import Constants from 'expo-constants';
-import {colors} from 'react-native-elements';
 import translate from './getLocalizedText';
 import appStyles from './AppStyles';
 import Button from './Button';

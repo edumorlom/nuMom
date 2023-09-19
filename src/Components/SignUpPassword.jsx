@@ -11,8 +11,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
-import {Input} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';

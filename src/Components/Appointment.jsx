@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   View,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native';

@@ -1,5 +1,5 @@
-import {View, Linking, Text, ScrollView} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {View, Linking, ScrollView} from 'react-native';
+import React, {useState} from 'react';
 import SelectionButton from './SelectionButton';
 import ActionButton from './Button';
 import directionsArrow from '../../assets/directions-arrow.png';

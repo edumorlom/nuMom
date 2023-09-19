@@ -1,7 +1,7 @@
 import {Image, Text, TouchableHighlight, View} from 'react-native';
 import React from 'react';
 import * as Haptics from 'expo-haptics';
-import appStyles, {borderRadius, greyColor, shadow} from './AppStyles';
+import appStyles from './AppStyles';
 
 // Very similar to Button.jsx but it has a specific functionality, it displays the buttons in the lowerPanel (e.g. Clinics and Shelters)
 export default function SelectionButton(props) {

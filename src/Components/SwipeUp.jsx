@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import * as Haptics from 'expo-haptics';
 import GestureRecognizer from 'react-native-swipe-gestures';
