@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  TouchableHighlight,
-  Text,
   View,
   ScrollView,
   Linking,
@@ -9,7 +7,6 @@ import {
 import ActionButton from './Button';
 import appStyles from './AppStyles';
 import Menu from './Menu';
-import STD from './STD';
 import translate from './getLocalizedText';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 

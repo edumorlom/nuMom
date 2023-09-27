@@ -11,11 +11,8 @@ import {
   NativeModules,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
-import {Input} from 'react-native-elements';
-import {TextInput} from 'react-native-gesture-handler';
 import {onValue} from 'firebase/database';
 import appStyles from './AppStyles';
 import Button from './Button';

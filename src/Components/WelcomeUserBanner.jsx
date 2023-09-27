@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight, View, Alert} from 'react-native';
+import {Text, TouchableHighlight} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {onValue} from 'firebase/database';
 import appStyles from './AppStyles';

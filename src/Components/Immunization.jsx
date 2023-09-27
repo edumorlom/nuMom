@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, View, Linking, Image, TouchableOpacity} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import ImmunizationMenu from './ImmunizationMenu';
