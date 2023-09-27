@@ -28,6 +28,8 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  const special_chars = ['!','#','$','*','%'];
+  let containsSpecialChar = false;
 
   useEffect(() => {
     AsyncStorage.getItem('pass').then((value) => {
@@ -39,12 +41,20 @@ export default SignUpPassword = (props) => {
   }, []);
 
   let onPress = () => {
+    for (let i = 0; i < password.length; i++) {
+      if (special_chars.includes(password[i])){
+        containsSpecialChar = true;
+        break;
+      }
+    }
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
     } else if (password.length < 6) {
       alert(translate('passwordTooShort'));
+    } else if (!containsSpecialChar){
+      alert(translate('passwordWeak'));
     } else {
       // props.setUserInfo({password});
       // AsyncStorage.setItem('pass', password);
