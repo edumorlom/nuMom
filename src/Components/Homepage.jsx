@@ -207,7 +207,7 @@ export default Homepage = (props) => {
       {/* <SOSButton /> */}
       <LowerPanel
         setFullPanel={() => setFullPanel(!fullPanel)}
-        setMapToggle={() => setMapToggle(false)}
+        setMapToggle={() => setMapToggle(true)}
         fullPanel={fullPanel}
         fullName={props.fullName}
         logout={props.logout}
