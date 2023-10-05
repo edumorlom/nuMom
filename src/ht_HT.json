@@ -318,5 +318,24 @@
   "dose1": "premye piki",
   "dose2": "dezyèm piki",
   "dose3": "twazyèm piki",
-  "dose4": "katriyèm piki"
+  "dose4": "katriyèm piki",
+
+  "MSWebsite": "Sit entènèt",
+  "MSWebsiteSub": "Kondisyon pou kalifikasyon ak plis ankò.",
+  "MSChecklist": "Lis verifikasyon",
+  "MSChecklistSub": "Pa bliye pote bagay sa yo nan randevou Medicaid ou!",
+  "MSLocations": "Kote yo ye",
+  "MSLocationsSub": "Jwenn yon biwo Medicaid toupre w.",
+  "MSChecklistPictureID": "Foto ID",
+  "MSChecklistPictureIDSub": "2 prèv rezidans Miami/Dade County si w ap aplike pou Charity Care.",
+  "MSChecklistINSStatus": "Estati INS",
+  "MSChecklistINSStatusSub": "Paspò/Kat I-94/lèt ki eksplike ki lè ak ki jan yo te rive Ozetazini. Prèv sitwayènte si sitwayen ameriken (paspò/batistè).",
+  "MSChecklistProofOfIncome": "Prèv Revni",
+  "MSChecklistProofOfIncomeSub": "Yo peye 4 semèn souch chèk/lèt Patwon an kach. Lèt notarye sou revni chak semèn si travayè endepandan.",
+  "MSChecklistResources": "Resous",
+  "MSChecklistResourcesSub": "Deklarasyon labank (chèk ak/oswa ekonomi). Anrejistreman machin oswa Tit, balans peman Swen si yo dwe.",
+  "MSChecklistShelterCost": "Pri Abri",
+  "MSChecklistShelterCostSub": "Resi pri lwaye/kontra lwaye oswa deklarasyon ipotèk. Bòdwo sèvis piblik yo, ki pi aktyèl pou tout moun ki peye chak mwa/trimestre.",
+  "MSChecklistNewbornItems": "Atik ki fèk fèt",
+  "MSChecklistNewbornItemsSub": "Resi sekirite sosyal ak mak pye tibebe ki fèk fèt la."
 }

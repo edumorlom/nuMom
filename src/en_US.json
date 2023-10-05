@@ -319,5 +319,25 @@
   "dose1": "First Shot",
   "dose2": "Second Shot",
   "dose3": "Third Shot",
-  "dose4": "Fourth Shot"
+  "dose4": "Fourth Shot",
+
+  "MSWebsite": "Website",
+  "MSWebsiteSub": "Eligibility requirements and more.",
+  "MSChecklist": "Checklist",
+  "MSChecklistSub": "Don't forget to bring these things to your Medicaid appointment!",
+  "MSLocations": "Locations",
+  "MSLocationsSub": "Find a Medicaid office near you.",
+  "MSChecklistPictureID": "Picture ID",
+  "MSChecklistPictureIDSub": "2 proofs of Miami/Dade County Residency if applying for Charity Care.",
+  "MSChecklistINSStatus": "INS Status",
+  "MSChecklistINSStatusSub": "Passport/I-94 card/letter explaining when and how arrived to the USA. Proof of citizenship if US citizen (Passport/Birth certificate).",
+  "MSChecklistProofOfIncome": "Proof of Income",
+  "MSChecklistProofOfIncomeSub": "4 weeks of check stubs/letter from Employer is paid cash. Notarized letter of weekly income if self-employed.",
+  "MSChecklistResources": "Resources",
+  "MSChecklistResourcesSub": "Bank Statement (checking and/or savings). Car registration or Title, Care payment balance if any owed.",
+  "MSChecklistShelterCost": "Shelter Cost",
+  "MSChecklistShelterCostSub": "Rent receipts/Lease or Mortgage statement. Utility bills, most current for all paid monthly/quarterly.",
+  "MSChecklistNewbornItems": "Newborn Items",
+  "MSChecklistNewbornItemsSub": "The social security receipt and footprints of the newborn."
+
 }
