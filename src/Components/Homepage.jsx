@@ -119,7 +119,6 @@ export default Homepage = (props) => {
   const goBack = () => {
     const content = lowerPanelContent;
 
-
     switch (content) {
       case 'selection':
         break;
