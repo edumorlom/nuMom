@@ -11,11 +11,7 @@ import appStyles from './AppStyles';
 import { useMapToggle } from './SharedFuncs';
 
 export default function Facilities(props) {
-
-  useEffect(() => {
-    props.setMapToggle(true);
-  },);
-
+  
   return (
     <ScrollView
         contentContainerStyle={{
