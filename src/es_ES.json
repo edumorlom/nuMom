@@ -318,5 +318,24 @@
   "dose1": "primera inyección",
   "dose2": "segunda inyección",
   "dose3": "tercera inyección",
-  "dose4": "cuarta inyección"
+  "dose4": "cuarta inyección",
+
+  "MSWebsite": "Sitio web",
+  "MSWebsiteSub": "Requisitos de elegibilidad y más.",
+  "MSChecklist": "Lista de Verificación",
+  "MSChecklistSub": "No olvide llevar estas cosas a su cita con Medicaid!",
+  "MSLocations": "Localizaciones",
+  "MSLocationsSub": "Encuentre la oficina de Medicaid más cercana.",
+  "MSChecklistPictureID": "Foto de identificación",
+  "MSChecklistPictureIDSub": "2 pruebas de residencia en el condado de Miami/Dade si solicita atención caritativa.",
+  "MSChecklistINSStatus": "Estado del INS",
+  "MSChecklistINSStatusSub": "Pasaporte/tarjeta I-94/carta explicando cuándo y cómo llegó a EE.UU. Prueba de ciudadanía si es ciudadano estadounidense (Pasaporte/Certificado de nacimiento).",
+  "MSChecklistProofOfIncome": "Prueba de ingresos",
+  "MSChecklistProofOfIncomeSub": "4 semanas de talones de cheques/carta del empleador si se paga en efectivo. Carta notarial de ingresos semanales si trabaja por cuenta propia.",
+  "MSChecklistResources": "Recursos",
+  "MSChecklistResourcesSub": "Extracto bancario (cuenta corriente y/o caja de ahorros). Matrícula o título del coche, saldo del pago de atención si se debe alguno.",
+  "MSChecklistShelterCost": "Costo del refugio",
+  "MSChecklistShelterCostSub": "Recibos de alquiler/estado de arrendamiento o hipoteca. Facturas de servicios públicos, las más actualizadas para todos los pagos mensuales/trimestrales.",
+  "MSChecklistNewbornItems": "Artículos para recién nacidos",
+  "MSChecklistNewbornItemsSub": "El recibo de la seguridad social y las huellas del recién nacido."
 }

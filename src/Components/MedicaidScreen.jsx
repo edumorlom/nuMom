@@ -25,8 +25,8 @@ export const medicaidHome = (props) => {
   const websiteButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Website"
-      subtext="Eligibility requirements and more."
+      text={translate('MSWebsite')}
+      subtext={translate('MSWebsiteSub')}
       icon={heart}
       onPress={() => toWebsite()}
     />
@@ -35,8 +35,8 @@ export const medicaidHome = (props) => {
   const checklistButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Checklist"
-      subtext="Don't forget to bring these things to your Medicaid appointment!"
+      text={translate('MSChecklist')}
+      subtext={translate('MSChecklistSub')}
       icon={checklist}
       onPress={() => props.navigation.navigate('MedicaidChecklist')}
     />
@@ -45,8 +45,8 @@ export const medicaidHome = (props) => {
   const locationsButton = (
     <SelectionButton
       style={appStyles.ImageOnRightSelectionButton}
-      text="Locations"
-      subtext="Find a Medicaid office near you."
+      text={translate('MSLocations')}
+      subtext={translate('MSLocationsSub')}
       icon={facilities}
       onPress={() => props.navigation.navigate('MedicaidLocations')}
     />
@@ -67,33 +67,28 @@ export const medicaidHome = (props) => {
 export const medicaidChecklist = () => {
   const checklist = [
     {
-      text: 'Picture ID',
-      subtext:
-        '2 proofs of Miami/Dade County Residency if applying for Charity Care',
+      text: translate('MSChecklistPictureID'),
+      subtext: translate('MSChecklistPictureIDSub'),
     },
     {
-      text: 'INS Status',
-      subtext:
-        'Passport/I-94 card/letter explaining when and how arrived to the USA. Proof of citizenship if US citizen (Passport/Birth certificate).',
+      text: translate('MSChecklistINSStatus'),
+      subtext: translate('MSChecklistINSStatusSub'),
     },
     {
-      text: 'Proof of Income',
-      subtext:
-        '4 weeks of check stubs/letter from Employer is paid cash. Notarized letter of weekly income if self-employed.',
+      text: translate('MSChecklistProofOfIncome'),
+      subtext: translate('MSChecklistProofOfIncomeSub'),
     },
     {
-      text: 'Resources',
-      subtext:
-        'Bank Statement (checking and/or savings). Car registration or Title, Care payment balance if any owed.',
+      text: translate('MSChecklistResources'),
+      subtext: translate('MSChecklistResourcesSub'),
     },
     {
-      text: 'Shelter Cost',
-      subtext:
-        'Rent receipts/Lease or Mortgage statement. Utility bills, most current for all paid monthly/quarterly.',
+      text: translate('MSChecklistShelterCost'),
+      subtext: translate('MSChecklistShelterCostSub'),
     },
     {
-      text: 'Newborn Items',
-      subtext: 'The social security receipt and footprints of the newborn.',
+      text: translate('MSChecklistNewbornItems'),
+      subtext: translate('MSChecklistNewbornItemsSub'),
     },
   ];
 
