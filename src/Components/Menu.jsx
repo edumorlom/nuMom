@@ -34,6 +34,8 @@ export default function Menu(props) {
               color: appStyles.blueColor,
               fontSize: appStyles.regularFontSize,
               fontWeight: 'bold',
+              margin: 5,
+              padding: 5
             }}
           >
             {props.title}
@@ -42,6 +44,8 @@ export default function Menu(props) {
             style={{
               color: appStyles.greyColor,
               fontSize: appStyles.regularFontSize - 5,
+              margin:5,
+              padding: 5
             }}
           >
             {props.info}

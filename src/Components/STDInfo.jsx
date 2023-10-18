@@ -10,6 +10,8 @@ import Menu from './Menu';
 import translate from './getLocalizedText';
 import visitSiteIcon from '../../assets/safari-visit-site.png';
 
+
+
 export default function STDInfo({route}) {
   const {name} = route.params;
   const {symptoms} = route.params;
@@ -33,14 +35,14 @@ export default function STDInfo({route}) {
           onPress={visitSite}
           icon={visitSiteIcon}
         />
-        <Menu title={translate('symptoms')} info={translate(symptoms)} />
-        <Menu title={translate('testing')} info={translate(diagnosis)} />
-        <Menu title={translate('treatment')} info={translate(treatment)} />
-        <Menu
-          title={translate('consequences')}
-          info={translate(consequences)}
-        />
-        <Menu title={translate('safeSex')} info={translate(safeSex)} />
+          <Menu title={translate('symptoms')} info={translate(symptoms)} />
+          <Menu title={translate('testing')} info={translate(diagnosis)} />
+          <Menu title={translate('treatment')} info={translate(treatment)} />
+          <Menu
+            title={translate('consequences')}
+            info={translate(consequences)}
+          />
+          <Menu title={translate('safeSex')} info={translate(safeSex)} />
       </ScrollView>
     </View>
   );
