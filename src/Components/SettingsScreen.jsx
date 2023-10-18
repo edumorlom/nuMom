@@ -199,12 +199,12 @@ const SettingsScreen = (props) => {
   }
 
   function validateDob(dob) {
-    const dobRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    const dobRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     return dob.match(dobRegex) !== null;
   }
 
   function validateBaby(babyDob, infant) {
-    const dobBabyRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    const dobBabyRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     if (infant) {
       return babyDob.match(dobBabyRegex) !== null;
     }
