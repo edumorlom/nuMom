@@ -218,7 +218,7 @@ export default LogIn = (props) => {
 
 const forgotPassword = StyleSheet.create({
   Text: {
-    paddingTop: 20,
+    paddingTop: 10,
     color: 'white',
     fontWeight: '500',
   },
