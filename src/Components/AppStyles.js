@@ -599,7 +599,7 @@ export default {
   },
   ActionButton: {
     Touchable: {
-      margin: 4,
+      margin: 10,
       paddingLeft: 20,
       justifyContent: 'center',
       backgroundColor: 'white',
