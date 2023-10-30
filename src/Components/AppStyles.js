@@ -644,10 +644,14 @@ export default {
       fontSize: RFValue(45),
     },
   },
+  //#2E66E7 original
+  //#00529D darker blue
+  //#9DCEFF lighter blue
   viewPlus: {
     height: 50,
     width: 50,
-    backgroundColor: '#2E66E7',
+    margin: 5,
+    backgroundColor: '#00529D',
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
