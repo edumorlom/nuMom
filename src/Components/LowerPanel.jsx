@@ -122,8 +122,8 @@ export default LowerPanel = (props) => {
         ...appStyles.lowerPanel,
         ...(mapToggle && moveAnim ? { top: moveAnim } : {}),
         overflow: 'hidden',
-        height: isFullScreen ? '100%' : '90%',
-        paddingTop: 40, // Added padding so back button would not get cut off when viewing facilites page
+        height: isFullScreen ? '100%' : '65%',
+        paddingTop: 20, // Added padding so back button would not get cut off when viewing facilites page
       }}
     >
       {props.lowerPanelContent !== 'selection' && (
