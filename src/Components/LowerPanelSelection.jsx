@@ -43,6 +43,8 @@ export default function LowerPanelSelection(props) {
           <MaterialIcons
             name="settings"
             size={45}
+            marginLeft={26}
+            marginBottom={3}
             color="gray"
             style={styles.userSettingStyle}
             onPress={() => navigation.navigate('SettingsScreen')}
