@@ -4,8 +4,9 @@ import {useFocusEffect} from '@react-navigation/native';
 import ImmunizationMenu from './ImmunizationMenu';
 import appStyles from './AppStyles';
 import Plus from '../../assets/plus.png';
-import Email from '../../assets/emailicon.png';
+import Email from '../../assets/emailicon2.png';
 import Schedule from '../../assets/schedule.png';
+import appointments from '../../assets/appointments.png';
 import {
   deleteImmunization,
   fetchImmunization,
@@ -93,7 +94,7 @@ export default function Immunization(props) {
             props.navigation.navigate('ImmunizationSchedule');
           }}
         >
-          <Image source={Schedule} style={{height: 40, width: 40}} />
+          <Image source={appointments} style={{height: 40, width: 40}} />
         </TouchableOpacity>
       </View>
 
