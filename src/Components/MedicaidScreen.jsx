@@ -69,26 +69,32 @@ export const medicaidChecklist = () => {
     {
       text: translate('MSChecklistPictureID'),
       subtext: translate('MSChecklistPictureIDSub'),
+      icon: require('../../assets/pictureID.png'),
     },
     {
       text: translate('MSChecklistINSStatus'),
       subtext: translate('MSChecklistINSStatusSub'),
+      icon: require('../../assets/insStatus.png'),
     },
     {
       text: translate('MSChecklistProofOfIncome'),
       subtext: translate('MSChecklistProofOfIncomeSub'),
+      icon: require('../../assets/proofOfIncome.png'),
     },
     {
       text: translate('MSChecklistResources'),
       subtext: translate('MSChecklistResourcesSub'),
+      icon: require('../../assets/resourcesMedicaidChecklist.png'),
     },
     {
       text: translate('MSChecklistShelterCost'),
       subtext: translate('MSChecklistShelterCostSub'),
+      icon: require('../../assets/shelterCost.png'),
     },
     {
       text: translate('MSChecklistNewbornItems'),
       subtext: translate('MSChecklistNewbornItemsSub'),
+      icon: require('../../assets/newbornMedicaidpage.png'),
     },
   ];
 
@@ -102,6 +108,7 @@ export const medicaidChecklist = () => {
             style={appStyles.ImageOnRightSelectionButton}
             text={checklist.text}
             subtext={checklist.subtext}
+            icon={checklist.icon}
             key={key}
             keyIdentifier={`Medicaid${key}`} // send a prop to ChecklistButton.jsx to differentiate between different checklists and checklist items
           />
