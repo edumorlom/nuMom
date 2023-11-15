@@ -338,6 +338,8 @@
   "MSChecklistShelterCost": "Shelter Cost",
   "MSChecklistShelterCostSub": "Rent receipts/Lease or Mortgage statement. Utility bills, most current for all paid monthly/quarterly.",
   "MSChecklistNewbornItems": "Newborn Items",
-  "MSChecklistNewbornItemsSub": "The social security receipt and footprints of the newborn."
+  "MSChecklistNewbornItemsSub": "The social security receipt and footprints of the newborn.",
+
+  "language": "en"
 
 }

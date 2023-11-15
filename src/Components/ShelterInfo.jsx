@@ -38,6 +38,30 @@ export default function ShelterInfo(props) {
 
   const shelterInfo = `${props.shelter.address.street}\n${props.shelter.address.city}\n${props.shelter.address.state}, ${props.shelter.address.zipCode}`;
 
+  const getShelterDescription = () =>{
+    if (translate("language") == "en"){
+      return props.shelter.other.en;
+    };
+    if(translate("language") == "es"){
+      return props.shelter.other.es;
+    };
+    if(translate("language") == "ht"){
+      return props.shelter.other.ht;
+    };
+  };
+
+  const getShelterTime = () =>{
+    if (translate("language") == "en"){
+      return props.shelter.opened.en;
+    };
+    if(translate("language") == "es"){
+      return props.shelter.opened.es;
+    };
+    if(translate("language") == "ht"){
+      return props.shelter.opened.ht;
+    };
+  };
+  
   return (
     <ScrollView
       contentContainerStyle={{alignItems: 'center', maxWidth: '100%'}}
@@ -72,7 +96,7 @@ export default function ShelterInfo(props) {
             color: 'black',
           }}
         >
-          {props.shelter.opened}
+          {getShelterTime()}
         </Text>
       </View>
       <View
@@ -88,7 +112,7 @@ export default function ShelterInfo(props) {
             justifyContent: 'center',
           }}
         >
-          {props.shelter.other}
+          {getShelterDescription()}
         </Text>
       </View>
     </ScrollView>

@@ -337,5 +337,7 @@
   "MSChecklistShelterCost": "Costo del refugio",
   "MSChecklistShelterCostSub": "Recibos de alquiler/estado de arrendamiento o hipoteca. Facturas de servicios públicos, las más actualizadas para todos los pagos mensuales/trimestrales.",
   "MSChecklistNewbornItems": "Artículos para recién nacidos",
-  "MSChecklistNewbornItemsSub": "El recibo de la seguridad social y las huellas del recién nacido."
+  "MSChecklistNewbornItemsSub": "El recibo de la seguridad social y las huellas del recién nacido.",
+
+  "language": "es"
 }
