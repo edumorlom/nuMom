@@ -29,6 +29,13 @@ export default function ChecklistButton(props) {
     saveCookie(STORAGE_KEY, newCheck);
   };
 
+  const showIcon = () => {
+    if (props.icon) {
+      return <Image style={props.style.Icon} source={props.icon} />;
+    }
+    return null;
+  };
+
   const showText = () => (
     <View>
       <Text style={props.style.Text}>{props.text}</Text>
@@ -56,6 +63,7 @@ export default function ChecklistButton(props) {
         <View style={props.style.View}>
           {props.style.Image && showImage()}
           {props.style.Text && showText()}
+          {showIcon()}
         </View>
         {check ? (
           <View style={props.style.ImageInView}>{showImageInView()}</View>
