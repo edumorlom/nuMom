@@ -20,30 +20,47 @@ export default function LocationsMap(props) {
     onMount();
   }, []);
 
-  let onMount = async () => {
-    await getLocationAsync();
-    setLoading(false);
+  let onMount = () => {
+    getLocationAsync()
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error onMount:', error);
+        setLoading(false);
+      });
   };
 
   // Gets the user location for the Map
-  let getLocationAsync = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    const loc = defaultRegion;
-
-    if (status == 'granted') {
-        setErrorMessage('Permissions not granted.');
-        const location = await Location.getCurrentPositionAsync({});
-        loc = location.coords;
-    }
-
-    setRegion({
-      latitude: loc.latitude,
-      longitude: loc.longitude,
-      latitudeDelta: 0.2,
-      longitudeDelta: 0.3,
+  let getLocationAsync = () => {
+    return new Promise((resolve, reject) => {
+      Location.requestForegroundPermissionsAsync()
+        .then(({ status }) => {
+          if (status !== 'granted') {
+            setErrorMessage('Permissions not granted.');
+            setRegion(defaultRegion);
+            reject('Permissions not granted.');
+          } else {
+            return Location.getCurrentPositionAsync({});
+          }
+        })
+        .then((location) => {
+          const loc = location.coords;
+          setRegion({
+            latitude: loc.latitude,
+            longitude: loc.longitude,
+            latitudeDelta: 0.2,
+            longitudeDelta: 0.3,
+          });
+          resolve();
+        })
+        .catch((error) => {
+          console.error('Error in getLocationAsync:', error);
+          reject(error);
+        });
     });
-  };
-
+  }
+  
   return (
     <>
       {loading ? ( // While loading is true, show a loading gif, until finished loading then show Map

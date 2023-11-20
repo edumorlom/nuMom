@@ -152,8 +152,13 @@ export const wicLocations = (props) => {
   });
 
   // This is a holder function for fetching the facilities (clinics and shelters) asynchronously
-  let fetchResources = async () => {
-    sortWIC(await fetchWIC()); // Sorts the fetched WIC
+  let fetchResources = () => {
+    fetchWIC().then((wicData) => {
+      sortWIC(wicData); // Sorts the fetched WIC
+    }).catch((error) => {
+      console.error('Error fetching WIC:', error);
+      // Handle the error
+    });
   };
 
   let fetchWIC = async () =>
