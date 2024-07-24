@@ -482,28 +482,30 @@ export const addReference = async (uid, referenceInfo) => {
   );
 };
 
-export const fetchReference = async (uid, setReferences) => {
+export const fetchReference = (uid, setReferences) => {
   if (uid !== null) {
-    await onValue(
-      ref(getDatabase(), `users/${uid}/references/`),
+    const referenceRef = ref(getDatabase(),'users/${uid}/references/');
+    onValue(
+      referenceRef,
       (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
           console.log(childKey);
           console.log(childData);
-          if (
-            childSnapshot.val() !== null ||
-            childSnapshot.val() !== 'undefined'
-          ) {
+          if (childSnapshot.val() !== null || childSnapshot.val() !== 'undefined') {
             setReferences((prevArray) => [...prevArray, childSnapshot]);
           }
         });
       },
+      (error) => {
+        console.error('Error fetching reference:', error);
+        alert(translate('noReferenceInfo'));
+      },
       {
         onlyOnce: true,
       }
-    ).catch((err) => console.log(err.message));
+    );
   } else {
     alert(translate('noReferenceInfo'));
   }
