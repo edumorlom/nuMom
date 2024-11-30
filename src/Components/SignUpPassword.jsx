@@ -9,15 +9,20 @@ import {
   Platform,
   KeyboardAvoidingView,
   StyleSheet,
+  Alert,
+  pink, // importing colors
+  blue // importing colors
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState(''); //set password strength
   const [repeat, setRepeat] = useState('');
   const {liveMiami} = props.route.params;
   const {name} = props.route.params;
@@ -29,9 +34,10 @@ export default SignUpPassword = (props) => {
   const [showRepeat, setShowRepeat] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [visibleRepeat, setVisibleRepeat] = React.useState(true);
-  const special_chars = ['!', '#', '$', '*', '%'];
-  let containsSpecialChar = false;
-
+  //const specialChars = ['!', '#', '$', '*', '%'];
+  //let containsSpecialChar = false;
+  
+  //Default code
   useEffect(() => {
     AsyncStorage.getItem('pass').then((value) => {
       value !== null && value !== '' ? setPassword(value) : null;
@@ -41,36 +47,85 @@ export default SignUpPassword = (props) => {
     });
   }, []);
 
-  let onPress = () => {
-    for (let i = 0; i < password.length; i++) {
-      if (special_chars.includes(password[i])) {
-        containsSpecialChar = true;
-        break;
-      }
+  //feature
+  const determineStrenght =(password) =>{
+    const hasLower = /[a-z]/.test(password);
+    const hasUpper = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecial = /[!#$*%]/.test(password);
+
+    console.log('Password:', password);
+    console.log('hasLower:', hasLower);
+    console.log('hasUpper:', hasUpper);
+    console.log('hasNumber:', hasNumber);
+    console.log('hasSpecial:', hasSpecial);
+
+    if (password.length <= 4) {
+      return 'Poor';
+    } else if (
+      password.length >= 5 &&
+      ((hasLower + hasUpper + hasNumber + hasSpecial) >= 3)
+    ) {
+      return 'Medium';
+    } else if (password.length >= 5 && hasLower && hasUpper && hasNumber && hasSpecial) {
+      return 'High';
     }
+    return 'Poor';
+  };
+
+  const handlePasswordChange =(password) =>{
+    setPassword(password);
+    setPasswordStrength(determineStrenght(password));
+  };
+  const getPasswordStrenghtStyle = () =>{
+    switch (passwordStrength) {
+      case 'Poor':
+        return {color: 'pink' };
+      case 'Medium':
+        return {color: 'blue' };
+      case 'High':
+        return {color: '#298000' };
+      default:
+        return {};
+    }
+  };
+
+  const onPress = () => {
+    const hasSpecialChar = /[!#$*%]/.test(password);
+
+    //let containsSpecialChar = special_chars.some((char) => password.includes(char));
     if (password !== repeat) {
       alert(translate('passwordMismatch'));
     } else if (!password || !repeat) {
       alert(translate('fillOutAllFields'));
-    } else if (password.length < 6) {
+    } else if (password.length <=4 ) {
       alert(translate('passwordTooShort'));
     } else if (!containsSpecialChar) {
       alert(translate('passwordWeak'));
-    } else {
-      // props.setUserInfo({password});
-      // AsyncStorage.setItem('pass', password);
-      // AsyncStorage.setItem('repeat', repeat);
-      props.navigation.navigate('SignUpYesorNoPregnant', {
-        liveMiami,
-        name,
-        dob,
-        email,
-        phone,
-        password,
-        question: translate('areYouPregnant'),
-        value: 'pregnant',
-      });
+    } else if(passwordStrength === 'Medium') {
+      Alert.alert(
+        "Medium Password",
+        "Do you want to edit the password or continue?",
+        [
+          { text: "Edit Password" },
+          { text: "Continue", onPress: () => navigateToNextScreen() }
+        ]
+      );
+    } else if (passwordStrength === 'High') {
+      navigateToNextScreen();
     }
+  };
+  const navigateToNextScreen = () => {
+    props.navigation.navigate('SignUpYesorNoPregnant', {
+      liveMiami,
+      name,
+      dob,
+      email,
+      phone,
+      password,
+      question: translate('areYouPregnant'),
+      value: 'pregnant',
+    });
   };
   return (
     <KeyboardAvoidingView
@@ -103,7 +158,8 @@ export default SignUpPassword = (props) => {
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={handlePasswordChange}
+                    value={password}
                   />
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
@@ -119,6 +175,10 @@ export default SignUpPassword = (props) => {
                     />
                   </TouchableOpacity>
                 </View>
+              
+                <Text style={getPasswordStrenghtStyle}>
+                  Password Stregnth: {passwordStrength}
+                </Text> 
 
                 <View>
                   <TextBox
@@ -159,6 +219,7 @@ export default SignUpPassword = (props) => {
               style={appStyles.button}
               text={translate('continueButton')}
               onPress={onPress}
+              disabled={passwordStrength === 'Poor'}
             />
           </View>
         </>
