@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Keyboard,
   Text,
   TextInput as TextBox,
@@ -11,24 +12,22 @@ import {
   StyleSheet,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {MaterialCommunityIcons as Icon} from '@expo/vector-icons';
+import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import appStyles from './AppStyles';
 import Button from './Button';
 import translate from './getLocalizedText';
+import poorPasswords from './poorPasswords'; // new
 
-export default SignUpPassword = (props) => {
+const SignUpPassword = (props) => {
   const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState(0); // new
   const [repeat, setRepeat] = useState('');
-  const {liveMiami} = props.route.params;
-  const {name} = props.route.params;
-  const {dob} = props.route.params;
-  const {email} = props.route.params;
-  const {phone} = props.route.params;
+  const { liveMiami, name, dob, email, phone } = props.route.params;
   const [isSecureEntry, setIsSecureEntry] = useState(true);
-  const [show, setShow] = React.useState(false);
-  const [showRepeat, setShowRepeat] = React.useState(false);
-  const [visible, setVisible] = React.useState(true);
-  const [visibleRepeat, setVisibleRepeat] = React.useState(true);
+  const [show, setShow] = useState(false);
+  const [showRepeat, setShowRepeat] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [visibleRepeat, setVisibleRepeat] = useState(true);
   const special_chars = ['!', '#', '$', '*', '%'];
   let containsSpecialChar = false;
 
@@ -40,6 +39,49 @@ export default SignUpPassword = (props) => {
       value !== null && value !== '' ? setRepeat(value) : null;
     });
   }, []);
+
+  
+  const checkPasswordStrength = (password) => {
+    if (password.length <= 4 || poorPasswords.includes(password)) {
+      return 0; 
+    }
+
+    const lowercase = /[a-z]/.test(password);
+    const uppercase = /[A-Z]/.test(password);
+    const number = /\d/.test(password);
+    const symbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    const typeCount = [lowercase, uppercase, number, symbol].filter(Boolean).length;
+
+    if (typeCount >= 3 && password.length >= 5 && !poorPasswords.includes(password)) {
+      if (typeCount === 4) {
+        return 2; //password is high
+      }
+      return 1; //password is medium
+    }
+
+    return 0; //password is poor
+  };
+
+  
+  const passwordChnage = (newPassword) => {
+    setPassword(newPassword);
+    setPasswordStrength(checkPasswordStrength(newPassword));
+  };
+
+  
+  const getPasswordStrength = () => {
+    switch (passwordStrength) {
+      case 1:
+        return <Text style={styles.medium}>Medium</Text>;
+      case 2:
+        return <Text style={styles.high}>High</Text>;
+      default:
+        return <Text style={styles.poor}>Poor</Text>;
+    }
+  };
+
+  
 
   let onPress = () => {
     for (let i = 0; i < password.length; i++) {
@@ -56,8 +98,36 @@ export default SignUpPassword = (props) => {
       alert(translate('passwordTooShort'));
     } else if (!containsSpecialChar) {
       alert(translate('passwordWeak'));
+    } else if (passwordStrength === 0) {
+      alert("Password is too weak. Please choose a stronger password.");
+    } else if (passwordStrength === 1) {
+      Alert.alert(
+        "Your password is of medium Strength",
+        "Your password is medium strength. Do you want to continue or edit your password?",
+        [
+          {
+            text: "Edit",
+            onPress: () => {},
+            style: "cancel"
+          },
+          { text: "Continue", onPress: () => {
+              
+              props.navigation.navigate('SignUpYesorNoPregnant', {
+                liveMiami,
+                name,
+                dob,
+                email,
+                phone,
+                password,
+                question: translate('areYouPregnant'),
+                value: 'pregnant',
+              });
+            }
+          }
+        ]
+      );
     } else {
-      // props.setUserInfo({password});
+      // props.setUserInfo({ password });
       // AsyncStorage.setItem('pass', password);
       // AsyncStorage.setItem('repeat', repeat);
       props.navigation.navigate('SignUpYesorNoPregnant', {
@@ -72,6 +142,7 @@ export default SignUpPassword = (props) => {
       });
     }
   };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -96,14 +167,16 @@ export default SignUpPassword = (props) => {
               <Text style={appStyles.titleBlue}>
                 {translate('createPassword')}
               </Text>
-              <View style={{paddingTop: appStyles.win.height * 0.05}}>
+              <View style={{ paddingTop: appStyles.win.height * 0.05 }}>
                 <View>
                   <TextBox
                     placeholderTextColor={appStyles.DefaultPlaceholderTextColor}
                     style={appStyles.TextInputMask}
                     secureTextEntry={visible}
                     placeholder={translate('passwordInput')}
-                    onChangeText={setPassword}
+                    onChangeText={passwordChnage} 
+                    value={password}
+                    
                   />
                   <TouchableOpacity
                     style={styles.eyeShowPassword}
@@ -118,6 +191,12 @@ export default SignUpPassword = (props) => {
                       color={appStyles.pinkColor}
                     />
                   </TouchableOpacity>
+                  
+                </View>
+               
+                
+                <View style={{ paddingTop: 10 }}>
+                    {getPasswordStrength()}
                 </View>
 
                 <View>
@@ -145,6 +224,10 @@ export default SignUpPassword = (props) => {
                     />
                   </TouchableOpacity>
                 </View>
+
+               
+
+                
               </View>
             </View>
           </View>
@@ -158,7 +241,8 @@ export default SignUpPassword = (props) => {
             <Button
               style={appStyles.button}
               text={translate('continueButton')}
-              onPress={onPress}
+              onPress={onPress} 
+              disabled={passwordStrength === 0} 
             />
           </View>
         </>
@@ -167,10 +251,25 @@ export default SignUpPassword = (props) => {
   );
 };
 
+export default SignUpPassword;
+
+
 const styles = StyleSheet.create({
   eyeShowPassword: {
     position: 'absolute',
     right: 30,
     top: 25,
+  },
+  poor: {
+    color: '#DF2172',
+    marginTop: 10,
+  },
+  medium: {
+    color: '#0052A1',
+    marginTop: 10,
+  },
+  high: {
+    color: '#298000',
+    marginTop: 10,
   },
 });
